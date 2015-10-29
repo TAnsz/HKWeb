@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C268D54-9C73-4614-BB9F-25F9A98720D3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Solution.Web.Managers</RootNamespace>
+    <AssemblyName>Solution.Web.Managers</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FineUI, Version=4.0.6.0, Culture=neutral, PublicKeyToken=0ff1835d01c384a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\FineUI.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="WebManage\Images\main.jpg" />
+    <Content Include="WebManage\Meals\Report.aspx" />
+    <Content Include="WebManage\Meals\MealOrderingEdit.aspx" />
+    <Content Include="WebManage\Meals\MealOrderingList.aspx" />
+    <Content Include="WebManage\PhoneMain.aspx" />
+    <Content Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx" />
+    <Content Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx" />
+    <Content Include="WebManage\MeetingRooms\RoomMomentList.aspx" />
+    <Content Include="WebManage\MeetingRooms\MeetingRoomEdit.aspx" />
+    <Content Include="WebManage\MeetingRooms\MeetingRoomList.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="WebManage\adJustRests\adJustRest_DEdit.aspx" />
+    <Content Include="WebManage\adJustRests\adJustRest_DList.aspx" />
+    <Content Include="WebManage\Help\wannianli.htm" />
+    <Content Include="WebManage\Informations\InformationClassList.aspx" />
+    <Content Include="WebManage\Informations\InformationClassEdit.aspx" />
+    <Content Include="WebManage\Informations\InformationList.aspx" />
+    <Content Include="WebManage\Informations\InformationEdit.aspx" />
+    <Content Include="WebManage\Main.aspx" />
+    <Content Include="WebManage\Login.aspx" />
+    <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
+    <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
+    <Content Include="WebManage\Systems\Powers\MenuInfoEdit.aspx" />
+    <Content Include="WebManage\Systems\Powers\MenuInfoList.aspx" />
+    <Content Include="WebManage\Systems\Powers\PagePowerSignPublicList.aspx" />
+    <Content Include="WebManage\Systems\Powers\PagePowerSignPublicEdit.aspx" />
+    <Content Include="WebManage\Systems\Powers\PagePowerSignList.aspx" />
+    <Content Include="WebManage\Systems\Powers\PositionEdit.aspx" />
+    <Content Include="WebManage\Systems\Powers\PositionList.aspx" />
+    <Content Include="WebManage\Systems\Security\LoginLogList.aspx" />
+    <Content Include="WebManage\Systems\Security\UseLogList.aspx" />
+    <Content Include="WebManage\Systems\Security\ErrorLogList.aspx" />
+    <Content Include="WebManage\Systems\Security\OnlineUsersList.aspx" />
+    <Content Include="WebManage\Systems\Set\UploadTypeEdit.aspx" />
+    <Content Include="WebManage\Systems\Set\UploadTypeList.aspx" />
+    <Content Include="WebManage\Systems\Set\WebConfigSet.aspx" />
+    <Content Include="WebManage\Systems\Set\UploadConfigList.aspx" />
+    <Content Include="WebManage\Systems\Set\UploadConfigEdit.aspx" />
+    <Content Include="WebManage\Systems\Set\UploadFileList.aspx" />
+    <Content Include="WebServices\ApplyWebService.asmx" />
+    <Content Include="WebServices\LoginWebService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Meals\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Meals\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Meals\MealOrderingEdit.aspx.cs">
+      <DependentUpon>MealOrderingEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Meals\MealOrderingEdit.aspx.designer.cs">
+      <DependentUpon>MealOrderingEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Meals\MealOrderingList.aspx.cs">
+      <DependentUpon>MealOrderingList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Meals\MealOrderingList.aspx.designer.cs">
+      <DependentUpon>MealOrderingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\PhoneMain.aspx.cs">
+      <DependentUpon>PhoneMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\PhoneMain.aspx.designer.cs">
+      <DependentUpon>PhoneMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx.cs">
+      <DependentUpon>MeetingRoomApplyEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx.designer.cs">
+      <DependentUpon>MeetingRoomApplyEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx.cs">
+      <DependentUpon>MeetingRoomApplyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx.designer.cs">
+      <DependentUpon>MeetingRoomApplyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomMomentList.aspx.cs">
+      <DependentUpon>RoomMomentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomMomentList.aspx.designer.cs">
+      <DependentUpon>RoomMomentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomEdit.aspx.cs">
+      <DependentUpon>MeetingRoomEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomEdit.aspx.designer.cs">
+      <DependentUpon>MeetingRoomEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomList.aspx.cs">
+      <DependentUpon>MeetingRoomList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\MeetingRoomList.aspx.designer.cs">
+      <DependentUpon>MeetingRoomList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebManage\adJustRests\adJustRest_DEdit.aspx.cs">
+      <DependentUpon>adJustRest_DEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\adJustRests\adJustRest_DEdit.aspx.designer.cs">
+      <DependentUpon>adJustRest_DEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\adJustRests\adJustRest_DList.aspx.cs">
+      <DependentUpon>adJustRest_DList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\adJustRests\adJustRest_DList.aspx.designer.cs">
+      <DependentUpon>adJustRest_DList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Application\FileUpload.ashx.cs">
+      <DependentUpon>FileUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Application\RemoteUpload.ashx.cs">
+      <DependentUpon>RemoteUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationClassList.aspx.cs">
+      <DependentUpon>InformationClassList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationClassList.aspx.designer.cs">
+      <DependentUpon>InformationClassList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationClassEdit.aspx.cs">
+      <DependentUpon>InformationClassEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationClassEdit.aspx.designer.cs">
+      <DependentUpon>InformationClassEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationList.aspx.cs">
+      <DependentUpon>InformationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationList.aspx.designer.cs">
+      <DependentUpon>InformationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationEdit.aspx.cs">
+      <DependentUpon>InformationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Informations\InformationEdit.aspx.designer.cs">
+      <DependentUpon>InformationEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Application\IPageBase.cs" />
+    <Compile Include="WebManage\Application\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Application\Vcode.ashx.cs">
+      <DependentUpon>Vcode.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.cs">
+      <DependentUpon>OutWorkRecordEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.designer.cs">
+      <DependentUpon>OutWorkRecordEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.cs">
+      <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.designer.cs">
+      <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\MenuInfoEdit.aspx.cs">
+      <DependentUpon>MenuInfoEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\MenuInfoEdit.aspx.designer.cs">
+      <DependentUpon>MenuInfoEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\MenuInfoList.aspx.cs">
+      <DependentUpon>MenuInfoList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\MenuInfoList.aspx.designer.cs">
+      <DependentUpon>MenuInfoList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignPublicList.aspx.cs">
+      <DependentUpon>PagePowerSignPublicList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignPublicList.aspx.designer.cs">
+      <DependentUpon>PagePowerSignPublicList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignPublicEdit.aspx.cs">
+      <DependentUpon>PagePowerSignPublicEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignPublicEdit.aspx.designer.cs">
+      <DependentUpon>PagePowerSignPublicEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignList.aspx.cs">
+      <DependentUpon>PagePowerSignList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PagePowerSignList.aspx.designer.cs">
+      <DependentUpon>PagePowerSignList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PositionEdit.aspx.cs">
+      <DependentUpon>PositionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PositionEdit.aspx.designer.cs">
+      <DependentUpon>PositionEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PositionList.aspx.cs">
+      <DependentUpon>PositionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\PositionList.aspx.designer.cs">
+      <DependentUpon>PositionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\LoginLogList.aspx.cs">
+      <DependentUpon>LoginLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\LoginLogList.aspx.designer.cs">
+      <DependentUpon>LoginLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\UseLogList.aspx.cs">
+      <DependentUpon>UseLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\UseLogList.aspx.designer.cs">
+      <DependentUpon>UseLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\ErrorLogList.aspx.cs">
+      <DependentUpon>ErrorLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\ErrorLogList.aspx.designer.cs">
+      <DependentUpon>ErrorLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\OnlineUsersList.aspx.cs">
+      <DependentUpon>OnlineUsersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Security\OnlineUsersList.aspx.designer.cs">
+      <DependentUpon>OnlineUsersList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadTypeEdit.aspx.cs">
+      <DependentUpon>UploadTypeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadTypeEdit.aspx.designer.cs">
+      <DependentUpon>UploadTypeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadTypeList.aspx.cs">
+      <DependentUpon>UploadTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadTypeList.aspx.designer.cs">
+      <DependentUpon>UploadTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\WebConfigSet.aspx.cs">
+      <DependentUpon>WebConfigSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\WebConfigSet.aspx.designer.cs">
+      <DependentUpon>WebConfigSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadConfigList.aspx.cs">
+      <DependentUpon>UploadConfigList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadConfigList.aspx.designer.cs">
+      <DependentUpon>UploadConfigList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadConfigEdit.aspx.cs">
+      <DependentUpon>UploadConfigEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadConfigEdit.aspx.designer.cs">
+      <DependentUpon>UploadConfigEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadFileList.aspx.cs">
+      <DependentUpon>UploadFileList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Set\UploadFileList.aspx.designer.cs">
+      <DependentUpon>UploadFileList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\ApplyWebService.asmx.cs">
+      <DependentUpon>ApplyWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\LoginWebService.asmx.cs">
+      <DependentUpon>LoginWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Utilities\DotNet.Utilities.csproj">
+      <Project>{0A9704F9-7864-45AF-BFA7-E09F2B30A29F}</Project>
+      <Name>DotNet.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solution.DataAccess\Solution.DataAccess.csproj">
+      <Project>{CA4F4CC6-75DF-40EB-98D6-BD60112B412E}</Project>
+      <Name>Solution.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solution.Logic.Managers\Solution.Logic.Managers.csproj">
+      <Project>{33DA201E-C035-47CD-9CAC-0C53033F2833}</Project>
+      <Name>Solution.Logic.Managers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubSonic.Core\SubSonic.Core.csproj">
+      <Project>{53FF90B2-2D33-4EC0-91B6-A30FDF1B3374}</Project>
+      <Name>SubSonic.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebManage\Employees\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebManage\Application\Vcode.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configs\log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebManage\Application\FileUpload.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebManage\Application\RemoteUpload.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\web.pubxml" />
+    <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManage\Meals\ReportMeal.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59709</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59709/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CA4F4CC6-75DF-40EB-98D6-BD60112B412E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Solution.DataAccess</RootNamespace>
+    <AssemblyName>Solution.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbHelper\ConditionHelper.cs" />
+    <Compile Include="DbHelper\DeleteHelper.cs" />
+    <Compile Include="DbHelper\SelectHelper.cs" />
+    <Compile Include="DbHelper\UpdateHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubSonic\ActiveRecord.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\adJustRest_D.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\adJustRest_DModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\adJustRest_DStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\adJustRest_DTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CardDetail.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CardDetailModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CardDetailStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CardDetailTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CreateModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Departs.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\DepartsModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\DepartsStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\DepartsTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Employee.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\employeedet.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\employeedetModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\employeedetStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\employeedetTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EmployeeModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EmployeeStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EmployeeTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EntityTable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ErrorLog.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ErrorLogModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ErrorLogStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ErrorLogTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Holidays.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HolidaysModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HolidaysStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HolidaysTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Information.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationClass.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationClassModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationClassStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationClassTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\LoginLog.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\LoginLogModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\LoginLogStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\LoginLogTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Machine.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MachineModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MachineStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MachineTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MAIN_LIST.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MAIN_LISTModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MAIN_LISTStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MAIN_LISTTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MealOrdering.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MealOrderingModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MealOrderingStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MealOrderingTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoom.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomApply.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomApplyModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomApplyStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomApplyTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MeetingRoomTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MenuInfo.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MenuInfoModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MenuInfoStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MenuInfoTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OnlineUsers.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OnlineUsersModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OnlineUsersStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OnlineUsersTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OutWork_D.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OutWork_DModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OutWork_DStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OutWork_DTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSign.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignPublic.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignPublicModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignPublicStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignPublicTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_Day.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_DayModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_DayStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_DayTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_Month.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_MonthModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_MonthStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Report_MonthTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RoomMoment.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RoomMomentModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RoomMomentStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RoomMomentTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Rules.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RulesModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RulesStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\RulesTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Shifts.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ShiftsModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ShiftsStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ShiftsTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\StoredProcedures.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoredProcedures.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Structs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TOOL_LIST.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TOOL_LISTModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TOOL_LISTStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TOOL_LISTTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLESET.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLESETModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLESETStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLESETTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLE_D.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLE_DModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLE_DStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\T_TABLE_DTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadConfig.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadConfigModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadConfigStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadConfigTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadFile.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadFileModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadFileStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadFileTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadType.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadTypeModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadTypeStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadTypeTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UseLog.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UseLogModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UseLogStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UseLogTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITY.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITYModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITYStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITYTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITY_REPORT.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITY_REPORTModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITY_REPORTStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\USERAUTHORITY_REPORTTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WebConfig.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WebConfigModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WebConfigStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WebConfigTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WeekRest.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WeekRestModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WeekRestStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WeekRestTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SubSonic\ActiveRecord.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ActiveRecord.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Context.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\CreateModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateModel.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\EntityTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityTable.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\MultipleOutputHelper.ttinclude" />
+    <None Include="SubSonic\Settings.ttinclude" />
+    <None Include="SubSonic\SQLServer.ttinclude" />
+    <None Include="SubSonic\StoredProcedures.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StoredProcedures.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\Structs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Structs.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Utilities\DotNet.Utilities.csproj">
+      <Project>{0A9704F9-7864-45AF-BFA7-E09F2B30A29F}</Project>
+      <Name>DotNet.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubSonic.Core\SubSonic.Core.csproj">
+      <Project>{53FF90B2-2D33-4EC0-91B6-A30FDF1B3374}</Project>
+      <Name>SubSonic.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\EnumObject\" />
+    <Folder Include="Model\ObjectEntity\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
