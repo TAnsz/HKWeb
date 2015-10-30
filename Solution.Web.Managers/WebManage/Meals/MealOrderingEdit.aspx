@@ -17,12 +17,12 @@
     <form id="form1" runat="server">
         <f:HiddenField runat="server" ID="hidId" Text="0">
         </f:HiddenField>
-        <f:PageManager ID="PageManager1" runat="server" />
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true"/>
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
-                        <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click"></f:Button>
+                        <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click" ValidateForms="extForm1"></f:Button>
                     </Items>
                 </f:Toolbar>
             </Toolbars>

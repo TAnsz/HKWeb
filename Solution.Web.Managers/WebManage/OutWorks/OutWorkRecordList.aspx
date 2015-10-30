@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" />
+        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" Title="請假出差列表" EnableFrame="false" BodyPadding="10px"
             EnableCollapse="True">
             <Toolbars>
@@ -130,7 +130,7 @@
         <f:Window ID="Window1" Width="700px" Height="450px" Icon="TagBlue" Title="編輯" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
-            EnableIFrame="true" EnableClose="true" IsModal="True" EnableConfirmOnClose="True">
+            EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>
     </form>
 </body>

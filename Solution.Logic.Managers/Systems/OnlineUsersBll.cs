@@ -229,8 +229,8 @@ namespace Solution.Logic.Managers
                         //清空Session
                         SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                         SessionHelper.RemoveSession(OnlineUsersTable.Md5);
-                        //SessionHelper.RemoveSession(PositionTable.PagePower);
-                        //SessionHelper.RemoveSession(PositionTable.ControlPower);
+                        SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
+                        SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
                         //删除Cookies
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);

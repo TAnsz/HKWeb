@@ -677,9 +677,35 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FineUI.PanelBase.GetClearDirtyReference">
+            <summary>
+            清空面板内表单字段的改变状态
+            </summary>
+            <returns>客户端脚本</returns>
+        </member>
         <member name="P:FineUI.PanelBase.AutoScroll">
             <summary>
             是否自动滚动
+            </summary>
+        </member>
+        <member name="P:FineUI.PanelBase.MinHeight">
+            <summary>
+            最小高度
+            </summary>
+        </member>
+        <member name="P:FineUI.PanelBase.MinWidth">
+            <summary>
+            最小宽度
+            </summary>
+        </member>
+        <member name="P:FineUI.PanelBase.MaxHeight">
+            <summary>
+            最大高度
+            </summary>
+        </member>
+        <member name="P:FineUI.PanelBase.MaxWidth">
+            <summary>
+            最大宽度
             </summary>
         </member>
         <member name="P:FineUI.PanelBase.EnableFrame">
@@ -1007,6 +1033,11 @@
         <member name="P:FineUI.Field.LabelWidth">
             <summary>
             标签的宽度
+            </summary>
+        </member>
+        <member name="P:FineUI.Field.LabelAlign">
+            <summary>
+            表单中标签的位置
             </summary>
         </member>
         <member name="M:FineUI.TextField.#ctor">
@@ -1847,6 +1878,11 @@
         <member name="M:FineUI.GlobalConfig.GetIEEdge">
             <summary>
             是否向页面输出IE=edge标识
+            </summary>
+        </member>
+        <member name="M:FineUI.GlobalConfig.GetEnableFormChangeConfirm">
+            <summary>
+            是否启用表单改变确认对话框
             </summary>
         </member>
         <member name="P:FineUI.GlobalConfig.ProductName">
@@ -11080,7 +11116,7 @@
         </member>
         <member name="F:FineUI.BoxLayoutAlign.Start">
             <summary>
-            所有子控件位于父容器的开始位置（默认值）
+            所有子控件位于父容器的开始位置
             </summary>
         </member>
         <member name="F:FineUI.BoxLayoutAlign.Center">
@@ -11090,7 +11126,7 @@
         </member>
         <member name="F:FineUI.BoxLayoutAlign.Stretch">
             <summary>
-            所有子控件被拉伸至父容器的大小
+            所有子控件被拉伸至父容器的大小（默认值）
             </summary>
         </member>
         <member name="F:FineUI.BoxLayoutAlign.StretchMax">
@@ -11113,14 +11149,14 @@
             子控件靠父容器的开始位置排列（废弃，请使用Start代替）
             </summary>
         </member>
-        <member name="F:FineUI.BoxLayoutPosition.Center">
-            <summary>
-            子控件靠父容器的中间位置排列
-            </summary>
-        </member>
         <member name="F:FineUI.BoxLayoutPosition.Right">
             <summary>
             子控件靠父容器的结束位置排列（废弃，请使用End代替）
+            </summary>
+        </member>
+        <member name="F:FineUI.BoxLayoutPosition.Center">
+            <summary>
+            子控件靠父容器的中间位置排列
             </summary>
         </member>
         <member name="F:FineUI.BoxLayoutPosition.Start">
@@ -11275,11 +11311,21 @@
             <param name="propertyValue">属性值</param>
             <param name="persistOriginal">是否保持原样</param>
         </member>
+        <member name="M:FineUI.JsArrayBuilder.Reverse">
+            <summary>
+            将整个数组中元素顺序反转
+            </summary>
+        </member>
         <member name="M:FineUI.JsArrayBuilder.ToString">
             <summary>
             返回对象的JSON字符串形式
             </summary>
             <returns>对象的JSON形式</returns>
+        </member>
+        <member name="P:FineUI.JsArrayBuilder.Properties">
+            <summary>
+            内部保存的数据
+            </summary>
         </member>
         <member name="P:FineUI.JsArrayBuilder.Count">
             <summary>
@@ -11385,12 +11431,6 @@
             AJAX输出过滤器
             </summary>
         </member>
-        <member name="M:FineUI.ResponseFilter.GetEnableTargetControlScript">
-            <summary>
-            设置引起本次回发的按钮（或其他控件）可用
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:FineUI.ResponseFilter.UpdateEventValidation(System.Text.StringBuilder,HtmlAgilityPack.HtmlDocument)">
             <summary>
             更新 EventValidation 节点的值
@@ -11398,13 +11438,12 @@
             <param name="sb"></param>
             <param name="doc"></param>
         </member>
-        <member name="M:FineUI.ResponseFilter.UpdateViewState(System.Text.StringBuilder,HtmlAgilityPack.HtmlDocument,System.Boolean)">
+        <member name="M:FineUI.ResponseFilter.UpdateViewState(System.Text.StringBuilder,HtmlAgilityPack.HtmlDocument)">
             <summary>
             更新 ViewState 节点的值
             </summary>
             <param name="sb"></param>
             <param name="doc"></param>
-            <param name="gzipped"></param>
         </member>
         <member name="M:FineUI.ResponseFilter.UpdateASPNETControls(System.Text.StringBuilder,HtmlAgilityPack.HtmlDocument)">
             <summary>
@@ -14350,38 +14389,6 @@
             <param name="argument">回发参数</param>
             <returns>客户端脚本</returns>
         </member>
-        <member name="M:FineUI.ActiveWindow.GetConfirmHideReference">
-            <summary>
-            获取先确认当前页面中表单是否更改，然后关闭当前激活窗体的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.ActiveWindow.GetConfirmHideRefreshReference">
-            <summary>
-            获取先确认当前页面中表单是否更改，然后关闭当前激活窗体，再刷新父页面的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.ActiveWindow.GetConfirmHidePostBackReference">
-            <summary>
-            获取先确认当前页面中表单是否更改，然后关闭当前激活窗体，再回发父页面的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.ActiveWindow.GetConfirmHidePostBackReference(System.String)">
-            <summary>
-            获取先确认当前页面中表单是否更改，然后关闭当前激活窗体，再回发父页面的客户端脚本
-            </summary>
-            <param name="argument">回发参数</param>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.ActiveWindow.GetConfirmHideExecuteScriptReference(System.String)">
-            <summary>
-            获取先确认当前页面中表单是否更改，然后关闭当前激活窗体，再执行脚本的客户端脚本
-            </summary>
-            <param name="argument">执行的脚本</param>
-            <returns>客户端脚本</returns>
-        </member>
         <member name="T:FineUI.MenuButton">
             <summary>
             菜单项按钮控件
@@ -14779,13 +14786,6 @@
             渲染 HTML 之前调用（页面第一次加载或者普通回发）
             </summary>
         </member>
-        <member name="M:FineUI.PageManager.RegisterOnAjaxPostBack(System.String,System.String)">
-            <summary>
-            Used by FCKeditor, Add script before ajax postback.
-            </summary>
-            <param name="key"></param>
-            <param name="script"></param>
-        </member>
         <member name="M:FineUI.PageManager.GetCustomEventReference(System.String)">
             <summary>
             获取回发的客户端脚本（触发PageManager的CustomEvent事件）
@@ -14833,6 +14833,11 @@
             不支持此属性
             </summary>
         </member>
+        <member name="P:FineUI.PageManager.PageLoadingImageUrl">
+            <summary>
+            自定义页面加载图片
+            </summary>
+        </member>
         <member name="P:FineUI.PageManager.AutoSizePanelID">
             <summary>
             自动调整此容器的宽度和高度，以填充整个页面
@@ -14858,14 +14863,14 @@
             需要在AJAX回发时更新的Asp.net控件列表（逗号分隔）
             </summary>
         </member>
-        <member name="P:FineUI.PageManager.AjaxGridClientIDs">
-            <summary>
-            本次AJAX请求过程中需要更新TemplateField的表格
-            </summary>
-        </member>
         <member name="P:FineUI.PageManager.AjaxGridReloadedClientIDs">
             <summary>
             本次AJAX请求过程中重新加载的表格
+            </summary>
+        </member>
+        <member name="P:FineUI.PageManager.EnableFormChangeConfirm">
+            <summary>
+            是否启用表单改变确认对话框
             </summary>
         </member>
         <member name="P:FineUI.PageManager.Theme">
@@ -14956,11 +14961,6 @@
         <member name="P:FineUI.PageManager.FormLabelSeparator">
             <summary>
             表单中字段与标签的分隔符
-            </summary>
-        </member>
-        <member name="P:FineUI.PageManager.PageLoadingControlExist">
-            <summary>
-            PageLoading控件是否存在页面
             </summary>
         </member>
         <member name="P:FineUI.PageManager.Instance">
@@ -17351,48 +17351,6 @@
             布局类型
             </summary>
         </member>
-        <member name="T:FineUI.PageLoading">
-            <summary>
-            页面加载提示控件
-            </summary>
-        </member>
-        <member name="M:FineUI.PageLoading.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
-            <summary>
-            渲染控件的开始标签
-            </summary>
-            <param name="writer">输出流</param>
-        </member>
-        <member name="M:FineUI.PageLoading.RenderEndTag(System.Web.UI.HtmlTextWriter)">
-            <summary>
-            渲染控件的结束标签（不生成结束标签）
-            </summary>
-            <param name="writer">输出流</param>
-        </member>
-        <member name="M:FineUI.PageLoading.OnAjaxPreRender">
-            <summary>
-            渲染 HTML 之前调用（AJAX回发）
-            </summary>
-        </member>
-        <member name="M:FineUI.PageLoading.OnFirstPreRender">
-            <summary>
-            渲染 HTML 之前调用（页面第一次加载或者普通回发）
-            </summary>
-        </member>
-        <member name="P:FineUI.PageLoading.ImageUrl">
-            <summary>
-            自定义的加载图片
-            </summary>
-        </member>
-        <member name="P:FineUI.PageLoading.ShowOnPostBack">
-            <summary>
-            回发时是否显示
-            </summary>
-        </member>
-        <member name="P:FineUI.PageLoading.EnableFadeOut">
-            <summary>
-            是否启用淡出效果
-            </summary>
-        </member>
         <member name="T:FineUI.Form">
             <summary>
             表单面板控件
@@ -17776,37 +17734,6 @@
             <param name="argument">执行的脚本</param>
             <returns>客户端脚本</returns>
         </member>
-        <member name="M:FineUI.Window.GetConfirmHideReference">
-            <summary>
-            获取先确认IFrame的页面中表单改变，然后关闭弹出窗口的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.Window.GetConfirmHideRefreshReference">
-            <summary>
-            获取先确认IFrame的页面中表单改变，然后关闭弹出窗口，然后刷新父页面的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.Window.GetConfirmHidePostBackReference">
-            <summary>
-            获取先确认IFrame的页面中表单改变，然后关闭弹出窗口，然后回发父页面的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.Window.GetConfirmHidePostBackReference(System.String)">
-            <summary>
-            获取先确认IFrame的页面中表单改变，然后关闭弹出窗口，然后回发父页面的客户端脚本
-            </summary>
-            <returns>客户端脚本</returns>
-        </member>
-        <member name="M:FineUI.Window.GetConfirmHideExecuteScriptReference(System.String)">
-            <summary>
-            获取先确认IFrame的页面中表单改变，然后关闭弹出窗口，然后执行脚本的客户端脚本
-            </summary>
-            <param name="argument">回发参数</param>
-            <returns>客户端脚本</returns>
-        </member>
         <member name="M:FineUI.Window.LoadPostData(System.String,System.Collections.Specialized.NameValueCollection)">
             <summary>
             处理回发数据
@@ -17908,11 +17835,6 @@
             点击关闭按钮时需要执行的客户端脚本
             </summary>
         </member>
-        <member name="P:FineUI.Window.EnableConfirmOnClose">
-            <summary>
-            关闭窗体之前弹出确认窗体内IFrame中表单改变的对话框
-            </summary>
-        </member>
         <member name="P:FineUI.Window.CloseAction">
             <summary>
             关闭窗体的动作（点击关闭按钮或者按 ESC 键都会执行此动作）
@@ -17975,6 +17897,12 @@
             <summary>
             渲染 HTML 之前调用（AJAX回发）
             </summary>
+        </member>
+        <member name="M:FineUI.Grid.GetRowExpanderColumn">
+            <summary>
+            获取行扩展列
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:FineUI.Grid.OnFirstPreRender">
             <summary>
@@ -19009,47 +18937,47 @@
             </summary>
             <param name="parent">父控件实例</param>
         </member>
-        <member name="T:FineUI.GridRowControl">
+        <member name="T:FineUI.GridTemplateContainer">
             <summary>
             用来作为模板列的数据绑定容器，实现了IDataItemContainer接口
             </summary>
         </member>
-        <member name="M:FineUI.GridRowControl.#ctor(System.Object,System.Int32)">
+        <member name="M:FineUI.GridTemplateContainer.#ctor(System.Object,System.Int32)">
             <summary>
             构造函数
             </summary>
             <param name="dataItem">数据源</param>
             <param name="rowIndex">行索引</param>
         </member>
-        <member name="M:FineUI.GridRowControl.OnInit(System.EventArgs)">
+        <member name="M:FineUI.GridTemplateContainer.OnInit(System.EventArgs)">
             <summary>
             控件初始化事件
             </summary>
             <param name="e">事件参数</param>
         </member>
-        <member name="M:FineUI.GridRowControl.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+        <member name="M:FineUI.GridTemplateContainer.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
             <summary>
             渲染开始标签
             </summary>
             <param name="writer">ASP.NET服务器控件输出流</param>
         </member>
-        <member name="M:FineUI.GridRowControl.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+        <member name="M:FineUI.GridTemplateContainer.RenderEndTag(System.Web.UI.HtmlTextWriter)">
             <summary>
             渲染结束标签
             </summary>
             <param name="writer">ASP.NET服务器控件输出流</param>
         </member>
-        <member name="P:FineUI.GridRowControl.DataItem">
+        <member name="P:FineUI.GridTemplateContainer.DataItem">
             <summary>
             数据源（IDataItemContainer成员）
             </summary>
         </member>
-        <member name="P:FineUI.GridRowControl.DataItemIndex">
+        <member name="P:FineUI.GridTemplateContainer.DataItemIndex">
             <summary>
             数据项索引（IDataItemContainer成员）
             </summary>
         </member>
-        <member name="P:FineUI.GridRowControl.DisplayIndex">
+        <member name="P:FineUI.GridTemplateContainer.DisplayIndex">
             <summary>
             数据项在控件中显示位置的索引（IDataItemContainer成员）
             </summary>
@@ -19295,6 +19223,11 @@
             </summary>
             <param name="e">事件参数</param>
         </member>
+        <member name="P:FineUI.DropDownList.EmptyText">
+            <summary>
+            文本框为空时显示的文本
+            </summary>
+        </member>
         <member name="P:FineUI.DropDownList.Text">
             <summary>
             [AJAX属性]用户输入的文本（只有在允许编辑和不强制选择的情况下才有效）
@@ -19480,6 +19413,11 @@
             渲染 HTML 之前调用（页面第一次加载或者普通回发）
             </summary>
         </member>
+        <member name="P:FineUI.TextArea.NextFocusControl">
+            <summary>
+            不支持此属性
+            </summary>
+        </member>
         <member name="P:FineUI.TextArea.AutoGrowHeight">
             <summary>
             是否自动增长高度
@@ -19556,6 +19494,11 @@
             获取隐藏选项卡的客户端脚本
             </summary>
             <returns>客户端脚本</returns>
+        </member>
+        <member name="P:FineUI.Tab.ShowHeader">
+            <summary>
+            不支持此属性
+            </summary>
         </member>
         <member name="P:FineUI.Tab.ShowBorder">
             <summary>
@@ -20913,6 +20856,11 @@
         <member name="P:FineUI.ConfigSection.IEEdge">
             <summary>
             是否向页面输出IE=edge标识
+            </summary>
+        </member>
+        <member name="P:FineUI.ConfigSection.EnableFormChangeConfirm">
+            <summary>
+            是否启用表单改变确认对话框
             </summary>
         </member>
         <member name="T:FineUI.ResourceManager">

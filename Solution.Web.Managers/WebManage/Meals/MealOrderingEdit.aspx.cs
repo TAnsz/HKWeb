@@ -48,7 +48,6 @@ namespace Solution.Web.Managers.WebManage.Meals
         #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
-
         }
         #endregion
 
@@ -192,6 +191,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //----------------------------------------------------------
                 //存儲到數據庫
                 MealOrderingBll.GetInstence().Save(this, model);
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {
@@ -200,7 +200,6 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
-
             return result;
         }
         #endregion

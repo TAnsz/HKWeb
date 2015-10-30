@@ -209,47 +209,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 #endregion
 
                 //------------------------------------------
-
-                #region 上傳圖片
-                ////判斷前端的ASP.NET上傳控件是否選擇有上傳文件
-                //if (this.filePhoto.HasFile && this.filePhoto.FileName.Length > 3)
-                //{
-                //    //將當前頁面上傳文件綁定上傳配置表Id為7的記錄，給上傳組件的邏輯層函數調用
-                //    int vid = 7; //7	廣告
-                //    //---------------------------------------------------
-                //    //創建上傳實體
-                //    var upload = new UploadFile();
-                //    //調用ASP.NET上傳控件上傳函數，並獲取上傳成功或失敗信息
-                //    result = new UploadFileBll().Upload_AspNet(this.filePhoto.PostedFile, vid, RndKey,
-                //        OnlineUsersBll.GetInstence().GetManagerId(), OnlineUsersBll.GetInstence().GetManagerCName(),
-                //        upload);
-                //    this.filePhoto.Dispose();
-                //    //---------------------------------------------------
-                //    //沒有返回信息時表示上傳成功
-                //    if (result.Length == 0) 
-                //    {
-                //        //將上傳到服務器後的路徑賦給廣告實體對應字段
-                //        model.AdImg = upload.Path;
-                //    }
-                //    else
-                //    {
-                //        //將出錯寫入日誌中
-                //        CommonBll.WriteLog("上傳出錯：" + result); //收集異常信息
-                //        //彈出出錯提示
-                //        return "上傳出錯！" + result;
-                //    }
-                //}
-                ////如果是修改，檢查用戶是否重新上傳過廣告圖片，如果是刪除舊的圖片
-                //if (model.Id > 0)
-                //{
-                //    //刪除舊圖片
-                //    UploadFileBll.GetInstence()
-                //        .Upload_DiffFile(OutWorkRecordTable.Id, OutWorkRecordTable.AdImg, OutWorkRecordTable.TableName,
-                //            model.Id, model.AdImg);
-
-                //    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
-                //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, OutWorkRecordTable.TableName, model.Id);
-                //}
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
                 #endregion
 

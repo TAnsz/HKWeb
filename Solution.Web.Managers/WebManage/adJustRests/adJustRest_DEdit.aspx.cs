@@ -256,6 +256,8 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 //----------------------------------------------------------
                 //存儲到數據庫
                 adJustRest_DBll.GetInstence().Save(this, model);
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
                 #region 同步更新上傳圖片表綁定Id
                 //if (id == 0)

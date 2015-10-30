@@ -328,7 +328,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 //----------------------------------------------------------
                 //存储到数据库
                 T_TABLE_DBll.GetInstence().Save(this, model);
-
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {

@@ -33,6 +33,7 @@ namespace Solution.Web.Managers.WebManage.Application
         protected FineUI.Grid grid = null;
         //页面排序容器
         protected List<string> sortList = null;
+
         #endregion
 
         #region 初始化函数
@@ -106,7 +107,7 @@ namespace Solution.Web.Managers.WebManage.Application
                     ((FineUI.Label)control).Text = "执行耗时：" + Session["SpendingTime"] + "秒";
                 }
             }
-            
+
             base.OnPreRender(e);
         }
         #endregion
@@ -204,8 +205,7 @@ namespace Solution.Web.Managers.WebManage.Application
 
             if (string.IsNullOrEmpty(result))
             {
-                PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("保存成功", "提示",FineUI.MessageBoxIcon.Information, ActiveWindow.GetHideReference());
             }
             else
             {

@@ -43,7 +43,7 @@
     <f:TextBox runat="server" ID="txtRndKey" Text="" Hidden="true" />
     <f:HiddenField runat="server" ID="hidId" Text="0">
     </f:HiddenField>
-    <f:PageManager ID="PageManager1" runat="server" />
+    <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true"/>
     <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
         ShowHeader="False">
         <Toolbars>

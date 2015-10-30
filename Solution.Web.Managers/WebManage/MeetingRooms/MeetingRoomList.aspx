@@ -47,7 +47,7 @@
         <f:Window ID="Window1" Width="480px" Height="360px" Icon="TagBlue" Title="編輯" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
-            EnableIFrame="true" EnableClose="true" IsModal="True" EnableConfirmOnClose="True">
+            EnableIFrame="true" EnableClose="true" IsModal="True" >
         </f:Window>
     </form>
 </body>

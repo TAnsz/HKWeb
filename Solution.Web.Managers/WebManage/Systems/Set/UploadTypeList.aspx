@@ -41,7 +41,7 @@
     <f:window id="Window1" width="380px" height="300px" icon="TagBlue" title="编辑" hidden="True"
         enablemaximize="True" closeaction="HidePostBack" onclose="Window1_Close" enablecollapse="true"
         runat="server" enableresize="true" bodypadding="5px" enableframe="True" iframeurl="about:blank"
-        enableiframe="true" enableclose="true" ismodal="True" enableconfirmonclose="True">
+        enableiframe="true" enableclose="true" ismodal="True" >
     </f:window>
     </form>
 </body>

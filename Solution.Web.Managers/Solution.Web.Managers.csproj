@@ -121,8 +121,6 @@
     <Content Include="WebManage\Systems\Set\UploadConfigList.aspx" />
     <Content Include="WebManage\Systems\Set\UploadConfigEdit.aspx" />
     <Content Include="WebManage\Systems\Set\UploadFileList.aspx" />
-    <Content Include="WebServices\ApplyWebService.asmx" />
-    <Content Include="WebServices\LoginWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -393,14 +391,6 @@
     </Compile>
     <Compile Include="WebManage\Systems\Set\UploadFileList.aspx.designer.cs">
       <DependentUpon>UploadFileList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebServices\ApplyWebService.asmx.cs">
-      <DependentUpon>ApplyWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WebServices\LoginWebService.asmx.cs">
-      <DependentUpon>LoginWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

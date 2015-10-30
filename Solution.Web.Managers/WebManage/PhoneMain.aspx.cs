@@ -7,6 +7,7 @@ using System.Data;
 using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
 using System.Collections.Generic;
+using FineUI;
 
 
 /***********************************************************************
@@ -53,6 +54,13 @@ namespace Solution.Web.Managers.WebManage
             //获取用户页面操作权限
             _pagePower = OnlineUsersBll.GetInstence().GetPagePower();
 
+            //当前用户信息
+            var model = OnlineUsersBll.GetInstence().GetOnlineUsersModel();
+            if (model == null)
+                return;
+
+            //用户名称
+            txtUser.Text = model.Manager_CName + " [" + IpHelper.GetUserIp() + "]";
 
             //创建查询条件
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
@@ -63,6 +71,20 @@ namespace Solution.Web.Managers.WebManage
             //绑定树列表
             BandingTree(dt);
         }
+
+        #region 退出系统
+        /// <summary>
+        /// 退出系统
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnExit_Click(object sender, EventArgs e)
+        {
+            OnlineUsersBll.GetInstence().UserExit(this);
+
+            //FineUI.Alert.ShowInTop("成功退出系统！", "安全退出", MessageBoxIcon.Information, "top.location='Login.aspx'");
+        }
+        #endregion
 
         #region FineUI控件之--树控件（Tree）
 

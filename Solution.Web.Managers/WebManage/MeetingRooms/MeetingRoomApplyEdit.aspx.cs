@@ -206,6 +206,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 //存儲到數據庫
                 MeetingRoomApplyBll.GetInstence().Save(this, model);
                 MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, model.Id, model.IsVaild);
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {

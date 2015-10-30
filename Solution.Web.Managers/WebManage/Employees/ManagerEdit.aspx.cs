@@ -257,7 +257,8 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //----------------------------------------------------------
                 //存储到数据库
                 ManagerBll.GetInstence().Save(this, model);
-
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
                 #region 同步更新上传图片表绑定Id
                 if (id == 0)
                 {

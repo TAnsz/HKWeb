@@ -123,7 +123,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 //----------------------------------------------------------
                 //存储到数据库
                 PagePowerSignPublicBll.GetInstence().Save(this, model);
-
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
                 //判断是否需要同步更新关联表字段
                 if (isUpdate)
                 {
