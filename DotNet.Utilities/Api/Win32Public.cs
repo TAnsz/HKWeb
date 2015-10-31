@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 执行需要调用 <b>Win32</b> API 的操作辅助类。
+    /// 執行需要調用 <b>Win32</b> API 的操作輔助類。
     /// </summary>
     [SuppressUnmanagedCodeSecurity()]
 	public static partial class Win32
 	{
         /// <summary>
-        /// 执行当前类在使用前的初始化操作。
+        /// 執行當前類在使用前的初始化操作。
         /// </summary>
         static Win32()
         {
@@ -20,9 +20,9 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 获取当前用户物理磁盘的性能信息。
+        /// 獲取當前用戶物理磁盤的性能信息。
         /// </summary>
-        /// <returns>一个 <see cref="HDiskInfo"/> 结构，它保存了物理硬盘的性能数据。</returns>
+        /// <returns>一個 <see cref="HDiskInfo"/> 結構，它保存了物理硬盤的性能數據。</returns>
         public static HDiskInfo GetHddInformation()
         {
             switch(currentOs)

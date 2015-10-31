@@ -1,7 +1,7 @@
-﻿/// <summary>
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Configuration;
@@ -57,9 +57,9 @@ namespace Maticsoft.DBUtility
             }
         }
         /// <summary>
-        /// 执行查询语句，返回DataSet
+        /// 執行查詢語句，返回DataSet
         /// </summary>
-        /// <param name="SQLString">查询语句</param>
+        /// <param name="SQLString">查詢語句</param>
         /// <returns>DataSet</returns>
         public static DataSet Query(string connectionString, string SQLString)
         {
@@ -141,10 +141,10 @@ namespace Maticsoft.DBUtility
         }
 
         /// <summary>
-        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        /// 執行一條計算查詢結果語句，返回查詢結果（object）。
         /// </summary>
-        /// <param name="SQLString">计算查询结果语句</param>
-        /// <returns>查询结果（object）</returns>
+        /// <param name="SQLString">計算查詢結果語句</param>
+        /// <returns>查詢結果（object）</returns>
         public static object GetSingle(string connectionString, string SQLString)
         {
             using (OracleConnection connection = new OracleConnection(connectionString))
@@ -463,9 +463,9 @@ namespace Maticsoft.DBUtility
                 return false;
         }
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        /// 執行多條SQL語句，實現數據庫事務。
         /// </summary>
-        /// <param name="SQLStringList">多条SQL语句</param>		
+        /// <param name="SQLStringList">多條SQL語句</param>		
         public static bool ExecuteSqlTran(string conStr, List<CommandInfo> cmdList)
         {
             using (OracleConnection conn = new OracleConnection(conStr))
@@ -487,7 +487,7 @@ namespace Maticsoft.DBUtility
                                 if (c.CommandText.ToLower().IndexOf("count(") == -1)
                                 {
                                     tx.Rollback();
-                                    throw new Exception("Oracle:违背要求" + c.CommandText + "必须符合select count(..的格式");
+                                    throw new Exception("Oracle:違背要求" + c.CommandText + "必須符合select count(..的格式");
                                     //return false;
                                 }
 
@@ -502,13 +502,13 @@ namespace Maticsoft.DBUtility
                                 if (c.EffentNextType == EffentNextType.WhenHaveContine && !isHave)
                                 {
                                     tx.Rollback();
-                                    throw new Exception("Oracle:违背要求" + c.CommandText + "返回值必须大于0");
+                                    throw new Exception("Oracle:違背要求" + c.CommandText + "返回值必須大於0");
                                     //return false;
                                 }
                                 if (c.EffentNextType == EffentNextType.WhenNoHaveContine && isHave)
                                 {
                                     tx.Rollback();
-                                    throw new Exception("Oracle:违背要求" + c.CommandText + "返回值必须等于0");
+                                    throw new Exception("Oracle:違背要求" + c.CommandText + "返回值必須等於0");
                                     //eturn false;
                                 }
                                 continue;
@@ -517,7 +517,7 @@ namespace Maticsoft.DBUtility
                             if (c.EffentNextType == EffentNextType.ExcuteEffectRows && res == 0)
                             {
                                 tx.Rollback();
-                                throw new Exception("Oracle:违背要求" + c.CommandText + "必须有影像行");
+                                throw new Exception("Oracle:違背要求" + c.CommandText + "必須有影像行");
                                 // return false;
                             }
                         }
@@ -540,9 +540,9 @@ namespace Maticsoft.DBUtility
             }
         }       
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        /// 執行多條SQL語句，實現數據庫事務。
         /// </summary>
-        /// <param name="SQLStringList">多条SQL语句</param>		
+        /// <param name="SQLStringList">多條SQL語句</param>		
         public static void ExecuteSqlTran(string conStr,List<String> SQLStringList)
         {
             using (OracleConnection conn = new OracleConnection(conStr))

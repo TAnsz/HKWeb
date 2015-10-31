@@ -26,7 +26,7 @@
                 </f:Toolbar>
             </Toolbars>
             <Items>
-                <f:Grid ID="Grid1" Title="會議室列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true"
+                <f:Grid ID="Grid1" Title="會議室列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC"
                     PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
                     <Columns>

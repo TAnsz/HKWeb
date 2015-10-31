@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：GridViewExport
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：GridViewExport
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Data;
 using System.Web;
@@ -40,7 +40,7 @@ namespace DotNet.Utilities
                 {
                     //  Create a form to contain the grid
                     Table table = new Table();
-                    table.GridLines = GridLines.Both;  //单元格之间添加实线
+                    table.GridLines = GridLines.Both;  //單元格之間添加實線
 
                     //  add the header row to the table
                     if (gv.HeaderRow != null)
@@ -116,13 +116,13 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 导出Grid的数据(全部)到Excel
-        /// 字段全部为BoundField类型时可用
-        /// 要是字段为TemplateField模板型时就取不到数据
+        /// 導出Grid的數據(全部)到Excel
+        /// 字段全部為BoundField類型時可用
+        /// 要是字段為TemplateField模板型時就取不到數據
         /// </summary>
         /// <param name="grid">grid的ID</param>
-        /// <param name="dt">数据源</param>
-        /// <param name="excelFileName">要导出Excel的文件名</param>
+        /// <param name="dt">數據源</param>
+        /// <param name="excelFileName">要導出Excel的文件名</param>
         public static void OutputExcel(GridView grid, DataTable dt, string excelFileName)
         {
             Page page = (Page)HttpContext.Current.Handler;

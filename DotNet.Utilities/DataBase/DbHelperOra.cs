@@ -1,7 +1,7 @@
-﻿/// <summary>
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections;
@@ -13,13 +13,13 @@ using System.Configuration;
 namespace Maticsoft.DBUtility
 {
 	/// <summary>
-	/// 数据访问基础类(基于Oracle)
-	/// 可以用户可以修改满足自己项目的需要。
+	/// 數據訪問基礎類(基於Oracle)
+	/// 可以用戶可以修改滿足自己項目的需要。
 	/// </summary>
 	public abstract class DbHelperOra
 	{
-        //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.		
-        public static string connectionString = "连接字符串"; 
+        //數據庫連接字符串(web.config來配置)，可以動態更改connectionString支持多數據庫.		
+        public static string connectionString = "連接字符串"; 
 		public DbHelperOra()
 		{			
 		}
@@ -85,13 +85,13 @@ namespace Maticsoft.DBUtility
        
         #endregion
 
-		#region  执行简单SQL语句
+		#region  執行簡單SQL語句
 
 		/// <summary>
-		/// 执行SQL语句，返回影响的记录数
+		/// 執行SQL語句，返回影響的記錄數
 		/// </summary>
-		/// <param name="SQLString">SQL语句</param>
-		/// <returns>影响的记录数</returns>
+		/// <param name="SQLString">SQL語句</param>
+		/// <returns>影響的記錄數</returns>
 		public static int ExecuteSql(string SQLString)
 		{
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -114,9 +114,9 @@ namespace Maticsoft.DBUtility
 		}
 		
 		/// <summary>
-		/// 执行多条SQL语句，实现数据库事务。
+		/// 執行多條SQL語句，實現數據庫事務。
 		/// </summary>
-		/// <param name="SQLStringList">多条SQL语句</param>		
+		/// <param name="SQLStringList">多條SQL語句</param>		
 		public static void ExecuteSqlTran(ArrayList SQLStringList)
 		{
 			using (OracleConnection conn = new OracleConnection(connectionString))
@@ -147,11 +147,11 @@ namespace Maticsoft.DBUtility
 			}
 		}
 		/// <summary>
-		/// 执行带一个存储过程参数的的SQL语句。
+		/// 執行帶一個存儲過程參數的的SQL語句。
 		/// </summary>
-		/// <param name="SQLString">SQL语句</param>
-		/// <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
-		/// <returns>影响的记录数</returns>
+		/// <param name="SQLString">SQL語句</param>
+		/// <param name="content">參數內容,比如一個字段是格式複雜的文章，有特殊符號，可以通過這個方式添加</param>
+		/// <returns>影響的記錄數</returns>
 		public static int ExecuteSql(string SQLString,string content)
 		{				
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -178,11 +178,11 @@ namespace Maticsoft.DBUtility
 			}
 		}		
 		/// <summary>
-		/// 向数据库里插入图像格式的字段(和上面情况类似的另一种实例)
+		/// 向數據庫裡插入圖像格式的字段(和上面情況類似的另一種實例)
 		/// </summary>
-		/// <param name="strSQL">SQL语句</param>
-		/// <param name="fs">图像字节,数据库的字段类型为image的情况</param>
-		/// <returns>影响的记录数</returns>
+		/// <param name="strSQL">SQL語句</param>
+		/// <param name="fs">圖像字節,數據庫的字段類型為image的情況</param>
+		/// <returns>影響的記錄數</returns>
 		public static int ExecuteSqlInsertImg(string strSQL,byte[] fs)
 		{		
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -210,10 +210,10 @@ namespace Maticsoft.DBUtility
 		}
 		
 		/// <summary>
-		/// 执行一条计算查询结果语句，返回查询结果（object）。
+		/// 執行一條計算查詢結果語句，返回查詢結果（object）。
 		/// </summary>
-		/// <param name="SQLString">计算查询结果语句</param>
-		/// <returns>查询结果（object）</returns>
+		/// <param name="SQLString">計算查詢結果語句</param>
+		/// <returns>查詢結果（object）</returns>
 		public static object GetSingle(string SQLString)
 		{
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -242,9 +242,9 @@ namespace Maticsoft.DBUtility
 			}
 		}
 		/// <summary>
-        /// 执行查询语句，返回OracleDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        /// 執行查詢語句，返回OracleDataReader ( 注意：調用該方法後，一定要對SqlDataReader進行Close )
 		/// </summary>
-		/// <param name="strSQL">查询语句</param>
+		/// <param name="strSQL">查詢語句</param>
 		/// <returns>OracleDataReader</returns>
 		public static OracleDataReader ExecuteReader(string strSQL)
 		{
@@ -263,9 +263,9 @@ namespace Maticsoft.DBUtility
 			
 		}		
 		/// <summary>
-		/// 执行查询语句，返回DataSet
+		/// 執行查詢語句，返回DataSet
 		/// </summary>
-		/// <param name="SQLString">查询语句</param>
+		/// <param name="SQLString">查詢語句</param>
 		/// <returns>DataSet</returns>
 		public static DataSet Query(string SQLString)
 		{
@@ -289,13 +289,13 @@ namespace Maticsoft.DBUtility
 
 		#endregion
 
-		#region 执行带参数的SQL语句
+		#region 執行帶參數的SQL語句
 
 		/// <summary>
-		/// 执行SQL语句，返回影响的记录数
+		/// 執行SQL語句，返回影響的記錄數
 		/// </summary>
-		/// <param name="SQLString">SQL语句</param>
-		/// <returns>影响的记录数</returns>
+		/// <param name="SQLString">SQL語句</param>
+		/// <returns>影響的記錄數</returns>
 		public static int ExecuteSql(string SQLString,params OracleParameter[] cmdParms)
 		{
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -319,9 +319,9 @@ namespace Maticsoft.DBUtility
 		
 			
 		/// <summary>
-		/// 执行多条SQL语句，实现数据库事务。
+		/// 執行多條SQL語句，實現數據庫事務。
 		/// </summary>
-		/// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的OracleParameter[]）</param>
+		/// <param name="SQLStringList">SQL語句的哈希表（key為sql語句，value是該語句的OracleParameter[]）</param>
 		public static void ExecuteSqlTran(Hashtable SQLStringList)
 		{			
 			using (OracleConnection conn = new OracleConnection(connectionString))
@@ -332,7 +332,7 @@ namespace Maticsoft.DBUtility
 					OracleCommand cmd = new OracleCommand();
 					try 
 					{
-						//循环
+						//循環
 						foreach (DictionaryEntry myDE in SQLStringList)
 						{	
 							string 	cmdText=myDE.Key.ToString();
@@ -355,10 +355,10 @@ namespace Maticsoft.DBUtility
 	
 				
 		/// <summary>
-		/// 执行一条计算查询结果语句，返回查询结果（object）。
+		/// 執行一條計算查詢結果語句，返回查詢結果（object）。
 		/// </summary>
-		/// <param name="SQLString">计算查询结果语句</param>
-		/// <returns>查询结果（object）</returns>
+		/// <param name="SQLString">計算查詢結果語句</param>
+		/// <returns>查詢結果（object）</returns>
 		public static object GetSingle(string SQLString,params OracleParameter[] cmdParms)
 		{
 			using (OracleConnection connection = new OracleConnection(connectionString))
@@ -388,9 +388,9 @@ namespace Maticsoft.DBUtility
 		}
 		
 		/// <summary>
-        /// 执行查询语句，返回OracleDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        /// 執行查詢語句，返回OracleDataReader ( 注意：調用該方法後，一定要對SqlDataReader進行Close )
 		/// </summary>
-		/// <param name="strSQL">查询语句</param>
+		/// <param name="strSQL">查詢語句</param>
 		/// <returns>OracleDataReader</returns>
 		public static OracleDataReader ExecuteReader(string SQLString,params OracleParameter[] cmdParms)
 		{		
@@ -411,9 +411,9 @@ namespace Maticsoft.DBUtility
 		}		
 		
 		/// <summary>
-		/// 执行查询语句，返回DataSet
+		/// 執行查詢語句，返回DataSet
 		/// </summary>
-		/// <param name="SQLString">查询语句</param>
+		/// <param name="SQLString">查詢語句</param>
 		/// <returns>DataSet</returns>
 		public static DataSet Query(string SQLString,params OracleParameter[] cmdParms)
 		{
@@ -457,13 +457,13 @@ namespace Maticsoft.DBUtility
 
 		#endregion
 
-		#region 存储过程操作
+		#region 存儲過程操作
 
 		/// <summary>
-        /// 执行存储过程 返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        /// 執行存儲過程 返回SqlDataReader ( 注意：調用該方法後，一定要對SqlDataReader進行Close )
 		/// </summary>
-		/// <param name="storedProcName">存储过程名</param>
-		/// <param name="parameters">存储过程参数</param>
+		/// <param name="storedProcName">存儲過程名</param>
+		/// <param name="parameters">存儲過程參數</param>
 		/// <returns>OracleDataReader</returns>
 		public static OracleDataReader RunProcedure(string storedProcName, IDataParameter[] parameters )
 		{
@@ -478,11 +478,11 @@ namespace Maticsoft.DBUtility
 		
 		
 		/// <summary>
-		/// 执行存储过程
+		/// 執行存儲過程
 		/// </summary>
-		/// <param name="storedProcName">存储过程名</param>
-		/// <param name="parameters">存储过程参数</param>
-		/// <param name="tableName">DataSet结果中的表名</param>
+		/// <param name="storedProcName">存儲過程名</param>
+		/// <param name="parameters">存儲過程參數</param>
+		/// <param name="tableName">DataSet結果中的表名</param>
 		/// <returns>DataSet</returns>
 		public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName )
 		{
@@ -500,11 +500,11 @@ namespace Maticsoft.DBUtility
 
 		
 		/// <summary>
-		/// 构建 OracleCommand 对象(用来返回一个结果集，而不是一个整数值)
+		/// 構建 OracleCommand 對像(用來返回一個結果集，而不是一個整數值)
 		/// </summary>
-		/// <param name="connection">数据库连接</param>
-		/// <param name="storedProcName">存储过程名</param>
-		/// <param name="parameters">存储过程参数</param>
+		/// <param name="connection">數據庫連接</param>
+		/// <param name="storedProcName">存儲過程名</param>
+		/// <param name="parameters">存儲過程參數</param>
 		/// <returns>OracleCommand</returns>
 		private static OracleCommand BuildQueryCommand(OracleConnection connection,string storedProcName, IDataParameter[] parameters)
 		{			
@@ -518,11 +518,11 @@ namespace Maticsoft.DBUtility
 		}
 		
 		/// <summary>
-		/// 执行存储过程，返回影响的行数		
+		/// 執行存儲過程，返回影響的行數		
 		/// </summary>
-		/// <param name="storedProcName">存储过程名</param>
-		/// <param name="parameters">存储过程参数</param>
-		/// <param name="rowsAffected">影响的行数</param>
+		/// <param name="storedProcName">存儲過程名</param>
+		/// <param name="parameters">存儲過程參數</param>
+		/// <param name="rowsAffected">影響的行數</param>
 		/// <returns></returns>
 		public static int RunProcedure(string storedProcName, IDataParameter[] parameters, out int rowsAffected )
 		{
@@ -539,11 +539,11 @@ namespace Maticsoft.DBUtility
 		}
 		
 		/// <summary>
-		/// 创建 OracleCommand 对象实例(用来返回一个整数值)	
+		/// 創建 OracleCommand 對像實例(用來返回一個整數值)	
 		/// </summary>
-		/// <param name="storedProcName">存储过程名</param>
-		/// <param name="parameters">存储过程参数</param>
-		/// <returns>OracleCommand 对象实例</returns>
+		/// <param name="storedProcName">存儲過程名</param>
+		/// <param name="parameters">存儲過程參數</param>
+		/// <returns>OracleCommand 對像實例</returns>
 		private static OracleCommand BuildIntCommand(OracleConnection connection,string storedProcName, IDataParameter[] parameters)
 		{
 			OracleCommand command = BuildQueryCommand(connection,storedProcName, parameters );

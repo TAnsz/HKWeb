@@ -154,7 +154,7 @@ KindEditor.plugin('flash', function(K) {
 		},
 		'delete' : function() {
 			self.plugin.getSelectedFlash().remove();
-			// [IE] 删除图片后立即点击图片按钮出�?
+			// [IE] 刪除圖片後立即點擊圖片按鈕出鑀
 			self.addBookmark();
 		}
 	};

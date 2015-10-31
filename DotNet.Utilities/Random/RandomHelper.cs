@@ -1,20 +1,20 @@
-﻿/// <summary>
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 使用Random类生成伪随机数
+    /// 使用Random類生成偽隨機數
     /// </summary>
     public class RandomHelper
     {
-        #region 生成一个指定范围的随机整数
+        #region 生成一個指定範圍的隨機整數
         /// <summary>
-        /// 生成一个指定范围的随机整数，该随机数范围包括最小值，但不包括最大值
+        /// 生成一個指定範圍的隨機整數，該隨機數範圍包括最小值，但不包括最大值
         /// </summary>
         /// <param name="minNum">最小值</param>
         /// <param name="maxNum">最大值</param>
@@ -25,9 +25,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 生成一个0.0到1.0的随机小数
+        #region 生成一個0.0到1.0的隨機小數
         /// <summary>
-        /// 生成一个0.0到1.0的随机小数
+        /// 生成一個0.0到1.0的隨機小數
         /// </summary>
         public static double GetRandomDouble()
         {
@@ -36,30 +36,30 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 对一个数组进行随机排序
+        #region 對一個數組進行隨機排序
         /// <summary>
-        /// 对一个数组进行随机排序
+        /// 對一個數組進行隨機排序
         /// </summary>
-        /// <typeparam name="T">数组的类型</typeparam>
-        /// <param name="arr">需要随机排序的数组</param>
+        /// <typeparam name="T">數組的類型</typeparam>
+        /// <param name="arr">需要隨機排序的數組</param>
         public static void GetRandomArray<T>(T[] arr)
         {
-            //对数组进行随机排序的算法:随机选择两个位置，将两个位置上的值交换
+            //對數組進行隨機排序的算法:隨機選擇兩個位置，將兩個位置上的值交換
 
-            //交换的次数,这里使用数组的长度作为交换次数
+            //交換的次數,這裡使用數組的長度作為交換次數
             int count = arr.Length;
 
-            //开始交换
+            //開始交換
             for (int i = 0; i < count; i++)
             {
-                //生成两个随机数位置
+                //生成兩個隨機數位置
                 int randomNum1 = GetRandomInt(0, arr.Length);
                 int randomNum2 = GetRandomInt(0, arr.Length);
 
-                //定义临时变量
+                //定義臨時變量
                 T temp;
 
-                //交换两个随机数位置的值
+                //交換兩個隨機數位置的值
                 temp = arr[randomNum1];
                 arr[randomNum1] = arr[randomNum2];
                 arr[randomNum2] = temp;
@@ -67,7 +67,7 @@ namespace DotNet.Utilities
         }
 
 
-        // 一：随机生成不重复数字字符串 
+        // 一：隨機生成不重複數字字符串 
         private static int rep = 0;
         public static string GenerateCheckCodeNum(int codeCount)
         {
@@ -84,7 +84,7 @@ namespace DotNet.Utilities
             return str;
         }
 
-        //方法二：随机生成字符串（数字和字母混和）
+        //方法二：隨機生成字符串（數字和字母混和）
         public static string GenerateCheckCode(int codeCount)
         {
             string str = string.Empty;
@@ -110,12 +110,12 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 从字符串里随机得到，规定个数的字符串.
+        #region 從字符串裡隨機得到，規定個數的字符串.
         /// <summary>
-        /// 从字符串里随机得到，规定个数的字符串.
+        /// 從字符串裡隨機得到，規定個數的字符串.
         /// </summary>
-        /// <param name="allChar">字符规范，如果等于null时，默认值为："1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,i,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"</param>
-        /// <param name="codeCount">需要生成的随机数个数</param>
+        /// <param name="allChar">字符規範，如果等於null時，默認值為："1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,i,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"</param>
+        /// <param name="codeCount">需要生成的隨機數個數</param>
         /// <returns></returns>
         public static string GetRandomCode(string allChar, int codeCount)
         {
@@ -150,8 +150,8 @@ namespace DotNet.Utilities
         #endregion
 
 
-        #region 随机数操作函数
-        /// <summary>取得随机数(数字),用yyMMddhhmmss + (xxx),共15位数字</summary>
+        #region 隨機數操作函數
+        /// <summary>取得隨機數(數字),用yyMMddhhmmss + (xxx),共15位數字</summary>
         /// <returns></returns>
         public static string GetDateRnd()
         {
@@ -159,7 +159,7 @@ namespace DotNet.Utilities
             return dtTmp.ToString("yyMMddhhmmss") + GetRndNum(3);
         }
 
-        /// <summary> 取得随机数(字母+数字),用yyMMddhhmmss + (xxx),共15位字母或数字,</summary>
+        /// <summary> 取得隨機數(字母+數字),用yyMMddhhmmss + (xxx),共15位字母或數字,</summary>
         /// <returns></returns>
         public static string GetRndKey()
         {
@@ -167,9 +167,9 @@ namespace DotNet.Utilities
             return dtTmp.ToString("yyMMddhhmmss") + GetRndNum(3, true);
         }
 
-        /// <summary> 取得n位随机整数,:45546</summary>
-        /// <param name="n">随机数长度</param>
-        /// <param name="isStr">true=随机字母和整数，false=随机整数</param>
+        /// <summary> 取得n位隨機整數,:45546</summary>
+        /// <param name="n">隨機數長度</param>
+        /// <param name="isStr">true=隨機字母和整數，false=隨機整數</param>
         /// <returns></returns>
         public static string GetRndNum(int n, bool isStr = false)
         {
@@ -189,9 +189,9 @@ namespace DotNet.Utilities
             return sRet;
         }
 
-        /// <summary>取得区间中的随机数,例如:getRndNext(14,17),将返回14,15,16</summary>
-        /// <param name="min">随机数的最小值</param> 
-        /// <param name="max">随机数的最大值(结果小于该值)</param> 
+        /// <summary>取得區間中的隨機數,例如:getRndNext(14,17),將返回14,15,16</summary>
+        /// <param name="min">隨機數的最小值</param> 
+        /// <param name="max">隨機數的最大值(結果小於該值)</param> 
         /// <returns></returns>
         public static int GetRndNext(int min, int max)
         {
@@ -208,9 +208,9 @@ namespace DotNet.Utilities
             return rnd.Next(t) + min;
         }
 
-        /// <summary>取得区间中的随机数,例如:getRndNext(14,17),将返回14,15,16</summary>
-        /// <param name="min">随机数的最小值</param> 
-        /// <param name="max">随机数的最大值(结果小于该值)</param> 
+        /// <summary>取得區間中的隨機數,例如:getRndNext(14,17),將返回14,15,16</summary>
+        /// <param name="min">隨機數的最小值</param> 
+        /// <param name="max">隨機數的最大值(結果小於該值)</param> 
         /// <returns></returns>
         public static decimal GetRndNextDecimal(decimal min, decimal max)
         {

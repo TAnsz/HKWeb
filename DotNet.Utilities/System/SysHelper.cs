@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -12,15 +12,15 @@ using System.Diagnostics;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 系统操作相关的公共类
+    /// 系統操作相關的公共類
     /// </summary>    
     public static class SysHelper
     {
-        #region 获取文件相对路径映射的物理路径
+        #region 獲取文件相對路徑映射的物理路徑
         /// <summary>
-        /// 获取文件相对路径映射的物理路径
+        /// 獲取文件相對路徑映射的物理路徑
         /// </summary>
-        /// <param name="virtualPath">文件的相对路径</param>        
+        /// <param name="virtualPath">文件的相對路徑</param>        
         public static string GetPath(string virtualPath)
         {
 
@@ -29,24 +29,24 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取指定调用层级的方法名
+        #region 獲取指定調用層級的方法名
         /// <summary>
-        /// 获取指定调用层级的方法名
+        /// 獲取指定調用層級的方法名
         /// </summary>
-        /// <param name="level">调用的层数</param>        
+        /// <param name="level">調用的層數</param>        
         public static string GetMethodName(int level)
         {
-            //创建一个堆栈跟踪
+            //創建一個堆棧跟蹤
             StackTrace trace = new StackTrace();
 
-            //获取指定调用层级的方法名
+            //獲取指定調用層級的方法名
             return trace.GetFrame(level).GetMethod().Name;
         }
         #endregion
 
-        #region 获取GUID值
+        #region 獲取GUID值
         /// <summary>
-        /// 获取GUID值
+        /// 獲取GUID值
         /// </summary>
         public static string NewGUID
         {
@@ -57,9 +57,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取换行字符
+        #region 獲取換行字符
         /// <summary>
-        /// 获取换行字符
+        /// 獲取換行字符
         /// </summary>
         public static string NewLine
         {
@@ -70,9 +70,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取当前应用程序域
+        #region 獲取當前應用程序域
         /// <summary>
-        /// 获取当前应用程序域
+        /// 獲取當前應用程序域
         /// </summary>
         public static AppDomain CurrentAppDomain
         {

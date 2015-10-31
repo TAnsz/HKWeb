@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections.Generic;
@@ -14,12 +14,12 @@ using System.Data.Common;
 
 namespace DotNet.Utilities
 {
-    //JSON转换类
+    //JSON轉換類
     public class ConvertJson
     {
         #region 私有方法
         /// <summary>
-        /// 过滤特殊字符
+        /// 過濾特殊字符
         /// </summary>
         private static string String2Json(String s)
         {
@@ -53,7 +53,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 格式化字符型、日期型、布尔型
+        /// 格式化字符型、日期型、布爾型
         /// </summary>
         private static string StringFormat(string str, Type type)
         {
@@ -78,9 +78,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region List转换成Json
+        #region List轉換成Json
         /// <summary>
-        /// List转换成Json
+        /// List轉換成Json
         /// </summary>
         public static string ListToJson<T>(IList<T> list)
         {
@@ -89,7 +89,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// List转换成Json 
+        /// List轉換成Json 
         /// </summary>
         public static string ListToJson<T>(IList<T> list, string jsonName)
         {
@@ -125,11 +125,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 对象转换为Json
+        #region 對像轉換為Json
         /// <summary> 
-        /// 对象转换为Json 
+        /// 對像轉換為Json 
         /// </summary> 
-        /// <param name="jsonObject">对象</param> 
+        /// <param name="jsonObject">對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToJson(object jsonObject)
         {
@@ -162,11 +162,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 对象集合转换Json
+        #region 對像集合轉換Json
         /// <summary> 
-        /// 对象集合转换Json 
+        /// 對像集合轉換Json 
         /// </summary> 
-        /// <param name="array">集合对象</param> 
+        /// <param name="array">集合對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToJson(IEnumerable array)
         {
@@ -180,11 +180,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 普通集合转换Json
+        #region 普通集合轉換Json
         /// <summary> 
-        /// 普通集合转换Json 
+        /// 普通集合轉換Json 
         /// </summary> 
-        /// <param name="array">集合对象</param> 
+        /// <param name="array">集合對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToArrayString(IEnumerable array)
         {
@@ -198,11 +198,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region  DataSet转换为Json
+        #region  DataSet轉換為Json
         /// <summary> 
-        /// DataSet转换为Json 
+        /// DataSet轉換為Json 
         /// </summary> 
-        /// <param name="dataSet">DataSet对象</param> 
+        /// <param name="dataSet">DataSet對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToJson(DataSet dataSet)
         {
@@ -216,11 +216,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region Datatable转换为Json
+        #region Datatable轉換為Json
         /// <summary> 
-        /// Datatable转换为Json 
+        /// Datatable轉換為Json 
         /// </summary> 
-        /// <param name="table">Datatable对象</param> 
+        /// <param name="table">Datatable對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToJson(DataTable dt)
         {
@@ -254,7 +254,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// DataTable转换为Json 
+        /// DataTable轉換為Json 
         /// </summary>
         public static string ToJson(DataTable dt, string jsonName)
         {
@@ -287,11 +287,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region DataReader转换为Json
+        #region DataReader轉換為Json
         /// <summary> 
-        /// DataReader转换为Json 
+        /// DataReader轉換為Json 
         /// </summary> 
-        /// <param name="dataReader">DataReader对象</param> 
+        /// <param name="dataReader">DataReader對像</param> 
         /// <returns>Json字符串</returns> 
         public static string ToJson(DbDataReader dataReader)
         {

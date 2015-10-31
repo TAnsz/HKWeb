@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DotNet.Utilities
+namespace DotNet4.Utilities
 {
      /// <summary>
-    /// Cookie操作帮助类
+    /// Cookie操作幫助類
     /// </summary>
     public static class HttpCookieHelper
     {
         /// <summary>
-        /// 根据字符生成Cookie列表
+        /// 根據字符生成Cookie列表
         /// </summary>
         /// <param name="cookie">Cookie字符串</param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 根据Key值得到Cookie值,Key不区分大小写
+        /// 根據Key值得到Cookie值,Key不區分大小寫
         /// </summary>
         /// <param name="Key">key</param>
         /// <param name="cookie">字符串Cookie</param>
@@ -45,7 +45,7 @@ namespace DotNet.Utilities
             return "";
         }
         /// <summary>
-        /// 格式化Cookie为标准格式
+        /// 格式化Cookie為標準格式
         /// </summary>
         /// <param name="key">Key值</param>
         /// <param name="value">Value值</param>
@@ -57,12 +57,12 @@ namespace DotNet.Utilities
     }
 
     /// <summary>
-    /// Cookie对象
+    /// Cookie對像
     /// </summary>
     public class CookieItem
     {
         /// <summary>
-        /// 键
+        /// 鍵
         /// </summary>
         public string Key { get; set; }
         /// <summary>

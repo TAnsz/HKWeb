@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：SegList
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧SegList
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections;
@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 分词辅助类
+    /// だ迭徊摸
     /// </summary>
     public class SegList
     {
@@ -61,7 +61,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 按长度排序
+        /// 逼
         /// </summary>
         public void Sort()
         {
@@ -69,7 +69,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 按长度排序
+        /// 逼
         /// </summary>
         public void Sort(SegList list)
         {
@@ -105,18 +105,18 @@ namespace DotNet.Utilities
     }
 
     /// <summary>
-    /// 分词类
+    /// だ迭摸
     /// </summary>
-    //----------------调用----------------------
+    //----------------秸ノ----------------------
     //Segment seg = new Segment();
     //seg.InitWordDics();
     //seg.EnablePrefix = true;
     //seg.Separator =" ";
-    //seg.SegmentText("字符串", false).Trim();
+    //seg.SegmentText("才﹃", false).Trim();
     //-------------------------------------------
     public class Segment
     {
-        #region 私有字段
+        #region ╬Τ琿
         private string m_DicPath = System.Web.HttpContext.Current.Server.MapPath("bin/ShootSeg/sDict.dic");
         private string m_NoisePath = System.Web.HttpContext.Current.Server.MapPath("bin/ShootSeg/sNoise.dic");
         private string m_NumberPath = System.Web.HttpContext.Current.Server.MapPath("bin/ShootSeg/sNumber.dic");
@@ -130,19 +130,19 @@ namespace DotNet.Utilities
         private double m_EventTime = 0;
 
         /// <summary>
-        /// 分隔符
+        /// だ筳才
         /// </summary>
         private string m_Separator = " ";
 
         /// <summary>
-        /// 用于验证汉字的正则表达式
+        /// ノ喷靡簙タ玥笷Α
         /// </summary>
         private string strChinese = "[\u4e00-\u9fa5]";
         #endregion
 
-        #region 公有属性
+        #region そΤ妮┦
         /// <summary>
-        /// 基本词典路径
+        /// 膀セ迭ㄥ隔畖
         /// </summary>
         public string DicPath
         {
@@ -157,10 +157,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 数据缓存函数
+        /// 计沮絯ㄧ计
         /// </summary>
-        /// <param name="key">索引键</param>
-        /// <param name="val">缓存的数据</param>
+        /// <param name="key">ま龄</param>
+        /// <param name="val">絯计沮</param>
         private static void SetCache(string key, object val)
         {
             if (val == null) val = " ";
@@ -170,7 +170,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取缓存
+        /// 弄絯
         /// </summary>
         private static object GetCache(string key)
         {
@@ -178,7 +178,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 暂时无用
+        /// 既礚ノ
         /// </summary>
         public string NoisePath
         {
@@ -193,7 +193,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 数字词典路径
+        /// 计迭ㄥ隔畖
         /// </summary>
         public string NumberPath
         {
@@ -208,7 +208,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 字母词典路径
+        /// ダ迭ㄥ隔畖
         /// </summary>
         public string WordPath
         {
@@ -223,7 +223,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 姓名前缀字典 用于纠错姓名
+        /// ﹎玡后ㄥ ノ岿﹎
         /// </summary>
         public string PrefixPath
         {
@@ -238,7 +238,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否开启姓名纠错功能
+        /// 琌秨币﹎岿
         /// </summary>
         public bool EnablePrefix
         {
@@ -259,8 +259,8 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 用时每次进行加载或分词动作后改属性表示为上一次动作所用时间
-        /// 已精确到毫秒但分词操作在字符串较短时可能为0
+        /// ノ–Ω秈︽更┪だ迭笆э妮┦ボΩ笆┮ノ丁
+        /// 弘絋睝だ迭巨才﹃耕祏0
         /// </summary>
         public double EventTime
         {
@@ -271,7 +271,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 分隔符,默认为空格
+        /// だ筳才,纐粄
         /// </summary>
         public string Separator
         {
@@ -286,15 +286,15 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 构造方法
+        #region 篶硑よ猭
         /// <summary>
-        /// 构造方法
+        /// 篶硑よ猭
         /// </summary>
         public Segment()
         { }
 
         /// <summary>
-        /// 构造方法
+        /// 篶硑よ猭
         /// </summary>
         public Segment(string p_DicPath, string p_NoisePath, string p_NumberPath, string p_WordPath)
         {
@@ -306,9 +306,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 公有方法
+        #region そΤよ猭
         /// <summary>
-        /// 加载词列表
+        /// 更迭
         /// </summary>
         public void InitWordDics()
         {
@@ -389,7 +389,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 加载文本词组到ArrayList
+        /// 更ゅセ迭舱ArrayList
         /// </summary>
         public ArrayList LoadWords(string strPath, ArrayList list)
         {
@@ -411,7 +411,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 输出词列表
+        /// 块迭
         /// </summary>
         public void OutWords()
         {
@@ -431,7 +431,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 输出ArrayList
+        /// 块ArrayList
         /// </summary>
         public void OutArrayList(ArrayList list)
         {
@@ -443,10 +443,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 分词过程,不支持回车 
+        /// だ迭筁祘,ぃやó 
         /// </summary>
-        /// <param name="strText">要分词的文本</param>
-        /// <returns>分词后的文本</returns>
+        /// <param name="strText">璶だ迭ゅセ</param>
+        /// <returns>だ迭ゅセ</returns>
         public string SegmentText(string strText)
         {
             strText = (strText + "$").Trim();
@@ -464,7 +464,7 @@ namespace DotNet.Utilities
 
             for (int i = 0; i < strText.Length - 1; i++)
             {
-                #region 对于每一个字的处理过程
+                #region 癸–矪瞶筁祘
                 string strChar1 = strText.Substring(i, 1);
                 string strChar2 = strText.Substring(i + 1, 1).Trim();
                 bool yes;
@@ -485,7 +485,7 @@ namespace DotNet.Utilities
                 switch (CharType)
                 {
                     case 1:
-                        #region  如果是数字，如果数字的上一位是字母要和后面的数字分开
+                        #region  狦琌计狦计琌ダ璶㎝计だ秨
                         if (word)
                         {
                             reText += Separator;
@@ -497,7 +497,7 @@ namespace DotNet.Utilities
                         #endregion
                     case 2:
                     case 5:
-                        #region 如果是字母
+                        #region 狦琌ダ
                         if (number)
                             strLastWords = Separator;
                         else
@@ -509,11 +509,11 @@ namespace DotNet.Utilities
                         #endregion
                     case 3:
                     case 4:
-                        #region 第一级哈希表是否包含关键字，假如包含处理第二级哈希表
-                        //上一个字是否为字母
+                        #region 材琌闽龄安矪瞶材
+                        //琌ダ
                         if (word) reText += Separator;
 
-                        #region 检测上一个是否是数字，这个过程是用于修正数字后的量词的
+                        #region 浪代琌琌计硂筁祘琌ノタ计秖迭
                         if (number && CharType != 4)
                         {
                             h = (Hashtable)htWords["n"];
@@ -537,7 +537,7 @@ namespace DotNet.Utilities
                         }
                         #endregion
 
-                        //非汉字数字的汉字
+                        //獶簙计簙
                         if (CharType == 3)
                         {
                             word = false;
@@ -551,26 +551,26 @@ namespace DotNet.Utilities
                             strLastWords = "";
                         }
 
-                        //第二级哈希表取出
+                        //材
                         h = (Hashtable)htWords[strChar1];
 
-                        //第二级哈希表是否包含关键字
+                        //材琌闽龄
                         if (h.ContainsKey(strChar2))
                         {
-                            #region  第二级包含关键字
-                            //取出ArrayList对象
+                            #region  材闽龄
+                            //ArrayList癸钩
                             l = (SegList)h[strChar2];
 
-                            //遍历每一个对象 看是否能组合成词
+                            //筂菌–癸钩 琌舱Θ迭
                             for (int j = 0; j < l.Count; j++)
                             {
                                 bool have = false;
                                 string strChar3 = l.GetElem(j).ToString();
 
-                                //对于每一个取出的词进行检测,看是否匹配，长度保护
+                                //癸–迭秈︽浪代,琌で皌玂臔
                                 if ((strChar3.Length + i + 2) < strText.Length)
                                 {
-                                    //向i+2后取出m长度的字
+                                    //i+2m
                                     string strChar = strText.Substring(i + 2, strChar3.Length).Trim();
                                     if (strChar3 == strChar && !yes)
                                     {
@@ -638,7 +638,7 @@ namespace DotNet.Utilities
                             }
                             #endregion
 
-                            //如果没有匹配还可能有一种情况，这个词语只有两个字，以这两个字开头的词语不存在
+                            //狦⊿Τで皌临Τ贺薄猵硂迭粂Τㄢ硂ㄢ秨繷迭粂ぃ
                             if (!yes && l.Contains("null"))
                             {
                                 if (preFix == 1)
@@ -673,7 +673,7 @@ namespace DotNet.Utilities
                         #endregion
                         break;
                     default:
-                        #region 未知字符,可能是生僻字,也可能是标点符合之类
+                        #region ゼ才,琌ネ击,琌夹翴才ぇ摸
                         if (word && !yes)
                         {
                             reText += Separator;
@@ -695,7 +695,7 @@ namespace DotNet.Utilities
                 }
                 if (!yes)
                 {
-                    #region 处理姓名问题
+                    #region 矪瞶﹎拜肈
                     if (preFix == 0)
                     {
                         if (alPrefix.Contains(strChar1 + strChar2))
@@ -782,7 +782,7 @@ namespace DotNet.Utilities
                 #endregion
             }
 
-            #region 最后防止最后一个字的丢失
+            #region 程ňゎ程メア
             if (length < strText.Length - 1)
             {
                 string strLastChar1 = strText.Substring(strText.Length - 1).Trim();
@@ -798,7 +798,7 @@ namespace DotNet.Utilities
                     switch (GetCharType(strLastChar1))
                     {
                         case 1:
-                            if (strLastChar1 != "." && strLastChar1 != "．")
+                            if (strLastChar1 != "." && strLastChar1 != "")
                                 reText += strLastChar1;
                             else
                                 reText += Separator + strLastChar1;
@@ -830,11 +830,11 @@ namespace DotNet.Utilities
 
             TimeSpan duration = DateTime.Now - start;
             m_EventTime = duration.TotalMilliseconds;
-            return reText.Replace(" $", ""); //这里包含一个字的，则去掉
+            return reText.Replace(" $", ""); //硂柑玥奔
         }
 
         /// <summary>
-        /// 重载分词过程,支持回车
+        /// 更だ迭筁祘,やó
         /// </summary>
         public string SegmentText(string strText, bool Enter)
         {
@@ -859,9 +859,9 @@ namespace DotNet.Utilities
             }
         }
 
-        #region 判断字符类型
+        #region 耞才摸
         /// <summary>
-        /// 判断字符类型,0为未知,1为数字,2为字母,3为汉字,4为汉字数字
+        /// 耞才摸,0ゼ,1计,2ダ,3簙,4簙计
         /// </summary>
         private int GetCharType(string p_Char)
         {
@@ -873,9 +873,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 对加载的词典排序并重新写入
+        #region 癸更迭ㄥ逼穝糶
         /// <summary>
-        /// 对加载的词典排序并重新写入
+        /// 癸更迭ㄥ逼穝糶
         /// </summary>
         public void SortDic()
         {
@@ -883,9 +883,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 对加载的词典排序并重新写入
+        /// 癸更迭ㄥ逼穝糶
         /// </summary>
-        /// <param name="Reload">是否重新加载</param>
+        /// <param name="Reload">琌穝更</param>
         public void SortDic(bool Reload)
         {
             DateTime start = DateTime.Now;
@@ -918,9 +918,9 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 删除两行完全相同的词,暂时无用!
+        /// 埃ㄢ︽Ч迭,既礚ノ!
         /// </summary>
-        /// <returns>相同词条个数</returns>
+        /// <returns>迭兵计</returns>
         public int Optimize()
         {
             int l = 0;

@@ -1,66 +1,66 @@
 /// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧Assistant
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 农历属性
+    /// 笰句妮┦
     /// </summary>
     public class CNDate
     {
         /// <summary>
-        /// 农历年(整型)
+        /// 笰句(俱)
         /// </summary>
         public int cnIntYear = 0;
         /// <summary>
-        /// 农历月份(整型)
+        /// 笰句る(俱)
         /// </summary>
         public int cnIntMonth = 0;
         /// <summary>
-        /// 农历天(整型)
+        /// 笰句ぱ(俱)
         /// </summary>
         public int cnIntDay = 0;
         /// <summary>
-        /// 农历年(支干)
+        /// 笰句(や稦)
         /// </summary>
         public string cnStrYear = "";
         /// <summary>
-        /// 农历月份(字符)
+        /// 笰句る(才)
         /// </summary>
         public string cnStrMonth = "";
         /// <summary>
-        /// 农历天(字符)
+        /// 笰句ぱ(才)
         /// </summary>
         public string cnStrDay = "";
         /// <summary>
-        /// 农历属象
+        /// 笰句妮禜
         /// </summary>
         public string cnAnm = "";
         /// <summary>
-        /// 二十四节气
+        /// 竊
         /// </summary>
         public string cnSolarTerm = "";
         /// <summary>
-        /// 阴历节日
+        /// 潮句竊ら
         /// </summary>
         public string cnFtvl = "";
         /// <summary>
-        /// 阳历节日
+        /// 锭句竊ら
         /// </summary>
         public string cnFtvs = "";
     }
 
     /// <summary>
-    /// 公历转农历
+    /// そ菌锣笰句
     /// </summary>
     public class ChinaDate
     {
-        #region 私有方法
+        #region ╬Τよ猭
         private static long[] lunarInfo = new long[] { 0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554,
 															   0x056a0, 0x09ad0, 0x055d2, 0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0,
 															   0x14977, 0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970, 0x06566,
@@ -78,113 +78,113 @@ namespace DotNet.Utilities
         private static int[] year20 = new int[] { 1, 4, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1 };
         private static int[] year19 = new int[] { 0, 3, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0 };
         private static int[] year2000 = new int[] { 0, 3, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1 };
-        private static String[] nStr1 = new String[] { "", "正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二" };
-        private static String[] Gan = new String[] { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" };
-        private static String[] Zhi = new String[] { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" };
-        private static String[] Animals = new String[] { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" };
-        private static String[] solarTerm = new String[] { "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至" };
+        private static String[] nStr1 = new String[] { "", "タ", "", "", "", "き", "せ", "", "", "", "", "", "" };
+        private static String[] Gan = new String[] { "ヒ", "", "", "", "コ", "", "┌", "ǒ", "ば", "" };
+        private static String[] Zhi = new String[] { "", "ぁ", "盙", "", "ò", "", "と", "ゼ", "ビ", "ɑ", "Ζ", "ヨ" };
+        private static String[] Animals = new String[] { "公", "", "", "ㄟ", "纒", "矰", "皑", "ο", "礥", "蔓", "", "睫" };
+        private static String[] solarTerm = new String[] { "碒", "碒", "ミ琄", "獴", "佩頷", "琄だ", "睲", "é獴", "ミ甃", "骸", "▇贺", "甃", "椿", "椿", "ミ", "矪椿", "フ臩", "だ", "碒臩", "流", "ミ", "撤", "撤", "" };
         private static int[] sTermInfo = { 0, 21208, 42467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758 };
-        private static String[] lFtv = new String[] { "0101农历春节", "0202 龙抬头节", "0115 元宵节", "0505 端午节", "0707 七夕情人节", "0815 中秋节", "0909 重阳节", "1208 腊八节", "1114 李君先生生日", "1224 小年", "0100除夕" };
-        private static String[] sFtv = new String[] { "0101 新年元旦",
-														 "0202 世界湿地日",
-														 "0207 国际声援南非日",
-														 "0210 国际气象节",
-														 "0214 情人节",
-														 "0301 国际海豹日",
-														 "0303 全国爱耳日",
-														 "0308 国际妇女节",
-														 "0312 植树节 孙中山逝世纪念日",
-														 "0314 国际警察日",
-														 "0315 国际消费者权益日",
-														 "0317 中国国医节 国际航海日",
-														 "0321 世界森林日 消除种族歧视国际日",
-														 "0321 世界儿歌日",
-														 "0322 世界水日",
-														 "0323 世界气象日",
-														 "0324 世界防治结核病日",
-														 "0325 全国中小学生安全教育日",
-														 "0330 巴勒斯坦国土日",
-														 "0401 愚人节 全国爱国卫生运动月(四月) 税收宣传月(四月)",
-														 "0407 世界卫生日",
-														 "0422 世界地球日",
-														 "0423 世界图书和版权日",
-														 "0424 亚非新闻工作者日",
-														 "0501 国际劳动节",
-														 "0504 中国五四青年节",
-														 "0505 碘缺乏病防治日",
-														 "0508 世界红十字日",
-														 "0512 国际护士节",
-														 "0515 国际家庭日",
-														 "0517 世界电信日",
-														 "0518 国际博物馆日",
-														 "0520 全国学生营养日",
-														 "0523 国际牛奶日",
-														 "0531 世界无烟日",
-														 "0601 国际儿童节",
-														 "0605 世界环境日",
-														 "0606 全国爱眼日",
-														 "0617 防治荒漠化和干旱日",
-														 "0623 国际奥林匹克日",
-														 "0625 全国土地日",
-														 "0626 国际反毒品日",
-														 "0701 中国共产党建党日 世界建筑日",
-														 "0702 国际体育记者日",
-														 "0707 中国人民抗日战争纪念日",
-														 "0711 世界人口日",
-														 "0730 非洲妇女日",
-														 "0801 中国建军节",
-														 "0808 中国男子节(爸爸节)",
-														 "0815 日本正式宣布无条件投降日",
-														 "0908 国际扫盲日 国际新闻工作者日",
-														 "0910 教师节",
-														 "0914 世界清洁地球日",
-														 "0916 国际臭氧层保护日",
-														 "0918 九·一八事变纪念日",
-														 "0920 全国爱牙日",
-														 "0927 世界旅游日",
-														 "1001 国庆节 世界音乐日 国际老人节",
-														 "1001 国际音乐日",
-														 "1002 国际和平与民主自由斗争日",
-														 "1004 世界动物日",
-														 "1008 全国高血压日",
-														 "1008 世界视觉日",
-														 "1009 世界邮政日 万国邮联日",
-														 "1010 辛亥革命纪念日 世界精神卫生日",
-														 "1013 世界保健日 国际教师节",
-														 "1014 世界标准日",
-														 "1015 国际盲人节(白手杖节)",
-														 "1016 世界粮食日",
-														 "1017 世界消除贫困日",
-														 "1022 世界传统医药日",
-														 "1024 联合国日 世界发展信息日",
-														 "1031 世界勤俭日",
-														 "1107 十月社会主义革命纪念日",
-														 "1108 中国记者日",
-														 "1109 全国消防安全宣传教育日",
-														 "1110 世界青年节",
-														 "1111 国际科学与和平周(本日所属的一周)",
-														 "1112 孙中山诞辰纪念日",
-														 "1114 世界糖尿病日",
-														 "1117 国际大学生节 世界学生节",
-														 "1121 世界问候日 世界电视日",
-														 "1129 国际声援巴勒斯坦人民国际日",
-														 "1201 世界艾滋病日",
-														 "1203 世界残疾人日",
-														 "1205 国际经济和社会发展志愿人员日",
-														 "1208 国际儿童电视日",
-														 "1209 世界足球日",
-														 "1210 世界人权日",
-														 "1212 西安事变纪念日",
-														 "1213 南京大屠杀(1937年)纪念日！紧记血泪史！",
-														 "1221 国际篮球日",
-														 "1224 平安夜",
-														 "1225 圣诞节",
-														 "1226 毛主席诞辰",
-														 "1229 国际生物多样性日" };
+        private static String[] lFtv = new String[] { "0101笰句琄竊", "0202 纒╋繷竊", "0115 じ甦竊", "0505 狠と竊", "0707 薄竊", "0815 い竊", "0909 锭竊", "1208 镁竊", "1114 ネネら", "1224 ", "0100埃" };
+        private static String[] sFtv = new String[] { "0101 穝じス",
+														 "0202 楞ら",
+														 "0207 瓣悔羘穿玭獶ら",
+														 "0210 瓣悔禜竊",
+														 "0214 薄竊",
+														 "0301 瓣悔癨ら",
+														 "0303 瓣稲φら",
+														 "0308 瓣悔包竊",
+														 "0312 从攫竊 甝い硊├ら",
+														 "0314 瓣悔牡诡ら",
+														 "0315 瓣悔禣舦痲ら",
+														 "0317 い瓣瓣洛竊 瓣悔ら",
+														 "0321 此狶ら 埃贺壁猍跌瓣悔ら",
+														 "0321 ㄠ簈ら",
+														 "0322 ら",
+														 "0323 禜ら",
+														 "0324 ň獀挡痜ら",
+														 "0325 瓣い厩ネ毙▅ら",
+														 "0330 ぺ扒吹㈱瓣ら",
+														 "0401 稭竊 瓣稲瓣矫ネ笲笆る(る) 祙Μ肚る(る)",
+														 "0407 矫ネら",
+														 "0422 瞴ら",
+														 "0423 瓜㎝舦ら",
+														 "0424 ㄈ獶穝籇ら",
+														 "0501 瓣悔骋笆竊",
+														 "0504 い瓣き獵竊",
+														 "0505 窴痜ň獀ら",
+														 "0508 ら",
+														 "0512 瓣悔臔竊",
+														 "0515 瓣悔產畑ら",
+														 "0517 筿獺ら",
+														 "0518 瓣悔痴繻ら",
+														 "0520 瓣厩ネ犁緄ら",
+														 "0523 瓣悔イら",
+														 "0531 礚废ら",
+														 "0601 瓣悔ㄠ担竊",
+														 "0605 吏挂ら",
+														 "0606 瓣稲泊ら",
+														 "0617 ň獀簔て㎝爱ら",
+														 "0623 瓣悔而狶で玤ら",
+														 "0625 瓣ら",
+														 "0626 瓣悔は瑀珇ら",
+														 "0701 い瓣玻囊囊ら 縱ら",
+														 "0702 瓣悔砰▅癘ら",
+														 "0707 い瓣チкら驹├ら",
+														 "0711 ら",
+														 "0730 獶瑆包ら",
+														 "0801 い瓣瓁竊",
+														 "0808 い瓣╧竊(竊)",
+														 "0815 らセタΑ礚兵ンщら",
+														 "0908 瓣悔苯ら 瓣悔穝籇ら",
+														 "0910 毙畍竊",
+														 "0914 睲间瞴ら",
+														 "0916 瓣悔糷玂臔ら",
+														 "0918 ㄆ跑├ら",
+														 "0920 瓣稲ら",
+														 "0927 笴ら",
+														 "1001 瓣紋竊 贾ら 瓣悔ρ竊",
+														 "1001 瓣悔贾ら",
+														 "1002 瓣悔㎝キ籔チパ矮ら",
+														 "1004 笆ら",
+														 "1008 瓣蔼﹀溃ら",
+														 "1008 跌谋ら",
+														 "1009 秎現ら 窾瓣秎羛ら",
+														 "1010 ǒヨ㏑├ら 弘矫ネら",
+														 "1013 玂胺ら 瓣悔毙畍竊",
+														 "1014 夹非ら",
+														 "1015 瓣悔竊(フも竊)",
+														 "1016 鲁ら",
+														 "1017 埃砲ら",
+														 "1022 肚参洛媚ら",
+														 "1024 羛瓣ら 祇甶獺ら",
+														 "1031 对稽ら",
+														 "1107 る穦竡㏑├ら",
+														 "1108 い瓣癘ら",
+														 "1109 瓣ň肚毙▅ら",
+														 "1110 獵竊",
+														 "1111 瓣悔厩籔㎝キ㏄(セら┮妮㏄)",
+														 "1112 甝い较ò├ら",
+														 "1114 縸Э痜ら",
+														 "1117 瓣悔厩ネ竊 厩ネ竊",
+														 "1121 拜ら 筿跌ら",
+														 "1129 瓣悔羘穿ぺ扒吹㈱チ瓣悔ら",
+														 "1201 ︺逮痜ら",
+														 "1203 摧痚ら",
+														 "1205 瓣悔竒蕾㎝穦祇甶в腀ら",
+														 "1208 瓣悔ㄠ担筿跌ら",
+														 "1209 ì瞴ら",
+														 "1210 舦ら",
+														 "1212 ﹁ㄆ跑├ら",
+														 "1213 玭ㄊ監炳(1937)├ら候癘﹀瞈",
+														 "1221 瓣悔膞瞴ら",
+														 "1224 キ",
+														 "1225 竧较竊",
+														 "1226 を畊较ò",
+														 "1229 瓣悔ネ妓┦ら" };
 
 
         /// <summary>
-        /// 传回农历y年的总天数
+        /// 肚笰句y羆ぱ计
         /// </summary>
         private static int lYearDays(int y)
         {
@@ -198,7 +198,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传回农历y年闰月的天数
+        /// 肚笰句y秥るぱ计
         /// </summary>
         private static int leapDays(int y)
         {
@@ -214,7 +214,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传回农历y年闰哪个月 1-12 , 没闰传回 0
+        /// 肚笰句y秥る 1-12 , ⊿秥肚 0
         /// </summary>
         private static int leapMonth(int y)
         {
@@ -222,7 +222,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传回农历y年m月的总天数
+        /// 肚笰句ymる羆ぱ计
         /// </summary>
         private static int monthDays(int y, int m)
         {
@@ -233,7 +233,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传回农历y年的生肖
+        /// 肚笰句yネ╲
         /// </summary>
         private static String AnimalsYear(int y)
         {
@@ -241,7 +241,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传入月日的offset 传回干支,0=甲子
+        /// 肚るらoffset 肚や,0=ヒ
         /// </summary>
         private static String cyclicalm(int num)
         {
@@ -249,7 +249,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传入offset 传回干支, 0=甲子
+        /// 肚offset 肚や, 0=ヒ
         /// </summary>
         private static String cyclical(int y)
         {
@@ -258,7 +258,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传出农历.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
+        /// 肚笰句.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
         /// </summary>
         private long[] Lunar(int y, int m)
         {
@@ -291,12 +291,12 @@ namespace DotNet.Utilities
             }
             nongDate[0] = i;
             nongDate[3] = i - 1864;
-            leap = leapMonth(i); // 闰哪个月
+            leap = leapMonth(i); // 秥る
             nongDate[6] = 0;
 
             for (i = 1; i < 13 && offset > 0; i++)
             {
-                // 闰月
+                // 秥る
                 if (leap > 0 && i == (leap + 1) && nongDate[6] == 0)
                 {
                     --i;
@@ -308,7 +308,7 @@ namespace DotNet.Utilities
                     temp = monthDays((int)nongDate[0], i);
                 }
 
-                // 解除闰月
+                // 秆埃秥る
                 if (nongDate[6] == 1 && i == (leap + 1))
                     nongDate[6] = 0;
                 offset -= temp;
@@ -341,7 +341,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 传出y年m月d日对应的农历.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
+        /// 肚ymるdら癸莱笰句.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
         /// </summary>
         private static long[] calElement(int y, int m, int d)
         {
@@ -372,12 +372,12 @@ namespace DotNet.Utilities
             }
             nongDate[0] = i;
             nongDate[3] = i - 1864;
-            leap = leapMonth(i); // 闰哪个月
+            leap = leapMonth(i); // 秥る
             nongDate[6] = 0;
 
             for (i = 1; i < 13 && offset > 0; i++)
             {
-                // 闰月
+                // 秥る
                 if (leap > 0 && i == (leap + 1) && nongDate[6] == 0)
                 {
                     --i;
@@ -389,7 +389,7 @@ namespace DotNet.Utilities
                     temp = monthDays((int)nongDate[0], i);
                 }
 
-                // 解除闰月
+                // 秆埃秥る
                 if (nongDate[6] == 1 && i == (leap + 1))
                     nongDate[6] = 0;
                 offset -= temp;
@@ -425,49 +425,49 @@ namespace DotNet.Utilities
         {
             String a = "";
             if (day == 10)
-                return "初十";
+                return "";
             if (day == 20)
-                return "二十";
+                return "";
             if (day == 30)
-                return "三十";
+                return "";
             int two = (int)((day) / 10);
             if (two == 0)
-                a = "初";
+                a = "";
             if (two == 1)
-                a = "十";
+                a = "";
             if (two == 2)
-                a = "廿";
+                a = "ぼ";
             if (two == 3)
-                a = "三";
+                a = "";
             int one = (int)(day % 10);
             switch (one)
             {
                 case 1:
-                    a += "一";
+                    a += "";
                     break;
                 case 2:
-                    a += "二";
+                    a += "";
                     break;
                 case 3:
-                    a += "三";
+                    a += "";
                     break;
                 case 4:
-                    a += "四";
+                    a += "";
                     break;
                 case 5:
-                    a += "五";
+                    a += "き";
                     break;
                 case 6:
-                    a += "六";
+                    a += "せ";
                     break;
                 case 7:
-                    a += "七";
+                    a += "";
                     break;
                 case 8:
-                    a += "八";
+                    a += "";
                     break;
                 case 9:
-                    a += "九";
+                    a += "";
                     break;
             }
             return a;
@@ -489,9 +489,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 公有方法
+        #region そΤよ猭
         /// <summary>
-        /// 传回公历y年m月的总天数
+        /// 肚そ菌ymる羆ぱ计
         /// </summary>
         public static int GetDaysByMonth(int y, int m)
         {
@@ -500,10 +500,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 根据日期值获得周一的日期
+        /// 沮ら戳莉眔秅ら戳
         /// </summary>
-        /// <param name="dt">输入日期</param>
-        /// <returns>周一的日期</returns>
+        /// <param name="dt">块ら戳</param>
+        /// <returns>秅ら戳</returns>
         public static DateTime GetMondayDateByDate(DateTime dt)
         {
             double d = 0;
@@ -521,7 +521,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取农历
+        /// 莉笰句
         /// </summary>
         public static CNDate getChinaDate(DateTime dt)
         {
@@ -573,43 +573,43 @@ namespace DotNet.Utilities
             date = dt.Day;
             l = calElement(year, month, date);
             lmd = FormatDate((int)l[1], (int)l[2]);
-            if (lmd.Equals("0101")) cd.cnFtvl = "除夕";
+            if (lmd.Equals("0101")) cd.cnFtvl = "埃";
             return cd;
         }
         #endregion
     }
 
     /// <summary>
-    /// 中国日历
+    /// い瓣ら句
     /// </summary>
     //-------------------------------------------------------------------------------
-    //调用:
+    //秸ノ:
     //ChineseCalendar c = new ChineseCalendar(new DateTime(1990, 01, 15));
     //StringBuilder dayInfo = new StringBuilder();
-    //dayInfo.Append("阳历：" + c.DateString + "\r\n");
-    //dayInfo.Append("农历：" + c.ChineseDateString + "\r\n");
-    //dayInfo.Append("星期：" + c.WeekDayStr);
-    //dayInfo.Append("时辰：" + c.ChineseHour + "\r\n");
-    //dayInfo.Append("属相：" + c.AnimalString + "\r\n");
-    //dayInfo.Append("节气：" + c.ChineseTwentyFourDay + "\r\n");
-    //dayInfo.Append("前一个节气：" + c.ChineseTwentyFourPrevDay + "\r\n");
-    //dayInfo.Append("下一个节气：" + c.ChineseTwentyFourNextDay + "\r\n");
-    //dayInfo.Append("节日：" + c.DateHoliday + "\r\n");
-    //dayInfo.Append("干支：" + c.GanZhiDateString + "\r\n");
-    //dayInfo.Append("星宿：" + c.ChineseConstellation + "\r\n");
-    //dayInfo.Append("星座：" + c.Constellation + "\r\n");
+    //dayInfo.Append("锭句" + c.DateString + "\r\n");
+    //dayInfo.Append("笰句" + c.ChineseDateString + "\r\n");
+    //dayInfo.Append("琍戳" + c.WeekDayStr);
+    //dayInfo.Append("ò" + c.ChineseHour + "\r\n");
+    //dayInfo.Append("妮" + c.AnimalString + "\r\n");
+    //dayInfo.Append("竊" + c.ChineseTwentyFourDay + "\r\n");
+    //dayInfo.Append("玡竊" + c.ChineseTwentyFourPrevDay + "\r\n");
+    //dayInfo.Append("竊" + c.ChineseTwentyFourNextDay + "\r\n");
+    //dayInfo.Append("竊ら" + c.DateHoliday + "\r\n");
+    //dayInfo.Append("や" + c.GanZhiDateString + "\r\n");
+    //dayInfo.Append("琍盝" + c.ChineseConstellation + "\r\n");
+    //dayInfo.Append("琍畒" + c.Constellation + "\r\n");
     //-------------------------------------------------------------------------------
     public class ChineseCalendar
     {
-        #region 内部结构
+        #region ず场挡篶
         /// <summary>
-        /// 阳历
+        /// 锭句
         /// </summary>
         private struct SolarHolidayStruct
         {
             public int Month;
             public int Day;
-            public int Recess; //假期长度
+            public int Recess; //安戳
             public string HolidayName;
             public SolarHolidayStruct(int month, int day, int recess, string name)
             {
@@ -621,7 +621,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 农历
+        /// 笰句
         /// </summary>
         private struct LunarHolidayStruct
         {
@@ -656,38 +656,38 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 内部变量
+        #region ず场跑秖
         private DateTime _date;
         private DateTime _datetime;
         private int _cYear;
         private int _cMonth;
         private int _cDay;
-        private bool _cIsLeapMonth; //当月是否闰月
-        private bool _cIsLeapYear;  //当年是否有闰月
+        private bool _cIsLeapMonth; //讽る琌秥る
+        private bool _cIsLeapYear;  //讽琌Τ秥る
         #endregion
 
-        #region 基础数据
-        #region 基本常量
+        #region 膀娄计沮
+        #region 膀セ盽秖
         private const int MinYear = 1900;
         private const int MaxYear = 2050;
         private static DateTime MinDay = new DateTime(1900, 1, 30);
         private static DateTime MaxDay = new DateTime(2049, 12, 31);
-        private const int GanZhiStartYear = 1864; //干支计算起始年
-        private static DateTime GanZhiStartDay = new DateTime(1899, 12, 22);//起始日
-        private const string HZNum = "零一二三四五六七八九";
-        private const int AnimalStartYear = 1900; //1900年为鼠年
-        private static DateTime ChineseConstellationReferDay = new DateTime(2007, 9, 13);//28星宿参考值,本日为角
+        private const int GanZhiStartYear = 1864; //や璸衡癬﹍
+        private static DateTime GanZhiStartDay = new DateTime(1899, 12, 22);//癬﹍ら
+        private const string HZNum = "箂きせ";
+        private const int AnimalStartYear = 1900; //1900公
+        private static DateTime ChineseConstellationReferDay = new DateTime(2007, 9, 13);//28琍盝把σ,セらà
         #endregion
 
-        #region 阴历数据
+        #region 潮句计沮
         /// <summary>
-        /// 来源于网上的农历数据
+        /// ㄓ方呼笰句计沮
         /// </summary>
         /// <remarks>
-        /// 数据结构如下，共使用17位数据
-        /// 第17位：表示闰月天数，0表示29天   1表示30天
-        /// 第16位-第5位（共12位）表示12个月，其中第16位表示第一月，如果该月为30天则为1，29天为0
-        /// 第4位-第1位（共4位）表示闰月是哪个月，如果当年没有闰月，则置0
+        /// 计沮挡篶ㄏノ17计沮
+        /// 材17ボ秥るぱ计0ボ29ぱ   1ボ30ぱ
+        /// 材16-材512ボ12るㄤい材16ボ材る狦赣る30ぱ玥129ぱ0
+        /// 材4-材14ボ秥る琌る狦讽⊿Τ秥る玥竚0
         ///</remarks>
         private static int[] LunarDateArray = new int[]{
                 0x04BD8,0x04AE0,0x0A570,0x054D5,0x0D260,0x0D950,0x16554,0x056A0,0x09AD0,0x055D2,
@@ -710,146 +710,146 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 星座名称
+        #region 琍畒嘿
         private static string[] _constellationName = 
                 { 
-                    "白羊座", "金牛座", "双子座", 
-                    "巨蟹座", "狮子座", "处女座", 
-                    "天秤座", "天蝎座", "射手座", 
-                    "摩羯座", "水瓶座", "双鱼座"
+                    "フο畒", "畒", "蛮畒", 
+                    "エ蒙畒", "粪畒", "矪畒", 
+                    "ぱ畒", "ぱ萌畒", "甮も畒", 
+                    "集絶畒", "瞺畒", "蛮辰畒"
                 };
         #endregion
 
-        #region 二十四节气
+        #region 竊
         private static string[] _lunarHolidayName = 
                     { 
-                    "小寒", "大寒", "立春", "雨水", 
-                    "惊蛰", "春分", "清明", "谷雨", 
-                    "立夏", "小满", "芒种", "夏至", 
-                    "小暑", "大暑", "立秋", "处暑", 
-                    "白露", "秋分", "寒露", "霜降", 
-                    "立冬", "小雪", "大雪", "冬至"
+                    "碒", "碒", "ミ琄", "獴", 
+                    "佩頷", "琄だ", "睲", "é獴", 
+                    "ミ甃", "骸", "▇贺", "甃", 
+                    "椿", "椿", "ミ", "矪椿", 
+                    "フ臩", "だ", "碒臩", "流", 
+                    "ミ", "撤", "撤", ""
                     };
         #endregion
 
-        #region 二十八星宿
+        #region 琍盝
         private static string[] _chineseConstellationName =
             {
-                  //四        五      六         日        一      二      三  
-                "角木蛟","亢金龙","女土蝠","房日兔","心月狐","尾火虎","箕水豹",
-                "斗木獬","牛金牛","氐土貉","虚日鼠","危月燕","室火猪","壁水?",
-                "奎木狼","娄金狗","胃土彘","昴日鸡","毕月乌","觜火猴","参水猿",
-                "井木犴","鬼金羊","柳土獐","星日马","张月鹿","翼火蛇","轸水蚓" 
+                  //        き      せ         ら                      
+                "àれ惦","ぎ纒","交","┬らㄟ","みる","Ю","哼癨",
+                "ゆれ阇","","ヂ歌","店ら公","る縋","睫","纠鎧",
+                "れ疶","苞","璆佤","析ら蔓","拨る疩","郈礥","把丰",
+                "かれ蔆","碍ο","琱杭","琍ら皑","眎る忱","羖矰","蹾癈" 
             };
         #endregion
 
-        #region 节气数据
-        private static string[] SolarTerm = new string[] { "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至" };
+        #region 竊计沮
+        private static string[] SolarTerm = new string[] { "碒", "碒", "ミ琄", "獴", "佩頷", "琄だ", "睲", "é獴", "ミ甃", "骸", "▇贺", "甃", "椿", "椿", "ミ", "矪椿", "フ臩", "だ", "碒臩", "流", "ミ", "撤", "撤", "" };
         private static int[] sTermInfo = new int[] { 0, 21208, 42467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758 };
         #endregion
 
-        #region 农历相关数据
-        private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
-        private static string zhiStr = "子丑寅卯辰巳午未申酉戌亥";
-        private static string animalStr = "鼠牛虎兔龙蛇马羊猴鸡狗猪";
-        private static string nStr1 = "日一二三四五六七八九";
-        private static string nStr2 = "初十廿卅";
+        #region 笰句闽计沮
+        private static string ganStr = "ヒコ┌ǒば";
+        private static string zhiStr = "ぁ盙òとゼビɑΖヨ";
+        private static string animalStr = "公ㄟ纒矰皑ο礥蔓睫";
+        private static string nStr1 = "らきせ";
+        private static string nStr2 = "ぼな";
         private static string[] _monthString =
                 {
-                    "出错","正月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","腊月"
+                    "岿","タる","る","る","る","きる","せる","る","る","る","る","る","镁る"
                 };
         #endregion
 
-        #region 按公历计算的节日
+        #region そ菌璸衡竊ら
         private static SolarHolidayStruct[] sHolidayInfo = new SolarHolidayStruct[]{
-            new SolarHolidayStruct(1, 1, 1, "元旦"),
-            new SolarHolidayStruct(2, 2, 0, "世界湿地日"),
-            new SolarHolidayStruct(2, 10, 0, "国际气象节"),
-            new SolarHolidayStruct(2, 14, 0, "情人节"),
-            new SolarHolidayStruct(3, 1, 0, "国际海豹日"),
-            new SolarHolidayStruct(3, 5, 0, "学雷锋纪念日"),
-            new SolarHolidayStruct(3, 8, 0, "妇女节"), 
-            new SolarHolidayStruct(3, 12, 0, "植树节 孙中山逝世纪念日"), 
-            new SolarHolidayStruct(3, 14, 0, "国际警察日"),
-            new SolarHolidayStruct(3, 15, 0, "消费者权益日"),
-            new SolarHolidayStruct(3, 17, 0, "中国国医节 国际航海日"),
-            new SolarHolidayStruct(3, 21, 0, "世界森林日 消除种族歧视国际日 世界儿歌日"),
-            new SolarHolidayStruct(3, 22, 0, "世界水日"),
-            new SolarHolidayStruct(3, 24, 0, "世界防治结核病日"),
-            new SolarHolidayStruct(4, 1, 0, "愚人节"),
-            new SolarHolidayStruct(4, 7, 0, "世界卫生日"),
-            new SolarHolidayStruct(4, 22, 0, "世界地球日"),
-            new SolarHolidayStruct(5, 1, 1, "劳动节"), 
-            new SolarHolidayStruct(5, 2, 1, "劳动节假日"),
-            new SolarHolidayStruct(5, 3, 1, "劳动节假日"),
-            new SolarHolidayStruct(5, 4, 0, "青年节"), 
-            new SolarHolidayStruct(5, 8, 0, "世界红十字日"),
-            new SolarHolidayStruct(5, 12, 0, "国际护士节"), 
-            new SolarHolidayStruct(5, 31, 0, "世界无烟日"), 
-            new SolarHolidayStruct(6, 1, 0, "国际儿童节"), 
-            new SolarHolidayStruct(6, 5, 0, "世界环境保护日"),
-            new SolarHolidayStruct(6, 26, 0, "国际禁毒日"),
-            new SolarHolidayStruct(7, 1, 0, "建党节 香港回归纪念 世界建筑日"),
-            new SolarHolidayStruct(7, 11, 0, "世界人口日"),
-            new SolarHolidayStruct(8, 1, 0, "建军节"), 
-            new SolarHolidayStruct(8, 8, 0, "中国男子节 父亲节"),
-            new SolarHolidayStruct(8, 15, 0, "抗日战争胜利纪念"),
-            new SolarHolidayStruct(9, 9, 0, "毛主席逝世纪念"), 
-            new SolarHolidayStruct(9, 10, 0, "教师节"), 
-            new SolarHolidayStruct(9, 18, 0, "九·一八事变纪念日"),
-            new SolarHolidayStruct(9, 20, 0, "国际爱牙日"),
-            new SolarHolidayStruct(9, 27, 0, "世界旅游日"),
-            new SolarHolidayStruct(9, 28, 0, "孔子诞辰"),
-            new SolarHolidayStruct(10, 1, 1, "国庆节 国际音乐日"),
-            new SolarHolidayStruct(10, 2, 1, "国庆节假日"),
-            new SolarHolidayStruct(10, 3, 1, "国庆节假日"),
-            new SolarHolidayStruct(10, 6, 0, "老人节"), 
-            new SolarHolidayStruct(10, 24, 0, "联合国日"),
-            new SolarHolidayStruct(11, 10, 0, "世界青年节"),
-            new SolarHolidayStruct(11, 12, 0, "孙中山诞辰纪念"), 
-            new SolarHolidayStruct(12, 1, 0, "世界艾滋病日"), 
-            new SolarHolidayStruct(12, 3, 0, "世界残疾人日"), 
-            new SolarHolidayStruct(12, 20, 0, "澳门回归纪念"), 
-            new SolarHolidayStruct(12, 24, 0, "平安夜"), 
-            new SolarHolidayStruct(12, 25, 0, "圣诞节"), 
-            new SolarHolidayStruct(12, 26, 0, "毛主席诞辰纪念")
+            new SolarHolidayStruct(1, 1, 1, "じス"),
+            new SolarHolidayStruct(2, 2, 0, "楞ら"),
+            new SolarHolidayStruct(2, 10, 0, "瓣悔禜竊"),
+            new SolarHolidayStruct(2, 14, 0, "薄竊"),
+            new SolarHolidayStruct(3, 1, 0, "瓣悔癨ら"),
+            new SolarHolidayStruct(3, 5, 0, "厩筽網├ら"),
+            new SolarHolidayStruct(3, 8, 0, "包竊"), 
+            new SolarHolidayStruct(3, 12, 0, "从攫竊 甝い硊├ら"), 
+            new SolarHolidayStruct(3, 14, 0, "瓣悔牡诡ら"),
+            new SolarHolidayStruct(3, 15, 0, "禣舦痲ら"),
+            new SolarHolidayStruct(3, 17, 0, "い瓣瓣洛竊 瓣悔ら"),
+            new SolarHolidayStruct(3, 21, 0, "此狶ら 埃贺壁猍跌瓣悔ら ㄠ簈ら"),
+            new SolarHolidayStruct(3, 22, 0, "ら"),
+            new SolarHolidayStruct(3, 24, 0, "ň獀挡痜ら"),
+            new SolarHolidayStruct(4, 1, 0, "稭竊"),
+            new SolarHolidayStruct(4, 7, 0, "矫ネら"),
+            new SolarHolidayStruct(4, 22, 0, "瞴ら"),
+            new SolarHolidayStruct(5, 1, 1, "骋笆竊"), 
+            new SolarHolidayStruct(5, 2, 1, "骋笆竊安ら"),
+            new SolarHolidayStruct(5, 3, 1, "骋笆竊安ら"),
+            new SolarHolidayStruct(5, 4, 0, "獵竊"), 
+            new SolarHolidayStruct(5, 8, 0, "ら"),
+            new SolarHolidayStruct(5, 12, 0, "瓣悔臔竊"), 
+            new SolarHolidayStruct(5, 31, 0, "礚废ら"), 
+            new SolarHolidayStruct(6, 1, 0, "瓣悔ㄠ担竊"), 
+            new SolarHolidayStruct(6, 5, 0, "吏挂玂臔ら"),
+            new SolarHolidayStruct(6, 26, 0, "瓣悔窽瑀ら"),
+            new SolarHolidayStruct(7, 1, 0, "囊竊 翠耴├ 縱ら"),
+            new SolarHolidayStruct(7, 11, 0, "ら"),
+            new SolarHolidayStruct(8, 1, 0, "瓁竊"), 
+            new SolarHolidayStruct(8, 8, 0, "い瓣╧竊 克竊"),
+            new SolarHolidayStruct(8, 15, 0, "кら驹秤├"),
+            new SolarHolidayStruct(9, 9, 0, "を畊硊├"), 
+            new SolarHolidayStruct(9, 10, 0, "毙畍竊"), 
+            new SolarHolidayStruct(9, 18, 0, "ㄆ跑├ら"),
+            new SolarHolidayStruct(9, 20, 0, "瓣悔稲ら"),
+            new SolarHolidayStruct(9, 27, 0, "笴ら"),
+            new SolarHolidayStruct(9, 28, 0, "ふ较ò"),
+            new SolarHolidayStruct(10, 1, 1, "瓣紋竊 瓣悔贾ら"),
+            new SolarHolidayStruct(10, 2, 1, "瓣紋竊安ら"),
+            new SolarHolidayStruct(10, 3, 1, "瓣紋竊安ら"),
+            new SolarHolidayStruct(10, 6, 0, "ρ竊"), 
+            new SolarHolidayStruct(10, 24, 0, "羛瓣ら"),
+            new SolarHolidayStruct(11, 10, 0, "獵竊"),
+            new SolarHolidayStruct(11, 12, 0, "甝い较ò├"), 
+            new SolarHolidayStruct(12, 1, 0, "︺逮痜ら"), 
+            new SolarHolidayStruct(12, 3, 0, "摧痚ら"), 
+            new SolarHolidayStruct(12, 20, 0, "緿耴├"), 
+            new SolarHolidayStruct(12, 24, 0, "キ"), 
+            new SolarHolidayStruct(12, 25, 0, "竧较竊"), 
+            new SolarHolidayStruct(12, 26, 0, "を畊较ò├")
            };
         #endregion
 
-        #region 按农历计算的节日
+        #region 笰句璸衡竊ら
         private static LunarHolidayStruct[] lHolidayInfo = new LunarHolidayStruct[]{
-            new LunarHolidayStruct(1, 1, 1, "春节"), 
-            new LunarHolidayStruct(1, 15, 0, "元宵节"), 
-            new LunarHolidayStruct(5, 5, 0, "端午节"), 
-            new LunarHolidayStruct(7, 7, 0, "七夕情人节"),
-            new LunarHolidayStruct(7, 15, 0, "中元节 盂兰盆节"), 
-            new LunarHolidayStruct(8, 15, 0, "中秋节"), 
-            new LunarHolidayStruct(9, 9, 0, "重阳节"), 
-            new LunarHolidayStruct(12, 8, 0, "腊八节"),
-            new LunarHolidayStruct(12, 23, 0, "北方小年(扫房)"),
-            new LunarHolidayStruct(12, 24, 0, "南方小年(掸尘)"),
-            //new LunarHolidayStruct(12, 30, 0, "除夕")  //注意除夕需要其它方法进行计算
+            new LunarHolidayStruct(1, 1, 1, "琄竊"), 
+            new LunarHolidayStruct(1, 15, 0, "じ甦竊"), 
+            new LunarHolidayStruct(5, 5, 0, "狠と竊"), 
+            new LunarHolidayStruct(7, 7, 0, "薄竊"),
+            new LunarHolidayStruct(7, 15, 0, "いじ竊 孽竊"), 
+            new LunarHolidayStruct(8, 15, 0, "い竊"), 
+            new LunarHolidayStruct(9, 9, 0, "锭竊"), 
+            new LunarHolidayStruct(12, 8, 0, "镁竊"),
+            new LunarHolidayStruct(12, 23, 0, "よ(苯┬)"),
+            new LunarHolidayStruct(12, 24, 0, "玭よ(甯剐)"),
+            //new LunarHolidayStruct(12, 30, 0, "埃")  //猔種埃惠璶ㄤウよ猭秈︽璸衡
         };
         #endregion
 
-        #region 按某月第几个星期几
+        #region 琘る材碭琍戳碭
         private static WeekHolidayStruct[] wHolidayInfo = new WeekHolidayStruct[]{
-            new WeekHolidayStruct(5, 2, 1, "母亲节"), 
-            new WeekHolidayStruct(5, 3, 1, "全国助残日"), 
-            new WeekHolidayStruct(6, 3, 1, "父亲节"), 
-            new WeekHolidayStruct(9, 3, 3, "国际和平日"), 
-            new WeekHolidayStruct(9, 4, 1, "国际聋人节"), 
-            new WeekHolidayStruct(10, 1, 2, "国际住房日"), 
-            new WeekHolidayStruct(10, 1, 4, "国际减轻自然灾害日"),
-            new WeekHolidayStruct(11, 4, 5, "感恩节")
+            new WeekHolidayStruct(5, 2, 1, "ダ克竊"), 
+            new WeekHolidayStruct(5, 3, 1, "瓣摧ら"), 
+            new WeekHolidayStruct(6, 3, 1, "克竊"), 
+            new WeekHolidayStruct(9, 3, 3, "瓣悔㎝キら"), 
+            new WeekHolidayStruct(9, 4, 1, "瓣悔扭竊"), 
+            new WeekHolidayStruct(10, 1, 2, "瓣悔┬ら"), 
+            new WeekHolidayStruct(10, 1, 4, "瓣悔搭淮礛╝甡ら"),
+            new WeekHolidayStruct(11, 4, 5, "稰竊")
         };
         #endregion
         #endregion
 
-        #region 构造函数
-        #region 公历日期初始化
+        #region 篶硑ㄧ计
+        #region そ菌ら戳﹍て
         /// <summary>
-        /// 用一个标准的公历日期来初使化
+        /// ノ夹非そ菌ら戳ㄓㄏて
         /// </summary>
         public ChineseCalendar(DateTime dt)
         {
@@ -863,17 +863,17 @@ namespace DotNet.Utilities
             _date = dt.Date;
             _datetime = dt;
 
-            //农历日期计算部分
+            //笰句ら戳璸衡场だ
             leap = 0;
             temp = 0;
 
-            //计算两天的基本差距
+            //璸衡ㄢぱ膀セ畉禯
             TimeSpan ts = _date - ChineseCalendar.MinDay;
             offset = ts.Days;
 
             for (i = MinYear; i <= MaxYear; i++)
             {
-                //求当年农历年天数
+                //―讽笰句ぱ计
                 temp = GetChineseYearDays(i);
                 if (offset - temp < 1)
                     break;
@@ -884,10 +884,10 @@ namespace DotNet.Utilities
             }
             _cYear = i;
 
-            //计算该年闰哪个月
+            //璸衡赣秥る
             leap = GetChineseLeapMonth(_cYear);
 
-            //设定当年是否有闰月
+            //砞﹚讽琌Τ秥る
             if (leap > 0)
             {
                 _cIsLeapYear = true;
@@ -900,17 +900,17 @@ namespace DotNet.Utilities
             _cIsLeapMonth = false;
             for (i = 1; i <= 12; i++)
             {
-                //闰月
+                //秥る
                 if ((leap > 0) && (i == leap + 1) && (_cIsLeapMonth == false))
                 {
                     _cIsLeapMonth = true;
                     i = i - 1;
-                    temp = GetChineseLeapMonthDays(_cYear); //计算闰月天数
+                    temp = GetChineseLeapMonthDays(_cYear); //璸衡秥るぱ计
                 }
                 else
                 {
                     _cIsLeapMonth = false;
-                    temp = GetChineseMonthDays(_cYear, i);  //计算非闰月天数
+                    temp = GetChineseMonthDays(_cYear, i);  //璸衡獶秥るぱ计
                 }
 
                 offset = offset - temp;
@@ -923,14 +923,14 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 农历日期初始化
+        #region 笰句ら戳﹍て
         /// <summary>
-        /// 用农历的日期来初使化
+        /// ノ笰句ら戳ㄓㄏて
         /// </summary>
-        /// <param name="cy">农历年</param>
-        /// <param name="cm">农历月</param>
-        /// <param name="cd">农历日</param>
-        /// <param name="LeapFlag">闰月标志</param>
+        /// <param name="cy">笰句</param>
+        /// <param name="cm">笰句る</param>
+        /// <param name="cd">笰句ら</param>
+        /// <param name="LeapFlag">秥る夹粁</param>
         public ChineseCalendar(int cy, int cm, int cd, bool leapMonthFlag)
         {
             int i, leap, Temp, offset;
@@ -945,12 +945,12 @@ namespace DotNet.Utilities
 
             for (i = MinYear; i < cy; i++)
             {
-                //求当年农历年天数
+                //―讽笰句ぱ计
                 Temp = GetChineseYearDays(i);
                 offset = offset + Temp;
             }
 
-            //计算该年应该闰哪个月
+            //璸衡赣莱赣秥る
             leap = GetChineseLeapMonth(cy);
             if (leap != 0)
             {
@@ -963,69 +963,69 @@ namespace DotNet.Utilities
 
             if (cm != leap)
             {
-                //当前日期并非闰月
+                //讽玡ら戳獶秥る
                 _cIsLeapMonth = false;
             }
             else
             {
-                //使用用户输入的是否闰月月份
+                //ㄏノノめ块琌秥るる
                 _cIsLeapMonth = leapMonthFlag;
             }
 
-            //当年没有闰月||计算月份小于闰月
+            //讽⊿Τ秥る||璸衡る秥る
             if ((_cIsLeapYear == false) || (cm < leap))
             {
                 for (i = 1; i < cm; i++)
                 {
-                    Temp = GetChineseMonthDays(cy, i);//计算非闰月天数
+                    Temp = GetChineseMonthDays(cy, i);//璸衡獶秥るぱ计
                     offset = offset + Temp;
                 }
 
-                //检查日期是否大于最大天
+                //浪琩ら戳琌程ぱ
                 if (cd > GetChineseMonthDays(cy, cm))
                 {
-                    throw new Exception("不合法的农历日期");
+                    throw new Exception("ぃ猭笰句ら戳");
                 }
-                //加上当月的天数
+                //讽るぱ计
                 offset = offset + cd;
             }
 
-            //是闰年，且计算月份大于或等于闰月
+            //琌秥璸衡る┪单秥る
             else
             {
                 for (i = 1; i < cm; i++)
                 {
-                    //计算非闰月天数
+                    //璸衡獶秥るぱ计
                     Temp = GetChineseMonthDays(cy, i);
                     offset = offset + Temp;
                 }
 
-                //计算月大于闰月
+                //璸衡る秥る
                 if (cm > leap)
                 {
-                    Temp = GetChineseLeapMonthDays(cy);   //计算闰月天数
-                    offset = offset + Temp;               //加上闰月天数
+                    Temp = GetChineseLeapMonthDays(cy);   //璸衡秥るぱ计
+                    offset = offset + Temp;               //秥るぱ计
 
                     if (cd > GetChineseMonthDays(cy, cm))
                     {
-                        throw new Exception("不合法的农历日期");
+                        throw new Exception("ぃ猭笰句ら戳");
                     }
                     offset = offset + cd;
                 }
 
-                //计算月等于闰月
+                //璸衡る单秥る
                 else
                 {
-                    //如果需要计算的是闰月，则应首先加上与闰月对应的普通月的天数
-                    if (this._cIsLeapMonth == true)         //计算月为闰月
+                    //狦惠璶璸衡琌秥る玥莱籔秥る癸莱炊硄るぱ计
+                    if (this._cIsLeapMonth == true)         //璸衡る秥る
                     {
-                        Temp = GetChineseMonthDays(cy, cm); //计算非闰月天数
+                        Temp = GetChineseMonthDays(cy, cm); //璸衡獶秥るぱ计
                         offset = offset + Temp;
                     }
 
                     if (cd > GetChineseLeapMonthDays(cy))
                     {
-                        throw new Exception("不合法的农历日期");
+                        throw new Exception("ぃ猭笰句ら戳");
                     }
                     offset = offset + cd;
                 }
@@ -1035,10 +1035,10 @@ namespace DotNet.Utilities
         #endregion
         #endregion
 
-        #region 私有函数
+        #region ╬Τㄧ计
         #region GetChineseMonthDays
         /// <summary>
-        /// //传回农历y年m月的总天数
+        /// //肚笰句ymる羆ぱ计
         /// </summary>
         private int GetChineseMonthDays(int year, int month)
         {
@@ -1055,7 +1055,7 @@ namespace DotNet.Utilities
 
         #region GetChineseLeapMonth
         /// <summary>
-        /// 传回农历 y年闰哪个月 1-12 , 没闰传回 0
+        /// 肚笰句 y秥る 1-12 , ⊿秥肚 0
         /// </summary>
         private int GetChineseLeapMonth(int year)
         {
@@ -1065,7 +1065,7 @@ namespace DotNet.Utilities
 
         #region GetChineseLeapMonthDays
         /// <summary>
-        /// 传回农历y年闰月的天数
+        /// 肚笰句y秥るぱ计
         /// </summary>
         private int GetChineseLeapMonthDays(int year)
         {
@@ -1089,17 +1089,17 @@ namespace DotNet.Utilities
 
         #region GetChineseYearDays
         /// <summary>
-        /// 取农历年一年的天数
+        /// 笰句ぱ计
         /// </summary>
         private int GetChineseYearDays(int year)
         {
             int i, f, sumDay, info;
 
-            sumDay = 348; //29天*12个月
+            sumDay = 348; //29ぱ*12る
             i = 0x8000;
             info = LunarDateArray[year - MinYear] & 0x0FFFF;
 
-            //计算12个月中有多少天为30天
+            //璸衡12るいΤぶぱ30ぱ
             for (int m = 0; m < 12; m++)
             {
                 f = info & i;
@@ -1115,7 +1115,7 @@ namespace DotNet.Utilities
 
         #region GetChineseHour
         /// <summary>
-        /// 获得当前时间的时辰
+        /// 莉眔讽玡丁ò
         /// </summary> 
         private string GetChineseHour(DateTime dt)
         {
@@ -1124,23 +1124,23 @@ namespace DotNet.Utilities
             string ganHour, zhiHour;
             string tmpGan;
 
-            //计算时辰的地支
-            _hour = dt.Hour;    //获得当前时间小时
-            _minute = dt.Minute;  //获得当前时间分钟
+            //璸衡òや
+            _hour = dt.Hour;    //莉眔讽玡丁
+            _minute = dt.Minute;  //莉眔讽玡丁だ牧
 
             if (_minute != 0) _hour += 1;
             offset = _hour / 2;
             if (offset >= 12) offset = 0;
             //zhiHour = zhiStr[offset].ToString();
 
-            //计算天干
+            //璸衡ぱ
             TimeSpan ts = this._date - GanZhiStartDay;
             i = ts.Days % 60;
 
-            //ganStr[i % 10] 为日的天干,(n*2-1) %10得出地支对应,n从1开始
+            //ganStr[i % 10] らぱ,(n*2-1) %10眔や癸莱,n眖1秨﹍
             indexGan = ((i % 10 + 1) * 2 - 1) % 10 - 1;
 
-            tmpGan = ganStr.Substring(indexGan) + ganStr.Substring(0, indexGan + 2);//凑齐12位
+            tmpGan = ganStr.Substring(indexGan) + ganStr.Substring(0, indexGan + 2);//搓霍12
             //ganHour = ganStr[((i % 10 + 1) * 2 - 1) % 10 - 1].ToString();
 
             return tmpGan[offset].ToString() + zhiStr[offset].ToString();
@@ -1149,46 +1149,46 @@ namespace DotNet.Utilities
 
         #region CheckDateLimit
         /// <summary>
-        /// 检查公历日期是否符合要求
+        /// 浪琩そ菌ら戳琌才璶―
         /// </summary>
         private void CheckDateLimit(DateTime dt)
         {
             if ((dt < MinDay) || (dt > MaxDay))
             {
-                throw new Exception("超出可转换的日期");
+                throw new Exception("禬锣传ら戳");
             }
         }
         #endregion
 
         #region CheckChineseDateLimit
         /// <summary>
-        /// 检查农历日期是否合理
+        /// 浪琩笰句ら戳琌瞶
         /// </summary>
         private void CheckChineseDateLimit(int year, int month, int day, bool leapMonth)
         {
             if ((year < MinYear) || (year > MaxYear))
             {
-                throw new Exception("非法农历日期");
+                throw new Exception("獶猭笰句ら戳");
             }
             if ((month < 1) || (month > 12))
             {
-                throw new Exception("非法农历日期");
+                throw new Exception("獶猭笰句ら戳");
             }
-            if ((day < 1) || (day > 30)) //中国的月最多30天
+            if ((day < 1) || (day > 30)) //い瓣る程30ぱ
             {
-                throw new Exception("非法农历日期");
+                throw new Exception("獶猭笰句ら戳");
             }
-            int leap = GetChineseLeapMonth(year);// 计算该年应该闰哪个月
+            int leap = GetChineseLeapMonth(year);// 璸衡赣莱赣秥る
             if ((leapMonth == true) && (month != leap))
             {
-                throw new Exception("非法农历日期");
+                throw new Exception("獶猭笰句ら戳");
             }
         }
         #endregion
 
         #region ConvertNumToChineseNum
         /// <summary>
-        /// 将0-9转成汉字形式
+        /// 盢0-9锣Θ簙Α
         /// </summary>
         private string ConvertNumToChineseNum(char n)
         {
@@ -1223,7 +1223,7 @@ namespace DotNet.Utilities
 
         #region BitTest32
         /// <summary>
-        /// 测试某位是否为真
+        /// 代刚琘琌痷
         /// </summary>
         private bool BitTest32(int num, int bitpostion)
         {
@@ -1245,7 +1245,7 @@ namespace DotNet.Utilities
 
         #region ConvertDayOfWeek
         /// <summary>
-        /// 将星期几转成数字表示
+        /// 盢琍戳碭锣Θ计ボ
         /// </summary>
         private int ConvertDayOfWeek(DayOfWeek dayOfWeek)
         {
@@ -1273,19 +1273,19 @@ namespace DotNet.Utilities
 
         #region CompareWeekDayHoliday
         /// <summary>
-        /// 比较当天是不是指定的第周几
+        /// ゑ耕讽ぱ琌ぃ琌﹚材㏄碭
         /// </summary>
         private bool CompareWeekDayHoliday(DateTime date, int month, int week, int day)
         {
             bool ret = false;
 
-            if (date.Month == month) //月份相同
+            if (date.Month == month) //る
             {
-                if (ConvertDayOfWeek(date.DayOfWeek) == day) //星期几相同
+                if (ConvertDayOfWeek(date.DayOfWeek) == day) //琍戳碭
                 {
-                    DateTime firstDay = new DateTime(date.Year, date.Month, 1);//生成当月第一天
+                    DateTime firstDay = new DateTime(date.Year, date.Month, 1);//ネΘ讽る材ぱ
                     int i = ConvertDayOfWeek(firstDay.DayOfWeek);
-                    int firWeekDays = 7 - ConvertDayOfWeek(firstDay.DayOfWeek) + 1; //计算第一周剩余天数
+                    int firWeekDays = 7 - ConvertDayOfWeek(firstDay.DayOfWeek) + 1; //璸衡材㏄逞緇ぱ计
 
                     if (i > day)
                     {
@@ -1309,18 +1309,18 @@ namespace DotNet.Utilities
         #endregion
         #endregion
 
-        #region  属性
-        #region 节日
+        #region  妮┦
+        #region 竊ら
         #region newCalendarHoliday
         /// <summary>
-        /// 计算中国农历节日
+        /// 璸衡い瓣笰句竊ら
         /// </summary>
         public string newCalendarHoliday
         {
             get
             {
                 string tempStr = "";
-                if (this._cIsLeapMonth == false) //闰月不计算节日
+                if (this._cIsLeapMonth == false) //秥るぃ璸衡竊ら
                 {
                     foreach (LunarHolidayStruct lh in lHolidayInfo)
                     {
@@ -1333,13 +1333,13 @@ namespace DotNet.Utilities
                         }
                     }
 
-                    //对除夕进行特别处理
+                    //癸埃秈︽疭矪瞶
                     if (this._cMonth == 12)
                     {
-                        int i = GetChineseMonthDays(this._cYear, 12); //计算当年农历12月的总天数
-                        if (this._cDay == i) //如果为最后一天
+                        int i = GetChineseMonthDays(this._cYear, 12); //璸衡讽笰句12る羆ぱ计
+                        if (this._cDay == i) //狦程ぱ
                         {
-                            tempStr = "除夕";
+                            tempStr = "埃";
                         }
                     }
                 }
@@ -1350,7 +1350,7 @@ namespace DotNet.Utilities
 
         #region WeekDayHoliday
         /// <summary>
-        /// 按某月第几周第几日计算的节日
+        /// 琘る材碭㏄材碭ら璸衡竊ら
         /// </summary>
         public string WeekDayHoliday
         {
@@ -1372,7 +1372,7 @@ namespace DotNet.Utilities
 
         #region DateHoliday
         /// <summary>
-        /// 按公历日计算的节日
+        /// そ菌ら璸衡竊ら
         /// </summary>
         public string DateHoliday
         {
@@ -1394,10 +1394,10 @@ namespace DotNet.Utilities
         #endregion
         #endregion
 
-        #region 公历日期
+        #region そ菌ら戳
         #region Date
         /// <summary>
-        /// 取对应的公历日期
+        /// 癸莱そ菌ら戳
         /// </summary>
         public DateTime Date
         {
@@ -1408,7 +1408,7 @@ namespace DotNet.Utilities
 
         #region WeekDay
         /// <summary>
-        /// 取星期几
+        /// 琍戳碭
         /// </summary>
         public DayOfWeek WeekDay
         {
@@ -1418,7 +1418,7 @@ namespace DotNet.Utilities
 
         #region WeekDayStr
         /// <summary>
-        /// 周几的字符
+        /// ㏄碭才
         /// </summary>
         public string WeekDayStr
         {
@@ -1427,19 +1427,19 @@ namespace DotNet.Utilities
                 switch (_date.DayOfWeek)
                 {
                     case DayOfWeek.Sunday:
-                        return "星期日";
+                        return "琍戳ら";
                     case DayOfWeek.Monday:
-                        return "星期一";
+                        return "琍戳";
                     case DayOfWeek.Tuesday:
-                        return "星期二";
+                        return "琍戳";
                     case DayOfWeek.Wednesday:
-                        return "星期三";
+                        return "琍戳";
                     case DayOfWeek.Thursday:
-                        return "星期四";
+                        return "琍戳";
                     case DayOfWeek.Friday:
-                        return "星期五";
+                        return "琍戳き";
                     default:
-                        return "星期六";
+                        return "琍戳せ";
                 }
             }
         }
@@ -1447,20 +1447,20 @@ namespace DotNet.Utilities
 
         #region DateString
         /// <summary>
-        /// 公历日期中文表示法 如一九九七年七月一日
+        /// そ菌ら戳いゅボ猭 るら
         /// </summary>
         public string DateString
         {
             get
             {
-                return "公元" + this._date.ToLongDateString();
+                return "そじ" + this._date.ToLongDateString();
             }
         }
         #endregion
 
         #region IsLeapYear
         /// <summary>
-        /// 当前是否公历闰年
+        /// 讽玡琌そ菌秥
         /// </summary>
         public bool IsLeapYear
         {
@@ -1473,7 +1473,7 @@ namespace DotNet.Utilities
 
         #region ChineseConstellation
         /// <summary>
-        /// 28星宿计算
+        /// 28琍盝璸衡
         /// </summary>
         public string ChineseConstellation
         {
@@ -1492,7 +1492,7 @@ namespace DotNet.Utilities
 
         #region ChineseHour
         /// <summary>
-        /// 时辰
+        /// ò
         /// </summary>
         public string ChineseHour
         {
@@ -1505,10 +1505,10 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 农历日期
+        #region 笰句ら戳
         #region IsChineseLeapMonth
         /// <summary>
-        /// 是否闰月
+        /// 琌秥る
         /// </summary>
         public bool IsChineseLeapMonth
         {
@@ -1518,7 +1518,7 @@ namespace DotNet.Utilities
 
         #region IsChineseLeapYear
         /// <summary>
-        /// 当年是否有闰月
+        /// 讽琌Τ秥る
         /// </summary>
         public bool IsChineseLeapYear
         {
@@ -1531,7 +1531,7 @@ namespace DotNet.Utilities
 
         #region ChineseDay
         /// <summary>
-        /// 农历日
+        /// 笰句ら
         /// </summary>
         public int ChineseDay
         {
@@ -1541,7 +1541,7 @@ namespace DotNet.Utilities
 
         #region ChineseDayString
         /// <summary>
-        /// 农历日中文表示
+        /// 笰句らいゅボ
         /// </summary>
         public string ChineseDayString
         {
@@ -1552,11 +1552,11 @@ namespace DotNet.Utilities
                     case 0:
                         return "";
                     case 10:
-                        return "初十";
+                        return "";
                     case 20:
-                        return "二十";
+                        return "";
                     case 30:
-                        return "三十";
+                        return "";
                     default:
                         return nStr2[(int)(_cDay / 10)].ToString() + nStr1[_cDay % 10].ToString();
 
@@ -1567,7 +1567,7 @@ namespace DotNet.Utilities
 
         #region ChineseMonth
         /// <summary>
-        /// 农历的月份
+        /// 笰句る
         /// </summary>
         public int ChineseMonth
         {
@@ -1577,7 +1577,7 @@ namespace DotNet.Utilities
 
         #region ChineseMonthString
         /// <summary>
-        /// 农历月份字符串
+        /// 笰句る才﹃
         /// </summary>
         public string ChineseMonthString
         {
@@ -1590,7 +1590,7 @@ namespace DotNet.Utilities
 
         #region ChineseYear
         /// <summary>
-        /// 取农历年份
+        /// 笰句
         /// </summary>
         public int ChineseYear
         {
@@ -1600,7 +1600,7 @@ namespace DotNet.Utilities
 
         #region ChineseYearString
         /// <summary>
-        /// 取农历年字符串如，一九九七年
+        /// 笰句才﹃
         /// </summary>
         public string ChineseYearString
         {
@@ -1612,14 +1612,14 @@ namespace DotNet.Utilities
                 {
                     tempStr += ConvertNumToChineseNum(num[i]);
                 }
-                return tempStr + "年";
+                return tempStr + "";
             }
         }
         #endregion
 
         #region ChineseDateString
         /// <summary>
-        /// 取农历日期表示法：农历一九九七年正月初五
+        /// 笰句ら戳ボ猭笰句タるき
         /// </summary>
         public string ChineseDateString
         {
@@ -1627,11 +1627,11 @@ namespace DotNet.Utilities
             {
                 if (this._cIsLeapMonth == true)
                 {
-                    return "农历" + ChineseYearString + "闰" + ChineseMonthString + ChineseDayString;
+                    return "笰句" + ChineseYearString + "秥" + ChineseMonthString + ChineseDayString;
                 }
                 else
                 {
-                    return "农历" + ChineseYearString + ChineseMonthString + ChineseDayString;
+                    return "笰句" + ChineseYearString + ChineseMonthString + ChineseDayString;
                 }
             }
         }
@@ -1639,15 +1639,15 @@ namespace DotNet.Utilities
 
         #region ChineseTwentyFourDay
         /// <summary>
-        /// 定气法计算二十四节气,二十四节气是按地球公转来计算的，并非是阴历计算的
+        /// ﹚猭璸衡竊,竊琌瞴そ锣ㄓ璸衡獶琌潮句璸衡
         /// </summary>
         /// <remarks>
-        /// 节气的定法有两种。古代历法采用的称为"恒气"，即按时间把一年等分为24份，
-        /// 每一节气平均得15天有余，所以又称"平气"。现代农历采用的称为"定气"，即
-        /// 按地球在轨道上的位置为标准，一周360°，两节气之间相隔15°。由于冬至时地
-        /// 球位于近日点附近，运动速度较快，因而太阳在黄道上移动15°的时间不到15天。
-        /// 夏至前后的情况正好相反，太阳在黄道上移动较慢，一个节气达16天之多。采用
-        /// 定气时可以保证春、秋两分必然在昼夜平分的那两天。
+        /// 竊﹚猭Τㄢ贺句猭蹦ノ嘿""丁р单だ24
+        /// –竊キА眔15ぱΤ緇┮嘿"キ"瞷笰句蹦ノ嘿"﹚"
+        /// 瞴瓂笵竚夹非㏄360ㄢ竊ぇ丁筳15パ
+        /// 瞴ら翴笲笆硉耕еτび锭独笵簿笆15丁ぃ15ぱ
+        /// 甃玡薄猵タはび锭独笵簿笆耕篊竊笷16ぱぇ蹦ノ
+        /// ﹚玂靡琄ㄢだゲ礛鞭キだêㄢぱ
         /// </remarks>
         public string ChineseTwentyFourDay
         {
@@ -1665,7 +1665,7 @@ namespace DotNet.Utilities
                 {
                     num = 525948.76 * (y - 1900) + sTermInfo[i - 1];
 
-                    newDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+                    newDate = baseDateAndTime.AddMinutes(num);//だ牧璸衡
                     if (newDate.DayOfYear == _date.DayOfYear)
                     {
                         tempStr = SolarTerm[i - 1];
@@ -1676,7 +1676,7 @@ namespace DotNet.Utilities
             }
         }
 
-        //当前日期前一个最近节气
+        //讽玡ら戳玡程竊
         public string ChineseTwentyFourPrevDay
         {
             get
@@ -1693,7 +1693,7 @@ namespace DotNet.Utilities
                 {
                     num = 525948.76 * (y - 1900) + sTermInfo[i - 1];
 
-                    newDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+                    newDate = baseDateAndTime.AddMinutes(num);//だ牧璸衡
 
                     if (newDate.DayOfYear < _date.DayOfYear)
                     {
@@ -1707,7 +1707,7 @@ namespace DotNet.Utilities
 
         }
 
-        //当前日期后一个最近节气
+        //讽玡ら戳程竊
         public string ChineseTwentyFourNextDay
         {
             get
@@ -1724,7 +1724,7 @@ namespace DotNet.Utilities
                 {
                     num = 525948.76 * (y - 1900) + sTermInfo[i - 1];
 
-                    newDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+                    newDate = baseDateAndTime.AddMinutes(num);//だ牧璸衡
 
                     if (newDate.DayOfYear > _date.DayOfYear)
                     {
@@ -1739,9 +1739,9 @@ namespace DotNet.Utilities
         #endregion
         #endregion
 
-        #region 星座
+        #region 琍畒
         /// <summary>
-        /// 计算指定日期的星座序号 
+        /// 璸衡﹚ら戳琍畒腹 
         /// </summary>
         public string Constellation
         {
@@ -1773,11 +1773,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 属相
+        #region 妮
         #region Animal
         /// <summary>
-        /// 计算属相的索引，注意虽然属相是以农历年来区别的，但是目前在实际使用中是按公历来计算的
-        /// 鼠年为1,其它类推
+        /// 璸衡妮ま猔種瘤礛妮琌笰句ㄓ跋琌ヘ玡龟悔ㄏノい琌そ菌ㄓ璸衡
+        /// 公1,ㄤウ摸崩
         /// </summary>
         public int Animal
         {
@@ -1791,32 +1791,32 @@ namespace DotNet.Utilities
 
         #region AnimalString
         /// <summary>
-        /// 取属相字符串
+        /// 妮才﹃
         /// </summary>
         public string AnimalString
         {
             get
             {
-                int offset = _date.Year - AnimalStartYear; //阳历计算
-                //int offset = this._cYear - AnimalStartYear;　农历计算
+                int offset = _date.Year - AnimalStartYear; //锭句璸衡
+                //int offset = this._cYear - AnimalStartYear;笰句璸衡
                 return animalStr[offset % 12].ToString();
             }
         }
         #endregion
         #endregion
 
-        #region 天干地支
+        #region ぱや
         #region GanZhiYearString
         /// <summary>
-        /// 取农历年的干支表示法如 乙丑年
+        /// 笰句やボ猭 ぁ
         /// </summary>
         public string GanZhiYearString
         {
             get
             {
                 string tempStr;
-                int i = (this._cYear - GanZhiStartYear) % 60; //计算干支
-                tempStr = ganStr[i % 10].ToString() + zhiStr[i % 12].ToString() + "年";
+                int i = (this._cYear - GanZhiStartYear) % 60; //璸衡や
+                tempStr = ganStr[i % 10].ToString() + zhiStr[i % 12].ToString() + "";
                 return tempStr;
             }
         }
@@ -1824,13 +1824,13 @@ namespace DotNet.Utilities
 
         #region GanZhiMonthString
         /// <summary>
-        /// 取干支的月表示字符串，注意农历的闰月不记干支
+        /// やるボ才﹃猔種笰句秥るぃ癘や
         /// </summary>
         public string GanZhiMonthString
         {
             get
             {
-                //每个月的地支总是固定的,而且总是从寅月开始
+                //–るや羆琌㏕﹚,τ羆琌眖盙る秨﹍
                 int zhiIndex;
                 string zhi;
                 if (this._cMonth > 10)
@@ -1843,55 +1843,55 @@ namespace DotNet.Utilities
                 }
                 zhi = zhiStr[zhiIndex - 1].ToString();
 
-                //根据当年的干支年的干来计算月干的第一个
+                //沮讽やㄓ璸衡る材
                 int ganIndex = 1;
                 string gan;
-                int i = (this._cYear - GanZhiStartYear) % 60; //计算干支
+                int i = (this._cYear - GanZhiStartYear) % 60; //璸衡や
                 switch (i % 10)
                 {
                     #region ...
-                    case 0: //甲
+                    case 0: //ヒ
                         ganIndex = 3;
                         break;
-                    case 1: //乙
+                    case 1: //
                         ganIndex = 5;
                         break;
-                    case 2: //丙
+                    case 2: //
                         ganIndex = 7;
                         break;
-                    case 3: //丁
+                    case 3: //
                         ganIndex = 9;
                         break;
-                    case 4: //戊
+                    case 4: //コ
                         ganIndex = 1;
                         break;
-                    case 5: //己
+                    case 5: //
                         ganIndex = 3;
                         break;
-                    case 6: //庚
+                    case 6: //┌
                         ganIndex = 5;
                         break;
-                    case 7: //辛
+                    case 7: //ǒ
                         ganIndex = 7;
                         break;
-                    case 8: //壬
+                    case 8: //ば
                         ganIndex = 9;
                         break;
-                    case 9: //癸
+                    case 9: //
                         ganIndex = 1;
                         break;
                     #endregion
                 }
                 gan = ganStr[(ganIndex + this._cMonth - 2) % 10].ToString();
 
-                return gan + zhi + "月";
+                return gan + zhi + "る";
             }
         }
         #endregion
 
         #region GanZhiDayString
         /// <summary>
-        /// 取干支日表示法
+        /// やらボ猭
         /// </summary>
         public string GanZhiDayString
         {
@@ -1901,14 +1901,14 @@ namespace DotNet.Utilities
                 TimeSpan ts = this._date - GanZhiStartDay;
                 offset = ts.Days;
                 i = offset % 60;
-                return ganStr[i % 10].ToString() + zhiStr[i % 12].ToString() + "日";
+                return ganStr[i % 10].ToString() + zhiStr[i % 12].ToString() + "ら";
             }
         }
         #endregion
 
         #region GanZhiDateString
         /// <summary>
-        /// 取当前日期的干支表示法如 甲子年乙丑月丙庚日
+        /// 讽玡ら戳やボ猭 ヒぁる┌ら
         /// </summary>
         public string GanZhiDateString
         {

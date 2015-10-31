@@ -1,20 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UseLogList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Security.UseLogList" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UseLogList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Security.UseLogList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>操作日志列表</title>
+    <title>操作日誌列表</title>
 </head>
 <body>
     <form id="form1" runat="server">
     <f:pagemanager id="PageManager1" runat="server" />
-    <f:panel id="Panel1" runat="server" title="操作日志列表" enableframe="false" bodypadding="10px"
+    <f:panel id="Panel1" runat="server" title="操作日誌列表" enableframe="false" bodypadding="10px"
         enablecollapse="True">
         <toolbars>
             <f:Toolbar ID="toolBar" runat="server">
                 <Items>
                     <f:Button ID="ButtonRefresh" runat="server" Text="刷新" Icon="ArrowRefresh" OnClick="ButtonRefresh_Click" CssClass="inline"></f:Button>
-                    <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="ButtonSearch_Click"></f:Button>
+                    <f:Button ID="ButtonSearch" runat="server" Text="查詢" Icon="Magnifier" OnClick="ButtonSearch_Click"></f:Button>
                 </Items>
             </f:Toolbar>
         </toolbars>
@@ -24,13 +24,13 @@
                     <f:FormRow ID="FormRow1" runat="server">
                         <Items>
                             <f:DatePicker runat="server" Label="起始日期" ID="dpStart" DateFormatString="yyyy-M-d H:i:s" Width="260px" />
-                            <f:DatePicker runat="server" Label="终止日期" ID="dpEnd" DateFormatString="yyyy-M-d H:i:s" Width="260px" />
+                            <f:DatePicker runat="server" Label="終止日期" ID="dpEnd" DateFormatString="yyyy-M-d H:i:s" Width="260px" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow ID="FormRow2" runat="server">
                         <Items>
                             <f:TextBox Label="IP地址" ID="txtIp" runat="server" Width="260px" />
-                            <f:TextBox Label="日志信息" ID="txtloginfo" runat="server" Width="260px" />
+                            <f:TextBox Label="日誌信息" ID="txtloginfo" runat="server" Width="260px" />
                         </Items>
                     </f:FormRow>
                 </Rows>
@@ -41,11 +41,11 @@
                 <Columns>
                     <f:RowNumberField Width="30px" />
                     <f:BoundField DataField="AddDate" SortField="AddDate" DataFormatString="{0:yyyy-MM-dd HH:mm}"
-                        Width="160px" HeaderText="登录时间" />
-                    <f:BoundField Width="100px" DataField="Manager_CName" SortField="Manager_Id" HeaderText="用户名称" />
-                    <f:BoundField Width="120px" DataField="Ip" SortField="Ip" HeaderText="登录IP" />
-                    <f:BoundField Width="150px" DataField="MenuInfo_Name" SortField="MenuInfo_Id" HeaderText="菜单名称" />
-                    <f:BoundField Width="250px" DataField="Notes" HeaderText="备注" ExpandUnusedSpace="true" />
+                        Width="160px" HeaderText="登錄時間" />
+                    <f:BoundField Width="100px" DataField="Manager_CName" SortField="Manager_Id" HeaderText="用戶名稱" />
+                    <f:BoundField Width="120px" DataField="Ip" SortField="Ip" HeaderText="登錄IP" />
+                    <f:BoundField Width="150px" DataField="MenuInfo_Name" SortField="MenuInfo_Id" HeaderText="菜單名稱" />
+                    <f:BoundField Width="250px" DataField="Notes" HeaderText="備註" ExpandUnusedSpace="true" />
                 </Columns>
             </f:Grid>
             <f:Label runat="server" ID="lblSpendingTime" Text=""></f:Label>

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace DotNet.Utilities
 {
  /// <summary>
- /// Mac 的摘要说明。
+ /// Mac 的摘要說明。
  /// </summary>
  public class Mac
  {

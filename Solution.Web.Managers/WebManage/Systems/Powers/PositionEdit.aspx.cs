@@ -1,19 +1,20 @@
-﻿using System;
+using System;
 using System.Data;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using FineUI;
 
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-22
- *   文件名称：PositionEdit.aspx.cs
- *   描    述：职位编辑页面
+ *   創建日期：2014-06-22
+ *   文件名稱：PositionEdit.aspx.cs
+ *   描    述：職位編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -37,75 +38,75 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidPositionId.Text = RequestHelper.GetInt0("Id") + "";
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int positionId = ConvertHelper.Cint0(hidPositionId.Text);
 
             if (positionId != 0)
             {
-                //获取指定ID的职位内容
+                //獲取指定ID的職位內容
                 var model = T_TABLE_DBll.GetInstence().GetModelForCache(x => x.Id == positionId && x.TABLES.Equals(TABLE));
                 if (model == null)
                     return;
 
-                //对页面窗体进行赋值
+                //對頁面窗體進行賦值
                 txtCode.Text = model.CODE;
                 txtName.Text = model.DESCR;
                 HidTables.Text = model.TABLES;
-                //设置下拉列表选择项
+                //設置下拉列表選擇項
                 //labBranchName.Text = model.Branch_Name;
-                //设置页面权限
+                //設置頁面權限
                 _pagePower = model.PagePower;
-                //设置页面控件权限
+                //設置頁面控件權限
                 _controlPower = model.ControlPower;
             }
             else
             {
-                //设置类型
+                //設置類型
                 HidTables.Text = TABLE;
             }
 
-            //创建树节点
+            //創建樹節點
             var tnode = new FineUI.TreeNode();
-            //设置节点名称
-            tnode.Text = "菜单";
-            //设置节点ID
+            //設置節點名稱
+            tnode.Text = "菜單";
+            //設置節點ID
             tnode.NodeID = "0";
-            //设置当前节点是否为最终节点
+            //設置當前節點是否為最終節點
             tnode.Leaf = false;
-            //是否可以选择（打勾）
+            //是否可以選擇（打勾）
             tnode.EnableCheckBox = true;
-            //是否已经选择
+            //是否已經選擇
             tnode.Checked = true;
-            //是否自动扩大
+            //是否自動擴大
             tnode.Expanded = true;
-            //开启点击节点全选或取消事件
+            //開啟點擊節點全選或取消事件
             tnode.EnableCheckEvent = true;
 
-            //根据指定的父ID去查询相关的子集ID
+            //根據指定的父ID去查詢相關的子集ID
             var dt = MenuInfoBll.GetInstence().GetDataTable();
-            //获取全部页面权限
+            //獲取全部頁面權限
             var pgdt = PagePowerSignBll.GetInstence().GetDataTable();
 
-            //从一级菜单开始添加
+            //從一級菜單開始添加
             AddNode(dt, pgdt, tnode, "0");
 
             MenuTree.Nodes.Add(tnode);
@@ -113,22 +114,22 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
         #endregion
 
-        #region 树列表操作
+        #region 樹列表操作
 
         /// <summary>
-        /// 全选反选
+        /// 全選反選
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void MenuTree_NodeCheck(object sender, FineUI.TreeCheckEventArgs e)
         {
-            //全选当前节点以下了所有子节点
+            //全選當前節點以下了所有子節點
             if (e.Checked)
             {
                 MenuTree.CheckAllNodes(e.Node.Nodes);
                 CheckNode(e.Node);
             }
-            //取消当前节点以下的所有子节点选择
+            //取消當前節點以下的所有子節點選擇
             else
             {
                 MenuTree.UncheckAllNodes(e.Node.Nodes);
@@ -136,56 +137,56 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         }
 
         /// <summary>
-        /// 添加子节点
+        /// 添加子節點
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="node"></param>
         /// <param name="nodeid"></param>
         public void AddNode(DataTable dt, DataTable pgdt, FineUI.TreeNode node, string nodeid)
         {
-            //筛选出当前节点下面的子节点
+            //篩選出當前節點下面的子節點
             var childdt = DataTableHelper.GetFilterData(dt, MenuInfoTable.ParentId, nodeid, MenuInfoTable.Sort, "Asc");
-            //判断是否有节点存在
+            //判斷是否有節點存在
             if (childdt.Rows.Count > 0)
             {
                 foreach (DataRow item in childdt.Rows)
                 {
                     bool ispage = int.Parse(item[MenuInfoTable.IsMenu].ToString()) != 0;
                     var tnode = new FineUI.TreeNode();
-                    //设置节点名称
+                    //設置節點名稱
                     tnode.Text = item[MenuInfoTable.Name].ToString();
-                    //设置节点ID
+                    //設置節點ID
                     tnode.NodeID = item[MenuInfoTable.Id].ToString();
-                    //开启点击节点全选或取消事件
+                    //開啟點擊節點全選或取消事件
                     tnode.EnableCheckEvent = true;
 
-                    //判断当前节点是否为最终节点
+                    //判斷當前節點是否為最終節點
                     if (ispage)
                     {
-                        //添加页面权限
-                        //筛选出当前节点下面的页面权限节点
+                        //添加頁面權限
+                        //篩選出當前節點下面的頁面權限節點
                         DataTable cdt = DataTableHelper.GetFilterData(pgdt, PagePowerSignTable.MenuInfo_Id, item[MenuInfoTable.Id].ToString(), null, null);
-                        //判断当前节点下是否有设置页面权限
+                        //判斷當前節點下是否有設置頁面權限
                         if (cdt == null || cdt.Rows.Count == 0)
                         {
                             tnode.Leaf = true;
                         }
                         else
                         {
-                            //设置为非最终节点
+                            //設置為非最終節點
                             tnode.Leaf = false;
-                            //循环添加页面权限节点
+                            //循環添加頁面權限節點
                             for (int i = 0; i < cdt.Rows.Count; i++)
                             {
                                 var tn = new FineUI.TreeNode();
-                                //设置节点名称
+                                //設置節點名稱
                                 tn.Text = cdt.Rows[i][PagePowerSignTable.CName].ToString();
-                                //设置节点ID
+                                //設置節點ID
                                 tn.NodeID = item[MenuInfoTable.Id].ToString() + "|" + cdt.Rows[i][PagePowerSignTable.PagePowerSignPublic_Id].ToString();
                                 tn.Leaf = true;
-                                //是否可以选择（打勾）
+                                //是否可以選擇（打勾）
                                 tn.EnableCheckBox = true;
-                                //是否已经选择
+                                //是否已經選擇
                                 if (_controlPower.IndexOf("," + tn.NodeID + ",") >= 0)
                                 {
                                     tn.Checked = true;
@@ -194,20 +195,20 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                             }
                         }
                     }
-                    //是否可以选择（打勾）
+                    //是否可以選擇（打勾）
                     tnode.EnableCheckBox = true;
-                    //是否已经选择
+                    //是否已經選擇
                     if (_pagePower.IndexOf("," + tnode.NodeID + ",") >= 0)
                     {
                         tnode.Checked = true;
                     }
-                    //是否自动扩大
+                    //是否自動擴大
                     tnode.Expanded = true;
 
                     //if (!MenuTree.Nodes.Contains(tnode))
                     node.Nodes.Add(tnode);
 
-                    //递归添加子节点
+                    //遞歸添加子節點
                     AddNode(dt, pgdt, tnode, item[MenuInfoTable.Id].ToString());
 
                 }
@@ -216,7 +217,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         }
 
         /// <summary>
-        /// 勾选当前节点
+        /// 勾選當前節點
         /// </summary>
         /// <param name="node"></param>
         public void CheckNode(FineUI.TreeNode node)
@@ -233,9 +234,9 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
 
         /// <summary>
-        /// 获取Tree中选中的项
+        /// 獲取Tree中選中的項
         /// </summary>
-        /// <returns>字符串组成的Tree</returns>
+        /// <returns>字符串組成的Tree</returns>
         public void GetCheckTreeNode(FineUI.TreeNodeCollection node)
         {
             for (int i = 0; i < node.Count; i++)
@@ -266,7 +267,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -275,67 +276,67 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             var positionId = ConvertHelper.Cint0(hidPositionId.Text);
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    return txtName.Label + "不能为空！";
+                    return txtName.Label + "不能為空！";
                 }
                 if (string.IsNullOrEmpty(txtCode.Text.Trim()))
                 {
-                    return txtCode.Label + "不能为空！";
+                    return txtCode.Label + "不能為空！";
                 }
-                //角色编号和名称不能相同
+                //角色編號和名稱不能相同
                 var sCode = StringHelper.Left(txtCode.Text, 30);
                 var sName = StringHelper.Left(txtName.Text, 30);
                 if (T_TABLE_DBll.GetInstence().Exist(x => (x.CODE == sCode || x.DESCR == sName) && x.TABLES == TABLE && x.Id != positionId))
                 {
-                    return String.Format("{0}或{1}已存在！请重新输入！", txtCode.Label, txtName.Label);
+                    return String.Format("{0}或{1}已存在！請重新輸入！", txtCode.Label, txtName.Label);
                 }
                 #endregion
 
-                #region 赋值
+                #region 賦值
 
 
-                //获取实体
+                //獲取實體
                 var model = new T_TABLE_D(x => x.Id == positionId && x.TABLES==TABLE);
 
-                ////判断是否有改变名称
+                ////判斷是否有改變名稱
                 //if (positionId > 0 && sName != model.DESCR)
                 //{
                 //    isUpdate = true;
                 //}
 
-                //修改时间与修改人
+                //修改時間與修改人
                 model.EDIT_DATE = DateTime.Now;
                 model.EDIT_BY = OnlineUsersBll.GetInstence().GetManagerCName();
 
-                //设置名称
+                //設置名稱
                 //model.CODE = sCode;
                 model.DESCR = sName;
                 //model.TABLES = TABLE;
 
-                //设置职位权限
-                //从树列表中获取勾选的节点
+                //設置職位權限
+                //從樹列表中獲取勾選的節點
                 GetCheckTreeNode(MenuTree.Nodes);
-                //赋予权限
+                //賦予權限
                 model.PagePower = StringHelper.FilterSql(_hidPositionPagePower);
                 model.ControlPower = StringHelper.FilterSql(_hidPositionControlPower);
 
                 #endregion
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 T_TABLE_DBll.GetInstence().Save(this, model);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

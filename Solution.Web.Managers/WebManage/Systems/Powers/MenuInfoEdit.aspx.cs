@@ -1,18 +1,19 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using FineUI;
 
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-19
- *   文件名称：MenuInfoEdit.aspx.cs
- *   描    述：菜单编辑页面
+ *   創建日期：2014-06-19
+ *   文件名稱：MenuInfoEdit.aspx.cs
+ *   描    述：菜單編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -28,75 +29,75 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         {
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
 
-                //绑定下拉列表
+                //綁定下拉列表
                 MenuInfoBll.GetInstence().BandDropDownListShowMenu(this, ddlParentId);
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int id = ConvertHelper.Cint0(hidId.Text);
 
             if (id != 0)
             {
-                //获取指定ID的菜单内容
+                //獲取指定ID的菜單內容
                 var model = MenuInfoBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
-                //对页面窗体进行赋值
+                //對頁面窗體進行賦值
                 txtName.Text = model.Name;
-                //设置下拉列表选择项
+                //設置下拉列表選擇項
                 ddlParentId.SelectedValue = model.ParentId + "";
-                //编辑时不给修改节点
+                //編輯時不給修改節點
                 ddlParentId.Enabled = false;
-                //设置页面URL
+                //設置頁面URL
                 txtUrl.Text = model.Url;
-                //设置父ID
+                //設置父ID
                 txtParent.Text = model.ParentId + "";
-                //设置排序
+                //設置排序
                 txtSort.Text = model.Sort + "";
-                //设置页面类型——菜单还是页面
+                //設置頁面類型——菜單還是頁面
                 rblIsMenu.SelectedValue = model.IsMenu + "";
-                //设置是否显示
+                //設置是否顯示
                 rblIsDisplay.SelectedValue = model.IsDisplay + "";
             }
         }
 
         #endregion
 
-        #region 页面控件绑定
-        /// <summary>下拉列表改变事件
+        #region 頁面控件綁定
+        /// <summary>下拉列表改變事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ddlParentId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //初始化路径值
+            //初始化路徑值
             txtUrl.Text = string.Empty;
-            //获取当前节点的父节点Id
+            //獲取當前節點的父節點Id
             txtParent.Text = ddlParentId.SelectedValue;
             if (!ddlParentId.SelectedValue.Equals("0"))
             {
                 try
                 {
-                    //获取当前节点的父节点url
+                    //獲取當前節點的父節點url
                     txtUrl.Text = MenuInfoBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), MenuInfoTable.Url) + "";
                 }
                 catch
@@ -108,7 +109,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -118,57 +119,57 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    return txtName.Label + "不能为空！";
+                    return txtName.Label + "不能為空！";
                 }
                 var sName = StringHelper.Left(txtName.Text, 50);
                 if (MenuInfoBll.GetInstence().Exist(x => x.Name == sName && x.Id != id))
                 {
-                    return txtName.Label + "已存在！请重新输入！";
+                    return txtName.Label + "已存在！請重新輸入！";
                 }
                 if (string.IsNullOrEmpty(txtUrl.Text.Trim()))
                 {
-                    return txtUrl.Label + "不能为空！";
+                    return txtUrl.Label + "不能為空！";
                 }
                 var sUrl = StringHelper.Left(txtUrl.Text, 250, true, false);
                 if (MenuInfoBll.GetInstence().Exist(x => x.Url == sUrl && x.Id != id))
                 {
-                    return txtUrl.Label + "已存在！请重新输入！";
+                    return txtUrl.Label + "已存在！請重新輸入！";
                 }
 
                 #endregion
 
-                #region 赋值
-                //获取实体
+                #region 賦值
+                //獲取實體
                 var model = new MenuInfo(x => x.Id == id);
 
-                //设置名称
+                //設置名稱
                 model.Name = sName;
-                //连接地址
+                //連接地址
                 model.Url = sUrl;
-                //对应的父类id
+                //對應的父類id
                 model.ParentId = ConvertHelper.Cint0(txtParent.Text);
 
-                //由于限制了编辑时不能修改父节点，所以这里只对新建记录时处理
+                //由於限制了編輯時不能修改父節點，所以這裡只對新建記錄時處理
                 if (id == 0)
                 {
-                    //设定当前的深度与设定当前的层数级
+                    //設定當前的深度與設定當前的層數級
                     if (model.ParentId == 0)
                     {
-                        //设定当前的层数级
+                        //設定當前的層數級
                         model.Depth = 0;
                     }
                     else
                     {
-                        //设定当前的层数
+                        //設定當前的層數
                         model.Depth = ConvertHelper.Cint0(MenuInfoBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), MenuInfoTable.Depth)) + 1;
                     }
                 }
 
-                //设置排序
+                //設置排序
                 if (txtSort.Text == "0")
                 {
                     model.Sort = MenuInfoBll.GetInstence().GetSortMax(model.ParentId) + 1;
@@ -177,23 +178,23 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 {
                     model.Sort = ConvertHelper.Cint0(txtSort.Text);
                 }
-                //设定当前项属于菜单还是页面
+                //設定當前項屬於菜單還是頁面
                 model.IsMenu = ConvertHelper.StringToByte(rblIsMenu.SelectedValue);
-                //设定当前项是否显示
+                //設定當前項是否顯示
                 model.IsDisplay = ConvertHelper.StringToByte(rblIsDisplay.SelectedValue);
                 #endregion
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 MenuInfoBll.GetInstence().Save(this, model);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

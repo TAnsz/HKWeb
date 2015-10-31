@@ -1,18 +1,19 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using FineUI;
 
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-29
- *   文件名称：InformationClassEdit.aspx.cs
- *   描    述：信息分类编辑页面
+ *   創建日期：2014-06-29
+ *   文件名稱：InformationClassEdit.aspx.cs
+ *   描    述：信息分類編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -29,60 +30,60 @@ namespace Solution.Web.Managers.WebManage.Informations
         {
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
 
-                //绑定下拉列表
+                //綁定下拉列表
                 InformationClassBll.GetInstence().BandDropDownListShowAll(this, ddlParentId);
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int id = ConvertHelper.Cint0(hidId.Text);
 
             if (id != 0)
             {
-                //获取指定ID的信息分类内容
+                //獲取指定ID的信息分類內容
                 var model = InformationClassBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
-                //对页面窗体进行赋值
+                //對頁面窗體進行賦值
                 txtName.Text = model.Name;
-                //设置下拉列表选择项
+                //設置下拉列表選擇項
                 ddlParentId.SelectedValue = model.ParentId + "";
-                //编辑时不能修改父节点
+                //編輯時不能修改父節點
                 ddlParentId.Enabled = false;
-                //设置父ID
+                //設置父ID
                 txtParent.Text = model.ParentId + "";
-                //设置排序
+                //設置排序
                 txtSort.Text = model.Sort + "";
-                //设置是否显示
+                //設置是否顯示
                 rblIsShow.SelectedValue = model.IsShow + "";
-                //设置是否单页
+                //設置是否單頁
                 rblIsPage.SelectedValue = model.IsPage + "";
                 //SEO
                 txtSeoTitle.Text = model.SeoTitle;
                 txtSeoKey.Text = model.SeoKey;
                 txtSeoDesc.Text = model.SeoDesc;
-                //备注
+                //備註
                 txtNotes.Text = model.Notes;
 
-                //设置图片
+                //設置圖片
                 if (model.ClassImg != null && model.ClassImg.Length > 5)
                 {
                     imgClassImg.ImageUrl = model.ClassImg;
@@ -103,23 +104,23 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #endregion
 
-        #region 页面控件绑定
+        #region 頁面控件綁定
 
-        #region 下拉列表改变事件
+        #region 下拉列表改變事件
         /// <summary>
-        /// 下拉列表改变事件
+        /// 下拉列表改變事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ddlParentId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //获取当前节点的父节点Id
+            //獲取當前節點的父節點Id
             txtParent.Text = ddlParentId.SelectedValue;
         }
         #endregion
 
-        #region 删除图片
-        /// <summary>删除图片</summary>
+        #region 刪除圖片
+        /// <summary>刪除圖片</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void ButtonDeleteImage_Click(object sender, EventArgs e)
@@ -138,7 +139,7 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -148,80 +149,80 @@ namespace Solution.Web.Managers.WebManage.Informations
 
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    return txtName.Label + "不能为空！";
+                    return txtName.Label + "不能為空！";
                 }
                 var sName = StringHelper.Left(txtName.Text, 20);
                 if (InformationClassBll.GetInstence().Exist(x => x.Name == sName && x.Id != id))
                 {
-                    return txtName.Label + "已存在！请重新输入！";
+                    return txtName.Label + "已存在！請重新輸入！";
                 }
 
                 #endregion
 
-                #region 赋值
-                //定义是否更新其他关联表变量
+                #region 賦值
+                //定義是否更新其他關聯表變量
                 bool isUpdate = false;
                 var oldParentId = ConvertHelper.Cint0(txtParent.Text);
 
-                //获取实体
+                //獲取實體
                 var model = new InformationClass(x => x.Id == id);
-                //判断是否有改变名称
+                //判斷是否有改變名稱
                 if (id > 0 && sName != model.Name)
                 {
                     isUpdate = true;
                 }
-                //修改时间与管理员
+                //修改時間與管理員
                 model.UpdateDate = DateTime.Now;
                 model.Manager_Id = OnlineUsersBll.GetInstence().GetManagerId();
                 model.Manager_CName = OnlineUsersBll.GetInstence().GetManagerCName();
 
-                //设置名称
+                //設置名稱
                 model.Name = sName;
-                //对应的父类id
+                //對應的父類id
                 model.ParentId = oldParentId;
-                //设置备注
+                //設置備註
                 model.Notes = StringHelper.Left(txtNotes.Text, 100);
 
-                //由于限制了编辑时不能修改父节点，所以这里只对新建记录时处理
+                //由於限制了編輯時不能修改父節點，所以這裡只對新建記錄時處理
                 if (id == 0)
                 {
-                    //设定当前的深度与设定当前的层数级
+                    //設定當前的深度與設定當前的層數級
                     if (model.ParentId == 0)
                     {
-                        //设定当前的层数级
+                        //設定當前的層數級
                         model.Depth = 0;
-                        //父Id为0时，根Id也为0
+                        //父Id為0時，根Id也為0
                         model.RootId = 0;
                     }
                     else
                     {
-                        //设定当前的层数
+                        //設定當前的層數
                         model.Depth = ConvertHelper.Cint0(InformationClassBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue),InformationClassTable.Depth)) + 1;
-                        //获取父类的父Id
+                        //獲取父類的父Id
                         model.RootId = ConvertHelper.Cint0(InformationClassBll.GetInstence().GetFieldValue(model.ParentId, InformationClassTable.ParentId));
                     }
 
-                    //限制分类层数只能为3层
+                    //限制分類層數只能為3層
                     if (model.Depth > 3)
                     {
-                        return "信息分类只能创建3层分类！";
+                        return "信息分類只能創建3層分類！";
                     }
                 }
 
-                //设置排序
+                //設置排序
                 model.Sort = ConvertHelper.Cint0(txtSort.Text);
                 if (model.Sort == 0)
                 {
                     model.Sort = InformationClassBll.GetInstence().GetSortMax(model.ParentId) + 1;
                 }
 
-                //设定当前项是否显示
+                //設定當前項是否顯示
                 model.IsShow = ConvertHelper.StringToByte(rblIsShow.SelectedValue);
-                //设定当前项是否单页
+                //設定當前項是否單頁
                 model.IsPage = ConvertHelper.StringToByte(rblIsPage.SelectedValue);
 
                 //SEO
@@ -231,32 +232,32 @@ namespace Solution.Web.Managers.WebManage.Informations
                 #endregion
 
 
-                #region 上传图片
-                //上传分类大图
+                #region 上傳圖片
+                //上傳分類大圖
                 if (this.fuClassImg.HasFile && this.fuClassImg.FileName.Length > 3)
                 {
-                    int vid = 2; //2	信息(新闻)分类图
+                    int vid = 2; //2	信息(新聞)分類圖
                     //---------------------------------------------------
                     var upload = new UploadFile();
                     result = new UploadFileBll().Upload_AspNet(this.fuClassImg.PostedFile, vid, RndKey, OnlineUsersBll.GetInstence().GetManagerId(), OnlineUsersBll.GetInstence().GetManagerCName(), upload);
                     this.fuClassImg.Dispose();
                     //---------------------------------------------------
-                    if (result.Length == 0)//上传成功
+                    if (result.Length == 0)//上傳成功
                     {
                         model.ClassImg = upload.Path;
                     }
                     else
                     {
-                        CommonBll.WriteLog("上传出错：" + result, null);//收集异常信息
-                        return "上传出错！" + result;
+                        CommonBll.WriteLog("上傳出錯：" + result, null);//收集異常信息
+                        return "上傳出錯！" + result;
                     }
                 }
-                //如果是修改，检查用户是否重新上传过新图片，如果是删除旧的图片
+                //如果是修改，檢查用戶是否重新上傳過新圖片，如果是刪除舊的圖片
                 if (model.Id > 0)
                 {
                     UploadFileBll.GetInstence().Upload_DiffFile(InformationClassTable.Id, InformationClassTable.ClassImg, InformationClassTable.TableName, model.Id, model.ClassImg);
 
-                    //同步UploadFile上传表
+                    //同步UploadFile上傳表
                     UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationClassTable.TableName, model.Id);
                 }
 
@@ -264,21 +265,21 @@ namespace Solution.Web.Managers.WebManage.Informations
 
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 InformationClassBll.GetInstence().Save(this, model);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
-                #region 同步更新上传图片表绑定Id
+                #region 同步更新上傳圖片表綁定Id
                 if (id == 0)
                 {
-                    //同步UploadFile上传表记录，绑定刚刚上传成功的文件Id为当前记录Id
+                    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
                     UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationClassTable.TableName, model.Id);
                 }
 
                 #endregion
                 
-                //如果本次修改改变了相关名称，则同步更新其他关联表的对应名称
+                //如果本次修改改變了相關名稱，則同步更新其他關聯表的對應名稱
                 if (isUpdate)
                 {
                     InformationBll.GetInstence().UpdateValue_For_InformationClass_Id(this, model.Id, InformationTable.InformationClass_Name, model.Name);
@@ -287,9 +288,9 @@ namespace Solution.Web.Managers.WebManage.Informations
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

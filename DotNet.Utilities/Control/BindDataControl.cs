@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web.UI.WebControls;
 using System.Web.UI;
@@ -12,16 +12,16 @@ using System.Data.SqlClient;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 数据展示控件 绑定数据类
+    /// 數據展示控件 綁定數據類
     /// </summary>
     public class BindDataControl
     {
-        #region 绑定服务器数据控件 简单绑定DataList
+        #region 綁定服務器數據控件 簡單綁定DataList
         /// <summary>
-        /// 简单绑定DataList
+        /// 簡單綁定DataList
         /// </summary>
         /// <param name="ctrl">控件ID</param>
-        /// <param name="mydv">数据视图</param>
+        /// <param name="mydv">數據視圖</param>
         public static void BindDataList(Control ctrl, DataView mydv)
         {
             ((DataList)ctrl).DataSourceID = null;
@@ -30,12 +30,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 绑定服务器数据控件 SqlDataReader简单绑定DataList
+        #region 綁定服務器數據控件 SqlDataReader簡單綁定DataList
         /// <summary>
-        /// SqlDataReader简单绑定DataList
+        /// SqlDataReader簡單綁定DataList
         /// </summary>
         /// <param name="ctrl">控件ID</param>
-        /// <param name="mydv">数据视图</param>
+        /// <param name="mydv">數據視圖</param>
         public static void BindDataReaderList(Control ctrl, SqlDataReader mydv)
         {
             ((DataList)ctrl).DataSourceID = null;
@@ -44,12 +44,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 绑定服务器数据控件 简单绑定GridView
+        #region 綁定服務器數據控件 簡單綁定GridView
         /// <summary>
-        /// 简单绑定GridView
+        /// 簡單綁定GridView
         /// </summary>
         /// <param name="ctrl">控件ID</param>
-        /// <param name="mydv">数据视图</param>
+        /// <param name="mydv">數據視圖</param>
         public static void BindGridView(Control ctrl, DataView mydv)
         {
             ((GridView)ctrl).DataSourceID = null;
@@ -59,10 +59,10 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 绑定服务器控件 简单绑定Repeater
+        /// 綁定服務器控件 簡單綁定Repeater
         /// </summary>
         /// <param name="ctrl">控件ID</param>
-        /// <param name="mydv">数据视图</param>
+        /// <param name="mydv">數據視圖</param>
         public static void BindRepeater(Control ctrl, DataView mydv)
         {
             ((Repeater)ctrl).DataSourceID = null;

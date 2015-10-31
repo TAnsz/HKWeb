@@ -1,136 +1,111 @@
 /// <summary>
-/// ¿‡Àµ√˜£∫Assistant
-/// ±‡ ¬Î »À£∫À’∑…
-/// ¡™œµ∑Ω Ω£∫361983679  
-/// ∏¸–¬Õ¯’æ£∫http://www.sufeinet.com/thread-655-1-1.html
+///  Àµ√∑„∫Åssistant
+/// ·††¬´ »ã„∫ã’∑…ç
+/// jœµÁΩäÌ£∫361983679  
+/// Ëºê¬çËïæ„∫®ttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Configuration;
 
 namespace DotNet.Utilities
 {
-    /// <summary>
-    /// web.config≤Ÿ◊˜¿‡
-    /// </summary>
-    public sealed class ConfigHelper
-    {
-        /// <summary>
-        /// µ√µΩAppSettings÷–µƒ≈‰÷√◊÷∑˚¥Æ–≈œ¢
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static string GetConfigString(string key)
-        {
+	/// <summary>
+	/// web.config‚ôóÁÄ†
+	/// </summary>
+	public sealed class ConfigHelper
+	{
+		/// <summary>
+		/// ÂÉµÌÅ∞pSettings÷êÂÑÖ‰ñÉ◊ñÁ∂≠ÓêÖœ¢
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static string GetConfigString(string key)
+		{
             string CacheKey = "AppSettings-" + key;
-            object objModel = CacheHelper.GetCache(CacheKey);
+            object objModel = DataCache.GetCache(CacheKey);
             if (objModel == null)
             {
                 try
                 {
-                    objModel = ConfigurationManager.AppSettings[key];
+                    objModel = ConfigurationManager.AppSettings[key]; 
                     if (objModel != null)
-                    {
-                        //≤Œ ˝ª∫¥Ê£¨10∑÷÷”π˝∆⁄
-                        CacheHelper.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
+                    {                        
+                        DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(180), TimeSpan.Zero);
                     }
                 }
                 catch
                 { }
             }
-            return objModel + "";
-        }
+            return objModel.ToString();
+		}
 
-        /// <summary>
-        /// µ√µΩAppSettings÷–µƒ≈‰÷√◊÷∑˚¥Æ–≈œ¢
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static string[] GetConfigStringArr(string key)
-        {
-            try
-            {
-                string cacheKey = "AppSettings-" + key;
-                var objModel = (string[])CacheHelper.GetCache(cacheKey);
-                if (objModel == null)
-                {
-                    var tem = ConfigurationManager.AppSettings[key];
-                    objModel = StringHelper.SplitMulti(tem, ",");
-                    if (objModel != null)
-                    {
-                        //≤Œ ˝ª∫¥Ê£¨10∑÷÷”π˝∆⁄
-                        CacheHelper.SetCache(cacheKey, objModel, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
-                    }
-                }
+		/// <summary>
+		/// ÂÉµÌÅ∞pSettings÷êÂÑÖ‰ñÉBool–Öœ¢
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static bool GetConfigBool(string key)
+		{
+			bool result = false;
+			string cfgVal = GetConfigString(key);
+			if(null != cfgVal && string.Empty != cfgVal)
+			{
+				try
+				{
+					result = bool.Parse(cfgVal);
+				}
+				catch(FormatException)
+				{
+					// Ignore format exceptions.
+				}
+			}
+			return result;
+		}
+		/// <summary>
+		/// ÂÉµÌÅ∞pSettings÷êÂÑÖ‰ñÉDecimal–Öœ¢
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static decimal GetConfigDecimal(string key)
+		{
+			decimal result = 0;
+			string cfgVal = GetConfigString(key);
+			if(null != cfgVal && string.Empty != cfgVal)
+			{
+				try
+				{
+					result = decimal.Parse(cfgVal);
+				}
+				catch(FormatException)
+				{
+					// Ignore format exceptions.
+				}
+			}
 
-                return objModel;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+			return result;
+		}
+		/// <summary>
+		/// ÂÉµÌÅ∞pSettings÷êÂÑÖ‰ñÉint–Öœ¢
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static int GetConfigInt(string key)
+		{
+			int result = 0;
+			string cfgVal = GetConfigString(key);
+			if(null != cfgVal && string.Empty != cfgVal)
+			{
+				try
+				{
+					result = int.Parse(cfgVal);
+				}
+				catch(FormatException)
+				{
+					// Ignore format exceptions.
+				}
+			}
 
-        /// <summary>
-        /// µ√µΩAppSettings÷–µƒ≈‰÷√Bool–≈œ¢
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static bool GetConfigBool(string key)
-        {
-            bool result = false;
-            string cfgVal = GetConfigString(key);
-            if (!string.IsNullOrEmpty(cfgVal))
-            {
-                if (cfgVal == "1" || cfgVal.ToLower() == "true")
-                    result = true;
-            }
-            return result;
-        }
-        /// <summary>
-        /// µ√µΩAppSettings÷–µƒ≈‰÷√Decimal–≈œ¢
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static decimal GetConfigDecimal(string key)
-        {
-            decimal result = 0;
-            string cfgVal = GetConfigString(key);
-            if (!string.IsNullOrEmpty(cfgVal))
-            {
-                try
-                {
-                    result = ConvertHelper.Cdecimal(cfgVal);
-                }
-                catch (FormatException)
-                {
-                    // Ignore format exceptions.
-                }
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// µ√µΩAppSettings÷–µƒ≈‰÷√int–≈œ¢
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static int GetConfigInt(string key)
-        {
-            int result = 0;
-            string cfgVal = GetConfigString(key);
-            if (!string.IsNullOrEmpty(cfgVal))
-            {
-                try
-                {
-                    result = ConvertHelper.Cint(cfgVal);
-                }
-                catch (FormatException)
-                {
-                    // Ignore format exceptions.
-                }
-            }
-
-            return result;
-        }
-    }
+			return result;
+		}
+	}
 }

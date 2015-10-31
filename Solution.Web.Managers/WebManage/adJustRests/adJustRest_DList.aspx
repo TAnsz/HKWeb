@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adJustRest_DList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.adJustRests.adJustRest_DList" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adJustRest_DList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.adJustRests.adJustRest_DList" %>
 
 <%@ Import Namespace="DotNet.Utilities" %>
 

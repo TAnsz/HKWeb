@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：YZMHelper
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -12,25 +12,25 @@ using System.Security.Cryptography;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 验证码类
+    /// 驗證碼類
     /// </summary>
     public class Rand
     {
-        #region 生成随机数字
+        #region 生成隨機數字
         /// <summary>
-        /// 生成随机数字
+        /// 生成隨機數字
         /// </summary>
-        /// <param name="length">生成长度</param>
+        /// <param name="length">生成長度</param>
         public static string Number(int Length)
         {
             return Number(Length, false);
         }
 
         /// <summary>
-        /// 生成随机数字
+        /// 生成隨機數字
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        /// <param name="Length">生成長度</param>
+        /// <param name="Sleep">是否要在生成前將當前線程阻止以避免重複</param>
         public static string Number(int Length, bool Sleep)
         {
             if (Sleep) System.Threading.Thread.Sleep(3);
@@ -44,21 +44,21 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 生成随机字母与数字
+        #region 生成隨機字母與數字
         /// <summary>
-        /// 生成随机字母与数字
+        /// 生成隨機字母與數字
         /// </summary>
-        /// <param name="IntStr">生成长度</param>
+        /// <param name="IntStr">生成長度</param>
         public static string Str(int Length)
         {
             return Str(Length, false);
         }
 
         /// <summary>
-        /// 生成随机字母与数字
+        /// 生成隨機字母與數字
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        /// <param name="Length">生成長度</param>
+        /// <param name="Sleep">是否要在生成前將當前線程阻止以避免重複</param>
         public static string Str(int Length, bool Sleep)
         {
             if (Sleep) System.Threading.Thread.Sleep(3);
@@ -75,21 +75,21 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 生成随机纯字母随机数
+        #region 生成隨機純字母隨機數
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 生成隨機純字母隨機數
         /// </summary>
-        /// <param name="IntStr">生成长度</param>
+        /// <param name="IntStr">生成長度</param>
         public static string Str_char(int Length)
         {
             return Str_char(Length, false);
         }
 
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 生成隨機純字母隨機數
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        /// <param name="Length">生成長度</param>
+        /// <param name="Sleep">是否要在生成前將當前線程阻止以避免重複</param>
         public static string Str_char(int Length, bool Sleep)
         {
             if (Sleep) System.Threading.Thread.Sleep(3);
@@ -108,16 +108,16 @@ namespace DotNet.Utilities
     }
 
     /// <summary>
-    /// 验证图片类
+    /// 驗證圖片類
     /// </summary>
     public class YZMHelper
     {
         #region 私有字段
         private string text;
         private Bitmap image;
-        private int letterCount = 4;   //验证码位数
-        private int letterWidth = 16;  //单个字体的宽度范围
-        private int letterHeight = 20; //单个字体的高度范围
+        private int letterCount = 4;   //驗證碼位數
+        private int letterWidth = 16;  //單個字體的寬度範圍
+        private int letterHeight = 20; //單個字體的高度範圍
         private static byte[] randb = new byte[4];
         private static RNGCryptoServiceProvider rand = new RNGCryptoServiceProvider();
         private Font[] fonts = 
@@ -129,9 +129,9 @@ namespace DotNet.Utilities
     };
         #endregion
 
-        #region 公有属性
+        #region 公有屬性
         /// <summary>
-        /// 验证码
+        /// 驗證碼
         /// </summary>
         public string Text
         {
@@ -139,7 +139,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 验证码图片
+        /// 驗證碼圖片
         /// </summary>
         public Bitmap Image
         {
@@ -147,7 +147,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 构造函数
+        #region 構造函數
         public YZMHelper()
         {
             HttpContext.Current.Response.Expires = 0;
@@ -162,7 +162,7 @@ namespace DotNet.Utilities
 
         #region 私有方法
         /// <summary>
-        /// 获得下一个随机数
+        /// 獲得下一個隨機數
         /// </summary>
         /// <param name="max">最大值</param>
         private static int Next(int max)
@@ -175,7 +175,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获得下一个随机数
+        /// 獲得下一個隨機數
         /// </summary>
         /// <param name="min">最小值</param>
         /// <param name="max">最大值</param>
@@ -188,7 +188,7 @@ namespace DotNet.Utilities
 
         #region 公共方法
         /// <summary>
-        /// 绘制验证码
+        /// 繪製驗證碼
         /// </summary>
         public void CreateImage()
         {
@@ -227,7 +227,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 字体随机颜色
+        /// 字體隨機顏色
         /// </summary>
         public Color GetRandomColor()
         {
@@ -242,12 +242,12 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 正弦曲线Wave扭曲图片
+        /// 正弦曲線Wave扭曲圖片
         /// </summary>
-        /// <param name="srcBmp">图片路径</param>
-        /// <param name="bXDir">如果扭曲则选择为True</param>
-        /// <param name="nMultValue">波形的幅度倍数，越大扭曲的程度越高,一般为3</param>
-        /// <param name="dPhase">波形的起始相位,取值区间[0-2*PI)</param>
+        /// <param name="srcBmp">圖片路徑</param>
+        /// <param name="bXDir">如果扭曲則選擇為True</param>
+        /// <param name="nMultValue">波形的幅度倍數，越大扭曲的程度越高,一般為3</param>
+        /// <param name="dPhase">波形的起始相位,取值區間[0-2*PI)</param>
         public System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)
         {
             double PI = 6.283185307179586476925286766559;

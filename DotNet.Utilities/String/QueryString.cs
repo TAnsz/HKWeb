@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 using System.Text.RegularExpressions;
@@ -10,13 +10,13 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// QueryString 地址栏参数
+    /// QueryString 地址欄參數
     /// </summary>
     public class QueryString
     {
-        #region 等于Request.QueryString;如果为null 返回 空“” ，否则返回Request.QueryString[name]
+        #region 等於Request.QueryString;如果為null 返回 空「」 ，否則返回Request.QueryString[name]
         /// <summary>
-        /// 等于Request.QueryString;如果为null 返回 空“” ，否则返回Request.QueryString[name]
+        /// 等於Request.QueryString;如果為null 返回 空「」 ，否則返回Request.QueryString[name]
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -26,7 +26,7 @@ namespace DotNet.Utilities
         }
         #endregion
         /// <summary>
-        /// 等于  Request.Form  如果为null 返回 空“” ，否则返回 Request.Form[name]
+        /// 等於  Request.Form  如果為null 返回 空「」 ，否則返回 Request.Form[name]
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -34,9 +34,9 @@ namespace DotNet.Utilities
         {
             return Request.Form[name] == null ? "" : Request.Form[name].ToString();
         }
-        #region 获取url中的id
+        #region 獲取url中的id
         /// <summary>
-        /// 获取url中的id
+        /// 獲取url中的id
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -45,12 +45,12 @@ namespace DotNet.Utilities
             return StrToId(Q(name));
         }
         #endregion
-        #region 获取正确的Id，如果不是正整数，返回0
+        #region 獲取正確的Id，如果不是正整數，返回0
         /// <summary>
-        /// 获取正确的Id，如果不是正整数，返回0
+        /// 獲取正確的Id，如果不是正整數，返回0
         /// </summary>
         /// <param name="_value"></param>
-        /// <returns>返回正确的整数ID，失败返回0</returns>
+        /// <returns>返回正確的整數ID，失敗返回0</returns>
         public static int StrToId(string _value)
         {
             if (IsNumberId(_value))
@@ -59,23 +59,23 @@ namespace DotNet.Utilities
                 return 0;
         }
         #endregion
-        #region 检查一个字符串是否是纯数字构成的，一般用于查询字符串参数的有效性验证。
+        #region 檢查一個字符串是否是純數字構成的，一般用於查詢字符串參數的有效性驗證。
         /// <summary>
-        /// 检查一个字符串是否是纯数字构成的，一般用于查询字符串参数的有效性验证。
+        /// 檢查一個字符串是否是純數字構成的，一般用於查詢字符串參數的有效性驗證。
         /// </summary>
-        /// <param name="_value">需验证的字符串。。</param>
+        /// <param name="_value">需驗證的字符串。。</param>
         /// <returns>是否合法的bool值。</returns>
         public static bool IsNumberId(string _value)
         {
             return QuickValidate("^[1-9]*[0-9]*$", _value);
         }
         #endregion
-        #region 快速验证一个字符串是否符合指定的正则表达式。
+        #region 快速驗證一個字符串是否符合指定的正則表達式。
         /// <summary>
-        /// 快速验证一个字符串是否符合指定的正则表达式。
+        /// 快速驗證一個字符串是否符合指定的正則表達式。
         /// </summary>
-        /// <param name="_express">正则表达式的内容。</param>
-        /// <param name="_value">需验证的字符串。</param>
+        /// <param name="_express">正則表達式的內容。</param>
+        /// <param name="_value">需驗證的字符串。</param>
         /// <returns>是否合法的bool值。</returns>
         public static bool QuickValidate(string _express, string _value)
         {
@@ -89,7 +89,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 类内部调用
+        #region 類內部調用
         /// <summary>
         /// HttpContext Current
         /// </summary>

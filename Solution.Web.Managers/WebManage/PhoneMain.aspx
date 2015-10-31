@@ -44,12 +44,12 @@
                     <f:Toolbar ID="Toolbar1" Position="Top" runat="server" CssClass="topbar content"
                         CssStyle="border-bottom: 1px solid #1E95EC;background-color: #005999;">
                         <Items>
-                            <f:ToolbarText ID="ToolbarText1" Text="欢迎您：" runat="server" CssClass="label">
+                            <f:ToolbarText ID="ToolbarText1" Text="歡迎您：" runat="server" CssClass="label">
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtUser" runat="server" CssClass="content">
                             </f:ToolbarText>
                             <f:ToolbarFill ID="ToolbarFill1" runat="server" />
-                            <f:Button ID="btnExit" runat="server" Icon="UserRed" Text="安全退出" ConfirmText="确定退出系统？"
+                            <f:Button ID="btnExit" runat="server" Icon="UserRed" Text="安全退出" ConfirmText="確定退出系統？"
                                 OnClick="btnExit_Click" CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
                             </f:Button>
                         </Items>

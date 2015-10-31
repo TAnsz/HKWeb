@@ -1,8 +1,8 @@
 /// <summary>
-/// ÀàËµÃ÷£ºAssistant
-/// ±à Âë ÈË£ºËÕ·É
-/// ÁªÏµ·½Ê½£º361983679  
-/// ¸üĞÂÍøÕ¾£ºhttp://www.sufeinet.com/thread-655-1-1.html
+/// é¡èªªæ˜ï¼šAssistant
+/// ç·¨ ç¢¼ äººï¼šè˜‡é£›
+/// è¯ç¹«æ–¹å¼ï¼š361983679  
+/// æ›´æ–°ç¶²ç«™ï¼šhttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Runtime.InteropServices;
@@ -11,7 +11,7 @@ using System.Text;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// INIÎÄ¼ş¶ÁĞ´Àà¡£
+    /// INIæ–‡ä»¶è®€å¯«é¡ã€‚
     /// </summary>
 	public class INIFileHelper
 	{
@@ -34,7 +34,7 @@ namespace DotNet.Utilities
 
 
 		/// <summary>
-		/// Ğ´INIÎÄ¼ş
+		/// å¯«INIæ–‡ä»¶
 		/// </summary>
 		/// <param name="Section"></param>
 		/// <param name="Key"></param>
@@ -45,7 +45,7 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ¶ÁÈ¡INIÎÄ¼ş
+		/// è®€å–INIæ–‡ä»¶
 		/// </summary>
 		/// <param name="Section"></param>
 		/// <param name="Key"></param>
@@ -56,6 +56,12 @@ namespace DotNet.Utilities
 			int i = GetPrivateProfileString(Section,Key,"",temp, 255, this.path);
 			return temp.ToString();
 		}
+        /// <summary>
+        /// è®€å–æ•¸å€¼
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
 		public byte[] IniReadValues(string section, string key)
 		{
 			byte[] temp = new byte[255];
@@ -66,14 +72,14 @@ namespace DotNet.Utilities
 
 
 		/// <summary>
-		/// É¾³ıiniÎÄ¼şÏÂËùÓĞ¶ÎÂä
+		/// åˆªé™¤iniæ–‡ä»¶ä¸‹æ‰€æœ‰æ®µè½
 		/// </summary>
 		public void ClearAllSection()
 		{
 			IniWriteValue(null,null,null);
 		}
 		/// <summary>
-		/// É¾³ıiniÎÄ¼şÏÂpersonal¶ÎÂäÏÂµÄËùÓĞ¼ü
+		/// åˆªé™¤iniæ–‡ä»¶ä¸‹personalæ®µè½ä¸‹çš„æ‰€æœ‰éµ
 		/// </summary>
 		/// <param name="Section"></param>
 		public void ClearSection(string Section)

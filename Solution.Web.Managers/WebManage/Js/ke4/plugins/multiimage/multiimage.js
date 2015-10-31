@@ -284,7 +284,7 @@ KindEditor.plugin('multiimage', function(K) {
 					}
 					self.exec('insertimage', data.url, data.title, data.width, data.height, data.border, data.align);
 				});
-				// Bugfix: [Firefox] 上传图片后，总是出现正在加载的样式，需要延迟执行hideDialog
+				// Bugfix: [Firefox] 上傳圖片後，總是出現正在加載的樣式，需要延遲執行hideDialog
 				setTimeout(function() {
 					self.hideDialog().focus();
 				}, 0);

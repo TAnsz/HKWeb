@@ -27,7 +27,7 @@ namespace Solution.Web.Managers.WebManage
 {
     public partial class PhoneMain : PageBase
     {
-        //用户页面操作权限
+        //用戶頁面操作權限
         string _pagePower = "";
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
@@ -51,30 +51,30 @@ namespace Solution.Web.Managers.WebManage
         /// <summary>讀取數據</summary>
         public override void LoadData()
         {
-            //获取用户页面操作权限
+            //獲取用戶頁面操作權限
             _pagePower = OnlineUsersBll.GetInstence().GetPagePower();
 
-            //当前用户信息
+            //當前用戶信息
             var model = OnlineUsersBll.GetInstence().GetOnlineUsersModel();
             if (model == null)
                 return;
 
-            //用户名称
+            //用戶名稱
             txtUser.Text = model.Manager_CName + " [" + IpHelper.GetUserIp() + "]";
 
-            //创建查询条件
+            //創建查詢條件
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
-            //条件：只查询出需要显示的菜单,暫時顯示全部
+            //條件：只查詢出需要顯示的菜單,暫時顯示全部
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MenuInfoTable.IsDisplay, Comparison.Equals, "1"));
-            //进行查询，获取DataTable
+            //進行查詢，獲取DataTable
             var dt = MenuInfoBll.GetInstence().GetDataTable(false, 0, null, 0, 0, wheres);
-            //绑定树列表
+            //綁定樹列表
             BandingTree(dt);
         }
 
-        #region 退出系统
+        #region 退出系統
         /// <summary>
-        /// 退出系统
+        /// 退出系統
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -82,52 +82,52 @@ namespace Solution.Web.Managers.WebManage
         {
             OnlineUsersBll.GetInstence().UserExit(this);
 
-            //FineUI.Alert.ShowInTop("成功退出系统！", "安全退出", MessageBoxIcon.Information, "top.location='Login.aspx'");
+            //FineUI.Alert.ShowInTop("成功退出系統！", "安全退出", MessageBoxIcon.Information, "top.location='Login.aspx'");
         }
         #endregion
 
-        #region FineUI控件之--树控件（Tree）
+        #region FineUI控件之--樹控件（Tree）
 
-        #region 绑定树控件
-        /// <summary>树控件（Tree）
+        #region 綁定樹控件
+        /// <summary>樹控件（Tree）
         /// </summary>
-        /// <param name="dataTable">DataTable数据源</param>
-        /// <returns>树控件（Tree）</returns>
+        /// <param name="dataTable">DataTable數據源</param>
+        /// <returns>樹控件（Tree）</returns>
         public void BandingTree(DataTable dataTable)
         {
             try
             {
-                //检查指定的列是否在数据源中能否找到
+                //檢查指定的列是否在數據源中能否找到
                 if (dataTable.Rows.Count == 0)
                 {
                     return;
                 }
-                //筛选出全部一级节点
+                //篩選出全部一級節點
                 DataTable dtRoot = DataTableHelper.GetFilterData(dataTable, MenuInfoTable.ParentId, "0", MenuInfoTable.Sort, "Asc");
-                //判断是否有节点存在
+                //判斷是否有節點存在
                 if (dtRoot.Rows.Count != 0)
                 {
-                    //循环读取节点
+                    //循環讀取節點
                     foreach (DataRow dr in dtRoot.Rows)
                     {
-                        //判断当前节点是否有权限访问，没有则跳过本次循环
-                        //暂时先注释掉权限判断，等添加相关权限后再开启
+                        //判斷當前節點是否有權限訪問，沒有則跳過本次循環
+                        //暫時先註釋掉權限判斷，等添加相關權限後再開啟
                         if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",") < 0)
                         {
                             continue;
                         }
 
-                        //创建树节点
+                        //創建樹節點
                         var treenode = new FineUI.TreeNode();
-                        //设置节点ID
+                        //設置節點ID
                         treenode.NodeID = dr[MenuInfoTable.Id].ToString();
-                        //设置节点名称
+                        //設置節點名稱
                         treenode.Text = dr[MenuInfoTable.Name].ToString();
                         treenode.Target = "mainRegion";
-                        //判断当前节点是否为最终节点
+                        //判斷當前節點是否為最終節點
                         if (int.Parse(dr[MenuInfoTable.IsMenu].ToString()) != 0)
                         {
-                            //设置节点链接地址，并在Url后面添加页面加密参数
+                            //設置節點鏈接地址，並在Url後面添加頁面加密參數
                             treenode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
                             treenode.Leaf = true;
                         }
@@ -135,13 +135,13 @@ namespace Solution.Web.Managers.WebManage
                         {
                             treenode.NavigateUrl = "";
                             treenode.Leaf = false;
-                            //设置树节点收缩起来
+                            //設置樹節點收縮起來
                             treenode.Expanded = false;
                         }
 
-                        //添加子节点
+                        //添加子節點
                         AddChildrenNode(dataTable, treenode, dr[MenuInfoTable.Id].ToString());
-                        //将节点加入树列表中
+                        //將節點加入樹列表中
                         leftMenuTree.Nodes.Add(treenode);
                     }
                 }
@@ -153,40 +153,40 @@ namespace Solution.Web.Managers.WebManage
         }
         #endregion
 
-        #region 添加子节点
+        #region 添加子節點
         /// <summary>
-        /// 添加子节点
+        /// 添加子節點
         /// </summary>
-        /// <param name="dt">数据表</param>
-        /// <param name="treenode">当前树节点</param>
-        /// <param name="parentID">父节点ID值</param>
+        /// <param name="dt">數據表</param>
+        /// <param name="treenode">當前樹節點</param>
+        /// <param name="parentID">父節點ID值</param>
         private void AddChildrenNode(DataTable dt, FineUI.TreeNode treenode, string parentID)
         {
-            //筛选出当前节点下面的子节点
+            //篩選出當前節點下面的子節點
             DataTable Childdt = DataTableHelper.GetFilterData(dt, MenuInfoTable.ParentId, parentID, MenuInfoTable.Sort, "Asc");
-            //判断是否有节点存在
+            //判斷是否有節點存在
             if (Childdt.Rows.Count > 0)
             {
-                //循环读取节点
+                //循環讀取節點
                 foreach (DataRow dr in Childdt.Rows)
                 {
-                    //判断当前节点是否有权限访问，没有则跳过本次循环
+                    //判斷當前節點是否有權限訪問，沒有則跳過本次循環
                     if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",") < 0)
                     {
                         continue;
                     }
 
-                    //创建子节点
+                    //創建子節點
                     var TreeChildNode = new FineUI.TreeNode();
-                    //设置节点ID
+                    //設置節點ID
                     TreeChildNode.NodeID = dr[MenuInfoTable.Id].ToString();
-                    //设置节点名称
+                    //設置節點名稱
                     TreeChildNode.Text = dr[MenuInfoTable.Name].ToString();
                     TreeChildNode.Target = "mainRegion";
-                    //判断当前节点是否为最终节点
+                    //判斷當前節點是否為最終節點
                     if (int.Parse(dr[MenuInfoTable.IsMenu].ToString()) != 0)
                     {
-                        //设置节点链接地址
+                        //設置節點鏈接地址
                         if (dr[MenuInfoTable.Url].ToString().IndexOf("?") > 0)
                         {
                             TreeChildNode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
@@ -202,13 +202,13 @@ namespace Solution.Web.Managers.WebManage
                     {
                         TreeChildNode.NavigateUrl = "";
                         TreeChildNode.Leaf = false;
-                        //设置树节点扩张
+                        //設置樹節點擴張
                         TreeChildNode.Expanded = true;
                     }
-                    //将节点添加进树列表中
+                    //將節點添加進樹列表中
                     treenode.Nodes.Add(TreeChildNode);
 
-                    //递归添加子节点
+                    //遞歸添加子節點
                     AddChildrenNode(dt, TreeChildNode, dr[MenuInfoTable.Id].ToString());
 
                 }

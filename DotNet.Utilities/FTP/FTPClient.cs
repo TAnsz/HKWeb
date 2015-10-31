@@ -1,7 +1,7 @@
 /// <summary>
-/// 类说明：CacheHelper
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧CacheHelper
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Net;
@@ -13,15 +13,15 @@ using System.Threading;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// FTP 操作类客户端
+    /// FTP 巨摸め狠
     /// </summary>
     public class FTPClient
     {
         public static object obj = new object();
 
-        #region 构造函数
+        #region 篶硑ㄧ计
         /// <summary>
-        /// 缺省构造函数
+        /// 篶硑ㄧ计
         /// </summary>
         public FTPClient()
         {
@@ -34,7 +34,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 构造函数
+        /// 篶硑ㄧ计
         /// </summary>
         public FTPClient(string remoteHost, string remotePath, string remoteUser, string remotePass, int remotePort)
         {
@@ -47,7 +47,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 字段
+        #region 琿
         private int strRemotePort;
         private Boolean bConnected;
         private string strRemoteHost;
@@ -56,42 +56,42 @@ namespace DotNet.Utilities
         private string strRemotePath;
 
         /// <summary>
-        /// 服务器返回的应答信息(包含应答码)
+        /// 狝叭竟莱氮獺(莱氮絏)
         /// </summary>
         private string strMsg;
         /// <summary>
-        /// 服务器返回的应答信息(包含应答码)
+        /// 狝叭竟莱氮獺(莱氮絏)
         /// </summary>
         private string strReply;
         /// <summary>
-        /// 服务器返回的应答码
+        /// 狝叭竟莱氮絏
         /// </summary>
         private int iReplyCode;
         /// <summary>
-        /// 进行控制连接的socket
+        /// 秈︽北硈钡socket
         /// </summary>
         private Socket socketControl;
         /// <summary>
-        /// 传输模式
+        /// 肚块家Α
         /// </summary>
         private TransferType trType;
         /// <summary>
-        /// 接收和发送数据的缓冲区
+        /// 钡Μ㎝祇癳计沮絯侥跋
         /// </summary>
         private static int BLOCK_SIZE = 512;
         /// <summary>
-        /// 编码方式
+        /// 絪絏よΑ
         /// </summary>
         Encoding ASCII = Encoding.ASCII;
         /// <summary>
-        /// 字节数组
+        /// 竊计舱
         /// </summary>
         Byte[] buffer = new Byte[BLOCK_SIZE];
         #endregion
 
-        #region 属性
+        #region 妮┦
         /// <summary>
-        /// FTP服务器IP地址
+        /// FTP狝叭竟IP
         /// </summary>
         public string RemoteHost
         {
@@ -106,7 +106,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// FTP服务器端口
+        /// FTP狝叭竟狠
         /// </summary>
         public int RemotePort
         {
@@ -121,7 +121,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 当前服务器目录
+        /// 讽玡狝叭竟ヘ魁
         /// </summary>
         public string RemotePath
         {
@@ -136,7 +136,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 登录用户账号
+        /// 祅魁ノめ姐腹
         /// </summary>
         public string RemoteUser
         {
@@ -147,7 +147,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 用户登录密码
+        /// ノめ祅魁盞絏
         /// </summary>
         public string RemotePass
         {
@@ -158,7 +158,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否登录
+        /// 琌祅魁
         /// </summary>
         public bool Connected
         {
@@ -169,9 +169,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 链接
+        #region 渺钡
         /// <summary>
-        /// 建立连接 
+        /// ミ硈钡 
         /// </summary>
         public void Connect()
         {
@@ -185,7 +185,7 @@ namespace DotNet.Utilities
                 }
                 catch (Exception)
                 {
-                    throw new IOException("不能连接ftp服务器");
+                    throw new IOException("ぃ硈钡ftp狝叭竟");
                 }
             }
             ReadReply();
@@ -214,7 +214,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 关闭连接
+        /// 闽超硈钡
         /// </summary>
         public void DisConnect()
         {
@@ -226,25 +226,25 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 传输模式
+        #region 肚块家Α
         /// <summary>
-        /// 传输模式:二进制类型、ASCII类型
+        /// 肚块家Α:秈摸ASCII摸
         /// </summary>
         public enum TransferType { Binary, ASCII };
 
         /// <summary>
-        /// 设置传输模式
+        /// 砞竚肚块家Α
         /// </summary>
-        /// <param name="ttType">传输模式</param>
+        /// <param name="ttType">肚块家Α</param>
         public void SetTransferType(TransferType ttType)
         {
             if (ttType == TransferType.Binary)
             {
-                SendCommand("TYPE I");//binary类型传输
+                SendCommand("TYPE I");//binary摸肚块
             }
             else
             {
-                SendCommand("TYPE A");//ASCII类型传输
+                SendCommand("TYPE A");//ASCII摸肚块
             }
             if (iReplyCode != 200)
             {
@@ -257,20 +257,20 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获得传输模式
+        /// 莉眔肚块家Α
         /// </summary>
-        /// <returns>传输模式</returns>
+        /// <returns>肚块家Α</returns>
         public TransferType GetTransferType()
         {
             return trType;
         }
         #endregion
 
-        #region 文件操作
+        #region ゅン巨
         /// <summary>
-        /// 获得文件列表
+        /// 莉眔ゅン
         /// </summary>
-        /// <param name="strMask">文件名的匹配字符串</param>
+        /// <param name="strMask">ゅンで皌才﹃</param>
         public string[] Dir(string strMask)
         {
             if (!bConnected)
@@ -296,7 +296,7 @@ namespace DotNet.Utilities
             }
             char[] seperator = { '\n' };
             string[] strsFileList = strMsg.Split(seperator);
-            socketData.Close(); //数据socket关闭时也会有返回码
+            socketData.Close(); //计沮socket闽超穦Τ絏
             if (iReplyCode != 226)
             {
                 ReadReply();
@@ -347,10 +347,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取文件大小
+        /// 莉ゅン
         /// </summary>
-        /// <param name="strFileName">文件名</param>
-        /// <returns>文件大小</returns>
+        /// <param name="strFileName">ゅン</param>
+        /// <returns>ゅン</returns>
         public long GetFileSize(string strFileName)
         {
             if (!bConnected)
@@ -372,10 +372,10 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 获取文件信息
+        /// 莉ゅン獺
         /// </summary>
-        /// <param name="strFileName">文件名</param>
-        /// <returns>文件大小</returns>
+        /// <param name="strFileName">ゅン</param>
+        /// <returns>ゅン</returns>
         public string GetFileInfo(string strFileName)
         {
             if (!bConnected)
@@ -410,9 +410,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除
+        /// 埃
         /// </summary>
-        /// <param name="strFileName">待删除文件名</param>
+        /// <param name="strFileName">埃ゅン</param>
         public void Delete(string strFileName)
         {
             if (!bConnected)
@@ -427,10 +427,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 重命名(如果新文件名与已有文件重名,将覆盖已有文件)
+        /// ㏑(狦穝ゅン籔Τゅン,盢滦籠Τゅン)
         /// </summary>
-        /// <param name="strOldFileName">旧文件名</param>
-        /// <param name="strNewFileName">新文件名</param>
+        /// <param name="strOldFileName">侣ゅン</param>
+        /// <param name="strNewFileName">穝ゅン</param>
         public void Rename(string strOldFileName, string strNewFileName)
         {
             if (!bConnected)
@@ -442,7 +442,7 @@ namespace DotNet.Utilities
             {
                 throw new IOException(strReply.Substring(4));
             }
-            //  如果新文件名与原有文件重名,将覆盖原有文件
+            //  狦穝ゅン籔Τゅン,盢滦籠Τゅン
             SendCommand("RNTO " + strNewFileName);
             if (iReplyCode != 250)
             {
@@ -451,12 +451,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 上传和下载
+        #region 肚㎝更
         /// <summary>
-        /// 下载一批文件
+        /// 更уゅン
         /// </summary>
-        /// <param name="strFileNameMask">文件名的匹配字符串</param>
-        /// <param name="strFolder">本地目录(不得以\结束)</param>
+        /// <param name="strFileNameMask">ゅンで皌才﹃</param>
+        /// <param name="strFolder">セヘ魁(ぃ眔\挡)</param>
         public void Get(string strFileNameMask, string strFolder)
         {
             if (!bConnected)
@@ -466,7 +466,7 @@ namespace DotNet.Utilities
             string[] strFiles = Dir(strFileNameMask);
             foreach (string strFile in strFiles)
             {
-                if (!strFile.Equals(""))//一般来说strFiles的最后一个元素可能是空字符串
+                if (!strFile.Equals(""))//ㄓ弧strFiles程じ琌才﹃
                 {
                     Get(strFile, strFolder, strFile);
                 }
@@ -474,11 +474,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 下载一个文件
+        /// 更ゅン
         /// </summary>
-        /// <param name="strRemoteFileName">要下载的文件名</param>
-        /// <param name="strFolder">本地目录(不得以\结束)</param>
-        /// <param name="strLocalFileName">保存在本地时的文件名</param>
+        /// <param name="strRemoteFileName">璶更ゅン</param>
+        /// <param name="strFolder">セヘ魁(ぃ眔\挡)</param>
+        /// <param name="strLocalFileName">玂セゅン</param>
         public void Get(string strRemoteFileName, string strFolder, string strLocalFileName)
         {
             Socket socketData = CreateDataSocket();
@@ -533,11 +533,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 下载一个文件
+        /// 更ゅン
         /// </summary>
-        /// <param name="strRemoteFileName">要下载的文件名</param>
-        /// <param name="strFolder">本地目录(不得以\结束)</param>
-        /// <param name="strLocalFileName">保存在本地时的文件名</param>
+        /// <param name="strRemoteFileName">璶更ゅン</param>
+        /// <param name="strFolder">セヘ魁(ぃ眔\挡)</param>
+        /// <param name="strLocalFileName">玂セゅン</param>
         public void GetNoBinary(string strRemoteFileName, string strFolder, string strLocalFileName)
         {
             if (!bConnected)
@@ -581,10 +581,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传一批文件
+        /// 肚уゅン
         /// </summary>
-        /// <param name="strFolder">本地目录(不得以\结束)</param>
-        /// <param name="strFileNameMask">文件名匹配字符(可以包含*和?)</param>
+        /// <param name="strFolder">セヘ魁(ぃ眔\挡)</param>
+        /// <param name="strFileNameMask">ゅンで皌才(*㎝?)</param>
         public void Put(string strFolder, string strFileNameMask)
         {
             string[] strFiles = Directory.GetFiles(strFolder, strFileNameMask);
@@ -595,9 +595,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传一个文件
+        /// 肚ゅン
         /// </summary>
-        /// <param name="strFileName">本地文件名</param>
+        /// <param name="strFileName">セゅン</param>
         public void Put(string strFileName)
         {
             if (!bConnected)
@@ -638,9 +638,9 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 上传一个文件
+        /// 肚ゅン
         /// </summary>
-        /// <param name="strFileName">本地文件名</param>
+        /// <param name="strFileName">セゅン</param>
         public void PutByGuid(string strFileName, string strGuid)
         {
             if (!bConnected)
@@ -681,11 +681,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 目录操作
+        #region ヘ魁巨
         /// <summary>
-        /// 创建目录
+        /// 承ヘ魁
         /// </summary>
-        /// <param name="strDirName">目录名</param>
+        /// <param name="strDirName">ヘ魁</param>
         public void MkDir(string strDirName)
         {
             if (!bConnected)
@@ -700,9 +700,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除目录
+        /// 埃ヘ魁
         /// </summary>
-        /// <param name="strDirName">目录名</param>
+        /// <param name="strDirName">ヘ魁</param>
         public void RmDir(string strDirName)
         {
             if (!bConnected)
@@ -717,9 +717,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 改变目录
+        /// э跑ヘ魁
         /// </summary>
-        /// <param name="strDirName">新的工作目录名</param>
+        /// <param name="strDirName">穝ヘ魁</param>
         public void ChDir(string strDirName)
         {
             if (strDirName.Equals(".") || strDirName.Equals(""))
@@ -739,9 +739,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 内部函数
+        #region ず场ㄧ计
         /// <summary>
-        /// 将一行应答字符串记录在strReply和strMsg,应答码记录在iReplyCode
+        /// 盢︽莱氮才﹃癘魁strReply㎝strMsg,莱氮絏癘魁iReplyCode
         /// </summary>
         private void ReadReply()
         {
@@ -751,9 +751,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 建立进行数据连接的socket
+        /// ミ秈︽计沮硈钡socket
         /// </summary>
-        /// <returns>数据连接socket</returns>
+        /// <returns>计沮硈钡socket</returns>
         private Socket CreateDataSocket()
         {
             SendCommand("PASV");
@@ -800,13 +800,13 @@ namespace DotNet.Utilities
             }
             catch (Exception)
             {
-                throw new IOException("无法连接ftp服务器");
+                throw new IOException("礚猭硈钡ftp狝叭竟");
             }
             return s;
         }
 
         /// <summary>
-        /// 关闭socket连接(用于登录以前)
+        /// 闽超socket硈钡(ノ祅魁玡)
         /// </summary>
         private void CloseSocketConnect()
         {
@@ -822,9 +822,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取Socket返回的所有字符串
+        /// 弄Socket┮Τ才﹃
         /// </summary>
-        /// <returns>包含应答码的字符串行</returns>
+        /// <returns>莱氮絏才﹃︽</returns>
         private string ReadLine()
         {
             lock (obj)
@@ -849,7 +849,7 @@ namespace DotNet.Utilities
             {
                 strMsg = mess[0];
             }
-            if (!strMsg.Substring(3, 1).Equals(" ")) //返回字符串正确的是以应答码(如220开头,后面接一空格,再接问候字符串)
+            if (!strMsg.Substring(3, 1).Equals(" ")) //才﹃タ絋琌莱氮絏(220秨繷,钡,钡拜才﹃)
             {
                 return ReadLine();
             }
@@ -857,9 +857,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 发送命令并获取应答码和最后一行应答字符串
+        /// 祇癳㏑莉莱氮絏㎝程︽莱氮才﹃
         /// </summary>
-        /// <param name="strCommand">命令</param>
+        /// <param name="strCommand">㏑</param>
         public void SendCommand(String strCommand)
         {
             lock (obj)

@@ -1,32 +1,32 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// JavaScript 操作类
+    /// JavaScript 操作類
     /// </summary>
     public class JavaScriptPlus
     {
         public JavaScriptPlus()
         { }
         /// <summary>
-        /// 输出自定义脚本信息
+        /// 輸出自定義腳本信息
         /// </summary>
-        /// <param name="page">当前页面指针，一般为this</param>
-        /// <param name="script">输出脚本</param>
+        /// <param name="page">當前頁面指針，一般為this</param>
+        /// <param name="script">輸出腳本</param>
         public static void ResponseScript(System.Web.UI.Page page, string script)
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", "<script language='javascript' defer>" + script + "</script>");
         }
-        #region 回到历史页面
+        #region 回到歷史頁面
         /// <summary>
-        /// 回到历史页面
+        /// 回到歷史頁面
         /// </summary>
         /// <param name="value">-1/1</param>
         public static void GoHistory(int value)
@@ -39,9 +39,9 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 关闭当前窗口
+        #region 關閉當前窗口
         /// <summary>
-        /// 关闭当前窗口
+        /// 關閉當前窗口
         /// </summary>
         public static void CloseWindow()
         {
@@ -66,9 +66,9 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 刷新打开窗口
+        #region 刷新打開窗口
         /// <summary>
-        /// 刷新打开窗口
+        /// 刷新打開窗口
         /// </summary>
         public static void RefreshOpener()
         {
@@ -80,11 +80,11 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 转向Url指定的页面
+        #region 轉向Url指定的頁面
         /// <summary>
-        /// 转向Url指定的页面
+        /// 轉向Url指定的頁面
         /// </summary>
-        /// <param name="url">连接地址</param>
+        /// <param name="url">連接地址</param>
         public static void JavaScriptLocationHref(string url)
         {
             #region
@@ -96,15 +96,15 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 打开指定大小位置的模式对话框
+        #region 打開指定大小位置的模式對話框
         /// <summary>
-        /// 打开指定大小位置的模式对话框
+        /// 打開指定大小位置的模式對話框
         /// </summary>
-        /// <param name="webFormUrl">连接地址</param>
-        /// <param name="width">宽</param>
+        /// <param name="webFormUrl">連接地址</param>
+        /// <param name="width">寬</param>
         /// <param name="height">高</param>
-        /// <param name="top">距离上位置</param>
-        /// <param name="left">距离左位置</param>
+        /// <param name="top">距離上位置</param>
+        /// <param name="left">距離左位置</param>
         public static void ShowModalDialogWindow(string webFormUrl, int width, int height, int top, int left)
         {
             #region
@@ -117,11 +117,11 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 打开模式对话框
+        #region 打開模式對話框
         /// <summary>
-        /// 打开模式对话框
+        /// 打開模式對話框
         /// </summary>
-        /// <param name="webFormUrl">链接地址</param>
+        /// <param name="webFormUrl">鏈接地址</param>
         /// <param name="features"></param>
         public static void ShowModalDialogWindow(string webFormUrl, string features)
         {
@@ -130,7 +130,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 打开模式对话框
+        /// 打開模式對話框
         /// </summary>
         /// <param name="webFormUrl"></param>
         /// <param name="features"></param>
@@ -144,14 +144,14 @@ namespace DotNet.Utilities
             #endregion
         }
         #endregion
-        #region 打开指定大小的新窗体
+        #region 打開指定大小的新窗體
         /// <summary>
-        /// 打开指定大小的新窗体
+        /// 打開指定大小的新窗體
         /// </summary>
         /// <param name="url">地址</param>
-        /// <param name="width">宽</param>
+        /// <param name="width">寬</param>
         /// <param name="heigth">高</param>
-        /// <param name="top">头位置</param>
+        /// <param name="top">頭位置</param>
         /// <param name="left">左位置</param>
         public static void OpenWebFormSize(string url, int width, int heigth, int top, int left)
         {
@@ -163,7 +163,7 @@ namespace DotNet.Utilities
         }
         #endregion
         /// <summary>
-        /// 页面跳转（跳出框架）
+        /// 頁面跳轉（跳出框架）
         /// </summary>
         /// <param name="url"></param>
         public static void JavaScriptExitIfream(string url)

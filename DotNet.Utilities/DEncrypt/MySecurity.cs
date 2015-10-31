@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text;
@@ -14,19 +14,19 @@ using System.Collections;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// MySecurity(安全类) 的摘要说明。
+    /// MySecurity(安全類) 的摘要說明。
     /// </summary>
     public class MySecurity
     {
         /// <summary>
-        /// 初始化安全类
+        /// 初始化安全類
         /// </summary>
         public MySecurity()
         {
-            ///默认密码
+            ///默認密碼
             key = "0123456789";
         }
-        private string key; //默认密钥
+        private string key; //默認密鑰
 
         private byte[] sKey;
         private byte[] sIV;
@@ -35,9 +35,9 @@ namespace DotNet.Utilities
         /// <summary>
         /// 加密字符串
         /// </summary>
-        /// <param name="inputStr">输入字符串</param>
-        /// <param name="keyStr">密码，可以为“”</param>
-        /// <returns>输出加密后字符串</returns>
+        /// <param name="inputStr">輸入字符串</param>
+        /// <param name="keyStr">密碼，可以為「」</param>
+        /// <returns>輸出加密後字符串</returns>
         static public string SEncryptString(string inputStr, string keyStr)
         {
             MySecurity ws = new MySecurity();
@@ -46,9 +46,9 @@ namespace DotNet.Utilities
         /// <summary>
         /// 加密字符串
         /// </summary>
-        /// <param name="inputStr">输入字符串</param>
-        /// <param name="keyStr">密码，可以为“”</param>
-        /// <returns>输出加密后字符串</returns>
+        /// <param name="inputStr">輸入字符串</param>
+        /// <param name="keyStr">密碼，可以為「」</param>
+        /// <returns>輸出加密後字符串</returns>
         public string EncryptString(string inputStr, string keyStr)
         {
             DESCryptoServiceProvider des = new DESCryptoServiceProvider();
@@ -81,12 +81,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 加密字符串 密钥为系统默认 0123456789
+        #region 加密字符串 密鑰為系統默認 0123456789
         /// <summary>
-        /// 加密字符串 密钥为系统默认
+        /// 加密字符串 密鑰為系統默認
         /// </summary>
-        /// <param name="inputStr">输入字符串</param>
-        /// <returns>输出加密后字符串</returns>
+        /// <param name="inputStr">輸入字符串</param>
+        /// <returns>輸出加密後字符串</returns>
         static public string SEncryptString(string inputStr)
         {
             MySecurity ws = new MySecurity();
@@ -99,9 +99,9 @@ namespace DotNet.Utilities
         /// <summary>
         /// 加密文件
         /// </summary>
-        /// <param name="filePath">输入文件路径</param>
-        /// <param name="savePath">加密后输出文件路径</param>
-        /// <param name="keyStr">密码，可以为“”</param>
+        /// <param name="filePath">輸入文件路徑</param>
+        /// <param name="savePath">加密後輸出文件路徑</param>
+        /// <param name="keyStr">密碼，可以為「」</param>
         /// <returns></returns>  
         public bool EncryptFile(string filePath, string savePath, string keyStr)
         {
@@ -144,18 +144,18 @@ namespace DotNet.Utilities
         /// 解密字符串
         /// </summary>
         /// <param name="inputStr">要解密的字符串</param>
-        /// <param name="keyStr">密钥</param>
-        /// <returns>解密后的结果</returns>
+        /// <param name="keyStr">密鑰</param>
+        /// <returns>解密後的結果</returns>
         static public string SDecryptString(string inputStr, string keyStr)
         {
             MySecurity ws = new MySecurity();
             return ws.DecryptString(inputStr, keyStr);
         }
         /// <summary>
-        ///  解密字符串 密钥为系统默认
+        ///  解密字符串 密鑰為系統默認
         /// </summary>
         /// <param name="inputStr">要解密的字符串</param>
-        /// <returns>解密后的结果</returns>
+        /// <returns>解密後的結果</returns>
         static public string SDecryptString(string inputStr)
         {
             MySecurity ws = new MySecurity();
@@ -165,8 +165,8 @@ namespace DotNet.Utilities
         /// 解密字符串
         /// </summary>
         /// <param name="inputStr">要解密的字符串</param>
-        /// <param name="keyStr">密钥</param>
-        /// <returns>解密后的结果</returns>
+        /// <param name="keyStr">密鑰</param>
+        /// <returns>解密後的結果</returns>
         public string DecryptString(string inputStr, string keyStr)
         {
             DESCryptoServiceProvider des = new DESCryptoServiceProvider();
@@ -202,9 +202,9 @@ namespace DotNet.Utilities
         /// <summary>
         /// 解密文件
         /// </summary>
-        /// <param name="filePath">输入文件路径</param>
-        /// <param name="savePath">解密后输出文件路径</param>
-        /// <param name="keyStr">密码，可以为“”</param>
+        /// <param name="filePath">輸入文件路徑</param>
+        /// <param name="savePath">解密後輸出文件路徑</param>
+        /// <param name="keyStr">密碼，可以為「」</param>
         /// <returns></returns>    
         public bool DecryptFile(string filePath, string savePath, string keyStr)
         {
@@ -251,7 +251,7 @@ namespace DotNet.Utilities
         public static string MD5(string text)
         {
 
-            //如果字符串为空，则返回
+            //如果字符串為空，則返回
             if (Tools.IsNullOrEmpty<string>(text))
             {
                 return "";
@@ -261,12 +261,12 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 128位MD5算法加密Byte数组
+        /// 128位MD5算法加密Byte數組
         /// </summary>
-        /// <param name="data">要加密的Byte数组</param>    
+        /// <param name="data">要加密的Byte數組</param>    
         public static string MD5(byte[] data)
         {
-            //如果Byte数组为空，则返回
+            //如果Byte數組為空，則返回
             if (Tools.IsNullOrEmpty<byte[]>(data))
             {
                 return "";
@@ -274,13 +274,13 @@ namespace DotNet.Utilities
 
             try
             {
-                //创建MD5密码服务提供程序
+                //創建MD5密碼服務提供程序
                 MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
 
-                //计算传入的字节数组的哈希值
+                //計算傳入的字節數組的哈希值
                 byte[] result = md5.ComputeHash(data);
 
-                //释放资源
+                //釋放資源
                 md5.Clear();
 
                 //返回MD5值的字符串表示
@@ -303,7 +303,7 @@ namespace DotNet.Utilities
         /// <returns></returns>
         public static string EncodeBase64(string text)
         {
-            //如果字符串为空，则返回
+            //如果字符串為空，則返回
             if (Tools.IsNullOrEmpty<string>(text))
             {
                 return "";
@@ -366,24 +366,24 @@ namespace DotNet.Utilities
         /// <param name="text">要解密的字符串</param>
         public static string DecodeBase64(string text)
         {
-            //如果字符串为空，则返回
+            //如果字符串為空，則返回
             if (Tools.IsNullOrEmpty<string>(text))
             {
                 return "";
             }
 
-            //将空格替换为加号
+            //將空格替換為加號
             text = text.Replace(" ", "+");
 
             try
             {
                 if ((text.Length % 4) != 0)
                 {
-                    return "包含不正确的BASE64编码";
+                    return "包含不正確的BASE64編碼";
                 }
                 if (!Regex.IsMatch(text, "^[A-Z0-9/+=]*$", RegexOptions.IgnoreCase))
                 {
-                    return "包含不正确的BASE64编码";
+                    return "包含不正確的BASE64編碼";
                 }
                 string Base64Code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
                 int page = text.Length / 4;

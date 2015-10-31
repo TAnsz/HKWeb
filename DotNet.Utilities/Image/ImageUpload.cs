@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Drawing;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 文件类型
+    /// 文件類型
     /// </summary>
     public enum FileExtension
     {
@@ -34,13 +34,13 @@ namespace DotNet.Utilities
     }
 
     /// <summary>
-    /// 图片检测类
+    /// 圖片檢測類
     /// </summary>
     public static class FileValidation
     {
-        #region 上传图片检测类
+        #region 上傳圖片檢測類
         /// <summary>
-        /// 是否允许
+        /// 是否允許
         /// </summary>
         public static bool IsAllowedExtension(HttpPostedFile oFile, FileExtension[] fileEx)
         {
@@ -69,7 +69,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传前的图片是否可靠
+        /// 上傳前的圖片是否可靠
         /// </summary>
         public static bool IsSecureUploadPhoto(HttpPostedFile oFile)
         {
@@ -97,7 +97,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传后的图片是否安全
+        /// 上傳後的圖片是否安全
         /// </summary>
         /// <param name="photoFile">物理地址</param>
         public static bool IsSecureUpfilePhoto(string photoFile)
@@ -138,9 +138,9 @@ namespace DotNet.Utilities
     }
 
     /// <summary>
-    /// 图片上传类
+    /// 圖片上傳類
     /// </summary>
-    //----------------调用-------------------
+    //----------------調用-------------------
     //imageUpload iu = new imageUpload();
     //iu.AddText = "";
     //iu.CopyIamgePath = "";
@@ -162,40 +162,40 @@ namespace DotNet.Utilities
     //--------------------------------------
     public class ImageUpload
     {
-        #region 私有成员
-        private int _Error = 0;//返回上传状态。 
-        private int _MaxSize = 1024 * 1024;//最大单个上传文件 (默认)
-        private string _FileType = "jpg;gif;bmp;png";//所支持的上传类型用"/"隔开 
-        private string _SavePath = System.Web.HttpContext.Current.Server.MapPath(".") + "\\";//保存文件的实际路径 
-        private int _SaveType = 0;//上传文件的类型，0代表自动生成文件名 
-        private HtmlInputFile _FormFile;//上传控件。 
-        private string _InFileName = "";//非自动生成文件名设置。 
-        private string _OutFileName = "";//输出文件名。 
-        private bool _IsCreateImg = true;//是否生成缩略图。 
-        private bool _Iss = false;//是否有缩略图生成.
-        private int _Height = 0;//获取上传图片的高度 
-        private int _Width = 0;//获取上传图片的宽度 
-        private int _sHeight = 120;//设置生成缩略图的高度 
-        private int _sWidth = 120;//设置生成缩略图的宽度
-        private bool _IsDraw = false;//设置是否加水印
-        private int _DrawStyle = 0;//设置加水印的方式０：文字水印模式，１：图片水印模式,2:不加
-        private int _DrawString_x = 10;//绘制文本的Ｘ坐标（左上角）
-        private int _DrawString_y = 10;//绘制文本的Ｙ坐标（左上角）
-        private string _AddText = "GlobalNatureCrafts";//设置水印内容
-        private string _Font = "宋体";//设置水印字体
-        private int _FontSize = 12;//设置水印字大小
-        private int _FileSize = 0;//获取已经上传文件的大小
-        private string _CopyIamgePath = System.Web.HttpContext.Current.Server.MapPath(".") + "/images/5dm_new.jpg";//图片水印模式下的覆盖图片的实际地址
+        #region 私有成員
+        private int _Error = 0;//返回上傳狀態。 
+        private int _MaxSize = 1024 * 1024;//最大單個上傳文件 (默認)
+        private string _FileType = "jpg;gif;bmp;png";//所支持的上傳類型用"/"隔開 
+        private string _SavePath = System.Web.HttpContext.Current.Server.MapPath(".") + "\\";//保存文件的實際路徑 
+        private int _SaveType = 0;//上傳文件的類型，0代表自動生成文件名 
+        private HtmlInputFile _FormFile;//上傳控件。 
+        private string _InFileName = "";//非自動生成文件名設置。 
+        private string _OutFileName = "";//輸出文件名。 
+        private bool _IsCreateImg = true;//是否生成縮略圖。 
+        private bool _Iss = false;//是否有縮略圖生成.
+        private int _Height = 0;//獲取上傳圖片的高度 
+        private int _Width = 0;//獲取上傳圖片的寬度 
+        private int _sHeight = 120;//設置生成縮略圖的高度 
+        private int _sWidth = 120;//設置生成縮略圖的寬度
+        private bool _IsDraw = false;//設置是否加水印
+        private int _DrawStyle = 0;//設置加水印的方式０：文字水印模式，１：圖片水印模式,2:不加
+        private int _DrawString_x = 10;//繪製文本的Ｘ坐標（左上角）
+        private int _DrawString_y = 10;//繪製文本的Ｙ坐標（左上角）
+        private string _AddText = "GlobalNatureCrafts";//設置水印內容
+        private string _Font = "細明體";//設置水印字體
+        private int _FontSize = 12;//設置水印字大小
+        private int _FileSize = 0;//獲取已經上傳文件的大小
+        private string _CopyIamgePath = System.Web.HttpContext.Current.Server.MapPath(".") + "/images/5dm_new.jpg";//圖片水印模式下的覆蓋圖片的實際地址
         #endregion
 
-        #region 公有属性
+        #region 公有屬性
         /// <summary>
         /// Error返回值
-        /// 1、没有上传的文件
-        /// 2、类型不允许
+        /// 1、沒有上傳的文件
+        /// 2、類型不允許
         /// 3、大小超限
-        /// 4、未知错误
-        /// 0、上传成功。 
+        /// 4、未知錯誤
+        /// 0、上傳成功。 
         /// </summary>
         public int Error
         {
@@ -203,7 +203,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 最大单个上传文件
+        /// 最大單個上傳文件
         /// </summary>
         public int MaxSize
         {
@@ -211,7 +211,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 所支持的上传类型用";"隔开 
+        /// 所支持的上傳類型用";"隔開 
         /// </summary>
         public string FileType
         {
@@ -219,7 +219,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 保存文件的实际路径 
+        /// 保存文件的實際路徑 
         /// </summary>
         public string SavePath
         {
@@ -228,7 +228,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传文件的类型，0代表自动生成文件名
+        /// 上傳文件的類型，0代表自動生成文件名
         /// </summary>
         public int SaveType
         {
@@ -236,7 +236,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传控件
+        /// 上傳控件
         /// </summary>
         public HtmlInputFile FormFile
         {
@@ -244,7 +244,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 非自动生成文件名设置。
+        /// 非自動生成文件名設置。
         /// </summary>
         public string InFileName
         {
@@ -252,7 +252,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 输出文件名
+        /// 輸出文件名
         /// </summary>
         public string OutFileName
         {
@@ -261,7 +261,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 输出的缩略图文件名
+        /// 輸出的縮略圖文件名
         /// </summary>
         public string OutThumbFileName
         {
@@ -270,7 +270,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否有缩略图生成.
+        /// 是否有縮略圖生成.
         /// </summary>
         public bool Iss
         {
@@ -278,7 +278,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取上传图片的宽度
+        /// 獲取上傳圖片的寬度
         /// </summary>
         public int Width
         {
@@ -286,7 +286,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取上传图片的高度
+        /// 獲取上傳圖片的高度
         /// </summary>
         public int Height
         {
@@ -294,7 +294,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置缩略图的宽度
+        /// 設置縮略圖的寬度
         /// </summary>
         public int sWidth
         {
@@ -303,7 +303,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置缩略图的高度
+        /// 設置縮略圖的高度
         /// </summary>
         public int sHeight
         {
@@ -312,7 +312,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否生成缩略图
+        /// 是否生成縮略圖
         /// </summary>
         public bool IsCreateImg
         {
@@ -330,9 +330,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置加水印的方式
+        /// 設置加水印的方式
         /// 0:文字水印模式
-        /// 1:图片水印模式
+        /// 1:圖片水印模式
         /// 2:不加
         /// </summary>
         public int DrawStyle
@@ -342,7 +342,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 绘制文本的Ｘ坐标（左上角）
+        /// 繪製文本的Ｘ坐標（左上角）
         /// </summary>
         public int DrawString_x
         {
@@ -351,7 +351,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 绘制文本的Ｙ坐标（左上角）
+        /// 繪製文本的Ｙ坐標（左上角）
         /// </summary>
         public int DrawString_y
         {
@@ -360,7 +360,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置文字水印内容
+        /// 設置文字水印內容
         /// </summary>
         public string AddText
         {
@@ -369,7 +369,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置文字水印字体
+        /// 設置文字水印字體
         /// </summary>
         public string Font
         {
@@ -378,7 +378,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置文字水印字的大小
+        /// 設置文字水印字的大小
         /// </summary>
         public int FontSize
         {
@@ -396,7 +396,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 图片水印模式下的覆盖图片的实际地址
+        /// 圖片水印模式下的覆蓋圖片的實際地址
         /// </summary>
         public string CopyIamgePath
         {
@@ -407,7 +407,7 @@ namespace DotNet.Utilities
 
         #region 私有方法
         /// <summary>
-        /// 获取文件的后缀名 
+        /// 獲取文件的後綴名 
         /// </summary>
         private string GetExt(string path)
         {
@@ -415,7 +415,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取输出文件的文件名
+        /// 獲取輸出文件的文件名
         /// </summary>
         private string FileName(string Ext)
         {
@@ -426,7 +426,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 检查上传的文件的类型，是否允许上传。
+        /// 檢查上傳的文件的類型，是否允許上傳。
         /// </summary>
         private bool IsUpload(string Ext)
         {
@@ -445,7 +445,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 上传图片
+        #region 上傳圖片
         public void Upload()
         {
             HttpPostedFile hpFile = _FormFile.PostedFile;
@@ -515,24 +515,24 @@ namespace DotNet.Utilities
                     }
                 }
 
-                //获取图片的高度和宽度
+                //獲取圖片的高度和寬度
                 System.Drawing.Image Img = System.Drawing.Image.FromStream(newFile);
                 _Width = Img.Width;
                 _Height = Img.Height;
 
-                //生成缩略图部分 
+                //生成縮略圖部分 
                 if (_IsCreateImg)
                 {
-                    #region 缩略图大小只设置了最大范围，并不是实际大小
+                    #region 縮略圖大小只設置了最大範圍，並不是實際大小
                     float realbili = (float)_Width / (float)_Height;
                     float wishbili = (float)_sWidth / (float)_sHeight;
 
-                    //实际图比缩略图最大尺寸更宽矮，以宽为准
+                    //實際圖比縮略圖最大尺寸更寬矮，以寬為準
                     if (realbili > wishbili)
                     {
                         _sHeight = (int)((float)_sWidth / realbili);
                     }
-                    //实际图比缩略图最大尺寸更高长，以高为准
+                    //實際圖比縮略圖最大尺寸更高長，以高為準
                     else
                     {
                         _sWidth = (int)((float)_sHeight * realbili);

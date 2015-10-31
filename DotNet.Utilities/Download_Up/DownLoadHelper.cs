@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -12,19 +12,19 @@ using System.Threading;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 文件下载帮助类
+    /// 文件下載幫助類
     /// </summary>
     public class DownLoadHelper
     {
-        #region ResponseFile 输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
+        #region ResponseFile 輸出硬盤文件，提供下載 支持大文件、續傳、速度限制、資源佔用小
         /// <summary>
-        ///  输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
+        ///  輸出硬盤文件，提供下載 支持大文件、續傳、速度限制、資源佔用小
         /// </summary>
-        /// <param name="_Request">Page.Request对象</param>
-        /// <param name="_Response">Page.Response对象</param>
-        /// <param name="_fileName">下载文件名</param>
-        /// <param name="_fullPath">带文件名下载路径</param>
-        /// <param name="_speed">每秒允许下载的字节数</param>
+        /// <param name="_Request">Page.Request對像</param>
+        /// <param name="_Response">Page.Response對像</param>
+        /// <param name="_fileName">下載文件名</param>
+        /// <param name="_fullPath">帶文件名下載路徑</param>
+        /// <param name="_speed">每秒允許下載的字節數</param>
         /// <returns>返回是否成功</returns>
         public static bool ResponseFile(HttpRequest _Request, HttpResponse _Response, string _fileName, string _fullPath, long _speed)
         {

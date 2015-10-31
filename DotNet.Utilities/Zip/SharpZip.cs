@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：SharpZip
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -12,7 +12,7 @@ using Microsoft.Win32;
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 
-///压缩、解压缩类
+///壓縮、解壓縮類
 namespace DotNet.Utilities
 {
     public class SharpZip
@@ -21,10 +21,10 @@ namespace DotNet.Utilities
         { }
 
         /// <summary>
-        /// 压缩
+        /// 壓縮
         /// </summary> 
-        /// <param name="filename"> 压缩后的文件名(包含物理路径)</param>
-        /// <param name="directory">待压缩的文件夹(包含物理路径)</param>
+        /// <param name="filename"> 壓縮後的文件名(包含物理路徑)</param>
+        /// <param name="directory">待壓縮的文件夾(包含物理路徑)</param>
         public static void PackFiles(string filename, string directory)
         {
             try
@@ -41,10 +41,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 解压缩
+        /// 解壓縮
         /// </summary>
-        /// <param name="file">待解压文件名(包含物理路径)</param>
-        /// <param name="dir"> 解压到哪个目录中(包含物理路径)</param>
+        /// <param name="file">待解壓文件名(包含物理路徑)</param>
+        /// <param name="dir"> 解壓到哪個目錄中(包含物理路徑)</param>
         public static bool UnpackFiles(string file, string dir)
         {
             try
@@ -97,7 +97,7 @@ namespace DotNet.Utilities
     {
         #region 私有方法
         /// <summary>
-        /// 递归压缩文件夹方法
+        /// 遞歸壓縮文件夾方法
         /// </summary>
         private static bool ZipFileDictory(string FolderToZip, ZipOutputStream s, string ParentFolderName)
         {
@@ -158,10 +158,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 压缩目录
+        /// 壓縮目錄
         /// </summary>
-        /// <param name="FolderToZip">待压缩的文件夹，全路径格式</param>
-        /// <param name="ZipedFile">压缩后的文件名，全路径格式</param>
+        /// <param name="FolderToZip">待壓縮的文件夾，全路徑格式</param>
+        /// <param name="ZipedFile">壓縮後的文件名，全路徑格式</param>
         private static bool ZipFileDictory(string FolderToZip, string ZipedFile, int level)
         {
             bool res;
@@ -178,15 +178,15 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 压缩文件
+        /// 壓縮文件
         /// </summary>
-        /// <param name="FileToZip">要进行压缩的文件名</param>
-        /// <param name="ZipedFile">压缩后生成的压缩文件名</param>
+        /// <param name="FileToZip">要進行壓縮的文件名</param>
+        /// <param name="ZipedFile">壓縮後生成的壓縮文件名</param>
         private static bool ZipFile(string FileToZip, string ZipedFile, int level)
         {
             if (!File.Exists(FileToZip))
             {
-                throw new System.IO.FileNotFoundException("指定要压缩的文件: " + FileToZip + " 不存在!");
+                throw new System.IO.FileNotFoundException("指定要壓縮的文件: " + FileToZip + " 不存在!");
             }
             FileStream ZipFile = null;
             ZipOutputStream ZipStream = null;
@@ -235,10 +235,10 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 压缩
+        /// 壓縮
         /// </summary>
-        /// <param name="FileToZip">待压缩的文件目录</param>
-        /// <param name="ZipedFile">生成的目标文件</param>
+        /// <param name="FileToZip">待壓縮的文件目錄</param>
+        /// <param name="ZipedFile">生成的目標文件</param>
         /// <param name="level">6</param>
         public static bool Zip(String FileToZip, String ZipedFile, int level)
         {
@@ -257,10 +257,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 解压
+        /// 解壓
         /// </summary>
-        /// <param name="FileToUpZip">待解压的文件</param>
-        /// <param name="ZipedFolder">解压目标存放目录</param>
+        /// <param name="FileToUpZip">待解壓的文件</param>
+        /// <param name="ZipedFolder">解壓目標存放目錄</param>
         public static void UnZip(string FileToUpZip, string ZipedFolder)
         {
             if (!File.Exists(FileToUpZip))
@@ -330,7 +330,7 @@ namespace DotNet.Utilities
 
     public class ZipHelper
     {
-        #region 私有变量
+        #region 私有變量
         String the_rar;
         RegistryKey the_Reg;
         Object the_Obj;
@@ -340,11 +340,11 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 压缩
+        /// 壓縮
         /// </summary>
-        /// <param name="zipname">要解压的文件名</param>
-        /// <param name="zippath">要压缩的文件目录</param>
-        /// <param name="dirpath">初始目录</param>
+        /// <param name="zipname">要解壓的文件名</param>
+        /// <param name="zippath">要壓縮的文件目錄</param>
+        /// <param name="dirpath">初始目錄</param>
         public void EnZip(string zipname, string zippath, string dirpath)
         {
             try
@@ -371,10 +371,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 解压缩
+        /// 解壓縮
         /// </summary>
-        /// <param name="zipname">要解压的文件名</param>
-        /// <param name="zippath">要解压的文件路径</param>
+        /// <param name="zipname">要解壓的文件名</param>
+        /// <param name="zippath">要解壓的文件路徑</param>
         public void DeZip(string zipname, string zippath)
         {
             try

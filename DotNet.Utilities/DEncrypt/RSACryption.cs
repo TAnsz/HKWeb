@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧Assistant
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System; 
 using System.Text; 
@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 namespace DotNet.Utilities
 { 
 	/// <summary> 
-	/// RSA加密解密及RSA签名和验证
+	/// RSA盞秆盞のRSA帽㎝喷靡
 	/// </summary> 
 	public class RSACryption 
 	{ 		
@@ -19,12 +19,12 @@ namespace DotNet.Utilities
 		} 
 		
 
-		#region RSA 加密解密 
+		#region RSA 盞秆盞 
 
-		#region RSA 的密钥产生 
+		#region RSA 盞芲玻ネ 
 	
 		/// <summary>
-		/// RSA 的密钥产生 产生私钥 和公钥 
+		/// RSA 盞芲玻ネ 玻ネ╬芲 ㎝そ芲 
 		/// </summary>
 		/// <param name="xmlKeys"></param>
 		/// <param name="xmlPublicKey"></param>
@@ -36,14 +36,14 @@ namespace DotNet.Utilities
 		} 
 		#endregion 
 
-		#region RSA的加密函数 
+		#region RSA盞ㄧ计 
 		//############################################################################## 
-		//RSA 方式加密 
-		//说明KEY必须是XML的行式,返回的是字符串 
-		//在有一点需要说明！！该加密方式有 长度 限制的！！ 
+		//RSA よΑ盞 
+		//弧KEYゲ斗琌XML︽Α,琌才﹃ 
+		//Τ翴惠璶弧赣盞よΑΤ   
 		//############################################################################## 
 
-		//RSA的加密函数  string
+		//RSA盞ㄧ计  string
 		public string RSAEncrypt(string xmlPublicKey,string m_strEncryptString ) 
 		{ 
 			
@@ -58,7 +58,7 @@ namespace DotNet.Utilities
 			return Result; 
 			
 		} 
-		//RSA的加密函数 byte[]
+		//RSA盞ㄧ计 byte[]
 		public string RSAEncrypt(string xmlPublicKey,byte[] EncryptString ) 
 		{ 
 			
@@ -73,8 +73,8 @@ namespace DotNet.Utilities
 		} 
 		#endregion 
 
-		#region RSA的解密函数 
-		//RSA的解密函数  string
+		#region RSA秆盞ㄧ计 
+		//RSA秆盞ㄧ计  string
 		public string RSADecrypt(string xmlPrivateKey, string m_strDecryptString ) 
 		{			
 			byte[] PlainTextBArray; 
@@ -89,7 +89,7 @@ namespace DotNet.Utilities
 			
 		} 
 
-		//RSA的解密函数  byte
+		//RSA秆盞ㄧ计  byte
 		public string RSADecrypt(string xmlPrivateKey, byte[] DecryptString ) 
 		{			
 			byte[] DypherTextBArray; 
@@ -105,13 +105,13 @@ namespace DotNet.Utilities
 
 		#endregion 
 
-		#region RSA数字签名 
+		#region RSA计帽 
 
-		#region 获取Hash描述表 
-		//获取Hash描述表 
+		#region 莉Hash磞瓃 
+		//莉Hash磞瓃 
 		public bool GetHash(string m_strSource, ref byte[] HashData) 
 		{ 			
-			//从字符串中取得Hash描述 
+			//眖才﹃い眔Hash磞瓃 
 			byte[] Buffer; 
 			System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5"); 
 			Buffer = System.Text.Encoding.GetEncoding("GB2312").GetBytes(m_strSource); 
@@ -120,11 +120,11 @@ namespace DotNet.Utilities
 			return true; 			
 		} 
 
-		//获取Hash描述表 
+		//莉Hash磞瓃 
 		public bool GetHash(string m_strSource, ref string strHashData) 
 		{ 
 			
-			//从字符串中取得Hash描述 
+			//眖才﹃い眔Hash磞瓃 
 			byte[] Buffer; 
 			byte[] HashData; 
 			System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5"); 
@@ -136,11 +136,11 @@ namespace DotNet.Utilities
 			
 		} 
 
-		//获取Hash描述表 
+		//莉Hash磞瓃 
 		public bool GetHash(System.IO.FileStream objFile, ref byte[] HashData) 
 		{ 
 			
-			//从文件中取得Hash描述 
+			//眖ゅンい眔Hash磞瓃 
 			System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5"); 
 			HashData = MD5.ComputeHash(objFile); 
 			objFile.Close(); 
@@ -149,11 +149,11 @@ namespace DotNet.Utilities
 			
 		} 
 
-		//获取Hash描述表 
+		//莉Hash磞瓃 
 		public bool GetHash(System.IO.FileStream objFile, ref string strHashData) 
 		{ 
 			
-			//从文件中取得Hash描述 
+			//眖ゅンい眔Hash磞瓃 
 			byte[] HashData; 
 			System.Security.Cryptography.HashAlgorithm MD5 = System.Security.Cryptography.HashAlgorithm.Create("MD5"); 
 			HashData = MD5.ComputeHash(objFile); 
@@ -166,8 +166,8 @@ namespace DotNet.Utilities
 		} 
 		#endregion 
 
-		#region RSA签名 
-		//RSA签名 
+		#region RSA帽 
+		//RSA帽 
 		public bool SignatureFormatter(string p_strKeyPrivate, byte[] HashbyteSignature, ref byte[] EncryptedSignatureData) 
 		{ 
 			
@@ -175,16 +175,16 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPrivate); 
 				System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA); 
-				//设置签名的算法为MD5 
+				//砞竚帽衡猭MD5 
 				RSAFormatter.SetHashAlgorithm("MD5"); 
-				//执行签名 
+				//磅︽帽 
 				EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature); 
 
 				return true; 
 			
 		} 
 
-		//RSA签名 
+		//RSA帽 
 		public bool SignatureFormatter(string p_strKeyPrivate, byte[] HashbyteSignature, ref string m_strEncryptedSignatureData) 
 		{ 
 			
@@ -194,9 +194,9 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPrivate); 
 				System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA); 
-				//设置签名的算法为MD5 
+				//砞竚帽衡猭MD5 
 				RSAFormatter.SetHashAlgorithm("MD5"); 
-				//执行签名 
+				//磅︽帽 
 				EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature); 
 
 				m_strEncryptedSignatureData = Convert.ToBase64String(EncryptedSignatureData); 
@@ -205,7 +205,7 @@ namespace DotNet.Utilities
 			
 		} 
 
-		//RSA签名 
+		//RSA帽 
 		public bool SignatureFormatter(string p_strKeyPrivate, string m_strHashbyteSignature, ref byte[] EncryptedSignatureData) 
 		{ 
 			
@@ -216,16 +216,16 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPrivate); 
 				System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA); 
-				//设置签名的算法为MD5 
+				//砞竚帽衡猭MD5 
 				RSAFormatter.SetHashAlgorithm("MD5"); 
-				//执行签名 
+				//磅︽帽 
 				EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature); 
 
 				return true; 
 			
 		} 
 
-		//RSA签名 
+		//RSA帽 
 		public bool SignatureFormatter(string p_strKeyPrivate, string m_strHashbyteSignature, ref string m_strEncryptedSignatureData) 
 		{ 
 			
@@ -237,9 +237,9 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPrivate); 
 				System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA); 
-				//设置签名的算法为MD5 
+				//砞竚帽衡猭MD5 
 				RSAFormatter.SetHashAlgorithm("MD5"); 
-				//执行签名 
+				//磅︽帽 
 				EncryptedSignatureData = RSAFormatter.CreateSignature(HashbyteSignature); 
 
 				m_strEncryptedSignatureData = Convert.ToBase64String(EncryptedSignatureData); 
@@ -249,7 +249,7 @@ namespace DotNet.Utilities
 		} 
 		#endregion 
 
-		#region RSA 签名验证 
+		#region RSA 帽喷靡 
 
 		public bool SignatureDeformatter(string p_strKeyPublic, byte[] HashbyteDeformatter, byte[] DeformatterData) 
 		{ 
@@ -258,7 +258,7 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPublic); 
 				System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA); 
-				//指定解密的时候HASH算法为MD5 
+				//﹚秆盞HASH衡猭MD5 
 				RSADeformatter.SetHashAlgorithm("MD5"); 
 
 				if(RSADeformatter.VerifySignature(HashbyteDeformatter,DeformatterData)) 
@@ -283,7 +283,7 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPublic); 
 				System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA); 
-				//指定解密的时候HASH算法为MD5 
+				//﹚秆盞HASH衡猭MD5 
 				RSADeformatter.SetHashAlgorithm("MD5"); 
 
 				if(RSADeformatter.VerifySignature(HashbyteDeformatter,DeformatterData)) 
@@ -306,7 +306,7 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPublic); 
 				System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA); 
-				//指定解密的时候HASH算法为MD5 
+				//﹚秆盞HASH衡猭MD5 
 				RSADeformatter.SetHashAlgorithm("MD5"); 
 
 				DeformatterData =Convert.FromBase64String(p_strDeformatterData); 
@@ -333,7 +333,7 @@ namespace DotNet.Utilities
 
 				RSA.FromXmlString(p_strKeyPublic); 
 				System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA); 
-				//指定解密的时候HASH算法为MD5 
+				//﹚秆盞HASH衡猭MD5 
 				RSADeformatter.SetHashAlgorithm("MD5"); 
 
 				DeformatterData =Convert.FromBase64String(p_strDeformatterData); 

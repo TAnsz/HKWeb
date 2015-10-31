@@ -1,10 +1,10 @@
-﻿//------------------------------------------------------------------------------
-// <自动生成>
-//     此代码由工具生成。
+//------------------------------------------------------------------------------
+// <自動生成>
+//     此代碼由工具生成。
 //
-//     对此文件的更改可能会导致不正确的行为，并且如果
-//     重新生成代码，这些更改将会丢失。 
-// </自动生成>
+//     對此文件的更改可能會導致不正確的行為，並且如果
+//     重新生成代碼，這些更改將會丟失。 
+// </自動生成>
 //------------------------------------------------------------------------------
 
 namespace Solution.Web.Managers.WebManage.Systems.Set {
@@ -16,8 +16,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// Head1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
@@ -25,8 +25,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// form1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -34,8 +34,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// PageManager1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.PageManager PageManager1;
         
@@ -43,8 +43,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// Panel1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.Panel Panel1;
         
@@ -52,8 +52,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// toolBar 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.Toolbar toolBar;
         
@@ -61,8 +61,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// ButtonSave 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.Button ButtonSave;
         
@@ -70,8 +70,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// Panel2 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.Panel Panel2;
         
@@ -79,8 +79,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// GroupPanel1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.GroupPanel GroupPanel1;
         
@@ -88,8 +88,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtWebName 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtWebName;
         
@@ -97,8 +97,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtWebDomain 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtWebDomain;
         
@@ -106,8 +106,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtWebEmail 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtWebEmail;
         
@@ -115,8 +115,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// TextBox1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox TextBox1;
         
@@ -124,8 +124,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// TextBox2 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox TextBox2;
         
@@ -133,8 +133,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// TextBox3 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox TextBox3;
         
@@ -142,8 +142,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// Manage 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.GroupPanel Manage;
         
@@ -151,8 +151,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// SimpleForm1 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.SimpleForm SimpleForm1;
         
@@ -160,8 +160,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// rblIsStopWeb 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsStopWeb;
         
@@ -169,8 +169,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtIsStopText 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtIsStopText;
         
@@ -178,8 +178,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// rblIsStopUserReg 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsStopUserReg;
         
@@ -187,8 +187,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// rblIsPostReg 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsPostReg;
         
@@ -196,8 +196,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// rblRegIsEmailAlert 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblRegIsEmailAlert;
         
@@ -205,8 +205,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// rblIsPostArticle 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsPostArticle;
         
@@ -214,8 +214,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtLoginLogReserveTime 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox txtLoginLogReserveTime;
         
@@ -223,8 +223,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtUseLogReserveTime 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox txtUseLogReserveTime;
         
@@ -232,8 +232,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// EmailSet 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.GroupPanel EmailSet;
         
@@ -241,8 +241,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// SimpleForm2 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.SimpleForm SimpleForm2;
         
@@ -250,8 +250,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtEmailSmtp 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtEmailSmtp;
         
@@ -259,8 +259,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtEmailUserName 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtEmailUserName;
         
@@ -268,8 +268,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// txtEmailPassWord 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtEmailPassWord;
         
@@ -277,8 +277,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Set {
         /// chkSendTest 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 自動生成的字段。
+        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
         /// </remarks>
         protected global::FineUI.CheckBox chkSendTest;
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using DotNet.Utilities;
@@ -8,13 +8,13 @@ using Solution.DataAccess.DbHelper;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-21
- *   文件名称：PagePowerSignList.aspx.cs
- *   描    述：页面控件权限管理
+ *   創建日期：2014-06-21
+ *   文件名稱：PagePowerSignList.aspx.cs
+ *   描    述：頁面控件權限管理
  *             
  *   修 改 人：
  *   修改日期：
@@ -36,33 +36,33 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             if (MenuTree.Nodes.Count == 0)
             {
-                //创建树节点
+                //創建樹節點
                 var tnode = new FineUI.TreeNode();
-                //设置节点名称
-                tnode.Text = "菜单";
-                //设置节点ID
+                //設置節點名稱
+                tnode.Text = "菜單";
+                //設置節點ID
                 tnode.NodeID = "0";
-                //设置当前节点是否为最终节点
+                //設置當前節點是否為最終節點
                 tnode.Leaf = false;
-                //是否自动扩大
+                //是否自動擴大
                 tnode.Expanded = true;
 
-                //根据指定的父ID去查询相关的子集ID
+                //根據指定的父ID去查詢相關的子集ID
                 var dt = MenuInfoBll.GetInstence().GetDataTable();
-                //从一级菜单开始添加
+                //從一級菜單開始添加
                 AddNode(dt, tnode, "0");
 
                 MenuTree.Nodes.Add(tnode);
@@ -79,15 +79,15 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 return;
             }
 
-            //设置查询条件
+            //設置查詢條件
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, PagePowerSignTable.MenuInfo_Id, Comparison.Equals, index));
 
-            //设置排序
+            //設置排序
             var _order = new List<string>();
             _order.Add(PagePowerSignTable.Id);
 
-            //获取DataTable
+            //獲取DataTable
             var dt = PagePowerSignBll.GetInstence().GetDataTable(false, 0, null, 0, 0, wheres, _order);
 
             if (dt == null || dt.Rows.Count == 0)
@@ -98,7 +98,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             }
             else
             {
-                //绑定到表格——已绑定控件列表
+                //綁定到表格——已綁定控件列表
                 //PagePowerSignBll.GetInstence().BindGrid(Grid2, 0, 0, list, _order);
                 Grid2.DataSource = dt;
                 Grid2.DataBind();
@@ -113,30 +113,30 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             }
         }
 
-        #region 添加子节点
+        #region 添加子節點
         /// <summary>
-        /// 添加子节点
+        /// 添加子節點
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="node"></param>
         /// <param name="nodeid"></param>
         private void AddNode(DataTable dt, FineUI.TreeNode node, string nodeid)
         {
-            //筛选出当前节点下面的子节点
+            //篩選出當前節點下面的子節點
             var Childdt = DataTableHelper.GetFilterData(dt, MenuInfoTable.ParentId, nodeid, MenuInfoTable.Sort, "Asc");
-            //判断是否有节点存在
+            //判斷是否有節點存在
             if (Childdt.Rows.Count > 0)
             {
                 foreach (DataRow item in Childdt.Rows)
                 {
                     bool ispage = int.Parse(item[MenuInfoTable.IsMenu].ToString()) == 0 ? false : true;
                     var tnode = new FineUI.TreeNode();
-                    //设置节点名称
+                    //設置節點名稱
                     tnode.Text = item[MenuInfoTable.Name].ToString();
-                    //设置节点ID
+                    //設置節點ID
                     tnode.NodeID = item[MenuInfoTable.Id].ToString();
 
-                    //判断当前节点是否为最终节点
+                    //判斷當前節點是否為最終節點
                     if (ispage)
                     {
                         tnode.Leaf = true;
@@ -147,13 +147,13 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                         tnode.EnableClickEvent = false;
                         tnode.Enabled = false;
                     }
-                    //是否自动扩大
+                    //是否自動擴大
                     tnode.Expanded = true;
 
                     //if (!TreeMenu.Nodes.Contains(tnode))
                     node.Nodes.Add(tnode);
 
-                    //递归添加子节点
+                    //遞歸添加子節點
                     AddNode(dt, tnode, item[MenuInfoTable.Id].ToString());
 
                 }
@@ -164,9 +164,9 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
         #endregion
 
-        #region 列表属性绑定
+        #region 列表屬性綁定
         /// <summary>
-        /// 树列表点击事件
+        /// 樹列表點擊事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,28 +177,28 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         }
         #endregion
 
-        #region 按键事件
+        #region 按鍵事件
 
         /// <summary>
-        /// 页面绑定控件
+        /// 頁面綁定控件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ButtonEmpower_Click(object sender, EventArgs e)
         {
-            //获取当前选择的菜单项
+            //獲取當前選擇的菜單項
             var index = ConvertHelper.Cint0(hidId.Text);
-            //获取当前用户选择的全部记录Id
+            //獲取當前用戶選擇的全部記錄Id
             var id = GridViewHelper.GetSelectedKeyIntArray(Grid1);
-            //如果没有选择项，则直接退出
+            //如果沒有選擇項，則直接退出
             if (index == 0 || id == null || id.Length == 0)
                 return;
 
-            //添加到绑定表中
+            //添加到綁定表中
             foreach (var i in id)
             {
-                //检查当前控件是否已添加
-                //添加前判断一下本权限标签是否已添加过了，没有则进行添加
+                //檢查當前控件是否已添加
+                //添加前判斷一下本權限標籤是否已添加過了，沒有則進行添加
                 if (!PagePowerSignBll.GetInstence().Exist(x => x.MenuInfo_Id == index && x.PagePowerSignPublic_Id == i))
                 {
                     var ppsp = PagePowerSignPublicBll.GetInstence().GetModelForCache(i);
@@ -221,40 +221,40 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         }
 
         /// <summary>
-        /// 取消绑定控件
+        /// 取消綁定控件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ButtonCancel_Click(object sender, EventArgs e)
         {
-            //获取当前选择的菜单项
+            //獲取當前選擇的菜單項
             var index = ConvertHelper.Cint0(hidId.Text);
-            //获取当前用户选择的全部记录Id
+            //獲取當前用戶選擇的全部記錄Id
             var id = GridViewHelper.GetSelectedKeyIntArray(Grid2);
-            //如果没有选择项，则直接退出
+            //如果沒有選擇項，則直接退出
             if (index == 0 || id == null || id.Length == 0)
                 return;
 
-            //删除已绑定控件
+            //刪除已綁定控件
             PagePowerSignBll.GetInstence().Delete(this, id);
 
             BindGrid();
         }
 
         /// <summary>
-        /// 清空绑定控件
+        /// 清空綁定控件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ButtonEmpty_Click(object sender, EventArgs e)
         {
-            //获取当前选择的菜单项
+            //獲取當前選擇的菜單項
             var index = ConvertHelper.Cint0(hidId.Text);
-            //如果没有选择项，则直接退出
+            //如果沒有選擇項，則直接退出
             if (index == 0)
                 return;
 
-            //删除已绑定控件
+            //刪除已綁定控件
             PagePowerSignBll.GetInstence().Delete(this, x => x.MenuInfo_Id == index);
 
             BindGrid();

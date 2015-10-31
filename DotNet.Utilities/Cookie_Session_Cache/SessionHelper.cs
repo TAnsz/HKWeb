@@ -1,20 +1,20 @@
-﻿/// <summary>
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// Session 操作类
-    /// 1、GetSession(string name)根据session名获取session对象
-    /// 2、SetSession(string name, object val)设置session
+    /// Session 操作類
+    /// 1、GetSession(string name)根據session名獲取session對像
+    /// 2、SetSession(string name, object val)設置session
     /// </summary>
     public class SessionHelper
     {
         /// <summary>
-        /// 根据session名获取session对象
+        /// 根據session名獲取session對像
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -23,7 +23,7 @@ namespace DotNet.Utilities
             return HttpContext.Current.Session[name];
         }
 
-        /// <summary>获取指定Session的值值</summary>
+        /// <summary>獲取指定Session的值值</summary>
         /// <param name="strName">Session的ID</param>
         /// <returns>返回Session值</returns>
         public static string GetSessionString(string strName)
@@ -36,7 +36,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置session
+        /// 設置session
         /// </summary>
         /// <param name="name">session 名</param>
         /// <param name="val">session 值</param>
@@ -56,9 +56,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除一个指定的ession
+        /// 刪除一個指定的ession
         /// </summary>
-        /// <param name="name">Session名称</param>
+        /// <param name="name">Session名稱</param>
         /// <returns></returns>
         public static void RemoveSession(string name)
         {
@@ -66,7 +66,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除所有的ession
+        /// 刪除所有的ession
         /// </summary>
         /// <returns></returns>
         public static void RemoveAllSession(string name)

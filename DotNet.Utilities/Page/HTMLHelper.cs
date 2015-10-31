@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text; 
@@ -26,7 +26,7 @@ namespace DotNet.Utilities
         private static int currentTry = 0;
         #endregion
 
-        #region 公有属性
+        #region 公有屬性
         /// <summary> 
         /// Cookie
         /// </summary> 
@@ -39,7 +39,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary> 
-        /// 语言
+        /// 語言
         /// </summary> 
         public static Encoding Encoding
         {
@@ -79,9 +79,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取HTML
+        #region 獲取HTML
         /// <summary>
-        /// 获取HTML
+        /// 獲取HTML
         /// </summary>
         /// <param name="url">地址</param>
         /// <param name="postData">post 提交的字符串</param>
@@ -131,7 +131,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取HTML
+        /// 獲取HTML
         /// </summary>
         /// <param name="url">地址</param>
         /// <param name="cookieContainer">CookieContainer</param>
@@ -173,9 +173,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取字符流
+        #region 獲取字符流
         /// <summary>
-        /// 获取字符流
+        /// 獲取字符流
         /// </summary>
         //---------------------------------------------------------------------------------------------------------------
         // 示例:
@@ -229,18 +229,18 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 清除HTML标记
+        #region 清除HTML標記
         ///<summary>   
-        ///清除HTML标记   
+        ///清除HTML標記   
         ///</summary>   
-        ///<param name="NoHTML">包括HTML的源码</param>   
-        ///<returns>已经去除后的文字</returns>   
+        ///<param name="NoHTML">包括HTML的源碼</param>   
+        ///<returns>已經去除後的文字</returns>   
         public static string NoHTML(string Htmlstring)
         {
-            //删除脚本   
+            //刪除腳本   
             Htmlstring = Regex.Replace(Htmlstring, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
 
-            //删除HTML   
+            //刪除HTML   
             Regex regex = new Regex("<.+?>", RegexOptions.IgnoreCase);
             Htmlstring = regex.Replace(Htmlstring, "");
             Htmlstring = Regex.Replace(Htmlstring, @"<(.[^>]*)>", "", RegexOptions.IgnoreCase);
@@ -267,9 +267,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 匹配页面的链接
+        #region 匹配頁面的鏈接
         /// <summary>
-        /// 获取页面的链接正则
+        /// 獲取頁面的鏈接正則
         /// </summary>
         public string GetHref(string HtmlCode)
         {
@@ -283,11 +283,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 匹配页面的图片地址
+        #region 匹配頁面的圖片地址
         /// <summary>
-        /// 匹配页面的图片地址
+        /// 匹配頁面的圖片地址
         /// </summary>
-        /// <param name="imgHttp">要补充的http://路径信息</param>
+        /// <param name="imgHttp">要補充的http://路徑信息</param>
         public string GetImgSrc(string HtmlCode, string imgHttp)
         {
             string MatchVale = "";
@@ -301,7 +301,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 匹配<img src="" />中的图片路径实际链接
+        /// 匹配<img src="" />中的圖片路徑實際鏈接
         /// </summary>
         /// <param name="ImgString"><img src="" />字符串</param>
         public string GetImg(string ImgString, string imgHttp)
@@ -319,9 +319,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 抓取远程页面内容
+        #region 抓取遠程頁面內容
         /// <summary>
-        /// 以GET方式抓取远程页面内容
+        /// 以GET方式抓取遠程頁面內容
         /// </summary>
         public static string Get_Http(string tUrl)
         {
@@ -349,9 +349,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 以POST方式抓取远程页面内容
+        /// 以POST方式抓取遠程頁面內容
         /// </summary>
-        /// <param name="postData">参数列表</param>
+        /// <param name="postData">參數列表</param>
         public static string Post_Http(string url, string postData, string encodeType)
         {
             string strResult = null;
@@ -364,7 +364,7 @@ namespace DotNet.Utilities
                 myRequest.ContentType = "application/x-www-form-urlencoded";
                 myRequest.ContentLength = POST.Length;
                 Stream newStream = myRequest.GetRequestStream();
-                newStream.Write(POST, 0, POST.Length); //设置POST
+                newStream.Write(POST, 0, POST.Length); //設置POST
                 newStream.Close();
                 HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
                 StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.Default);
@@ -378,9 +378,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 压缩HTML输出
+        #region 壓縮HTML輸出
         /// <summary>
-        /// 压缩HTML输出
+        /// 壓縮HTML輸出
         /// </summary>
         public static string ZipHtml(string Html)
         {
@@ -391,11 +391,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 过滤指定HTML标签
+        #region 過濾指定HTML標籤
         /// <summary>
-        /// 过滤指定HTML标签
+        /// 過濾指定HTML標籤
         /// </summary>
-        /// <param name="s_TextStr">要过滤的字符</param>
+        /// <param name="s_TextStr">要過濾的字符</param>
         /// <param name="html_Str">a img p div</param>
         public static string DelHtml(string s_TextStr, string html_Str)
         {
@@ -409,9 +409,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 加载文件块
+        #region 加載文件塊
         /// <summary>
-        /// 加载文件块
+        /// 加載文件塊
         /// </summary>
         public static string File(string Path, System.Web.UI.Page p)
         {
@@ -419,9 +419,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 加载CSS样式文件
+        #region 加載CSS樣式文件
         /// <summary>
-        /// 加载CSS样式文件
+        /// 加載CSS樣式文件
         /// </summary>
         public static string CSS(string cssPath, System.Web.UI.Page p)
         {
@@ -429,9 +429,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 加载JavaScript脚本文件
+        #region 加載JavaScript腳本文件
         /// <summary>
-        /// 加载javascript脚本文件
+        /// 加載javascript腳本文件
         /// </summary>
         public static string JS(string jsPath, System.Web.UI.Page p)
         {

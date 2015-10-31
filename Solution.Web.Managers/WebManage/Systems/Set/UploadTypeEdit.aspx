@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadTypeEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Set.UploadTypeEdit" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadTypeEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Set.UploadTypeEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>上传类型编辑</title>
+    <title>上傳類型編輯</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -22,9 +22,9 @@
                     <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false"
                         AutoScroll="true" BodyPadding="5px" runat="server" EnableCollapse="True">
                         <Items>
-                            <f:TextBox runat="server" Label="名称" ID="txtName" ShowRedStar="true" Width="300px"></f:TextBox>
-                            <f:TextBox runat="server" Label="关键字" ID="txtTypeKey" ShowRedStar="true" Width="300px" ></f:TextBox>
-                            <f:TextArea runat="server" Label="绑定扩展名" ID="txtExt" ShowRedStar="True" Width="300px" Height="100px"></f:TextArea>
+                            <f:TextBox runat="server" Label="名稱" ID="txtName" ShowRedStar="true" Width="300px"></f:TextBox>
+                            <f:TextBox runat="server" Label="關鍵字" ID="txtTypeKey" ShowRedStar="true" Width="300px" ></f:TextBox>
+                            <f:TextArea runat="server" Label="綁定擴展名" ID="txtExt" ShowRedStar="True" Width="300px" Height="100px"></f:TextArea>
                             <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
                         </Items>
                     </f:SimpleForm>

@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 图片下载
+    /// 圖片下載
     /// </summary>
     public class ImageDown
     {
@@ -21,7 +21,7 @@ namespace DotNet.Utilities
 
         #region 私有方法
         /// <summary>
-        /// 获取图片标志
+        /// 獲取圖片標誌
         /// </summary>
         private string[] GetImgTag(string htmlStr)
         {
@@ -37,7 +37,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取图片URL地址
+        /// 獲取圖片URL地址
         /// </summary>
         private string GetImgUrl(string imgTagStr)
         {
@@ -52,16 +52,16 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 下载图片到本地
+        /// 下載圖片到本地
         /// </summary>
         /// <param name="strHTML">HTML</param>
-        /// <param name="path">路径</param>
+        /// <param name="path">路徑</param>
         /// <param name="nowyymm">年月</param>
         /// <param name="nowdd">日</param>
         public string SaveUrlPics(string strHTML, string path)
         {
-            string nowym = DateTime.Now.ToString("yyyy-MM");  //当前年月
-            string nowdd = DateTime.Now.ToString("dd");       //当天号数
+            string nowym = DateTime.Now.ToString("yyyy-MM");  //當前年月
+            string nowdd = DateTime.Now.ToString("dd");       //當天號數
             path = path + nowym + "/" + nowdd;
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 

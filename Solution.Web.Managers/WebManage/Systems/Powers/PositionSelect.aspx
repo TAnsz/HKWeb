@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionSelect.aspx.cs"
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionSelect.aspx.cs"
     Inherits="Solution.Web.Managers.WebManage.Systems.Powers.PositionSelect" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>职位选择</title>
+    <title>職位選擇</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -14,20 +14,20 @@
         <Toolbars>
             <f:Toolbar ID="toolBar" runat="server">
                 <Items>
-                    <f:Button ID="ButtonSelect" runat="server" Text="确定选择" Icon="Disk" OnClick="ButtonSelect_Click">
+                    <f:Button ID="ButtonSelect" runat="server" Text="確定選擇" Icon="Disk" OnClick="ButtonSelect_Click">
                     </f:Button>
                 </Items>
             </f:Toolbar>
         </Toolbars>
         <Items>
-            <f:Panel ID="Panel2" Title="选择职位" runat="server" BodyPadding="0px" ShowBorder="False"
+            <f:Panel ID="Panel2" Title="選擇職位" runat="server" BodyPadding="0px" ShowBorder="False"
                 ShowHeader="True">
                 <Items>
                     <f:Form ID="Form6" ShowBorder="True" BodyPadding="1px" ShowHeader="False" runat="server">
                         <Rows>
                             <f:FormRow ID="FormRow2" runat="server">
                                 <Items>
-                                    <f:DropDownList Label="所属部门" AutoPostBack="true" CompareType="String"
+                                    <f:DropDownList Label="所屬部門" AutoPostBack="true" CompareType="String"
                                         EnableSimulateTree="true" runat="server" ID="ddlBranch" Width="250px"
                                         OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged">
                                     </f:DropDownList>
@@ -43,7 +43,7 @@
                                     <f:Grid ID="Grid1" EnableFrame="false" EnableCollapse="true" ShowBorder="true" ShowHeader="False"
                                         AllowPaging="False" runat="server" DataKeyNames="Id" Width="180px" Height="250px">
                                         <Columns>
-                                            <f:BoundField Width="150px" DataField="Name" SortField="Name" HeaderText="未绑定职位列表" />
+                                            <f:BoundField Width="150px" DataField="Name" SortField="Name" HeaderText="未綁定職位列表" />
                                         </Columns>
                                     </f:Grid>
                                 </Items>
@@ -71,7 +71,7 @@
                                     <f:Grid ID="Grid2" EnableFrame="false" EnableCollapse="true" ShowBorder="true" ShowHeader="False"
                                         AllowPaging="False" runat="server" DataKeyNames="Id" Width="180px" Height="250px">
                                         <Columns>
-                                            <f:BoundField Width="150px" DataField="Name" SortField="Name" HeaderText="已绑定职位列表" />
+                                            <f:BoundField Width="150px" DataField="Name" SortField="Name" HeaderText="已綁定職位列表" />
                                         </Columns>
                                     </f:Grid>
                                 </Items>

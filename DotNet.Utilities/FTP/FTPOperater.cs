@@ -1,7 +1,7 @@
 /// <summary>
-/// 类说明：CacheHelper
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧CacheHelper
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text;
@@ -10,14 +10,14 @@ using System.IO;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// FTP操作类
+    /// FTP巨摸
     /// </summary>
     public class FTPOperater
     {
-        #region 属性
+        #region 妮┦
         private FTPClient ftp;
         /// <summary>
-        /// 全局FTP访问变量
+        /// ЫFTP砐拜跑秖
         /// </summary>
         public FTPClient Ftp
         {
@@ -27,7 +27,7 @@ namespace DotNet.Utilities
 
         private string _server;
         /// <summary>
-        /// Ftp服务器
+        /// Ftp狝叭竟
         /// </summary>
         public string Server
         {
@@ -37,7 +37,7 @@ namespace DotNet.Utilities
 
         private string _User;
         /// <summary>
-        /// Ftp用户
+        /// Ftpノめ
         /// </summary>
         public string User
         {
@@ -47,7 +47,7 @@ namespace DotNet.Utilities
 
         private string _Pass;
         /// <summary>
-        /// Ftp密码
+        /// Ftp盞絏
         /// </summary>
         public string Pass
         {
@@ -57,7 +57,7 @@ namespace DotNet.Utilities
 
         private string _FolderZJ;
         /// <summary>
-        /// Ftp密码
+        /// Ftp盞絏
         /// </summary>
         public string FolderZJ
         {
@@ -67,7 +67,7 @@ namespace DotNet.Utilities
 
         private string _FolderWX;
         /// <summary>
-        /// Ftp密码
+        /// Ftp盞絏
         /// </summary>
         public string FolderWX
         {
@@ -77,7 +77,7 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 得到文件列表
+        /// 眔ゅン
         /// </summary>
         /// <returns></returns>
         public string[] GetList(string strPath)
@@ -89,12 +89,12 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 下载文件
+        /// 更ゅン
         /// </summary>
-        /// <param name="ftpFolder">ftp目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
-        /// <param name="localFolder">本地目录</param>
-        /// <param name="localFileName">本地文件名</param>
+        /// <param name="ftpFolder">ftpヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
+        /// <param name="localFolder">セヘ魁</param>
+        /// <param name="localFileName">セゅン</param>
         public bool GetFile(string ftpFolder, string ftpFileName, string localFolder, string localFileName)
         {
             try
@@ -122,17 +122,17 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 修改文件
+        /// эゅン
         /// </summary>
-        /// <param name="ftpFolder">本地目录</param>
-        /// <param name="ftpFileName">本地文件名temp</param>
-        /// <param name="localFolder">本地目录</param>
-        /// <param name="localFileName">本地文件名</param>
+        /// <param name="ftpFolder">セヘ魁</param>
+        /// <param name="ftpFileName">セゅンtemp</param>
+        /// <param name="localFolder">セヘ魁</param>
+        /// <param name="localFileName">セゅン</param>
         public bool AddMSCFile(string ftpFolder, string ftpFileName, string localFolder, string localFileName, string BscInfo)
         {
             string sLine = "";
             string sResult = "";
-            string path = "获得应用程序所在的完整的路径";
+            string path = "莉眔莱ノ祘┮Ч俱隔畖";
             path = path.Substring(0, path.LastIndexOf("\\"));
             try
             {
@@ -167,10 +167,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除文件
+        /// 埃ゅン
         /// </summary>
-        /// <param name="ftpFolder">ftp目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
+        /// <param name="ftpFolder">ftpヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
         public bool DelFile(string ftpFolder, string ftpFileName)
         {
             try
@@ -191,10 +191,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传文件
+        /// 肚ゅン
         /// </summary>
-        /// <param name="ftpFolder">ftp目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
+        /// <param name="ftpFolder">ftpヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
         public bool PutFile(string ftpFolder, string ftpFileName)
         {
             try
@@ -215,12 +215,12 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 下载文件
+        /// 更ゅン
         /// </summary>
-        /// <param name="ftpFolder">ftp目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
-        /// <param name="localFolder">本地目录</param>
-        /// <param name="localFileName">本地文件名</param>
+        /// <param name="ftpFolder">ftpヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
+        /// <param name="localFolder">セヘ魁</param>
+        /// <param name="localFileName">セゅン</param>
         public bool GetFileNoBinary(string ftpFolder, string ftpFileName, string localFolder, string localFileName)
         {
             try
@@ -250,10 +250,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 得到FTP上文件信息
+        /// 眔FTPゅン獺
         /// </summary>
-        /// <param name="ftpFolder">FTP目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
+        /// <param name="ftpFolder">FTPヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
         public string GetFileInfo(string ftpFolder, string ftpFileName)
         {
             string strResult = "";
@@ -273,7 +273,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 测试FTP服务器是否可登陆
+        /// 代刚FTP狝叭竟琌祅嘲
         /// </summary>
         public bool CanConnect()
         {
@@ -291,10 +291,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 得到FTP上文件信息
+        /// 眔FTPゅン獺
         /// </summary>
-        /// <param name="ftpFolder">FTP目录</param>
-        /// <param name="ftpFileName">ftp文件名</param>
+        /// <param name="ftpFolder">FTPヘ魁</param>
+        /// <param name="ftpFileName">ftpゅン</param>
         public string GetFileInfoConnected(string ftpFolder, string ftpFileName)
         {
             string strResult = "";
@@ -316,10 +316,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 得到文件列表
+        /// 眔ゅン
         /// </summary>
-        /// <param name="ftpFolder">FTP目录</param>
-        /// <returns>FTP通配符号</returns>
+        /// <param name="ftpFolder">FTPヘ魁</param>
+        /// <returns>FTP硄皌才腹</returns>
         public string[] GetFileList(string ftpFolder, string strMask)
         {
             string[] strResult;
@@ -341,7 +341,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        ///得到FTP传输对象
+        ///眔FTP肚块癸钩
         /// </summary>
         public FTPClient getFtpClient()
         {

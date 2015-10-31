@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using FineUI;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-25
- *   文件名称：UploadConfigEdit.aspx.cs
- *   描    述：上传类型编辑页面
+ *   創建日期：2014-06-25
+ *   文件名稱：UploadConfigEdit.aspx.cs
+ *   描    述：上傳類型編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -27,33 +28,33 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         {
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
-                //绑定下拉列表
+                //綁定下拉列表
                 UploadTypeBll.GetInstence().BandDropDownList(this, ddlUploadTypeId);
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
             
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int id = ConvertHelper.Cint0(hidId.Text);
 
             if (id != 0)
             {
-                //获取指定ID的菜单内容，如果不存在，则创建一个菜单实体
+                //獲取指定ID的菜單內容，如果不存在，則創建一個菜單實體
                 var model = UploadConfigBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
@@ -98,7 +99,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -108,47 +109,47 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
 
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    return txtName.Label + "不能为空！";
+                    return txtName.Label + "不能為空！";
                 }
                 var sName = StringHelper.Left(txtName.Text, 20);
                 if (UploadConfigBll.GetInstence().Exist(x => x.Name == sName && x.Id != id))
                 {
-                    return txtName.Label + "已存在！请重新输入！";
+                    return txtName.Label + "已存在！請重新輸入！";
                 }
                 if (string.IsNullOrEmpty(txtJoinName.Text.Trim()))
                 {
-                    return txtJoinName.Label + "不能为空！";
+                    return txtJoinName.Label + "不能為空！";
                 }
                 if (ddlUploadTypeId.SelectedValue == "0")
                 {
-                    return ddlUploadTypeId.Label + "为必选项，请选择后再保存！";
+                    return ddlUploadTypeId.Label + "為必選項，請選擇後再保存！";
                 }
                 if (string.IsNullOrEmpty(txtPicSize.Text.Trim()))
                 {
-                    return txtPicSize.Label + "不能为空！";
+                    return txtPicSize.Label + "不能為空！";
                 }
                 if (string.IsNullOrEmpty(txtFileSize.Text.Trim()))
                 {
-                    return txtFileSize.Label + "不能为空！";
+                    return txtFileSize.Label + "不能為空！";
                 }
                 if (string.IsNullOrEmpty(txtSaveDir.Text.Trim()))
                 {
-                    return txtSaveDir.Label + "不能为空！";
+                    return txtSaveDir.Label + "不能為空！";
                 }
                 #endregion
 
-                #region 赋值
-                //获取实体
+                #region 賦值
+                //獲取實體
                 var model = new UploadConfig(x => x.Id == id);
 
                 model.Name = sName;
                 model.JoinName = StringHelper.Left(txtJoinName.Text, 30);
                 model.UserType = (byte)ConvertHelper.Cint1(rblUserType.SelectedValue);
-                //读取上传类型
+                //讀取上傳類型
                 model.UploadType_Id = ConvertHelper.Cint0(ddlUploadTypeId.SelectedValue);
                 var uploadTypeModel = UploadTypeBll.GetInstence().GetModelForCache(model.UploadType_Id);
                 if (uploadTypeModel != null)
@@ -157,7 +158,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
                     model.UploadType_TypeKey = uploadTypeModel.TypeKey;
                 }
 
-                //上传限制
+                //上傳限制
                 model.PicSize = ConvertHelper.Cint0(txtPicSize.Text);
                 model.FileSize = ConvertHelper.Cint0(txtFileSize.Text);
 
@@ -174,25 +175,25 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
                 model.PicHeight = ConvertHelper.Cint0(txtPicHeight.Text);
                 model.PicQuality = ConvertHelper.Cint0(txtPicQuality.Text);
 
-                //大图
+                //大圖
                 model.IsBigPic = ConvertHelper.Ctinyint(rblIsBigPic.SelectedValue);
                 model.BigWidth = ConvertHelper.Cint0(txtBigWidth.Text);
                 model.BigHeight = ConvertHelper.Cint0(txtBigHeight.Text);
                 model.BigQuality = ConvertHelper.Cint0(txtBigQuality.Text);
 
-                //中图
+                //中圖
                 model.IsMidPic = ConvertHelper.Ctinyint(rblIsMidPic.SelectedValue);
                 model.MidWidth = ConvertHelper.Cint0(txtMidWidth.Text);
                 model.MidWidth = ConvertHelper.Cint0(txtMidWidth.Text);
                 model.MidHeight = ConvertHelper.Cint0(txtMidHeight.Text);
 
-                //小图
+                //小圖
                 model.IsMinPic = ConvertHelper.Ctinyint(rblIsMinPic.SelectedValue);
                 model.MinWidth = ConvertHelper.Cint0(txtMinWidth.Text);
                 model.MinWidth = ConvertHelper.Cint0(txtMinWidth.Text);
                 model.MinHeight = ConvertHelper.Cint0(txtMinHeight.Text);
 
-                //推荐图
+                //推薦圖
                 model.IsHotPic = ConvertHelper.Ctinyint(rblIsHotPic.SelectedValue);
                 model.HotWidth = ConvertHelper.Cint0(txtHotWidth.Text);
                 model.HotWidth = ConvertHelper.Cint0(txtHotWidth.Text);
@@ -201,7 +202,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
                 //加水印
                 model.IsWaterPic = ConvertHelper.Ctinyint(rblIsWaterPic.SelectedValue);
 
-                //修改时间与管理员
+                //修改時間與管理員
                 model.UpdateDate = DateTime.Now;
                 model.Manager_Id = OnlineUsersBll.GetInstence().GetManagerId();
                 model.Manager_CName = OnlineUsersBll.GetInstence().GetManagerCName();
@@ -209,16 +210,16 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
                 #endregion
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 UploadConfigBll.GetInstence().Save(this, model);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

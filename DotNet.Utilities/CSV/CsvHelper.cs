@@ -1,6 +1,6 @@
-﻿/// <summary>
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Data;
 using System.IO;
@@ -8,17 +8,17 @@ using System.IO;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// CSV文件转换类
+    /// CSV文件轉換類
     /// </summary>
     public static class CsvHelper
     {
         /// <summary>
-        /// 导出报表为Csv
+        /// 導出報表為Csv
         /// </summary>
         /// <param name="dt">DataTable</param>
-        /// <param name="strFilePath">物理路径</param>
-        /// <param name="tableheader">表头</param>
-        /// <param name="columname">字段标题,逗号分隔</param>
+        /// <param name="strFilePath">物理路徑</param>
+        /// <param name="tableheader">表頭</param>
+        /// <param name="columname">字段標題,逗號分隔</param>
         public static bool dt2csv(DataTable dt, string strFilePath, string tableheader, string columname)
         {
             try
@@ -48,10 +48,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 将Csv读入DataTable
+        /// 將Csv讀入DataTable
         /// </summary>
-        /// <param name="filePath">csv文件路径</param>
-        /// <param name="n">表示第n行是字段title,第n+1行是记录开始</param>
+        /// <param name="filePath">csv文件路徑</param>
+        /// <param name="n">表示第n行是字段title,第n+1行是記錄開始</param>
         public static DataTable csv2dt(string filePath, int n, DataTable dt)
         {
             StreamReader reader = new StreamReader(filePath, System.Text.Encoding.UTF8, false);

@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Web.SessionState;
@@ -7,7 +7,7 @@ using DotNet.Utilities;
 namespace Solution.Web.Managers.WebManage.Application
 {
     /// <summary>
-    /// Vcode 的摘要说明
+    /// Vcode 的摘要說明
     /// </summary>
     public class Vcode : IHttpHandler, IReadOnlySessionState
     {
@@ -21,12 +21,12 @@ namespace Solution.Web.Managers.WebManage.Application
             vcode.NoiseLine = 10;
             vcode.NoisePoint = 10;
             vcode.FontSize = 28;
-            //生成验证码
+            //生成驗證碼
             vcode.GetCaptcha();
 
             HttpContext.Current.Session["vcode"] = vcode.Code;
             
-            //输出验证码图片
+            //輸出驗證碼圖片
             Bitmap bitmap = vcode.CurrentBitmap;
             HttpContext.Current.Response.Clear();
             HttpContext.Current.Response.ContentType = "image/jpeg";

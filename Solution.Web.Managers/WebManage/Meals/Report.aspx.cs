@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,13 +13,13 @@ using System.Collections.Generic;
 using SubSonic.Query;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-17
- *   文件名称：Login.aspx.cs
- *   描    述：后端登陆页面
+ *   創建日期：2014-06-17
+ *   文件名稱：Login.aspx.cs
+ *   描    述：後端登陸頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -35,8 +35,8 @@ namespace Solution.Web.Managers.WebManage
             if (!IsPostBack)
             {
 
-                #region 报表测试
-                //显示当天的记录
+                #region 報表測試
+                //顯示當天的記錄
                 var wheres = new List<ConditionHelper.SqlqueryCondition>();
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.Equals, DateTime.Now.Date));
                 var dt = MealOrderingBll.GetInstence().GetDataTable(false,0,null,0,0,wheres);

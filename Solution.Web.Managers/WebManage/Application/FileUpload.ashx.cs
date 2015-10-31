@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Web;
 using System.Web.SessionState;
 using DotNet.Utilities;
@@ -11,20 +11,20 @@ using Solution.Logic.Managers;
 /***********************************************************************
  *   作    者：July
  *   博    客：
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：很多很多年前
- *   文件名称：FileUpload.ashx.cs
- *   描    述：上传类（本页只用于后台，前台不调用）
+ *   創建日期：很多很多年前
+ *   文件名稱：FileUpload.ashx.cs
+ *   描    述：上傳類（本頁只用於後台，前台不調用）
  *             
- *   修 改 人：AllEmpty（陈焕）-- 1654937@qq.com
+ *   修 改 人：AllEmpty（陳煥）-- 1654937@qq.com
  *   修改日期：2014-07-02
- *   修改原因：将程序进行修改，以适应本框架结构调用
+ *   修改原因：將程序進行修改，以適應本框架結構調用
  ***********************************************************************/
 namespace Solution.Web.Managers.WebManage.Application
 {
     /// <summary>
-    /// FileUpload 上传类（本页只用于后台，前台不调用）
+    /// FileUpload 上傳類（本頁只用於後台，前台不調用）
     /// </summary>
     public class FileUpload : IHttpHandler, IRequiresSessionState
     {
@@ -45,30 +45,30 @@ namespace Solution.Web.Managers.WebManage.Application
                 if (!StringHelper.IsRndKey(key)) { key = ""; }
                 if (vid < 1 || key.Length < 10)
                 {
-                    ShowMsg_Swf("缺少参数:key或sid");
+                    ShowMsg_Swf("缺少參數:key或sid");
                     return;
                 }
 
                 //---------------------------------------------------
-                #region 判断权限
+                #region 判斷權限
                 userId = RequestHelper.PostInt0("uid");
                 if (userId < 1)
                 {
-                    ShowMsg_Swf("缺少参数:uid");
+                    ShowMsg_Swf("缺少參數:uid");
                     return;
                 }
 
                 string uk = RequestHelper.PostText("uk", 32);
                 if (uk.Length < 10)
                 {
-                    ShowMsg_Swf("缺少参数:uk");
+                    ShowMsg_Swf("缺少參數:uk");
                     return;
                 }
 
                 string userKey = OnlineUsersBll.GetInstence().GetMd5(ConvertHelper.Cint0(userId));
                 if (userKey != uk)
                 {
-                    ShowMsg_Swf("还未登陆，权限不足！");
+                    ShowMsg_Swf("還未登陸，權限不足！");
                     return;
                 }
 
@@ -84,7 +84,7 @@ namespace Solution.Web.Managers.WebManage.Application
                 }
                 else
                 {
-                    //上传成功，输出结果
+                    //上傳成功，輸出結果
                     ShowMsg_Swf("", 0, ConvertHelper.Cint0(m_r.Id),
                         m_r.Name, m_r.Path, m_r.Src);
                 }
@@ -97,11 +97,11 @@ namespace Solution.Web.Managers.WebManage.Application
                 key = RequestHelper.GetKeyChar("key", 20);
                 if (vid < 1 || key.Length < 10)
                 {
-                    ShowMsg_Swf("缺少参数:key或sid");
+                    ShowMsg_Swf("缺少參數:key或sid");
                     return;
                 }
                 //---------------------------------------------------
-                #region 判断权限
+                #region 判斷權限
                 if (SessionHelper.GetSession("UserHashKey") != null)
                 {
                     var uinfo = OnlineUsersBll.GetInstence().GetOnlineUsersModel();
@@ -110,8 +110,8 @@ namespace Solution.Web.Managers.WebManage.Application
                 }
                 else
                 {
-                    msg = "还未登陆，权限不足！";
-                    if (isEditor)//编辑器 (ke4)
+                    msg = "還未登陸，權限不足！";
+                    if (isEditor)//編輯器 (ke4)
                     {
                         ShowMsg_Editor(msg);
                     }
@@ -127,7 +127,7 @@ namespace Solution.Web.Managers.WebManage.Application
                 msg = new UploadFileBll().Upload_Web(vid, key, userId, userName, m_r, "imgFile", userType, isEditor, false);
                 if (msg.Length > 0)
                 {
-                    if (isEditor)//编辑器 (ke4)
+                    if (isEditor)//編輯器 (ke4)
                     {
                         ShowMsg_Editor(msg);
                     }
@@ -139,26 +139,26 @@ namespace Solution.Web.Managers.WebManage.Application
                 }
                 else
                 {
-                    //上传成功，输出结果
-                    if (isEditor)//编辑器 (ke4)
+                    //上傳成功，輸出結果
+                    if (isEditor)//編輯器 (ke4)
                     {
-                        ShowMsg_Editor("上传成功", m_r.Path);
+                        ShowMsg_Editor("上傳成功", m_r.Path);
                     }
                     else
                     {
                         //RequestHelper.AlertUtf8("window.parent.OnUploadCompleted('" + m_r.Name + "','" + m_r.Path + "'," + m_r.Id.ToString() + ",'" + m_r.Src + "');", 7, "");
-                        FineUI.Alert.Show("上传失败", "提示", MessageBoxIcon.Warning, "window.parent.OnUploadCompleted('" + m_r.Name + "','" + m_r.Path + "'," + m_r.Id.ToString() + ",'" + m_r.Src + "');");
+                        FineUI.Alert.Show("上傳失敗", "提示", MessageBoxIcon.Warning, "window.parent.OnUploadCompleted('" + m_r.Name + "','" + m_r.Path + "'," + m_r.Id.ToString() + ",'" + m_r.Src + "');");
                     }
                 }
             }
 
-            Write("系统暂时禁止上传文件！");
+            Write("系統暫時禁止上傳文件！");
             return;
         }
 
-        /// <summary>提示信息输出（编辑器ke4专用）</summary>
-        /// <param name="msg">提示内容</param>
-        /// <param name="filePath">上传后新的url地址</param>
+        /// <summary>提示信息輸出（編輯器ke4專用）</summary>
+        /// <param name="msg">提示內容</param>
+        /// <param name="filePath">上傳後新的url地址</param>
         private void ShowMsg_Editor(string msg, string filePath = "")
         {
             var hash = new Hashtable();
@@ -180,13 +180,13 @@ namespace Solution.Web.Managers.WebManage.Application
             //RequestHelper.AlertUtf8(str, 8, "");
         }
 
-        /// <summary>提示信息输出（swf上传专用）</summary>
-        /// <param name="msg">提示内容</param>
-        /// <param name="err">1=成功，0=出错</param>
-        /// <param name="subId">所以的上传模块id</param>
-        /// <param name="fileName">上传后新的文件</param>
-        /// <param name="filePath">上传后新的url地址</param>
-        /// <param name="fileSrc">上传文件的原始名</param>
+        /// <summary>提示信息輸出（swf上傳專用）</summary>
+        /// <param name="msg">提示內容</param>
+        /// <param name="err">1=成功，0=出錯</param>
+        /// <param name="subId">所以的上傳模塊id</param>
+        /// <param name="fileName">上傳後新的文件</param>
+        /// <param name="filePath">上傳後新的url地址</param>
+        /// <param name="fileSrc">上傳文件的原始名</param>
         private void ShowMsg_Swf(string msg, int err = 1, int subId = 0, string fileName = "", string filePath = "", string fileSrc = "")
         {
             var hash = new Hashtable();
@@ -194,7 +194,7 @@ namespace Solution.Web.Managers.WebManage.Application
             if (err == 0)
             {
                 hash["err"] = err;
-                hash["msg"] = "上传成功";
+                hash["msg"] = "上傳成功";
                 hash["FileName"] = fileName;
                 hash["FilePath"] = filePath;
                 hash["SubID"] = subId;

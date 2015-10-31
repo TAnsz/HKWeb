@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：ExportExcel
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：ExportExcel
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -15,7 +15,7 @@ namespace DotNet.Utilities
     public class ExportExcel
     {
         /// <summary>
-        /// 将整个网页导出来Excel
+        /// 將整個網頁導出來Excel
         /// </summary>
         /// <param name="strContent"></param>
         /// <param name="FileName"></param>
@@ -27,19 +27,19 @@ namespace DotNet.Utilities
             HttpContext.Current.Response.ContentType = "application/ms-excel";
             HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.UTF8;
             //this.Page.EnableViewState = false; 
-            // 添加头信息，为"文件下载/另存为"对话框指定默认文件名 
+            // 添加頭信息，為"文件下載/另存為"對話框指定默認文件名 
             HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" + FileName + ".xls");
-            // 把文件流发送到客户端 
+            // 把文件流發送到客戶端 
             HttpContext.Current.Response.Write("<html><head><meta http-equiv=Content-Type content=\"text/html; charset=utf-8\">");
             HttpContext.Current.Response.Write(strContent);
 
             HttpContext.Current.Response.Write("</body></html>");
-            // 停止页面的执行 
+            // 停止頁面的執行 
             //Response.End();
         }
 
         /// <summary>
-        /// 将GridView数据导出Excel
+        /// 將GridView數據導出Excel
         /// </summary>
         /// <param name="obj"></param>
         public void ExportData(GridView obj)

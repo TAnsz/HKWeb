@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Text;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 验证码类（后台）
+    /// 驗證碼類（後台）
     /// </summary>
     public class VerificationCode
     {
@@ -14,12 +14,12 @@ namespace DotNet.Utilities
         private string tempstring = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
 
-        #region 定义全局变量
-        /// <summary>生成的图片
+        #region 定義全局變量
+        /// <summary>生成的圖片
         /// </summary>
         private Bitmap _CurrentBitmap;
 
-        /// <summary> 验证码图片
+        /// <summary> 驗證碼圖片
         /// </summary>
         public Bitmap CurrentBitmap
         {
@@ -27,11 +27,11 @@ namespace DotNet.Utilities
             internal set { _CurrentBitmap = value; }
         }
 
-        /// <summary>生成的验证码
+        /// <summary>生成的驗證碼
         /// </summary>
         private string _Code;
 
-        /// <summary> 验证码
+        /// <summary> 驗證碼
         /// </summary>
         public string Code
         {
@@ -41,13 +41,13 @@ namespace DotNet.Utilities
         #endregion
 
 
-        #region 验证码生成前的准备
+        #region 驗證碼生成前的準備
 
-        /// <summary>需要生成的验证码的字符数
+        /// <summary>需要生成的驗證碼的字符數
         /// </summary>
         private int _CountCode = 4;
 
-        /// <summary>需要生成的验证码的字符数量
+        /// <summary>需要生成的驗證碼的字符數量
         /// </summary>
         public int CountCode
         {
@@ -55,10 +55,10 @@ namespace DotNet.Utilities
             set { _CountCode = value; }
         }
 
-        /// <summary>生成验证码码图片的宽度
+        /// <summary>生成驗證碼碼圖片的寬度
         /// </summary>
         private int _ImageWidth = 200;
-        /// <summary>生成验证码图片的宽度
+        /// <summary>生成驗證碼圖片的寬度
         /// </summary>
         public int ImageWidth
         {
@@ -66,10 +66,10 @@ namespace DotNet.Utilities
             set { _ImageWidth = value; }
         }
 
-        /// <summary>生成验证码图片的高度
+        /// <summary>生成驗證碼圖片的高度
         /// </summary>
         private int _ImageHeight = 30;
-        /// <summary>生成验证码图片的高度
+        /// <summary>生成驗證碼圖片的高度
         /// 
         /// </summary>
         public int ImageHeight
@@ -78,10 +78,10 @@ namespace DotNet.Utilities
             set { _ImageHeight = value; }
         }
 
-        /// <summary>设定图片的噪点线数量
+        /// <summary>設定圖片的噪點線數量
         /// </summary>
         private int _NoiseLine = 0;
-        /// <summary>设定图片的噪点线数量
+        /// <summary>設定圖片的噪點線數量
         /// </summary>
         public int NoiseLine
         {
@@ -89,11 +89,11 @@ namespace DotNet.Utilities
             set { _NoiseLine = value; }
         }
 
-        /// <summary> 前景干扰点
+        /// <summary> 前景干擾點
         /// </summary>
         private int _NoisePoint = 0;
 
-        /// <summary>设定验证码图片的前景干扰点数量
+        /// <summary>設定驗證碼圖片的前景干擾點數量
         /// </summary>
         public int NoisePoint
         {
@@ -101,11 +101,11 @@ namespace DotNet.Utilities
             set { _NoisePoint = value; }
         }
 
-        /// <summary>字体大小
+        /// <summary>字體大小
         /// </summary>
         private int _FontSize = 12;
 
-        /// <summary>字体大小
+        /// <summary>字體大小
         /// </summary>
         public int FontSize
         {
@@ -124,12 +124,12 @@ namespace DotNet.Utilities
         }
 
 
-        #region 生成验证码
+        #region 生成驗證碼
 
         /// <summary>
-        /// 生成验证码
+        /// 生成驗證碼
         /// </summary>
-        /// <returns>验证码字符串</returns>
+        /// <returns>驗證碼字符串</returns>
         private string tempcode()
         {
             StringBuilder result = new StringBuilder();
@@ -147,23 +147,23 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 生成图片
+        #region 生成圖片
 
-        /// <summary>生成验证码图片
+        /// <summary>生成驗證碼圖片
         /// </summary>
         /// <returns></returns>
         private Bitmap tempImage()
         {
-            //创建验证码图片对象
+            //創建驗證碼圖片對像
             Bitmap image = new Bitmap(ImageWidth, ImageHeight);
-            //创建绘布对象
+            //創建繪布對像
             Graphics g = Graphics.FromImage(image);
             try
             {
                 Font[] fonts = {
-                            new Font(new FontFamily("Arial"), RandomHelper.GetRndNext(FontSize - 2, FontSize), FontStyle.Bold),
-                            new Font(new FontFamily("Gadugi"), RandomHelper.GetRndNext(FontSize - 3, FontSize), FontStyle.Bold),
-                            new Font(new FontFamily("Bell MT"), RandomHelper.GetRndNext(FontSize - 3, FontSize), FontStyle.Bold),
+                            new Font(new FontFamily("Impact"), RandomHelper.GetRndNext(FontSize - 2, FontSize), FontStyle.Bold),
+                            new Font(new FontFamily("Kokila"), RandomHelper.GetRndNext(FontSize - 3, FontSize), FontStyle.Bold),
+                            //new Font(new FontFamily("Bell MT"), RandomHelp.GetRndNext(FontSize - 3, FontSize), FontStyle.Bold),
                             new Font(new FontFamily("MV Boli"), RandomHelper.GetRndNext(FontSize - 3, FontSize), FontStyle.Bold)
                          };
 
@@ -189,9 +189,9 @@ namespace DotNet.Utilities
 
                 Color bgcolor = bgColors[RandomHelper.GetRndNext(0, bgColors.Length)];//背景色
 
-                //生成随机生成器
+                //生成隨機生成器
                 Random random = new Random();
-                //清空图片背景色，画上背景干扰线
+                //清空圖片背景色，畫上背景干擾線
                 g.Clear(bgcolor);
                 for (int i = 0; i < NoiseLine; i++)
                 {
@@ -215,11 +215,11 @@ namespace DotNet.Utilities
                 //int count = Code.Length;
                 //for (int i = 0; i < count; i++)
                 //{
-                //    //字体设定
+                //    //字體設定
                 //    Font font = new Font("Arial", RandomHelp.GetRndNext(FontSize - 5, FontSize),
                 //        (FontStyle.Bold | FontStyle.Italic));
 
-                //    //创建画笔
+                //    //創建畫筆
                 //    LinearGradientBrush brush =
                 //        new LinearGradientBrush(
                 //            new Rectangle( 1 + i * 10, 0, image.Width,
@@ -228,7 +228,7 @@ namespace DotNet.Utilities
                 //    g.DrawString(Code.Substring(i, 1), font, brush, 5, 2);
                 //}
 
-                //画图片的前景干扰点
+                //畫圖片的前景干擾點
                 for (int i = 0; i < NoisePoint; i++)
                 {
                     int x = random.Next(image.Width);
@@ -236,27 +236,27 @@ namespace DotNet.Utilities
                     image.SetPixel(x, y, Color.FromArgb(random.Next()));
                 }
 
-                //定义干扰线中间点位置
+                //定義干擾線中間點位置
                 int midX = RandomHelper.GetRndNext(0, image.Width /2);
                 int midX2 = RandomHelper.GetRndNext(midX, image.Width);
-                //定义画笔
+                //定義畫筆
                 Pen pen = new Pen(colors[RandomHelper.GetRndNext(0, colors.Length)], 2);
-                //画干扰线
+                //畫干擾線
                 g.DrawLine(pen, 0, random.Next(image.Height), midX, random.Next(image.Height));
                 g.DrawLine(pen, midX, random.Next(image.Height), midX2, random.Next(image.Height));
                 g.DrawLine(pen, midX2, random.Next(image.Height), image.Width, random.Next(image.Height));
 
-                //画多一条干扰线
+                //畫多一條干擾線
                 midX = RandomHelper.GetRndNext(0, image.Width / 2);
                 midX2 = RandomHelper.GetRndNext(midX, image.Width);
-                //定义画笔
+                //定義畫筆
                 pen = new Pen(colors[RandomHelper.GetRndNext(0, colors.Length)], 2);
-                //画干扰线
+                //畫干擾線
                 g.DrawLine(pen, 0, random.Next(image.Height), midX, random.Next(image.Height));
                 g.DrawLine(pen, midX, random.Next(image.Height), midX2, random.Next(image.Height));
                 g.DrawLine(pen, midX2, random.Next(image.Height), image.Width, random.Next(image.Height));
 
-                //画图片的边框线
+                //畫圖片的邊框線
                 g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);
 
             }
@@ -272,20 +272,20 @@ namespace DotNet.Utilities
         #endregion
 
 
-        #region 图片旋转函数
+        #region 圖片旋轉函數
 
         /// <summary>
-        /// 以逆时针为方向对图像进行旋转
+        /// 以逆時針為方向對圖像進行旋轉
         /// </summary>
-        /// <param name="b">位图流</param>
-        /// <param name="angle">旋转角度[0,360](前台给的)</param>
+        /// <param name="b">位圖流</param>
+        /// <param name="angle">旋轉角度[0,360](前台給的)</param>
         /// <returns></returns>
         public Image RotateImg(Image b, int angle)
         {
 
             angle = angle % 360;
 
-            //弧度转换
+            //弧度轉換
 
             double radian = angle * Math.PI / 180.0;
 
@@ -293,7 +293,7 @@ namespace DotNet.Utilities
 
             double sin = Math.Sin(radian);
 
-            //原图的宽和高
+            //原圖的寬和高
 
             int w = b.Width;
 
@@ -303,7 +303,7 @@ namespace DotNet.Utilities
 
             int H = (int)(Math.Max(Math.Abs(w * sin - h * cos), Math.Abs(w * sin + h * cos)));
 
-            //目标位图
+            //目標位圖
 
             Bitmap dsImage = new Bitmap(W, H);
 
@@ -313,11 +313,11 @@ namespace DotNet.Utilities
 
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
-            //计算偏移量
+            //計算偏移量
 
             Point Offset = new Point((W - w) / 2, (H - h) / 2);
 
-            //构造图像显示区域：让图像的中心与窗口的中心点一致
+            //構造圖像顯示區域：讓圖像的中心與窗口的中心點一致
 
             Rectangle rect = new Rectangle(Offset.X, Offset.Y, w, h);
 
@@ -327,13 +327,13 @@ namespace DotNet.Utilities
 
             g.RotateTransform(360 - angle);
 
-            //恢复图像在水平和垂直方向的平移
+            //恢復圖像在水平和垂直方向的平移
 
             g.TranslateTransform(-center.X, -center.Y);
 
             g.DrawImage(b, rect);
 
-            //重至绘图的所有变换
+            //重至繪圖的所有變換
 
             g.ResetTransform();
 
@@ -341,7 +341,7 @@ namespace DotNet.Utilities
 
             g.Dispose();
 
-            //保存旋转后的图片
+            //保存旋轉後的圖片
 
             b.Dispose();
 
@@ -369,7 +369,7 @@ namespace DotNet.Utilities
 
         }
 
-        #endregion 图片旋转函数
+        #endregion 圖片旋轉函數
 
 
 

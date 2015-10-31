@@ -1,7 +1,7 @@
-﻿/// <summary>
-/// 类说明：CookieHelper
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：CookieHelper
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -24,7 +24,7 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>
-        /// 获取指定Cookie值
+        /// 獲取指定Cookie值
         /// </summary>
         /// <param name="cookiename">cookiename</param>
         /// <returns></returns>
@@ -38,9 +38,9 @@ namespace DotNet.Utilities
             return "";
         }
 
-        /// <summary>读cookie值,Cookies[key]
+        /// <summary>讀cookie值,Cookies[key]
         /// </summary>
-        /// <param name="cookiename">名称</param>
+        /// <param name="cookiename">名稱</param>
         /// <param name="key">key</param>
         /// <returns>cookie值</returns>
         public static string GetCookieValue(string cookiename, string key)
@@ -54,7 +54,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 添加一个Cookie（1年后过期）
+        /// 添加一個Cookie（1年後過期）
         /// </summary>
         /// <param name="cookiename"></param>
         /// <param name="cookievalue"></param>
@@ -63,11 +63,11 @@ namespace DotNet.Utilities
             SetCookie(cookiename, cookievalue, DateTime.Now.AddYears(1));
         }
         /// <summary>
-        /// 添加一个Cookie,带过期时间
+        /// 添加一個Cookie,帶過期時間
         /// </summary>
         /// <param name="cookiename">cookie名</param>
         /// <param name="cookievalue">cookie值</param>
-        /// <param name="expires">过期时间 DateTime</param>
+        /// <param name="expires">過期時間 DateTime</param>
         public static void SetCookie(string cookiename, string cookievalue, DateTime expires)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[cookiename];
@@ -80,9 +80,9 @@ namespace DotNet.Utilities
             HttpContext.Current.Response.AppendCookie(cookie);
         }
 
-        /// <summary>写cookie值,Cookies[key]（1年后过期）
+        /// <summary>寫cookie值,Cookies[key]（1年後過期）
         /// </summary>
-        /// <param name="cookiename">名称</param>
+        /// <param name="cookiename">名稱</param>
         /// <param name="key">key</param>
         /// <param name="cookievalue">值</param>
         public static void SetCookie(string cookiename, string key, string cookievalue)
@@ -90,12 +90,12 @@ namespace DotNet.Utilities
             SetCookie(cookiename, key, cookievalue, DateTime.Now.AddYears(1));
         }
 
-        /// <summary>写cookie值,Cookies[key],带过期时间
+        /// <summary>寫cookie值,Cookies[key],帶過期時間
         /// </summary>
-        /// <param name="cookiename">名称</param>
+        /// <param name="cookiename">名稱</param>
         /// <param name="key">key</param>
         /// <param name="cookievalue">值</param>
-        /// <param name="expires">过期时间(分钟)</param>
+        /// <param name="expires">過期時間(分鐘)</param>
         public static void SetCookie(string cookiename, string key, string cookievalue, DateTime expires)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[cookiename];

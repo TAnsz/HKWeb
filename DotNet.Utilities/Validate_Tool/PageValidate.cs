@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text;
@@ -17,8 +17,8 @@ namespace DotNet.Utilities
         private static Regex RegNumber = new Regex("^[0-9]+$");
         private static Regex RegNumberSign = new Regex("^[+-]?[0-9]+$");
         private static Regex RegDecimal = new Regex("^[0-9]+[.]?[0-9]+$");
-        private static Regex RegDecimalSign = new Regex("^[+-]?[0-9]+[.]?[0-9]+$"); //等价于^[+-]?\d+[.]?\d+$
-        private static Regex RegEmail = new Regex("^[\\w-]+@[\\w-]+\\.(com|net|org|edu|mil|tv|biz|info)$");//w 英文字母或数字的字符串，和 [a-zA-Z0-9] 语法一样 
+        private static Regex RegDecimalSign = new Regex("^[+-]?[0-9]+[.]?[0-9]+$"); //等價於^[+-]?\d+[.]?\d+$
+        private static Regex RegEmail = new Regex("^[\\w-]+@[\\w-]+\\.(com|net|org|edu|mil|tv|biz|info)$");//w 英文字母或數字的字符串，和 [a-zA-Z0-9] 語法一樣 
         private static Regex RegCHZN = new Regex("[\u4e00-\u9fa5]");
 
         public PageValidate()
@@ -26,24 +26,24 @@ namespace DotNet.Utilities
         }
 
 
-        #region 数字字符串检查
+        #region 數字字符串檢查
         /// <summary>
         /// 格式化字符串
         /// </summary>
         /// <param name="inputData">源字符串</param>
-        /// <param name="formatlevel">0:不做验证| 1:sql语句参数| 2:存储过程参数| 3:EncodeHtml| 4:Encode+sql| 5:Encode+存储过程</param>
-        /// <returns>返回格式化后的字符串</returns>
+        /// <param name="formatlevel">0:不做驗證| 1:sql語句參數| 2:存儲過程參數| 3:EncodeHtml| 4:Encode+sql| 5:Encode+存儲過程</param>
+        /// <returns>返回格式化後的字符串</returns>
         public static string FormatString(string inputData, int formatlevel)
         {
             return inputData;
         }
         /// <summary>
-        /// 检查Request查询字符串的键值，是否是数字，最大长度限制
+        /// 檢查Request查詢字符串的鍵值，是否是數字，最大長度限制
         /// </summary>
         /// <param name="req">Request</param>
-        /// <param name="inputKey">Request的键值</param>
-        /// <param name="maxLen">最大长度</param>
-        /// <returns>返回Request查询字符串</returns>
+        /// <param name="inputKey">Request的鍵值</param>
+        /// <param name="maxLen">最大長度</param>
+        /// <returns>返回Request查詢字符串</returns>
         public static string FetchInputDigit(HttpRequest req, string inputKey, int maxLen)
         {
             string retVal = string.Empty;
@@ -67,10 +67,10 @@ namespace DotNet.Utilities
         public enum CheckType
         { None, Int, SignInt, Float, SignFloat, Chinese, Mail }
         /// <summary>
-        /// 检测字符串类型
+        /// 檢測字符串類型
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
-        /// <param name="checktype">0:不检测| 1:数字| 2:符号数字| 3: 浮点数| 4:符号浮点| 5: 中文?| 6:邮件?</param>
+        /// <param name="inputData">輸入字符串</param>
+        /// <param name="checktype">0:不檢測| 1:數字| 2:符號數字| 3: 浮點數| 4:符號浮點| 5: 中文?| 6:郵件?</param>
         /// <returns></returns>
         public static bool checkString(string inputData, int checktype)
         {
@@ -106,9 +106,9 @@ namespace DotNet.Utilities
             return _return;
         }
         /// <summary>
-        /// 是否数字字符串
+        /// 是否數字字符串
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
+        /// <param name="inputData">輸入字符串</param>
         /// <returns></returns>
         public static bool IsNumber(string inputData)
         {
@@ -116,9 +116,9 @@ namespace DotNet.Utilities
             return m.Success;
         }
         /// <summary>
-        /// 是否数字字符串 可带正负号
+        /// 是否數字字符串 可帶正負號
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
+        /// <param name="inputData">輸入字符串</param>
         /// <returns></returns>
         public static bool IsNumberSign(string inputData)
         {
@@ -126,9 +126,9 @@ namespace DotNet.Utilities
             return m.Success;
         }
         /// <summary>
-        /// 是否是浮点数
+        /// 是否是浮點數
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
+        /// <param name="inputData">輸入字符串</param>
         /// <returns></returns>
         public static bool IsDecimal(string inputData)
         {
@@ -136,9 +136,9 @@ namespace DotNet.Utilities
             return m.Success;
         }
         /// <summary>
-        /// 是否是浮点数 可带正负号
+        /// 是否是浮點數 可帶正負號
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
+        /// <param name="inputData">輸入字符串</param>
         /// <returns></returns>
         public static bool IsDecimalSign(string inputData)
         {
@@ -148,10 +148,10 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 中文检测
+        #region 中文檢測
 
         /// <summary>
-        /// 检测是否有中文字符
+        /// 檢測是否有中文字符
         /// </summary>
         /// <param name="inputData"></param>
         /// <returns></returns>
@@ -168,11 +168,11 @@ namespace DotNet.Utilities
             return Convert.ToDateTime(dt).ToShortDateString();
         }
 
-        #region 邮件地址
+        #region 郵件地址
         /// <summary>
-        /// 是否是浮点数 可带正负号
+        /// 是否是浮點數 可帶正負號
         /// </summary>
-        /// <param name="inputData">输入字符串</param>
+        /// <param name="inputData">輸入字符串</param>
         /// <returns></returns>
         public static bool IsEmail(string inputData)
         {
@@ -185,17 +185,17 @@ namespace DotNet.Utilities
         #region 其他
 
         /// <summary>
-        /// 检查字符串最大长度，返回指定长度的串
+        /// 檢查字符串最大長度，返回指定長度的串
         /// </summary>
-        /// <param name="sqlInput">输入字符串</param>
-        /// <param name="maxLength">最大长度</param>
+        /// <param name="sqlInput">輸入字符串</param>
+        /// <param name="maxLength">最大長度</param>
         /// <returns></returns>			
         public static string SqlText(string sqlInput, int maxLength)
         {
             if (sqlInput != null && sqlInput != string.Empty)
             {
                 sqlInput = sqlInput.Trim();
-                if (sqlInput.Length > maxLength)//按最大长度截取字符串
+                if (sqlInput.Length > maxLength)//按最大長度截取字符串
                     sqlInput = sqlInput.Substring(0, maxLength);
             }
             return sqlInput;
@@ -203,7 +203,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 字符串编码
+        /// 字符串編碼
         /// </summary>
         /// <param name="inputData"></param>
         /// <returns></returns>
@@ -212,7 +212,7 @@ namespace DotNet.Utilities
             return HttpUtility.HtmlEncode(inputData);
         }
         /// <summary>
-        /// 设置Label显示Encode的字符串
+        /// 設置Label顯示Encode的字符串
         /// </summary>
         /// <param name="lbl"></param>
         /// <param name="txtInput"></param>
@@ -227,7 +227,7 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 对于用户权限从数据库中读出的解密过程
+        #region 對於用戶權限從數據庫中讀出的解密過程
         public static string switch_riddle(string s_ch)//解密
         {
             string s_out, s_temp, temp;
@@ -286,7 +286,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 用户权限的加密过程
+        #region 用戶權限的加密過程
         public static string switch_encrypt(string s_ch)
         {
             string s_out, s_temp, temp;
@@ -345,11 +345,11 @@ namespace DotNet.Utilities
         }//加密
         #endregion
 
-        #region   访问权限
+        #region   訪問權限
         public static bool CheckTrue(string s_admin, int a)
         {
             string s_temp = "";
-            s_temp = s_admin.Substring(a - 1, 1);   //s_admin为全局变量
+            s_temp = s_admin.Substring(a - 1, 1);   //s_admin為全局變量
             if (s_temp == "" || s_temp == "1")
             {
                 return true;
@@ -362,11 +362,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region   检测字符串长度
+        #region   檢測字符串長度
         /// <summary>   
-        /// 计算文本长度，区分中英文字符，中文算两个长度，英文算一个长度
+        /// 計算文本長度，區分中英文字符，中文算兩個長度，英文算一個長度
         /// </summary>
-        /// <param name="Text">需计算长度的字符串</param>
+        /// <param name="Text">需計算長度的字符串</param>
         /// <returns>int</returns>
         public static int Text_Length(string Text)
         {
@@ -376,21 +376,21 @@ namespace DotNet.Utilities
             {
                 byte[] byte_len = Encoding.Default.GetBytes(Text.Substring(i, 1));
                 if (byte_len.Length > 1)
-                    len += 2;  //如果长度大于1，是中文，占两个字节，+2
+                    len += 2;  //如果長度大於1，是中文，佔兩個字節，+2
                 else
-                    len += 1;  //如果长度等于1，是英文，占一个字节，+1
+                    len += 1;  //如果長度等於1，是英文，佔一個字節，+1
             }
 
             return len;
         }
         #endregion
 
-        #region   字符串长度区分中英文截取
+        #region   字符串長度區分中英文截取
         /// <summary>   
-        /// 截取文本，区分中英文字符，中文算两个长度，英文算一个长度
+        /// 截取文本，區分中英文字符，中文算兩個長度，英文算一個長度
         /// </summary>
         /// <param name="str">待截取的字符串</param>
-        /// <param name="length">需计算长度的字符串</param>
+        /// <param name="length">需計算長度的字符串</param>
         /// <returns>string</returns>
         public static string GetSubString(string str, int length)
         {
@@ -420,33 +420,33 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 页面HTML格式化
+        #region 頁面HTML格式化
         public static string GetHtml(string sDetail)
         {
             Regex r;
             Match m;
-            #region 处理空格
+            #region 處理空格
             sDetail = sDetail.Replace(" ", "&nbsp;");
             #endregion
-            #region 处理单引号
-            sDetail = sDetail.Replace("'", "’");
+            #region 處理單引號
+            sDetail = sDetail.Replace("'", "』");
             #endregion
-            #region 处理双引号
+            #region 處理雙引號
             sDetail = sDetail.Replace("\"", "&quot;");
             #endregion
-            #region html标记符
+            #region html標記符
             sDetail = sDetail.Replace("<", "&lt;");
             sDetail = sDetail.Replace(">", "&gt;");
 
             #endregion
-            #region 处理换行
-            //处理换行，在每个新行的前面添加两个全角空格
+            #region 處理換行
+            //處理換行，在每個新行的前面添加兩個全角空格
             r = new Regex(@"(\r\n((&nbsp;)|　)+)(?<正文>\S+)", RegexOptions.IgnoreCase);
             for (m = r.Match(sDetail); m.Success; m = m.NextMatch())
             {
                 sDetail = sDetail.Replace(m.Groups[0].ToString(), "<BR>　　" + m.Groups["正文"].ToString());
             }
-            //处理换行，在每个新行的前面添加两个全角空格
+            //處理換行，在每個新行的前面添加兩個全角空格
             sDetail = sDetail.Replace("\r\n", "<BR>");
             #endregion
 
@@ -454,7 +454,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 分页
+        #region 分頁
         //public static string paging(string url, string para, int sumpage, int page)
         //{
         //    string result = string.Empty;
@@ -504,21 +504,21 @@ namespace DotNet.Utilities
                 switch (page)
                 {
                     case 1:
-                        sb.Append(string.Format("<p class=\"next\"><a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page + 1, para, "下一页" }));
+                        sb.Append(string.Format("<p class=\"next\"><a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page + 1, para, "下一頁" }));
                         break;
                     default:
                         if (sumpage == page)
                         {
-                            sb.Append(string.Format("<p class=\"next\"><a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page - 1, para, "上一页" }));
+                            sb.Append(string.Format("<p class=\"next\"><a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page - 1, para, "上一頁" }));
                         }
                         else
                         {
                             sb.Append(string.Format("<p class=\"next\"><a href=\"{0}?page={1}{2}\">{3}</a> <a href=\"{4}?page={5}{6}\">{7}</a> ",
-                                new object[] { url, page + 1, para, "下一页", url, page - 1, para, "上一页" }));
+                                new object[] { url, page + 1, para, "下一頁", url, page - 1, para, "上一頁" }));
                         }
                         break;
                 }
-                sb.Append(string.Format("第{0}/{1}页</p>", new object[] { page, sumpage }));
+                sb.Append(string.Format("第{0}/{1}頁</p>", new object[] { page, sumpage }));
             }
             return sb.ToString();
         }
@@ -546,21 +546,21 @@ namespace DotNet.Utilities
                 switch (page)
                 {
                     case 1:
-                        sb.Append(string.Format("<a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page + 1, para, "下一页" }));
+                        sb.Append(string.Format("<a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page + 1, para, "下一頁" }));
                         break;
                     default:
                         if (sumpage == page)
                         {
-                            sb.Append(string.Format("<a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page - 1, para, "上一页" }));
+                            sb.Append(string.Format("<a href=\"{0}?page={1}{2}\">{3}</a> ", new object[] { url, page - 1, para, "上一頁" }));
                         }
                         else
                         {
                             sb.Append(string.Format("<a href=\"{0}?page={1}{2}\">{3}</a> <a href=\"{4}?page={5}{6}\">{7}</a> ",
-                                new object[] { url, page + 1, para, "下一页", url, page - 1, para, "上一页" }));
+                                new object[] { url, page + 1, para, "下一頁", url, page - 1, para, "上一頁" }));
                         }
                         break;
                 }
-                sb.Append(string.Format("第{0}/{1}页", new object[] { page, sumpage }));
+                sb.Append(string.Format("第{0}/{1}頁", new object[] { page, sumpage }));
             }
             return sb.ToString();
         }
@@ -580,22 +580,22 @@ namespace DotNet.Utilities
                     switch (page)
                     {
                         case 1:
-                            sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一页" }));
+                            sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一頁" }));
                             break;
                         default:
                             if (sumpage == page)
                             {
-                                sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> ", new object[] { page - 1, para, "上一页" }));
+                                sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> ", new object[] { page - 1, para, "上一頁" }));
                             }
                             else
                             {
                                 sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> <a href=\"?page={3}{4}\">{5}</a> ",
-                                    new object[] { page - 1, para, "上一页", page + 1, para, "下一页" }));
+                                    new object[] { page - 1, para, "上一頁", page + 1, para, "下一頁" }));
                             }
                             break;
                     }
                 }
-                sb.Append(string.Format("第{0}/{1}页 共{2}条", new object[] { page, sumpage, count }));
+                sb.Append(string.Format("第{0}/{1}頁 共{2}條", new object[] { page, sumpage, count }));
             }
             return sb.ToString();
         }
@@ -604,34 +604,34 @@ namespace DotNet.Utilities
         {
             if (sumpage > 0)
             {
-                int n = sumpage;    //总页数
-                int x = page;   //得到当前页
+                int n = sumpage;    //總頁數
+                int x = page;   //得到當前頁
                 int i;
                 int endpage;
                 string pageview = "", pageviewtop = "";
                 if (x > 1)
                 {
-                    pageview += "&nbsp;&nbsp;<a class='pl' href='?page=1" + clinktail + "'>第1页</a> | ";
-                    pageviewtop += "&nbsp;&nbsp;<a class='pl' href='?page=1" + clinktail + "'>第1页</a> | ";
+                    pageview += "&nbsp;&nbsp;<a class='pl' href='?page=1" + clinktail + "'>第1頁</a> | ";
+                    pageviewtop += "&nbsp;&nbsp;<a class='pl' href='?page=1" + clinktail + "'>第1頁</a> | ";
                 }
                 else
                 {
-                    pageview += "&nbsp;&nbsp;<font color='#666666'> 第1页 </font> | ";
-                    pageviewtop += "&nbsp;&nbsp;<font color='#666666'> 第1页 </font> | ";
+                    pageview += "&nbsp;&nbsp;<font color='#666666'> 第1頁 </font> | ";
+                    pageviewtop += "&nbsp;&nbsp;<font color='#666666'> 第1頁 </font> | ";
                 }
 
                 if (x > 1)
                 {
-                    pageviewtop += " <a class='pl' href='?page=" + (x - 1) + "" + clinktail + "'>上1页</a> ";
+                    pageviewtop += " <a class='pl' href='?page=" + (x - 1) + "" + clinktail + "'>上1頁</a> ";
                 }
                 else
                 {
-                    pageviewtop += " <font color='#666666'>上1页</font> ";
+                    pageviewtop += " <font color='#666666'>上1頁</font> ";
                 }
 
                 if (x > ((x - 1) / 10) * 10 && x > 10)
                 {
-                    pageview += "<a class='pl' href='?page=" + ((x - 1) / 10) * 10 + "" + clinktail + "' onclink='return false;'>上10页</a>";
+                    pageview += "<a class='pl' href='?page=" + ((x - 1) / 10) * 10 + "" + clinktail + "' onclink='return false;'>上10頁</a>";
                 }
 
                 //if (((x-1) / 10) * 10 + 10) >= n )
@@ -658,16 +658,16 @@ namespace DotNet.Utilities
 
                 if (x < n)
                 {
-                    pageviewtop += " <a class='pl' href='?page=" + (x + 1) + "" + clinktail + "'>下1页</a> ";
+                    pageviewtop += " <a class='pl' href='?page=" + (x + 1) + "" + clinktail + "'>下1頁</a> ";
                 }
                 else
                 {
-                    pageviewtop += " <font color='#666666'>下1页</font> ";
+                    pageviewtop += " <font color='#666666'>下1頁</font> ";
                 }
 
                 if (endpage != n)
                 {
-                    pageview += " <a class='pl' href='?page=" + (endpage + 1) + "" + clinktail + "' class='pl' onclink='return false;'>下10页</a> | ";
+                    pageview += " <a class='pl' href='?page=" + (endpage + 1) + "" + clinktail + "' class='pl' onclink='return false;'>下10頁</a> | ";
                 }
                 else
                 {
@@ -675,13 +675,13 @@ namespace DotNet.Utilities
                 }
                 if (x < n)
                 {
-                    pageview += " <a class='pl' href='?page=" + n + "" + clinktail + "' class='pl'>第" + n + "页</a> ";
-                    pageviewtop += " |  <a class='pl' href='?page=" + n + "" + clinktail + "' class='pl'>第" + n + "页</a> ";
+                    pageview += " <a class='pl' href='?page=" + n + "" + clinktail + "' class='pl'>第" + n + "頁</a> ";
+                    pageviewtop += " |  <a class='pl' href='?page=" + n + "" + clinktail + "' class='pl'>第" + n + "頁</a> ";
                 }
                 else
                 {
-                    pageview += "<font color='#666666'> 第" + n + "页 </font>";
-                    pageviewtop += " | <font color='#666666'> 第" + n + "页 </font>";
+                    pageview += "<font color='#666666'> 第" + n + "頁 </font>";
+                    pageviewtop += " | <font color='#666666'> 第" + n + "頁 </font>";
                 }
                 page_view.Text = pageview.ToString();
             }
@@ -691,7 +691,7 @@ namespace DotNet.Utilities
             }
         }
 
-        //带第一页和最后一页
+        //帶第一頁和最後一頁
         public static string paging2(string para, int sumpage, int page, int count)
         {
             string result = string.Empty;
@@ -704,41 +704,41 @@ namespace DotNet.Utilities
             {
                 if (sumpage != 1)
                 {
-                    //第一页
+                    //第一頁
                     sb.Append(string.Format("<a href=\"?page={0}{1}\"><img src=\"images/first-icon.gif\" border=\"0\"/></a>&nbsp;&nbsp;", new object[] { 1, para }));
                     switch (page)
                     {
                         case 1:
-                            //前一页图片
+                            //前一頁圖片
                             sb.Append(string.Format("<a>{0}</a>", new object[] { "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
-                            sb.Append(string.Format("<a>上一页</a><a href=\"?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一页" }));
-                            //后一页图片
+                            sb.Append(string.Format("<a>上一頁</a><a href=\"?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一頁" }));
+                            //後一頁圖片
                             sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page + 1, para, "<img src=\"images/right-icon.gif\" border=\"0\"/>" }));
                             break;
                         default:
                             if (sumpage == page)
                             {
-                                //前一页图片
+                                //前一頁圖片
                                 sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page - 1, para, "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
-                                sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a><a>下一页</a> ", new object[] { page - 1, para, "上一页" }));
-                                //后一页图片
+                                sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a><a>下一頁</a> ", new object[] { page - 1, para, "上一頁" }));
+                                //後一頁圖片
                                 sb.Append(string.Format("<a>{0}</a>", new object[] { "<img src=\"images/right-icon.gif\" />" }));
                             }
                             else
                             {
-                                //前一页图片
+                                //前一頁圖片
                                 sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page - 1, para, "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
                                 sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a> <a href=\"?page={3}{4}\">{5}</a> ",
-                                    new object[] { page - 1, para, "上一页", page + 1, para, "下一页" }));
-                                //后一页图片
+                                    new object[] { page - 1, para, "上一頁", page + 1, para, "下一頁" }));
+                                //後一頁圖片
                                 sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page + 1, para, "<img src=\"images/right-icon.gif\" border=\"0\"/>" }));
                             }
                             break;
                     }
-                    //最后一页图片
+                    //最後一頁圖片
                     sb.Append(string.Format("&nbsp;&nbsp;<a href=\"?page={0}{1}\"><img src=\"images/last-icon.gif\" border=\"0\"/></a>&nbsp;&nbsp;", new object[] { sumpage, para }));
                 }
-                sb.Append(string.Format("第{0}页/共{1}页 共{2}条", new object[] { page, sumpage, count }));
+                sb.Append(string.Format("第{0}頁/共{1}頁 共{2}條", new object[] { page, sumpage, count }));
             }
             return sb.ToString();
         }
@@ -755,49 +755,49 @@ namespace DotNet.Utilities
             {
                 if (sumpage != 1)
                 {
-                    //第一页
-                    sb.Append(string.Format("<a href=\"{2}?page={0}{1}\">首页</a>", new object[] { 1, para, url }));
+                    //第一頁
+                    sb.Append(string.Format("<a href=\"{2}?page={0}{1}\">首頁</a>", new object[] { 1, para, url }));
                     switch (page)
                     {
                         case 1:
-                            //前一页图片
+                            //前一頁圖片
                             // sb.Append(string.Format("<a>{0}</a>", new object[] { "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
-                            sb.Append(string.Format("<a>上一页</a><a href=\"{3}?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一页", url }));
-                            //后一页图片
+                            sb.Append(string.Format("<a>上一頁</a><a href=\"{3}?page={0}{1}\">{2}</a> ", new object[] { page + 1, para, "下一頁", url }));
+                            //後一頁圖片
                             // sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page + 1, para, "<img src=\"images/right-icon.gif\" border=\"0\"/>" }));
                             break;
                         default:
                             if (sumpage == page)
                             {
-                                //前一页图片
+                                //前一頁圖片
                                 //sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page - 1, para, "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
-                                sb.Append(string.Format("<a href=\"{3}?page={0}{1}\">{2}</a><a>下一页</a> ", new object[] { page - 1, para, "上一页", url }));
-                                //后一页图片
+                                sb.Append(string.Format("<a href=\"{3}?page={0}{1}\">{2}</a><a>下一頁</a> ", new object[] { page - 1, para, "上一頁", url }));
+                                //後一頁圖片
                                 //sb.Append(string.Format("<a>{0}</a>", new object[] { "<img src=\"images/right-icon.gif\" />" }));
                             }
                             else
                             {
-                                //前一页图片
+                                //前一頁圖片
                                 //sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page - 1, para, "<img src=\"images/left-icon.gif\" border=\"0\"/>" }));
                                 sb.Append(string.Format("<a href=\"{6}?page={0}{1}\">{2}</a> <a href=\"{6}?page={3}{4}\">{5}</a> ",
-                                    new object[] { page - 1, para, "上一页", page + 1, para, "下一页", url }));
-                                //后一页图片
+                                    new object[] { page - 1, para, "上一頁", page + 1, para, "下一頁", url }));
+                                //後一頁圖片
                                 //sb.Append(string.Format("<a href=\"?page={0}{1}\">{2}</a>", new object[] { page + 1, para, "<img src=\"images/right-icon.gif\" border=\"0\"/>" }));
                             }
                             break;
                     }
-                    //最后一页图片
-                    sb.Append(string.Format("<a href=\"{2}?page={0}{1}\">末页</a>&nbsp;&nbsp;", new object[] { sumpage, para, url }));
+                    //最後一頁圖片
+                    sb.Append(string.Format("<a href=\"{2}?page={0}{1}\">末頁</a>&nbsp;&nbsp;", new object[] { sumpage, para, url }));
                 }
-                sb.Append(string.Format("第{0}页/共{1}页 共{2}条", new object[] { page, sumpage, count }));
+                sb.Append(string.Format("第{0}頁/共{1}頁 共{2}條", new object[] { page, sumpage, count }));
             }
             return sb.ToString();
         }
         #endregion
 
-        #region 日期格式判断
+        #region 日期格式判斷
         /// <summary>
-        /// 日期格式字符串判断
+        /// 日期格式字符串判斷
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -822,7 +822,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 是否由特定字符组成
+        #region 是否由特定字符組成
         public static bool isContainSameChar(string strInput)
         {
             string charInput = string.Empty;
@@ -849,9 +849,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 检查输入的参数是不是某些定义好的特殊字符：这个方法目前用于密码输入的安全检查
+        #region 檢查輸入的參數是不是某些定義好的特殊字符：這個方法目前用於密碼輸入的安全檢查
         /// <summary>
-        /// 检查输入的参数是不是某些定义好的特殊字符：这个方法目前用于密码输入的安全检查
+        /// 檢查輸入的參數是不是某些定義好的特殊字符：這個方法目前用於密碼輸入的安全檢查
         /// </summary>
         public static bool isContainSpecChar(string strInput)
         {

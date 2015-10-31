@@ -1,9 +1,9 @@
-﻿/*******************************************
- *  Desc:       上传类 
+/*******************************************
+ *  Desc:       上傳類 
  *  Author:     July 
  *  Date:       2013-11-18  
  *  Log:        
- *              2013-11-18，因前台美工有第五size的图片，根据前台新增第五size图片的代码
+ *              2013-11-18，因前台美工有第五size的圖片，根據前台新增第五size圖片的代碼
 ********************************************/
 using System;
 using System.IO;
@@ -13,108 +13,108 @@ using System.Drawing.Imaging;
 
 namespace DotNet.Utilities
 {
-    /// <summary>上传文件,针对图片文件加水印(图片水印)<para/>
-    /// 原始图(不作任何操作，不水印，不放缩)，返回文件名：2008090201o.jpg<para/>
-    /// 大图(终页放大)，返回文件名：2008090201b.jpg<para/>
-    /// 中图(终页图)，返回文件名：2008090201m.jpg<para/>
-    /// 小图(微型图)，返回文件名：2008090201s.jpg<para/>
-    /// 第五size(推荐页图)，返回文件名：2008090201h.jpg<para/>
+    /// <summary>上傳文件,針對圖片文件加水印(圖片水印)<para/>
+    /// 原始圖(不作任何操作，不水印，不放縮)，返回文件名：2008090201o.jpg<para/>
+    /// 大圖(終頁放大)，返回文件名：2008090201b.jpg<para/>
+    /// 中圖(終頁圖)，返回文件名：2008090201m.jpg<para/>
+    /// 小圖(微型圖)，返回文件名：2008090201s.jpg<para/>
+    /// 第五size(推薦頁圖)，返回文件名：2008090201h.jpg<para/>
     /// </summary>
     public class Uploader
     {
-        #region 变量定义
-        /// <summary>是否允许上传文件</summary>
+        #region 變量定義
+        /// <summary>是否允許上傳文件</summary>
         public bool IsEnabled = false;
 
-        /// <summary>是否检查提交来源</summary>
+        /// <summary>是否檢查提交來源</summary>
         public bool IsChkSrcPost = true;
 
-        /// <summary>图片：0=按比例生成宽高，1=固定图片宽高，2=固定背景宽高，图片按比例生成</summary>
+        /// <summary>圖片：0=按比例生成寬高，1=固定圖片寬高，2=固定背景寬高，圖片按比例生成</summary>
         public int CutType = 0;
 
-        /// <summary>出错信息</summary>
+        /// <summary>出錯信息</summary>
         private string _errMsg = "";
 
-        /// <summary>充许上传的文件类型,不要随意增加内容!(注:一定要使用,分隔)</summary>
+        /// <summary>充許上傳的文件類型,不要隨意增加內容!(注:一定要使用,分隔)</summary>
         public string AllowedExt = "jpg,gif,png";
 
-        /// <summary>禁止上传的文件类型,不要随意删减内容!(注:一定要使用,分隔)</summary>
+        /// <summary>禁止上傳的文件類型,不要隨意刪減內容!(注:一定要使用,分隔)</summary>
         private const string _DeniedExt = "html,htm,php,php2,php3,php4,php5,phtml,pwml,inc,asp,aspx,ascx,jsp,cfm,cfc,pl,bat,exe,com,dll,vbs,js,reg,cgi,htaccess,asis,sh,shtml,shtm,phtm,config";
 
-        /// <summary>充许上传的文件大小(单位:KB)，默认:500KB </summary>
+        /// <summary>充許上傳的文件大小(單位:KB)，默認:500KB </summary>
         private int _maxSize = 500;
 
-        //上传后,新文件大小（单位KB）
+        //上傳後,新文件大小（單位KB）
         private long _fileSize = 0;
 
-        /// <summary>form file控件的名称</summary>
+        /// <summary>form file控件的名稱</summary>
         public string FilePostName = "imgFile";
 
-        /// <summary>保存路径</summary>
+        /// <summary>保存路徑</summary>
         private string _savePath = "/UploadFile/";
 
-        /// <summary>是否限制上传的图片大小(列表图)，默认：flase</summary>
+        /// <summary>是否限制上傳的圖片大小(列表圖)，默認：flase</summary>
         private bool _isFixPic = false;
         private int _picWidth = 700;
         private int _picHeight = 1500;
-        private int _picQuality = 0;      //大于0，为控制质量
+        private int _picQuality = 0;      //大於0，為控制質量
 
-        /// <summary>生成大图()，默认：flase</summary>
+        /// <summary>生成大圖()，默認：flase</summary>
         private bool _isBigPic = false;
-        private int _bigWidth = 0;     //0=不限制宽高
-        private int _bigHeight = 0;    //0=不限制宽高
-        private int _bigQuality = 0;   //大于0，为控制质量
+        private int _bigWidth = 0;     //0=不限制寬高
+        private int _bigHeight = 0;    //0=不限制寬高
+        private int _bigQuality = 0;   //大於0，為控制質量
 
-        /// <summary>生成中型(终页显示)，默认：flase</summary>
+        /// <summary>生成中型(終頁顯示)，默認：flase</summary>
         private bool _isMidPic = false;
         private int _midWidth = 320;
         private int _midHeight = 320;
-        private int _midQuality = 0;   //大于0，为控制质量
+        private int _midQuality = 0;   //大於0，為控制質量
 
-        /// <summary>生成微型(推荐显示)，默认：flase</summary>
+        /// <summary>生成微型(推薦顯示)，默認：flase</summary>
         private bool _isMinPic = false;
         private int _minWidth = 50;
         private int _minHeight = 50;
-        private int _minQuality = 0;   //大于0，为控制质量
+        private int _minQuality = 0;   //大於0，為控制質量
 
-        /// <summary>生成微型(首页显示)，默认：flase</summary>
+        /// <summary>生成微型(首頁顯示)，默認：flase</summary>
         private bool _isHotPic = false;
         private int _hotWidth = 50;
         private int _hotHeight = 50;
-        private int _hotQuality = 0;   //大于0，为控制质量
+        private int _hotQuality = 0;   //大於0，為控制質量
 
-        /// <summary>生成图片水印</summary>
+        /// <summary>生成圖片水印</summary>
         public bool IsWaterPic = false;
 
-        /// <summary>图片水印的Logo地址:使用相对根目录的方式("/images/Water.png")</summary>
+        /// <summary>圖片水印的Logo地址:使用相對根目錄的方式("/images/Water.png")</summary>
         public string WaterPicPath = "/images/Water.png";
 
-        /// <summary>上传图片的扩展名（全部会转为小写）</summary>
+        /// <summary>上傳圖片的擴展名（全部會轉為小寫）</summary>
         public string FileExt = "";
 
-        /// <summary>上传图片的原始文件名称（包含扩展名） </summary>
+        /// <summary>上傳圖片的原始文件名稱（包含擴展名） </summary>
         public string SrcName = "";
 
-        /// <summary>图片文件的原始宽</summary>
+        /// <summary>圖片文件的原始寬</summary>
         public int SrcWidth = 0;
 
-        /// <summary>图片文件的原始高</summary>
+        /// <summary>圖片文件的原始高</summary>
         public int SrcHeight = 0;
 
-        /// <summary>上传后，生图片的宽（列表的宽）</summary>
+        /// <summary>上傳後，生圖片的寬（列表的寬）</summary>
         public int NewWidth = 0;
 
-        /// <summary>上传后，生图片的高（列表的高）</summary>
+        /// <summary>上傳後，生圖片的高（列表的高）</summary>
         public int NewHeight = 0;
 
-        /// <summary>上传后,随机生成的新文件名:"120514064733805.jpg"</summary>
+        /// <summary>上傳後,隨機生成的新文件名:"120514064733805.jpg"</summary>
         public string NewFile = "";
 
-        /// <summary>上传后,新文件路径（包括文件名和扩展名）"/upload/n/0908/120514064733805.jpg"</summary>
+        /// <summary>上傳後,新文件路徑（包括文件名和擴展名）"/upload/n/0908/120514064733805.jpg"</summary>
         public string NewPath = "";
         #endregion
 
-        #region 属性
+        #region 屬性
 
         /// <summary>取得DeniedExt</summary>
         public string DeniedExt
@@ -125,7 +125,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>上传文件的保存路径</summary>
+        /// <summary>上傳文件的保存路徑</summary>
         public string SavePath
         {
             get
@@ -138,8 +138,8 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>充许上传的文件大小(单位:KB)<para/>
-        /// 默认值:500, 范围:( 1＜value＜512000 ),512000=500Mb
+        /// <summary>充許上傳的文件大小(單位:KB)<para/>
+        /// 默認值:500, 範圍:( 1＜value＜512000 ),512000=500Mb
         /// </summary>
         public int MaxSize
         {
@@ -157,11 +157,11 @@ namespace DotNet.Utilities
             }
         }
 
-        ///<summary>大型图(原始图)，设置参数</summary>
-        /// <param name="isFix">ture=生成，false=不处理</param>
-        /// <param name="ww">最大宽度, 默认:700</param>
-        /// <param name="hh">最大高度, 默认:1500</param>
-        /// <param name="qty">质量:50-100 or 0（大于0，为控制质量）</param>
+        ///<summary>大型圖(原始圖)，設置參數</summary>
+        /// <param name="isFix">ture=生成，false=不處理</param>
+        /// <param name="ww">最大寬度, 默認:700</param>
+        /// <param name="hh">最大高度, 默認:1500</param>
+        /// <param name="qty">質量:50-100 or 0（大於0，為控制質量）</param>
         /// <returns></returns>
         public void SetPic(bool isFix = false, int ww = 0, int hh = 0, int qty = 0)
         {
@@ -174,11 +174,11 @@ namespace DotNet.Utilities
             }
         }
 
-        ///<summary>大型图(原始图)，设置参数</summary>
-        /// <param name="isFix">ture=生成，false=不处理</param>
-        /// <param name="ww">最大宽度</param>
+        ///<summary>大型圖(原始圖)，設置參數</summary>
+        /// <param name="isFix">ture=生成，false=不處理</param>
+        /// <param name="ww">最大寬度</param>
         /// <param name="hh">最大高度</param>
-        /// <param name="qty">质量:50-100 or 0（大于0，为控制质量）</param>
+        /// <param name="qty">質量:50-100 or 0（大於0，為控制質量）</param>
         /// <returns></returns>
         public void SetBig(bool isFix = false, int ww = 0, int hh = 0, int qty = 0)
         {
@@ -191,11 +191,11 @@ namespace DotNet.Utilities
             }
         }
 
-        ///<summary>中型图，设置参数</summary>
-        /// <param name="isFix">ture=生成，false=不处理</param>
-        /// <param name="ww">最大宽度, 默认:320</param>
-        /// <param name="hh">最大高度, 默认:320</param>
-        /// <param name="qty">质量:50-100 or 0（大于0，为控制质量）</param>
+        ///<summary>中型圖，設置參數</summary>
+        /// <param name="isFix">ture=生成，false=不處理</param>
+        /// <param name="ww">最大寬度, 默認:320</param>
+        /// <param name="hh">最大高度, 默認:320</param>
+        /// <param name="qty">質量:50-100 or 0（大於0，為控制質量）</param>
         /// <returns></returns>
         public void SetMid(bool isFix = false, int ww = 0, int hh = 0, int qty = 0)
         {
@@ -208,11 +208,11 @@ namespace DotNet.Utilities
             }
         }
 
-        ///<summary>微型图，设置参数</summary>
-        /// <param name="isFix">ture=生成，false=不处理</param>
-        /// <param name="ww">最大宽度, 默认:50</param>
-        /// <param name="hh">最大高度, 默认:50</param>
-        /// <param name="qty">质量:50-100 or 0（大于0，为控制质量）</param>
+        ///<summary>微型圖，設置參數</summary>
+        /// <param name="isFix">ture=生成，false=不處理</param>
+        /// <param name="ww">最大寬度, 默認:50</param>
+        /// <param name="hh">最大高度, 默認:50</param>
+        /// <param name="qty">質量:50-100 or 0（大於0，為控制質量）</param>
         /// <returns></returns>
         public void SetMin(bool isFix = false, int ww = 0, int hh = 0, int qty = 0)
         {
@@ -226,11 +226,11 @@ namespace DotNet.Utilities
         }
 
 
-        ///<summary>微型图，设置参数</summary>
-        /// <param name="isFix">ture=生成，false=不处理</param>
-        /// <param name="ww">最大宽度, 默认:50</param>
-        /// <param name="hh">最大高度, 默认:50</param>
-        /// <param name="qty">质量:50-100 or 0（大于0，为控制质量）</param>
+        ///<summary>微型圖，設置參數</summary>
+        /// <param name="isFix">ture=生成，false=不處理</param>
+        /// <param name="ww">最大寬度, 默認:50</param>
+        /// <param name="hh">最大高度, 默認:50</param>
+        /// <param name="qty">質量:50-100 or 0（大於0，為控制質量）</param>
         /// <returns></returns>
         public void SetHot(bool isFix = false, int ww = 0, int hh = 0, int qty = 0)
         {
@@ -245,7 +245,7 @@ namespace DotNet.Utilities
         #endregion
 
         #region 返回方法
-        ///<summary>上传后,取得新文件大小（单位KB）</summary>
+        ///<summary>上傳後,取得新文件大小（單位KB）</summary>
         public int GetFileSize()
         {
             if (this._fileSize > 0)
@@ -255,24 +255,24 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        ///<summary>上传失败后,取得出错信息</summary>
+        ///<summary>上傳失敗後,取得出錯信息</summary>
         public string GetErrMsg()
         {
             return _errMsg;
         }
         #endregion
 
-        #region 构造函数
-        /// <summary>构造函数</summary>
+        #region 構造函數
+        /// <summary>構造函數</summary>
         public Uploader() { }
         #endregion
 
-        #region 上传文件，并按设置生成缩略图，水印
-        /// <summary>上传文件，并按设置生成缩略图，水印</summary>
+        #region 上傳文件，並按設置生成縮略圖，水印
+        /// <summary>上傳文件，並按設置生成縮略圖，水印</summary>
         /// <returns></returns>
         public bool UploadFile(HttpPostedFile oFile = null)
         {
-            #region 检查设置
+            #region 檢查設置
             if (!this.IsEnabled)
             {
                 SendResponse(500, "");
@@ -290,7 +290,7 @@ namespace DotNet.Utilities
 
             if (this._savePath.Length < 1)
             {
-                SendResponse(101, "SavePath未设置");
+                SendResponse(101, "SavePath未設置");
                 return false;
             }
 
@@ -298,7 +298,7 @@ namespace DotNet.Utilities
             {
                 if (this.FilePostName.Length < 1)
                 {
-                    SendResponse(101, "filePostName未设置");
+                    SendResponse(101, "filePostName未設置");
                     return false;
                 }
             }
@@ -308,14 +308,14 @@ namespace DotNet.Utilities
 
             if (!isOk)
             {
-                SendResponse(101, "SavePath设置不当:" + this._savePath + ", 或权限不足！");
+                SendResponse(101, "SavePath設置不當:" + this._savePath + ", 或權限不足！");
                 return false;
             }
             #endregion
 
             //------------------------------------------------
-            #region 获取文件对象
-            //获取文件对象
+            #region 獲取文件對像
+            //獲取文件對像
             if (oFile == null)
             {
                 oFile = HttpContext.Current.Request.Files[FilePostName];
@@ -331,17 +331,17 @@ namespace DotNet.Utilities
             #endregion
 
             //------------------------------------------------
-            #region 检查文件大小
+            #region 檢查文件大小
             this._fileSize = oFile.ContentLength;
 
-            //不能上传小于10字节的内容
+            //不能上傳小於10字節的內容
             if (this.SrcName.Length < 3 || this._fileSize < 10)
             {
                 SendResponse(201, "");
                 return false;
             }
 
-            //检测文件大小是否超过限制
+            //檢測文件大小是否超過限制
             if (this._fileSize > (this._maxSize * 1024))
             {
                 SendResponse(301, "");
@@ -351,7 +351,7 @@ namespace DotNet.Utilities
             #endregion
 
             //------------------------------------------------
-            #region 检查文件类型
+            #region 檢查文件類型
             this.FileExt = Path.GetExtension(this.SrcName).ToLower().TrimStart('.');
 
             if (!checkAllowedExt(this.FileExt))
@@ -362,16 +362,16 @@ namespace DotNet.Utilities
             #endregion
 
 
-            #region 上传文件
-            //上传
+            #region 上傳文件
+            //上傳
             string sServerDir = _savePath;
             if (sServerDir.IndexOf(":") < 0)
             {
                 sServerDir = DirFileHelper.FixDirPath(DirFileHelper.GetMapPath(sServerDir));
             }
 
-            string sNewFile = "";   //新文件名(系统生成)
-            string sNewRoot = "";   //新文件路径(绝对路径)
+            string sNewFile = "";   //新文件名(系統生成)
+            string sNewRoot = "";   //新文件路徑(絕對路徑)
 
             while (true)
             {
@@ -398,11 +398,11 @@ namespace DotNet.Utilities
             #endregion
 
             //------------------------------------------------
-            #region 生成缩略图 + 水印
+            #region 生成縮略圖 + 水印
             if (this.FileExt == "jpg" || this.FileExt == "png" || this.FileExt == "gif" || this.FileExt == "jpeg" || this.FileExt == "bmp")
             {
                 #region 取得原始尺寸
-                try//能取得图片宽高，是真实的图片
+                try//能取得圖片寬高，是真實的圖片
                 {
                     Image testImage1 = Image.FromFile(sNewRoot);
                     this.SrcWidth = testImage1.Width;
@@ -414,14 +414,14 @@ namespace DotNet.Utilities
                 }
                 catch
                 {
-                    //非法格式，不是真正的图片
+                    //非法格式，不是真正的圖片
                     DirFileHelper.DeleteFile(sNewRoot);
                     SendResponse(202, "");
                     return false;
                 }
 
                 //------------------------------------------------
-                //先备份原始图
+                //先備份原始圖
                 var tmpPath = "";
                 tmpPath = System.IO.Path.Combine(sServerDir, DirFileHelper.GetFileNamePostfix(sNewFile, "o"));
                 DirFileHelper.CopyFile(sNewRoot, tmpPath);
@@ -430,17 +430,17 @@ namespace DotNet.Utilities
 
                 if (this._isFixPic || this._isBigPic || this._isMidPic || this._isMinPic)
                 {
-                    #region 创建大图
+                    #region 創建大圖
                     if (this._isBigPic)
                     {
                         tmpPath = System.IO.Path.Combine(sServerDir, DirFileHelper.GetFileNamePostfix(sNewFile, "b"));
 
                         if (this._bigWidth > 0 && this._bigHeight > 0)
                         {
-                            //缩略
+                            //縮略
                             MakeThumbImage(sNewRoot, tmpPath, this._bigWidth, this._bigHeight, this._bigQuality, this.CutType);
                         }
-                        else//因为不限制宽高，所以直接复制出来就行了
+                        else//因為不限制寬高，所以直接複製出來就行了
                         {
                             DirFileHelper.CopyFile(sNewRoot, tmpPath);
                         }
@@ -454,17 +454,17 @@ namespace DotNet.Utilities
                     #endregion
 
                     //------------------------------------------------
-                    #region 创建中图
+                    #region 創建中圖
                     if (this._isMidPic)
                     {
                         tmpPath = System.IO.Path.Combine(sServerDir, DirFileHelper.GetFileNamePostfix(sNewFile, "m"));
 
                         if (this._midWidth > 0 && this._midHeight > 0)
                         {
-                            //缩略图
+                            //縮略圖
                             MakeThumbImage(sNewRoot, tmpPath, this._midWidth, this._midHeight, this._midQuality, this.CutType);
                         }
-                        else//因为不限制宽高，所以直接复制出来就行了
+                        else//因為不限制寬高，所以直接複製出來就行了
                         {
                             DirFileHelper.CopyFile(sNewRoot, tmpPath);
                         }
@@ -478,37 +478,37 @@ namespace DotNet.Utilities
                     #endregion
 
                     //------------------------------------------------
-                    #region 创建小图
+                    #region 創建小圖
                     if (this._isMinPic)
                     {
                         tmpPath = System.IO.Path.Combine(sServerDir, DirFileHelper.GetFileNamePostfix(sNewFile, "s"));
 
                         if (this._minWidth > 0 && this._minHeight > 0)
                         {
-                            //缩略图
+                            //縮略圖
                             MakeThumbImage(sNewRoot, tmpPath, this._minWidth, this._minHeight, this._minQuality, this.CutType);
                         }
-                        else//因为不限制宽高，所以直接复制出来就行了
+                        else//因為不限制寬高，所以直接複製出來就行了
                         {
                             DirFileHelper.CopyFile(sNewRoot, tmpPath);
                         }
 
-                        //微型图不用加水印
+                        //微型圖不用加水印
                     }
                     #endregion
 
                     //------------------------------------------------
-                    #region 创建推荐图
+                    #region 創建推薦圖
                     if (this._isHotPic)
                     {
                         tmpPath = System.IO.Path.Combine(sServerDir, DirFileHelper.GetFileNamePostfix(sNewFile, "h"));
 
                         if (this._hotWidth > 0 && this._hotHeight > 0)
                         {
-                            //缩略图
+                            //縮略圖
                             MakeThumbImage(sNewRoot, tmpPath, this._hotWidth, this._hotHeight, this._hotQuality, this.CutType);
                         }
-                        else//因为不限制宽高，所以直接复制出来就行了
+                        else//因為不限制寬高，所以直接複製出來就行了
                         {
                             DirFileHelper.CopyFile(sNewRoot, tmpPath);
                         }
@@ -523,7 +523,7 @@ namespace DotNet.Utilities
                     #endregion
 
                     //------------------------------------------------
-                    #region 限制列表图
+                    #region 限制列表圖
                     if (this._isFixPic && this._picWidth > 0 && this._picHeight > 0)
                     {
                         MakeThumbImage(sNewRoot, sNewRoot, this._picWidth, this._picHeight, this._picQuality, this.CutType);
@@ -531,7 +531,7 @@ namespace DotNet.Utilities
                     #endregion
 
 
-                    #region 取得缩放后的图片宽高
+                    #region 取得縮放後的圖片寬高
                     try
                     {
                         Image testImage2 = Image.FromFile(sNewRoot);
@@ -548,7 +548,7 @@ namespace DotNet.Utilities
                     #endregion
                 }
 
-                //列表图是否加水印
+                //列表圖是否加水印
                 if (DirFileHelper.IsExistFile(sNewRoot) && this.IsWaterPic)
                 {
                     MakeWaterPic(sNewRoot);
@@ -556,13 +556,13 @@ namespace DotNet.Utilities
             }
             #endregion
 
-            //上传成功!!
+            //上傳成功!!
             return true;
         }
         #endregion
 
-        #region 向页面输出js提示
-        /// <summary>向页面输出js提示</summary>
+        #region 向頁面輸出js提示
+        /// <summary>向頁面輸出js提示</summary>
         /// <param name="errorNumber"></param>
         /// <param name="customMsg"></param>
         private void SendResponse(int errorNumber, string customMsg)
@@ -575,27 +575,27 @@ namespace DotNet.Utilities
                     return;
 
                 case 201:
-                    _errMsg = "请选择要上传的文件!";
+                    _errMsg = "請選擇要上傳的文件!";
                     return;
 
                 case 202:
-                    _errMsg = "不支持该文件格式,只支持以下格式:(" + this.AllowedExt + ").";
+                    _errMsg = "不支持該文件格式,只支持以下格式:(" + this.AllowedExt + ").";
                     return;
 
                 case 203:
-                    _errMsg = "系统禁止上传格式:(" + this.DeniedExt + ").";
+                    _errMsg = "系統禁止上傳格式:(" + this.DeniedExt + ").";
                     return;
 
                 case 204:
-                    _errMsg = "权限出错. 您可能没有权限上传文件. 请检查服务器.";
+                    _errMsg = "權限出錯. 您可能沒有權限上傳文件. 請檢查服務器.";
                     return;
 
                 case 301:
-                    _errMsg = "上传文件大小超过了限制.最多上传(" + DirFileHelper.FmtFileSize2(_maxSize) + ").";
+                    _errMsg = "上傳文件大小超過了限制.最多上傳(" + DirFileHelper.FmtFileSize2(_maxSize) + ").";
                     return;
 
                 case 500:
-                    _errMsg = "系统暂时禁止上传文件.";
+                    _errMsg = "系統暫時禁止上傳文件.";
                     return;
 
                 case 501:
@@ -603,22 +603,22 @@ namespace DotNet.Utilities
                     return;
 
                 case 502:
-                    _errMsg = "参数错误!!key";
+                    _errMsg = "參數錯誤!!key";
                     return;
 
                 case 503:
-                    _errMsg = "参数错误!!subid";
+                    _errMsg = "參數錯誤!!subid";
                     return;
 
                 default:
-                    _errMsg = "不知名的错误!.";
+                    _errMsg = "不知名的錯誤!.";
                     return;
             }
         }
         #endregion
 
-        #region 检查扩展名
-        /// <summary>检查是否充许该文件类型上传</summary>
+        #region 檢查擴展名
+        /// <summary>檢查是否充許該文件類型上傳</summary>
         /// <param name="sFileExt"></param>
         private bool checkAllowedExt(string sFileExt)
         {
@@ -645,42 +645,42 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 缩略图
-        /// <summary>生成缩略图</summary>
-        /// <param name="srcFile">原图片路径(服务器路径d:\web\upload\100.jpg)</param>
-        /// <param name="decFile">缩略图路径(服务器路径d:\web\upload\100.jpg)</param>
-        /// <param name="iMaxWidth">限制的宽度</param>
+        #region 縮略圖
+        /// <summary>生成縮略圖</summary>
+        /// <param name="srcFile">原圖片路徑(服務器路徑d:\web\upload\100.jpg)</param>
+        /// <param name="decFile">縮略圖路徑(服務器路徑d:\web\upload\100.jpg)</param>
+        /// <param name="iMaxWidth">限制的寬度</param>
         /// <param name="iMaxHeight">限制的高度</param>
-        /// <param name="highQuality">如果大于0，使用质量控制(50-100)</param>   
-        /// <param name="CutType">0=按比例生成宽高，1=固定图片宽高，2=固定背景宽高，图片按比例生成</param>
+        /// <param name="highQuality">如果大於0，使用質量控制(50-100)</param>   
+        /// <param name="CutType">0=按比例生成寬高，1=固定圖片寬高，2=固定背景寬高，圖片按比例生成</param>
         public static void MakeThumbImage(string srcFile, string decFile, int iMaxWidth, int iMaxHeight, int highQuality = 0, int CutType = 0)
         {
-            #region 取得路径
+            #region 取得路徑
             if (srcFile.IndexOf(":") < 0) { srcFile = DirFileHelper.GetMapPath(srcFile); }
             if (decFile.IndexOf(":") < 0) { decFile = DirFileHelper.GetMapPath(decFile); }
             if (!DirFileHelper.IsExistFile(srcFile)) { return; }
             #endregion
 
             //---------------------------------------
-            #region 原始图片宽高
+            #region 原始圖片寬高
             Image srcImage = Image.FromFile(srcFile);
             int iSrcWidth = srcImage.Width;
             int iSrcHeight = srcImage.Height;
             #endregion
 
             //---------------------------------------
-            #region 读取新图片宽高
+            #region 讀取新圖片寬高
             int toWidth = 0, toHeight = 0, x = 0, y = 0;
 
-            if (CutType == 1)//固定宽高
+            if (CutType == 1)//固定寬高
             {
                 toWidth = iMaxWidth;
                 toHeight = iMaxHeight;
             }
             else
             {
-                //如果原始图,高度大于宽度,按高度缩放,如果宽度大高度按宽度缩放（不变形）
-                //如果图片缩放后,还是比限制大,再进行缩放,直接宽同度都不超过限制
+                //如果原始圖,高度大於寬度,按高度縮放,如果寬度大高度按寬度縮放（不變形）
+                //如果圖片縮放後,還是比限制大,再進行縮放,直接寬同度都不超過限制
                 if ((iSrcWidth < iMaxWidth) && (iSrcHeight < iMaxHeight))
                 {
                     toWidth = iSrcWidth;
@@ -695,7 +695,7 @@ namespace DotNet.Utilities
 
                         if (toWidth > iMaxWidth)
                         {
-                            //toHeight 必须在 toWidth 前
+                            //toHeight 必須在 toWidth 前
                             toHeight = toHeight * iMaxWidth / toWidth;
                             toWidth = iMaxWidth;
                         }
@@ -707,7 +707,7 @@ namespace DotNet.Utilities
 
                         if (toHeight > iMaxHeight)
                         {
-                            //toWidth 必须在 toHeight 前
+                            //toWidth 必須在 toHeight 前
                             toWidth = toWidth * iMaxHeight / toHeight;
                             toHeight = iMaxHeight;
                         }
@@ -716,11 +716,11 @@ namespace DotNet.Utilities
             }
             #endregion
 
-            #region 输出
+            #region 輸出
             Bitmap bitmap;
             if (CutType == 2)
             {
-                //2=固定背景宽高，图片按比例生成
+                //2=固定背景寬高，圖片按比例生成
                 bitmap = new Bitmap(iMaxWidth, iMaxHeight);
                 if (toWidth <= iMaxWidth && toHeight <= iMaxHeight)
                 {
@@ -745,20 +745,20 @@ namespace DotNet.Utilities
             }
             Graphics g = Graphics.FromImage(bitmap);
 
-            //高质量
+            //高質量
             //g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
 
-            //设置高质量插值法            
+            //設置高質量插值法            
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
-            //设置高质量,低速度呈现平滑程度            
+            //設置高質量,低速度呈現平滑程度            
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
-            //清空画布并以透明背景色填充            
+            //清空畫布並以透明背景色填充            
             //g.Clear(System.Drawing.Color.Transparent);
             g.Clear(System.Drawing.Color.White);
 
-            //在指定位置并且按指定大小绘制原图片的指定部分         
+            //在指定位置並且按指定大小繪製原圖片的指定部分         
             g.DrawImage(srcImage, new Rectangle(x, y, toWidth, toHeight), new Rectangle(0, 0, iSrcWidth, iSrcHeight), GraphicsUnit.Pixel);
 
             srcImage.Dispose();
@@ -770,20 +770,20 @@ namespace DotNet.Utilities
                 {
                     bitmap.Save(decFile, System.Drawing.Imaging.ImageFormat.Png);
                 }
-                else//以jpg格式保存缩略图
+                else//以jpg格式保存縮略圖
                 {
                     //---------------------------------------
-                    //高质量--使用分级图片质量
+                    //高質量--使用分級圖片質量
                     if (highQuality > 0)
                     {
-                        // 以下代码为保存图片时,设置压缩质量
+                        // 以下代碼為保存圖片時,設置壓縮質量
                         var encoderParams = new EncoderParameters();
                         var quality = new long[1];
-                        quality[0] = highQuality;   //50-100内
+                        quality[0] = highQuality;   //50-100內
                         var encoderParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
                         encoderParams.Param[0] = encoderParam;
 
-                        //获得包含有关内置图像编码解码器的信息的ImageCodecInfo 对象.
+                        //獲得包含有關內置圖像編碼解碼器的信息的ImageCodecInfo 對像.
                         ImageCodecInfo[] arrayIci = ImageCodecInfo.GetImageEncoders();
                         ImageCodecInfo jpegIci = null;
                         for (int i = 0; i < arrayIci.Length; i++)
@@ -791,7 +791,7 @@ namespace DotNet.Utilities
                             if (arrayIci[i].FormatDescription.Equals("JPEG"))
                             {
                                 jpegIci = arrayIci[i];
-                                //设置JPEG编码
+                                //設置JPEG編碼
                                 break;
                             }
                         }
@@ -820,27 +820,27 @@ namespace DotNet.Utilities
         #endregion
 
         #region 水印
-        /// <summary>在图片上生成图片水印</summary>        
-        /// <param name="srcFile">要添加水印的图片</param>  
-        /// <param name="top">上边距 为0时下边距生效</param>
-        /// <param name="bottom">下边距 上边距为0时生效</param>
-        /// <param name="left">左边距 为0时右边距生效</param>
-        /// <param name="right">右边距 左边距为0时生效</param>
-        /// <param name="limitWidth">原图小于该宽度,将不添加水印</param>
-        /// <param name="HighQuality">如果大于0，使用质量控制(50-100)</param>
-        /// <param name="_WaterPicPath">水印图片所在地址,默认:"/images/Water.png"</param>
+        /// <summary>在圖片上生成圖片水印</summary>        
+        /// <param name="srcFile">要添加水印的圖片</param>  
+        /// <param name="top">上邊距 為0時下邊距生效</param>
+        /// <param name="bottom">下邊距 上邊距為0時生效</param>
+        /// <param name="left">左邊距 為0時右邊距生效</param>
+        /// <param name="right">右邊距 左邊距為0時生效</param>
+        /// <param name="limitWidth">原圖小於該寬度,將不添加水印</param>
+        /// <param name="HighQuality">如果大於0，使用質量控制(50-100)</param>
+        /// <param name="_WaterPicPath">水印圖片所在地址,默認:"/images/Water.png"</param>
         public static void MakeWaterPic(string srcFile, int top = 0, int bottom = 10, int left = 0, int right = 10, int limitWidth = 300, int HighQuality = 0, string _WaterPicPath = "/images/Water.png")
         {
-            #region 取得图片绝对地址
+            #region 取得圖片絕對地址
             if (srcFile.IndexOf(":") < 0) { srcFile = DirFileHelper.GetMapPath(srcFile); }
             if (!DirFileHelper.IsExistFile(srcFile)) { return; }
             #endregion
 
-            #region 取得水印图片
-            //如果是默认水印图片
+            #region 取得水印圖片
+            //如果是默認水印圖片
             if (_WaterPicPath == "/images/Water.png")
             {
-                //则从配置信息里读取水印图片路径
+                //則從配置信息裡讀取水印圖片路徑
                 var waterPicPath = ConfigHelper.GetConfigString("WaterPicPath");
                 if (!string.IsNullOrEmpty(waterPicPath))
                 {
@@ -853,11 +853,11 @@ namespace DotNet.Utilities
             #endregion
 
             //---------------------------------------
-            #region 判断
+            #region 判斷
             Image srcImage = Image.FromFile(srcFile);
             Image watImage = Image.FromFile(_WaterPicPath);
 
-            //水印图大于原图或原图小于300,不加水印
+            //水印圖大於原圖或原圖小於300,不加水印
             if (watImage.Width > srcImage.Width || srcImage.Width < limitWidth)
             {
                 srcImage.Dispose();
@@ -917,27 +917,27 @@ namespace DotNet.Utilities
                 {
                     bitmap.Save(srcFile, System.Drawing.Imaging.ImageFormat.Png);
                 }
-                else//以jpg格式保存缩略图
+                else//以jpg格式保存縮略圖
                 {
                     //---------------------------------------
-                    //高质量--使用分级图片质量
+                    //高質量--使用分級圖片質量
                     if (HighQuality > 0)
                     {
-                        // 以下代码为保存图片时,设置压缩质量
+                        // 以下代碼為保存圖片時,設置壓縮質量
                         EncoderParameters encoderParams = new EncoderParameters();
                         long[] quality = new long[1];
-                        quality[0] = HighQuality;   //50-100内
+                        quality[0] = HighQuality;   //50-100內
                         EncoderParameter encoderParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
                         encoderParams.Param[0] = encoderParam;
 
-                        //获得包含有关内置图像编码解码器的信息的ImageCodecInfo 对象.
+                        //獲得包含有關內置圖像編碼解碼器的信息的ImageCodecInfo 對像.
                         ImageCodecInfo[] arrayICI = ImageCodecInfo.GetImageEncoders();
                         ImageCodecInfo jpegICI = null;
                         for (int i = 0; i < arrayICI.Length; i++)
                         {
                             if (arrayICI[i].FormatDescription.Equals("JPEG"))
                             {
-                                jpegICI = arrayICI[i];//设置JPEG编码
+                                jpegICI = arrayICI[i];//設置JPEG編碼
                                 break;
                             }
                         }
@@ -965,11 +965,11 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 取得图片文件的宽高
-        /// <summary>取得图片文件的宽高</summary>
+        #region 取得圖片文件的寬高
+        /// <summary>取得圖片文件的寬高</summary>
         /// <param name="srcFile"></param>
-        /// <param name="ww">取得图片的宽度</param>
-        /// <param name="hh">取得图片的高度</param>
+        /// <param name="ww">取得圖片的寬度</param>
+        /// <param name="hh">取得圖片的高度</param>
         /// <returns></returns>
         public static bool Get_Pic_WW_HH(string srcFile, out int ww, out int hh)
         {

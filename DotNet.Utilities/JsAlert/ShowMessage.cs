@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -12,14 +12,14 @@ using System.Web.UI.WebControls;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 页面常用方法包装
+    /// 頁面常用方法包裝
     /// </summary>
     public class ShowMessageBox
     {
-        #region 信息显示
+        #region 信息顯示
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="message"></param>
         public static void ShowMG(string message)
@@ -29,26 +29,26 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="message">提示信息</param>
         public static void ShowMessage(string message)
         {
-            ShowMessage("系统提示", 180, 120, message);
+            ShowMessage("系統提示", 180, 120, message);
         }
 
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="message">提示信息</param>
         public static void ShowMessage_link(string message, string linkurl)
         {
-            ShowMessage_link("系统提示", 180, 120, message, linkurl, 8000, -1);
+            ShowMessage_link("系統提示", 180, 120, message, linkurl, 8000, -1);
         }
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="title"></param>
         /// <param name="width"></param>
@@ -60,7 +60,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="title"></param>
         /// <param name="width"></param>
@@ -75,7 +75,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 显示提示信息
+        /// 顯示提示信息
         /// </summary>
         /// <param name="title"></param>
         /// <param name="width"></param>
@@ -91,10 +91,10 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 显示异常信息
+        #region 顯示異常信息
 
         /// <summary>
-        /// 显示异常信息
+        /// 顯示異常信息
         /// </summary>
         /// <param name="ex"></param>
         public static void ShowExceptionMessage(Exception ex)
@@ -103,17 +103,17 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 显示异常信息
+        /// 顯示異常信息
         /// </summary>
         /// <param name="message"></param>
         public static void ShowExceptionMessage(string message)
         {
             WriteScript("alert('" + message + "');");
-            //PageHelper.ShowExceptionMessage("错误提示", 210, 125, message);
+            //PageHelper.ShowExceptionMessage("錯誤提示", 210, 125, message);
         }
 
         /// <summary>
-        /// 显示异常信息
+        /// 顯示異常信息
         /// </summary>
         /// <param name="title"></param>
         /// <param name="width"></param>
@@ -125,10 +125,10 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 显示模态窗口
+        #region 顯示模態窗口
 
         /// <summary>
-        /// 返回把指定链接地址显示模态窗口的脚本
+        /// 返回把指定鏈接地址顯示模態窗口的腳本
         /// </summary>
         /// <param name="wid"></param>
         /// <param name="title"></param>
@@ -141,20 +141,20 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 把指定链接地址显示模态窗口
+        /// 把指定鏈接地址顯示模態窗口
         /// </summary>
         /// <param name="wid">窗口ID</param>
-        /// <param name="title">标题</param>
-        /// <param name="width">宽度</param>
+        /// <param name="title">標題</param>
+        /// <param name="width">寬度</param>
         /// <param name="height">高度</param>
-        /// <param name="url">链接地址</param>
+        /// <param name="url">鏈接地址</param>
         public static void ShowModalWindow(string wid, string title, int width, int height, string url)
         {
             WriteScript(GetShowModalWindowScript(wid, title, width, height, url));
         }
 
         /// <summary>
-        /// 为指定控件绑定前台脚本：显示模态窗口
+        /// 為指定控件綁定前台腳本：顯示模態窗口
         /// </summary>
         /// <param name="control"></param>
         /// <param name="eventName"></param>
@@ -171,7 +171,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 为指定控件绑定前台脚本：显示模态窗口
+        /// 為指定控件綁定前台腳本：顯示模態窗口
         /// </summary>
         /// <param name="cell"></param>
         /// <param name="eventName"></param>
@@ -188,20 +188,20 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 显示客户端确认窗口
+        #region 顯示客戶端確認窗口
         /// <summary>
-        /// 显示客户端确认窗口
+        /// 顯示客戶端確認窗口
         /// </summary>
         /// <param name="control"></param>
         /// <param name="eventName"></param>
         /// <param name="message"></param>
         public static void ShowCilentConfirm(WebControl control, string eventName, string message)
         {
-            ShowCilentConfirm(control, eventName, "系统提示", 210, 125, message);
+            ShowCilentConfirm(control, eventName, "系統提示", 210, 125, message);
         }
 
         /// <summary>
-        /// 显示客户端确认窗口
+        /// 顯示客戶端確認窗口
         /// </summary>
         /// <param name="control"></param>
         /// <param name="eventName"></param>
@@ -218,9 +218,9 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 写javascript脚本
+        /// 寫javascript腳本
         /// </summary>
-        /// <param name="script">脚本内容</param>
+        /// <param name="script">腳本內容</param>
         public static void WriteScript(string script)
         {
             Page page = GetCurrentPage();
@@ -232,7 +232,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 得到当前页对象实例
+        /// 得到當前頁對像實例
         /// </summary>
         /// <returns></returns>
         public static Page GetCurrentPage()

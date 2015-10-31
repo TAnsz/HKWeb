@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DotNet.Utilities;
 using FineUI;
@@ -41,7 +41,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             if (!IsPostBack)
             {
-                //設置默認日期，三個月以内的記錄
+                //設置默認日期，三個月以內的記錄
                 dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-3);
                 LoadData();
             }

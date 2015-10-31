@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections.Generic;
@@ -16,17 +16,17 @@ namespace DotNet.Utilities
 {
     /// <summary>
     /// This class represents a Mime entity.
-    /// 这个类表示一个MIME实体
+    /// 這個類表示一個MIME實體
     /// </summary>
     public class MimeEntity
     {
         private StringBuilder _encodedMessage;
         /// <summary>
         /// Gets the encoded message.
-        /// 获取编码的消息。
+        /// 獲取編碼的消息。
         /// </summary>
         /// <value>
-        /// 编码的消息
+        /// 編碼的消息
         /// The encoded message.
         /// </value>
         public StringBuilder EncodedMessage

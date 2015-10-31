@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：ResourceManagerWrapper
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧ResourceManagerWrapper
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 
 using System;

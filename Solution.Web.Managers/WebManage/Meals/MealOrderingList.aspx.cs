@@ -8,6 +8,7 @@ using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
+using System.Collections.Generic;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -26,6 +27,7 @@ namespace Solution.Web.Managers.WebManage.Meals
 {
     public partial class MealOrderingList : PageBase
     {
+        protected readonly static List<string> VALID_FILE_TYPES = new List<string> { ".jpg", ".bmp", ".gif", ".jpeg", ".png" };
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -87,7 +89,7 @@ namespace Solution.Web.Managers.WebManage.Meals
             return wheres;
         }
         #endregion
-        
+
         #region 列表屬性綁定
 
         #region 列表按鍵綁定——修改列表控件屬性
@@ -148,8 +150,8 @@ namespace Solution.Web.Managers.WebManage.Meals
                 case "ButtonEdit":
                     //打開編輯窗口
                     Window1.IFrameUrl = "MealOrderingEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
+                    Window1.Height = 450;
                     Window1.Hidden = false;
-
                     break;
             }
         }
@@ -200,7 +202,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
             //獲取要刪除的ID
             int id = ConvertHelper.Cint0(GridViewHelper.GetSelectedKey(Grid1, true));
-            
+
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {
@@ -209,7 +211,7 @@ namespace Solution.Web.Managers.WebManage.Meals
 
             try
             {
-               
+
                 //刪除記錄
                 bll.Delete(this, id);
 
@@ -224,6 +226,35 @@ namespace Solution.Web.Managers.WebManage.Meals
 
                 return result;
             }
+        }
+        #endregion
+
+        #region 上傳圖片
+        protected void filePhoto_FileSelected(object sender, EventArgs e)
+        {
+            if (filePhoto.HasFile)
+            {
+                string fileName = filePhoto.ShortFileName;
+
+                if (!VALID_FILE_TYPES.Contains(FileOperateHelper.GetPostfixStr(fileName)))
+                {
+                    FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
+                    return;
+                }
+ 
+ 
+                fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+
+                filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
+ 
+                //imgPhoto.ImageUrl = "~/upload/" + fileName;
+ 
+                // 清空文件上传组件
+                filePhoto.Reset();
+                FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);
+            }
+
         }
         #endregion
 

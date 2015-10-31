@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -15,7 +15,7 @@ namespace DotNet.Utilities
         {
             Hashtable ht = new Hashtable();
 
-            #region 39码 12位
+            #region 39碼 12位
             ht.Add('A', "110101001011");
             ht.Add('B', "101101001011");
             ht.Add('C', "110110100101");
@@ -62,7 +62,7 @@ namespace DotNet.Utilities
             ht.Add(' ', "100110101101");
             #endregion
 
-            #region 39码 9位
+            #region 39碼 9位
             //ht.Add('0', "000110100");
             //ht.Add('1', "100100001");
             //ht.Add('2', "001100001");
@@ -111,20 +111,20 @@ namespace DotNet.Utilities
 
             s = "*" + s.ToUpper() + "*";
 
-            string result_bin = "";//二进制串
+            string result_bin = "";//二進制串
 
             try
             {
                 foreach (char ch in s)
                 {
                     result_bin += ht[ch].ToString();
-                    result_bin += "0";//间隔，与一个单位的线条宽度相等
+                    result_bin += "0";//間隔，與一個單位的線條寬度相等
                 }
             }
-            catch { return "存在不允许的字符！"; }
+            catch { return "存在不允許的字符！"; }
 
-            string result_html = ""; //HTML代码
-            string color = "";       //颜色
+            string result_html = ""; //HTML代碼
+            string color = "";       //顏色
             foreach (char c in result_bin)
             {
                 color = c == '0' ? "#FFFFFF" : "#000000";
@@ -139,17 +139,17 @@ namespace DotNet.Utilities
             }
             result_html += "<div style=\"clear:both\"></div>";
 
-            return "<div style=\"background:#FFFFFF;padding:5px;font-size:" + (width * 10) + "px;font-family:'楷体';\">" + result_html + "</div>";
+            return "<div style=\"background:#FFFFFF;padding:5px;font-size:" + (width * 10) + "px;font-family:'楷體';\">" + result_html + "</div>";
         }
 
         public static string getEAN13(string s, int width, int height)
         {
-            int checkcode_input = -1;//输入的校验码
+            int checkcode_input = -1;//輸入的校驗碼
             if (!Regex.IsMatch(s, @"^\d{12}$"))
             {
                 if (!Regex.IsMatch(s, @"^\d{13}$"))
                 {
-                    return "存在不允许的字符！";
+                    return "存在不允許的字符！";
                 }
                 else
                 {
@@ -158,8 +158,8 @@ namespace DotNet.Utilities
                 }
             }
 
-            int sum_even = 0;//偶数位之和
-            int sum_odd = 0; //奇数位之和
+            int sum_even = 0;//偶數位之和
+            int sum_odd = 0; //奇數位之和
 
             for (int i = 0; i < 12; i++)
             {
@@ -173,19 +173,19 @@ namespace DotNet.Utilities
                 }
             }
 
-            int checkcode = (10 - (sum_even * 3 + sum_odd) % 10) % 10;//校验码
+            int checkcode = (10 - (sum_even * 3 + sum_odd) % 10) % 10;//校驗碼
 
             if (checkcode_input > 0 && checkcode_input != checkcode)
             {
-                return "输入的校验码错误！";
+                return "輸入的校驗碼錯誤！";
             }
 
-            s += checkcode;//变成13位
+            s += checkcode;//變成13位
 
-            // 000000000101左侧42个01010右侧35个校验7个101000000000
-            // 6        101左侧6位 01010右侧5位校验1位101000000000
+            // 000000000101左側42個01010右側35個校驗7個101000000000
+            // 6        101左側6位 01010右側5位校驗1位101000000000
 
-            string result_bin = "";//二进制串
+            string result_bin = "";//二進制串
             result_bin += "000000000101";
 
             string type = ean13type(s[0]);
@@ -200,8 +200,8 @@ namespace DotNet.Utilities
             }
             result_bin += "101000000000";
 
-            string result_html = ""; //HTML代码
-            string color = "";       //颜色
+            string result_html = ""; //HTML代碼
+            string color = "";       //顏色
             int height_bottom = width * 5;
             foreach (char c in result_bin)
             {
@@ -233,7 +233,7 @@ namespace DotNet.Utilities
             result_html += "<div style=\"float:left;color:#000000;width:" + (width * 9) + "px;\"></div>";
             result_html += "<div style=\"clear:both\"></div>";
 
-            return "<div style=\"background:#FFFFFF;padding:0px;font-size:" + (width * 10) + "px;font-family:'楷体';\">" + result_html + "</div>";
+            return "<div style=\"background:#FFFFFF;padding:0px;font-size:" + (width * 10) + "px;font-family:'楷體';\">" + result_html + "</div>";
         }
 
         private static string ean13(char c, char type)
@@ -305,7 +305,7 @@ namespace DotNet.Utilities
                 case '3': return "AABBBA";
                 case '4': return "ABAABB";
                 case '5': return "ABBAAB";
-                case '6': return "ABBBAA";//中国
+                case '6': return "ABBBAA";//中國
                 case '7': return "ABABAB";
                 case '8': return "ABABBA";
                 case '9': return "ABBABA";

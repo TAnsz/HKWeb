@@ -1,14 +1,36 @@
-﻿using System.Data;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Script.Serialization;
+using System.IO;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace DotNet.Utilities.Json
 {
-    /// <summary>Json的封装函数</summary>
     public class JsonHelper
     {
+        /// <summary>
+        /// json反序列化
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static object jsonDes<T>(string input)
+        {
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            return jss.Deserialize<T>(input);
+        }
+        public static string json(object obj)
+        {
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            return jss.Serialize(obj);
+        }
+
         #region 通用
 
-        /// <summary>检查字符串是否json格式</summary>
+        /// <summary>檢查字符串是否json格式</summary>
         /// <param name="jText"></param>
         /// <returns></returns>
         public static bool IsJson(string jText)
@@ -25,7 +47,7 @@ namespace DotNet.Utilities.Json
             return false;
         }
 
-        /// <summary>检查字符串是否json格式数组</summary>
+        /// <summary>檢查字符串是否json格式數組</summary>
         /// <param name="jText"></param>
         /// <returns></returns>
         public static bool IsJsonRs(string jText)
@@ -50,7 +72,7 @@ namespace DotNet.Utilities.Json
             return StringHelper.ReplaceString(jText, ":null,", ":\"\",", true);
         }
 
-        /// <summary>格式化 json ，删除左右二边的[]</summary>
+        /// <summary>格式化 json ，刪除左右二邊的[]</summary>
         /// <param name="jText"></param>
         /// <returns></returns>
         public static string Fmt_Rs(string jText)
@@ -113,9 +135,9 @@ namespace DotNet.Utilities.Json
         }
 
         /// <summary>反序列化</summary>
-        /// <typeparam name="T">类型</typeparam>
+        /// <typeparam name="T">類型</typeparam>
         /// <param name="jText">json字符串</param>
-        /// <returns>类型数据</returns>
+        /// <returns>類型數據</returns>
         public static T ToObject<T>(string jText)
         {
             return (T)JsonConvert.DeserializeObject(jText, typeof(T));

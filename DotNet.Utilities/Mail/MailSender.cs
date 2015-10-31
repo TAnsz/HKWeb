@@ -74,14 +74,12 @@ namespace DotNet.Utilities
 
             //    msg.AddRecipient(s, OpenSmtp.Mail.AddressType.To);
 
-            //    //ÉèÖÃÓÊ¼şÕıÎÄ,²¢Ö¸¶¨¸ñÊ½Îª html ¸ñÊ½
-            //    msg.HtmlBody = body;
-            //    //ÉèÖÃÓÊ¼ş±êÌâ
+            //    //ã¸mæ¬¥ã¥¿ä¥¬è„›ì©·î¦¦á¬° html î¦¦áŠ            //    msg.HtmlBody = body;
+            //    //ã¸mæ¬¥ã¼A
             //    msg.Subject = subject;
-            //    //Ö¸¶¨ÓÊ¼şÕıÎÄµÄ±àÂë
+            //    //ë¼©wæ¬¥ã¥¿ä¥ªê½³í˜
             //    msg.Charset = "gb2312";
-            //    //·¢ËÍÓÊ¼ş
-            //    smtp.SendMail(msg);
+            //    //å¯°eæ¬¥ãŠ            //    smtp.SendMail(msg);
             //}
         }
     }

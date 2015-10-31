@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
@@ -209,25 +209,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 #endregion
 
                 //------------------------------------------
-                //清空字段修改標記
-                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
-
-                #endregion
 
 
                 //----------------------------------------------------------
                 //存儲到數據庫
                 OutWork_DBll.GetInstence().Save(this, model);
-
-                #region 同步更新上傳圖片表綁定Id
-                //if (id == 0)
-                //{
-                //    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
-                //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, OutWorkRecordTable.TableName, model.Id);
-                //}
-
-                #endregion
-
+                //清空字段修改標記
+                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
                 //這裡放置清空前端頁面緩存的代碼（如果前端使用了頁面緩存的話，必須進行清除操作）
 
 
@@ -316,7 +304,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 {
                     if (field != null && !(field is Label))
                     {
-                        field.Readonly=b;
+                        field.Readonly = b;
                     }
                 }
             }

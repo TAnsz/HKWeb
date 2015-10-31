@@ -6,10 +6,10 @@ namespace DotNet.Utilities
 {
     public static class ResourcesApi
     {
-        public static string Win32_DeviceIoControlErr="Éè±¸IO¿ØÖÆ´íÎó";
-        public static string Win32_DeviceIoControlNotSupport = "Éè±¸IO²»Ö§³Ö";
-        public static string Win32_CurrentPlatformNotSupport = "µ±Ç°ÏµÍ³²»Ö§³Ö";
-        public static string Win32_CurrentPlatformUnknown = "µ±Ç°ÏµÍ³Î´Öª";
+        public static string Win32_DeviceIoControlErr="É¨á¸‰Oï˜–Æ´íŽ³";
+        public static string Win32_DeviceIoControlNotSupport = "É¨á¸‰Oâ»–ç³–";
+        public static string Win32_CurrentPlatformNotSupport = "å±‡ÏµÍ³â»–ç³–";
+        public static string Win32_CurrentPlatformUnknown = "å±‡ÏµÍ³Î´Öª";
 
     }
 }

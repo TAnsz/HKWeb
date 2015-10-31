@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 
@@ -13,17 +13,17 @@ namespace DotNet.Utilities
     /// </summary>
     public enum EnumFormula
     {
-        Add,//加号
-        Dec,//减号
-        Mul,//乘号
-        Div,//除号
+        Add,//加號
+        Dec,//減號
+        Mul,//乘號
+        Div,//除號
         Sin,//正玄
         Cos,//余玄
         Tan,//正切
         ATan,//余切
         Sqrt,//平方根
-        Pow,//求幂
-        None,//无
+        Pow,//求冪
+        None,//無
     }
 
     /// <summary>

@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：XMLProcess
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：XMLProcess
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Data;
@@ -13,7 +13,7 @@ namespace DotNet.Utilities
 {
     public class XMLProcess
     {
-        #region 构造函数
+        #region 構造函數
         public XMLProcess()
         { }
 
@@ -23,7 +23,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 公有属性
+        #region 公有屬性
         private string _XMLPath;
         public string XMLPath
         {
@@ -33,9 +33,9 @@ namespace DotNet.Utilities
 
         #region 私有方法
         /// <summary>
-        /// 导入XML文件
+        /// 導入XML文件
         /// </summary>
-        /// <param name="XMLPath">XML文件路径</param>
+        /// <param name="XMLPath">XML文件路徑</param>
         private XmlDocument XMLLoad()
         {
             string XMLFile = XMLPath;
@@ -51,9 +51,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 导入XML文件
+        /// 導入XML文件
         /// </summary>
-        /// <param name="XMLPath">XML文件路径</param>
+        /// <param name="XMLPath">XML文件路徑</param>
         private static XmlDocument XMLLoad(string strPath)
         {
             XmlDocument xmldoc = new XmlDocument();
@@ -68,9 +68,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 返回完整路径
+        /// 返回完整路徑
         /// </summary>
-        /// <param name="strPath">Xml的路径</param>
+        /// <param name="strPath">Xml的路徑</param>
         private static string GetXmlFullPath(string strPath)
         {
             if (strPath.IndexOf(":") > 0)
@@ -84,11 +84,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 读取数据
+        #region 讀取數據
         /// <summary>
-        /// 读取指定节点的数据
+        /// 讀取指定節點的數據
         /// </summary>
-        /// <param name="node">节点</param>
+        /// <param name="node">節點</param>
         /// 使用示列:
         /// XMLProsess.Read("/Node", "")
         /// XMLProsess.Read("/Node/Element[@Attribute='Name']")
@@ -106,11 +106,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取指定路径和节点的串联值
+        /// 讀取指定路徑和節點的串聯值
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="attribute">屬性名，非空時返回該屬性值，否則返回串聯值</param>
         /// 使用示列:
         /// XMLProsess.Read(path, "/Node", "")
         /// XMLProsess.Read(path, "/Node/Element[@Attribute='Name']")
@@ -128,11 +128,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取指定路径和节点的属性值
+        /// 讀取指定路徑和節點的屬性值
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="attribute">屬性名，非空時返回該屬性值，否則返回串聯值</param>
         /// 使用示列:
         /// XMLProsess.Read(path, "/Node", "")
         /// XMLProsess.Read(path, "/Node/Element[@Attribute='Name']", "Attribute")
@@ -150,20 +150,20 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取某一节点的所有孩子节点的值
+        /// 獲取某一節點的所有孩子節點的值
         /// </summary>
-        /// <param name="node">要查询的节点</param>
+        /// <param name="node">要查詢的節點</param>
         public string[] ReadAllChildallValue(string node)
         {
             int i = 0;
             string[] str = { };
             XmlDocument doc = XMLLoad();
             XmlNode xn = doc.SelectSingleNode(node);
-            XmlNodeList nodelist = xn.ChildNodes;  //得到该节点的子节点
+            XmlNodeList nodelist = xn.ChildNodes;  //得到該節點的子節點
             if (nodelist.Count > 0)
             {
                 str = new string[nodelist.Count];
-                foreach (XmlElement el in nodelist)//读元素值
+                foreach (XmlElement el in nodelist)//讀元素值
                 {
                     str[i] = el.Value;
                     i++;
@@ -173,22 +173,22 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取某一节点的所有孩子节点的值
+        /// 獲取某一節點的所有孩子節點的值
         /// </summary>
-        /// <param name="node">要查询的节点</param>
+        /// <param name="node">要查詢的節點</param>
         public XmlNodeList ReadAllChild(string node)
         {
             XmlDocument doc = XMLLoad();
             XmlNode xn = doc.SelectSingleNode(node);
-            XmlNodeList nodelist = xn.ChildNodes;  //得到该节点的子节点
+            XmlNodeList nodelist = xn.ChildNodes;  //得到該節點的子節點
             return nodelist;
         }
 
         /// <summary> 
-        /// 读取XML返回经排序或筛选后的DataView
+        /// 讀取XML返回經排序或篩選後的DataView
         /// </summary>
-        /// <param name="strWhere">筛选条件，如:"name='kgdiwss'"</param>
-        /// <param name="strSort"> 排序条件，如:"Id desc"</param>
+        /// <param name="strWhere">篩選條件，如:"name='kgdiwss'"</param>
+        /// <param name="strSort"> 排序條件，如:"Id desc"</param>
         public DataView GetDataViewByXml(string strWhere, string strSort)
         {
             try
@@ -197,14 +197,14 @@ namespace DotNet.Utilities
                 string filename = AppDomain.CurrentDomain.BaseDirectory.ToString() + XMLFile;
                 DataSet ds = new DataSet();
                 ds.ReadXml(filename);
-                DataView dv = new DataView(ds.Tables[0]); //创建DataView来完成排序或筛选操作	
+                DataView dv = new DataView(ds.Tables[0]); //創建DataView來完成排序或篩選操作	
                 if (strSort != null)
                 {
-                    dv.Sort = strSort; //对DataView中的记录进行排序
+                    dv.Sort = strSort; //對DataView中的記錄進行排序
                 }
                 if (strWhere != null)
                 {
-                    dv.RowFilter = strWhere; //对DataView中的记录进行筛选，找到我们想要的记录
+                    dv.RowFilter = strWhere; //對DataView中的記錄進行篩選，找到我們想要的記錄
                 }
                 return dv;
             }
@@ -215,9 +215,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取XML返回DataSet
+        /// 讀取XML返回DataSet
         /// </summary>
-        /// <param name="strXmlPath">XML文件相对路径</param>
+        /// <param name="strXmlPath">XML文件相對路徑</param>
         public DataSet GetDataSetByXml(string strXmlPath)
         {
             try
@@ -237,14 +237,14 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 插入数据
+        #region 插入數據
         /// <summary>
-        /// 插入数据
+        /// 插入數據
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
-        /// <param name="attribute">属性名，非空时插入该元素属性值，否则插入元素值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="element">元素名，非空時插入新元素，否則在該元素中插入屬性</param>
+        /// <param name="attribute">屬性名，非空時插入該元素屬性值，否則插入元素值</param>
         /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Insert(path, "/Node", "Element", "", "Value")
@@ -280,12 +280,12 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 插入数据
+        /// 插入數據
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
-        /// <param name="strList">由XML属性名和值组成的二维数组</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="element">元素名，非空時插入新元素，否則在該元素中插入屬性</param>
+        /// <param name="strList">由XML屬性名和值組成的二維數組</param>
         public static void Insert(string path, string node, string element, string[][] strList)
         {
             try
@@ -317,24 +317,24 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 插入一行数据
+        /// 插入一行數據
         /// </summary>
-        /// <param name="strXmlPath">XML文件相对路径</param>
-        /// <param name="Columns">要插入行的列名数组，如：string[] Columns = {"name","IsMarried"};</param>
-        /// <param name="ColumnValue">要插入行每列的值数组，如：string[] ColumnValue={"XML大全","false"};</param>
-        /// <returns>成功返回true,否则返回false</returns>
+        /// <param name="strXmlPath">XML文件相對路徑</param>
+        /// <param name="Columns">要插入行的列名數組，如：string[] Columns = {"name","IsMarried"};</param>
+        /// <param name="ColumnValue">要插入行每列的值數組，如：string[] ColumnValue={"XML大全","false"};</param>
+        /// <returns>成功返回true,否則返回false</returns>
         public static bool WriteXmlByDataSet(string strXmlPath, string[] Columns, string[] ColumnValue)
         {
             try
             {
-                //根据传入的XML路径得到.XSD的路径，两个文件放在同一个目录下
+                //根據傳入的XML路徑得到.XSD的路徑，兩個文件放在同一個目錄下
                 string strXsdPath = strXmlPath.Substring(0, strXmlPath.IndexOf(".")) + ".xsd";
                 DataSet ds = new DataSet();
-                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath)); //读XML架构，关系到列的数据类型
+                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath)); //讀XML架構，關係到列的數據類型
                 ds.ReadXml(GetXmlFullPath(strXmlPath));
                 DataTable dt = ds.Tables[0];
-                DataRow newRow = dt.NewRow();                 //在原来的表格基础上创建新行
-                for (int i = 0; i < Columns.Length; i++)      //循环给一行中的各个列赋值
+                DataRow newRow = dt.NewRow();                 //在原來的表格基礎上創建新行
+                for (int i = 0; i < Columns.Length; i++)      //循環給一行中的各個列賦值
                 {
                     newRow[Columns[i]] = ColumnValue[i];
                 }
@@ -351,11 +351,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 修改数据
+        #region 修改數據
         /// <summary>
-        /// 修改指定节点的数据
+        /// 修改指定節點的數據
         /// </summary>
-        /// <param name="node">节点</param>
+        /// <param name="node">節點</param>
         /// <param name="value">值</param>
         public void Update(string node, string value)
         {
@@ -370,10 +370,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 修改指定节点的数据
+        /// 修改指定節點的數據
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
         /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Insert(path, "/Node","Value")
@@ -391,11 +391,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 修改指定节点的属性值(静态)
+        /// 修改指定節點的屬性值(靜態)
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时修改该节点属性值，否则修改节点值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="attribute">屬性名，非空時修改該節點屬性值，否則修改節點值</param>
         /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Insert(path, "/Node", "", "Value")
@@ -417,37 +417,37 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 更改符合条件的一条记录
+        /// 更改符合條件的一條記錄
         /// </summary>
-        /// <param name="strXmlPath">XML文件路径</param>
-        /// <param name="Columns">列名数组</param>
-        /// <param name="ColumnValue">列值数组</param>
-        /// <param name="strWhereColumnName">条件列名</param>
-        /// <param name="strWhereColumnValue">条件列值</param>
+        /// <param name="strXmlPath">XML文件路徑</param>
+        /// <param name="Columns">列名數組</param>
+        /// <param name="ColumnValue">列值數組</param>
+        /// <param name="strWhereColumnName">條件列名</param>
+        /// <param name="strWhereColumnValue">條件列值</param>
         public static bool UpdateXmlRow(string strXmlPath, string[] Columns, string[] ColumnValue, string strWhereColumnName, string strWhereColumnValue)
         {
             try
             {
                 string strXsdPath = strXmlPath.Substring(0, strXmlPath.IndexOf(".")) + ".xsd";
                 DataSet ds = new DataSet();
-                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath));//读XML架构，关系到列的数据类型
+                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath));//讀XML架構，關係到列的數據類型
                 ds.ReadXml(GetXmlFullPath(strXmlPath));
 
-                //先判断行数
+                //先判斷行數
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        //如果当前记录为符合Where条件的记录
+                        //如果當前記錄為符合Where條件的記錄
                         if (ds.Tables[0].Rows[i][strWhereColumnName].ToString().Trim().Equals(strWhereColumnValue))
                         {
-                            //循环给找到行的各列赋新值
+                            //循環給找到行的各列賦新值
                             for (int j = 0; j < Columns.Length; j++)
                             {
                                 ds.Tables[0].Rows[i][Columns[j]] = ColumnValue[j];
                             }
                             ds.AcceptChanges();                     //更新DataSet
-                            ds.WriteXml(GetXmlFullPath(strXmlPath));//重新写入XML文件
+                            ds.WriteXml(GetXmlFullPath(strXmlPath));//重新寫入XML文件
                             return true;
                         }
                     }
@@ -462,13 +462,13 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 删除数据
+        #region 刪除數據
         /// <summary>
-        /// 删除节点值
+        /// 刪除節點值
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="attribute">屬性名，非空時刪除該節點屬性值，否則刪除節點值</param>
         /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Delete(path, "/Node", "")
@@ -486,11 +486,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除数据
+        /// 刪除數據
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
+        /// <param name="path">路徑</param>
+        /// <param name="node">節點</param>
+        /// <param name="attribute">屬性名，非空時刪除該節點屬性值，否則刪除節點值</param>
         /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Delete(path, "/Node", "")
@@ -512,9 +512,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除所有行
+        /// 刪除所有行
         /// </summary>
-        /// <param name="strXmlPath">XML路径</param>
+        /// <param name="strXmlPath">XML路徑</param>
         public static bool DeleteXmlAllRows(string strXmlPath)
         {
             try
@@ -535,9 +535,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 通过删除DataSet中指定索引行，重写XML以实现删除指定行
+        /// 通過刪除DataSet中指定索引行，重寫XML以實現刪除指定行
         /// </summary>
-        /// <param name="iDeleteRow">要删除的行在DataSet中的Index值</param>
+        /// <param name="iDeleteRow">要刪除的行在DataSet中的Index值</param>
         public static bool DeleteXmlRowByIndex(string strXmlPath, int iDeleteRow)
         {
             try
@@ -558,9 +558,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除指定列中指定值的行
+        /// 刪除指定列中指定值的行
         /// </summary>
-        /// <param name="strXmlPath">XML相对路径</param>
+        /// <param name="strXmlPath">XML相對路徑</param>
         /// <param name="strColumn">列名</param>
         /// <param name="ColumnValue">指定值</param>
         public static bool DeleteXmlRows(string strXmlPath, string strColumn, string[] ColumnValue)
@@ -571,7 +571,7 @@ namespace DotNet.Utilities
                 ds.ReadXml(GetXmlFullPath(strXmlPath));
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    //判断行多还是删除的值多，多的for循环放在里面
+                    //判斷行多還是刪除的值多，多的for循環放在裡面
                     if (ColumnValue.Length > ds.Tables[0].Rows.Count)
                     {
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)

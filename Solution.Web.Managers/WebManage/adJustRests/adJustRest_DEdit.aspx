@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeBehind="adJustRest_DEdit.aspx.cs"
+<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeBehind="adJustRest_DEdit.aspx.cs"
     Inherits="Solution.Web.Managers.WebManage.adJustRests.adJustRest_DEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

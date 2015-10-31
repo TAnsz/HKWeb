@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧Assistant
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Security.Cryptography;  
@@ -10,7 +10,7 @@ using System.Text;
 namespace DotNet.Utilities
 {
 	/// <summary>
-	/// DES加密/解密类。
+	/// DES盞/秆盞摸
 	/// </summary>
 	public class DESEncrypt
 	{
@@ -18,10 +18,10 @@ namespace DotNet.Utilities
 		{			
 		}
 
-		#region ========加密======== 
+		#region ========盞======== 
  
         /// <summary>
-        /// 加密
+        /// 盞
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace DotNet.Utilities
 			return Encrypt(Text,"MATICSOFT");
 		}
 		/// <summary> 
-		/// 加密数据 
+		/// 盞计沮 
 		/// </summary> 
 		/// <param name="Text"></param> 
 		/// <param name="sKey"></param> 
@@ -56,11 +56,11 @@ namespace DotNet.Utilities
 
 		#endregion
 		
-		#region ========解密======== 
+		#region ========秆盞======== 
    
  
         /// <summary>
-        /// 解密
+        /// 秆盞
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace DotNet.Utilities
 			return Decrypt(Text,"MATICSOFT");
 		}
 		/// <summary> 
-		/// 解密数据 
+		/// 秆盞计沮 
 		/// </summary> 
 		/// <param name="Text"></param> 
 		/// <param name="sKey"></param> 

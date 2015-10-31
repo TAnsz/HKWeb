@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Xml;
@@ -18,7 +18,7 @@ namespace DotNet.Utilities
     public class  Serialize  
     {   
         /// <summary>
-        /// 序列化为对象
+        /// 序列化為對像
         /// </summary>
         /// <param name="objname"></param>
         /// <param name="obj"></param>
@@ -31,7 +31,7 @@ namespace DotNet.Utilities
                     System.IO.File.Delete(filename);
                 using (FileStream fileStream = new FileStream(filename, FileMode.Create))
                 {
-                    // 用二进制格式序列化
+                    // 用二進制格式序列化
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     binaryFormatter.Serialize(fileStream, obj);
                     fileStream.Close();
@@ -44,18 +44,18 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 从二进制文件中反序列化
+        /// 從二進制文件中反序列化
         /// </summary>
         /// <param name="objname"></param>
         /// <returns></returns>
         public static object BinaryDeserialize(string objname)
         {
             System.Runtime.Serialization.IFormatter formatter = new BinaryFormatter();
-            //二进制格式反序列化
+            //二進制格式反序列化
             object obj;
             string filename = objname + ".Binary";
             if(!System.IO.File.Exists(filename))
-                throw new Exception("在反序列化之前,请先序列化");
+                throw new Exception("在反序列化之前,請先序列化");
             using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 obj = formatter.Deserialize(stream);
@@ -71,7 +71,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 序列化为soap 即xml
+        /// 序列化為soap 即xml
         /// </summary>
         /// <param name="objname"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace DotNet.Utilities
                     System.IO.File.Delete(filename);
                 using (FileStream fileStream = new FileStream(filename, FileMode.Create))
                 {
-                    // 序列化为Soap
+                    // 序列化為Soap
                     SoapFormatter formatter = new SoapFormatter();
                     formatter.Serialize(fileStream, obj);
                     fileStream.Close();
@@ -99,7 +99,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 反序列对象
+        /// 反序列對像
         /// </summary>
         /// <param name="objname"></param>
         public static object SoapDeserialize(string objname)
@@ -108,7 +108,7 @@ namespace DotNet.Utilities
             System.Runtime.Serialization.IFormatter formatter = new SoapFormatter();
             string filename=objname+".Soap";
             if (!System.IO.File.Exists(filename))
-                throw new Exception("对反序列化之前,请先序列化");
+                throw new Exception("對反序列化之前,請先序列化");
             //Soap格式反序列化
             using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -128,7 +128,7 @@ namespace DotNet.Utilities
                     System.IO.File.Delete(filename);
                 using (FileStream fileStream = new FileStream(filename, FileMode.Create))
                 {
-                    // 序列化为xml
+                    // 序列化為xml
                     XmlSerializer formatter = new XmlSerializer(typeof(Car));
                     formatter.Serialize(fileStream, obj);
                     fileStream.Close();
@@ -143,7 +143,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 从xml序列中反序列化
+        /// 從xml序列中反序列化
         /// </summary>
         /// <param name="objname"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace DotNet.Utilities
             string filename=objname+".xml";
             object obj;
             if (!System.IO.File.Exists(filename))
-                throw new Exception("对反序列化之前,请先序列化");
+                throw new Exception("對反序列化之前,請先序列化");
             //Xml格式反序列化
             using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -166,7 +166,7 @@ namespace DotNet.Utilities
     }
     #endregion
 
-    #region 要序列化的类
+    #region 要序列化的類
     [Serializable]
     public class Car
     {
@@ -213,13 +213,13 @@ namespace DotNet.Utilities
     }
     #endregion
 
-    #region 调用示例
+    #region 調用示例
     public class Demo
     {
         public void DemoFunction()
         {
             //序列化
-            Car car = new Car("chenlin", "120万");
+            Car car = new Car("chenlin", "120萬");
             Serialize.BinarySerialize("Binary序列化", car);
             Serialize.SoapSerialize("Soap序列化", car);
             Serialize.XmlSerialize("XML序列化", car);

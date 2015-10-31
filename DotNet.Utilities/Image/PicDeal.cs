@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Drawing.Imaging;
@@ -13,7 +13,7 @@ using System.IO;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 枚举,生成缩略图模式
+    /// 枚舉,生成縮略圖模式
     /// </summary>
     public enum ThumbnailMod : byte
     {
@@ -36,15 +36,15 @@ namespace DotNet.Utilities
     };
 
     /// <summary>
-    /// 操作图片类, 生成缩略图,添加水印
+    /// 操作圖片類, 生成縮略圖,添加水印
     /// </summary>
     public static class PicDeal
     {
         private static Hashtable htmimes = new Hashtable();
         internal static readonly string AllowExt = ".jpe|.jpeg|.jpg|.png|.tif|.tiff|.bmp";
-        #region 生成缩略图
+        #region 生成縮略圖
         /// <summary>
-        /// 生成缩略图
+        /// 生成縮略圖
         /// </summary>
         /// <param name="originalImagePath"></param>
         /// <param name="width"></param>
@@ -66,15 +66,15 @@ namespace DotNet.Utilities
 
             switch (mode)
             {
-                case ThumbnailMod.HW://指定高宽缩放（可能变形）                
+                case ThumbnailMod.HW://指定高寬縮放（可能變形）                
                     break;
-                case ThumbnailMod.W://指定宽，高按比例                    
+                case ThumbnailMod.W://指定寬，高按比例                    
                     toheight = originalImage.Height * width / originalImage.Width;
                     break;
-                case ThumbnailMod.H://指定高，宽按比例
+                case ThumbnailMod.H://指定高，寬按比例
                     towidth = originalImage.Width * height / originalImage.Height;
                     break;
-                case ThumbnailMod.Cut://指定高宽裁减（不变形）                
+                case ThumbnailMod.Cut://指定高寬裁減（不變形）                
                     if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
                     {
                         oh = originalImage.Height;
@@ -94,29 +94,29 @@ namespace DotNet.Utilities
                     break;
             }
 
-            //新建一个bmp图片
+            //新建一個bmp圖片
             Image bitmap = new Bitmap(towidth, toheight);
 
-            //新建一个画板
+            //新建一個畫板
             Graphics g = Graphics.FromImage(bitmap);
 
-            //设置高质量插值法
+            //設置高質量插值法
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
 
-            //设置高质量,低速度呈现平滑程度
+            //設置高質量,低速度呈現平滑程度
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
-            //清空画布并以透明背景色填充
+            //清空畫布並以透明背景色填充
             g.Clear(System.Drawing.Color.Transparent);
 
-            //在指定位置并且按指定大小绘制原图片的指定部分
+            //在指定位置並且按指定大小繪製原圖片的指定部分
             g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight),
                 new Rectangle(x, y, ow, oh),
                 GraphicsUnit.Pixel);
             bool isok = false;
             try
             {
-                //以jpg格式保存缩略图
+                //以jpg格式保存縮略圖
                 bitmap.Save(thumbnailPath, ImageFormat.Jpeg);
                 isok = true;
             }
@@ -134,18 +134,18 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 在图片上生成图片水印
+        #region 在圖片上生成圖片水印
         ///// <summary>
-        ///// 在图片上生成图片水印
+        ///// 在圖片上生成圖片水印
         ///// </summary>
-        ///// <param name="Path">原服务器图片路径</param>
-        ///// <param name="Path_syp">生成的带图片水印的图片路径</param>
-        ///// <param name="Path_sypf">水印图片路径</param>
+        ///// <param name="Path">原服務器圖片路徑</param>
+        ///// <param name="Path_syp">生成的帶圖片水印的圖片路徑</param>
+        ///// <param name="Path_sypf">水印圖片路徑</param>
         /// <summary>
-        /// 在图片上生成图片水印
+        /// 在圖片上生成圖片水印
         /// </summary>
-        /// <param name="Path">原服务器图片路径</param>
-        /// <param name="Path_sypf">水印图片路径</param>
+        /// <param name="Path">原服務器圖片路徑</param>
+        /// <param name="Path_sypf">水印圖片路徑</param>
         public static void AddWaterPic(string Path, string Path_sypf)
         {
             try
@@ -181,14 +181,14 @@ namespace DotNet.Utilities
         }
 
 
-        #region 返回新图片尺寸
+        #region 返回新圖片尺寸
         /// <summary>
-        /// 返回新图片尺寸
+        /// 返回新圖片尺寸
         /// </summary>
-        /// <param name="width">原始宽</param>
+        /// <param name="width">原始寬</param>
         /// <param name="height">原始高</param>
-        /// <param name="maxWidth">新图片最大宽</param>
-        /// <param name="maxHeight">新图片最大高</param>
+        /// <param name="maxWidth">新圖片最大寬</param>
+        /// <param name="maxHeight">新圖片最大高</param>
         /// <returns></returns>
         public static Size ResizeImage(int width, int height, int maxWidth, int maxHeight)
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using DotNet.Utilities;
@@ -8,13 +8,13 @@ using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-29
- *   文件名称：InformationClassList.aspx.cs
- *   描    述：信息分类列表文件
+ *   創建日期：2014-06-29
+ *   文件名稱：InformationClassList.aspx.cs
+ *   描    述：信息分類列表文件
  *             
  *   修 改 人：
  *   修改日期：
@@ -29,7 +29,7 @@ namespace Solution.Web.Managers.WebManage.Informations
         {
             if (!IsPostBack)
             {
-                //绑定下拉列表
+                //綁定下拉列表
                 InformationClassBll.GetInstence().BandDropDownList(this, ddlParentId);
 
                 LoadData();
@@ -37,39 +37,39 @@ namespace Solution.Web.Managers.WebManage.Informations
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
-            //逻辑对象赋值
+            //邏輯對像賦值
             bll = InformationClassBll.GetInstence();
-            //表格对象赋值
+            //表格對像賦值
             grid = Grid1;
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
-            //设置排序
+            //設置排序
             if (sortList == null)
             {
                 Sort();
             }
 
-            //绑定Grid表格
+            //綁定Grid表格
             bll.BindGrid(Grid1, InquiryCondition(), sortList);
         }
 
         /// <summary>
-        /// 查询条件
+        /// 查詢條件
         /// </summary>
         /// <returns></returns>
         private int InquiryCondition()
         {
             int value = 0;
 
-            //选择信息分类
+            //選擇信息分類
             if (ddlParentId.SelectedValue != "0")
             {
                 value = ConvertHelper.Cint0(ddlParentId.SelectedValue);
@@ -79,11 +79,11 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #region 排序
         /// <summary>
-        /// 页面表格绑定排序
+        /// 頁面表格綁定排序
         /// </summary>
         public void Sort()
         {
-            //设置排序
+            //設置排序
             sortList = new List<string>();
             sortList.Add(InformationClassTable.Depth + " asc");
             sortList.Add(InformationClassTable.Sort + " asc");
@@ -92,11 +92,11 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #endregion
         
-        #region 列表属性绑定
+        #region 列表屬性綁定
 
-        #region 列表按键绑定——修改列表控件属性
+        #region 列表按鍵綁定——修改列表控件屬性
         /// <summary>
-        /// 列表按键绑定——修改列表控件属性
+        /// 列表按鍵綁定——修改列表控件屬性
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -105,7 +105,7 @@ namespace Solution.Web.Managers.WebManage.Informations
             DataRowView row = e.DataItem as DataRowView;
             if (row != null)
             {
-                //绑定是否显示状态列
+                //綁定是否顯示狀態列
                 if (row.Row.Table.Rows[e.RowIndex][InformationClassTable.IsShow].ToString() == "0")
                 {
                     var lbf = Grid1.FindColumn("IsShow") as LinkButtonField;
@@ -119,7 +119,7 @@ namespace Solution.Web.Managers.WebManage.Informations
                     lbf.CommandArgument = "0";
                 }
 
-                //绑定是否单页列
+                //綁定是否單頁列
                 if (row.Row.Table.Rows[e.RowIndex][InformationClassTable.IsPage].ToString() == "0")
                 {
                     var lbf = Grid1.FindColumn("IsPage") as LinkButtonField;
@@ -134,43 +134,43 @@ namespace Solution.Web.Managers.WebManage.Informations
                 }
             }
 
-            //绑定是否编辑列
+            //綁定是否編輯列
             var lbfEdit = Grid1.FindColumn("ButtonEdit") as LinkButtonField;
-            lbfEdit.Text = "编辑";
+            lbfEdit.Text = "編輯";
             lbfEdit.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonEdit");
         }
         #endregion
 
-        #region Grid点击事件
+        #region Grid點擊事件
         /// <summary> 
-        /// Grid点击事件
+        /// Grid點擊事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void Grid1_RowCommand(object sender, FineUI.GridCommandEventArgs e)
         {
             GridRow gr = Grid1.Rows[e.RowIndex];
-            //获取当前点击列的主键ID
+            //獲取當前點擊列的主鍵ID
             object id = gr.DataKeys[0];
 
             switch (e.CommandName)
             {
                 case "IsShow":
-                    //更新状态
+                    //更新狀態
                     InformationClassBll.GetInstence().UpdateIsShow(this, ConvertHelper.Cint0(id), ConvertHelper.Cint0(e.CommandArgument));
-                    //重新加载
+                    //重新加載
                     LoadData();
 
                     break;
                 case "IsPage":
-                    //更新状态
+                    //更新狀態
                     InformationClassBll.GetInstence().UpdateIsPage(this, ConvertHelper.Cint0(id), ConvertHelper.Cint0(e.CommandArgument));
-                    //重新加载
+                    //重新加載
                     LoadData();
 
                     break;
                 case "ButtonEdit":
-                    //打开编辑窗口
+                    //打開編輯窗口
                     Window1.IFrameUrl = "InformationClassEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
                     Window1.Hidden = false;
 
@@ -181,9 +181,9 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #endregion
 
-        #region 添加新记录
+        #region 添加新記錄
         /// <summary>
-        /// 添加新记录
+        /// 添加新記錄
         /// </summary>
         public override void Add()
         {
@@ -192,45 +192,45 @@ namespace Solution.Web.Managers.WebManage.Informations
         }
         #endregion
 
-        #region 删除记录
+        #region 刪除記錄
         /// <summary>
-        /// 删除记录
+        /// 刪除記錄
         /// </summary>
         /// <returns></returns>
         public override string Delete()
         {
-            //获取要删除的ID
+            //獲取要刪除的ID
             int id = ConvertHelper.Cint0(GridViewHelper.GetSelectedKey(Grid1, true));
             
-            //如果没有选择记录，则直接退出
+            //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {
-                return "请选择要删除的记录。";
+                return "請選擇要刪除的記錄。";
             }
 
             try
             {
-                //删除前判断一下
+                //刪除前判斷一下
                 if (InformationClassBll.GetInstence().Exist(x => x.ParentId == id))
                 {
-                    return "删除失败，本信息分类下面存在子信息分类，不能直接删除！";
+                    return "刪除失敗，本信息分類下面存在子信息分類，不能直接刪除！";
                 }
-                //删除前判断一下
+                //刪除前判斷一下
                 if (InformationBll.GetInstence().Exist(x => x.InformationClass_Id == id))
                 {
-                    return "删除失败，本信息分类已被信息表的记录引用，不能直接删除！";
+                    return "刪除失敗，本信息分類已被信息表的記錄引用，不能直接刪除！";
                 }
 
-                //删除记录
+                //刪除記錄
                 bll.Delete(this, id);
 
-                return "删除编号ID为[" + id + "]的数据记录成功。";
+                return "刪除編號ID為[" + id + "]的數據記錄成功。";
             }
             catch (Exception e)
             {
-                string result = "尝试删除编号ID为[" + id + "]的数据记录失败！";
+                string result = "嘗試刪除編號ID為[" + id + "]的數據記錄失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
 
                 return result;

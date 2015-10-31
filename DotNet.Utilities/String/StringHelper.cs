@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections.Generic;
@@ -12,30 +12,30 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 字符串操作类
-    /// 1、GetStrArray(string str, char speater, bool toLower)  把字符串按照分隔符转换成 List
-    /// 2、GetStrArray(string str) 把字符串转 按照, 分割 换为数据
-    /// 3、GetArrayStr(List list, string speater) 把 List 按照分隔符组装成 string
-    /// 4、GetArrayStr(List list)  得到数组列表以逗号分隔的字符串
-    /// 5、GetArrayValueStr(Dictionary<int, int> list)得到数组列表以逗号分隔的字符串
-    /// 6、DelLastComma(string str)删除最后结尾的一个逗号
-    /// 7、DelLastChar(string str, string strchar)删除最后结尾的指定字符后的字符
-    /// 8、ToSBC(string input)转全角的函数(SBC case)
-    /// 9、ToDBC(string input)转半角的函数(SBC case)
-    /// 10、GetSubStringList(string o_str, char sepeater)把字符串按照指定分隔符装成 List 去除重复
-    /// 11、GetCleanStyle(string StrList, string SplitString)将字符串样式转换为纯字符串
-    /// 12、GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)将字符串转换为新样式
+    /// 字符串操作類
+    /// 1、GetStrArray(string str, char speater, bool toLower)  把字符串按照分隔符轉換成 List
+    /// 2、GetStrArray(string str) 把字符串轉 按照, 分割 換為數據
+    /// 3、GetArrayStr(List list, string speater) 把 List 按照分隔符組裝成 string
+    /// 4、GetArrayStr(List list)  得到數組列表以逗號分隔的字符串
+    /// 5、GetArrayValueStr(Dictionary<int, int> list)得到數組列表以逗號分隔的字符串
+    /// 6、DelLastComma(string str)刪除最後結尾的一個逗號
+    /// 7、DelLastChar(string str, string strchar)刪除最後結尾的指定字符後的字符
+    /// 8、ToSBC(string input)轉全角的函數(SBC case)
+    /// 9、ToDBC(string input)轉半角的函數(SBC case)
+    /// 10、GetSubStringList(string o_str, char sepeater)把字符串按照指定分隔符裝成 List 去除重複
+    /// 11、GetCleanStyle(string StrList, string SplitString)將字符串樣式轉換為純字符串
+    /// 12、GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)將字符串轉換為新樣式
     /// 13、SplitMulti(string str, string splitstr)分割字符串
     /// 14、SqlSafeString(string String, bool IsDel)
     /// </summary>
     public class StringHelper
     {
         /// <summary>
-        /// 把字符串按照分隔符转换成 List
+        /// 把字符串按照分隔符轉換成 List
         /// </summary>
         /// <param name="str">源字符串</param>
         /// <param name="speater">分隔符</param>
-        /// <param name="toLower">是否转换为小写</param>
+        /// <param name="toLower">是否轉換為小寫</param>
         /// <returns></returns>
         public static List<string> GetStrArray(string str, char speater, bool toLower)
         {
@@ -56,7 +56,7 @@ namespace DotNet.Utilities
             return list;
         }
         /// <summary>
-        /// 把字符串转 按照, 分割 换为数据
+        /// 把字符串轉 按照, 分割 換為數據
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>
-        /// 把 List<string> 按照分隔符组装成 string
+        /// 把 List<string> 按照分隔符組裝成 string
         /// </summary>
         /// <param name="list"></param>
         /// <param name="speater"></param>
@@ -95,7 +95,7 @@ namespace DotNet.Utilities
             return sb.ToString();
         }
         /// <summary>
-        /// 得到数组列表以逗号分隔的字符串
+        /// 得到數組列表以逗號分隔的字符串
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace DotNet.Utilities
             return sb.ToString();
         }
         /// <summary>
-        /// 得到数组列表以逗号分隔的字符串
+        /// 得到數組列表以逗號分隔的字符串
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -138,21 +138,21 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>自定义的替换字符串函数</summary>
+        /// <summary>自定義的替換字符串函數</summary>
         /// <param name="SourceString">原字符串</param>
         /// <param name="SearchString">查找的字符串</param>
-        /// <param name="ReplaceString">替换的字符串</param>
-        /// <param name="IsCaseInse">是否区分大小写,true=不区分,false=区分大小写</param>
+        /// <param name="ReplaceString">替換的字符串</param>
+        /// <param name="IsCaseInse">是否區分大小寫,true=不區分,false=區分大小寫</param>
         /// <returns></returns>
         public static string ReplaceString(string SourceString, string SearchString, string ReplaceString, bool IsCaseInse)
         {
             return Regex.Replace(SourceString, Regex.Escape(SearchString), ReplaceString, IsCaseInse ? RegexOptions.IgnoreCase : RegexOptions.None);
         }
 
-        #region 删除最后一个字符之后的字符
+        #region 刪除最後一個字符之後的字符
 
         /// <summary>
-        /// 删除最后结尾的一个逗号
+        /// 刪除最後結尾的一個逗號
         /// </summary>
         public static string DelLastComma(string str)
         {
@@ -160,7 +160,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除最后结尾的指定字符后的字符
+        /// 刪除最後結尾的指定字符後的字符
         /// </summary>
         public static string DelLastChar(string str, string strchar)
         {
@@ -168,10 +168,10 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 删除字符串左右两边的分隔符号
-        /// <summary>删除字符串左右两边的分隔符号</summary>
+        #region 刪除字符串左右兩邊的分隔符號
+        /// <summary>刪除字符串左右兩邊的分隔符號</summary>
         /// <param name="str">字符串</param>
-        /// <param name="key">分隔符,默认为,</param>
+        /// <param name="key">分隔符,默認為,</param>
         /// <returns></returns>
         public static string DelStrSign(string str, string key = ",")
         {
@@ -181,7 +181,7 @@ namespace DotNet.Utilities
             }
 
             int iSpace = 0;
-            //查找字符串头部多个连续的分隔符数量，比如,,,1,2,3,,,
+            //查找字符串頭部多個連續的分隔符數量，比如,,,1,2,3,,,
             for (int i = 0; i < str.Length; i++)
             {
                 if (str[i].ToString() == key)
@@ -193,7 +193,7 @@ namespace DotNet.Utilities
                     break;
                 }
             }
-            //删除分隔符
+            //刪除分隔符
             if (iSpace > 0)
             {
                 str = str.Remove(0, iSpace);
@@ -205,7 +205,7 @@ namespace DotNet.Utilities
             }
 
             iSpace = 0;
-            //查找字符串尾部多个连续的分隔符数量，比如,,,1,2,3,,,
+            //查找字符串尾部多個連續的分隔符數量，比如,,,1,2,3,,,
             for (int i = str.Length - 1; i >= 0; i--)
             {
                 if (str[i].ToString() == key)
@@ -217,7 +217,7 @@ namespace DotNet.Utilities
                     break;
                 }
             }
-            //删除分隔符
+            //刪除分隔符
             if (iSpace > 0)
             {
                 str = str.Remove((str.Length - iSpace), iSpace);
@@ -226,15 +226,15 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 全角与半角转换
+        #region 全角與半角轉換
         /// <summary>
-        /// 转全角的函数(SBC case)
+        /// 轉全角的函數(SBC case)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public static string ToSBC(string input)
         {
-            //半角转全角：
+            //半角轉全角：
             char[] c = input.ToCharArray();
             for (int i = 0; i < c.Length; i++)
             {
@@ -250,9 +250,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        ///  转半角的函数(SBC case)
+        ///  轉半角的函數(SBC case)
         /// </summary>
-        /// <param name="input">输入</param>
+        /// <param name="input">輸入</param>
         /// <returns></returns>
         public static string ToDBC(string input)
         {
@@ -272,7 +272,7 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 把字符串按照指定分隔符装成 List 去除重复
+        /// 把字符串按照指定分隔符裝成 List 去除重複
         /// </summary>
         /// <param name="o_str"></param>
         /// <param name="sepeater"></param>
@@ -292,9 +292,9 @@ namespace DotNet.Utilities
         }
 
 
-        #region 将字符串样式转换为纯字符串
+        #region 將字符串樣式轉換為純字符串
         /// <summary>
-        ///  将字符串样式转换为纯字符串
+        ///  將字符串樣式轉換為純字符串
         /// </summary>
         /// <param name="StrList"></param>
         /// <param name="SplitString"></param>
@@ -302,7 +302,7 @@ namespace DotNet.Utilities
         public static string GetCleanStyle(string StrList, string SplitString)
         {
             string RetrunValue = "";
-            //如果为空，返回空值
+            //如果為空，返回空值
             if (StrList == null)
             {
                 RetrunValue = "";
@@ -318,9 +318,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 将字符串转换为新样式
+        #region 將字符串轉換為新樣式
         /// <summary>
-        /// 将字符串转换为新样式
+        /// 將字符串轉換為新樣式
         /// </summary>
         /// <param name="StrList"></param>
         /// <param name="NewStyle"></param>
@@ -330,25 +330,25 @@ namespace DotNet.Utilities
         public static string GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)
         {
             string ReturnValue = "";
-            //如果输入空值，返回空，并给出错误提示
+            //如果輸入空值，返回空，並給出錯誤提示
             if (StrList == null)
             {
                 ReturnValue = "";
-                Error = "请输入需要划分格式的字符串";
+                Error = "請輸入需要劃分格式的字符串";
             }
             else
             {
-                //检查传入的字符串长度和样式是否匹配,如果不匹配，则说明使用错误。给出错误信息并返回空值
+                //檢查傳入的字符串長度和樣式是否匹配,如果不匹配，則說明使用錯誤。給出錯誤信息並返回空值
                 int strListLength = StrList.Length;
                 int NewStyleLength = GetCleanStyle(NewStyle, SplitString).Length;
                 if (strListLength != NewStyleLength)
                 {
                     ReturnValue = "";
-                    Error = "样式格式的长度与输入的字符长度不符，请重新输入";
+                    Error = "樣式格式的長度與輸入的字符長度不符，請重新輸入";
                 }
                 else
                 {
-                    //检查新样式中分隔符的位置
+                    //檢查新樣式中分隔符的位置
                     string Lengstr = "";
                     for (int i = 0; i < NewStyle.Length; i++)
                     {
@@ -361,15 +361,15 @@ namespace DotNet.Utilities
                     {
                         Lengstr = Lengstr.Substring(1);
                     }
-                    //将分隔符放在新样式中的位置
+                    //將分隔符放在新樣式中的位置
                     string[] str = Lengstr.Split(',');
                     foreach (string bb in str)
                     {
                         StrList = StrList.Insert(int.Parse(bb), SplitString);
                     }
-                    //给出最后的结果
+                    //給出最後的結果
                     ReturnValue = StrList;
-                    //因为是正常的输出，没有错误
+                    //因為是正常的輸出，沒有錯誤
                     Error = "";
                 }
             }
@@ -397,12 +397,12 @@ namespace DotNet.Utilities
         }
         #endregion
         
-        #region 获取正确的Id，如果不是正整数，返回0
+        #region 獲取正確的Id，如果不是正整數，返回0
         /// <summary>
-        /// 获取正确的Id，如果不是正整数，返回0
+        /// 獲取正確的Id，如果不是正整數，返回0
         /// </summary>
         /// <param name="_value"></param>
-        /// <returns>返回正确的整数ID，失败返回0</returns>
+        /// <returns>返回正確的整數ID，失敗返回0</returns>
         public static int StrToId(string _value)
         {
             if (IsNumberId(_value))
@@ -412,11 +412,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 检查一个字符串是否是纯数字构成的，一般用于查询字符串参数的有效性验证。
+        #region 檢查一個字符串是否是純數字構成的，一般用於查詢字符串參數的有效性驗證。
         /// <summary>
-        /// 检查一个字符串是否是纯数字构成的，一般用于查询字符串参数的有效性验证。(0除外)
+        /// 檢查一個字符串是否是純數字構成的，一般用於查詢字符串參數的有效性驗證。(0除外)
         /// </summary>
-        /// <param name="_value">需验证的字符串。。</param>
+        /// <param name="_value">需驗證的字符串。。</param>
         /// <returns>是否合法的bool值。</returns>
         public static bool IsNumberId(string _value)
         {
@@ -424,12 +424,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 快速验证一个字符串是否符合指定的正则表达式。
+        #region 快速驗證一個字符串是否符合指定的正則表達式。
         /// <summary>
-        /// 快速验证一个字符串是否符合指定的正则表达式。
+        /// 快速驗證一個字符串是否符合指定的正則表達式。
         /// </summary>
-        /// <param name="_express">正则表达式的内容。</param>
-        /// <param name="_value">需验证的字符串。</param>
+        /// <param name="_express">正則表達式的內容。</param>
+        /// <param name="_value">需驗證的字符串。</param>
         /// <returns>是否合法的bool值。</returns>
         public static bool QuickValidate(string _express, string _value)
         {
@@ -443,9 +443,9 @@ namespace DotNet.Utilities
         }
         #endregion
         
-        #region 根据配置对指定字符串进行 MD5 加密
+        #region 根據配置對指定字符串進行 MD5 加密
         /// <summary>
-        /// 根据配置对指定字符串进行 MD5 加密
+        /// 根據配置對指定字符串進行 MD5 加密
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -458,11 +458,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 得到字符串长度，一个汉字长度为2
+        #region 得到字符串長度，一個漢字長度為2
         /// <summary>
-        /// 得到字符串长度，一个汉字长度为2
+        /// 得到字符串長度，一個漢字長度為2
         /// </summary>
-        /// <param name="inputString">参数字符串</param>
+        /// <param name="inputString">參數字符串</param>
         /// <returns></returns>
         public static int StrLength(string inputString)
         {
@@ -480,13 +480,13 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 截取指定长度字符串
+        #region 截取指定長度字符串
         /// <summary>
-        /// 截取指定长度字符串——区分中英文字符长度
+        /// 截取指定長度字符串——區分中英文字符長度
         /// </summary>
-        /// <param name="inputString">要处理的字符串</param>
-        /// <param name="len">指定长度</param>
-        /// <returns>返回处理后的字符串</returns>
+        /// <param name="inputString">要處理的字符串</param>
+        /// <param name="len">指定長度</param>
+        /// <returns>返回處理後的字符串</returns>
         public static string ClipString(string inputString, int len)
         {
             bool isShowFix = false;
@@ -525,11 +525,11 @@ namespace DotNet.Utilities
             return tempString;
         }
 
-        /// <summary>截取字符串,从左边算起 n 个字,并经过 SQL注入过滤 处理(不区分中英文长度)，默认去左右两边空格与过滤XSS攻击字符</summary>
+        /// <summary>截取字符串,從左邊算起 n 個字,並經過 SQL注入過濾 處理(不區分中英文長度)，默認去左右兩邊空格與過濾XSS攻擊字符</summary>
         /// <param name="str">字符串</param>
-        /// <param name="length">截取的长度(字数)</param>
+        /// <param name="length">截取的長度(字數)</param>
         /// <param name="isTrim">true=使用Trim(),falae=原文</param>
-        /// <param name="isFilterXss">是否去除特殊符号</param>
+        /// <param name="isFilterXss">是否去除特殊符號</param>
         /// <returns></returns>
         public static string Left(string str, int length, bool isTrim = true, bool isFilterXss = true)
         {
@@ -550,9 +550,9 @@ namespace DotNet.Utilities
             return str;
         }
 
-        /// <summary>从字符串右边返回指定数目的字符——简单截取</summary>
+        /// <summary>從字符串右邊返回指定數目的字符——簡單截取</summary>
         /// <param name="str">字符串</param>
-        /// <param name="length">截取的长度(字数)</param>
+        /// <param name="length">截取的長度(字數)</param>
         /// <returns></returns>
         public static string Right(string str, int length)
         {
@@ -575,9 +575,9 @@ namespace DotNet.Utilities
 
         #endregion
         
-        #region HTML转行成TEXT
+        #region HTML轉行成TEXT
         /// <summary>
-        /// HTML转行成TEXT
+        /// HTML轉行成TEXT
         /// </summary>
         /// <param name="strHtml"></param>
         /// <returns></returns>
@@ -618,21 +618,21 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 判断对象是否为空
+        #region 判斷對象是否為空
         /// <summary>
-        /// 判断对象是否为空，为空返回true
+        /// 判斷對象是否為空，為空返回true
         /// </summary>
-        /// <typeparam name="T">要验证的对象的类型</typeparam>
-        /// <param name="data">要验证的对象</param>        
+        /// <typeparam name="T">要驗證的對象的類型</typeparam>
+        /// <param name="data">要驗證的對象</param>        
         public static bool IsNullOrEmpty<T>(T data)
         {
-            //如果为null
+            //如果為null
             if (data == null)
             {
                 return true;
             }
 
-            //如果为""
+            //如果為""
             if (data.GetType() == typeof(String))
             {
                 if (string.IsNullOrEmpty(data.ToString().Trim()))
@@ -641,29 +641,29 @@ namespace DotNet.Utilities
                 }
             }
 
-            //如果为DBNull
+            //如果為DBNull
             if (data.GetType() == typeof(DBNull))
             {
                 return true;
             }
 
-            //不为空
+            //不為空
             return false;
         }
 
         /// <summary>
-        /// 判断对象是否为空，为空返回true
+        /// 判斷對象是否為空，為空返回true
         /// </summary>
-        /// <param name="data">要验证的对象</param>
+        /// <param name="data">要驗證的對象</param>
         public static bool IsNullOrEmpty(object data)
         {
-            //如果为null
+            //如果為null
             if (data == null)
             {
                 return true;
             }
 
-            //如果为""
+            //如果為""
             if (data.GetType() == typeof(String))
             {
                 if (string.IsNullOrEmpty(data.ToString().Trim()))
@@ -672,18 +672,18 @@ namespace DotNet.Utilities
                 }
             }
 
-            //如果为DBNull
+            //如果為DBNull
             if (data.GetType() == typeof(DBNull))
             {
                 return true;
             }
 
-            //不为空
+            //不為空
             return false;
         }
         #endregion
 
-        #region 安全操作函数
+        #region 安全操作函數
 
 
         public static string SqlSafeString(string String, bool IsDel)
@@ -699,11 +699,11 @@ namespace DotNet.Utilities
             return String;
         }
 
-        /// <summary>过滤 Sql 语句字符串中的注入脚本
+        /// <summary>過濾 Sql 語句字符串中的注入腳本
         /// </summary>
-        /// <param name="source">传入的字符串</param>
-        /// <param name="isTrim">是否去除字符串两边的空格</param>
-        /// <param name="isFilterXss">是否去除特殊符号</param>
+        /// <param name="source">傳入的字符串</param>
+        /// <param name="isTrim">是否去除字符串兩邊的空格</param>
+        /// <param name="isFilterXss">是否去除特殊符號</param>
         /// <returns></returns>
         public static string FilterSql(string source, bool isTrim = true, bool isFilterXss = false)
         {
@@ -717,13 +717,13 @@ namespace DotNet.Utilities
             //去除'
             source = source.Replace("'", "");
 
-            //去除执行存储过程的命令关键字
+            //去除執行存儲過程的命令關鍵字
             source = source.Replace("Exec", "");
 
-            //去除系统存储过程或扩展存储过程关键字
+            //去除系統存儲過程或擴展存儲過程關鍵字
             source = source.Replace("xp_", "x p_");
             source = source.Replace("sp_", "s p_");
-            //防止16进制注入
+            //防止16進制注入
             source = source.Replace(new string((char)0, 1), "");
 
             if (isFilterXss)
@@ -734,10 +734,10 @@ namespace DotNet.Utilities
 
         }
 
-        /// <summary>清除输入字符串中的特殊字符
+        /// <summary>清除輸入字符串中的特殊字符
         /// </summary>
-        /// <param name="xssText">输入字符串</param>
-        /// <returns>处理后的字符串</returns>
+        /// <param name="xssText">輸入字符串</param>
+        /// <returns>處理後的字符串</returns>
         public static string XssTextClear(string xssText)
         {
             if (string.IsNullOrEmpty(xssText))
@@ -765,14 +765,14 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 验证操作函数
-        /// <summary> 检查字符串里每个字是否都在指定字符集内的字.
-        /// 比如:整数(0123456789)
+        #region 驗證操作函數
+        /// <summary> 檢查字符串裡每個字是否都在指定字符集內的字.
+        /// 比如:整數(0123456789)
         /// 字母(abcdefghijklmnopqrstuvwxyz)
         /// </summary>
         /// <param name="sValue">字符串</param>
         /// <param name="sCompate">字符集</param>
-        /// <returns>true=在字符集内,false=存在非字符集的字</returns>
+        /// <returns>true=在字符集內,false=存在非字符集的字</returns>
         public static bool IsExistValue(string sValue, string sCompate)
         {
             if (string.IsNullOrEmpty(sValue) || string.IsNullOrEmpty(sCompate))
@@ -792,8 +792,8 @@ namespace DotNet.Utilities
             return true;
         }
 
-        /// <summary>检查输入是否为指字内容,检查id列(用于数据库查询),"34,5,1,8"</summary>
-        /// <param name="str">字符串,分隔符默认为,</param>
+        /// <summary>檢查輸入是否為指字內容,檢查id列(用於數據庫查詢),"34,5,1,8"</summary>
+        /// <param name="str">字符串,分隔符默認為,</param>
         /// <returns>true=是id列,false=非id列</returns>
         public static bool IsIdList(string str)
         {
@@ -801,9 +801,9 @@ namespace DotNet.Utilities
             return IsIdList(str, key);
         }
 
-        /// <summary>检查输入是否为指字内容,检查id列(用于数据库查询),"34,5,1,8"</summary>
+        /// <summary>檢查輸入是否為指字內容,檢查id列(用於數據庫查詢),"34,5,1,8"</summary>
         /// <param name="str">字符串</param>
-        /// <param name="key">字符串,分隔符默认为,</param>
+        /// <param name="key">字符串,分隔符默認為,</param>
         /// <returns>true=是id列,false=非id列</returns>
         public static bool IsIdList(string str, string key)
         {
@@ -815,7 +815,7 @@ namespace DotNet.Utilities
             return IsExistValue(str, "0123456789" + key);
         }
 
-        /// <summary>是否为纯数字字符</summary>
+        /// <summary>是否為純數字字符</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsNumberChar(string str)
@@ -823,8 +823,8 @@ namespace DotNet.Utilities
             return IsExistValue(str, "0123456789");
         }
 
-        /// <summary>检测是否符合email格式</summary>
-        /// <param name="str">要判断的email字符串</param>
+        /// <summary>檢測是否符合email格式</summary>
+        /// <param name="str">要判斷的email字符串</param>
         /// <returns></returns>
         public static bool IsEmail(string str)
         {
@@ -832,7 +832,7 @@ namespace DotNet.Utilities
             return Regex.IsMatch(str, @"^([a-zA-Z0-9_.-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
         }
 
-        /// <summary>检查输入,是否由字母组成</summary>
+        /// <summary>檢查輸入,是否由字母組成</summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
         public static bool IsEnglish(string str)
@@ -840,7 +840,7 @@ namespace DotNet.Utilities
             return IsExistValue(str, "abcdefghijklmnopqrstuvwxyz");
         }
 
-        /// <summary>检查输入,检查用户注册账号是否合法字符(由字母,数字或"_"组成)</summary>
+        /// <summary>檢查輸入,檢查用戶註冊賬號是否合法字符(由字母,數字或"_"組成)</summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
         public static bool IsRegName(string str)
@@ -848,7 +848,7 @@ namespace DotNet.Utilities
             return IsExistValue(str, "abcdefghijklmnopqrstuvwxyz0123456789_");
         }
 
-        /// <summary>检查输入,是否为随机生成的文件名称</summary>
+        /// <summary>檢查輸入,是否為隨機生成的文件名稱</summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
         public static bool IsRndFileName(string str)
@@ -856,7 +856,7 @@ namespace DotNet.Utilities
             return IsExistValue(str, "abcdefghijklmnopqrstuvwxyz0123456789_-./");
         }
 
-        /// <summary>检查输入,是否为随机生成的文件名称(即全由字母和数字组成)</summary>
+        /// <summary>檢查輸入,是否為隨機生成的文件名稱(即全由字母和數字組成)</summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
         public static bool IsRndKey(string str)
@@ -864,7 +864,7 @@ namespace DotNet.Utilities
             return IsExistValue(str, "abcdefghijklmnopqrstuvwxyz0123456789");
         }
 
-        /// <summary>检查输入,是否为随机生成的文件名称(即全由字母和数字组成)</summary>
+        /// <summary>檢查輸入,是否為隨機生成的文件名稱(即全由字母和數字組成)</summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
         public static string GetIsRndKey(string str)
@@ -879,7 +879,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>检查输入,检查是否为正常的手机号码.</summary>
+        /// <summary>檢查輸入,檢查是否為正常的手機號碼.</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsMobile(string str)
@@ -891,7 +891,7 @@ namespace DotNet.Utilities
             return Regex.IsMatch(str, s);
         }
 
-        /// <summary>判断输入是否为Base64编码.</summary>
+        /// <summary>判斷輸入是否為Base64編碼.</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsBase64(string str)

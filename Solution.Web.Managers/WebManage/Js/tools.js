@@ -113,10 +113,10 @@ function GetCheckboxArrValue(sFrmName,sChkName){
 
 function BatDel(sFrmName,sChkName){
 	if (!CheckSelectOne(sFrmName,sChkName)){
-		alert('没有选择任何记录!');
+		alert('沒有選擇任何記錄!');
 		return false;
 	} else {
-		if (confirm('您确认要删除这些信息吗？删除后将不能恢复!!')) {
+		if (confirm('您確認要刪除這些信息嗎？刪除後將不能恢復!!')) {
             return true;
         } else {
             return false;
@@ -127,7 +127,7 @@ function BatDel(sFrmName,sChkName){
 function BatAct(frmID,chkName){
 	var act = $('#'+frmID+'_act').val();
 	if(act==''){
-		alert('请选择操作动作!');
+		alert('請選擇操作動作!');
 		return false;
 	};
 	
@@ -137,12 +137,12 @@ function BatAct(frmID,chkName){
 	  });
 
 	if (arr.length<1){
-		alert('没有选择任何记录!');
+		alert('沒有選擇任何記錄!');
 		return false;
 	} else {
 		$('#'+frmID+'_lst').val(arr.join(','));
 		var txt = $('#'+frmID+'_act').find("option:selected").text();
-		if (confirm('您确认要 ['+txt+'] 这些信息吗？')) {
+		if (confirm('您確認要 ['+txt+'] 這些信息嗎？')) {
             return true;
         } else {
             return false;

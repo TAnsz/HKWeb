@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,13 +10,13 @@ using Solution.Logic.Managers;
 using Microsoft.Reporting.WebForms;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-17
- *   文件名称：Login.aspx.cs
- *   描    述：后端登陆页面
+ *   創建日期：2014-06-17
+ *   文件名稱：Login.aspx.cs
+ *   描    述：後端登陸頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -31,16 +31,16 @@ namespace Solution.Web.Managers.WebManage
         {
             if (!IsPostBack)
             {
-                //生成验证码
+                //生成驗證碼
                 imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
-                #region 初始化用户Session变量
+                #region 初始化用戶Session變量
                 //清空Session
                 SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
                 SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
                 SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                 SessionHelper.RemoveSession(OnlineUsersTable.Md5);
-                //删除Cookies
+                //刪除Cookies
                 CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                 CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 #endregion
@@ -49,126 +49,126 @@ namespace Solution.Web.Managers.WebManage
         }
         #endregion
 
-        #region 登录
-        /// <summary>登录</summary>
+        #region 登錄
+        /// <summary>登錄</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
             var ip = IpHelper.GetUserIp();
 
-            #region 获取用户输入的参数，并进行数据初步处理
-            //获取用户名，并进行危险字符过滤
+            #region 獲取用戶輸入的參數，並進行數據初步處理
+            //獲取用戶名，並進行危險字符過濾
             var username = StringHelper.Left(txtUserName.Text, 50);
-            //获取用户密码
+            //獲取用戶密碼
             var userpass = txtPassword.Text;
-            //获取验证码
+            //獲取驗證碼
             //var strCode = StringHelper.Left(txtCaptcha.Text, 5);
             #endregion
 
-            #region 初步验证
-            //开发测试使用，不用每次都输入帐号与密码
-            //username = "0000000";
-            //userpass = "0";
+            #region 初步驗證
+            //開發測試使用，不用每次都輸入帳號與密碼
+            username = "0000000";
+            userpass = "0";
             //strCode = "12345";
 
-            //用户名验证
+            //用戶名驗證
             if (string.IsNullOrEmpty(username.Trim()))
             {
                 txtUserName.Focus();
-                FineUI.Alert.ShowInTop("用户名不能为空,请仔细检查您输入的用户名！", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInTop("用戶名不能為空,請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
-            //密码验证
+            //密碼驗證
             if (string.IsNullOrEmpty(userpass.Trim()))
             {
                 txtPassword.Focus();
-                FineUI.Alert.ShowInTop("密码不能为空,请仔细检查您输入的密码！", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInTop("密碼不能為空,請仔細檢查您輸入的密碼！", FineUI.MessageBoxIcon.Error);
                 return;
             }
 
-            //验证码验证
+            //驗證碼驗證
             //if (string.IsNullOrEmpty(strCode))
             //{
             //    txtCaptcha.Focus();
-            //    FineUI.Alert.ShowInParent("验证码不能为空！", FineUI.MessageBoxIcon.Error);
+            //    FineUI.Alert.ShowInParent("驗證碼不能為空！", FineUI.MessageBoxIcon.Error);
             //    return;
             //}
-            //判断验证码是否正确
+            //判斷驗證碼是否正確
             //if (Session["vcode"] == null || !Session["vcode"].ToString().Equals(strCode, StringComparison.InvariantCultureIgnoreCase))
             //{
             //    SessionHelper.RemoveSession("vcode");
             //    txtpass.Focus();
-            //    //JsHelper.Alert("验证码错误！");
-            //    FineUI.Alert.ShowInParent("验证码错误！", FineUI.MessageBoxIcon.Error);
+            //    //JsHelper.Alert("驗證碼錯誤！");
+            //    FineUI.Alert.ShowInParent("驗證碼錯誤！", FineUI.MessageBoxIcon.Error);
             //    return;
             //}
             //else
             //{
-            //    //验证码正确，删除验证码Session
+            //    //驗證碼正確，刪除驗證碼Session
             //    SessionHelper.RemoveSession("vcode");
             //}
             #endregion
 
-            #region 数据库验证
+            #region 數據庫驗證
 
-            //通过用户给的用户名获取相关实体类
+            //通過用戶給的用戶名獲取相關實體類
             var userinfo = Employee.SingleOrDefault(x => (x.EMP_ID == username) || (x.EMP_FNAME == username));
 
-            //判断用户是否存在
+            //判斷用戶是否存在
             if (userinfo == null)
             {
-                LoginLogBll.GetInstence().Save(0, "账号【" + username + "】不存在，登录失败！");
+                LoginLogBll.GetInstence().Save(0, "賬號【" + username + "】不存在，登錄失敗！");
                 txtUserName.Focus();
-                FineUI.Alert.ShowInParent("用户名不存在，请仔细检查您输入的用户名！", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("用戶名不存在，請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
 
-            //密码不匹配
+            //密碼不匹配
             if (!EmployeeBll.GetInstence().CheckPassWord(username, userpass))
             {
-                LoginLogBll.GetInstence().Save(userinfo.Id, "账号【" + userinfo.EMP_ID + "】的用户【" + userinfo.EMP_FNAME + "】登录失败！登录密码错误。");
+                LoginLogBll.GetInstence().Save(userinfo.Id, "賬號【" + userinfo.EMP_ID + "】的用戶【" + userinfo.EMP_FNAME + "】登錄失敗！登錄密碼錯誤。");
                 txtPassword.Focus();
-                FineUI.Alert.ShowInParent("您输入的用户密码错误！", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("您輸入的用戶密碼錯誤！", FineUI.MessageBoxIcon.Error);
                 return;
             }
 
             if (userinfo.KIND == 0)
             {
-                //添加用户登陆日志
-                LoginLogBll.GetInstence().Save(userinfo.Id, "离职用户登录失败！用户【" + userinfo.EMP_FNAME + "】试图登录系统");
-                FineUI.Alert.ShowInParent("您已经没有权限登录本系统！", FineUI.MessageBoxIcon.Error);
+                //添加用戶登陸日誌
+                LoginLogBll.GetInstence().Save(userinfo.Id, "離職用戶登錄失敗！用戶【" + userinfo.EMP_FNAME + "】試圖登錄系統");
+                FineUI.Alert.ShowInParent("您已經沒有權限登錄本系統！", FineUI.MessageBoxIcon.Error);
                 return;
             }
 
-            //判断当前账号是否被启用
+            //判斷當前賬號是否被啟用
             //if (userinfo.IsEnable == 0)
             //{
-            //    //添加登录日志记录
-            //    LoginLogBll.GetInstence().Save(userinfo.Id, "账号【" + userinfo.LoginName + "】的用户【" + userinfo.CName + "】登录失败！用户账号被禁用。");
+            //    //添加登錄日誌記錄
+            //    LoginLogBll.GetInstence().Save(userinfo.Id, "賬號【" + userinfo.LoginName + "】的用戶【" + userinfo.CName + "】登錄失敗！用戶賬號被禁用。");
 
-            //    FineUI.Alert.ShowInParent("当前账号未被启用，请联系管理人员激活！", FineUI.MessageBoxIcon.Error);
+            //    FineUI.Alert.ShowInParent("當前賬號未被啟用，請聯繫管理人員激活！", FineUI.MessageBoxIcon.Error);
             //    return;
             //}
 
             #endregion
 
-            #region 存储在线用户资料
+            #region 存儲在線用戶資料
 
-            #region 获取用户操作权限
+            #region 獲取用戶操作權限
 
             if (string.IsNullOrEmpty(userinfo.GROUPS))
             {
                 Session["PagePower"] = "";
                 Session["ControlPower"] = "";
 
-                LoginLogBll.GetInstence().Save(0, "账号【" + username + "】未绑定權限組，请管理员进行配置！");
-                FineUI.Alert.ShowInParent("您的账号未绑定职位，请与管理员联系！", FineUI.MessageBoxIcon.Error);
+                LoginLogBll.GetInstence().Save(0, "賬號【" + username + "】未綁定權限組，請管理員進行配置！");
+                FineUI.Alert.ShowInParent("您的賬號未綁定職位，請與管理員聯繫！", FineUI.MessageBoxIcon.Error);
                 return;
             }
             else
             {
-                //获取用户权限并存储到用户Session里
+                //獲取用戶權限並存儲到用戶Session裡
                 T_TABLE_DBll.GetInstence().SetUserPower(userinfo.GROUPS);
                 //HttpContext.Current.Session["PagePower"] = ",28,29,30,31,32,36,37,38,39,40,41,42,43,24,25,26,27,1,2,5,19,20,21,22,23,3,6,7,8,9,10,11,12,13,14,33,34,35,4,15,16,17,18,";
                 //HttpContext.Current.Session["ControlPower"] = ",29|1,29|2,29|3,29|5,29|6,30|4,30|10,31|1,31|2,31|3,31|5,31|6,32|4,32|10,37|1,37|2,37|3,37|5,37|6,38|4,39|1,39|2,39|3,39|5,39|6,40|4,42|1,42|2,42|3,42|4,43|1,43|2,43|4,43|3,25|1,25|2,25|11,26|4,27|2,27|3,27|12,5|4,19|1,19|2,19|3,20|4,21|1,21|2,21|3,22|4,23|9,23|3,6|1,6|2,6|3,6|5,6|6,7|4,8|1,8|2,8|3,9|4,11|1,11|2,11|3,11|5,11|6,12|4,13|1,13|2,13|3,14|4,15|8,";
@@ -176,24 +176,24 @@ namespace Solution.Web.Managers.WebManage
 
             #endregion
 
-            #region 当前用户在线信息
-            //当前时间
+            #region 當前用戶在線信息
+            //當前時間
             var localTime = DateTime.Now.ToLocalTime();
-            //创建客户端信息获取实体
+            //創建客戶端信息獲取實體
             var clientHelper = new ClientHelper(Request);
 
-            //创建在线用户实体
+            //創建在線用戶實體
             var onlineUser = new OnlineUsers();
-            //当前用户的Id编号
+            //當前用戶的Id編號
             onlineUser.Manager_Id = userinfo.Id;
             onlineUser.Manager_LoginName = userinfo.EMP_ID;
             //onlineUser.Manager_LoginPass = userinfo.PASSWORD.ToString();
             onlineUser.Manager_CName = userinfo.EMP_FNAME;
             onlineUser.LoginTime = localTime;
             onlineUser.LoginIp = ip;
-            //生成密钥
+            //生成密鑰
             onlineUser.UserKey = RandomHelper.GetRndNum(32, true);
-            //Md5(密钥+登陆帐号+密码+IP+密钥.Substring(6,8))
+            //Md5(密鑰+登陸帳號+密碼+IP+密鑰.Substring(6,8))
             onlineUser.Md5 = OnlineUsersBll.GetInstence().GenerateMd5(onlineUser);
             HttpContext.Current.Session[OnlineUsersTable.Md5] = onlineUser.Md5;
             onlineUser.UpdateTime = localTime;
@@ -216,87 +216,87 @@ namespace Solution.Web.Managers.WebManage
 
             #endregion
 
-            #region 记录当前用户UserId
-            //定义HashTable表里Key的名称UserId
+            #region 記錄當前用戶UserId
+            //定義HashTable表裡Key的名稱UserId
             string userHashKey = "";
-            //判断当前用户帐户是否支持同一帐号在不同地方登陆功能，取得用户在HashTable表里Key的名称
-            //不支持则
+            //判斷當前用戶帳戶是否支持同一帳號在不同地方登陸功能，取得用戶在HashTable表裡Key的名稱
+            //不支持則
             if (userinfo.IS_SHEBAO == true)
             {
                 userHashKey = userinfo.Id + "";
             }
-            //支持则
+            //支持則
             else
             {
                 userHashKey = userinfo.Id + "_" + onlineUser.SessionId;
             }
-            //记录用户的HashTable Key
+            //記錄用戶的HashTable Key
             onlineUser.UserHashKey = userHashKey;
             Session[OnlineUsersTable.UserHashKey] = userHashKey;
             #endregion
 
-            #region 将在线用户信息存入全局变量中
-            //运行在线数据加载函数，如果缓存不存在，则尝试加载数据库中的在线表记录到缓存中
-            //——主要用于IIS缓存被应用程序池或其他原因回收后，对在线数据进行重新加载，而不会使所有用户都被迫退出系统
+            #region 將在線用戶信息存入全局變量中
+            //運行在線數據加載函數，如果緩存不存在，則嘗試加載數據庫中的在線表記錄到緩存中
+            //——主要用於IIS緩存被應用程序池或其他原因回收後，對在線數據進行重新加載，而不會使所有用戶都被迫退出系統
             var onlineUsersList = OnlineUsersBll.GetInstence().GetList();
 
-            //判断缓存中["OnlineUsers"]是否存在，不存在则直接将在线实体添加到缓存中
+            //判斷緩存中["OnlineUsers"]是否存在，不存在則直接將在線實體添加到緩存中
             if (onlineUsersList == null || onlineUsersList.Count == 0)
             {
-                //清除在线表里与当前用户同名的记录
+                //清除在線表裡與當前用戶同名的記錄
                 OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_LoginName == onlineUser.Manager_LoginName);
 
-                //将在线实体保存到数据库的在线表中
+                //將在線實體保存到數據庫的在線表中
                 OnlineUsersBll.GetInstence().Save(this, onlineUser, null, true, false);
             }
-            //存在则将它取出HashTable并进行处理
+            //存在則將它取出HashTable並進行處理
             else
             {
-                //将HashTable里存储的前一登陆帐户移除
-                //获取在线缓存实体
+                //將HashTable裡存儲的前一登陸帳戶移除
+                //獲取在線緩存實體
                 var onlineModel = OnlineUsersBll.GetInstence().GetOnlineUsersModel(userHashKey);
                 if (onlineModel != null)
                 {
-                    //添加用户下线记录
-                    LoginLogBll.GetInstence().Save(userHashKey, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
+                    //添加用戶下線記錄
+                    LoginLogBll.GetInstence().Save(userHashKey, "用戶【{0}】的賬號已經在另一處登錄，本次登陸下線！在線時間【{1}】");
 
-                    //清除在线表里与当前用户同名的记录
+                    //清除在線表裡與當前用戶同名的記錄
                     OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_Id == onlineUser.Manager_Id);
                 }
 
-                //将在线实体保存到数据库的在线表中
+                //將在線實體保存到數據庫的在線表中
                 OnlineUsersBll.GetInstence().Save(this, onlineUser, null, true, false);
             }
 
-            //检查在线列表数据，将不在线人员删除
+            //檢查在線列表數據，將不在線人員刪除
             OnlineUsersBll.GetInstence().CheckOnline();
 
             #endregion
 
             #endregion
 
-            #region 更新用户登陆信息
+            #region 更新用戶登陸信息
 
             userinfo.DEF0 = ip;
             userinfo.DOOR_ID = ++userinfo.DOOR_ID;
             userinfo.SHEBAO_DATE = localTime;
 
-            EmployeeBll.GetInstence().Save(this, userinfo, string.Format("用户【{0}】登陆成功，更新登陆信息", userinfo.EMP_FNAME));
+            EmployeeBll.GetInstence().Save(this, userinfo, string.Format("用戶【{0}】登陸成功，更新登陸信息", userinfo.EMP_FNAME));
 
             #endregion
 
-            #region 添加用户登录成功日志
-            LoginLogBll.GetInstence().Save(userHashKey, string.Format("账号【{0}】的用户【{1}】登录成功", userinfo.EMP_ID, userinfo.EMP_FNAME));
+            #region 添加用戶登錄成功日誌
+            LoginLogBll.GetInstence().Save(userHashKey, string.Format("賬號【{0}】的用戶【{1}】登錄成功", userinfo.EMP_ID, userinfo.EMP_FNAME));
             #endregion
 
-            #region 写Cookies
-            //写入用户的HashTable Key
+            #region 寫Cookies
+            //寫入用戶的HashTable Key
             CookieHelper.SetCookie(OnlineUsersTable.UserHashKey, userHashKey);
-            //写入加密值
+            //寫入加密值
             CookieHelper.SetCookie(OnlineUsersTable.Md5, onlineUser.Md5);
             #endregion
 
-            //跳转进入主页面    
+            //跳轉進入主頁面    
             if (CommonBll.IsPC(this))
             {
                 Response.Redirect("Main.aspx");
@@ -309,13 +309,13 @@ namespace Solution.Web.Managers.WebManage
         }
         #endregion
 
-        #region 刷新验证码
-        /// <summary>刷新验证码</summary>
+        #region 刷新驗證碼
+        /// <summary>刷新驗證碼</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
-            //重新生成验证码
+            //重新生成驗證碼
             imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
         }
         #endregion

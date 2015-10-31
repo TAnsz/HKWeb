@@ -36,7 +36,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblFood, T_TABLE_DTable.TABLES, "'FOOD'");
                 T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblDrink, T_TABLE_DTable.TABLES, "'DRIN'");
 
-                //添加最小日期选择
+                //添加最小日期選擇
                 dpDate.MinDate = DateTime.Now.Date;
 
                 //加載數據

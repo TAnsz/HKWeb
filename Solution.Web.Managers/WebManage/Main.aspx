@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Solution.Web.Managers.Main" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Solution.Web.Managers.Main" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,40 +49,40 @@
                     <f:Toolbar ID="Toolbar1" Position="Bottom" runat="server" CssClass="topbar content"
                         CssStyle="border-bottom: 1px solid #1E95EC;background-color: #005999;">
                         <Items>
-                            <f:ToolbarText ID="ToolbarText1" Text="欢迎您：" runat="server" CssClass="label">
+                            <f:ToolbarText ID="ToolbarText1" Text="歡迎您：" runat="server" CssClass="label">
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtUser" runat="server" CssClass="content">
                             </f:ToolbarText>
-                            <f:ToolbarText ID="ToolbarText2" Text="部门：" runat="server" CssClass="label">
+                            <f:ToolbarText ID="ToolbarText2" Text="部門：" runat="server" CssClass="label">
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtBranchName" runat="server" CssClass="content">
                             </f:ToolbarText>
-                            <f:ToolbarText ID="ToolbarText3" Text="职位：" runat="server" CssClass="label">
+                            <f:ToolbarText ID="ToolbarText3" Text="職位：" runat="server" CssClass="label">
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtPositionInfoName" runat="server" CssClass="content">
                             </f:ToolbarText>
-                            <f:ToolbarText ID="ToolbarText4" Text="在线人数：" runat="server" CssClass="label">
+                            <f:ToolbarText ID="ToolbarText4" Text="在線人數：" runat="server" CssClass="label">
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtOnlineUserCount" runat="server" CssClass="content">
                             </f:ToolbarText>
                             <f:ToolbarFill ID="ToolbarFill1" runat="server" />
-                            <f:Button ID="btnClearCache" runat="server" Icon="controlblank" Text="清除后端缓存" OnClick="btnClearCache_Click"
+                            <f:Button ID="btnClearCache" runat="server" Icon="controlblank" Text="清除後端緩存" OnClick="btnClearCache_Click"
                                 CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
                             </f:Button>
-                            <f:Button ID="btnCalendar" runat="server" Icon="Calendar" Text="万年历" EnablePostBack="false"
+                            <f:Button ID="btnCalendar" runat="server" Icon="Calendar" Text="萬年曆" EnablePostBack="false"
                                 CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
                             </f:Button>
-                            <f:Button ID="btnHelp" EnablePostBack="false" Icon="Help" Text="帮助" runat="server"
+                            <f:Button ID="btnHelp" EnablePostBack="false" Icon="Help" Text="幫助" runat="server"
                                 CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
                             </f:Button>
-                            <f:Button ID="btnExit" runat="server" Icon="UserRed" Text="安全退出" ConfirmText="确定退出系统？"
+                            <f:Button ID="btnExit" runat="server" Icon="UserRed" Text="安全退出" ConfirmText="確定退出系統？"
                                 OnClick="btnExit_Click" CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
                             </f:Button>
                         </Items>
                     </f:Toolbar>
                 </Toolbars>
             </f:Region>
-            <f:Region ID="Region2" Split="true" Width="200px" ShowHeader="true" Title="菜单" EnableCollapse="true" Expanded="false"
+            <f:Region ID="Region2" Split="true" Width="200px" ShowHeader="true" Title="菜單" EnableCollapse="true" Expanded="false"
                 Layout="Fit" Position="Left" runat="server">
                 <Items>
                     <f:Tree runat="server" ShowBorder="false" ShowHeader="false" EnableArrows="true"
@@ -94,13 +94,13 @@
                 <Items>
                     <f:TabStrip ID="mainTabStrip" EnableTabCloseMenu="true" ShowBorder="false" runat="server">
                         <Tabs>
-                            <f:Tab ID="Tab1" Title="首页" Layout="Fit" Icon="House" runat="server">
+                            <f:Tab ID="Tab1" Title="首頁" Layout="Fit" Icon="House" runat="server">
                                 <Items>
                                     <f:ContentPanel ID="ContentPanel2" ShowBorder="false" BodyPadding="10px" ShowHeader="false"
                                         AutoScroll="true" runat="server">
                                         <h2>
                                             人事考勤</h2>
-                                        現階段隻包含請假/出差/調休单的查看和审批！<br />
+                                        現階段隻包含請假/出差/調休單的查看和審批！<br />
                                         <h2>會議室</h2>
                                         會議室的申請查看！<br />
                                         <h2>訂餐</h2>
@@ -124,16 +124,16 @@
         var menuClientID = '<%= leftMenuTree.ClientID %>';
         var tabStripClientID = '<%= mainTabStrip.ClientID %>';
 
-        // 页面控件初始化完毕后，会调用用户自定义的onReady函数
+        // 頁面控件初始化完畢後，會調用用戶自定義的onReady函數
         F.ready(function () {
 
-            // 初始化主框架中的树(或者Accordion+Tree)和选项卡互动，以及地址栏的更新
-            // treeMenu： 主框架中的树控件实例，或者内嵌树控件的手风琴控件实例
-            // mainTabStrip： 选项卡实例
-            // createToolbar： 创建选项卡前的回调函数（接受tabConfig参数）
-            // updateLocationHash: 切换Tab时，是否更新地址栏Hash值
-            // refreshWhenExist： 添加选项卡时，如果选项卡已经存在，是否刷新内部IFrame
-            // refreshWhenTabChange: 切换选项卡时，是否刷新内部IFrame
+            // 初始化主框架中的樹(或者Accordion+Tree)和選項卡互動，以及地址欄的更新
+            // treeMenu： 主框架中的樹控件實例，或者內嵌樹控件的手風琴控件實例
+            // mainTabStrip： 選項卡實例
+            // createToolbar： 創建選項卡前的回調函數（接受tabConfig參數）
+            // updateLocationHash: 切換Tab時，是否更新地址欄Hash值
+            // refreshWhenExist： 添加選項卡時，如果選項卡已經存在，是否刷新內部IFrame
+            // refreshWhenTabChange: 切換選項卡時，是否刷新內部IFrame
             F.util.initTreeTabStrip(F(menuClientID), F(tabStripClientID), null, true, false, false);
 
         });

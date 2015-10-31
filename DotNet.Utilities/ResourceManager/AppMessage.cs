@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧Assistant
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 
 using System;
@@ -17,321 +17,321 @@ namespace DotNet.Utilities
     public class AppMessage
     {
         /// <summary>
-        /// 提示信息.
+        /// 矗ボ獺.
         /// </summary>
-        public static string MSG0000 = "提示信息";
+        public static string MSG0000 = "矗ボ獺";
 
         /// <summary>
-        /// 发生未知错误.
+        /// 祇ネゼ岿粇.
         /// </summary>
-        public static string MSG0001 = "发生未知错误。";
+        public static string MSG0001 = "祇ネゼ岿粇";
 
         /// <summary>
-        /// 数据库联接不正常.
+        /// 计沮畐羛钡ぃタ盽.
         /// </summary>
-        public static string MSG0002 = "数据库联接不正常。";
+        public static string MSG0002 = "计沮畐羛钡ぃタ盽";
 
         /// <summary>
-        /// WebService联接不正常.
+        /// WebService羛钡ぃタ盽.
         /// </summary>
-        public static string MSG0003 = "WebService 联接不正常。";
+        public static string MSG0003 = "WebService 羛钡ぃタ盽";
 
         /// <summary>
-        /// 任何数据未被修改.
+        /// ヴ计沮ゼ砆э.
         /// </summary>
-        public static string MSG0004 = "任何数据未被修改。";
+        public static string MSG0004 = "ヴ计沮ゼ砆э";
 
         /// <summary>
-        /// 记录未找到,可能已被其他人删除.
+        /// 癘魁ゼт,砆ㄤ埃.
         /// </summary>
-        public static string MSG0005 = "记录未找到，可能已被其他人删除。";
+        public static string MSG0005 = "癘魁ゼт砆ㄤ埃";
 
         /// <summary>
-        /// 数据已被其他人修改,请按F5键,重新刷新获得数据.
+        /// 计沮砆ㄤэ,叫F5龄,穝穝莉眔计沮.
         /// </summary>
-        public static string MSG0006 = "数据已被其他人修改,请按F5键,重新刷新获得数据。";
+        public static string MSG0006 = "计沮砆ㄤэ,叫F5龄,穝穝莉眔计沮";
 
         /// <summary>
-        /// '{O}'不允许为空,请输入.
+        /// '{O}'ぃす砛,叫块.
         /// </summary>
-        public static string MSG0007 = "{0} 不允许为空，请输入。";
+        public static string MSG0007 = "{0} ぃす砛叫块";
 
         /// <summary>
-        /// {0} 已存在,不可以重复.
+        /// {0} ,ぃ狡.
         /// </summary>
-        public static string MSG0008 = "{0} 已存在，不可以重复。";
+        public static string MSG0008 = "{0} ぃ狡";
 
         /// <summary>
-        /// 新增成功.
+        /// 穝糤Θ.
         /// </summary>
-        public static string MSG0009 = "新增成功。";
+        public static string MSG0009 = "穝糤Θ";
 
         /// <summary>
-        /// 更新成功.
+        /// 穝Θ.
         /// </summary>
-        public static string MSG0010 = "更新成功。";
+        public static string MSG0010 = "穝Θ";
 
         /// <summary>
-        /// 保存成功.
+        /// 玂Θ.
         /// </summary>
-        public static string MSG0011 = "保存成功。";
+        public static string MSG0011 = "玂Θ";
 
         /// <summary>
-        /// 批量保存成功.
+        /// у秖玂Θ.
         /// </summary>
-        public static string MSG0012 = "批量保存成功。";
+        public static string MSG0012 = "у秖玂Θ";
 
         /// <summary>
-        /// 删除成功.
+        /// 埃Θ.
         /// </summary>
-        public static string MSG0013 = "删除成功。";
+        public static string MSG0013 = "埃Θ";
 
         /// <summary>
-        /// 批量删除成功.
+        /// у秖埃Θ.
         /// </summary>
-        public static string MSG0014 = "批量删除成功。";
+        public static string MSG0014 = "у秖埃Θ";
 
         /// <summary>
-        /// 您确认删除吗?
+        /// 眤絋粄埃盾?
         /// </summary>
-        public static string MSG0015 = "您确认删除吗？";
+        public static string MSG0015 = "眤絋粄埃盾";
 
         /// <summary>
-        /// 您确认删除 '{0}'吗?
+        /// 眤絋粄埃 '{0}'盾?
         /// </summary>
-        public static string MSG0016 = "您确认删除 {0} 吗？";
+        public static string MSG0016 = "眤絋粄埃 {0} 盾";
 
         /// <summary>
-        /// 当前记录不允许被删除.
+        /// 讽玡癘魁ぃす砛砆埃.
         /// </summary>
-        public static string MSG0017 = "当前记录不允许被删除。";
+        public static string MSG0017 = "讽玡癘魁ぃす砛砆埃";
 
         /// <summary>
-        /// 当前记录 '{0}' 不允许被删除.
+        /// 讽玡癘魁 '{0}' ぃす砛砆埃.
         /// </summary>
-        public static string MSG0018 = "当前记录 {0} 不允许被删除。";
+        public static string MSG0018 = "讽玡癘魁 {0} ぃす砛砆埃";
 
         /// <summary>
-        /// 当前记录不允许被编辑,请按F5键,重新获取数据最新数据.
+        /// 讽玡癘魁ぃす砛砆絪胯,叫F5龄,穝莉计沮程穝计沮.
         /// </summary>
-        public static string MSG0019 = "当前记录不允许被编辑，请按F5键,重新获取数据最新数据。";
+        public static string MSG0019 = "讽玡癘魁ぃす砛砆絪胯叫F5龄,穝莉计沮程穝计沮";
 
         /// <summary>
-        /// 当前记录 '{0}' 不允许被编辑,请按F5键,重新获取数据最新数据.
+        /// 讽玡癘魁 '{0}' ぃす砛砆絪胯,叫F5龄,穝莉计沮程穝计沮.
         /// </summary>
-        public static string MSG0020 = "当前记录 {0} 不允许被编辑，请按F5键，重新获取数据最新数据。";
+        public static string MSG0020 = "讽玡癘魁 {0} ぃす砛砆絪胯叫F5龄穝莉计沮程穝计沮";
 
         /// <summary>
-        /// 当前记录已是第一条记录.
+        /// 讽玡癘魁琌材兵癘魁.
         /// </summary>
-        public static string MSG0021 = "当前记录已是第一条记录。";
+        public static string MSG0021 = "讽玡癘魁琌材兵癘魁";
 
         /// <summary>
-        /// 当前记录已是最后一条记录.
+        /// 讽玡癘魁琌程兵癘魁.
         /// </summary>
-        public static string MSG0022 = "当前记录已是最后一条记录。";
+        public static string MSG0022 = "讽玡癘魁琌程兵癘魁";
 
         /// <summary>
-        /// 请至少选择一项.
+        /// 叫ぶ匡拒兜.
         /// </summary>
-        public static string MSG0023 = "请选择一条记录。";
+        public static string MSG0023 = "叫匡拒兵癘魁";
 
         /// <summary>
-        /// 请至少选择一项 '{0}'.
+        /// 叫ぶ匡拒兜 '{0}'.
         /// </summary>
-        public static string MSG0024 = "请至少选择一条记录。";
+        public static string MSG0024 = "叫ぶ匡拒兵癘魁";
 
         /// <summary>
-        /// '{0}'不能大于'{1}'.
+        /// '{0}'ぃ'{1}'.
         /// </summary>
-        public static string MSG0025 = "{0} 不能大于{1}。";
+        public static string MSG0025 = "{0} ぃ{1}";
 
         /// <summary>
-        /// '{0}'不能小于'{1}'.
+        /// '{0}'ぃ'{1}'.
         /// </summary>
-        public static string MSG0026 = "{0} 不能小于 {1}。";
+        public static string MSG0026 = "{0} ぃ {1}";
 
         /// <summary>
-        /// '{0}'不能等于'{1}'.
+        /// '{0}'ぃ单'{1}'.
         /// </summary>
-        public static string MSG0027 = "{0} 不能等于 {1}。";
+        public static string MSG0027 = "{0} ぃ单 {1}";
 
         /// <summary>
-        /// 输入的'{0}'不是有效的日期.
+        /// 块'{0}'ぃ琌Τら戳.
         /// </summary>
-        public static string MSG0028 = "输入的 {0} 不是有效的日期。";
+        public static string MSG0028 = "块 {0} ぃ琌Τら戳";
 
         /// <summary>
-        /// 输入的'{0}'不是有效的字符.
+        /// 块'{0}'ぃ琌Τ才.
         /// </summary>
-        public static string MSG0029 = "输入的 {0} 不是有效的字符。";
+        public static string MSG0029 = "块 {0} ぃ琌Τ才";
 
         /// <summary>
-        /// 输入的'{0}'不是有效的数字.
+        /// 块'{0}'ぃ琌Τ计.
         /// </summary>
-        public static string MSG0030 = "输入的 {0} 不是有效的数字。";
+        public static string MSG0030 = "块 {0} ぃ琌Τ计";
 
         /// <summary>
-        /// 输入的'{0}'不是有效的金额.
+        /// 块'{0}'ぃ琌Τ肂.
         /// </summary>
-        public static string MSG0031 = "输入的 {0} 不是有效的金额。";
+        public static string MSG0031 = "块 {0} ぃ琌Τ肂";
 
         /// <summary>
-        /// '{0}'名不能包含：\ / : * ? " < > |
+        /// '{0}'ぃ\ / : * ? " < > |
         /// </summary>
-        public static string MSG0032 = "{0} 名包含非法字符。";
+        public static string MSG0032 = "{0} 獶猭才";
 
         /// <summary>
-        /// 数据已经被引用,有关联数据在
+        /// 计沮竒砆まノ,Τ闽羛计沮
         /// </summary>
-        public static string MSG0033 = "数据已经被引用，有关联数据在。";
+        public static string MSG0033 = "计沮竒砆まノΤ闽羛计沮";
 
         /// <summary>
-        /// 数据已经被引用,有关联数据在.是否强制删除数据?
+        /// 计沮竒砆まノ,Τ闽羛计沮.琌眏埃计沮?
         /// </summary>
-        public static string MSG0034 = "数据已经被引用，有关联数据在，是否强制删除数据？";
+        public static string MSG0034 = "计沮竒砆まノΤ闽羛计沮琌眏埃计沮";
 
         /// <summary>
-        /// {0} 有子节点不允许被删除.
+        /// {0} Τ竊翴ぃす砛砆埃.
         /// </summary>
-        public static string MSG0035 = "{0} 有子节点不允许被删除，有子节点还未被删除。";
+        public static string MSG0035 = "{0} Τ竊翴ぃす砛砆埃Τ竊翴临ゼ砆埃";
 
         /// <summary>
-        /// {0} 不能移动到 {1}.
+        /// {0} ぃ簿笆 {1}.
         /// </summary>
-        public static string MSG0036 = "{0} 不能移动到 {1}。";
+        public static string MSG0036 = "{0} ぃ簿笆 {1}";
 
         /// <summary>
-        /// {0} 下的子节点不能移动到 {1}.
+        /// {0} 竊翴ぃ簿笆 {1}.
         /// </summary>
-        public static string MSG0037 = "{0} 下的子节点不能移动到 {1}。";
+        public static string MSG0037 = "{0} 竊翴ぃ簿笆 {1}";
 
         /// <summary>
-        /// 确认移动 {0} 到 {1} 吗?
+        /// 絋粄簿笆 {0}  {1} 盾?
         /// </summary>
-        public static string MSG0038 = "确认移动 {0} 到 {1} 吗？";
+        public static string MSG0038 = "絋粄簿笆 {0}  {1} 盾";
 
         /// <summary>
-        /// '{0}'不等于'{1}'.
+        /// '{0}'ぃ单'{1}'.
         /// </summary>
-        public static string MSG0039 = "{0} 不等于 {1}。";
+        public static string MSG0039 = "{0} ぃ单 {1}";
 
         /// <summary>
-        /// {0} 错误.
+        /// {0} 岿粇.
         /// </summary>
-        public static string MSG0040 = "{0} 错误。";
+        public static string MSG0040 = "{0} 岿粇";
 
         /// <summary>
-        /// 确认审核通过吗?.
+        /// 絋粄糵硄筁盾?.
         /// </summary>
-        public static string MSG0041 = "确认审核通过吗？";
+        public static string MSG0041 = "絋粄糵硄筁盾";
 
         /// <summary>
-        /// 确认驳回吗?.
+        /// 絋粄婚盾?.
         /// </summary>
-        public static string MSG0042 = "确认审核驳回吗？";
+        public static string MSG0042 = "絋粄糵婚盾";
 
         /// <summary>
-        /// 成功锁定数据.
+        /// Θ玛﹚计沮.
         /// </summary>
-        public static string MSG0043 = "不能锁定数据。";
+        public static string MSG0043 = "ぃ玛﹚计沮";
 
         /// <summary>
-        /// 不能锁定数据.
+        /// ぃ玛﹚计沮.
         /// </summary>
-        public static string MSG0044 = "成功锁定数据。";
+        public static string MSG0044 = "Θ玛﹚计沮";
 
         /// <summary>
-        /// 数据被修改提示
+        /// 计沮砆э矗ボ
         /// </summary>
-        public static string MSG0045 = "数据已经改变，想保存数据吗？";
+        public static string MSG0045 = "计沮竒э跑稱玂计沮盾";
 
         /// <summary>
-        /// 最近 {0} 次内密码不能重复。
+        /// 程 {0} Ωず盞絏ぃ狡
         /// </summary>
-        public static string MSG0046 = "最近 {0} 次内密码不能重复。";
+        public static string MSG0046 = "程 {0} Ωず盞絏ぃ狡";
 
         /// <summary>
-        /// 密码已过期，账户被锁定，请联系系统管理员。
+        /// 盞絏筁戳姐め砆玛﹚叫羛么╰参恨瞶
         /// </summary>
-        public static string MSG0047 = "密码已过期，账户被锁定，请联系系统管理员。";
+        public static string MSG0047 = "盞絏筁戳姐め砆玛﹚叫羛么╰参恨瞶";
 
         /// <summary>
-        /// 数据已经改变，不保存数据？
+        /// 计沮竒э跑ぃ玂计沮
         /// </summary>
-        public static string MSG0065 = "数据已经改变，不保存数据？";
+        public static string MSG0065 = "计沮竒э跑ぃ玂计沮";
 
-        public static string MSG0048 = "拒绝登录，用户已经在线上。";
-        public static string MSG0049 = "拒绝登录，网卡Mac地址不符限制条件。";
-        public static string MSG0050 = "拒绝登录，IP地址不符限制条件";
-        public static string MSG0051 = "已到在线用户最大数量限制。";
+        public static string MSG0048 = "┶荡祅魁ノめ竒絬";
+        public static string MSG0049 = "┶荡祅魁呼Macぃ才兵ン";
+        public static string MSG0050 = "┶荡祅魁IPぃ才兵ン";
+        public static string MSG0051 = "絬ノめ程计秖";
 
 
-        public static string MSG0060 = "请先创建该职员的登录系统的用户信息。";
+        public static string MSG0060 = "叫承赣戮祅魁╰参ノめ獺";
 
         /// <summary>
-        /// 您确认移除吗?
+        /// 眤絋粄簿埃盾?
         /// </summary>
-        public static string MSG0075 = "您确认移除吗？";
+        public static string MSG0075 = "眤絋粄簿埃盾";
 
         /// <summary>
-        /// 您确认移除 '{0}'吗?
+        /// 眤絋粄簿埃 '{0}'盾?
         /// </summary>
-        public static string MSG0076 = "您确认移除 {0} 吗？";
+        public static string MSG0076 = "眤絋粄簿埃 {0} 盾";
 
-        public static string MSG0700 = "已经成功连接到目标数据。";
+        public static string MSG0700 = "竒Θ硈钡ヘ夹计沮";
 
-        public static string MSG9800 = "值";
-        public static string MSG9900 = "公司";
-        public static string MSG9901 = "部门";
-        public static string MSG9956 = "未找到满足条件的记录。";
-        public static string MSG9957 = "用户名";
-        public static string MSG9958 = "数据验证错误。";
-        public static string MSG9959 = "新密码";
-        public static string MSG9960 = "确认密码";
-        public static string MSG9961 = "原密码";
-        public static string MSG9962 = "修改 {0} 成功。";
-        public static string MSG9963 = "设置 {0} 成功。";
-        public static string MSG9964 = "密码";
-        public static string MSG9965 = "登录成功。";
-        public static string MSG9966 = "用户没有找到，请注意大小写。";
-        public static string MSG9967 = "密码错误，请注意大小写。";
-        public static string MSG9968 = "登录被拒绝，请与管理员联系。";
-        public static string MSG9969 = "基础编码";
-        public static string MSG9970 = "职员";
-        public static string MSG9971 = "组织机构";
-        public static string MSG9972 = "角色";
-        public static string MSG9973 = "模块";
-        public static string MSG9974 = "文件夹";
-        public static string MSG9975 = "权限";
-        public static string MSG9976 = "代码";
-        public static string MSG9977 = "编号";
-        public static string MSG9978 = "名称";
-        public static string MSG9979 = "父节点代码";
-        public static string MSG9980 = "父节点名称";
-        public static string MSG9981 = "功能分类代码";
-        public static string MSG9982 = "唯一识别代码";
-        public static string MSG9983 = "主题";
-        public static string MSG9984 = "内容";
-        public static string MSG9985 = "状态码";
-        public static string MSG9986 = "次数";
-        public static string MSG9987 = "有效";
-        public static string MSG9988 = "备注";
-        public static string MSG9989 = "排序码";
-        public static string MSG9990 = "创建者代码";
-        public static string MSG9991 = "创建时间";
-        public static string MSG9992 = "最后修改者代码";
-        public static string MSG9993 = "最后修改时间";
-        public static string MSG9994 = "排序";
-        public static string MSG9995 = "代码";
-        public static string MSG9996 = "索引";
-        public static string MSG9997 = "字段";
-        public static string MSG9998 = "表";
-        public static string MSG9999 = "数据库";
+        public static string MSG9800 = "";
+        public static string MSG9900 = "そ";
+        public static string MSG9901 = "场";
+        public static string MSG9956 = "ゼт骸ì兵ン癘魁";
+        public static string MSG9957 = "ノめ";
+        public static string MSG9958 = "计沮喷靡岿粇";
+        public static string MSG9959 = "穝盞絏";
+        public static string MSG9960 = "絋粄盞絏";
+        public static string MSG9961 = "盞絏";
+        public static string MSG9962 = "э {0} Θ";
+        public static string MSG9963 = "砞竚 {0} Θ";
+        public static string MSG9964 = "盞絏";
+        public static string MSG9965 = "祅魁Θ";
+        public static string MSG9966 = "ノめ⊿Τт叫猔種糶";
+        public static string MSG9967 = "盞絏岿粇叫猔種糶";
+        public static string MSG9968 = "祅魁砆┶荡叫籔恨瞶羛么";
+        public static string MSG9969 = "膀娄絪絏";
+        public static string MSG9970 = "戮";
+        public static string MSG9971 = "舱麓诀篶";
+        public static string MSG9972 = "à︹";
+        public static string MSG9973 = "家遏";
+        public static string MSG9974 = "ゅンЖ";
+        public static string MSG9975 = "舦";
+        public static string MSG9976 = "絏";
+        public static string MSG9977 = "絪腹";
+        public static string MSG9978 = "嘿";
+        public static string MSG9979 = "竊翴絏";
+        public static string MSG9980 = "竊翴嘿";
+        public static string MSG9981 = "だ摸絏";
+        public static string MSG9982 = "斑醚絏";
+        public static string MSG9983 = "肈";
+        public static string MSG9984 = "ず甧";
+        public static string MSG9985 = "篈絏";
+        public static string MSG9986 = "Ω计";
+        public static string MSG9987 = "Τ";
+        public static string MSG9988 = "称爹";
+        public static string MSG9989 = "逼絏";
+        public static string MSG9990 = "承絏";
+        public static string MSG9991 = "承丁";
+        public static string MSG9992 = "程э絏";
+        public static string MSG9993 = "程э丁";
+        public static string MSG9994 = "逼";
+        public static string MSG9995 = "絏";
+        public static string MSG9996 = "ま";
+        public static string MSG9997 = "琿";
+        public static string MSG9998 = "";
+        public static string MSG9999 = "计沮畐";
 
-        #region public static int GetLanguageResource() 从当前指定的语言包读取信息
+        #region public static int GetLanguageResource() 眖讽玡﹚粂ē弄獺
         /// <summary>
-        /// 从当前指定的语言包读取信息
+        /// 眖讽玡﹚粂ē弄獺
         /// </summary>
         /// <returns></returns>
         //public static int GetLanguageResource()
@@ -341,25 +341,25 @@ namespace DotNet.Utilities
         //}
         #endregion
 
-        #region public static string Format(string value, params string[] messages) 格式化一个资源字符串
+        #region public static string Format(string value, params string[] messages) Αて戈方才﹃
         /// <summary>
-        /// 格式化一个资源字符串
+        /// Αて戈方才﹃
         /// </summary>
-        /// <param name="value">目标字符串</param>
-        /// <param name="messages">传入的信息</param>
-        /// <returns>字符串</returns>
+        /// <param name="value">ヘ夹才﹃</param>
+        /// <param name="messages">肚獺</param>
+        /// <returns>才﹃</returns>
         public static string Format(string value, params string[] messages)
         {
             return String.Format(CultureInfo.CurrentCulture, value, messages);
         }
         #endregion
 
-        #region public static string GetMessage(string id) 读取一个资源定义
+        #region public static string GetMessage(string id) 弄戈方﹚竡
         /// <summary>
-        /// 读取一个资源定义
+        /// 弄戈方﹚竡
         /// </summary>
-        /// <param name="id">资源代码</param>
-        /// <returns>字符串</returns>
+        /// <param name="id">戈方絏</param>
+        /// <returns>才﹃</returns>
         public static string GetMessage(string id)
         {
             string returnValue = string.Empty;
@@ -370,11 +370,11 @@ namespace DotNet.Utilities
 
         #region public static string GetMessage(string id, params string[] messages)
         /// <summary>
-        /// 读取一个资源定义
+        /// 弄戈方﹚竡
         /// </summary>
-        /// <param name="id">资源代码</param>
-        /// <param name="messages">传入的信息</param>
-        /// <returns>字符串</returns>
+        /// <param name="id">戈方絏</param>
+        /// <param name="messages">肚獺</param>
+        /// <returns>才﹃</returns>
         public static string GetMessage(string id, params string[] messages)
         {
             string returnValue = string.Empty;

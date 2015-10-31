@@ -1,653 +1,653 @@
 #######################################################################
 #
-# KindEditor 变更记录
+# KindEditor 變更記錄
 #
 #######################################################################
 
 ver 4.1.10 (2013-11-23)
 * Bugfix: 兼容IE11。
-* Bugfix: [IE6-7] 上传按钮界面错乱。
-* Bugfix: 引入kindeditor-all.js后开启自动高度插件会报错。
-* Bugfix: &reg;来回切换代码模式后变成(R)。
-* Bugfix: 字体、文字大小、颜色等操作有toogle效果。
-* Bugfix: 非IE设置returnValue和cancelBubble。
-* Bugfix: 特定的字符导致浏览器死循环。
+* Bugfix: [IE6-7] 上傳按鈕界面錯亂。
+* Bugfix: 引入kindeditor-all.js後開啟自動高度插件會報錯。
+* Bugfix: &reg;來回切換代碼模式後變成(R)。
+* Bugfix: 字體、文字大小、顏色等操作有toogle效果。
+* Bugfix: 非IE設置returnValue和cancelBubble。
+* Bugfix: 特定的字符導致瀏覽器死循環。
 
 ver 4.1.9 (2013-10-08)
-* Bugfix: 选中后无法添加超级链接。
-* Bugfix: 自动高度插件无法在多个编辑器上使用。
+* Bugfix: 選中後無法添加超級鏈接。
+* Bugfix: 自動高度插件無法在多個編輯器上使用。
 
 ver 4.1.8 (2013-10-06)
-* 新增: kindeditor-all.js包含自动高度插件。
+* 新增: kindeditor-all.js包含自動高度插件。
 * 新增: K.html(expr, val)，K.appendHtml(expr, val)，K.insertHtml(expr, val)接口。
 * 改善: IE9+都使用W3C Range。
-* 改善: 页面加载完成后也可以触发KindEditor.ready。
-* 改善: getAttributeNode已不赞成使用，用getAttribute替代。
-* Bugfix: 有些浏览器上点击边缘，可能无法弹出文件选择框。
-* Bugfix: embed宽高无法用百分比设置。
-* Bugfix: [Firefox] 输入几个文字，切换到源代码模式再切换回来，插入图片报错。
-* Bugfix: 自动高度插件高度只增不减，感谢Github用户wyqbailey贡献。
-* Bugfix: editor.html(val)的val参数为null或undefined时报错。
-* Bugfix: [IE10] 单独调用组件-上传图片弹出框，需要点击两次选择图片按钮才能弹出窗体。
-* Bugfix: 代码模式下输入带连续多个空格的标签，有些浏览器无响应。
-* Bugfix: [IE] 当两个A标签并排在一起中间没有别的内容，修改后面的链接地址时，前面的链接地址也被改掉。
-* Bugfix: 页面同时引入SWFUpload，多图上传会失败。
-* Bugfix: 插入分页符，有时候出现复制HTML代码的现象。
-* Bugfix: 编辑图片后丢失class、id等属性。
-* Bugfix: 在编辑器中输入值，页面提交跳转后，按浏览器的后退按钮，就出现__kindeditor_bookmark_start_0。
-* Bugfix: 全屏后和还原后光标没有选中之前光标的位置。
-* Bugfix: 特定环境下有时候出现两个弹出框。
-* Bugfix: [IE] 编辑表格后焦点跳到顶部。
-* Bugfix: [IE] 先选中图片后居中，再左对齐，光标跳到顶部。
+* 改善: 頁面加載完成後也可以觸發KindEditor.ready。
+* 改善: getAttributeNode已不贊成使用，用getAttribute替代。
+* Bugfix: 有些瀏覽器上點擊邊緣，可能無法彈出文件選擇框。
+* Bugfix: embed寬高無法用百分比設置。
+* Bugfix: [Firefox] 輸入幾個文字，切換到源代碼模式再切換回來，插入圖片報錯。
+* Bugfix: 自動高度插件高度只增不減，感謝Github用戶wyqbailey貢獻。
+* Bugfix: editor.html(val)的val參數為null或undefined時報錯。
+* Bugfix: [IE10] 單獨調用組件-上傳圖片彈出框，需要點擊兩次選擇圖片按鈕才能彈出窗體。
+* Bugfix: 代碼模式下輸入帶連續多個空格的標籤，有些瀏覽器無響應。
+* Bugfix: [IE] 當兩個A標籤並排在一起中間沒有別的內容，修改後面的鏈接地址時，前面的鏈接地址也被改掉。
+* Bugfix: 頁面同時引入SWFUpload，多圖上傳會失敗。
+* Bugfix: 插入分頁符，有時候出現複製HTML代碼的現象。
+* Bugfix: 編輯圖片後丟失class、id等屬性。
+* Bugfix: 在編輯器中輸入值，頁面提交跳轉後，按瀏覽器的後退按鈕，就出現__kindeditor_bookmark_start_0。
+* Bugfix: 全屏後和還原後光標沒有選中之前光標的位置。
+* Bugfix: 特定環境下有時候出現兩個彈出框。
+* Bugfix: [IE] 編輯表格後焦點跳到頂部。
+* Bugfix: [IE] 先選中圖片後居中，再左對齊，光標跳到頂部。
 
 ver 4.1.7 (2013-04-21)
-* Bugfix: 取消全屏后没有恢复到原来大小，调整窗口大小后宽高变成全屏宽高。
-* Bugfix: [IE] 删除图片、Flash、视频后立即点击图片按钮出错。
-* Bugfix: [IE8] 源代码模式下输入<input type="text" />会丢失type属性。
-* Bugfix: [IE] 输入几个文字，切换到源代码模式再切换回来，插入图片报错。
-* Bugfix: 插入5x5表格，A1向下合并两次，再点到A2，向下合并报错。
+* Bugfix: 取消全屏後沒有恢復到原來大小，調整窗口大小後寬高變成全屏寬高。
+* Bugfix: [IE] 刪除圖片、Flash、視頻後立即點擊圖片按鈕出錯。
+* Bugfix: [IE8] 源代碼模式下輸入<input type="text" />會丟失type屬性。
+* Bugfix: [IE] 輸入幾個文字，切換到源代碼模式再切換回來，插入圖片報錯。
+* Bugfix: 插入5x5表格，A1向下合併兩次，再點到A2，向下合併報錯。
 
 ver 4.1.6 (2013-03-24)
-* 新增: 韩国语语言包，感谢Github用户composite贡献。
-* 新增: allowImageRemote初始化参数，可隐藏网络图片标签。
-* 改善: 插入程序代码添加是否为空的判断。
-* Bugfix: [IE9] 在frame里调用编辑器，关闭批量上传dialog时浏览器会崩溃。
-* Bugfix: 插入图片后输入文字，文字加粗后取消加粗，图片会被删除。
-* Bugfix: [IE] 工具栏被图片选中标记覆盖时有时候无法操作，比如居中对齐后再左对齐。
-* Bugfix: 全屏ESC快捷键默认未开启，但图标提示还包含ESC。
-* Bugfix: 图片上传后的url包含&时会被转换成&amp;。
-* Bugfix: [IE] 移除编辑器后点击页面出现没有权限错误。
-* Bugfix: [IE] 输入几个文字，调用editor.html(val)后，插入表情报错。
-* Bugfix: 调用editor.resize()，退出全屏后，高度没恢复成原来的大小。
+* 新增: 韓國語語言包，感謝Github用戶composite貢獻。
+* 新增: allowImageRemote初始化參數，可隱藏網絡圖片標籤。
+* 改善: 插入程序代碼添加是否為空的判斷。
+* Bugfix: [IE9] 在frame裡調用編輯器，關閉批量上傳dialog時瀏覽器會崩潰。
+* Bugfix: 插入圖片後輸入文字，文字加粗後取消加粗，圖片會被刪除。
+* Bugfix: [IE] 工具欄被圖片選中標記覆蓋時有時候無法操作，比如居中對齊後再左對齊。
+* Bugfix: 全屏ESC快捷鍵默認未開啟，但圖標提示還包含ESC。
+* Bugfix: 圖片上傳後的url包含&時會被轉換成&amp;。
+* Bugfix: [IE] 移除編輯器後點擊頁面出現沒有權限錯誤。
+* Bugfix: [IE] 輸入幾個文字，調用editor.html(val)後，插入表情報錯。
+* Bugfix: 調用editor.resize()，退出全屏後，高度沒恢復成原來的大小。
 
 ver 4.1.5 (2013-01-20)
-* 新增: zIndex初始化参数，可指定弹出层的z-index。
-* Bugfix: 复制粘贴3.x版本生成的文章时，可能会出现多余的空行。
-* Bugfix: 非IE浏览器插入图片或粘贴文本后，可视范围没有自动滚动到光标当前显示的位置。
-* Bugfix: [IE] 工具栏被图片选中标记覆盖时不能操作。
-* Bugfix: [Firefox] 每次按回车都会显示TypeError。
-* Bugfix: [Chrome] 纯文本粘贴1个空行会变成没有空行或者2个空行。
-* Bugfix: [IE9] input标签会丢失checked属性。
-* Bugfix: [IE8-] 未能隐藏display为none的input/select/button。
+* 新增: zIndex初始化參數，可指定彈出層的z-index。
+* Bugfix: 複製粘貼3.x版本生成的文章時，可能會出現多餘的空行。
+* Bugfix: 非IE瀏覽器插入圖片或粘貼文本後，可視範圍沒有自動滾動到光標當前顯示的位置。
+* Bugfix: [IE] 工具欄被圖片選中標記覆蓋時不能操作。
+* Bugfix: [Firefox] 每次按回車都會顯示TypeError。
+* Bugfix: [Chrome] 純文本粘貼1個空行會變成沒有空行或者2個空行。
+* Bugfix: [IE9] input標籤會丟失checked屬性。
+* Bugfix: [IE8-] 未能隱藏display為none的input/select/button。
 
 ver 4.1.4 (2012-11-11)
-* 改善: 弹出框能够跟随滚动条滚动居中显示。
-* Bugfix: 服务器没有配置默认index.html时，百度动态地图无法加载。
-* Bugfix: 点击图片属性、超级链接属性时，冒号变成%3A。
-* Bugfix: 当页面里面有jQuery的uploadify插件时，无法连续上传。
-* Bugfix: URL包含中文时，就会变成乱码。
-* Bugfix: [Firefox] 编辑链接后回车换行，在新的段落输入内容带上面那个链接。
-* Bugfix: 繁体语言包缺少uploadSuccess属性。
-* Bugfix: [Firefox] 编辑3.x版本生成的文章时，可能会出现多余的空行。
+* 改善: 彈出框能夠跟隨滾動條滾動居中顯示。
+* Bugfix: 服務器沒有配置默認index.html時，百度動態地圖無法加載。
+* Bugfix: 點擊圖片屬性、超級鏈接屬性時，冒號變成%3A。
+* Bugfix: 當頁面裡面有jQuery的uploadify插件時，無法連續上傳。
+* Bugfix: URL包含中文時，就會變成亂碼。
+* Bugfix: [Firefox] 編輯鏈接後回車換行，在新的段落輸入內容帶上面那個鏈接。
+* Bugfix: 繁體語言包缺少uploadSuccess屬性。
+* Bugfix: [Firefox] 編輯3.x版本生成的文章時，可能會出現多餘的空行。
 
 ver 4.1.3 (2012-10-14)
-* 新增: 百度地图可插入iframe动态地图。
-* 新增: pagebreakHtml初始化参数，可指定分页符HTML。
-* 改善: 重复执行K.create时只创建一次。
-* Bugfix: [IE] 只显示本地上传Tab时，打开图片弹出框报错。
-* Bugfix: 点击全屏后再切换回来，有时候出现JS错误。
-* Bugfix: K.addUnit(val, unit)第二个参数不起作用。
-* Bugfix: &会转义成&amp;这样超链接就不能访问。
-* Bugfix: 表情预览失效。
-* Bugfix: [IE9] 多文件上传时不显示上传按钮。
-* Bugfix: [Chrome] 创建弹出框时，Console提示没有访问权限。
-* Bugfix: URL包含$字符时，生成错误的HTML代码。
+* 新增: 百度地圖可插入iframe動態地圖。
+* 新增: pagebreakHtml初始化參數，可指定分頁符HTML。
+* 改善: 重複執行K.create時只創建一次。
+* Bugfix: [IE] 只顯示本地上傳Tab時，打開圖片彈出框報錯。
+* Bugfix: 點擊全屏後再切換回來，有時候出現JS錯誤。
+* Bugfix: K.addUnit(val, unit)第二個參數不起作用。
+* Bugfix: &會轉義成&amp;這樣超鏈接就不能訪問。
+* Bugfix: 表情預覽失效。
+* Bugfix: [IE9] 多文件上傳時不顯示上傳按鈕。
+* Bugfix: [Chrome] 創建彈出框時，Console提示沒有訪問權限。
+* Bugfix: URL包含$字符時，生成錯誤的HTML代碼。
 
 ver 4.1.2 (2012-07-21)
-* 新增: K.remove(expr)函数，可移除多个编辑器，expr为选择器或DOM对象。
-* 新增: K.sync(expr)函数，可同步多个编辑器，expr为选择器或DOM对象。
-* 新增: K.create(expr)、K(expr)等函数可以直接传入jQuery对象。
-* 新增: filePostName初始化参数，可指定上传文件form名称。
-* 新增: fillDescAfterUploadImage初始化参数，true时图片上传成功后切换到图片编辑标签。
-* 新增: afterSelectFile初始化参数，从图片空间选择后执行的回调函数。
+* 新增: K.remove(expr)函數，可移除多個編輯器，expr為選擇器或DOM對象。
+* 新增: K.sync(expr)函數，可同步多個編輯器，expr為選擇器或DOM對象。
+* 新增: K.create(expr)、K(expr)等函數可以直接傳入jQuery對象。
+* 新增: filePostName初始化參數，可指定上傳文件form名稱。
+* 新增: fillDescAfterUploadImage初始化參數，true時圖片上傳成功後切換到圖片編輯標籤。
+* 新增: afterSelectFile初始化參數，從圖片空間選擇後執行的回調函數。
 * 新增: K.NodeClass,K.RangeClass,K.CmdClass,K.EditClass,K.MenuClass等接口。
-* 新增: plugin.imageDialog(options)添加showLocal和showRemote参数，值为false时分别隐藏网络图片和本地上传。
-* 新增: afterUpload新增data和name参数，分别为后端返回的JSON数据和插件名称。
-* 变更: fullscreenShortcut默认值改成false，默认不启用ESC快捷键全屏。
-* 改善: 多图上传时，允许用户post自定义参数到服务器。
-* Bugfix: [Firefox] 居中后输入几个文字回车换行，内容被全选。
-* Bugfix: 批量上传无法执行afterUpload这个回调，普通上传可以执行。
-* Bugfix: 页面中存在其它SWFUpload，批量上传出现冲突。
-* Bugfix: IE8怪异模式下先打开弹出框关闭，用滚轮到顶或到底，会出现脚本错误。
-* Bugfix: 图片src为图片数据（base64 data）时，无法正常显示。
-* Bugfix: 在pre标签里无法粘贴内容。
-* Bugfix: KNode.show()和hide()，display都变成block。
-* Bugfix: 版权标识&copy;来回切换代码模式后变成(C)。
-* Bugfix: 重新创建KNode后，data方法无法取得数据。
-* Bugfix: K.create函数未找到目标textarea时报错。
-* Bugfix: 右下角拖动，松开鼠标后还可以继续拖动。
-* Bugfix: 右键编辑表格，插入行和列时有时候错乱。
+* 新增: plugin.imageDialog(options)添加showLocal和showRemote參數，值為false時分別隱藏網絡圖片和本地上傳。
+* 新增: afterUpload新增data和name參數，分別為後端返回的JSON數據和插件名稱。
+* 變更: fullscreenShortcut默認值改成false，默認不啟用ESC快捷鍵全屏。
+* 改善: 多圖上傳時，允許用戶post自定義參數到服務器。
+* Bugfix: [Firefox] 居中後輸入幾個文字回車換行，內容被全選。
+* Bugfix: 批量上傳無法執行afterUpload這個回調，普通上傳可以執行。
+* Bugfix: 頁面中存在其它SWFUpload，批量上傳出現衝突。
+* Bugfix: IE8怪異模式下先打開彈出框關閉，用滾輪到頂或到底，會出現腳本錯誤。
+* Bugfix: 圖片src為圖片數據（base64 data）時，無法正常顯示。
+* Bugfix: 在pre標籤裡無法粘貼內容。
+* Bugfix: KNode.show()和hide()，display都變成block。
+* Bugfix: 版權標識&copy;來回切換代碼模式後變成(C)。
+* Bugfix: 重新創建KNode後，data方法無法取得數據。
+* Bugfix: K.create函數未找到目標textarea時報錯。
+* Bugfix: 右下角拖動，鬆開鼠標後還可以繼續拖動。
+* Bugfix: 右鍵編輯表格，插入行和列時有時候錯亂。
 
 ver 4.1.1 (2012-06-10)
-* 新增: extraFileUploadParams初始化参数，文件上传时，支持添加别的参数一并传到服务器。
-* 变更: filterMode默认值改成true，根据htmlTags配置过滤HTML代码。
-* Bugfix: [Chrome] 粘贴内容代码中出现white-space:nowrap导致不换行。
-* Bugfix: [IE6] 本地图片上传按钮错位。
-* Bugfix: 开启过滤模式后，预览内容显示KindEditor。
+* 新增: extraFileUploadParams初始化參數，文件上傳時，支持添加別的參數一併傳到服務器。
+* 變更: filterMode默認值改成true，根據htmlTags配置過濾HTML代碼。
+* Bugfix: [Chrome] 粘貼內容代碼中出現white-space:nowrap導致不換行。
+* Bugfix: [IE6] 本地圖片上傳按鈕錯位。
+* Bugfix: 開啟過濾模式後，預覽內容顯示KindEditor。
 
 ver 4.1 (2012-05-12)
-* 新增: 批量图片上传功能（multiimage）。
-* 新增：地图默认用百度地图（baidumap）。
-* 新增: QQ邮箱风格（贡献者：https://github.com/fisker）。
-* 新增: formatUploadUrl初始化参数，false时不会自动格式化上传后的URL。
-* 新增: fullscreenShortcut初始化参数，false时禁用ESC全屏快捷键。
-* 改善: uploadbutton新增form、target参数，上传图片时可提交其它控件。
-* 改善: K().children()直接返回KNode对象，原来是返回Array<KNode>。
-* 改善: K.create()支持多个textarea，新增KindEditor.instances。
-* 改善: Opera 最新版本支持BR换行。
-* 改善: 当前页面的语言方向为rtl时，编辑区域也自动设置rtl。
-* 改善: PHP写入临时文件失败，提示详细错误。
-* Bugfix: [IE9] 上传图片的弹出窗口，最下方的“确定”“取消”会错位，跑到跟“图片说明”文本框的后面。
-* Bugfix: FF、Chrome、Opera等行首全角空格被过滤，只有IE没问题。
-* Bugfix: 图片正在上传时，连续点击确定按钮，会重复提交表单。
-* Bugfix: [WEBKIT] 在BR换行模式下，需要两次回车才能换行。
-* Bugfix: [IE9] 在BR换行模式下，在编辑器中回车之后，光标仍然还在本行，不会移动到下一行。
-* Bugfix: noscript里的HTML代码会被转移字符。
-* Bugfix: [ASP] 文件管理对大小写敏感，大写的文件扩展名会识别不出图片。
-* Bugfix: 浏览文件窗口里的目录和文件图标被拉伸，看起来比较模糊。
-* Bugfix: 带有超链接的图片删除以后，源代码里面还有A标签。
-* Bugfix: 通过文件管理器插入本地附件时，URL可能出现连续两个斜线。
+* 新增: 批量圖片上傳功能（multiimage）。
+* 新增：地圖默認用百度地圖（baidumap）。
+* 新增: QQ郵箱風格（貢獻者：https://github.com/fisker）。
+* 新增: formatUploadUrl初始化參數，false時不會自動格式化上傳後的URL。
+* 新增: fullscreenShortcut初始化參數，false時禁用ESC全屏快捷鍵。
+* 改善: uploadbutton新增form、target參數，上傳圖片時可提交其它控件。
+* 改善: K().children()直接返回KNode對象，原來是返回Array<KNode>。
+* 改善: K.create()支持多個textarea，新增KindEditor.instances。
+* 改善: Opera 最新版本支持BR換行。
+* 改善: 當前頁面的語言方向為rtl時，編輯區域也自動設置rtl。
+* 改善: PHP寫入臨時文件失敗，提示詳細錯誤。
+* Bugfix: [IE9] 上傳圖片的彈出窗口，最下方的「確定」「取消」會錯位，跑到跟「圖片說明」文本框的後面。
+* Bugfix: FF、Chrome、Opera等行首全角空格被過濾，只有IE沒問題。
+* Bugfix: 圖片正在上傳時，連續點擊確定按鈕，會重複提交表單。
+* Bugfix: [WEBKIT] 在BR換行模式下，需要兩次回車才能換行。
+* Bugfix: [IE9] 在BR換行模式下，在編輯器中回車之後，光標仍然還在本行，不會移動到下一行。
+* Bugfix: noscript裡的HTML代碼會被轉移字符。
+* Bugfix: [ASP] 文件管理對大小寫敏感，大寫的文件擴展名會識別不出圖片。
+* Bugfix: 瀏覽文件窗口裡的目錄和文件圖標被拉伸，看起來比較模糊。
+* Bugfix: 帶有超鏈接的圖片刪除以後，源代碼裡面還有A標籤。
+* Bugfix: 通過文件管理器插入本地附件時，URL可能出現連續兩個斜線。
 
 ver 4.0.6 (2012-03-18)
-* 新增: imageTabIndex初始化参数，可设置插入图片弹出层的默认显示标签。
-* 新增: allowFileUpload初始化参数，可设置是否显示插入文件弹出层里的上传按钮。
-* 新增: KNode类增加eq方法。
-* 改善: 改进弹出框样式。
-* 改善: 上传图片不选择文件提交时，在浏览器端验证并提示。
-* 改善: 优化自动排版，块元素的第一个子节点是图片时不加缩进。
-* 改善: 编辑表格时，点击文档会关闭取色器。
-* Bugfix: [IE] 先选中图片，编辑图片后关闭Dialog，有时候会出现脚本错误。
-* Bugfix: 修改plugins目录名，无法显示plugins目录下的图片。
-* Bugfix: [IE] 上传图片后，进度条一直处于加载状态。
-* Bugfix: [IE] 上传文件失败后，进度条一直处于加载状态。
-* Bugfix: form添加onsubmit="return false;"，提交表单，编辑器转到代码模式就出错。
-* Bugfix: [FF] 按下全屏按钮，恢复到原来大小后没有滚动条。
-* Bugfix: 自动获取图片尺寸时，有时候得到的尺寸不准确。
-* Bugfix: [IE] 在跨域的frame里调用编辑器，会出现权限错误。
-* Bugfix: 全屏后form失去自动提交，reset功能也失效。
-* Bugfix: 已经引入的default.css带时间戳时会重复加载CSS。
+* 新增: imageTabIndex初始化參數，可設置插入圖片彈出層的默認顯示標籤。
+* 新增: allowFileUpload初始化參數，可設置是否顯示插入文件彈出層裡的上傳按鈕。
+* 新增: KNode類增加eq方法。
+* 改善: 改進彈出框樣式。
+* 改善: 上傳圖片不選擇文件提交時，在瀏覽器端驗證並提示。
+* 改善: 優化自動排版，塊元素的第一個子節點是圖片時不加縮進。
+* 改善: 編輯表格時，點擊文檔會關閉取色器。
+* Bugfix: [IE] 先選中圖片，編輯圖片後關閉Dialog，有時候會出現腳本錯誤。
+* Bugfix: 修改plugins目錄名，無法顯示plugins目錄下的圖片。
+* Bugfix: [IE] 上傳圖片後，進度條一直處於加載狀態。
+* Bugfix: [IE] 上傳文件失敗後，進度條一直處於加載狀態。
+* Bugfix: form添加onsubmit="return false;"，提交表單，編輯器轉到代碼模式就出錯。
+* Bugfix: [FF] 按下全屏按鈕，恢復到原來大小後沒有滾動條。
+* Bugfix: 自動獲取圖片尺寸時，有時候得到的尺寸不準確。
+* Bugfix: [IE] 在跨域的frame裡調用編輯器，會出現權限錯誤。
+* Bugfix: 全屏後form失去自動提交，reset功能也失效。
+* Bugfix: 已經引入的default.css帶時間戳時會重複加載CSS。
 
 ver 4.0.5 (2012-01-15)
-* Bugfix: 页面添加 content="IE=EmulateIE7" 后，修改颜色、行距之类的操作全部失效。
-* Bugfix: 后退（Ctrl+Z）时光标错乱。
-* Bugfix: 通过粘贴纯文本框粘贴时，所有空格都变成&nbsp;。
-* Bugfix: pasteType参数为1时，粘贴内容，多个空格变成一个空格。
-* Bugfix: [FF] 上传图片后，总是出现正在加载的样式。
+* Bugfix: 頁面添加 content="IE=EmulateIE7" 後，修改顏色、行距之類的操作全部失效。
+* Bugfix: 後退（Ctrl+Z）時光標錯亂。
+* Bugfix: 通過粘貼純文本框粘貼時，所有空格都變成&nbsp;。
+* Bugfix: pasteType參數為1時，粘貼內容，多個空格變成一個空格。
+* Bugfix: [FF] 上傳圖片後，總是出現正在加載的樣式。
 * Bugfix: [WEBKIT] event.layerX and event.layerY are broken and deprecated in WebKit.
-* Bugfix: pasteType为1（纯文本粘贴模式）时，粘贴的内容会换行。
-* Bugfix: 在iOS5上无法使用编辑器。
-* Bugfix: 单独调用dialog时默认不显示阴影。
-* Bugfix: 初始化编辑器时，在afterChange回调函数里无法得到this.edit对象。
+* Bugfix: pasteType為1（純文本粘貼模式）時，粘貼的內容會換行。
+* Bugfix: 在iOS5上無法使用編輯器。
+* Bugfix: 單獨調用dialog時默認不顯示陰影。
+* Bugfix: 初始化編輯器時，在afterChange回調函數里無法得到this.edit對象。
 
 ver 4.0.4 (2011-12-11)
-* 新增: 阿拉伯语语言包。
-* 改善: 上传文件时显示上传中提示。
-* 改善: JSON解析失败时，通过弹出层显示服务器返回的HTML页面。
-* 改善: [IE] 弹出框支持阴影效果。
-* Bugfix: 浏览器使用有些插件时，上传文件提示不正确。
-* Bugfix: 单独调用图片功能时，点击重置大小图标报错。
-* Bugfix: 设置了参数filterMode:true，分页符就会丢失样式。
-* Bugfix: [FF] 撤销全屏后页面会滚动到顶部。
-* Bugfix: [ASP] demo.asp没有指定编码，导致提交后HTML出现乱码。
-* Bugfix: 单独调用上传按钮时，无法与旁边输入框对齐。
-* Bugfix: [WEBKIT] 在图片、视频、flash等前一个光标处右键，在不选中节点的状态下也能弹出修改属性。
-* Bugfix: [IE] 编辑器无内容，加粗，切换到代码模式，再回到可视化模式，加粗，JS报错。
-* Bugfix: [IE] 插入<input value="abc&quot;def"/>，会自动变为 <input value="abc"def"/>。
-* Bugfix: [WEBKIT] 点击粗体后丢失光标。
-* Bugfix: [OPERA] 切换到代码模式后不显示部分工具栏图标。
-* Bugfix: del标签被定义在块级元素里，导致格式化HTML时自动换行。
-* Bugfix: 开启过滤模式，获取HTML时删除线被过滤。
-* Bugfix: [IE] 两张相邻图片添加超级链接，修改其中一个链接，另外一个链接也会被修改。
-* Bugfix: 内嵌脚本的小于号会被转义导致脚本错误。
-* Bugfix: 分页符在不同浏览器下生成的HTML代码不一致。
-* Bugfix: [IE6-7] 插入URL里有大写字符的图片，右键点击选择图片属性，更改图片属性后图片不能显示。
+* 新增: 阿拉伯語語言包。
+* 改善: 上傳文件時顯示上傳中提示。
+* 改善: JSON解析失敗時，通過彈出層顯示服務器返回的HTML頁面。
+* 改善: [IE] 彈出框支持陰影效果。
+* Bugfix: 瀏覽器使用有些插件時，上傳文件提示不正確。
+* Bugfix: 單獨調用圖片功能時，點擊重置大小圖標報錯。
+* Bugfix: 設置了參數filterMode:true，分頁符就會丟失樣式。
+* Bugfix: [FF] 撤銷全屏後頁面會滾動到頂部。
+* Bugfix: [ASP] demo.asp沒有指定編碼，導致提交後HTML出現亂碼。
+* Bugfix: 單獨調用上傳按鈕時，無法與旁邊輸入框對齊。
+* Bugfix: [WEBKIT] 在圖片、視頻、flash等前一個光標處右鍵，在不選中節點的狀態下也能彈出修改屬性。
+* Bugfix: [IE] 編輯器無內容，加粗，切換到代碼模式，再回到可視化模式，加粗，JS報錯。
+* Bugfix: [IE] 插入<input value="abc&quot;def"/>，會自動變為 <input value="abc"def"/>。
+* Bugfix: [WEBKIT] 點擊粗體後丟失光標。
+* Bugfix: [OPERA] 切換到代碼模式後不顯示部分工具欄圖標。
+* Bugfix: del標籤被定義在塊級元素裡，導致格式化HTML時自動換行。
+* Bugfix: 開啟過濾模式，獲取HTML時刪除線被過濾。
+* Bugfix: [IE] 兩張相鄰圖片添加超級鏈接，修改其中一個鏈接，另外一個鏈接也會被修改。
+* Bugfix: 內嵌腳本的小於號會被轉義導致腳本錯誤。
+* Bugfix: 分頁符在不同瀏覽器下生成的HTML代碼不一致。
+* Bugfix: [IE6-7] 插入URL裡有大寫字符的圖片，右鍵點擊選擇圖片屬性，更改圖片屬性後圖片不能顯示。
 
 ver 4.0.3 (2011-11-04)
-* Bugfix: [IE] 残留range.dump()调试代码，导致粘贴时报错。
-* Bugfix: [IE] 存在menu全局变量，可能发生冲突。
-* Bugfix: [IE] 单元格里没有内容时显示不正常。
-* Bugfix: 连续按粗体按钮时会生成很多strong。
-* Bugfix: 初始化编辑器后，按下粗体按钮，焦点不在<p>标签里。
-* Bugfix: [WEBKIT] 设定图片右对齐后，无法选取图片节点。
-* Bugfix: [IE] 回车，按下tab键，光标在下一行显示。
-* Bugfix: [IE] textarea的高度小于工具栏高度时JS报错。
+* Bugfix: [IE] 殘留range.dump()調試代碼，導致粘貼時報錯。
+* Bugfix: [IE] 存在menu全局變量，可能發生衝突。
+* Bugfix: [IE] 單元格裡沒有內容時顯示不正常。
+* Bugfix: 連續按粗體按鈕時會生成很多strong。
+* Bugfix: 初始化編輯器後，按下粗體按鈕，焦點不在<p>標籤裡。
+* Bugfix: [WEBKIT] 設定圖片右對齊後，無法選取圖片節點。
+* Bugfix: [IE] 回車，按下tab鍵，光標在下一行顯示。
+* Bugfix: [IE] textarea的高度小於工具欄高度時JS報錯。
 
 ver 4.0.2 (2011-10-30)
-* 新增: 上传按钮新增afterError回调函数，可定制JSON错误。
-* Bugfix: [FF] 在页面上设置iframe {overflow:hidden;} ，编辑区域不出现滚动条。
-* Bugfix: 浏览服务器插件，文件名很长的时候会换行。
-* Bugfix: [IE6-7] 在form里引入js的时候出现JS错误。
-* Bugfix: [IE] 当编辑器为空时，输入任意字符，然后点击表单的重置按钮，再点击页面空白处，出现JS错误。
-* Bugfix: [IE8] 设置X-UA-Compatible=IE7，有时候无法加载编辑器。
-* Bugfix: a标签同时有name和href属性时，丢失name以外的属性。
-* Bugfix: 连续调用多个ready函数时，第4个ready无法执行。
-* Bugfix: 插入多媒体后，右键点击不会弹出菜单。
-* Bugfix: 启用纯文本黏贴后，段落首尾都会出现>符号。
-* Bugfix: [IE] 点击标题、字体、文字大小，编辑区域失去选中状态。
-* Bugfix: [FF,WEBKIT] 连续换行几次，切换到源代码，再切换到可视化模式，没有换行效果。
-* Bugfix: [WEBKIT] 选择几个文字，点击上标或下标功能，上下标格式不会被应用。
-* Bugfix: 加载编辑器后残留多余的div标签。
-* Bugfix: 页面上包含跨域iframe的时候JS报错。
-* Bugfix: 页面刷新后，与第一次访问加载的编译器高度不一致。
-* Bugfix: [IE6] 弹出层无法遮住selectbox。
-* Bugfix: [FF] 提交后退后，编辑器数据不保存。
-* Bugfix: 选择粗体，取消粗体再应用粗体（即点两下粗体），则发现粗体、倾斜、下划线功能失效，无法选择。
-* Bugfix: [WEBKIT] 置入Issue 269中的HTML，全选，点击删除格式，又出现一个图片，图片变为两个。
-* Bugfix: 与MooTools类库有冲突。
-* Bugfix: [IE] 选中粘贴过来的文本，进行格式操作时位置出现偏移。
-* Bugfix: [IE] 后退前进时有时候报错。
+* 新增: 上傳按鈕新增afterError回調函數，可定制JSON錯誤。
+* Bugfix: [FF] 在頁面上設置iframe {overflow:hidden;} ，編輯區域不出現滾動條。
+* Bugfix: 瀏覽服務器插件，文件名很長的時候會換行。
+* Bugfix: [IE6-7] 在form裡引入js的時候出現JS錯誤。
+* Bugfix: [IE] 當編輯器為空時，輸入任意字符，然後點擊表單的重置按鈕，再點擊頁面空白處，出現JS錯誤。
+* Bugfix: [IE8] 設置X-UA-Compatible=IE7，有時候無法加載編輯器。
+* Bugfix: a標籤同時有name和href屬性時，丟失name以外的屬性。
+* Bugfix: 連續調用多個ready函數時，第4個ready無法執行。
+* Bugfix: 插入多媒體後，右鍵點擊不會彈出菜單。
+* Bugfix: 啟用純文本黏貼後，段落首尾都會出現>符號。
+* Bugfix: [IE] 點擊標題、字體、文字大小，編輯區域失去選中狀態。
+* Bugfix: [FF,WEBKIT] 連續換行幾次，切換到源代碼，再切換到可視化模式，沒有換行效果。
+* Bugfix: [WEBKIT] 選擇幾個文字，點擊上標或下標功能，上下標格式不會被應用。
+* Bugfix: 加載編輯器後殘留多餘的div標籤。
+* Bugfix: 頁面上包含跨域iframe的時候JS報錯。
+* Bugfix: 頁面刷新後，與第一次訪問加載的編譯器高度不一致。
+* Bugfix: [IE6] 彈出層無法遮住selectbox。
+* Bugfix: [FF] 提交後退後，編輯器數據不保存。
+* Bugfix: 選擇粗體，取消粗體再應用粗體（即點兩下粗體），則發現粗體、傾斜、下劃線功能失效，無法選擇。
+* Bugfix: [WEBKIT] 置入Issue 269中的HTML，全選，點擊刪除格式，又出現一個圖片，圖片變為兩個。
+* Bugfix: 與MooTools類庫有衝突。
+* Bugfix: [IE] 選中粘貼過來的文本，進行格式操作時位置出現偏移。
+* Bugfix: [IE] 後退前進時有時候報錯。
 
 ver 4.0.1 (2011-10-07)
-* 改善: image插件，通过editor.plugin.imageDialog()可以单独调用图片弹出框。
-* 改善: filemanager插件，Ajax请求时显示Loading效果。
-* 改善: 工具栏图标改成png8格式。
-* Bugfix: 不能用style的width和height设置编辑器大小。
-* Bugfix: 从MS WORD里面拷贝过来的表格，表格的颜色会丢掉。
-* Bugfix: [IE] 关闭弹出层后光标自动跳转到顶部。
-* Bugfix: 添加链接时有时候出现__kindeditor_temp_url__。
-* Bugfix: [IE] 点击工具栏后，编辑区域失去选中状态。
-* Bugfix: 网速比较慢的时候，连续点击一个图标，弹出多个弹出框。
-* Bugfix: 删除格式时不能删除段落缩进属性。
-* Bugfix: 拖拉改变Flash大小，点击源代码再点回来，Flash长宽自动恢复成预设值。
+* 改善: image插件，通過editor.plugin.imageDialog()可以單獨調用圖片彈出框。
+* 改善: filemanager插件，Ajax請求時顯示Loading效果。
+* 改善: 工具欄圖標改成png8格式。
+* Bugfix: 不能用style的width和height設置編輯器大小。
+* Bugfix: 從MS WORD裡面拷貝過來的表格，表格的顏色會丟掉。
+* Bugfix: [IE] 關閉彈出層後光標自動跳轉到頂部。
+* Bugfix: 添加鏈接時有時候出現__kindeditor_temp_url__。
+* Bugfix: [IE] 點擊工具欄後，編輯區域失去選中狀態。
+* Bugfix: 網速比較慢的時候，連續點擊一個圖標，彈出多個彈出框。
+* Bugfix: 刪除格式時不能刪除段落縮進屬性。
+* Bugfix: 拖拉改變Flash大小，點擊源代碼再點回來，Flash長寬自動恢復成預設值。
 
 ver 4.0 (2011-09-26)
-* 新增: 锚点功能。
-* 新增: 增加loadStyleMode属性，默认情况下自动加载CSS文件。
-* 新增: 编辑器对象增加isDirty方法，判断编辑器内容是否有修改。
-* 改善: 粘贴MS Word时自动清理Word专用格式代码，生成干净的HTML代码。
-* 改善: 弹出框(dialog)里的输入框添加了基本验证。
-* 改善: 超级链接不允许包含HTML代码。
-* 改善: uploadJson URL支持GET参数。
-* 优化: 后退撤销，粘贴性能。
-* BUG: 修复了allowImageUpload为false时，无法插入网络图片的问题。
-* BUG: [WEBKIT] 修复了粘贴内容时顺序相反的问题。
-* BUG: 修复了进行修改操作，再选择一段带有样式的文字，再进行撤销操作，首先撤销的是选取操作，然后才会撤销修改的问题。
-* BUG: 修复了设置basePath参数后，themesPath、langPath、pluginsPath参数不起作用的问题。
-* BUG: 修复了图片和超级连接URL输入双引号时，HTML代码出现错乱的问题。
-* BUG: [IE] 修复了反复执行后退和前进时有时候出现脚本错误的问题。
-* BUG: [IE] 修复了连续选择相同文件上传时，第二次开始无法上传的问题。
-* BUG: [IE] 修复了textarea在p标签里时，无法创建编辑器的问题。
-* BUG: 修复了filterMode为true时，没有过滤script和style内容的问题。
-* BUG: [WEBKIT] 修复了粘贴内容后光标消失的问题。
-* BUG: [IE7] 修复了上传按钮出现偏移的问题。
-* BUG: [IE] 修复了innerHTML有时候抛出异常的问题。
-* BUG: 修复了清除HTML代码时过滤rowspan和colspan，导致表格被破坏的问题。
-* BUG: 修复了在框架(frameset)下面，点击编辑器的源代码按钮后，再点击其它连接变弹出显示的问题。
-* BUG: 修复了在非IE浏览器上，插入表格后，鼠标无法移到表格下面输入文字的问题。
-* BUG: [WEBKIT] 修复了回车换行后标题属性丢失的问题。
-* BUG: [WEBKIT] 修复了粘贴到单元格时有时候粘贴错位的问题。
-* BUG: 修复了删除格式时有时候丢失文字的问题。
-* BUG: [IE] 修复了在HTML里有inline-block时有时候_getStartEnd报错的问题。
-* BUG: 修复了打开地图后立即关闭窗口时，无法关闭的问题。
-* BUG: 修复了insertHtml插入注释开头的HTML时，注释被过滤的问题。
+* 新增: 錨點功能。
+* 新增: 增加loadStyleMode屬性，默認情況下自動加載CSS文件。
+* 新增: 編輯器對像增加isDirty方法，判斷編輯器內容是否有修改。
+* 改善: 粘貼MS Word時自動清理Word專用格式代碼，生成乾淨的HTML代碼。
+* 改善: 彈出框(dialog)裡的輸入框添加了基本驗證。
+* 改善: 超級鏈接不允許包含HTML代碼。
+* 改善: uploadJson URL支持GET參數。
+* 優化: 後退撤銷，粘貼性能。
+* BUG: 修復了allowImageUpload為false時，無法插入網絡圖片的問題。
+* BUG: [WEBKIT] 修復了粘貼內容時順序相反的問題。
+* BUG: 修復了進行修改操作，再選擇一段帶有樣式的文字，再進行撤銷操作，首先撤銷的是選取操作，然後才會撤銷修改的問題。
+* BUG: 修復了設置basePath參數後，themesPath、langPath、pluginsPath參數不起作用的問題。
+* BUG: 修復了圖片和超級連接URL輸入雙引號時，HTML代碼出現錯亂的問題。
+* BUG: [IE] 修復了反覆執行後退和前進時有時候出現腳本錯誤的問題。
+* BUG: [IE] 修復了連續選擇相同文件上傳時，第二次開始無法上傳的問題。
+* BUG: [IE] 修復了textarea在p標籤裡時，無法創建編輯器的問題。
+* BUG: 修復了filterMode為true時，沒有過濾script和style內容的問題。
+* BUG: [WEBKIT] 修復了粘貼內容後光標消失的問題。
+* BUG: [IE7] 修復了上傳按鈕出現偏移的問題。
+* BUG: [IE] 修復了innerHTML有時候拋出異常的問題。
+* BUG: 修復了清除HTML代碼時過濾rowspan和colspan，導致表格被破壞的問題。
+* BUG: 修復了在框架(frameset)下面，點擊編輯器的源代碼按鈕後，再點擊其它連接變彈出顯示的問題。
+* BUG: 修復了在非IE瀏覽器上，插入表格後，鼠標無法移到表格下面輸入文字的問題。
+* BUG: [WEBKIT] 修復了回車換行後標題屬性丟失的問題。
+* BUG: [WEBKIT] 修復了粘貼到單元格時有時候粘貼錯位的問題。
+* BUG: 修復了刪除格式時有時候丟失文字的問題。
+* BUG: [IE] 修復了在HTML裡有inline-block時有時候_getStartEnd報錯的問題。
+* BUG: 修復了打開地圖後立即關閉窗口時，無法關閉的問題。
+* BUG: 修復了insertHtml插入註釋開頭的HTML時，註釋被過濾的問題。
 
 ver 4.0 beta (2011-08-17)
-* BUG: 修复了域名包含端口时在IE上发生错误的问题。
-* BUG: 修复了在IE上通过工具栏的undo/redo按钮进行undo/redo时无法后退的问题。
-* BUG: 修复了在FF和IE上加载编辑器后生成一个history的问题。
-* BUG: 修复了在IE上点击右键自动插入&nbsp;的问题。
-* BUG: 修复了在IE上文本在table标签前时，原生range转换成标准range后出现偏移的问题。
-* BUG: 修复了在WEBKIT系列浏览器上在全屏模式下，弹出的插入图片、超链接等对话框，输入框内无法粘贴内容的问题。
-* BUG: 修复了在pre标签里回车加入空行无效的问题。
-* BUG: 修复了切换到代码模式后，按全屏报错的问题。
-* BUG: 修复了点击工具栏时有时候弹出来几个相同dialog的问题。
-* BUG: 修复了在IE上项目编号无论选在到哪里都是第一行加编号的问题。
-* BUG: 修复了焦点处于被合并的单元格，右键菜单，向上添加一行，表格错乱的问题。
-* BUG: 修复了焦点处于被合并的单元格的上一个单元格，右键菜单，向下合并单元格，表格错乱的问题。
-* BUG: 修复了在IE上点击编辑区域时内存一直增加的问题。
+* BUG: 修復了域名包含端口時在IE上發生錯誤的問題。
+* BUG: 修復了在IE上通過工具欄的undo/redo按鈕進行undo/redo時無法後退的問題。
+* BUG: 修復了在FF和IE上加載編輯器後生成一個history的問題。
+* BUG: 修復了在IE上點擊右鍵自動插入&nbsp;的問題。
+* BUG: 修復了在IE上文本在table標籤前時，原生range轉換成標準range後出現偏移的問題。
+* BUG: 修復了在WEBKIT系列瀏覽器上在全屏模式下，彈出的插入圖片、超鏈接等對話框，輸入框內無法粘貼內容的問題。
+* BUG: 修復了在pre標籤裡回車加入空行無效的問題。
+* BUG: 修復了切換到代碼模式後，按全屏報錯的問題。
+* BUG: 修復了點擊工具欄時有時候彈出來幾個相同dialog的問題。
+* BUG: 修復了在IE上項目編號無論選在到哪裡都是第一行加編號的問題。
+* BUG: 修復了焦點處於被合併的單元格，右鍵菜單，向上添加一行，表格錯亂的問題。
+* BUG: 修復了焦點處於被合併的單元格的上一個單元格，右鍵菜單，向下合併單元格，表格錯亂的問題。
+* BUG: 修復了在IE上點擊編輯區域時內存一直增加的問題。
 
 ver 4.0 alpha (2011-08-16)
-* 初期版本，重新编写所有代码。
-* 新增: 插入程序代码、预览、插入地图、调整行距、一键排版、清理HTML代码、插入分页符、插入附件、插入模板功能。
-* 新增: Flash、多媒体编辑功能，Flash、多媒体上传功能。
-* 新增: 表格单元格的合并和拆分功能。
-* 新增: ESC键切换全屏模式。
-* 改善: 后退/前进(undo/redo)时保持选中状态。
-* 改善: 大部分组件实现模块化，可以单独调用。
-* 改善: 改进了HTML格式化功能。
-* 改善: 粘贴纯文本时按照换行设置（newlineTag）换行。
-* 改善: 滚动页面时dialog自动居中。
-* 改善: 在移动设备上只能使用代码模式。
-* 改善: 修改图片尺寸时自动保持比例。
-* BUG: 修复了在页面上设置document.domain时发生错误的问题。
-* BUG: 修复了跨域调用编辑器时无法使用dialog的问题。
-* BUG: 修复了range的collapsed为true时删除格式不起作用的问题。
-* BUG: [WEBKIT] 修复了range的collapsed为true时字体、颜色等无效的问题。
-* BUG: 修复了在不同浏览器上加粗、斜体、下划线、删除线生成出来的HTML代码不一致的问题。
-* BUG: 修复了全选后有时候不能清除格式的问题。
-* BUG: 修复了工具栏经常受全局CSS影响的问题。(改用DIV布局)
-* BUG: 修复了直接拷贝页面自动执行js代码的问题。
-* BUG: 修复了页面底部显示右键菜单被挡住的问题。
-* BUG: 修复了在HTML里存在不规则属性("="")时过滤不掉其它属性的问题。
-* BUG: 修复了处理被合并过的单元格时发生错误的问题。
+* 初期版本，重新編寫所有代碼。
+* 新增: 插入程序代碼、預覽、插入地圖、調整行距、一鍵排版、清理HTML代碼、插入分頁符、插入附件、插入模板功能。
+* 新增: Flash、多媒體編輯功能，Flash、多媒體上傳功能。
+* 新增: 表格單元格的合併和拆分功能。
+* 新增: ESC鍵切換全屏模式。
+* 改善: 後退/前進(undo/redo)時保持選中狀態。
+* 改善: 大部分組件實現模塊化，可以單獨調用。
+* 改善: 改進了HTML格式化功能。
+* 改善: 粘貼純文本時按照換行設置（newlineTag）換行。
+* 改善: 滾動頁面時dialog自動居中。
+* 改善: 在移動設備上只能使用代碼模式。
+* 改善: 修改圖片尺寸時自動保持比例。
+* BUG: 修復了在頁面上設置document.domain時發生錯誤的問題。
+* BUG: 修復了跨域調用編輯器時無法使用dialog的問題。
+* BUG: 修復了range的collapsed為true時刪除格式不起作用的問題。
+* BUG: [WEBKIT] 修復了range的collapsed為true時字體、顏色等無效的問題。
+* BUG: 修復了在不同瀏覽器上加粗、斜體、下劃線、刪除線生成出來的HTML代碼不一致的問題。
+* BUG: 修復了全選後有時候不能清除格式的問題。
+* BUG: 修復了工具欄經常受全局CSS影響的問題。(改用DIV佈局)
+* BUG: 修復了直接拷貝頁面自動執行js代碼的問題。
+* BUG: 修復了頁面底部顯示右鍵菜單被擋住的問題。
+* BUG: 修復了在HTML裡存在不規則屬性("="")時過濾不掉其它屬性的問題。
+* BUG: 修復了處理被合併過的單元格時發生錯誤的問題。
 
 ver 3.5.6 (2011-10-04)
-* 增加: 新增afterDrag属性(回调函数)，拖动改变编辑器大小后执行。
-* 增加: 新增afterUpload属性(回调函数)，上传成功后执行。
-* BUG: 修复了工具栏受全局a:hover的影响的问题。
-* BUG: 修复了在全屏模式下编辑器可以被拖动的问题。
-* BUG: [ASP]不改变文件名并上传中文名文件时文件名出现乱码。
-* BUG: [IE9]删除格式功能有时候不起作用。
-* BUG: [IE9]添加样式时有时候报错。
+* 增加: 新增afterDrag屬性(回調函數)，拖動改變編輯器大小後執行。
+* 增加: 新增afterUpload屬性(回調函數)，上傳成功後執行。
+* BUG: 修復了工具欄受全局a:hover的影響的問題。
+* BUG: 修復了在全屏模式下編輯器可以被拖動的問題。
+* BUG: [ASP]不改變文件名並上傳中文名文件時文件名出現亂碼。
+* BUG: [IE9]刪除格式功能有時候不起作用。
+* BUG: [IE9]添加樣式時有時候報錯。
 
 ver 3.5.5 (2011-05-22)
-* 增加: 新增单元格编辑功能。
-* 改善: 改进输入框和按钮的外观。
-* 改善: 打开dialog后自动选中第一个输入框。
-* 改善: 用CSS实现dialog的阴影。
-* 改善: 插入图片时不设置border="0"属性。
-* BUG: 修改了在IE9上上传图片后原来的内容全部消失的问题。
-* BUG: 修改了在FF4上有时候无法插入图片的问题。
-* BUG: 修改了在IE6上插入图片后，在图片前出现一个空格的问题。
-* BUG: 修改了在IE上使用清除格式功能来删除一段加粗的文字时发生JS错误的问题。(只有压缩后的min有这个问题)
+* 增加: 新增單元格編輯功能。
+* 改善: 改進輸入框和按鈕的外觀。
+* 改善: 打開dialog後自動選中第一個輸入框。
+* 改善: 用CSS實現dialog的陰影。
+* 改善: 插入圖片時不設置border="0"屬性。
+* BUG: 修改了在IE9上上傳圖片後原來的內容全部消失的問題。
+* BUG: 修改了在FF4上有時候無法插入圖片的問題。
+* BUG: 修改了在IE6上插入圖片後，在圖片前出現一個空格的問題。
+* BUG: 修改了在IE上使用清除格式功能來刪除一段加粗的文字時發生JS錯誤的問題。(只有壓縮後的min有這個問題)
 
 ver 3.5.4 (2011-05-01)
 * 改善: 直接兼容IE9。
-* BUG: 修改了在源代码模式下输入JS代码后切换到可视化模式时会执行JS代码的问题。
-* BUG: 修改了在IE上编辑区域里的选中select控件时出现JS错误的问题。
-* BUG: 修改了在IE上通过KE.insertHtml函数输入<mp3>URL</mp3>时丢失标签的问题。
-* BUG: 修改了在一个页面调用多个编辑器时重复加载相同CSS的问题。
-* BUG: 修改了在一个页面包含多个kindeditor.js时无法打开dialog的问题。
-* BUG: 移除了工具栏里的两对多余的tr标签。
+* BUG: 修改了在源代碼模式下輸入JS代碼後切換到可視化模式時會執行JS代碼的問題。
+* BUG: 修改了在IE上編輯區域裡的選中select控件時出現JS錯誤的問題。
+* BUG: 修改了在IE上通過KE.insertHtml函數輸入<mp3>URL</mp3>時丟失標籤的問題。
+* BUG: 修改了在一個頁面調用多個編輯器時重複加載相同CSS的問題。
+* BUG: 修改了在一個頁面包含多個kindeditor.js時無法打開dialog的問題。
+* BUG: 移除了工具欄裡的兩對多餘的tr標籤。
 
 ver 3.5.3 (2011-04-09)
-* 增加: 新增useContextmenu属性，值为true时使用自定义右键菜单，false时屏蔽自定义右键菜单，默认值为true。
-* 增加: 新增syncType属性，值为"auto"时每次修改时都会同步，"form"时提交form时同步，""时不会自动同步，默认值为"form"。
-* 增加: 新增tabIndex属性，可设置编辑器的tabindex。
-* 增加: 新增afterChange属性(回调函数)，编辑器内容发生变化后执行的函数。
-* 增加: 新增afterTab属性(回调函数)，按下TAB键后执行的函数，默认情况下插入4个空格。
-* 增加: 新增afterFocus属性(回调函数)，编辑器获得焦点(onfocus)时执行的函数。
-* 增加: 新增afterBlur属性(回调函数)，编辑器失去焦点(onblur)时执行的函数。
-* 增加: 新增KE.sync函数，将编辑器数据设回到原来的textarea里，与KE.util.setData函数功能相同。
-* 增加: 新增KE.blur函数，让编辑器失去焦点。
-* 改变: 将autoSetDataMode的默认值改成false，默认情况下自动寻找所属form，并将KE.sync绑定到该form的submit事件里。
-* 改善: fileManagerJson支持GET参数。
-* 改善: 动态设置上传图片保存URL(save_url)，在不同深度的页面调用编辑器不会出错。
-* 改善: 当编辑器属性newlineTag为p时，粘贴纯文本换行使用p标签。
-* 改善: 编辑器id支持[a-z0-9_]以外的特殊字符。
-* 改善: 上传图片按日期目录保存。
-* 改善: 在IE6和IE7上浏览器原生菜单包含复制粘贴选项。
-* BUG: 在IE上通过showModalDialog显示编辑器时无法输入内容。
-* BUG: 修改了删除列时单元格错位的问题。
-* BUG: 修改了在Firefox下点击dialog的按钮后没有按下去的效果的问题。
-* BUG: 有些浏览器无法解析[\w-:]，需对“-”进行转义[\w\-:]。
-* BUG: 执行KE.html后有时候全选整个编辑区域。
-* BUG: 在Mac OS X的Firefox上无法显示右键菜单。
-* BUG: script标签内的JavaScript代码字符串里包含HTML代码时，该字符串也被格式化。
-* BUG: 修改了ASP浏览图片程序无法进入子目录的问题。
-* BUG: 修改了通过TAB键移动焦点时焦点移动到工具栏图标上的问题。
+* 增加: 新增useContextmenu屬性，值為true時使用自定義右鍵菜單，false時屏蔽自定義右鍵菜單，默認值為true。
+* 增加: 新增syncType屬性，值為"auto"時每次修改時都會同步，"form"時提交form時同步，""時不會自動同步，默認值為"form"。
+* 增加: 新增tabIndex屬性，可設置編輯器的tabindex。
+* 增加: 新增afterChange屬性(回調函數)，編輯器內容發生變化後執行的函數。
+* 增加: 新增afterTab屬性(回調函數)，按下TAB鍵後執行的函數，默認情況下插入4個空格。
+* 增加: 新增afterFocus屬性(回調函數)，編輯器獲得焦點(onfocus)時執行的函數。
+* 增加: 新增afterBlur屬性(回調函數)，編輯器失去焦點(onblur)時執行的函數。
+* 增加: 新增KE.sync函數，將編輯器數據設回到原來的textarea裡，與KE.util.setData函數功能相同。
+* 增加: 新增KE.blur函數，讓編輯器失去焦點。
+* 改變: 將autoSetDataMode的默認值改成false，默認情況下自動尋找所屬form，並將KE.sync綁定到該form的submit事件裡。
+* 改善: fileManagerJson支持GET參數。
+* 改善: 動態設置上傳圖片保存URL(save_url)，在不同深度的頁面調用編輯器不會出錯。
+* 改善: 當編輯器屬性newlineTag為p時，粘貼純文本換行使用p標籤。
+* 改善: 編輯器id支持[a-z0-9_]以外的特殊字符。
+* 改善: 上傳圖片按日期目錄保存。
+* 改善: 在IE6和IE7上瀏覽器原生菜單包含複製粘貼選項。
+* BUG: 在IE上通過showModalDialog顯示編輯器時無法輸入內容。
+* BUG: 修改了刪除列時單元格錯位的問題。
+* BUG: 修改了在Firefox下點擊dialog的按鈕後沒有按下去的效果的問題。
+* BUG: 有些瀏覽器無法解析[\w-:]，需對「-」進行轉義[\w\-:]。
+* BUG: 執行KE.html後有時候全選整個編輯區域。
+* BUG: 在Mac OS X的Firefox上無法顯示右鍵菜單。
+* BUG: script標籤內的JavaScript代碼字符串裡包含HTML代碼時，該字符串也被格式化。
+* BUG: 修改了ASP瀏覽圖片程序無法進入子目錄的問題。
+* BUG: 修改了通過TAB鍵移動焦點時焦點移動到工具欄圖標上的問題。
 
 ver 3.5.2 (2010-12-02)
-* BUG: 修改了在IE下拖动调整大小不够顺畅的问题。
-* BUG: 修改了在IE下JS的src为"kindeditor.js"时无法加载CSS文件的问题。
-* BUG: 提高上传图片JSON格式兼容性，防止某些时候因服务器输出额外的数据而导致JSON解析失败的问题。
-* BUG: 修改了在IE上某些情况下添加样式偏移的问题。
-* BUG: 修改了在IE下焦点在图片后面时按下TAB键JS报错的问题。
-* BUG: 修改了KE.util.setOpacity的opacity为2和20时结果相同的问题。
-* BUG: 修改了在IE6下高度小于0时出现脚本错误的问题。
+* BUG: 修改了在IE下拖動調整大小不夠順暢的問題。
+* BUG: 修改了在IE下JS的src為"kindeditor.js"時無法加載CSS文件的問題。
+* BUG: 提高上傳圖片JSON格式兼容性，防止某些時候因服務器輸出額外的數據而導致JSON解析失敗的問題。
+* BUG: 修改了在IE上某些情況下添加樣式偏移的問題。
+* BUG: 修改了在IE下焦點在圖片後面時按下TAB鍵JS報錯的問題。
+* BUG: 修改了KE.util.setOpacity的opacity為2和20時結果相同的問題。
+* BUG: 修改了在IE6下高度小於0時出現腳本錯誤的問題。
 
 ver 3.5.1 (2010-07-18)
-* BUG: 修改了表格左侧插入列时单元格移位的问题。
-* BUG: 修改了在Firefox上设置全局CSS后高度计算不正确的问题。
-* BUG: 修改了ASP上传程序无法上传大写扩展名文件的问题。
-* BUG: 修改了在Firefox上调用KE.html函数在某些情况下JS报错的问题。
-* BUG: 修改了在IE6、IE7上只读模式下不显示内容的问题。
-* BUG: 修改了JSP演示程序提交中文数据后出现乱码的问题。
-* BUG: 修改了通过insertHtml插入HTML时URL自动变成绝对域名的问题。
-* BUG: 修改了在IE上用BR换行时回车换行自动选中下面内容的问题。
-* BUG: 修改了设置表格背景颜色后不能取消颜色的问题。
+* BUG: 修改了表格左側插入列時單元格移位的問題。
+* BUG: 修改了在Firefox上設置全局CSS後高度計算不正確的問題。
+* BUG: 修改了ASP上傳程序無法上傳大寫擴展名文件的問題。
+* BUG: 修改了在Firefox上調用KE.html函數在某些情況下JS報錯的問題。
+* BUG: 修改了在IE6、IE7上只讀模式下不顯示內容的問題。
+* BUG: 修改了JSP演示程序提交中文數據後出現亂碼的問題。
+* BUG: 修改了通過insertHtml插入HTML時URL自動變成絕對域名的問題。
+* BUG: 修改了在IE上用BR換行時回車換行自動選中下面內容的問題。
+* BUG: 修改了設置表格背景顏色後不能取消顏色的問題。
 
 ver 3.5 (2010-06-20)
-* 增加: 增加了表格编辑功能。
-* 增加: 引入了多国语言机制。
-* 增加: 标题、字体、文字大小、颜色可以反映当前状态。
-* 增加: 右键菜单支持图标和分割线。
-* 增加: 表情功能增加分页和预览。
-* 增加: 增加了弹出框阴影效果。
+* 增加: 增加了表格編輯功能。
+* 增加: 引入了多國語言機制。
+* 增加: 標題、字體、文字大小、顏色可以反映當前狀態。
+* 增加: 右鍵菜單支持圖標和分割線。
+* 增加: 表情功能增加分頁和預覽。
+* 增加: 增加了彈出框陰影效果。
 * 增加: 增加了新接口。(KE.html,KE.text,KE.selectedHtml,KE.insertHtml,KE.appendHtml,KE.isEmpty等)
-* 改善: 编辑器底部显示向下拖动指示图标。
-* 改善: 点击编辑器外的页面其它部位时关闭菜单。
-* 改善: 移除编辑器时将编辑器内容设置到原来的textarea。
-* 改善: 从外部粘贴内容时自动将font转换成span标签。
-* 改善: ASP.NET程序改成ashx，使用时不需要编译。
-* BUG: 改善了文章内容比较多时速度比较慢的问题。
-* BUG: 修改了在IE上选中图片或表格后无法用backspace键删除的问题。
-* BUG: 修改了在Firefox上全屏后浏览器一直处于加载状态的问题。
-* BUG: 修改了在非IE上DOMContentLoaded事件不起作用的问题。
-* BUG: 修改了删除编辑器时没有销毁事件的问题。
-* BUG: 修改了设置成无颜色时其它样式也被删除的问题。
-* BUG: 修改了拖动时拖到浏览器外面放开鼠标后会粘住的问题。
-* BUG: 修改了在Firefox上pre标签自动生成br标签的问题。
-* BUG: 修改了在IE6上用KE.cmd.wrap方法设置class属性后没有效果的问题。
-* BUG: 修改了在P标签内没选中内容时无法插入超级链接的问题。
-* BUG: 修改了使用快捷键加粗体、斜体、下划线时没有同步的问题。
+* 改善: 編輯器底部顯示向下拖動指示圖標。
+* 改善: 點擊編輯器外的頁面其它部位時關閉菜單。
+* 改善: 移除編輯器時將編輯器內容設置到原來的textarea。
+* 改善: 從外部粘貼內容時自動將font轉換成span標籤。
+* 改善: ASP.NET程序改成ashx，使用時不需要編譯。
+* BUG: 改善了文章內容比較多時速度比較慢的問題。
+* BUG: 修改了在IE上選中圖片或表格後無法用backspace鍵刪除的問題。
+* BUG: 修改了在Firefox上全屏後瀏覽器一直處於加載狀態的問題。
+* BUG: 修改了在非IE上DOMContentLoaded事件不起作用的問題。
+* BUG: 修改了刪除編輯器時沒有銷毀事件的問題。
+* BUG: 修改了設置成無顏色時其它樣式也被刪除的問題。
+* BUG: 修改了拖動時拖到瀏覽器外面放開鼠標後會粘住的問題。
+* BUG: 修改了在Firefox上pre標籤自動生成br標籤的問題。
+* BUG: 修改了在IE6上用KE.cmd.wrap方法設置class屬性後沒有效果的問題。
+* BUG: 修改了在P標籤內沒選中內容時無法插入超級鏈接的問題。
+* BUG: 修改了使用快捷鍵加粗體、斜體、下劃線時沒有同步的問題。
 
 ver 3.4.4 (2010-06-01)
-* BUG: 修改了在IE上焦点自动移动到编辑区域的问题。
-* BUG: 修改了在IE上打开类型无法修改成当前窗口的问题。
-* BUG: 修改了全选后无法取消超级链接的问题。
-* BUG: 修改了切换代码模式时编辑器轻微抖动的问题。
-* BUG: 修改了在IE上切换代码模式时有时候不出现滚动条的问题。
-* BUG: 修改了在Chrome 5.0上反复切换代码模式有时候出现崩溃页面的问题。
-* 改善: 显示菜单后再点将关闭此菜单。
+* BUG: 修改了在IE上焦點自動移動到編輯區域的問題。
+* BUG: 修改了在IE上打開類型無法修改成當前窗口的問題。
+* BUG: 修改了全選後無法取消超級鏈接的問題。
+* BUG: 修改了切換代碼模式時編輯器輕微抖動的問題。
+* BUG: 修改了在IE上切換代碼模式時有時候不出現滾動條的問題。
+* BUG: 修改了在Chrome 5.0上反覆切換代碼模式有時候出現崩潰頁面的問題。
+* 改善: 顯示菜單後再點將關閉此菜單。
 
 ver 3.4.3 (2010-05-26)
-* BUG: 修改了重复编辑超级链接时每次都添加&amp;的问题。
-* BUG: 修改了在IE上右键菜单没有复制、剪切项目的问题。
-* BUG: 修改了在IE上没有格式化<font color=#000>代码的问题。
-* BUG: 修改了PHP上传程序日期格式不正确的问题。
-* BUG: 修改了在IE上代码模式下全屏本地URL自动变成绝对URL的问题。
-* BUG: 修改了在代码模式下KE.util.setFullHtml函数不显示HTML内容的问题。
-* BUG: 修改了在MARQUEE元素里回车换行出现JS错误的问题。
-* BUG: 修改了通过菜单剪切、粘贴时不触发KE.event.input事件的问题。
-* BUG: 修改了在IE上焦点离开编辑区域后没有记住最后的range位置的问题。
-* BUG: 修改了在源代码模式下undo/redo能看到临时HTML代码的问题。
-* BUG: 修改了在IE上输入的HTML开头是<script>时该代码被删掉的问题。
-* BUG: 修改了在IE上将<img>替换<hr>时有时候报错的问题。
-* BUG: 修改了在IE上编辑marquee元素里的图片和超级链接时报错的问题。
-* BUG: 修改了右键点击图片右边时有时候会弹出图片编辑菜单的问题。
-* BUG: 修改了script和style代码无法保留换行符的问题。
-* BUG: 修改了在非IE浏览器上换行使用p的时候最后一个p结尾还是有一个br的问题。
-* BUG: 修改了Webkit系列浏览器的textarea可拖动调整大小，聚焦时边框变成黄色的问题。
-* BUG: 修改了在IE上代码模式下有时候不会自动换行的问题。
-* BUG: 修改了在IE上new Function和iframe引起内存泄漏的问题。
-* 改变: 默认换行方式改成p换行。
-* 改善: 弹出框未指定任何按钮(yesButton, noButton, previewButton)时，不显示底部DIV。
-* 改善: 确定alert框后将焦点设置到输入错误的输入框。
-* 改善: 上传图片时如果返回的JSON格式有错误，提示友好信息。
-* 改善: 从Word粘贴功能严格过滤垃圾代码。
-* 改善: 编辑时同步更新原textarea里的HTML内容，不需要在提交前设置KE.util.setData。
-* 改善: 根据resizeMode配置显示不同的鼠标状态和小图标。
-* 改善: 按TAB键时插入4个&nbsp;。
-* 增加: 增加了afterDialogCreate属性，设置弹出dialog后执行的回调函数。
+* BUG: 修改了重複編輯超級鏈接時每次都添加&amp;的問題。
+* BUG: 修改了在IE上右鍵菜單沒有複製、剪切項目的問題。
+* BUG: 修改了在IE上沒有格式化<font color=#000>代碼的問題。
+* BUG: 修改了PHP上傳程序日期格式不正確的問題。
+* BUG: 修改了在IE上代碼模式下全屏本地URL自動變成絕對URL的問題。
+* BUG: 修改了在代碼模式下KE.util.setFullHtml函數不顯示HTML內容的問題。
+* BUG: 修改了在MARQUEE元素裡回車換行出現JS錯誤的問題。
+* BUG: 修改了通過菜單剪切、粘貼時不觸發KE.event.input事件的問題。
+* BUG: 修改了在IE上焦點離開編輯區域後沒有記住最後的range位置的問題。
+* BUG: 修改了在源代碼模式下undo/redo能看到臨時HTML代碼的問題。
+* BUG: 修改了在IE上輸入的HTML開頭是<script>時該代碼被刪掉的問題。
+* BUG: 修改了在IE上將<img>替換<hr>時有時候報錯的問題。
+* BUG: 修改了在IE上編輯marquee元素裡的圖片和超級鏈接時報錯的問題。
+* BUG: 修改了右鍵點擊圖片右邊時有時候會彈出圖片編輯菜單的問題。
+* BUG: 修改了script和style代碼無法保留換行符的問題。
+* BUG: 修改了在非IE瀏覽器上換行使用p的時候最後一個p結尾還是有一個br的問題。
+* BUG: 修改了Webkit系列瀏覽器的textarea可拖動調整大小，聚焦時邊框變成黃色的問題。
+* BUG: 修改了在IE上代碼模式下有時候不會自動換行的問題。
+* BUG: 修改了在IE上new Function和iframe引起內存洩漏的問題。
+* 改變: 默認換行方式改成p換行。
+* 改善: 彈出框未指定任何按鈕(yesButton, noButton, previewButton)時，不顯示底部DIV。
+* 改善: 確定alert框後將焦點設置到輸入錯誤的輸入框。
+* 改善: 上傳圖片時如果返回的JSON格式有錯誤，提示友好信息。
+* 改善: 從Word粘貼功能嚴格過濾垃圾代碼。
+* 改善: 編輯時同步更新原textarea裡的HTML內容，不需要在提交前設置KE.util.setData。
+* 改善: 根據resizeMode配置顯示不同的鼠標狀態和小圖標。
+* 改善: 按TAB鍵時插入4個&nbsp;。
+* 增加: 增加了afterDialogCreate屬性，設置彈出dialog後執行的回調函數。
 * 增加: 增加了ASP.NET、ASP、JSP演示程序。
-* 增加: 增加了工具栏分割符号。
-* 删除: 删除了autoOnsubmit属性。
+* 增加: 增加了工具欄分割符號。
+* 刪除: 刪除了autoOnsubmit屬性。
 
 ver 3.4.2 (2010-04-04)
-* 增加: 添加了KE.util.isEmpty函数，用于判断编辑器是否有可见内容。
-* 改善: 页面很小时弹出菜单的上下位置不变。
-* 改善: 插入超级链接未选中内容时插入URL文本。
-* 改善: 插入超级链接的打开类型为当前窗口时删除A标签的target属性。
-* BUG: 修改了在IE上HTML属性值里输入JS代码时格式出现错误的问题。
-* BUG: 修改了cssPath属性为空时加载首页的问题。
-* BUG: 修改了当浏览器出现滚动条并拖动调整大小时控制不住的问题。
-* BUG: 修改了embed代码丢失自定义属性的问题。
-* BUG: 修改了在IE上切换到代码模式后点击图标触发onbeforeunload事件的问题。
-* BUG: 修改了在Firefox上光标在图片旁边时点击鼠标右键，弹出右键菜单的问题。
-* BUG: 修改了在Firefox上无法修改/删除图片的超级链接的问题。
-* BUG: 修改了在Webkit上有时候无法添加/修改/删除图片的超级链接的问题。
+* 增加: 添加了KE.util.isEmpty函數，用於判斷編輯器是否有可見內容。
+* 改善: 頁面很小時彈出菜單的上下位置不變。
+* 改善: 插入超級鏈接未選中內容時插入URL文本。
+* 改善: 插入超級鏈接的打開類型為當前窗口時刪除A標籤的target屬性。
+* BUG: 修改了在IE上HTML屬性值裡輸入JS代碼時格式出現錯誤的問題。
+* BUG: 修改了cssPath屬性為空時加載首頁的問題。
+* BUG: 修改了當瀏覽器出現滾動條並拖動調整大小時控制不住的問題。
+* BUG: 修改了embed代碼丟失自定義屬性的問題。
+* BUG: 修改了在IE上切換到代碼模式後點擊圖標觸發onbeforeunload事件的問題。
+* BUG: 修改了在Firefox上光標在圖片旁邊時點擊鼠標右鍵，彈出右鍵菜單的問題。
+* BUG: 修改了在Firefox上無法修改/刪除圖片的超級鏈接的問題。
+* BUG: 修改了在Webkit上有時候無法添加/修改/刪除圖片的超級鏈接的問題。
 
 ver 3.4.1 (2010-02-25)
-* 添加了dialogAlignType属性，指定弹出窗口对齐方式。
-* 添加了imageUploadJson属性，可指定上传图片服务器端程序。
-* 添加了fileManagerJson属性，可指定浏览服务器文件的服务器端程序。
-* 修改了在IE上删除所有可见内容后留下P标记的问题。
-* 修改了拖动弹出窗口时可以拖出页面外的问题。
-* 修改了拖动弹出窗口时选中内容的问题。
-* 修改了在IE8上点击工具栏触发onbeforeunload事件的问题。
-* 修改了输入带冒号的标签时HTML格式出现错误的问题。
-* 修改了在Firefox上不选中超级连接时不能取消超级连接的问题。
-* 修改了当页面比较小时下拉菜单超出页面的问题。
-* 修改了在Webkit浏览器上不选中内容添加超级连接时插入__ke_temp_url__的问题。
-* beforeCreate、afterCreate等回调函数添加了id参数。
-* 改善了URL格式化规则，urlType参数默认为空，当urlType为空时不修改URL。
-* 只要KE.plugin里有定义就执行插件的init处理。
-* cssPath参数可指定多个CSS文件。
-* KE.event.ctrl函数可以直接传入keyCode数字。
-* urlType为relative时省略当前路径标识符。
-* 图片上传程序返回JSON数据，文件名改成upload_json.php。
-* 上传图片过程中显示加载动画。
-* 标题格式增加了正文。
-* 更换了默认风格。
+* 添加了dialogAlignType屬性，指定彈出窗口對齊方式。
+* 添加了imageUploadJson屬性，可指定上傳圖片服務器端程序。
+* 添加了fileManagerJson屬性，可指定瀏覽服務器文件的服務器端程序。
+* 修改了在IE上刪除所有可見內容後留下P標記的問題。
+* 修改了拖動彈出窗口時可以拖出頁面外的問題。
+* 修改了拖動彈出窗口時選中內容的問題。
+* 修改了在IE8上點擊工具欄觸發onbeforeunload事件的問題。
+* 修改了輸入帶冒號的標籤時HTML格式出現錯誤的問題。
+* 修改了在Firefox上不選中超級連接時不能取消超級連接的問題。
+* 修改了當頁面比較小時下拉菜單超出頁面的問題。
+* 修改了在Webkit瀏覽器上不選中內容添加超級連接時插入__ke_temp_url__的問題。
+* beforeCreate、afterCreate等回調函數添加了id參數。
+* 改善了URL格式化規則，urlType參數默認為空，當urlType為空時不修改URL。
+* 只要KE.plugin裡有定義就執行插件的init處理。
+* cssPath參數可指定多個CSS文件。
+* KE.event.ctrl函數可以直接傳入keyCode數字。
+* urlType為relative時省略當前路徑標識符。
+* 圖片上傳程序返回JSON數據，文件名改成upload_json.php。
+* 上傳圖片過程中顯示加載動畫。
+* 標題格式增加了正文。
+* 更換了默認風格。
 
 ver 3.4 (2009-12-19)
-* 添加了图片修改/删除功能。
-* 添加了超级连接修改/删除功能。
-* 添加了浏览服务器文件的功能（PHP）。
+* 添加了圖片修改/刪除功能。
+* 添加了超級連接修改/刪除功能。
+* 添加了瀏覽服務器文件的功能（PHP）。
 * 添加了URL格式化功能。
-* 添加了afterCreate和beforeCreate回调函数。
-* 添加了textarea的name属性支持，没指定id时寻找name。
-* htmlTags属性指定style时，忽略[.]开头的属性，允许任何样式。
-* 改善了弹出框，支持多个窗，根据浏览器窗口居中，加载时显示[加载中]动画。
-* 改善了回车换行，通过参数可设置BR或P换行，默认BR换行。
-* 改善了插入表情功能，显示表情图片时只加载一次图片。
-* 在WEBKIT系列浏览器上点击图片后自动选中。
-* 编辑器最大化之后不允许拖动修改大小。
-* 编辑器的CSS文件可以手动包含。
-* 编辑器所用到的图标全部在CSS文件里定义。
-* skins里的文件分别放在不同目录里。
-* 下拉菜单根据文字内容自动调整宽度。
-* 默认不开启过滤模式。
-* 修改了Firefox上Flash和多媒体不显示的问题（用图片表示）。
-* 修改了非IE浏览器选中element元素时取得错误range的问题。
-* 修改了非IE浏览器无法选中element元素的问题。
-* 修改了清除格式后有时候变成一行的问题。
-* 修改了IE6怪异模式下切换模式高度有变化的问题。
-* 修改了Firefox 2上不能使用的问题。
-* 修改了在Webkit上高度比较小的时候底部出现空白的问题。
-* 修改了在非IE浏览器上上传失败后重新刷新页面的问题。
-* 删除了[插入层]、[日期]、[时间]、[预览]、[插入特殊字符]功能。
-* 还有很多代码优化。
+* 添加了afterCreate和beforeCreate回調函數。
+* 添加了textarea的name屬性支持，沒指定id時尋找name。
+* htmlTags屬性指定style時，忽略[.]開頭的屬性，允許任何樣式。
+* 改善了彈出框，支持多個窗，根據瀏覽器窗口居中，加載時顯示[加載中]動畫。
+* 改善了回車換行，通過參數可設置BR或P換行，默認BR換行。
+* 改善了插入表情功能，顯示表情圖片時只加載一次圖片。
+* 在WEBKIT系列瀏覽器上點擊圖片後自動選中。
+* 編輯器最大化之後不允許拖動修改大小。
+* 編輯器的CSS文件可以手動包含。
+* 編輯器所用到的圖標全部在CSS文件裡定義。
+* skins裡的文件分別放在不同目錄裡。
+* 下拉菜單根據文字內容自動調整寬度。
+* 默認不開啟過濾模式。
+* 修改了Firefox上Flash和多媒體不顯示的問題（用圖片表示）。
+* 修改了非IE瀏覽器選中element元素時取得錯誤range的問題。
+* 修改了非IE瀏覽器無法選中element元素的問題。
+* 修改了清除格式後有時候變成一行的問題。
+* 修改了IE6怪異模式下切換模式高度有變化的問題。
+* 修改了Firefox 2上不能使用的問題。
+* 修改了在Webkit上高度比較小的時候底部出現空白的問題。
+* 修改了在非IE瀏覽器上上傳失敗後重新刷新頁面的問題。
+* 刪除了[插入層]、[日期]、[時間]、[預覽]、[插入特殊字符]功能。
+* 還有很多代碼優化。
 
 ver 3.3.1 (2009-09-20)
-* 修改了删除文本格式后出现垃圾代码的问题。
-* 删除了KE.util里的没有用到的函数。
-* 修改了在IE上多个编辑器同时显示时，点击全屏另外一个编辑器自动变成最大化的问题。
-* 修改了在Firefox上缩进操作后产生的代码默认被过滤的问题。
-* 修改了删除编辑器后没有清除container的问题。
-* 添加了TAB键缩进功能。
-* 上传图片时重命名文件名。
-* 拖拽编辑器调整大小时不再隐藏编辑器内容。
-* 修改了几个演示程序，优化了细节。
+* 修改了刪除文本格式後出現垃圾代碼的問題。
+* 刪除了KE.util裡的沒有用到的函數。
+* 修改了在IE上多個編輯器同時顯示時，點擊全屏另外一個編輯器自動變成最大化的問題。
+* 修改了在Firefox上縮進操作後產生的代碼默認被過濾的問題。
+* 修改了刪除編輯器後沒有清除container的問題。
+* 添加了TAB鍵縮進功能。
+* 上傳圖片時重命名文件名。
+* 拖拽編輯器調整大小時不再隱藏編輯器內容。
+* 修改了幾個演示程序，優化了細節。
 
 ver 3.3 (2009-09-06)
-* 提高了加载速度。DOM加载完成后立即创建编辑器，以前用了window onload事件。
-* 改善了HTML格式化性能。增加KE.format，替代原来的outputHtml和htmlToXhtml。
-* 删除了siteDomains属性，link和当前域名相同时自动改成相对域名。
-* 修改了在IE上有不规范HTML标签时出现重复内容的问题。
-* 修改了在Fifefox粘贴Word文档时头部出现垃圾代码的问题。
-* 编辑器宽度设定支持百分比，不设置大小时默认取得textarea的大小。
-* 整理了插入表格代码。
-* 修改了特殊字符、插入表格等功能受YUI全局CSS影响的问题。
-* 修改了在Firefox上按F5刷新时JS报错的问题。
-* 修改了在Firefox上有时候不能删除内容的问题。
-* 修改了代码模式下输入的内容没有被格式化的问题。
+* 提高了加載速度。DOM加載完成後立即創建編輯器，以前用了window onload事件。
+* 改善了HTML格式化性能。增加KE.format，替代原來的outputHtml和htmlToXhtml。
+* 刪除了siteDomains屬性，link和當前域名相同時自動改成相對域名。
+* 修改了在IE上有不規範HTML標籤時出現重複內容的問題。
+* 修改了在Fifefox粘貼Word文檔時頭部出現垃圾代碼的問題。
+* 編輯器寬度設定支持百分比，不設置大小時默認取得textarea的大小。
+* 整理了插入表格代碼。
+* 修改了特殊字符、插入表格等功能受YUI全局CSS影響的問題。
+* 修改了在Firefox上按F5刷新時JS報錯的問題。
+* 修改了在Firefox上有時候不能刪除內容的問題。
+* 修改了代碼模式下輸入的內容沒有被格式化的問題。
 
 ver 3.2.1 (2009-08-09)
-* 修改了在IE上行尾插入图片后光标无法移动到图片后位置的问题。
-* 修改了在IE上内容为空时连续插入非文字元素出现脚本错误的问题。
-* 修改了原代码模式下输入<textarea></textarea>后来回切换模式时发生错误的问题。
-* 修改了在IE上<br>换行后改变字体时光标移动到上一行的问题。
-* 修改了在IE上删除文本格式时选中位置有时候会偏移的问题。
-* 修改了range在text range的最后位置时wrap方法不正常的问题。
-* getPureData方法过滤&nbsp;。
-* 修改了htmlTags的默认值。
-* 修改了在WEBKIT系列浏览器上有滚动条时下拉框定位不正确的问题。
+* 修改了在IE上行尾插入圖片後光標無法移動到圖片後位置的問題。
+* 修改了在IE上內容為空時連續插入非文字元素出現腳本錯誤的問題。
+* 修改了原代碼模式下輸入<textarea></textarea>後來回切換模式時發生錯誤的問題。
+* 修改了在IE上<br>換行後改變字體時光標移動到上一行的問題。
+* 修改了在IE上刪除文本格式時選中位置有時候會偏移的問題。
+* 修改了range在text range的最後位置時wrap方法不正常的問題。
+* getPureData方法過濾&nbsp;。
+* 修改了htmlTags的默認值。
+* 修改了在WEBKIT系列瀏覽器上有滾動條時下拉框定位不正確的問題。
 
 ver 3.2 (2009-07-12)
-* 工具栏图标可以反映选中状态。
-* 用虚线显示p,div,ol等标记。
-* font标记全部改成span，文字大小统一使用px单位。
-* htmlTags属性一次可定义多个标记。
-* Firefox等浏览器上颜色可以输出统一的十六进制颜色。
-* filterMode为false的时候输出XHTML，并支持siteDomain设定。
-* 修改了过滤一些代码后HTML代码有偏移的问题。
-* 修复了在IE上点击工具栏图标时失去焦点的问题。
-* 编辑区域的body里添加了ke-content class。
-* 添加了后退/撤销快捷键(Ctrl+Z和Ctrl+Y)。
-* 改善了默认风格。
-* 包含很多细小的代码优化。
-* 增加了宽度和高度属性。
+* 工具欄圖標可以反映選中狀態。
+* 用虛線顯示p,div,ol等標記。
+* font標記全部改成span，文字大小統一使用px單位。
+* htmlTags屬性一次可定義多個標記。
+* Firefox等瀏覽器上顏色可以輸出統一的十六進制顏色。
+* filterMode為false的時候輸出XHTML，並支持siteDomain設定。
+* 修改了過濾一些代碼後HTML代碼有偏移的問題。
+* 修復了在IE上點擊工具欄圖標時失去焦點的問題。
+* 編輯區域的body裡添加了ke-content class。
+* 添加了後退/撤銷快捷鍵(Ctrl+Z和Ctrl+Y)。
+* 改善了默認風格。
+* 包含很多細小的代碼優化。
+* 增加了寬度和高度屬性。
 
 ver 3.1.2 (2009-04-15)
-* 修改了IE上拖动选择图片后添加超级链接发生错误的问题。
-* 修改了Flash、多媒体、图片的验证规则，支持GET参数。
+* 修改了IE上拖動選擇圖片後添加超級鏈接發生錯誤的問題。
+* 修改了Flash、多媒體、圖片的驗證規則，支持GET參數。
 
 ver 3.1.1 (2009-03-09)
-* 修改了设置siteDomains无效的问题。
-* 修改了例子当中的一些文字错误。
+* 修改了設置siteDomains無效的問題。
+* 修改了例子當中的一些文字錯誤。
 
 ver 3.1 (2009-03-01)
-* 合并了javascript文件，删除了build目录，只保留kindeditor.js非压缩格式。
-* 修改了HTML过滤功能，通过htmlTags属性可以指定HTML标记和属性。
-* 修改了有时候超级连接出现__ke_temp_url__的问题。
-* 修改了KE.util.selection()里==符号写成=的问题。
-* 修改了连续输入空格变成特殊字符的问题。
-* 初期显示编辑器时焦点不再默认移到编辑区域。
+* 合併了javascript文件，刪除了build目錄，只保留kindeditor.js非壓縮格式。
+* 修改了HTML過濾功能，通過htmlTags屬性可以指定HTML標記和屬性。
+* 修改了有時候超級連接出現__ke_temp_url__的問題。
+* 修改了KE.util.selection()裡==符號寫成=的問題。
+* 修改了連續輸入空格變成特殊字符的問題。
+* 初期顯示編輯器時焦點不再默認移到編輯區域。
 
 ver 3.0.1 (2009-02-10)
-* 修改了包含prototype、mootools等类库时发生冲突的问题。
-* 修改了在非IE浏览器下outputHtml()过滤正常代码的问题。
-* 改善了超级连接功能(link plugin)。
-* 添加了KE.lang['invalidUrl']语言定义。
-* 修改了在IE6下重复加载工具栏图标的问题。
-* 修改了在Firefox 2.0下发生错误的问题。
-* 修改了指定多个siteDomains参数时无效的问题。
-* 添加了禁止拖动工具栏图标的处理。
+* 修改了包含prototype、mootools等類庫時發生衝突的問題。
+* 修改了在非IE瀏覽器下outputHtml()過濾正常代碼的問題。
+* 改善了超級連接功能(link plugin)。
+* 添加了KE.lang['invalidUrl']語言定義。
+* 修改了在IE6下重複加載工具欄圖標的問題。
+* 修改了在Firefox 2.0下發生錯誤的問題。
+* 修改了指定多個siteDomains參數時無效的問題。
+* 添加了禁止拖動工具欄圖標的處理。
 
 ver 3.0 (2009-01-24)
-* 修改了outputHtml()若干问题。
-* 修改了position: relative下无法设置全屏的问题。
-* 修改了HTML4.0下非IE浏览器页面变形的问题。
-* 修改了全屏下弹出窗口后可以点击编辑区域的问题。
+* 修改了outputHtml()若干問題。
+* 修改了position: relative下無法設置全屏的問題。
+* 修改了HTML4.0下非IE瀏覽器頁面變形的問題。
+* 修改了全屏下彈出窗口後可以點擊編輯區域的問題。
 
 ver 3.0 beta 4 (2009-01-18)
-* 修改了IE无法对齐的问题。
-* 调整了IE换行规则。
+* 修改了IE無法對齊的問題。
+* 調整了IE換行規則。
 
 ver 3.0 beta 3 (2009-01-18)
-* 加强了undo/redo。
-* 增加了HTML代码过滤功能，并通过filterMode可以选择是否过滤。
-* 修改了粘贴纯文本时解析HTML代码的问题。
-* 修改了skinsPath和pluginsPath属性无法自定义的问题。
-* 增加了siteDomains属性。
-* 删除了plugin-mini.js。
+* 加強了undo/redo。
+* 增加了HTML代碼過濾功能，並通過filterMode可以選擇是否過濾。
+* 修改了粘貼純文本時解析HTML代碼的問題。
+* 修改了skinsPath和pluginsPath屬性無法自定義的問題。
+* 增加了siteDomains屬性。
+* 刪除了plugin-mini.js。
 
 ver 3.0 beta 2 (2009-01-01)
-* 修改了PHP上传图片时标题不正确的问题。
-* 属性hideBottomMode改成resizeMode。
-* 修改了编辑器外观受YUI CSS影响的问题。
-* 修改了IE浏览器上编辑时有时候HTML显示不全的问题。
-* 修改了部分浏览器插入link时发生js错误的问题。
-* 自定义ICON可以定义其它外部图片。
-* 初期显示时不再插入<p><br /></p>。
-* 精简了部分代码。
-* 增加了几个demo。
+* 修改了PHP上傳圖片時標題不正確的問題。
+* 屬性hideBottomMode改成resizeMode。
+* 修改了編輯器外觀受YUI CSS影響的問題。
+* 修改了IE瀏覽器上編輯時有時候HTML顯示不全的問題。
+* 修改了部分瀏覽器插入link時發生js錯誤的問題。
+* 自定義ICON可以定義其它外部圖片。
+* 初期顯示時不再插入<p><br /></p>。
+* 精簡了部分代碼。
+* 增加了幾個demo。
 
 ver 3.0 beta (2008-12-09)
-* 修改了Firefox3下第一次选择标题有错误的问题。
-* 修改了切换到HTML模式时编辑器会抖动的问题。
-* 修改了插入表情以后路径有错误无法显示的问题。
-* 修改了TinyMCE风格的时间icon坐标不正确的问题。
-* 修改了移动dialog时编辑器文字移动结束后也不显示的问题。
-* 修改了在iframe里无法使用的问题。
-* 修改了目录名为kindeditor时getScriptPath取路径不正确的问题。
-* 修改了增加缩进和减少缩进两个图标的提示文本。
-* 修改了IE下没有指定DOCTYPE时显示有问题。
-* 代码统一用4个空格缩进。
-* 增加了几个demo。
-* plugin-all.js里的中文提取到zh_CN.js。
+* 修改了Firefox3下第一次選擇標題有錯誤的問題。
+* 修改了切換到HTML模式時編輯器會抖動的問題。
+* 修改了插入表情以後路徑有錯誤無法顯示的問題。
+* 修改了TinyMCE風格的時間icon坐標不正確的問題。
+* 修改了移動dialog時編輯器文字移動結束後也不顯示的問題。
+* 修改了在iframe裡無法使用的問題。
+* 修改了目錄名為kindeditor時getScriptPath取路徑不正確的問題。
+* 修改了增加縮進和減少縮進兩個圖標的提示文本。
+* 修改了IE下沒有指定DOCTYPE時顯示有問題。
+* 代碼統一用4個空格縮進。
+* 增加了幾個demo。
+* plugin-all.js裡的中文提取到zh_CN.js。
 
 ver 3.0 alpha (2008-11-30)
 * 初期完成。

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Powers.PositionList" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Powers.PositionList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,29 +14,29 @@
             <%--<f:Panel ID="Panel5" Width="250px" runat="server" BodyPadding="5px" ShowBorder="False"
                 ShowHeader="false">
                 <Items>
-                    <f:Tree runat="server" Title="部门列表" ShowBorder="True" ShowHeader="True" EnableArrows="False"
+                    <f:Tree runat="server" Title="部門列表" ShowBorder="True" ShowHeader="True" EnableArrows="False"
                         AutoLeafIdentification="false" EnableLines="true" ID="BranchTree" OnNodeCommand="BranchTree_NodeCommand">
                     </f:Tree>
                 </Items>
             </f:Panel>--%>
-            <f:Panel ID="Panel4" Title="角色权限说明" Width="600px" runat="server" BodyPadding="10px"
+            <f:Panel ID="Panel4" Title="角色權限說明" Width="600px" runat="server" BodyPadding="10px"
                 ShowBorder="False" ShowHeader="True">
                 <Items>
-                    <f:Label ID="labelClassDesc" runat="server" Text="角色权限管理，是将员工和菜单、页面控件等权限捆绑到一块进行综合管理，
-                以保护系统的安全。在设置菜单、页面访问操作权限时，要基于这样一个原则，使用户操作界面里显示最少的菜单项，
-                用户不应该有的或可有可没有的项就不要给用户开这个权限，让界面简单、明了、易用。">
+                    <f:Label ID="labelClassDesc" runat="server" Text="角色權限管理，是將員工和菜單、頁面控件等權限捆綁到一塊進行綜合管理，
+                以保護系統的安全。在設置菜單、頁面訪問操作權限時，要基於這樣一個原則，使用戶操作界面裡顯示最少的菜單項，
+                用戶不應該有的或可有可沒有的項就不要給用戶開這個權限，讓界面簡單、明瞭、易用。">
                     </f:Label>
                 </Items>
             </f:Panel>
-            <f:Panel ID="Panel2" Width="600px" Title="角色权限管理" runat="server" BodyPadding="10px"
+            <f:Panel ID="Panel2" Width="600px" Title="角色權限管理" runat="server" BodyPadding="10px"
                 ShowBorder="False" ShowHeader="True">
                 <Toolbars>
                     <f:Toolbar ID="toolBar" runat="server">
                         <Items>
                             <f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click">
                             </f:Button>
-                            <f:Button ID="ButtonDelete" runat="server" Text="删除" Icon="Delete" OnClick="ButtonDelete_Click"
-                                ConfirmTitle="删除提示" ConfirmText="是否删除记录？" OnClientClick="if (!F('Panel1_Panel2_Grid1').getSelectionModel().hasSelection() ) { F.alert('请选择你想要删除的记录！'); return false; } ">
+                            <f:Button ID="ButtonDelete" runat="server" Text="刪除" Icon="Delete" OnClick="ButtonDelete_Click"
+                                ConfirmTitle="刪除提示" ConfirmText="是否刪除記錄？" OnClientClick="if (!F('Panel1_Panel2_Grid1').getSelectionModel().hasSelection() ) { F.alert('請選擇你想要刪除的記錄！'); return false; } ">
                             </f:Button>
                         </Items>
                     </f:Toolbar>
@@ -48,9 +48,9 @@
                         OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
                         <Columns>
                             <f:BoundField Width="50px" DataField="Id" SortField="Id" HeaderText="ID" TextAlign="Center" />
-                            <f:BoundField DataField="CODE" HeaderText="角色编号" Width="150px" />
-                            <f:BoundField DataField="DESCR" HeaderText="角色名称" Width="200px" />
-                            <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="点击修改当前记录" ColumnID="ButtonEdit"
+                            <f:BoundField DataField="CODE" HeaderText="角色編號" Width="150px" />
+                            <f:BoundField DataField="DESCR" HeaderText="角色名稱" Width="200px" />
+                            <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit"
                                 CommandName="ButtonEdit" Width="70px" />
                         </Columns>
                     </f:Grid>
@@ -58,7 +58,7 @@
             </f:Panel>
         </Items>
     </f:Panel>
-    <f:Window ID="Window1" Width="450px" Height="550px" Icon="TagBlue" Title="编辑" Hidden="True"
+    <f:Window ID="Window1" Width="450px" Height="550px" Icon="TagBlue" Title="編輯" Hidden="True"
         EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
         runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
         EnableIFrame="true" EnableClose="true" IsModal="True" >

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
@@ -6,13 +6,13 @@ using Solution.Web.Managers.WebManage.Application;
 
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-21
- *   文件名称：BranchEdit.aspx.cs
- *   描    述：部门编辑页面
+ *   創建日期：2014-06-21
+ *   文件名稱：BranchEdit.aspx.cs
+ *   描    述：部門編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -28,72 +28,72 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         {
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
 
-                //绑定下拉列表
+                //綁定下拉列表
                 BranchBll.GetInstence().BandDropDownListShowAll(this, ddlParentId);
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int id = ConvertHelper.Cint0(hidId.Text);
 
             if (id != 0)
             {
-                //获取指定ID的部门内容
+                //獲取指定ID的部門內容
                 var model = BranchBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
-                //对页面窗体进行赋值
+                //對頁面窗體進行賦值
                 txtName.Text = model.Name;
-                //设置下拉列表选择项
+                //設置下拉列表選擇項
                 ddlParentId.SelectedValue = model.ParentId + "";
-                //编辑时不给改变上级部门
+                //編輯時不給改變上級部門
                 ddlParentId.Enabled = false;
-                //设置部门编码
+                //設置部門編碼
                 txtCode.Text = model.Code;
-                //设置父ID
+                //設置父ID
                 txtParent.Text = model.ParentId + "";
-                //设置排序
+                //設置排序
                 txtSort.Text = model.Sort + "";
-                //设置注备
+                //設置注備
                 txtNotes.Text = model.Notes;
             }
         }
 
         #endregion
 
-        #region 页面控件绑定
-        /// <summary>下拉列表改变事件
+        #region 頁面控件綁定
+        /// <summary>下拉列表改變事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void ddlParentId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //获取当前节点的父节点Id
+            //獲取當前節點的父節點Id
             txtParent.Text = ddlParentId.SelectedValue;
         }
         #endregion
 
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -103,62 +103,62 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    return txtName.Label + "不能为空！";
+                    return txtName.Label + "不能為空！";
                 }
                 var sName = StringHelper.Left(txtName.Text, 50);
                 if (BranchBll.GetInstence().Exist(x => x.Name == sName && x.Id != id))
                 {
-                    return txtName.Label + "已存在！请重新输入！";
+                    return txtName.Label + "已存在！請重新輸入！";
                 }
 
                 #endregion
 
-                #region 赋值
-                //定义是否更新其他关联表变量
+                #region 賦值
+                //定義是否更新其他關聯表變量
                 bool isUpdate = false;
 
-                //获取实体
+                //獲取實體
                 var model = new Branch(x => x.Id == id);
 
-                //判断是否有改变名称
+                //判斷是否有改變名稱
                 if (id > 0 && sName != model.Name)
                 {
                     isUpdate = true;
                 }
 
-                //修改时间与管理员
+                //修改時間與管理員
                 model.UpdateDate = DateTime.Now;
                 model.Manager_Id = OnlineUsersBll.GetInstence().GetManagerId();
                 model.Manager_CName = OnlineUsersBll.GetInstence().GetManagerCName();
 
-                //设置名称
+                //設置名稱
                 model.Name = sName;
-                //对应的父类id
+                //對應的父類id
                 model.ParentId = ConvertHelper.Cint0(txtParent.Text);
-                //设置备注
+                //設置備註
                 model.Notes = StringHelper.Left(txtNotes.Text, 100);
 
-                //由于限制了编辑时不能修改父节点，所以这里只对新建记录时处理
+                //由於限制了編輯時不能修改父節點，所以這裡只對新建記錄時處理
                 if (id == 0)
                 {
-                    //设定当前的深度与设定当前的层数级
+                    //設定當前的深度與設定當前的層數級
                     if (model.ParentId == 0)
                     {
-                        //设定当前的层数
+                        //設定當前的層數
                         model.Depth = 0;
                     }
                     else
                     {
-                        //设定当前的层数级
+                        //設定當前的層數級
                         model.Depth = ConvertHelper.Cint0(BranchBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), BranchTable.Depth)) + 1;
                     }
                 }
 
-                //设置排序
+                //設置排序
                 if (txtSort.Text == "0")
                 {
                     model.Sort = BranchBll.GetInstence().GetSortMax(model.ParentId) + 1;
@@ -168,7 +168,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                     model.Sort = ConvertHelper.Cint0(txtSort.Text);
                 }
 
-                //新创建部门时，生成对应的部门编码
+                //新創建部門時，生成對應的部門編碼
                 if (id == 0)
                 {
                     model.Code = SPs.P_Branch_GetMaxBranchCode(model.Depth + 1, model.ParentId).ExecuteScalar().ToString();
@@ -177,10 +177,10 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 #endregion
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 BranchBll.GetInstence().Save(this, model);
 
-                //如果本次修改改变了相关名称，则同步更新其他关联表的对应名称
+                //如果本次修改改變了相關名稱，則同步更新其他關聯表的對應名稱
                 if (isUpdate)
                 {
                     PositionBll.GetInstence().UpdateValue_For_Branch_Id(this, model.Id, PositionTable.Branch_Name, model.Name);
@@ -189,9 +189,9 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

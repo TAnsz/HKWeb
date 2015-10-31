@@ -162,7 +162,7 @@ KindEditor.plugin('media', function(K) {
 		},
 		'delete' : function() {
 			self.plugin.getSelectedMedia().remove();
-			// [IE] 删除图片后立即点击图片按钮出错
+			// [IE] 刪除圖片後立即點擊圖片按鈕出錯
 			self.addBookmark();
 		}
 	};

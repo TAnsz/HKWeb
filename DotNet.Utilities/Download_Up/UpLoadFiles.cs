@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -10,14 +10,14 @@ using System.IO;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// UpLoadFiles 的摘要说明
+    /// UpLoadFiles 的摘要說明
     /// </summary>
     public class UpLoadFiles : System.Web.UI.Page
     {
         public UpLoadFiles()
         {
             //
-            // TODO: 在此处添加构造函数逻辑
+            // TODO: 在此處添加構造函數邏輯
             //
         }
 
@@ -73,13 +73,13 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传文件
+        /// 上傳文件
         /// </summary>
         /// <param name="filePath">保存文件地址</param>
         /// <param name="maxSize">文件最大大小</param>
-        /// <param name="fileType">文件后缀类型</param>
+        /// <param name="fileType">文件後綴類型</param>
         /// <param name="TargetFile">控件名</param>
-        /// <param name="saveFileName">保存后的文件名和地址</param>
+        /// <param name="saveFileName">保存後的文件名和地址</param>
         /// <param name="fileSize">文件大小</param>
         /// <returns></returns>
         public string UploadFile(string filePath, int maxSize, string[] fileType, System.Web.UI.HtmlControls.HtmlInputFile TargetFile, out string saveFileName, out int fileSize)
@@ -94,7 +94,7 @@ namespace DotNet.Utilities
             string strFileName, strNewName, strFilePath;
             if (TargetFile.PostedFile.FileName == "")
             {
-                return "请选择上传的文件";
+                return "請選擇上傳的文件";
             }
             strFileName = TargetFile.PostedFile.FileName;
             TargetFile.Accept = "*/*";
@@ -121,7 +121,7 @@ namespace DotNet.Utilities
             }
             else
             {
-                return "上传文件超出指定的大小";
+                return "上傳文件超出指定的大小";
             }
             return (Result);
         }

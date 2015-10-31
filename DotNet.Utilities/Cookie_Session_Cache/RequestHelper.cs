@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,10 @@ namespace DotNet.Utilities
     public class RequestHelper
     {
 
-        /// <summary>获得Post提交的参数值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="isFilterXss">是否过滤XSS</param>
-        /// <returns>表单参数的值</returns>
+        /// <summary>獲得Post提交的參數值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="isFilterXss">是否過濾XSS</param>
+        /// <returns>表單參數的值</returns>
         public static string GetFormString(string strName, bool isFilterXss = true)
         {
             if (HttpContext.Current.Request.Form[strName] == null)
@@ -23,10 +23,10 @@ namespace DotNet.Utilities
             return StringHelper.FilterSql(HttpContext.Current.Request.Form[strName], true, isFilterXss);
         }
 
-        /// <summary> 获得Get提交的参数值 </summary>
-        /// <param name="strName">Url参数</param>
-        /// <param name="isFilterXss">是否过滤XSS</param>
-        /// <returns>Url参数的值</returns>
+        /// <summary> 獲得Get提交的參數值 </summary>
+        /// <param name="strName">Url參數</param>
+        /// <param name="isFilterXss">是否過濾XSS</param>
+        /// <returns>Url參數的值</returns>
         public static string GetQueryString(string strName, bool isFilterXss = true)
         {
             if (HttpContext.Current.Request.QueryString[strName] == null)
@@ -37,11 +37,11 @@ namespace DotNet.Utilities
             return StringHelper.FilterSql(HttpContext.Current.Request.QueryString[strName], true, isFilterXss);
         }
         
-        /// <summary>获得Post提交的参数值,带截取和sql注入过滤</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minLen">截取的长度(字数)</param>
-        /// <param name="isFilterXss">是否过滤XSS</param>
-        /// <returns>表单参数的值(sql过滤,截取后)</returns>
+        /// <summary>獲得Post提交的參數值,帶截取和sql注入過濾</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minLen">截取的長度(字數)</param>
+        /// <param name="isFilterXss">是否過濾XSS</param>
+        /// <returns>表單參數的值(sql過濾,截取後)</returns>
         public static string PostText(string strName, int minLen, bool isFilterXss = true)
         {
             string str = GetFormString(strName, isFilterXss);
@@ -56,11 +56,11 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Get提交的参数值,带截取和sql注入过滤</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minLen">截取的长度(字数)</param>
-        /// <param name="isFilterXss">是否过滤XSS</param>
-        /// <returns>表单参数的值(sql过滤,截取后)</returns>
+        /// <summary>獲得Get提交的參數值,帶截取和sql注入過濾</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minLen">截取的長度(字數)</param>
+        /// <param name="isFilterXss">是否過濾XSS</param>
+        /// <returns>表單參數的值(sql過濾,截取後)</returns>
         public static string GetText(string strName, int minLen, bool isFilterXss = true)
         {
             string str = GetQueryString(strName, isFilterXss);
@@ -75,9 +75,9 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Get提交的参数值,判断是否abcdefghijklmnopqrstuvwxyz0123456789组成的,是返回,否返回""</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minLen">截取的长度(字数)</param>
+        /// <summary>獲得Get提交的參數值,判斷是否abcdefghijklmnopqrstuvwxyz0123456789組成的,是返回,否返回""</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minLen">截取的長度(字數)</param>
         /// <returns>返回int型</returns>
         public static string GetKeyChar(string strName, int minLen = 32)
         {
@@ -92,8 +92,8 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,判断是否int,是返回,否返回0</summary>
-        /// <param name="strName">表单参数</param>
+        /// <summary>獲得Post提交的參數值,判斷是否int,是返回,否返回0</summary>
+        /// <param name="strName">表單參數</param>
         /// <returns>返回int型</returns>
         public static int PostInt(string strName)
         {
@@ -108,9 +108,9 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,判断是否小于minValue,小于返回minValue</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minValue">当Value少于该值时,返回该值</param>
+        /// <summary>獲得Post提交的參數值,判斷是否小於minValue,小於返回minValue</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minValue">當Value少於該值時,返回該值</param>
         /// <returns>返回int型</returns>
         public static int PostIntMinValue(string strName, int minValue)
         {
@@ -125,24 +125,24 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,小于0返回0,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于0的int型</returns>
+        /// <summary>獲得Post提交的參數值,小於0返回0,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於0的int型</returns>
         public static int PostInt0(string strName)
         {
             return PostIntMinValue(strName, 0);
         }
 
-        /// <summary>获得Post提交的参数值,小于1返回1,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于1的int型</returns>
+        /// <summary>獲得Post提交的參數值,小於1返回1,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於1的int型</returns>
         public static int PostInt1(string strName)
         {
             return PostIntMinValue(strName, 1);
         }
 
-        /// <summary>获得Post提交的参数值,判断是否Long,是返回,否返回0</summary>
-        /// <param name="strName">表单参数</param>
+        /// <summary>獲得Post提交的參數值,判斷是否Long,是返回,否返回0</summary>
+        /// <param name="strName">表單參數</param>
         /// <returns>返回int型</returns>
         public static long PostLong(string strName)
         {
@@ -157,9 +157,9 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,判断是否小于minValue,小于返回minValue</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minValue">当Value少于该值时,返回该值</param>
+        /// <summary>獲得Post提交的參數值,判斷是否小於minValue,小於返回minValue</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minValue">當Value少於該值時,返回該值</param>
         /// <returns>返回int型</returns>
         public static long PostLongMinValue(string strName, long minValue)
         {
@@ -174,25 +174,25 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,小于0返回0,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于0的int型</returns>
+        /// <summary>獲得Post提交的參數值,小於0返回0,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於0的int型</returns>
         public static long PostLong0(string strName)
         {
             return PostLongMinValue(strName, 0);
         }
 
-        /// <summary>获得Post提交的参数值,小于1返回1,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于1的int型</returns>
+        /// <summary>獲得Post提交的參數值,小於1返回1,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於1的int型</returns>
         public static long PostLong1(string strName)
         {
             return PostLongMinValue(strName, 1);
         }
 
 
-        /// <summary>获得Get提交的参数值,判断是否int,是返回,否返回"0"</summary>
-        /// <param name="strName">表单参数</param>
+        /// <summary>獲得Get提交的參數值,判斷是否int,是返回,否返回"0"</summary>
+        /// <param name="strName">表單參數</param>
         /// <returns>返回int型</returns>
         public static int GetInt(string strName)
         {
@@ -207,9 +207,9 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Get提交的参数值,判断是否小于minValue,小于返回minValue</summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="minValue">当Value少于该值时,返回该值</param>
+        /// <summary>獲得Get提交的參數值,判斷是否小於minValue,小於返回minValue</summary>
+        /// <param name="strName">表單參數</param>
+        /// <param name="minValue">當Value少於該值時,返回該值</param>
         /// <returns>返回int型</returns>
         public static int GetIntMinValue(string strName, int minValue)
         {
@@ -224,24 +224,24 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Get提交的参数值,小于0返回0,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于0的int型</returns>
+        /// <summary>獲得Get提交的參數值,小於0返回0,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於0的int型</returns>
         public static int GetInt0(string strName)
         {
             return GetIntMinValue(strName, 0);
         }
 
-        /// <summary>获得Get提交的参数值,小于1返回1,否则返回int值</summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>返回 大于等于1的int型</returns>
+        /// <summary>獲得Get提交的參數值,小於1返回1,否則返回int值</summary>
+        /// <param name="strName">表單參數</param>
+        /// <returns>返回 大於等於1的int型</returns>
         public static int GetInt1(string strName)
         {
             return GetIntMinValue(strName, 1);
         }
 
-        /// <summary>获得Post提交的参数值,判断是否double,是返回,否返回0</summary>
-        /// <param name="strName">表单参数</param>
+        /// <summary>獲得Post提交的參數值,判斷是否double,是返回,否返回0</summary>
+        /// <param name="strName">表單參數</param>
         /// <returns>返回double型</returns>
         public static double PostDouble(string strName)
         {
@@ -256,8 +256,8 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的参数值,判断是否double,是返回,否返回0</summary>
-        /// <param name="strName">表单参数</param>
+        /// <summary>獲得Post提交的參數值,判斷是否double,是返回,否返回0</summary>
+        /// <param name="strName">表單參數</param>
         /// <returns>返回double型</returns>
         public static double PostDouble0(string strName)
         {
@@ -273,10 +273,10 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Url或表单参数的值(不区分Post或Get提交,同样都取值,但Get优先处理)</summary>
-        /// <param name="strName">参数</param>
-        /// <param name="isFilterXss">是否过滤XSS</param>
-        /// <returns>Url或表单参数的值</returns>
+        /// <summary>獲得Url或表單參數的值(不區分Post或Get提交,同樣都取值,但Get優先處理)</summary>
+        /// <param name="strName">參數</param>
+        /// <param name="isFilterXss">是否過濾XSS</param>
+        /// <returns>Url或表單參數的值</returns>
         public static string GetString(string strName, bool isFilterXss = true)
         {
             if ("".Equals(GetQueryString(strName)))
@@ -289,8 +289,8 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获得Post提交的全部值</summary>
-        /// <returns>获得Post提交的全部值</returns>
+        /// <summary>獲得Post提交的全部值</summary>
+        /// <returns>獲得Post提交的全部值</returns>
         public static string GetFormAll(HttpContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -307,9 +307,9 @@ namespace DotNet.Utilities
             return sb.ToString();
         }
 
-        /// <summary>返回指定的服务器变量信息</summary>
-        /// <param name="strName">服务器变量名</param>
-        /// <returns>服务器变量信息</returns>
+        /// <summary>返回指定的服務器變量信息</summary>
+        /// <param name="strName">服務器變量名</param>
+        /// <returns>服務器變量信息</returns>
         public static string GetServerString(string strName)
         {
             if (HttpContext.Current.Request.ServerVariables[strName] == null)
@@ -319,7 +319,7 @@ namespace DotNet.Utilities
             return HttpContext.Current.Request.ServerVariables[strName].ToString();
         }
 
-        /// <summary>检查输入口,是否为本服务器</summary>
+        /// <summary>檢查輸入口,是否為本服務器</summary>
         /// <returns></returns>
         public static bool ChkSrcPost()
         {
@@ -336,7 +336,7 @@ namespace DotNet.Utilities
             return (strV1 == strV2);
         }
 
-        /// <summary>取得当前页面的域名</summary>
+        /// <summary>取得當前頁面的域名</summary>
         /// <returns></returns>
         public static string GetRequestHost()
         {
@@ -348,7 +348,7 @@ namespace DotNet.Utilities
             return url;
         }
 
-        /// <summary>取得当前页面的域名</summary>
+        /// <summary>取得當前頁面的域名</summary>
         /// <returns></returns>
         public static string GetRequestHost2()
         {
@@ -360,7 +360,7 @@ namespace DotNet.Utilities
             return url;
         }
 
-        /// <summary>取得当前页面的路径</summary>
+        /// <summary>取得當前頁面的路徑</summary>
         /// <returns></returns>
         public static string GetRequestFileName()
         {

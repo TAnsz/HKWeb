@@ -1,13 +1,13 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
-/** 1. 功能：处理数据类型转换，数制转换、编码转换相关的类
+/** 1. 功能：處理數據類型轉換，數制轉換、編碼轉換相關的類
  *  2. 作者：周兆坤 
- *  3. 创建日期：2010-3-19
- *  4. 最后修改日期：2010-3-19
+ *  3. 創建日期：2010-3-19
+ *  4. 最後修改日期：2010-3-19
 **/
 using System;
 using System.Text;
@@ -16,52 +16,52 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 处理数据类型转换，数制转换、编码转换相关的类
+    /// 處理數據類型轉換，數制轉換、編碼轉換相關的類
     /// </summary>    
     public sealed class ConvertHelper
     {
-        #region 补足位数
+        #region 補足位數
         /// <summary>
-        /// 指定字符串的固定长度，如果字符串小于固定长度，
-        /// 则在字符串的前面补足零，可设置的固定长度最大为9位
+        /// 指定字符串的固定長度，如果字符串小於固定長度，
+        /// 則在字符串的前面補足零，可設置的固定長度最大為9位
         /// </summary>
         /// <param name="text">原始字符串</param>
-        /// <param name="limitedLength">字符串的固定长度</param>
+        /// <param name="limitedLength">字符串的固定長度</param>
         public static string RepairZero(string text, int limitedLength)
         {
-            //补足0的字符串
+            //補足0的字符串
             string temp = "";
 
-            //补足0
+            //補足0
             for (int i = 0; i < limitedLength - text.Length; i++)
             {
                 temp += "0";
             }
 
-            //连接text
+            //連接text
             temp += text;
 
-            //返回补足0的字符串
+            //返回補足0的字符串
             return temp;
         }
         #endregion
 
-        #region 各进制数间转换
+        #region 各進制數間轉換
         /// <summary>
-        /// 实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
+        /// 實現各進制數間的轉換。ConvertBase("15",10,16)表示將十進制數15轉換為16進制的數。
         /// </summary>
-        /// <param name="value">要转换的值,即原值</param>
-        /// <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
-        /// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
+        /// <param name="value">要轉換的值,即原值</param>
+        /// <param name="from">原值的進制,只能是2,8,10,16四個值。</param>
+        /// <param name="to">要轉換到的目標進制，只能是2,8,10,16四個值。</param>
         public static string ConvertBase(string value, int from, int to)
         {
             try
             {
-                int intValue = Convert.ToInt32(value, from);  //先转成10进制
-                string result = Convert.ToString(intValue, to);  //再转成目标进制
+                int intValue = Convert.ToInt32(value, from);  //先轉成10進制
+                string result = Convert.ToString(intValue, to);  //再轉成目標進制
                 if (to == 2)
                 {
-                    int resultLength = result.Length;  //获取二进制的长度
+                    int resultLength = result.Length;  //獲取二進制的長度
                     switch (resultLength)
                     {
                         case 7:
@@ -92,67 +92,67 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 使用指定字符集将string转换成byte[]
+        #region 使用指定字符集將string轉換成byte[]
         /// <summary>
-        /// 使用指定字符集将string转换成byte[]
+        /// 使用指定字符集將string轉換成byte[]
         /// </summary>
-        /// <param name="text">要转换的字符串</param>
-        /// <param name="encoding">字符编码</param>
+        /// <param name="text">要轉換的字符串</param>
+        /// <param name="encoding">字符編碼</param>
         public static byte[] StringToBytes(string text, Encoding encoding)
         {
             return encoding.GetBytes(text);
         }
         #endregion
 
-        #region 使用指定字符集将byte[]转换成string
+        #region 使用指定字符集將byte[]轉換成string
         /// <summary>
-        /// 使用指定字符集将byte[]转换成string
+        /// 使用指定字符集將byte[]轉換成string
         /// </summary>
-        /// <param name="bytes">要转换的字节数组</param>
-        /// <param name="encoding">字符编码</param>
+        /// <param name="bytes">要轉換的字節數組</param>
+        /// <param name="encoding">字符編碼</param>
         public static string BytesToString(byte[] bytes, Encoding encoding)
         {
             return encoding.GetString(bytes);
         }
         #endregion
 
-        #region 将byte[]转换成int
+        #region 將byte[]轉換成int
         /// <summary>
-        /// 将byte[]转换成int
+        /// 將byte[]轉換成int
         /// </summary>
-        /// <param name="data">需要转换成整数的byte数组</param>
+        /// <param name="data">需要轉換成整數的byte數組</param>
         public static int BytesToInt32(byte[] data)
         {
-            //如果传入的字节数组长度小于4,则返回0
+            //如果傳入的字節數組長度小於4,則返回0
             if (data.Length < 4)
             {
                 return 0;
             }
 
-            //定义要返回的整数
+            //定義要返回的整數
             int num = 0;
 
-            //如果传入的字节数组长度大于4,需要进行处理
+            //如果傳入的字節數組長度大於4,需要進行處理
             if (data.Length >= 4)
             {
-                //创建一个临时缓冲区
+                //創建一個臨時緩衝區
                 byte[] tempBuffer = new byte[4];
 
-                //将传入的字节数组的前4个字节复制到临时缓冲区
+                //將傳入的字節數組的前4個字節複製到臨時緩衝區
                 Buffer.BlockCopy(data, 0, tempBuffer, 0, 4);
 
-                //将临时缓冲区的值转换成整数，并赋给num
+                //將臨時緩衝區的值轉換成整數，並賦給num
                 num = BitConverter.ToInt32(tempBuffer, 0);
             }
 
-            //返回整数
+            //返回整數
             return num;
         }
         #endregion
 
-        #region 数字转换
+        #region 數字轉換
 
-        /// <summary>判断是否为数字类型,包括[+-]号,小数字
+        /// <summary>判斷是否為數字類型,包括[+-]號,小數字
         /// 包括（boolean/byte/int16/int32/int64/single/double/decimal）
         /// </summary>
         /// <param name="str"></param>
@@ -174,7 +174,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断是否为数字类型,包括[+-]号,小数字
+        /// <summary>判斷是否為數字類型,包括[+-]號,小數字
         /// 包括（boolean/byte/int16/int32/int64/single/double/decimal）
         /// </summary>
         /// <param name="str"></param>
@@ -188,7 +188,7 @@ namespace DotNet.Utilities
             return false;
         }
 
-        /// <summary>判断是否为整型数字(int32),不包括-</summary>
+        /// <summary>判斷是否為整型數字(int32),不包括-</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsInt(string str)
@@ -213,7 +213,7 @@ namespace DotNet.Utilities
             return true;
         }
 
-        /// <summary>判断是否为整型数字,包括（int32）</summary>
+        /// <summary>判斷是否為整型數字,包括（int32）</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsInt(object str)
@@ -225,7 +225,7 @@ namespace DotNet.Utilities
             return false;
         }
 
-        /// <summary>判断是否为整型数字,包括（int64）</summary>
+        /// <summary>判斷是否為整型數字,包括（int64）</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsLong(string str)
@@ -250,7 +250,7 @@ namespace DotNet.Utilities
             return true;
         }
 
-        /// <summary>判断是否为整型数字,包括（int64）</summary>
+        /// <summary>判斷是否為整型數字,包括（int64）</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsLong(object str)
@@ -262,7 +262,7 @@ namespace DotNet.Utilities
             return false;
         }
 
-        /// <summary>判断是否为浮点数字,用于货币,数量,包括小数字,但不包[+-]号,最多18位
+        /// <summary>判斷是否為浮點數字,用於貨幣,數量,包括小數字,但不包[+-]號,最多18位
         /// 包括（single/double/decimal）
         /// </summary>
         /// <param name="str"></param>
@@ -284,7 +284,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断是否为浮点数字,用于货币,数量,包括小数字,但不包[+-]号
+        /// <summary>判斷是否為浮點數字,用於貨幣,數量,包括小數字,但不包[+-]號
         /// 包括（single/double/decimal）
         /// </summary>
         /// <param name="str"></param>
@@ -298,7 +298,7 @@ namespace DotNet.Utilities
             return false;
         }
 
-        /// <summary>把string 转 int32 ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 int32 ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <param name="defValue"></param>
         /// <returns></returns>
@@ -342,7 +342,7 @@ namespace DotNet.Utilities
             return ss == "" ? defValue : int.Parse(ss);
         }
 
-        /// <summary>把string 转 int32 ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 int32 ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static int Cint(object str)
@@ -354,9 +354,9 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        /// <summary>把string 转 int32,判断是否小于minValue,小于返回minValue</summary>
+        /// <summary>把string 轉 int32,判斷是否小於minValue,小於返回minValue</summary>
         /// <param name="str"></param>
-        /// <param name="minValue">当Value少于该值时,返回该值</param>
+        /// <param name="minValue">當Value少於該值時,返回該值</param>
         /// <returns></returns>
         public static int CintMinValue(string str, int minValue)
         {
@@ -364,9 +364,9 @@ namespace DotNet.Utilities
             return tmp < minValue ? minValue : tmp;
         }
 
-        /// <summary>把string 转 int32,判断是否小于minValue,小于返回minValue</summary>
+        /// <summary>把string 轉 int32,判斷是否小於minValue,小於返回minValue</summary>
         /// <param name="str"></param>
-        /// <param name="minValue">当Value少于该值时,返回该值</param>
+        /// <param name="minValue">當Value少於該值時,返回該值</param>
         /// <returns></returns>
         public static int CintMinValue(object str, int minValue)
         {
@@ -377,7 +377,7 @@ namespace DotNet.Utilities
             return minValue;
         }
 
-        /// <summary>把string 转 int32,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 int32,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static int Cint0(string str)
@@ -385,7 +385,7 @@ namespace DotNet.Utilities
             return CintMinValue(str, 0);
         }
 
-        /// <summary>把string 转 int32,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 int32,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static int Cint0(object str)
@@ -393,7 +393,7 @@ namespace DotNet.Utilities
             return CintMinValue(str, 0);
         }
 
-        /// <summary>把string 转 int32,小于1返回1,否则返回int值</summary>
+        /// <summary>把string 轉 int32,小於1返回1,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=1的int型</returns>
         public static int Cint1(string str)
@@ -401,7 +401,7 @@ namespace DotNet.Utilities
             return CintMinValue(str, 1);
         }
 
-        /// <summary>把string 转 int32,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 int32,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=1的int型</returns>
         public static int Cint1(object str)
@@ -409,7 +409,7 @@ namespace DotNet.Utilities
             return CintMinValue(str, 1);
         }
 
-        /// <summary>不等于"1",就为"0",用于审核之类的</summary>
+        /// <summary>不等於"1",就為"0",用於審核之類的</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static byte Ctinyint(string str)
@@ -417,7 +417,7 @@ namespace DotNet.Utilities
             return StringToByte(str, 0);
         }
 
-        /// <summary>不等于"1",就为"0",用于审核之类的</summary>
+        /// <summary>不等於"1",就為"0",用於審核之類的</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static byte Ctinyint(object str)
@@ -429,9 +429,9 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        #region Decimal 相关 2013-9-11 周光华
+        #region Decimal 相關 2013-9-11 周光華
 
-        /// <summary>把string 转 decimal ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 decimal ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <param name="defValue"></param>
         /// <returns></returns>
@@ -454,7 +454,7 @@ namespace DotNet.Utilities
             return defValue;
         }
 
-        /// <summary>把string 转 decimal ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 decimal ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <param name="defValue"></param>
         /// <returns></returns>
@@ -467,7 +467,7 @@ namespace DotNet.Utilities
             return defValue;
         }
 
-        /// <summary>把string 转 decimal ,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 decimal ,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static decimal Cdecimal0(string str)
@@ -476,7 +476,7 @@ namespace DotNet.Utilities
             return tmp < 0 ? 0 : tmp;
         }
 
-        /// <summary>把string 转 decimal ,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 decimal ,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static decimal Cdecimal0(object str)
@@ -485,7 +485,7 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        /// <summary>把string 转 long/int64 ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 long/int64 ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static long Clng(string str)
@@ -523,7 +523,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>把string 转 long/int64 ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 long/int64 ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static long Clng(object str)
@@ -535,7 +535,7 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        /// <summary>把string 转 Double ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 Double ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static double Cdbl(string str)
@@ -557,7 +557,7 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        /// <summary>把string 转 Double ,从左边继位检查转换(不管输入的是小数,还是字母)</summary>
+        /// <summary>把string 轉 Double ,從左邊繼位檢查轉換(不管輸入的是小數,還是字母)</summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static double Cdbl(object str)
@@ -569,7 +569,7 @@ namespace DotNet.Utilities
             return 0;
         }
 
-        /// <summary>把string 转 Double ,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 Double ,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static double Cdbl0(string str)
@@ -585,7 +585,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>把string 转 Double ,小于0返回0,否则返回int值</summary>
+        /// <summary>把string 轉 Double ,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
         public static double Cdbl0(object str)
@@ -593,7 +593,7 @@ namespace DotNet.Utilities
             return Cdbl0(str.ToString());
         }
 
-        /// <summary>限制数值,不得少于 iMin ,比如分页数,不能少于 1</summary>
+        /// <summary>限制數值,不得少於 iMin ,比如分頁數,不能少於 1</summary>
         /// <param name="str"></param>
         /// <param name="iMin"></param>
         /// <returns></returns>
@@ -609,7 +609,7 @@ namespace DotNet.Utilities
                 return str;
             }
         }
-        /// <summary>限制数值,不得少于 iMin ,比如分页数,不能少于 1</summary>
+        /// <summary>限制數值,不得少於 iMin ,比如分頁數,不能少於 1</summary>
         /// <param name="str"></param>
         /// <param name="iMin"></param>
         /// <returns></returns>
@@ -625,7 +625,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>限制数值,不得少于 iMin ,比如分页数,不能少于 1</summary>
+        /// <summary>限制數值,不得少於 iMin ,比如分頁數,不能少於 1</summary>
         /// <param name="str"></param>
         /// <param name="iMin"></param>
         /// <returns></returns>
@@ -640,11 +640,11 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region byts转换
-        /// <summary>字符串转为Btye类型
+        #region byts轉換
+        /// <summary>字符串轉為Btye類型
         /// </summary>
         /// <param name="str">字符串值</param>
-        /// <param name="value">值，请输入0或1</param>
+        /// <param name="value">值，請輸入0或1</param>
         /// <returns>byte值</returns>
         public static byte StringToByte(String str, int value = 0)
         {
@@ -658,7 +658,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>将String 转为 byte[] </summary>
+        /// <summary>將String 轉為 byte[] </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static byte[] StringToByteArray(string str)
@@ -667,7 +667,7 @@ namespace DotNet.Utilities
             return Encoding.UTF8.GetBytes(str);
         }
 
-        /// <summary>将byte[] 转为  String</summary>
+        /// <summary>將byte[] 轉為  String</summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public static string ByteArrayToString(byte[] bytes)
@@ -677,7 +677,7 @@ namespace DotNet.Utilities
         }
 
 
-        /// <summary>将Hex String 转为 byte[] </summary>
+        /// <summary>將Hex String 轉為 byte[] </summary>
         /// <param name="hexString"></param>
         /// <returns></returns>
         public static byte[] HexStringToByteArray(string hexString)
@@ -688,7 +688,7 @@ namespace DotNet.Utilities
             return returnBytes;
         }
 
-        /// <summary>将byte[] 转为 Hex String</summary>
+        /// <summary>將byte[] 轉為 Hex String</summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public static string ByteArrayToHexString(byte[] bytes)
@@ -706,7 +706,7 @@ namespace DotNet.Utilities
         }
 
         /*
-        /// <summary>将byte[] 转为 Hex String（和上面的函数相比这个性能会慢一些，但是它是官方函数）</summary>
+        /// <summary>將byte[] 轉為 Hex String（和上面的函數相比這個性能會慢一些，但是它是官方函數）</summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public static string ByteArrayToHexString2(byte[] bytes)

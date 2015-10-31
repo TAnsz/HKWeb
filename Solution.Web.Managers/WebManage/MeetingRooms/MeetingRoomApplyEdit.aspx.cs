@@ -40,7 +40,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 //綁定下拉框
                 MeetingRoomBll.GetInstence().BandDropDownListShowAll(this, dllRoomMoment);
 
-                //添加最小时间选择
+                //添加最小時間選擇
                 dpDate.MinDate = DateTime.Now.Date;
 
                 //加載數據

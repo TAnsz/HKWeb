@@ -1,25 +1,25 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Text;
 
 namespace DotNet.Utilities
 {
-    //页面中弹出对话框
+    //頁面中彈出對話框
     public class MessageBox
     {
         private MessageBox()
         {
         }
 
-        #region 显示消息提示对话框
+        #region 顯示消息提示對話框
         /// <summary>
-        /// 显示消息提示对话框
+        /// 顯示消息提示對話框
         /// </summary>
-        /// <param name="page">当前页面指针，一般为this</param>
+        /// <param name="page">當前頁面指針，一般為this</param>
         /// <param name="msg">提示信息</param>
         public static void Show(System.Web.UI.Page page, string msg)
         {
@@ -29,12 +29,12 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 控件点击 消息确认提示框
+        #region 控件點擊 消息確認提示框
 
         /// <summary>
-        /// 控件点击 消息确认提示框
+        /// 控件點擊 消息確認提示框
         /// </summary>
-        /// <param name="page">当前页面指针，一般为this</param>
+        /// <param name="page">當前頁面指針，一般為this</param>
         /// <param name="msg">提示信息</param>
         public static void ShowConfirm(System.Web.UI.WebControls.WebControl Control, string msg)
         {
@@ -43,13 +43,13 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 显示消息提示对话框，并进行页面跳转
+        #region 顯示消息提示對話框，並進行頁面跳轉
         /// <summary>
-        /// 显示消息提示对话框，并进行页面跳转
+        /// 顯示消息提示對話框，並進行頁面跳轉
         /// </summary>
-        /// <param name="page">当前页面指针，一般为this</param>
+        /// <param name="page">當前頁面指針，一般為this</param>
         /// <param name="msg">提示信息</param>
-        /// <param name="url">跳转的目标URL</param>
+        /// <param name="url">跳轉的目標URL</param>
         public static void ShowAndRedirect(System.Web.UI.Page page, string msg, string url)
         {
             StringBuilder Builder = new StringBuilder();
@@ -82,12 +82,12 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 输出自定义脚本信息
+        #region 輸出自定義腳本信息
         /// <summary>
-        /// 输出自定义脚本信息
+        /// 輸出自定義腳本信息
         /// </summary>
-        /// <param name="page">当前页面指针，一般为this</param>
-        /// <param name="script">输出脚本</param>
+        /// <param name="page">當前頁面指針，一般為this</param>
+        /// <param name="script">輸出腳本</param>
         public static void ResponseScript(System.Web.UI.Page page, string script)
         {
             //page.RegisterStartupScript("message", "<script language='javascript' defer>" + script + "</script>");

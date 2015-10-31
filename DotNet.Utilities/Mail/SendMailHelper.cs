@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Net.Sockets;
 using System.Text;
@@ -11,19 +11,19 @@ namespace DotNet.Utilities.Mail
         private const string Enter = "\r\n";
 
         /// <summary> 
-        /// 设定语言代码，默认设定为GB2312，如不需要可设置为"" 
+        /// 設定語言代碼，默認設定為GB2312，如不需要可設置為"" 
         /// </summary> 
         public string Charset = "BIG5";
         /// <summary> 
-        /// 发件人地址 
+        /// 發件人地址 
         /// </summary> 
         public string From = "";
         /// <summary> 
-        /// 发件人姓名 
+        /// 發件人姓名 
         /// </summary> 
         public string FromName = "";
         /// <summary> 
-        /// 回复邮件地址 
+        /// 回復郵件地址 
         /// </summary> 
         public string ReplyTo = "";
         /// <summary> 
@@ -35,96 +35,96 @@ namespace DotNet.Utilities.Mail
         /// </summary> 
         private Hashtable Recipient = new Hashtable();
         /// <summary> 
-        /// 邮件服务器域名 
+        /// 郵件服務器域名 
         /// </summary>    
         private string _mailserver = "";
         /// <summary> 
-        /// 邮件服务器端口号 
+        /// 郵件服務器端口號 
         /// </summary>    
         private int _mailserverport = 25;
         /// <summary> 
-        /// SMTP认证时使用的用户名 
+        /// SMTP認證時使用的用戶名 
         /// </summary> 
         private string _username = "";
         /// <summary> 
-        /// SMTP认证时使用的密码 
+        /// SMTP認證時使用的密碼 
         /// </summary> 
         private string _password = "";
         /// <summary> 
-        /// 是否需要SMTP验证 
+        /// 是否需要SMTP驗證 
         /// </summary>       
         private bool _eSmtp = false;
         /// <summary> 
-        /// 是否Html邮件 
+        /// 是否Html郵件 
         /// </summary>       
         public bool Html = false;
         /// <summary> 
-        /// 邮件附件列表 
+        /// 郵件附件列表 
         /// </summary> 
         private System.Collections.ArrayList Attachments;
         /// <summary> 
-        /// 邮件发送优先级，可设置为"High","Normal","Low"或"1","3","5" 
+        /// 郵件發送優先級，可設置為"High","Normal","Low"或"1","3","5" 
         /// </summary> 
         private string _priority = "Normal";
         /// <summary> 
-        /// 邮件主题 
+        /// 郵件主題 
         /// </summary>       
         public string Subject = "";
         /// <summary> 
-        /// 邮件正文 
+        /// 郵件正文 
         /// </summary>       
         public string Body = "";
         /// <summary> 
-        /// 收件人数量 
+        /// 收件人數量 
         /// </summary> 
         private int _recipientNum = 0;
 
         /// <summary> 
-        /// 最多收件人数量 
+        /// 最多收件人數量 
         /// </summary> 
         private const int recipientmaxnum = 5;
 
         /*
         /// <summary> 
-        /// 密件收件人数量 
+        /// 密件收件人數量 
         /// </summary> 
         private int RecipientBCCNum=0; 
         */
 
         /// <summary> 
-        /// 错误消息反馈 
+        /// 錯誤消息反饋 
         /// </summary> 
         private string _errmsg;
 
         /// <summary> 
-        /// TcpClient对象，用于连接服务器 
+        /// TcpClient對象，用於連接服務器 
         /// </summary>    
         private TcpClient _tc;
 
         /// <summary> 
-        /// NetworkStream对象 
+        /// NetworkStream對像 
         /// </summary>    
         private NetworkStream _ns;
 
         /// <summary> 
-        /// SMTP错误代码哈希表 
+        /// SMTP錯誤代碼哈希表 
         /// </summary> 
         private Hashtable ErrCodeHT = new Hashtable();
 
         /// <summary> 
-        /// SMTP正确代码哈希表 
+        /// SMTP正確代碼哈希表 
         /// </summary> 
         private Hashtable RightCodeHT = new Hashtable();
 
         /// <summary> 
-        /// 构造函数
+        /// 構造函數
         /// </summary> 
         public SendMailHelper()
         {
             Attachments = new System.Collections.ArrayList();
         }
         /// <summary> 
-        /// 邮件服务器域名和验证信息 
+        /// 郵件服務器域名和驗證信息 
         /// 形如： "user:pass@www.server.com:25 "，也可省略次要信息。如 "user:pass@www.server.com "或 "www.server.com "
         /// </summary>    
         public string MailDomain
@@ -163,7 +163,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 邮件服务器端口号 
+        /// 郵件服務器端口號 
         /// </summary>    
         public int MailDomainPort
         {
@@ -174,7 +174,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// SMTP认证时使用的用户名 
+        /// SMTP認證時使用的用戶名 
         /// </summary> 
         public string MailServerUserName
         {
@@ -194,7 +194,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// SMTP认证时使用的密码 
+        /// SMTP認證時使用的密碼 
         /// </summary> 
         public string MailServerPassWord
         {
@@ -205,7 +205,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 邮件发送优先级，可设置为"High","Normal","Low"或"1","3","5" 
+        /// 郵件發送優先級，可設置為"High","Normal","Low"或"1","3","5" 
         /// </summary> 
         public string Priority
         {
@@ -246,7 +246,7 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 错误消息反馈 
+        /// 錯誤消息反饋 
         /// </summary>       
         public string ErrorMessage
         {
@@ -257,12 +257,12 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 服务器交互记录 
+        /// 服務器交互記錄 
         /// </summary> 
         private string _logs = "";
 
         /// <summary> 
-        /// 服务器交互记录，如发现本组件不能使用的SMTP服务器，请将出错时的Logs发给我（lion-a@sohu.com），我将尽快查明原因。 
+        /// 服務器交互記錄，如發現本組件不能使用的SMTP服務器，請將出錯時的Logs發給我（lion-a@sohu.com），我將盡快查明原因。 
         /// </summary> 
         public string Logs
         {
@@ -274,43 +274,43 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// SMTP回应代码哈希表 
+        /// SMTP回應代碼哈希表 
         /// </summary> 
         private void SMTPCodeAdd()
         {
-            ErrCodeHT.Add("500", "邮箱地址错误");
-            ErrCodeHT.Add("501", "参数格式错误");
-            ErrCodeHT.Add("502", "命令不可实现");
-            ErrCodeHT.Add("503", "服务器需要SMTP验证");
-            ErrCodeHT.Add("504", "命令参数不可实现");
-            ErrCodeHT.Add("421", "服务未就绪，关闭传输信道");
-            ErrCodeHT.Add("450", "要求的邮件操作未完成，邮箱不可用（例如，邮箱忙）");
-            ErrCodeHT.Add("550", "要求的邮件操作未完成，邮箱不可用（例如，邮箱未找到，或不可访问）");
-            ErrCodeHT.Add("451", "放弃要求的操作；处理过程中出错");
-            ErrCodeHT.Add("551", "用户非本地，请尝试<forward-path>");
-            ErrCodeHT.Add("452", "系统存储不足，要求的操作未执行");
-            ErrCodeHT.Add("552", "过量的存储分配，要求的操作未执行");
-            ErrCodeHT.Add("553", "邮箱名不可用，要求的操作未执行（例如邮箱格式错误）");
-            ErrCodeHT.Add("432", "需要一个密码转换");
-            ErrCodeHT.Add("534", "认证机制过于简单");
-            ErrCodeHT.Add("538", "当前请求的认证机制需要加密");
-            ErrCodeHT.Add("454", "临时认证失败");
-            ErrCodeHT.Add("530", "需要认证");
+            ErrCodeHT.Add("500", "郵箱地址錯誤");
+            ErrCodeHT.Add("501", "參數格式錯誤");
+            ErrCodeHT.Add("502", "命令不可實現");
+            ErrCodeHT.Add("503", "服務器需要SMTP驗證");
+            ErrCodeHT.Add("504", "命令參數不可實現");
+            ErrCodeHT.Add("421", "服務未就緒，關閉傳輸信道");
+            ErrCodeHT.Add("450", "要求的郵件操作未完成，郵箱不可用（例如，郵箱忙）");
+            ErrCodeHT.Add("550", "要求的郵件操作未完成，郵箱不可用（例如，郵箱未找到，或不可訪問）");
+            ErrCodeHT.Add("451", "放棄要求的操作；處理過程中出錯");
+            ErrCodeHT.Add("551", "用戶非本地，請嘗試<forward-path>");
+            ErrCodeHT.Add("452", "系統存儲不足，要求的操作未執行");
+            ErrCodeHT.Add("552", "過量的存儲分配，要求的操作未執行");
+            ErrCodeHT.Add("553", "郵箱名不可用，要求的操作未執行（例如郵箱格式錯誤）");
+            ErrCodeHT.Add("432", "需要一個密碼轉換");
+            ErrCodeHT.Add("534", "認證機制過於簡單");
+            ErrCodeHT.Add("538", "當前請求的認證機制需要加密");
+            ErrCodeHT.Add("454", "臨時認證失敗");
+            ErrCodeHT.Add("530", "需要認證");
 
-            RightCodeHT.Add("220", "服务就绪");
-            RightCodeHT.Add("250", "要求的邮件操作完成");
-            RightCodeHT.Add("251", "用户非本地，将转发向<forward-path>");
-            RightCodeHT.Add("354", "开始邮件输入，以<enter>.<enter>结束");
-            RightCodeHT.Add("221", "服务关闭传输信道");
-            RightCodeHT.Add("334", "服务器响应验证Base64字符串");
-            RightCodeHT.Add("235", "验证成功");
+            RightCodeHT.Add("220", "服務就緒");
+            RightCodeHT.Add("250", "要求的郵件操作完成");
+            RightCodeHT.Add("251", "用戶非本地，將轉發向<forward-path>");
+            RightCodeHT.Add("354", "開始郵件輸入，以<enter>.<enter>結束");
+            RightCodeHT.Add("221", "服務關閉傳輸信道");
+            RightCodeHT.Add("334", "服務器響應驗證Base64字符串");
+            RightCodeHT.Add("235", "驗證成功");
         }
 
 
         /// <summary> 
-        /// 将字符串编码为Base64字符串 
+        /// 將字符串編碼為Base64字符串 
         /// </summary> 
-        /// <param name="str">要编码的字符串</param> 
+        /// <param name="str">要編碼的字符串</param> 
         private string Base64Encode(string str)
         {
             byte[] barray = Encoding.Default.GetBytes(str);
@@ -319,9 +319,9 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 将Base64字符串解码为普通字符串 
+        /// 將Base64字符串解碼為普通字符串 
         /// </summary> 
-        /// <param name="str">要解码的字符串</param> 
+        /// <param name="str">要解碼的字符串</param> 
         private string Base64Decode(string str)
         {
             byte[] barray;
@@ -330,12 +330,12 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 得到上传附件的文件流 
+        /// 得到上傳附件的文件流 
         /// </summary> 
-        /// <param name="filePath">附件的绝对路径</param> 
+        /// <param name="filePath">附件的絕對路徑</param> 
         private string GetStream(string filePath)
         {
-            //建立文件流对象 
+            //建立文件流對像 
             var fileStr = new System.IO.FileStream(filePath, System.IO.FileMode.Open);
             byte[] by = new byte[System.Convert.ToInt32(fileStr.Length)];
             fileStr.Read(by, 0, by.Length);
@@ -345,16 +345,16 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 添加邮件附件 
+        /// 添加郵件附件 
         /// </summary> 
-        /// <param name="path">附件绝对路径</param> 
+        /// <param name="path">附件絕對路徑</param> 
         public void AddAttachment(string path)
         {
             Attachments.Add(path);
         }
 
         /// <summary> 
-        /// 添加一个收件人 
+        /// 添加一個收件人 
         /// </summary>    
         /// <param name="str">收件人地址</param> 
         public bool AddRecipient(string str)
@@ -370,14 +370,14 @@ namespace DotNet.Utilities.Mail
             }
             else
             {
-                _errmsg += "收件人过多";
+                _errmsg += "收件人過多";
                 return false;
             }
         }
 
 
         /// <summary> 
-        /// 最多收件人数量 
+        /// 最多收件人數量 
         /// </summary> 
         public int RecipientMaxNum
         {
@@ -388,9 +388,9 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary>
-        /// 添加一组收件人(不超过recipientmaxnum个),参数为字符串数组
+        /// 添加一組收件人(不超過recipientmaxnum個),參數為字符串數組
         /// </summary>
-        /// <param name="recipients">保存有收件人地址的字符串数组(不超过recipientmaxnum个)</param>	
+        /// <param name="recipients">保存有收件人地址的字符串數組(不超過recipientmaxnum個)</param>	
         public bool AddRecipient(params string[] recipients)
         {
             if (Recipient == null)
@@ -417,7 +417,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 发送SMTP命令 
+        /// 發送SMTP命令 
         /// </summary>    
         private bool SendCommand(string str)
         {
@@ -433,14 +433,14 @@ namespace DotNet.Utilities.Mail
             }
             catch
             {
-                _errmsg = "网络连接错误";
+                _errmsg = "網絡連接錯誤";
                 return false;
             }
             return true;
         }
 
         /// <summary> 
-        /// 接收SMTP服务器回应 
+        /// 接收SMTP服務器回應 
         /// </summary> 
         private string RecvResponse()
         {
@@ -453,7 +453,7 @@ namespace DotNet.Utilities.Mail
             }
             catch
             {
-                _errmsg = "网络连接错误";
+                _errmsg = "網絡連接錯誤";
                 return "false";
             }
 
@@ -471,10 +471,10 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 与服务器交互，发送一条命令并接收回应。 
+        /// 與服務器交互，發送一條命令並接收回應。 
         /// </summary> 
-        /// <param name="str">一个要发送的命令</param> 
-        /// <param name="errstr">如果错误，要反馈的信息</param> 
+        /// <param name="str">一個要發送的命令</param> 
+        /// <param name="errstr">如果錯誤，要反饋的信息</param> 
         private bool Dialog(string str, string errstr)
         {
             if (str == null || str.Trim() == "")
@@ -517,7 +517,7 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 与服务器交互，发送一组命令并接收回应。 
+        /// 與服務器交互，發送一組命令並接收回應。 
         /// </summary> 
         private bool Dialog(string[] str, string errstr)
         {
@@ -536,7 +536,7 @@ namespace DotNet.Utilities.Mail
 
         private bool SendEmail()
         {
-            //连接网络 
+            //連接網絡 
             try
             {
                 _tc = new TcpClient(_mailserver, _mailserverport);
@@ -550,10 +550,10 @@ namespace DotNet.Utilities.Mail
             _ns = _tc.GetStream();
             SMTPCodeAdd();
 
-            //验证网络连接是否正确 
+            //驗證網絡連接是否正確 
             if (RightCodeHT[RecvResponse().Substring(0, 3)] == null)
             {
-                _errmsg = "网络连接失败";
+                _errmsg = "網絡連接失敗";
                 return false;
             }
 
@@ -561,7 +561,7 @@ namespace DotNet.Utilities.Mail
             string[] sendBuffer;
             string sendBufferstr;
 
-            //进行SMTP验证 
+            //進行SMTP驗證 
             if (_eSmtp)
             {
                 sendBuffer = new String[4];
@@ -569,7 +569,7 @@ namespace DotNet.Utilities.Mail
                 sendBuffer[1] = "AUTH LOGIN" + Enter;
                 sendBuffer[2] = Base64Encode(_username) + Enter;
                 sendBuffer[3] = Base64Encode(_password) + Enter;
-                if (!Dialog(sendBuffer, "SMTP服务器验证失败，请核对用户名和密码。"))
+                if (!Dialog(sendBuffer, "SMTP服務器驗證失敗，請核對用戶名和密碼。"))
                     return false;
             }
             else
@@ -581,7 +581,7 @@ namespace DotNet.Utilities.Mail
 
             // 
             sendBufferstr = "MAIL FROM:<" + From + ">" + Enter;
-            if (!Dialog(sendBufferstr, "发件人地址错误，或不能为空"))
+            if (!Dialog(sendBufferstr, "發件人地址錯誤，或不能為空"))
                 return false;
 
             // 
@@ -591,7 +591,7 @@ namespace DotNet.Utilities.Mail
                 sendBuffer[i] = "RCPT TO:<" + Recipient[i].ToString() + ">" + Enter;
             }
 
-            if (!Dialog(sendBuffer, "收件人地址有误"))
+            if (!Dialog(sendBuffer, "收件人地址有誤"))
                 return false;
 
             sendBufferstr = "DATA" + Enter;
@@ -601,7 +601,7 @@ namespace DotNet.Utilities.Mail
             sendBufferstr = "From:" + FromName + "<" + From + ">" + Enter;
             sendBufferstr += "To:=?" + Charset.ToUpper() + "?B?" + Base64Encode(RecipientName) + "?=" + "<" + Recipient[0] + ">" + Enter;
 
-            //抄送代码
+            //抄送代碼
             /*
             SendBufferstr+="CC:"; 
             for(int i=0;i<Recipient.Count;i++) 
@@ -633,7 +633,7 @@ namespace DotNet.Utilities.Mail
             {
                 if (Attachments.Count == 0)
                 {
-                    sendBufferstr += "Content-Type: multipart/alternative;" + Enter;//内容格式和分隔符
+                    sendBufferstr += "Content-Type: multipart/alternative;" + Enter;//內容格式和分隔符
                     sendBufferstr += "	boundary=\"=====003_Dragon520636771063_=====\"" + Enter + Enter;
 
                     sendBufferstr += "This is a multi-part message in MIME format." + Enter + Enter;
@@ -642,14 +642,14 @@ namespace DotNet.Utilities.Mail
                 {
                     sendBufferstr += "This is a multi-part message in MIME format." + Enter + Enter;
                     sendBufferstr += "--=====001_Dragon520636771063_=====" + Enter;
-                    sendBufferstr += "Content-Type: multipart/alternative;" + Enter;//内容格式和分隔符
+                    sendBufferstr += "Content-Type: multipart/alternative;" + Enter;//內容格式和分隔符
                     sendBufferstr += "	boundary=\"=====003_Dragon520636771063_=====\"" + Enter + Enter;
                 }
                 sendBufferstr += "--=====003_Dragon520636771063_=====" + Enter;
                 sendBufferstr += "Content-Type: text/plain;" + Enter;
                 sendBufferstr += ((Charset == "") ? ("	charset=\"iso-8859-1\"") : ("	charset=\"" + Charset.ToLower() + "\"")) + Enter;
                 sendBufferstr += "Content-Transfer-Encoding: base64" + Enter + Enter;
-                sendBufferstr += Base64Encode("邮件内容为HTML格式,请选择HTML方式查看") + Enter + Enter;
+                sendBufferstr += Base64Encode("郵件內容為HTML格式,請選擇HTML方式查看") + Enter + Enter;
 
                 sendBufferstr += "--=====003_Dragon520636771063_=====" + Enter;
 
@@ -694,12 +694,12 @@ namespace DotNet.Utilities.Mail
 
             sendBufferstr += Enter + "." + Enter;
 
-            if (!Dialog(sendBufferstr, "错误信件信息"))
+            if (!Dialog(sendBufferstr, "錯誤信件信息"))
                 return false;
 
 
             sendBufferstr = "QUIT" + Enter;
-            if (!Dialog(sendBufferstr, "断开连接时错误"))
+            if (!Dialog(sendBufferstr, "斷開連接時錯誤"))
                 return false;
 
 
@@ -710,25 +710,25 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 发送邮件方法，所有参数均通过属性设置。 
+        /// 發送郵件方法，所有參數均通過屬性設置。 
         /// </summary> 
         public bool Send()
         {
             if (Recipient.Count == 0)
             {
-                _errmsg = "收件人列表不能为空";
+                _errmsg = "收件人列表不能為空";
                 return false;
             }
 
             if (_mailserver.Trim() == "")
             {
-                _errmsg = "必须指定SMTP服务器";
+                _errmsg = "必須指定SMTP服務器";
                 return false;
             }
 
             if (Body.Trim() == "")
             {
-                _errmsg = "必须指定Body";
+                _errmsg = "必須指定Body";
                 return false;
             }
 
@@ -737,9 +737,9 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 发送邮件方法 
+        /// 發送郵件方法 
         /// </summary> 
-        /// <param name="smtpserver">smtp服务器信息，如"username:passwordwww.smtpserver.com:25"，也可去掉部分次要信息，如www.smtpserver.com"</param> 
+        /// <param name="smtpserver">smtp服務器信息，如"username:passwordwww.smtpserver.com:25"，也可去掉部分次要信息，如www.smtpserver.com"</param> 
         public bool Send(string smtpserver)
         {
             MailDomain = smtpserver;
@@ -748,16 +748,16 @@ namespace DotNet.Utilities.Mail
 
 
         /// <summary> 
-        /// 发送邮件方法 
+        /// 發送郵件方法 
         /// </summary> 
-        /// <param name="smtpserver">smtp服务器信息，如 "username:password@www.smtpserver.com:25 "，也可去掉部分次要信息，如 "www.smtpserver.com "</param> 
-        /// <param name="from">发件人mail地址</param> 
-        /// <param name="fromname">发件人姓名</param> 
+        /// <param name="smtpserver">smtp服務器信息，如 "username:password@www.smtpserver.com:25 "，也可去掉部分次要信息，如 "www.smtpserver.com "</param> 
+        /// <param name="from">發件人mail地址</param> 
+        /// <param name="fromname">發件人姓名</param> 
         /// <param name="to">收件人地址</param> 
         /// <param name="toname">收件人姓名</param> 
-        /// <param name="html">是否HTML邮件</param> 
-        /// <param name="subject">邮件主题</param> 
-        /// <param name="body">邮件正文</param> 
+        /// <param name="html">是否HTML郵件</param> 
+        /// <param name="subject">郵件主題</param> 
+        /// <param name="body">郵件正文</param> 
         public bool Send(string smtpserver, string from, string fromname, string to, string toname, bool html, string subject, string body)
         {
             MailDomain = smtpserver;
@@ -772,7 +772,7 @@ namespace DotNet.Utilities.Mail
         }
 
         /// <summary> 
-        /// 释放TcpClient同NetworkStream对象
+        /// 釋放TcpClient同NetworkStream對像
         /// </summary> 
         public void Dispose()
         {

@@ -1,20 +1,20 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 客户端脚本输出
+    /// 客戶端腳本輸出
     /// </summary>
     public class JsHelper
     {
         /// <summary>
-        /// 弹出信息,并跳转指定页面。
+        /// 彈出信息,並跳轉指定頁面。
         /// </summary>
         public static void AlertAndRedirect(string message, string toURL)
         {
@@ -24,7 +24,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 弹出信息,并返回历史页面
+        /// 彈出信息,並返回歷史頁面
         /// </summary>
         public static void AlertAndGoHistory(string message, int value)
         {
@@ -34,7 +34,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 直接跳转到指定的页面
+        /// 直接跳轉到指定的頁面
         /// </summary>
         public static void Redirect(string toUrl)
         {
@@ -43,7 +43,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 弹出信息 并指定到父窗口
+        /// 彈出信息 並指定到父窗口
         /// </summary>
         public static void AlertAndParentUrl(string message, string toURL)
         {
@@ -61,7 +61,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 返回历史页面
+        /// 返回歷史頁面
         /// </summary>
         public static void BackHistory(int value)
         {
@@ -71,7 +71,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 弹出信息
+        /// 彈出信息
         /// </summary>
         public static void Alert(string message)
         {
@@ -80,7 +80,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 注册脚本块
+        /// 註冊腳本塊
         /// </summary>
         public static void RegisterScriptBlock(System.Web.UI.Page page, string _ScriptString)
         {

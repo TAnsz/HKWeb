@@ -26,7 +26,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.70583cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -68,7 +68,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>工號</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>微软雅黑</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -98,7 +100,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>姓名</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>微软雅黑</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -128,7 +132,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>飯類</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>微软雅黑</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -158,7 +164,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>餐飲</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>微软雅黑</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -187,8 +195,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>備注</Value>
-                              <Style />
+                              <Value>備註</Value>
+                              <Style>
+                                <FontFamily>微软雅黑</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -427,14 +437,14 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="详细信息" />
+              <Group Name="詳細信息" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>2.64266cm</Top>
         <Left>0.52599cm</Left>
-        <Height>1.09417cm</Height>
+        <Height>1.2cm</Height>
         <Width>18.98354cm</Width>
         <Style>
           <Border>
@@ -539,8 +549,7 @@
                             <TextRun>
                               <Value>=Count(Fields!FoodCode.Value)</Value>
                               <Style>
-                                <FontFamily>微软雅黑</FontFamily>
-                                <FontSize>8pt</FontSize>
+                                <FontFamily>微軟雅黑</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -632,6 +641,7 @@
                           <TextRun>
                             <Value>=Fields!FoodCode.Value</Value>
                             <Style>
+                              <FontFamily>微软雅黑</FontFamily>
                               <FontSize>8pt</FontSize>
                             </Style>
                           </TextRun>
@@ -665,7 +675,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>飯類总计：</Value>
+                            <Value>飯類總計：</Value>
                             <Style>
                               <FontFamily>微软雅黑</FontFamily>
                             </Style>
@@ -698,7 +708,7 @@
             <FilterExpression>=Fields!FoodCode.Value</FilterExpression>
             <Operator>GreaterThan</Operator>
             <FilterValues>
-              <FilterValue>“”</FilterValue>
+              <FilterValue>「」</FilterValue>
             </FilterValues>
           </Filter>
         </Filters>
@@ -728,7 +738,7 @@
                           <TextRun>
                             <Value>餐飲</Value>
                             <Style>
-                              <FontFamily>微软雅黑</FontFamily>
+                              <FontFamily>微軟雅黑</FontFamily>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -810,7 +820,7 @@
                             <TextRun>
                               <Value>=Count(Fields!DrinkCode.Value)</Value>
                               <Style>
-                                <FontFamily>微软雅黑</FontFamily>
+                                <FontFamily>微軟雅黑</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -901,7 +911,10 @@
                         <TextRuns>
                           <TextRun>
                             <Value>=Fields!DrinkCode.Value</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>微软雅黑</FontFamily>
+                              <FontSize>8pt</FontSize>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -933,7 +946,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>餐飲总计：</Value>
+                            <Value>餐飲總計：</Value>
                             <Style>
                               <FontFamily>微软雅黑</FontFamily>
                             </Style>
@@ -966,7 +979,7 @@
             <FilterExpression>=Fields!DrinkCode.Value</FilterExpression>
             <Operator>GreaterThan</Operator>
             <FilterValues>
-              <FilterValue>“”</FilterValue>
+              <FilterValue>「」</FilterValue>
             </FilterValues>
           </Filter>
         </Filters>
@@ -1003,7 +1016,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>锦兴国际控股有限公司</Value>
+                  <Value>錦興國際控股有限公司</Value>
                   <Style>
                     <FontFamily>微软雅黑</FontFamily>
                     <FontSize>14pt</FontSize>

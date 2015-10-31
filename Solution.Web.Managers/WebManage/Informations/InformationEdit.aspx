@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeBehind="InformationEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Informations.InformationEdit" %>
+<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeBehind="InformationEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Informations.InformationEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>信息编辑</title>
+    <title>信息編輯</title>
     <link rel="stylesheet" type="text/css" href="../Css/main.css" />
     <script type="text/javascript" src="../Js/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="../Js/tools.js"></script>
@@ -20,14 +20,14 @@
             if (key) {
                 $('#FCKeditor1').val($('#txtText-inputEl').val());
                 $('#FCKeditor1___UpFileList').val($('#txtUpload-inputEl').val());
-                //下一行执行的Js函数CreateKindEditor('FCKeditor1', x, key)中，其中x代表的是上传配置表（UploadConfig）中对应的记录Id
+                //下一行執行的Js函數CreateKindEditor('FCKeditor1', x, key)中，其中x代表的是上傳配置表（UploadConfig）中對應的記錄Id
                 oFCKeditor1 = CreateKindEditor('FCKeditor1', 4, key);
             } else {
                 setTimeout(function () { New_Editor() }, 3000);
             }
         }
 
-        //编辑器提交必须调用
+        //編輯器提交必須調用
         function Keditor_GetHtml() {
             var html = oFCKeditor1.html();
             $('#txtText-inputEl').val(html);
@@ -37,7 +37,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <!--编辑器提交必须调用的控件-->
+    <!--編輯器提交必須調用的控件-->
     <f:TextBox runat="server" ID="txtText" Text="" Hidden="true" />
     <f:TextBox runat="server" ID="txtUpload" Text="" Hidden="true" />
     <f:TextBox runat="server" ID="txtRndKey" Text="" Hidden="true" />
@@ -51,8 +51,8 @@
                 <Items>
                     <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click" OnClientClick="Keditor_GetHtml();">
                     </f:Button>
-                    <f:Button ID="ButtonDeleteImage" runat="server" Text="删除图片" Icon="Delete" OnClick="ButtonDeleteImage_Click"
-                        ConfirmTitle="删除提示" ConfirmText="是否删除图片？" />
+                    <f:Button ID="ButtonDeleteImage" runat="server" Text="刪除圖片" Icon="Delete" OnClick="ButtonDeleteImage_Click"
+                        ConfirmTitle="刪除提示" ConfirmText="是否刪除圖片？" />
                 </Items>
             </f:Toolbar>
         </Toolbars>
@@ -64,34 +64,34 @@
                         <Rows>
                             <f:FormRow ID="FormRow1" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" ID="txtTitle" Label="文章标题" Width="300px" Text=""
+                                    <f:TextBox runat="server" ID="txtTitle" Label="文章標題" Width="300px" Text=""
                                         ShowRedStar="true" Required="true" MaxLength="100" />
-                                    <f:DropDownList Label="所属栏目" AutoPostBack="true" ShowRedStar="true" Required="true"
+                                    <f:DropDownList Label="所屬欄目" AutoPostBack="true" ShowRedStar="true" Required="true"
                                         CompareType="String" EnableSimulateTree="true" runat="server" ID="ddlInformationClass_Id"
                                         OnSelectedIndexChanged="ddlInformationClassId_SelectedIndexChanged" Width="300px" />
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow2" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" ID="txtKeywords" Label="关键字" Width="300px" Text="" MaxLength="50" />
-                                    <f:DatePicker ID="dpNewsTime" Label="发布时间" Width="300px" Required="true" runat="server" />
+                                    <f:TextBox runat="server" ID="txtKeywords" Label="關鍵字" Width="300px" Text="" MaxLength="50" />
+                                    <f:DatePicker ID="dpNewsTime" Label="發佈時間" Width="300px" Required="true" runat="server" />
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow11" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsDisplay" Label="是否审核" ColumnNumber="2" runat="server" Width="300px">
-                                        <f:RadioItem Text="显示" Value="1" Selected="true" />
-                                        <f:RadioItem Text="不显示" Value="0" />
+                                    <f:RadioButtonList ID="rblIsDisplay" Label="是否審核" ColumnNumber="2" runat="server" Width="300px">
+                                        <f:RadioItem Text="顯示" Value="1" Selected="true" />
+                                        <f:RadioItem Text="不顯示" Value="0" />
                                     </f:RadioButtonList>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow3" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsTop" Label="是否置顶" ColumnNumber="2" runat="server" Width="300px">
+                                    <f:RadioButtonList ID="rblIsTop" Label="是否置頂" ColumnNumber="2" runat="server" Width="300px">
                                         <f:RadioItem Text="是" Value="1" />
                                         <f:RadioItem Text="否" Value="0" Selected="true" />
                                     </f:RadioButtonList>
-                                    <f:RadioButtonList ID="rblIsHot" Label="是否推荐" ColumnNumber="2" runat="server" Width="300px">
+                                    <f:RadioButtonList ID="rblIsHot" Label="是否推薦" ColumnNumber="2" runat="server" Width="300px">
                                         <f:RadioItem Text="是" Value="1" Selected="true" />
                                         <f:RadioItem Text="否" Value="0" />
                                     </f:RadioButtonList>
@@ -99,7 +99,7 @@
                             </f:FormRow>
                             <f:FormRow ID="FormRow10" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" ID="txtRedirectUrl" Label="重定向页面" Width="716px" Text=""
+                                    <f:TextBox runat="server" ID="txtRedirectUrl" Label="重定向頁面" Width="716px" Text=""
                                         MaxLength="50" />
                                 </Items>
                             </f:FormRow>
@@ -115,18 +115,18 @@
                             </f:FormRow>
                             <f:FormRow ID="FormRow5" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" ID="txtSeoTitle" Label="Seo标题" Width="300px" Text="" MaxLength="100" />
-                                    <f:TextBox runat="server" ID="txtSeoKey" Label="SEO关键字" Width="300px" Text="" MaxLength="100" />
+                                    <f:TextBox runat="server" ID="txtSeoTitle" Label="Seo標題" Width="300px" Text="" MaxLength="100" />
+                                    <f:TextBox runat="server" ID="txtSeoKey" Label="SEO關鍵字" Width="300px" Text="" MaxLength="100" />
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow6" runat="server">
                                 <Items>
-                                    <f:TextArea runat="server" ID="txtSeoDesc" Label="SEO说明" Width="716px" Height="50px" Text="" MaxLength="200" />
+                                    <f:TextArea runat="server" ID="txtSeoDesc" Label="SEO說明" Width="716px" Height="50px" Text="" MaxLength="200" />
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow7" runat="server">
                                 <Items>
-                                    <f:TextArea runat="server" ID="txtNotes" Label="内容简介" Width="716px" Text=""
+                                    <f:TextArea runat="server" ID="txtNotes" Label="內容簡介" Width="716px" Text=""
                                         MaxLength="200" Height="50px" />
                                 </Items>
                             </f:FormRow>
@@ -134,7 +134,7 @@
                                 <Items>
                                     <f:TextBox runat="server" ID="txtAuthor" Label="文章作者" Width="300px" Text=""
                                         MaxLength="50" />
-                                    <f:TextBox runat="server" ID="txtFromName" Label="文章出处" Width="300px" Text=""
+                                    <f:TextBox runat="server" ID="txtFromName" Label="文章出處" Width="300px" Text=""
                                         MaxLength="50" />
                                 </Items>
                             </f:FormRow>

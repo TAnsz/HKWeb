@@ -55,33 +55,42 @@
     <Compile Include="Api\ResourcesApi.cs" />
     <Compile Include="Api\Win32Private.cs" />
     <Compile Include="Api\Win32Public.cs" />
+    <Compile Include="baiduApi\BaiduMapHelper.cs" />
     <Compile Include="Chart\Assistant.cs" />
     <Compile Include="Control\BindDataControl.cs" />
     <Compile Include="Chart\OWCChart11.cs" />
     <Compile Include="Convert\ConvertHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\CacheHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\CookieHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\RequestHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\SessionHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\SessionHelper2.cs" />
+    <Compile Include="Cookie_Session_Cache\CacheHelper.cs" />
+    <Compile Include="Cookie_Session_Cache\CookieHelper.cs" />
+    <Compile Include="Cookie_Session_Cache\DataCache.cs" />
+    <Compile Include="Cookie_Session_Cache\RequestHelper.cs" />
+    <Compile Include="Cookie_Session_Cache\SessionHelper.cs" />
+    <Compile Include="Cookie_Session_Cache\SessionHelper2.cs" />
     <Compile Include="CSV\CsvHelper.cs" />
     <Compile Include="DataTable\DataTableHelper.cs" />
     <Compile Include="DEncrypt\MySecurity.cs" />
-    <Compile Include="Internet&amp;Url\AdslHelper.cs" />
-    <Compile Include="Json\JsonHelper.cs" />
+    <Compile Include="Encoding\FileEncoding.cs" />
+    <Compile Include="Internet_Url\AdslHelper.cs" />
+    <Compile Include="Internet_Url\IpHelper.cs" />
+    <Compile Include="Internet_Url\NetHelper.cs" />
+    <Compile Include="Internet_Url\UrlOper.cs" />
+    <Compile Include="Json\ConvertJson.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Json\JsonHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Json\SerializerJsonHelper.cs" />
     <Compile Include="Log\LogHelper.cs" />
     <Compile Include="Mail\SendMailHelper.cs" />
     <Compile Include="Page\ClientHelper.cs" />
     <Compile Include="Uploader\Uploader.cs" />
-    <Compile Include="Validate&amp;Tool\FormulaExpress.cs" />
     <Compile Include="FTP\FTPClient.cs" />
     <Compile Include="FTP\FTPHelper.cs" />
     <Compile Include="FTP\FTPOperater.cs" />
     <Compile Include="GridView\GridViewHelper.cs" />
     <Compile Include="HttpHelper\HttpCookieHelper.cs" />
     <Compile Include="HttpHelper\HttpHelper.cs" />
-    <Compile Include="Internet&amp;Url\IpHelper.cs" />
-    <Compile Include="Json\ConvertJson.cs" />
     <Compile Include="JS\JsHelper.cs" />
     <Compile Include="Sound\MediaHandler.cs" />
     <Compile Include="Mime\MediaTypes.cs" />
@@ -93,12 +102,14 @@
     <Compile Include="String\QueryString.cs" />
     <Compile Include="Sqlhelper\SqlHelper.cs" />
     <Compile Include="System\SysHelper.cs" />
-    <Compile Include="Validate&amp;Tool\Tools.cs" />
-    <Compile Include="Validate&amp;Tool\ValidateImg.cs">
+    <Compile Include="Page\WebSitePathHelper.cs" />
+    <Compile Include="Validate_Tool\FormulaExpress.cs" />
+    <Compile Include="Validate_Tool\PageValidate.cs" />
+    <Compile Include="Validate_Tool\Tools.cs" />
+    <Compile Include="Validate_Tool\ValidateImg.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\WebSitePathHelper.cs" />
-    <Compile Include="Validate&amp;Tool\VerificationCode.cs" />
+    <Compile Include="Validate_Tool\VerificationCode.cs" />
     <Compile Include="XML\XmlHelper.cs" />
     <Compile Include="XML\XMLProcess.cs" />
     <Compile Include="Download_Up\FileDown.cs" />
@@ -124,7 +135,6 @@
     <Compile Include="Regex\RegexHelper.cs" />
     <Compile Include="PinYin\EcanConvertToCh.cs" />
     <Compile Include="PinYin\PinYin.cs" />
-    <Compile Include="Internet&amp;Url\NetHelper.cs" />
     <Compile Include="Video\VideoConvert.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -173,7 +183,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Config\ConfigHelper.cs" />
-    <Compile Include="Cookie&amp;Session&amp;Cache\DataCache.cs" />
     <Compile Include="Excel\DataToExcel.cs" />
     <Compile Include="DEncrypt\DEncrypt.cs" />
     <Compile Include="DEncrypt\DESEncrypt.cs" />
@@ -191,10 +200,8 @@
     <Compile Include="Excel\GridViewExport.cs" />
     <Compile Include="JsAlert\MessageBox.cs" />
     <Compile Include="JsAlert\ShowMessage.cs" />
-    <Compile Include="Validate&amp;Tool\PageValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Convert\StringPlus.cs" />
-    <Compile Include="Internet&amp;Url\UrlOper.cs" />
     <Compile Include="Page\Utility.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -239,8 +246,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup />

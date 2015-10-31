@@ -1,6 +1,6 @@
 /// <summary>
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Security.Cryptography;
@@ -8,34 +8,34 @@ using System.Text;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// Encrypt 的摘要说明。
+    /// Encrypt 篕璶弧
     /// </summary>
     public class DEncrypt
     {
         /// <summary>
-        /// 构造方法
+        /// 篶硑よ猭
         /// </summary>
         public DEncrypt()
         {
 
         }
 
-        #region 使用 缺省密钥字符串 加密/解密string
+        #region ㄏノ 盞芲才﹃ 盞/秆盞string
 
         /// <summary>
-        /// 使用缺省密钥字符串加密string
+        /// ㄏノ盞芲才﹃盞string
         /// </summary>
-        /// <param name="original">明文</param>
-        /// <returns>密文</returns>
+        /// <param name="original">ゅ</param>
+        /// <returns>盞ゅ</returns>
         public static string Encrypt(string original)
         {
             return Encrypt(original, "MATICSOFT");
         }
         /// <summary>
-        /// 使用缺省密钥字符串解密string
+        /// ㄏノ盞芲才﹃秆盞string
         /// </summary>
-        /// <param name="original">密文</param>
-        /// <returns>明文</returns>
+        /// <param name="original">盞ゅ</param>
+        /// <returns>ゅ</returns>
         public static string Decrypt(string original)
         {
             return Decrypt(original, "MATICSOFT", System.Text.Encoding.Default);
@@ -43,14 +43,14 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 使用 给定密钥字符串 加密/解密string
+        #region ㄏノ 倒﹚盞芲才﹃ 盞/秆盞string
         /// <summary>
-        /// 使用给定密钥字符串加密string
+        /// ㄏノ倒﹚盞芲才﹃盞string
         /// </summary>
-        /// <param name="original">原始文字</param>
-        /// <param name="key">密钥</param>
-        /// <param name="encoding">字符编码方案</param>
-        /// <returns>密文</returns>
+        /// <param name="original">﹍ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <param name="encoding">才絪絏よ</param>
+        /// <returns>盞ゅ</returns>
         public static string Encrypt(string original, string key)
         {
             byte[] buff = System.Text.Encoding.Default.GetBytes(original);
@@ -58,23 +58,23 @@ namespace DotNet.Utilities
             return Convert.ToBase64String(Encrypt(buff, kb));
         }
         /// <summary>
-        /// 使用给定密钥字符串解密string
+        /// ㄏノ倒﹚盞芲才﹃秆盞string
         /// </summary>
-        /// <param name="original">密文</param>
-        /// <param name="key">密钥</param>
-        /// <returns>明文</returns>
+        /// <param name="original">盞ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <returns>ゅ</returns>
         public static string Decrypt(string original, string key)
         {
             return Decrypt(original, key, System.Text.Encoding.Default);
         }
 
         /// <summary>
-        /// 使用给定密钥字符串解密string,返回指定编码方式明文
+        /// ㄏノ倒﹚盞芲才﹃秆盞string,﹚絪絏よΑゅ
         /// </summary>
-        /// <param name="encrypted">密文</param>
-        /// <param name="key">密钥</param>
-        /// <param name="encoding">字符编码方案</param>
-        /// <returns>明文</returns>
+        /// <param name="encrypted">盞ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <param name="encoding">才絪絏よ</param>
+        /// <returns>ゅ</returns>
         public static string Decrypt(string encrypted, string key, Encoding encoding)
         {
             byte[] buff = Convert.FromBase64String(encrypted);
@@ -83,24 +83,24 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 使用 缺省密钥字符串 加密/解密/byte[]
+        #region ㄏノ 盞芲才﹃ 盞/秆盞/byte[]
         /// <summary>
-        /// 使用缺省密钥字符串解密byte[]
+        /// ㄏノ盞芲才﹃秆盞byte[]
         /// </summary>
-        /// <param name="encrypted">密文</param>
-        /// <param name="key">密钥</param>
-        /// <returns>明文</returns>
+        /// <param name="encrypted">盞ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <returns>ゅ</returns>
         public static byte[] Decrypt(byte[] encrypted)
         {
             byte[] key = System.Text.Encoding.Default.GetBytes("MATICSOFT");
             return Decrypt(encrypted, key);
         }
         /// <summary>
-        /// 使用缺省密钥字符串加密
+        /// ㄏノ盞芲才﹃盞
         /// </summary>
-        /// <param name="original">原始数据</param>
-        /// <param name="key">密钥</param>
-        /// <returns>密文</returns>
+        /// <param name="original">﹍计沮</param>
+        /// <param name="key">盞芲</param>
+        /// <returns>盞ゅ</returns>
         public static byte[] Encrypt(byte[] original)
         {
             byte[] key = System.Text.Encoding.Default.GetBytes("MATICSOFT");
@@ -108,13 +108,13 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region  使用 给定密钥 加密/解密/byte[]
+        #region  ㄏノ 倒﹚盞芲 盞/秆盞/byte[]
 
         /// <summary>
-        /// 生成MD5摘要
+        /// ネΘMD5篕璶
         /// </summary>
-        /// <param name="original">数据源</param>
-        /// <returns>摘要</returns>
+        /// <param name="original">计沮方</param>
+        /// <returns>篕璶</returns>
         public static byte[] MakeMD5(byte[] original)
         {
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
@@ -124,11 +124,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 使用给定密钥加密
+        /// ㄏノ倒﹚盞芲盞
         /// </summary>
-        /// <param name="original">明文</param>
-        /// <param name="key">密钥</param>
-        /// <returns>密文</returns>
+        /// <param name="original">ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <returns>盞ゅ</returns>
         public static byte[] Encrypt(byte[] original, byte[] key)
         {
             TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();
@@ -139,11 +139,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 使用给定密钥解密数据
+        /// ㄏノ倒﹚盞芲秆盞计沮
         /// </summary>
-        /// <param name="encrypted">密文</param>
-        /// <param name="key">密钥</param>
-        /// <returns>明文</returns>
+        /// <param name="encrypted">盞ゅ</param>
+        /// <param name="key">盞芲</param>
+        /// <returns>ゅ</returns>
         public static byte[] Decrypt(byte[] encrypted, byte[] key)
         {
             TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();

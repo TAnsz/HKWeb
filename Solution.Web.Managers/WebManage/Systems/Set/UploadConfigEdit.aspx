@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadConfigEdit.aspx.cs"
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadConfigEdit.aspx.cs"
     Inherits="Solution.Web.Managers.WebManage.Systems.Set.UploadConfigEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>上传类型编辑</title>
+    <title>上傳類型編輯</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -28,33 +28,33 @@
                         <Rows>
                             <f:FormRow ID="FormRow1" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="名称" ID="txtName" ShowRedStar="true" Width="300px">
+                                    <f:TextBox runat="server" Label="名稱" ID="txtName" ShowRedStar="true" Width="300px">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="关联表名" ID="txtJoinName" ShowRedStar="true" Width="300px">
+                                    <f:TextBox runat="server" Label="關聯表名" ID="txtJoinName" ShowRedStar="true" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow2" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblUserType" Label="用户类别" ColumnNumber="2" runat="server" Required="true">
-                                        <f:RadioItem Text="管理员上传" Value="1" Selected="true" />
-                                        <f:RadioItem Text="会员上传" Value="2" />
+                                    <f:RadioButtonList ID="rblUserType" Label="用戶類別" ColumnNumber="2" runat="server" Required="true">
+                                        <f:RadioItem Text="管理員上傳" Value="1" Selected="true" />
+                                        <f:RadioItem Text="會員上傳" Value="2" />
                                     </f:RadioButtonList>
-                                    <f:DropDownList Label="上传类型" Required="true" CompareType="String" runat="server" ID="ddlUploadTypeId" Width="300px" ShowRedStar="True">
+                                    <f:DropDownList Label="上傳類型" Required="true" CompareType="String" runat="server" ID="ddlUploadTypeId" Width="300px" ShowRedStar="True">
                                     </f:DropDownList>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow3" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="图片上传限制" ID="txtPicSize" ShowRedStar="true" Width="300px" EmptyText="单位为KB">
+                                    <f:TextBox runat="server" Label="圖片上傳限制" ID="txtPicSize" ShowRedStar="true" Width="300px" EmptyText="單位為KB">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="附件上传限制" ID="txtFileSize" ShowRedStar="true" Width="300px" EmptyText="单位为KB">
+                                    <f:TextBox runat="server" Label="附件上傳限制" ID="txtFileSize" ShowRedStar="true" Width="300px" EmptyText="單位為KB">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow4" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="存储路径" ID="txtSaveDir" ShowRedStar="true" Width="300px">
+                                    <f:TextBox runat="server" Label="存儲路徑" ID="txtSaveDir" ShowRedStar="true" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
@@ -65,23 +65,23 @@
                             </f:FormRow>
                             <f:FormRow ID="FormRow9" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsPost" Label="是否启用" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="rblIsPost" Label="是否啟用" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="禁用" Value="0" />
-                                        <f:RadioItem Text="启用" Value="1" Selected="true" />
+                                        <f:RadioItem Text="啟用" Value="1" Selected="true" />
                                     </f:RadioButtonList>
-                                    <f:RadioButtonList ID="rblIsEditor" Label="类型" ColumnNumber="2" runat="server" Required="true">
-                                        <f:RadioItem Text="控件上传" Value="0" />
-                                        <f:RadioItem Text="编辑器上传" Value="1" Selected="true" />
+                                    <f:RadioButtonList ID="rblIsEditor" Label="類型" ColumnNumber="2" runat="server" Required="true">
+                                        <f:RadioItem Text="控件上傳" Value="0" />
+                                        <f:RadioItem Text="編輯器上傳" Value="1" Selected="true" />
                                     </f:RadioButtonList>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow5" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsSwf" Label="上传方式" ColumnNumber="2" runat="server" Required="true">
-                                        <f:RadioItem Text="Web上传" Value="0" Selected="true" />
-                                        <f:RadioItem Text="Flash上传" Value="1" />
+                                    <f:RadioButtonList ID="rblIsSwf" Label="上傳方式" ColumnNumber="2" runat="server" Required="true">
+                                        <f:RadioItem Text="Web上傳" Value="0" Selected="true" />
+                                        <f:RadioItem Text="Flash上傳" Value="1" />
                                     </f:RadioButtonList>
-                                    <f:RadioButtonList ID="brlIsChkSrcPost" Label="是否检查入口" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="brlIsChkSrcPost" Label="是否檢查入口" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="否" Value="0" />
                                         <f:RadioItem Text="是" Value="1" Selected="true" />
                                     </f:RadioButtonList>
@@ -94,25 +94,25 @@
                                         <f:RadioItem Text="是" Value="1" Selected="true" />
                                     </f:RadioButtonList>
                                      <f:DropDownList Label="生成方式" CompareType="String" runat="server" ID="ddlCutType" Width="300px">
-                                         <f:ListItem Text="按比例生成宽高" Value="0" Selected="true" />
-                                         <f:ListItem Text="固定图片宽高" Value="1" />
-                                         <f:ListItem Text="固定背景宽高，图片按比例生成" Value="2" />
+                                         <f:ListItem Text="按比例生成寬高" Value="0" Selected="true" />
+                                         <f:ListItem Text="固定圖片寬高" Value="1" />
+                                         <f:ListItem Text="固定背景寬高，圖片按比例生成" Value="2" />
                                     </f:DropDownList>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow7" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="最大宽度" ID="txtPicWidth" Width="300px" EmptyText="超过本设置将按比例进行缩放">
+                                    <f:TextBox runat="server" Label="最大寬度" ID="txtPicWidth" Width="300px" EmptyText="超過本設置將按比例進行縮放">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="最大高度" ID="txtPicHeight" Width="300px" EmptyText="超过本设置将按比例进行缩放">
+                                    <f:TextBox runat="server" Label="最大高度" ID="txtPicHeight" Width="300px" EmptyText="超過本設置將按比例進行縮放">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow8" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="图片质量" ID="txtPicQuality" Width="300px">
+                                    <f:TextBox runat="server" Label="圖片質量" ID="txtPicQuality" Width="300px">
                                     </f:TextBox>
-                                    <f:Label runat="server" Label="说明" Text="图片质量，0=使用默认值，>0指定质量值（指定值的情况下，范围：50-100）"></f:Label>
+                                    <f:Label runat="server" Label="說明" Text="圖片質量，0=使用默認值，>0指定質量值（指定值的情況下，範圍：50-100）"></f:Label>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow20" runat="server">
@@ -122,73 +122,73 @@
                             </f:FormRow>
                             <f:FormRow ID="FormRow10" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsBigPic" Label="是否创建大图" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="rblIsBigPic" Label="是否創建大圖" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="否" Value="0" />
                                         <f:RadioItem Text="是" Value="1" Selected="true" />
                                     </f:RadioButtonList>
-                                    <f:TextBox runat="server" Label="大图宽度" ID="txtBigWidth" Width="300px">
+                                    <f:TextBox runat="server" Label="大圖寬度" ID="txtBigWidth" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow11" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="大图高度" ID="txtBigHeight" Width="300px">
+                                    <f:TextBox runat="server" Label="大圖高度" ID="txtBigHeight" Width="300px">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="大图压缩质量" ID="txtBigQuality" Width="300px">
+                                    <f:TextBox runat="server" Label="大圖壓縮質量" ID="txtBigQuality" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow12" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsMidPic" Label="是否创建中图" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="rblIsMidPic" Label="是否創建中圖" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="否" Value="0" Selected="true" />
                                         <f:RadioItem Text="是" Value="1" />
                                     </f:RadioButtonList>
-                                    <f:TextBox runat="server" Label="中图宽度" ID="txtMidWidth" Width="300px">
+                                    <f:TextBox runat="server" Label="中圖寬度" ID="txtMidWidth" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow13" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="中图高度" ID="txtMidHeight" Width="300px">
+                                    <f:TextBox runat="server" Label="中圖高度" ID="txtMidHeight" Width="300px">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="中图压缩质量" ID="txtMidQuality" Width="300px">
+                                    <f:TextBox runat="server" Label="中圖壓縮質量" ID="txtMidQuality" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow14" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsMinPic" Label="是否创建小图" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="rblIsMinPic" Label="是否創建小圖" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="否" Value="0" Selected="true" />
                                         <f:RadioItem Text="是" Value="1" />
                                     </f:RadioButtonList>
-                                    <f:TextBox runat="server" Label="小图宽度" ID="txtMinWidth" Width="300px">
+                                    <f:TextBox runat="server" Label="小圖寬度" ID="txtMinWidth" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow15" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="小图高度" ID="txtMinHeight" Width="300px">
+                                    <f:TextBox runat="server" Label="小圖高度" ID="txtMinHeight" Width="300px">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="小图压缩质量" ID="txtMinQuality" Width="300px">
+                                    <f:TextBox runat="server" Label="小圖壓縮質量" ID="txtMinQuality" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow16" runat="server">
                                 <Items>
-                                    <f:RadioButtonList ID="rblIsHotPic" Label="是否创建推荐图" ColumnNumber="2" runat="server" Required="true">
+                                    <f:RadioButtonList ID="rblIsHotPic" Label="是否創建推薦圖" ColumnNumber="2" runat="server" Required="true">
                                         <f:RadioItem Text="否" Value="0" Selected="true" />
                                         <f:RadioItem Text="是" Value="1" />
                                     </f:RadioButtonList>
-                                    <f:TextBox runat="server" Label="推荐图宽度" ID="txtHotWidth" Width="300px">
+                                    <f:TextBox runat="server" Label="推薦圖寬度" ID="txtHotWidth" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ID="FormRow17" runat="server">
                                 <Items>
-                                    <f:TextBox runat="server" Label="推荐图高度" ID="txtHotHeight" Width="300px">
+                                    <f:TextBox runat="server" Label="推薦圖高度" ID="txtHotHeight" Width="300px">
                                     </f:TextBox>
-                                    <f:TextBox runat="server" Label="推荐图压缩质量" ID="txtHotQuality" Width="300px">
+                                    <f:TextBox runat="server" Label="推薦圖壓縮質量" ID="txtHotQuality" Width="300px">
                                     </f:TextBox>
                                 </Items>
                             </f:FormRow>
@@ -198,7 +198,7 @@
                                         <f:RadioItem Text="否" Value="0" Selected="true" />
                                         <f:RadioItem Text="是" Value="1" />
                                     </f:RadioButtonList>
-                                    <f:Label ID="Label2" runat="server" Label="说明" Text="水印图片路径在配置文件里设置"></f:Label>
+                                    <f:Label ID="Label2" runat="server" Label="說明" Text="水印圖片路徑在配置文件裡設置"></f:Label>
                                 </Items>
                             </f:FormRow>
                         </Rows>

@@ -1,9 +1,9 @@
-﻿/// <summary>
-/// 类说明：ADSL重新连接、拨号
-/// 编码日期：2013-04-10
-/// 编 码 人：Eagle
-/// 联系方式：838010363  
-/// 更新网址：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：ADSL重新連接、撥號
+/// 編碼日期：2013-04-10
+/// 編 碼 人：Eagle
+/// 聯繫方式：838010363  
+/// 更新網址：http://www.sufeinet.com/thread-655-1-1.html
 /// 修改日期：2013-04-11
 /// </summary>
 using System;
@@ -27,19 +27,19 @@ namespace DotNet.Utilities
         public const int MAX_PATH = 260;
         public Timer NotifyTimer;
         private const int PWLEN = 0x100;
-        private const string Ras_Authenticate = "正在验证用户名与密码.";
-        public const string Ras_Connected = "成功连接到";
-        public const string Ras_Connecting = "正在连接";
-        private const string Ras_DialUping = "正在拨...";
-        public const string Ras_Disconnected = "连接中断.";
+        private const string Ras_Authenticate = "正在驗證用戶名與密碼.";
+        public const string Ras_Connected = "成功連接到";
+        public const string Ras_Connecting = "正在連接";
+        private const string Ras_DialUping = "正在撥...";
+        public const string Ras_Disconnected = "連接中斷.";
         private const string Ras_Dot = "...";
         private const int RAS_MaxCallbackNumber = 0x80;
         private const int RAS_MaxDeviceName = 0x80;
         private const int RAS_MaxDeviceType = 0x10;
         public const int RAS_MaxEntryName = 0x100;
         private const int RAS_MaxPhoneNumber = 0x80;
-        private const string Ras_OpenPort = "正在打开端口...";
-        private const string Ras_PortOpend = "端口已经打开.";
+        private const string Ras_OpenPort = "正在打開端口...";
+        private const string Ras_PortOpend = "端口已經打開.";
         private RASCONN[] Rasconn;
         private const int RASCS_DONE = 0x2000;
         private const int RASCS_PAUSED = 0x1000;
@@ -53,7 +53,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ConnectionDelegate">连接通知委托</param>
+        /// <param name="ConnectionDelegate">連接通知委託</param>
         /// <param name="interval"></param>
         public Ras(ConnectionNotify ConnectionDelegate, double interval)
         {
@@ -67,11 +67,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 创建条目
+        /// 創建條目
         /// </summary>
         /// <param name="hWnd">柄</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool CreateEntry(int hWnd, out string strError)
         {
             int nErrorValue = RasCreatePhonebookEntry(hWnd, null);
@@ -85,11 +85,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 删除条目
+        /// 刪除條目
         /// </summary>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool DeleteEntry(string strEntryName, out string strError)
         {
             int nErrorValue = RasDeleteEntry(null, strEntryName);
@@ -103,11 +103,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 拨号
+        /// 撥號
         /// </summary>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool DialUp(string strEntryName, out string strError)
         {
             bool lpfPassword = false;
@@ -121,7 +121,7 @@ namespace DotNet.Utilities
                 strError = this.GetErrorString(nErrorValue);
                 return false;
             }
-            this.ConnectNotify("正在连接" + structure.szEntryName + "...", 1);
+            this.ConnectNotify("正在連接" + structure.szEntryName + "...", 1);
             this.EntryName = strEntryName;
             this.hrasconn = 0;
             nErrorValue = RasDial(0, null, ref structure, 0, lpvNotifier, ref this.hrasconn);
@@ -131,18 +131,18 @@ namespace DotNet.Utilities
                 this.ConnectNotify(strError, 3);
                 return false;
             }
-            this.ConnectNotify("正在打开端口...", 1);
+            this.ConnectNotify("正在打開端口...", 1);
             strError = null;
             return true;
         }
 
         /// <summary>
-        /// 编辑条目
+        /// 編輯條目
         /// </summary>
         /// <param name="hWnd">柄</param>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool EditEntry(int hWnd, string strEntryName, out string strError)
         {
             int nErrorValue = RasEditPhonebookEntry(hWnd, null, strEntryName);
@@ -155,11 +155,11 @@ namespace DotNet.Utilities
             return false;
         }
         /// <summary>
-        /// 获取默认条目
+        /// 獲取默認條目
         /// </summary>
-        /// <param name="strEntry">条目</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntry">條目</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool GetDefaultEntry(out string strEntry, out string strError)
         {
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE/Microsoft/RAS AutoDial/Default");
@@ -174,16 +174,16 @@ namespace DotNet.Utilities
                 }
             }
             strEntry = null;
-            strError = "注册表访问失败.";
+            strError = "註冊表訪問失敗.";
             return false;
         }
 
         /// <summary>
-        /// 得到条目
+        /// 得到條目
         /// </summary>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool GetEntries(out string[] strEntryName, out string strError)
         {
             RASENTRYNAME[] lprasentryname = new RASENTRYNAME[1];
@@ -223,15 +223,15 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获得入口参数
+        /// 獲得入口參數
         /// </summary>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strPhoneNumber">电话号码</param>
-        /// <param name="strUserName">用户名</param>
-        /// <param name="strPassword">密码</param>
-        /// <param name="bRememberPassword">记住密码</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strPhoneNumber">電話號碼</param>
+        /// <param name="strUserName">用戶名</param>
+        /// <param name="strPassword">密碼</param>
+        /// <param name="bRememberPassword">記住密碼</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool GetEntryParams(string strEntryName, out string strPhoneNumber, out string strUserName, out string strPassword, out bool bRememberPassword, out string strError)
         {
             bool lpfPassword = false;
@@ -265,7 +265,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获得错误
+        /// 獲得錯誤
         /// </summary>
         /// <param name="nErrorValue"></param>
         /// <returns></returns>
@@ -288,10 +288,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 挂断
+        /// 掛斷
         /// </summary>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool HangUp(out string strError)
         {
             this.bConnected = false;
@@ -319,7 +319,7 @@ namespace DotNet.Utilities
                 }
             }
             strError = null;
-            this.ConnectNotify("连接中断.", 0);
+            this.ConnectNotify("連接中斷.", 0);
             return true;
         }
 
@@ -330,7 +330,7 @@ namespace DotNet.Utilities
         [DllImport("rasapi32.dll", CharSet = CharSet.Auto)]
         private static extern int RasDial(int lpRasDialExtensions, string lpszPhonebook, ref RASDIALPARAMS lpRasDialParams, int dwNotifierType, RasDialEvent lpvNotifier, ref int lphRasConn);
         /// <summary>
-        /// 拨
+        /// 撥
         /// </summary>
         /// <param name="unMsg"></param>
         /// <param name="rasconnstate"></param>
@@ -346,7 +346,7 @@ namespace DotNet.Utilities
                     int nErrorValue = RasHangUp(this.hrasconn);
                     if (nErrorValue == 0)
                     {
-                        this.ConnectNotify("连接中断.", 0);
+                        this.ConnectNotify("連接中斷.", 0);
                     }
                     else
                     {
@@ -358,20 +358,20 @@ namespace DotNet.Utilities
             {
                 if (rasconnstate == RASCONNSTATE.RASCS_PortOpened)
                 {
-                    this.ConnectNotify("端口已经打开.", 1);
+                    this.ConnectNotify("端口已經打開.", 1);
                 }
                 if (rasconnstate == RASCONNSTATE.RASCS_ConnectDevice)
                 {
-                    this.ConnectNotify("正在拨...", 1);
+                    this.ConnectNotify("正在撥...", 1);
                 }
                 if (rasconnstate == RASCONNSTATE.RASCS_Authenticate)
                 {
-                    this.ConnectNotify("正在验证用户名与密码.", 1);
+                    this.ConnectNotify("正在驗證用戶名與密碼.", 1);
                 }
                 if (rasconnstate == RASCONNSTATE.RASCS_Connected)
                 {
                     this.bConnected = true;
-                    this.ConnectNotify("成功连接到" + this.EntryName + '.', 2);
+                    this.ConnectNotify("成功連接到" + this.EntryName + '.', 2);
                 }
             }
         }
@@ -395,12 +395,12 @@ namespace DotNet.Utilities
         [DllImport("rasapi32.dll", CharSet = CharSet.Auto)]
         private static extern int RasSetEntryDialParams(string lpszPhonebook, ref RASDIALPARAMS lprasdialparams, bool fRemovePassword);
         /// <summary>
-        /// 重命名输入
+        /// 重命名輸入
         /// </summary>
-        /// <param name="strOldEntry">旧的条目</param>
-        /// <param name="strNewEntry">新的条目</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strOldEntry">舊的條目</param>
+        /// <param name="strNewEntry">新的條目</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool RenameEntry(string strOldEntry, string strNewEntry, out string strError)
         {
             int nErrorValue = RasRenameEntry(null, strOldEntry, strNewEntry);
@@ -414,7 +414,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置默认条目
+        /// 設置默認條目
         /// </summary>
         /// <param name="strEntry"></param>
         public void SetDefaultEntry(string strEntry)
@@ -431,15 +431,15 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 设置输入参数个数
+        /// 設置輸入參數個數
         /// </summary>
-        /// <param name="strEntryName">条目名称</param>
-        /// <param name="strPhoneNumber">电话号码</param>
-        /// <param name="strUserName">用户名</param>
-        /// <param name="strPassword">密码</param>
-        /// <param name="bRememberPassword">记住密码</param>
-        /// <param name="strError">错误</param>
-        /// <returns>结果</returns>
+        /// <param name="strEntryName">條目名稱</param>
+        /// <param name="strPhoneNumber">電話號碼</param>
+        /// <param name="strUserName">用戶名</param>
+        /// <param name="strPassword">密碼</param>
+        /// <param name="bRememberPassword">記住密碼</param>
+        /// <param name="strError">錯誤</param>
+        /// <returns>結果</returns>
         public bool SetEntryParams(string strEntryName, string strPhoneNumber, string strUserName, string strPassword, bool bRememberPassword, out string strError)
         {
             RASDIALPARAMS structure = new RASDIALPARAMS();
@@ -459,7 +459,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 计时器事件
+        /// 計時器事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -492,7 +492,7 @@ namespace DotNet.Utilities
             else if ((lpcConnections < 1) && this.bConnected)
             {
                 this.bConnected = false;
-                this.ConnectNotify("连接中断.", 0);
+                this.ConnectNotify("連接中斷.", 0);
             }
             else
             {
@@ -507,19 +507,19 @@ namespace DotNet.Utilities
                     if ((structure.rasconnstate == RASCONNSTATE.RASCS_Connected) && !this.bConnected)
                     {
                         this.bConnected = true;
-                        this.ConnectNotify("成功连接到" + this.Rasconn[i].szEntryName + '.', 2);
+                        this.ConnectNotify("成功連接到" + this.Rasconn[i].szEntryName + '.', 2);
                     }
                     if ((structure.rasconnstate == RASCONNSTATE.RASCS_Disconnected) && this.bConnected)
                     {
                         this.bConnected = false;
-                        this.ConnectNotify("连接中断.", 0);
+                        this.ConnectNotify("連接中斷.", 0);
                     }
                 }
             }
         }
 
         /// <summary>
-        /// 嵌套类型
+        /// 嵌套類型
         /// </summary>
         /// <param name="strNotify"></param>
         /// <param name="bConnect"></param>
@@ -582,11 +582,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 拨事件
+        /// 撥事件
         /// </summary>
-        /// <param name="unMsg">显示</param>
+        /// <param name="unMsg">顯示</param>
         /// <param name="rasconnstate"></param>
-        /// <param name="dwError">错误</param>
+        /// <param name="dwError">錯誤</param>
         private delegate void RasDialEvent(uint unMsg, Ras.RASCONNSTATE rasconnstate, int dwError);
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]

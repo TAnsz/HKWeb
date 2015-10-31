@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
@@ -7,12 +7,12 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 邮件操作类
+    /// 郵件操作類
     /// </summary>
     public class MailHelper
     {
         /// <summary>
-        /// 获取Email登陆地址
+        /// 獲取Email登陸地址
         /// </summary>
         /// <param name="email">email地址</param>
         /// <returns></returns>
@@ -27,13 +27,13 @@ namespace DotNet.Utilities
             return email;
         }
         /// <summary>
-        /// 发送邮件
+        /// 發送郵件
         /// </summary>
-        /// <param name="mailSubjct">邮件主题</param>
-        /// <param name="mailBody">邮件正文</param>
-        /// <param name="mailFrom">发送者</param>
-        /// <param name="mailAddress">邮件地址列表</param>
-        /// <param name="HostIP">主机IP</param>
+        /// <param name="mailSubjct">郵件主題</param>
+        /// <param name="mailBody">郵件正文</param>
+        /// <param name="mailFrom">發送者</param>
+        /// <param name="mailAddress">郵件地址列表</param>
+        /// <param name="HostIP">主機IP</param>
         /// <returns></returns>
         public static string sendMail(string mailSubjct, string mailBody, string mailFrom, List<string> mailAddress, string HostIP)
         {
@@ -60,15 +60,15 @@ namespace DotNet.Utilities
             return str;
         }
         /// <summary>
-        /// 发送邮件（要求登陆）
+        /// 發送郵件（要求登陸）
         /// </summary>
-        /// <param name="mailSubjct">邮件主题</param>
-        /// <param name="mailBody">邮件正文</param>
-        /// <param name="mailFrom">发送者</param>
+        /// <param name="mailSubjct">郵件主題</param>
+        /// <param name="mailBody">郵件正文</param>
+        /// <param name="mailFrom">發送者</param>
         /// <param name="mailAddress">接收地址列表</param>
-        /// <param name="HostIP">主机IP</param>
-        /// <param name="username">用户名</param>
-        /// <param name="password">密码</param>
+        /// <param name="HostIP">主機IP</param>
+        /// <param name="username">用戶名</param>
+        /// <param name="password">密碼</param>
         /// <returns></returns>
         public static bool sendMail(string mailSubjct, string mailBody, string mailFrom, List<string> mailAddress, string HostIP, string username, string password)
         {
@@ -77,17 +77,17 @@ namespace DotNet.Utilities
             return flag;
         }
         /// <summary>
-        /// 发送邮件
+        /// 發送郵件
         /// </summary>
-        /// <param name="mailSubjct">邮件主题</param>
-        /// <param name="mailBody">邮件正文</param>
-        /// <param name="mailFrom">发送者</param>
+        /// <param name="mailSubjct">郵件主題</param>
+        /// <param name="mailBody">郵件正文</param>
+        /// <param name="mailFrom">發送者</param>
         /// <param name="mailAddress">接收地址列表</param>
-        /// <param name="HostIP">主机IP</param>
+        /// <param name="HostIP">主機IP</param>
         /// <param name="filename">附件名</param>
-        /// <param name="username">用户名</param>
-        /// <param name="password">密码</param>
-        /// <param name="ssl">加密类型</param>
+        /// <param name="username">用戶名</param>
+        /// <param name="password">密碼</param>
+        /// <param name="ssl">加密類型</param>
         /// <returns></returns>
         public static string sendMail(string mailSubjct, string mailBody, string mailFrom, List<string> mailAddress, string HostIP, string filename, string username, string password, bool ssl)
         {
@@ -129,7 +129,7 @@ namespace DotNet.Utilities
             return str;
         }
         /// <summary>
-        /// 发送邮件
+        /// 發送郵件
         /// </summary>
         /// <param name="mailSubjct"></param>
         /// <param name="mailBody"></param>

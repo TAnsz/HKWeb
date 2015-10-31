@@ -1,7 +1,7 @@
-﻿/// <summary>
-/// 类说明：CacheHelper
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：CacheHelper
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;  
 using System.Collections.Generic;  
@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// FTP帮助类
+    /// FTP幫助類
     /// </summary>
     public class FTPHelper
     {
@@ -26,12 +26,12 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>  
-        /// 连接FTP服务器
+        /// 連接FTP服務器
         /// </summary>  
-        /// <param name="FtpServerIP">FTP连接地址</param>  
-        /// <param name="FtpRemotePath">指定FTP连接成功后的当前目录, 如果不指定即默认为根目录</param>  
-        /// <param name="FtpUserID">用户名</param>  
-        /// <param name="FtpPassword">密码</param>  
+        /// <param name="FtpServerIP">FTP連接地址</param>  
+        /// <param name="FtpRemotePath">指定FTP連接成功後的當前目錄, 如果不指定即默認為根目錄</param>  
+        /// <param name="FtpUserID">用戶名</param>  
+        /// <param name="FtpPassword">密碼</param>  
         public FTPHelper(string FtpServerIP, string FtpRemotePath, string FtpUserID, string FtpPassword)
         {
             ftpServerIP = FtpServerIP;
@@ -42,7 +42,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 上传  
+        /// 上傳  
         /// </summary>   
         public void Upload(string filename)
         {
@@ -77,7 +77,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 下载  
+        /// 下載  
         /// </summary>   
         public void Download(string filePath, string fileName)
         {
@@ -112,7 +112,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 删除文件  
+        /// 刪除文件  
         /// </summary>  
         public void Delete(string fileName)
         {
@@ -140,7 +140,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 获取当前目录下明细(包含文件和文件夹)  
+        /// 獲取當前目錄下明細(包含文件和文件夾)  
         /// </summary>  
         public string[] GetFilesDetailList()
         {
@@ -174,7 +174,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 获取FTP文件列表(包括文件夹)
+        /// 獲取FTP文件列表(包括文件夾)
         /// </summary>   
         private string[] GetAllList(string url)
         {
@@ -206,7 +206,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 获取当前目录下文件列表(不包括文件夹)  
+        /// 獲取當前目錄下文件列表(不包括文件夾)  
         /// </summary>  
         public string[] GetFileList(string url)
         {
@@ -243,9 +243,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 判断当前目录下指定的文件是否存在  
+        /// 判斷當前目錄下指定的文件是否存在  
         /// </summary>  
-        /// <param name="RemoteFileName">远程文件名</param>  
+        /// <param name="RemoteFileName">遠程文件名</param>  
         public bool FileExist(string RemoteFileName)
         {
             string[] fileList = GetFileList("*.*");
@@ -260,7 +260,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 创建文件夹  
+        /// 創建文件夾  
         /// </summary>   
         public void MakeDir(string dirName)
         {
@@ -281,7 +281,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 获取指定文件大小  
+        /// 獲取指定文件大小  
         /// </summary>  
         public long GetFileSize(string filename)
         {
@@ -327,7 +327,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 移动文件  
+        /// 移動文件  
         /// </summary>  
         public void MovieFile(string currentFilename, string newDirectory)
         {
@@ -335,9 +335,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>  
-        /// 切换当前目录  
+        /// 切換當前目錄  
         /// </summary>  
-        /// <param name="IsRoot">true:绝对路径 false:相对路径</param>   
+        /// <param name="IsRoot">true:絕對路徑 false:相對路徑</param>   
         public void GotoDirectory(string DirectoryName, bool IsRoot)
         {
             if (IsRoot)

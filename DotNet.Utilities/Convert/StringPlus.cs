@@ -1,8 +1,8 @@
 /// <summary>
-/// ÀàËµÃ÷£ºAssistant
-/// ±à Âë ÈË£ºËÕ·É
-/// ÁªÏµ·½Ê½£º361983679  
-/// ¸üĞÂÍøÕ¾£ºhttp://www.sufeinet.com/thread-655-1-1.html
+/// é¡èªªæ˜ï¼šAssistant
+/// ç·¨ ç¢¼ äººï¼šè˜‡é£›
+/// è¯ç¹«æ–¹å¼ï¼š361983679  
+/// æ›´æ–°ç¶²ç«™ï¼šhttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Collections.Generic;
@@ -12,30 +12,30 @@ using System.Text.RegularExpressions;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// ×Ö·û´®²Ù×÷Àà
-    /// 1¡¢GetStrArray(string str, char speater, bool toLower)  °Ñ×Ö·û´®°´ÕÕ·Ö¸ô·û×ª»»³É List
-    /// 2¡¢GetStrArray(string str) °Ñ×Ö·û´®×ª °´ÕÕ, ·Ö¸î »»ÎªÊı¾İ
-    /// 3¡¢GetArrayStr(List list, string speater) °Ñ List °´ÕÕ·Ö¸ô·û×é×°³É string
-    /// 4¡¢GetArrayStr(List list)  µÃµ½Êı×éÁĞ±íÒÔ¶ººÅ·Ö¸ôµÄ×Ö·û´®
-    /// 5¡¢GetArrayValueStr(Dictionary<int, int> list)µÃµ½Êı×éÁĞ±íÒÔ¶ººÅ·Ö¸ôµÄ×Ö·û´®
-    /// 6¡¢DelLastComma(string str)É¾³ı×îºó½áÎ²µÄÒ»¸ö¶ººÅ
-    /// 7¡¢DelLastChar(string str, string strchar)É¾³ı×îºó½áÎ²µÄÖ¸¶¨×Ö·ûºóµÄ×Ö·û
-    /// 8¡¢ToSBC(string input)×ªÈ«½ÇµÄº¯Êı(SBC case)
-    /// 9¡¢ToDBC(string input)×ª°ë½ÇµÄº¯Êı(SBC case)
-    /// 10¡¢GetSubStringList(string o_str, char sepeater)°Ñ×Ö·û´®°´ÕÕÖ¸¶¨·Ö¸ô·û×°³É List È¥³ıÖØ¸´
-    /// 11¡¢GetCleanStyle(string StrList, string SplitString)½«×Ö·û´®ÑùÊ½×ª»»Îª´¿×Ö·û´®
-    /// 12¡¢GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)½«×Ö·û´®×ª»»ÎªĞÂÑùÊ½
-    /// 13¡¢SplitMulti(string str, string splitstr)·Ö¸î×Ö·û´®
-    /// 14¡¢SqlSafeString(string String, bool IsDel)
+    /// å­—ç¬¦ä¸²æ“ä½œé¡
+    /// 1ã€GetStrArray(string str, char speater, bool toLower)  æŠŠå­—ç¬¦ä¸²æŒ‰ç…§åˆ†éš”ç¬¦è½‰æ›æˆ List
+    /// 2ã€GetStrArray(string str) æŠŠå­—ç¬¦ä¸²è½‰ æŒ‰ç…§, åˆ†å‰² æ›ç‚ºæ•¸æ“š
+    /// 3ã€GetArrayStr(List list, string speater) æŠŠ List æŒ‰ç…§åˆ†éš”ç¬¦çµ„è£æˆ string
+    /// 4ã€GetArrayStr(List list)  å¾—åˆ°æ•¸çµ„åˆ—è¡¨ä»¥é€—è™Ÿåˆ†éš”çš„å­—ç¬¦ä¸²
+    /// 5ã€GetArrayValueStr(Dictionary<int, int> list)å¾—åˆ°æ•¸çµ„åˆ—è¡¨ä»¥é€—è™Ÿåˆ†éš”çš„å­—ç¬¦ä¸²
+    /// 6ã€DelLastComma(string str)åˆªé™¤æœ€å¾Œçµå°¾çš„ä¸€å€‹é€—è™Ÿ
+    /// 7ã€DelLastChar(string str, string strchar)åˆªé™¤æœ€å¾Œçµå°¾çš„æŒ‡å®šå­—ç¬¦å¾Œçš„å­—ç¬¦
+    /// 8ã€ToSBC(string input)è½‰å…¨è§’çš„å‡½æ•¸(SBC case)
+    /// 9ã€ToDBC(string input)è½‰åŠè§’çš„å‡½æ•¸(SBC case)
+    /// 10ã€GetSubStringList(string o_str, char sepeater)æŠŠå­—ç¬¦ä¸²æŒ‰ç…§æŒ‡å®šåˆ†éš”ç¬¦è£æˆ List å»é™¤é‡è¤‡
+    /// 11ã€GetCleanStyle(string StrList, string SplitString)å°‡å­—ç¬¦ä¸²æ¨£å¼è½‰æ›ç‚ºç´”å­—ç¬¦ä¸²
+    /// 12ã€GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)å°‡å­—ç¬¦ä¸²è½‰æ›ç‚ºæ–°æ¨£å¼
+    /// 13ã€SplitMulti(string str, string splitstr)åˆ†å‰²å­—ç¬¦ä¸²
+    /// 14ã€SqlSafeString(string String, bool IsDel)
     /// </summary>
     public class StringPlus
     {
         /// <summary>
-        /// °Ñ×Ö·û´®°´ÕÕ·Ö¸ô·û×ª»»³É List
+        /// æŠŠå­—ç¬¦ä¸²æŒ‰ç…§åˆ†éš”ç¬¦è½‰æ›æˆ List
         /// </summary>
-        /// <param name="str">Ô´×Ö·û´®</param>
-        /// <param name="speater">·Ö¸ô·û</param>
-        /// <param name="toLower">ÊÇ·ñ×ª»»ÎªĞ¡Ğ´</param>
+        /// <param name="str">æºå­—ç¬¦ä¸²</param>
+        /// <param name="speater">åˆ†éš”ç¬¦</param>
+        /// <param name="toLower">æ˜¯å¦è½‰æ›ç‚ºå°å¯«</param>
         /// <returns></returns>
         public static List<string> GetStrArray(string str, char speater, bool toLower)
         {
@@ -56,7 +56,7 @@ namespace DotNet.Utilities
             return list;
         }
         /// <summary>
-        /// °Ñ×Ö·û´®×ª °´ÕÕ, ·Ö¸î »»ÎªÊı¾İ
+        /// æŠŠå­—ç¬¦ä¸²è½‰ æŒ‰ç…§, åˆ†å‰² æ›ç‚ºæ•¸æ“š
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace DotNet.Utilities
             return str.Split(new Char[] { ',' });
         }
         /// <summary>
-        /// °Ñ List<string> °´ÕÕ·Ö¸ô·û×é×°³É string
+        /// æŠŠ List<string> æŒ‰ç…§åˆ†éš”ç¬¦çµ„è£æˆ string
         /// </summary>
         /// <param name="list"></param>
         /// <param name="speater"></param>
@@ -88,7 +88,7 @@ namespace DotNet.Utilities
             return sb.ToString();
         }
         /// <summary>
-        /// µÃµ½Êı×éÁĞ±íÒÔ¶ººÅ·Ö¸ôµÄ×Ö·û´®
+        /// å¾—åˆ°æ•¸çµ„åˆ—è¡¨ä»¥é€—è™Ÿåˆ†éš”çš„å­—ç¬¦ä¸²
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace DotNet.Utilities
             return sb.ToString();
         }
         /// <summary>
-        /// µÃµ½Êı×éÁĞ±íÒÔ¶ººÅ·Ö¸ôµÄ×Ö·û´®
+        /// å¾—åˆ°æ•¸çµ„åˆ—è¡¨ä»¥é€—è™Ÿåˆ†éš”çš„å­—ç¬¦ä¸²
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -132,10 +132,10 @@ namespace DotNet.Utilities
         }
 
 
-        #region É¾³ı×îºóÒ»¸ö×Ö·ûÖ®ºóµÄ×Ö·û
+        #region åˆªé™¤æœ€å¾Œä¸€å€‹å­—ç¬¦ä¹‹å¾Œçš„å­—ç¬¦
 
         /// <summary>
-        /// É¾³ı×îºó½áÎ²µÄÒ»¸ö¶ººÅ
+        /// åˆªé™¤æœ€å¾Œçµå°¾çš„ä¸€å€‹é€—è™Ÿ
         /// </summary>
         public static string DelLastComma(string str)
         {
@@ -143,7 +143,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// É¾³ı×îºó½áÎ²µÄÖ¸¶¨×Ö·ûºóµÄ×Ö·û
+        /// åˆªé™¤æœ€å¾Œçµå°¾çš„æŒ‡å®šå­—ç¬¦å¾Œçš„å­—ç¬¦
         /// </summary>
         public static string DelLastChar(string str, string strchar)
         {
@@ -156,13 +156,13 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// ×ªÈ«½ÇµÄº¯Êı(SBC case)
+        /// è½‰å…¨è§’çš„å‡½æ•¸(SBC case)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public static string ToSBC(string input)
         {
-            //°ë½Ç×ªÈ«½Ç£º
+            //åŠè§’è½‰å…¨è§’ï¼š
             char[] c = input.ToCharArray();
             for (int i = 0; i < c.Length; i++)
             {
@@ -178,9 +178,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        ///  ×ª°ë½ÇµÄº¯Êı(SBC case)
+        ///  è½‰åŠè§’çš„å‡½æ•¸(SBC case)
         /// </summary>
-        /// <param name="input">ÊäÈë</param>
+        /// <param name="input">è¼¸å…¥</param>
         /// <returns></returns>
         public static string ToDBC(string input)
         {
@@ -199,7 +199,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// °Ñ×Ö·û´®°´ÕÕÖ¸¶¨·Ö¸ô·û×°³É List È¥³ıÖØ¸´
+        /// æŠŠå­—ç¬¦ä¸²æŒ‰ç…§æŒ‡å®šåˆ†éš”ç¬¦è£æˆ List å»é™¤é‡è¤‡
         /// </summary>
         /// <param name="o_str"></param>
         /// <param name="sepeater"></param>
@@ -219,9 +219,9 @@ namespace DotNet.Utilities
         }
 
 
-        #region ½«×Ö·û´®ÑùÊ½×ª»»Îª´¿×Ö·û´®
+        #region å°‡å­—ç¬¦ä¸²æ¨£å¼è½‰æ›ç‚ºç´”å­—ç¬¦ä¸²
         /// <summary>
-        ///  ½«×Ö·û´®ÑùÊ½×ª»»Îª´¿×Ö·û´®
+        ///  å°‡å­—ç¬¦ä¸²æ¨£å¼è½‰æ›ç‚ºç´”å­—ç¬¦ä¸²
         /// </summary>
         /// <param name="StrList"></param>
         /// <param name="SplitString"></param>
@@ -229,14 +229,14 @@ namespace DotNet.Utilities
         public static string GetCleanStyle(string StrList, string SplitString)
         {
             string RetrunValue = "";
-            //Èç¹ûÎª¿Õ£¬·µ»Ø¿ÕÖµ
+            //å¦‚æœç‚ºç©ºï¼Œè¿”å›ç©ºå€¼
             if (StrList == null)
             {
                 RetrunValue = "";
             }
             else
             {
-                //·µ»ØÈ¥µô·Ö¸ô·û
+                //è¿”å›å»æ‰åˆ†éš”ç¬¦
                 string NewString = "";
                 NewString = StrList.Replace(SplitString, "");
                 RetrunValue = NewString;
@@ -245,9 +245,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region ½«×Ö·û´®×ª»»ÎªĞÂÑùÊ½
+        #region å°‡å­—ç¬¦ä¸²è½‰æ›ç‚ºæ–°æ¨£å¼
         /// <summary>
-        /// ½«×Ö·û´®×ª»»ÎªĞÂÑùÊ½
+        /// å°‡å­—ç¬¦ä¸²è½‰æ›ç‚ºæ–°æ¨£å¼
         /// </summary>
         /// <param name="StrList"></param>
         /// <param name="NewStyle"></param>
@@ -257,25 +257,25 @@ namespace DotNet.Utilities
         public static string GetNewStyle(string StrList, string NewStyle, string SplitString, out string Error)
         {
             string ReturnValue = "";
-            //Èç¹ûÊäÈë¿ÕÖµ£¬·µ»Ø¿Õ£¬²¢¸ø³ö´íÎóÌáÊ¾
+            //å¦‚æœè¼¸å…¥ç©ºå€¼ï¼Œè¿”å›ç©ºï¼Œä¸¦çµ¦å‡ºéŒ¯èª¤æç¤º
             if (StrList == null)
             {
                 ReturnValue = "";
-                Error = "ÇëÊäÈëĞèÒª»®·Ö¸ñÊ½µÄ×Ö·û´®";
+                Error = "è«‹è¼¸å…¥éœ€è¦åŠƒåˆ†æ ¼å¼çš„å­—ç¬¦ä¸²";
             }
             else
             {
-                //¼ì²é´«ÈëµÄ×Ö·û´®³¤¶ÈºÍÑùÊ½ÊÇ·ñÆ¥Åä,Èç¹û²»Æ¥Åä£¬ÔòËµÃ÷Ê¹ÓÃ´íÎó¡£¸ø³ö´íÎóĞÅÏ¢²¢·µ»Ø¿ÕÖµ
+                //æª¢æŸ¥å‚³å…¥çš„å­—ç¬¦ä¸²é•·åº¦å’Œæ¨£å¼æ˜¯å¦åŒ¹é…,å¦‚æœä¸åŒ¹é…ï¼Œå‰‡èªªæ˜ä½¿ç”¨éŒ¯èª¤ã€‚çµ¦å‡ºéŒ¯èª¤ä¿¡æ¯ä¸¦è¿”å›ç©ºå€¼
                 int strListLength = StrList.Length;
                 int NewStyleLength = GetCleanStyle(NewStyle, SplitString).Length;
                 if (strListLength != NewStyleLength)
                 {
                     ReturnValue = "";
-                    Error = "ÑùÊ½¸ñÊ½µÄ³¤¶ÈÓëÊäÈëµÄ×Ö·û³¤¶È²»·û£¬ÇëÖØĞÂÊäÈë";
+                    Error = "æ¨£å¼æ ¼å¼çš„é•·åº¦èˆ‡è¼¸å…¥çš„å­—ç¬¦é•·åº¦ä¸ç¬¦ï¼Œè«‹é‡æ–°è¼¸å…¥";
                 }
                 else
                 {
-                    //¼ì²éĞÂÑùÊ½ÖĞ·Ö¸ô·ûµÄÎ»ÖÃ
+                    //æª¢æŸ¥æ–°æ¨£å¼ä¸­åˆ†éš”ç¬¦çš„ä½ç½®
                     string Lengstr = "";
                     for (int i = 0; i < NewStyle.Length; i++)
                     {
@@ -288,15 +288,15 @@ namespace DotNet.Utilities
                     {
                         Lengstr = Lengstr.Substring(1);
                     }
-                    //½«·Ö¸ô·û·ÅÔÚĞÂÑùÊ½ÖĞµÄÎ»ÖÃ
+                    //å°‡åˆ†éš”ç¬¦æ”¾åœ¨æ–°æ¨£å¼ä¸­çš„ä½ç½®
                     string[] str = Lengstr.Split(',');
                     foreach (string bb in str)
                     {
                         StrList = StrList.Insert(int.Parse(bb), SplitString);
                     }
-                    //¸ø³ö×îºóµÄ½á¹û
+                    //çµ¦å‡ºæœ€å¾Œçš„çµæœ
                     ReturnValue = StrList;
-                    //ÒòÎªÊÇÕı³£µÄÊä³ö£¬Ã»ÓĞ´íÎó
+                    //å› ç‚ºæ˜¯æ­£å¸¸çš„è¼¸å‡ºï¼Œæ²’æœ‰éŒ¯èª¤
                     Error = "";
                 }
             }
@@ -305,7 +305,7 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// ·Ö¸î×Ö·û´®
+        /// åˆ†å‰²å­—ç¬¦ä¸²
         /// </summary>
         /// <param name="str"></param>
         /// <param name="splitstr"></param>
@@ -332,12 +332,12 @@ namespace DotNet.Utilities
             return String;
         }
 
-        #region »ñÈ¡ÕıÈ·µÄId£¬Èç¹û²»ÊÇÕıÕûÊı£¬·µ»Ø0
+        #region ç²å–æ­£ç¢ºçš„Idï¼Œå¦‚æœä¸æ˜¯æ­£æ•´æ•¸ï¼Œè¿”å›0
         /// <summary>
-        /// »ñÈ¡ÕıÈ·µÄId£¬Èç¹û²»ÊÇÕıÕûÊı£¬·µ»Ø0
+        /// ç²å–æ­£ç¢ºçš„Idï¼Œå¦‚æœä¸æ˜¯æ­£æ•´æ•¸ï¼Œè¿”å›0
         /// </summary>
         /// <param name="_value"></param>
-        /// <returns>·µ»ØÕıÈ·µÄÕûÊıID£¬Ê§°Ü·µ»Ø0</returns>
+        /// <returns>è¿”å›æ­£ç¢ºçš„æ•´æ•¸IDï¼Œå¤±æ•—è¿”å›0</returns>
         public static int StrToId(string _value)
         {
             if (IsNumberId(_value))
@@ -346,24 +346,24 @@ namespace DotNet.Utilities
                 return 0;
         }
         #endregion
-        #region ¼ì²éÒ»¸ö×Ö·û´®ÊÇ·ñÊÇ´¿Êı×Ö¹¹³ÉµÄ£¬Ò»°ãÓÃÓÚ²éÑ¯×Ö·û´®²ÎÊıµÄÓĞĞ§ĞÔÑéÖ¤¡£
+        #region æª¢æŸ¥ä¸€å€‹å­—ç¬¦ä¸²æ˜¯å¦æ˜¯ç´”æ•¸å­—æ§‹æˆçš„ï¼Œä¸€èˆ¬ç”¨æ–¼æŸ¥è©¢å­—ç¬¦ä¸²åƒæ•¸çš„æœ‰æ•ˆæ€§é©—è­‰ã€‚
         /// <summary>
-        /// ¼ì²éÒ»¸ö×Ö·û´®ÊÇ·ñÊÇ´¿Êı×Ö¹¹³ÉµÄ£¬Ò»°ãÓÃÓÚ²éÑ¯×Ö·û´®²ÎÊıµÄÓĞĞ§ĞÔÑéÖ¤¡£(0³ıÍâ)
+        /// æª¢æŸ¥ä¸€å€‹å­—ç¬¦ä¸²æ˜¯å¦æ˜¯ç´”æ•¸å­—æ§‹æˆçš„ï¼Œä¸€èˆ¬ç”¨æ–¼æŸ¥è©¢å­—ç¬¦ä¸²åƒæ•¸çš„æœ‰æ•ˆæ€§é©—è­‰ã€‚(0é™¤å¤–)
         /// </summary>
-        /// <param name="_value">ĞèÑéÖ¤µÄ×Ö·û´®¡£¡£</param>
-        /// <returns>ÊÇ·ñºÏ·¨µÄboolÖµ¡£</returns>
+        /// <param name="_value">éœ€é©—è­‰çš„å­—ç¬¦ä¸²ã€‚ã€‚</param>
+        /// <returns>æ˜¯å¦åˆæ³•çš„boolå€¼ã€‚</returns>
         public static bool IsNumberId(string _value)
         {
             return QuickValidate("^[1-9]*[0-9]*$", _value);
         }
         #endregion
-        #region ¿ìËÙÑéÖ¤Ò»¸ö×Ö·û´®ÊÇ·ñ·ûºÏÖ¸¶¨µÄÕıÔò±í´ïÊ½¡£
+        #region å¿«é€Ÿé©—è­‰ä¸€å€‹å­—ç¬¦ä¸²æ˜¯å¦ç¬¦åˆæŒ‡å®šçš„æ­£å‰‡è¡¨é”å¼ã€‚
         /// <summary>
-        /// ¿ìËÙÑéÖ¤Ò»¸ö×Ö·û´®ÊÇ·ñ·ûºÏÖ¸¶¨µÄÕıÔò±í´ïÊ½¡£
+        /// å¿«é€Ÿé©—è­‰ä¸€å€‹å­—ç¬¦ä¸²æ˜¯å¦ç¬¦åˆæŒ‡å®šçš„æ­£å‰‡è¡¨é”å¼ã€‚
         /// </summary>
-        /// <param name="_express">ÕıÔò±í´ïÊ½µÄÄÚÈİ¡£</param>
-        /// <param name="_value">ĞèÑéÖ¤µÄ×Ö·û´®¡£</param>
-        /// <returns>ÊÇ·ñºÏ·¨µÄboolÖµ¡£</returns>
+        /// <param name="_express">æ­£å‰‡è¡¨é”å¼çš„å…§å®¹ã€‚</param>
+        /// <param name="_value">éœ€é©—è­‰çš„å­—ç¬¦ä¸²ã€‚</param>
+        /// <returns>æ˜¯å¦åˆæ³•çš„boolå€¼ã€‚</returns>
         public static bool QuickValidate(string _express, string _value)
         {
             if (_value == null) return false;

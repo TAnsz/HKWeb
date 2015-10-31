@@ -1,7 +1,7 @@
 /// <summary>
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 using System.Configuration;
@@ -40,7 +40,7 @@ namespace DotNet.Utilities
         string[] strArrMencoder = new string[] { "wmv", "rmvb", "rm" };
         string[] strArrFfmpeg = new string[] { "asf", "avi", "mpg", "3gp", "mov" };
 
-        #region 配置
+        #region 皌竚
         public static string ffmpegtool = ConfigurationManager.AppSettings["ffmpeg"];
         public static string mencodertool = ConfigurationManager.AppSettings["mencoder"];
         public static string savefile = ConfigurationManager.AppSettings["savefile"] + "/";
@@ -49,9 +49,9 @@ namespace DotNet.Utilities
         public static string heightOfFile = ConfigurationManager.AppSettings["heightSize"];
         #endregion
 
-        #region 获取文件的名字
+        #region 莉ゅン
         /// <summary>
-        /// 获取文件的名字
+        /// 莉ゅン
         /// </summary>
         public static string GetFileName(string fileName)
         {
@@ -61,9 +61,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取文件扩展名
+        #region 莉ゅン耎甶
         /// <summary>
-        /// 获取文件扩展名
+        /// 莉ゅン耎甶
         /// </summary>
         public static string GetExtension(string fileName)
         {
@@ -73,9 +73,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 获取文件类型
+        #region 莉ゅン摸
         /// <summary>
-        /// 获取文件类型
+        /// 莉ゅン摸
         /// </summary>
         public string CheckExtension(string extension)
         {
@@ -101,12 +101,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 视频格式转为Flv
+        #region 跌繵Α锣Flv
         /// <summary>
-        /// 视频格式转为Flv
+        /// 跌繵Α锣Flv
         /// </summary>
-        /// <param name="vFileName">原视频文件地址</param>
-        /// <param name="ExportName">生成后的Flv文件地址</param>
+        /// <param name="vFileName">跌繵ゅン</param>
+        /// <param name="ExportName">ネΘFlvゅン</param>
         public bool ConvertFlv(string vFileName, string ExportName)
         {
             if ((!System.IO.File.Exists(ffmpegtool)) || (!System.IO.File.Exists(HttpContext.Current.Server.MapPath(vFileName))))
@@ -115,7 +115,7 @@ namespace DotNet.Utilities
             }
             vFileName = HttpContext.Current.Server.MapPath(vFileName);
             ExportName = HttpContext.Current.Server.MapPath(ExportName);
-            string Command = " -i \"" + vFileName + "\" -y -ab 32 -ar 22050 -b 800000 -s  480*360 \"" + ExportName + "\""; //Flv格式     
+            string Command = " -i \"" + vFileName + "\" -y -ab 32 -ar 22050 -b 800000 -s  480*360 \"" + ExportName + "\""; //FlvΑ     
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.FileName = ffmpegtool;
             p.StartInfo.Arguments = Command;
@@ -134,11 +134,11 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 生成Flv视频的缩略图
+        #region ネΘFlv跌繵罽菠瓜
         /// <summary>
-        /// 生成Flv视频的缩略图
+        /// ネΘFlv跌繵罽菠瓜
         /// </summary>
-        /// <param name="vFileName">视频文件地址</param>
+        /// <param name="vFileName">跌繵ゅン</param>
         public string CatchImg(string vFileName)
         {
             if ((!System.IO.File.Exists(ffmpegtool)) || (!System.IO.File.Exists(HttpContext.Current.Server.MapPath(vFileName)))) return "";
@@ -165,7 +165,7 @@ namespace DotNet.Utilities
                 }
                 System.Threading.Thread.Sleep(4000);
 
-                //注意:图片截取成功后,数据由内存缓存写到磁盘需要时间较长,大概在3,4秒甚至更长;
+                //猔種:瓜篒Θ,计沮パず絯糶合絃惠璶丁耕,阀3,4;
                 if (System.IO.File.Exists(HttpContext.Current.Server.MapPath(flv_img_p)))
                 {
                     return flv_img_p;
@@ -179,14 +179,14 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 运行FFMpeg的视频解码(绝对路径)
+        #region 笲︽FFMpeg跌繵秆絏(荡癸隔畖)
         /// <summary>
-        /// 转换文件并保存在指定文件夹下
+        /// 锣传ゅン玂﹚ゅンЖ
         /// </summary>
-        /// <param name="fileName">上传视频文件的路径（原文件）</param>
-        /// <param name="playFile">转换后的文件的路径（网络播放文件）</param>
-        /// <param name="imgFile">从视频文件中抓取的图片路径</param>
-        /// <returns>成功:返回图片虚拟地址;失败:返回空字符串</returns>
+        /// <param name="fileName">肚跌繵ゅン隔畖ゅン</param>
+        /// <param name="playFile">锣传ゅン隔畖呼蹈冀ゅン</param>
+        /// <param name="imgFile">眖跌繵ゅンいъ瓜隔畖</param>
+        /// <returns>Θ:瓜店览;ア毖:才﹃</returns>
         public string ChangeFilePhy(string fileName, string playFile, string imgFile)
         {
             string ffmpeg = Server.MapPath(VideoConvert.ffmpegtool);
@@ -201,8 +201,8 @@ namespace DotNet.Utilities
             FilestartInfo.Arguments = " -i " + fileName + " -ab 56 -ar 22050 -b 500 -r 15 -s " + widthOfFile + "x" + heightOfFile + " " + flv_file;
             try
             {
-                System.Diagnostics.Process.Start(FilestartInfo);//转换
-                CatchImg(fileName, imgFile); //截图
+                System.Diagnostics.Process.Start(FilestartInfo);//锣传
+                CatchImg(fileName, imgFile); //篒瓜
             }
             catch
             {
@@ -235,14 +235,14 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 运行FFMpeg的视频解码(相对路径)
+        #region 笲︽FFMpeg跌繵秆絏(癸隔畖)
         /// <summary>
-        /// 转换文件并保存在指定文件夹下
+        /// 锣传ゅン玂﹚ゅンЖ
         /// </summary>
-        /// <param name="fileName">上传视频文件的路径（原文件）</param>
-        /// <param name="playFile">转换后的文件的路径（网络播放文件）</param>
-        /// <param name="imgFile">从视频文件中抓取的图片路径</param>
-        /// <returns>成功:返回图片虚拟地址;失败:返回空字符串</returns>
+        /// <param name="fileName">肚跌繵ゅン隔畖ゅン</param>
+        /// <param name="playFile">锣传ゅン隔畖呼蹈冀ゅン</param>
+        /// <param name="imgFile">眖跌繵ゅンいъ瓜隔畖</param>
+        /// <returns>Θ:瓜店览;ア毖:才﹃</returns>
         public string ChangeFileVir(string fileName, string playFile, string imgFile)
         {
             string ffmpeg = Server.MapPath(VideoConvert.ffmpegtool);
@@ -271,8 +271,8 @@ namespace DotNet.Utilities
                 return "";
             }
 
-            ///注意:图片截取成功后,数据由内存缓存写到磁盘需要时间较长,大概在3,4秒甚至更长;   
-            ///这儿需要延时后再检测,我服务器延时8秒,即如果超过8秒图片仍不存在,认为截图失败;    
+            ///猔種:瓜篒Θ,计沮パず絯糶合絃惠璶丁耕,阀3,4;   
+            ///硂ㄠ惠璶┑浪代,и狝叭竟┑8,狦禬筁8瓜ごぃ,粄篒瓜ア毖;    
             if (System.IO.File.Exists(flv_img))
             {
                 return flv_img;
@@ -281,9 +281,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 运行mencoder的视频解码器转换(绝对路径)
+        #region 笲︽mencoder跌繵秆絏竟锣传(荡癸隔畖)
         /// <summary>
-        /// 运行mencoder的视频解码器转换
+        /// 笲︽mencoder跌繵秆絏竟锣传
         /// </summary>
         public string MChangeFilePhy(string vFileName, string playFile, string imgFile)
         {

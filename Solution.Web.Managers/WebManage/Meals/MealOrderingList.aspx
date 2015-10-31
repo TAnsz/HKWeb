@@ -23,6 +23,10 @@
                             OnClientClick="if (!F('Panel1_Grid1').getSelectionModel().hasSelection() ) { F.alert('刪除時必須選擇一條將要刪除的記錄！'); return false; }  if (F('Panel1_Grid1').getSelectionModel().getCount() >= 2) { F.alert('只能選擇一條記錄進行刪除！');return false; }">
                         </f:Button>
                         <f:Button ID="ButtonPrint" runat="server" Text="列印" Icon="printer" EnablePostBack="false" OnClientClick="ShowWindow()"></f:Button>
+                        <f:Button ID="Button1" runat="server" Text="查看菜單" Icon="printer" EnablePostBack="false" OnClientClick="window.open('../../UploadFile/menu.jpg')"></f:Button>
+                        <f:FileUpload runat="server" ID="filePhoto" ButtonText="上传菜單" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
+                            AutoPostBack="true" OnFileSelected="filePhoto_FileSelected">
+                        </f:FileUpload>
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -39,7 +43,7 @@
                         </f:FormRow>
                     </Rows>
                 </f:Form>
-                <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true"
+                <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC"
                     PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
                     <Columns>
@@ -61,7 +65,12 @@
                 <f:Label runat="server" ID="lblSpendingTime" Text=""></f:Label>
             </Items>
         </f:Panel>
-        <f:Window ID="Window1" Width="700px" Height="450px" Icon="TagBlue" Title="編輯" Hidden="True"
+        <f:Window ID="Window1" Width="800px" Height="450px" Icon="TagBlue" Title="編輯" Hidden="True"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
+            runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
+            EnableIFrame="true" EnableClose="true" IsModal="True" >
+        </f:Window>
+        <f:Window ID="Window2" Width="800px" Height="700px" Icon="TagBlue" Title="列印" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True" >
@@ -69,7 +78,7 @@
     </form>
     <script>
         function ShowWindow() {
-            F('<% =Window1.ClientID %>').f_show('./Report.aspx', '列印', 800, 700);
+            F('<% =Window2.ClientID %>').f_show('./Report.aspx', '列印', 800, 700);
         }
     </script>
 </body>

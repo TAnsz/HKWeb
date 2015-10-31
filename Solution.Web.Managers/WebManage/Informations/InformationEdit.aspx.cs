@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using FineUI;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-07-01
- *   文件名称：InformationEdit.aspx.cs
- *   描    述：信息编辑页面
+ *   創建日期：2014-07-01
+ *   文件名稱：InformationEdit.aspx.cs
+ *   描    述：信息編輯頁面
  *             
  *   修 改 人：
  *   修改日期：
@@ -29,40 +30,40 @@ namespace Solution.Web.Managers.WebManage.Informations
         {
             if (!IsPostBack)
             {
-                //获取ID值
+                //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
-                //绑定下拉框
+                //綁定下拉框
                 InformationClassBll.GetInstence().BandDropDownListShowAll(this, ddlInformationClass_Id);
-                //Key（上传必须）
+                //Key（上傳必須）
                 txtRndKey.Text = RndKey;
 
-                //加载数据
+                //加載數據
                 LoadData();
             }
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
 
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
             int id = ConvertHelper.Cint0(hidId.Text);
 
             if (id != 0)
             {
-                //获取指定ID的菜单内容，如果不存在，则创建一个菜单实体
+                //獲取指定ID的菜單內容，如果不存在，則創建一個菜單實體
                 var model = InformationBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
-                //对页面窗体进行赋值
+                //對頁面窗體進行賦值
                 txtTitle.Text = model.Title;
                 ddlInformationClass_Id.SelectedValue = model.InformationClass_Id + "";
 
@@ -74,7 +75,7 @@ namespace Solution.Web.Managers.WebManage.Informations
                 txtAuthor.Text = model.Author;
                 txtFromName.Text = model.FromName;
 
-                //置顶、审核、推荐
+                //置頂、審核、推薦
                 rblIsTop.SelectedValue = model.IsTop + "";
                 rblIsDisplay.SelectedValue = model.IsDisplay + "";
                 rblIsHot.SelectedValue = model.IsHot + "";
@@ -86,7 +87,7 @@ namespace Solution.Web.Managers.WebManage.Informations
                 txtSeoKey.Text = model.SeoKey;
                 txtSeoDesc.Text = model.SeoDesc;
 
-                //Key（如果存在编辑器必须下面代码）
+                //Key（如果存在編輯器必須下面代碼）
                 txtText.Text = model.Content;
                 txtUpload.Text = model.Upload;
 
@@ -108,10 +109,10 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #endregion
 
-        #region 页面控件绑定功能
+        #region 頁面控件綁定功能
 
-        #region 下拉列表改变事件
-        /// <summary>下拉列表改变事件
+        #region 下拉列表改變事件
+        /// <summary>下拉列表改變事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -120,14 +121,14 @@ namespace Solution.Web.Managers.WebManage.Informations
             int id = ConvertHelper.Cint0(hidId.Text);
             if (id > 0) return;
 
-            //如果选择根节点，则将SEO全部置空
+            //如果選擇根節點，則將SEO全部置空
             if (ddlInformationClass_Id.SelectedValue == "0")
             {
                 txtSeoTitle.Text = "";
                 txtSeoKey.Text = "";
                 txtSeoDesc.Text = "";
             }
-            //否则读取分类节点的SEO值
+            //否則讀取分類節點的SEO值
             else
             {
                 var icId = ConvertHelper.Cint0(ddlInformationClass_Id.SelectedValue);
@@ -142,8 +143,8 @@ namespace Solution.Web.Managers.WebManage.Informations
         }
         #endregion
 
-        #region 删除图片
-        /// <summary>删除图片</summary>
+        #region 刪除圖片
+        /// <summary>刪除圖片</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void ButtonDeleteImage_Click(object sender, EventArgs e)
@@ -163,7 +164,7 @@ namespace Solution.Web.Managers.WebManage.Informations
 
         #region 保存
         /// <summary>
-        /// 数据保存
+        /// 數據保存
         /// </summary>
         /// <returns></returns>
         public override string Save()
@@ -173,37 +174,37 @@ namespace Solution.Web.Managers.WebManage.Informations
 
             try
             {
-                #region 数据验证
+                #region 數據驗證
 
                 if (string.IsNullOrEmpty(txtTitle.Text.Trim()))
                 {
-                    return txtTitle.Label + "不能为空！";
+                    return txtTitle.Label + "不能為空！";
                 }
                 if (ddlInformationClass_Id.SelectedValue == "0")
                 {
-                    return ddlInformationClass_Id.Label + "为必选项，请选择！";
+                    return ddlInformationClass_Id.Label + "為必選項，請選擇！";
                 }
-                //判断是否重复
+                //判斷是否重複
                 var sTitle = StringHelper.FilterSql(txtTitle.Text, true);
                 var icId = ConvertHelper.Cint0(ddlInformationClass_Id.SelectedValue);
                 if (
                     DataAccess.DataModel.Information.Exists(
                         x => x.Title == sTitle && x.InformationClass_Id == icId && x.Id != id))
                 {
-                    return txtTitle.Label + "已存在！请重新输入！";
+                    return txtTitle.Label + "已存在！請重新輸入！";
                 }
 
                 #endregion
 
-                #region 赋值
+                #region 賦值
 
-                //获取实体
+                //獲取實體
                 var model = new Information(x => x.Id == id);
 
                 //------------------------------------------
-                //设置名称
+                //設置名稱
                 model.Title = StringHelper.Left(txtTitle.Text, 100);
-                //取得分类
+                //取得分類
                 model.InformationClass_Id = ConvertHelper.Cint0(ddlInformationClass_Id.SelectedValue);
 
                 model.InformationClass_Root_Id =
@@ -220,14 +221,14 @@ namespace Solution.Web.Managers.WebManage.Informations
                 model.RedirectUrl = StringHelper.Left(txtRedirectUrl.Text, 250);
 
                 //------------------------------------------
-                //编辑器
+                //編輯器
                 model.Content = StringHelper.Left(txtText.Text, 0, true, false);
                 model.Upload = StringHelper.Left(txtUpload.Text, 0, true, false);
-                //这里必须用回前端存放的Key，不然删除时无法同步删除编辑器上传的图片
+                //這裡必須用回前端存放的Key，不然刪除時無法同步刪除編輯器上傳的圖片
                 RndKey = StringHelper.Left(txtRndKey.Text, 0);
 
-                //检查用户上传的文件和最后保存的文件是否有出入，
-                //如果上传的文件大于保存的文件，把不保存，但本次操作已经上传的文件删除。
+                //檢查用戶上傳的文件和最後保存的文件是否有出入，
+                //如果上傳的文件大於保存的文件，把不保存，但本次操作已經上傳的文件刪除。
                 model.Upload = UploadFileBll.GetInstence().FCK_BatchDelPic(model.Content, model.Upload);
 
                 //------------------------------------------
@@ -249,23 +250,23 @@ namespace Solution.Web.Managers.WebManage.Informations
                 model.SeoDesc = StringHelper.Left(txtSeoDesc.Text, 200);
                 model.Sort = 0;
 
-                //设定当前项是否显示
+                //設定當前項是否顯示
                 model.IsDisplay = ConvertHelper.StringToByte(rblIsDisplay.SelectedValue);
                 model.IsHot = ConvertHelper.StringToByte(rblIsHot.SelectedValue);
                 model.IsTop = ConvertHelper.StringToByte(rblIsTop.SelectedValue);
 
                 //------------------------------------------
-                //判断是否是新增
+                //判斷是否是新增
                 if (model.Id == 0)
                 {
-                    //添加时间与用户
+                    //添加時間與用戶
                     model.AddDate = DateTime.Now;
-                    //修改时间与用户
+                    //修改時間與用戶
                     model.UpdateDate = DateTime.Now;
                 }
                 else
                 {
-                    //修改时间与用户
+                    //修改時間與用戶
                     model.UpdateDate = DateTime.Now;
                 }
                 model.Manager_Id = OnlineUsersBll.GetInstence().GetManagerId();
@@ -275,7 +276,7 @@ namespace Solution.Web.Managers.WebManage.Informations
 
                 //------------------------------------------
 
-                #region 上传图片
+                #region 上傳圖片
 
                 if (this.filePhoto.HasFile && this.filePhoto.FileName.Length > 3)
                 {
@@ -287,39 +288,39 @@ namespace Solution.Web.Managers.WebManage.Informations
                         upload);
                     this.filePhoto.Dispose();
                     //---------------------------------------------------
-                    if (result.Length == 0) //上传成功
+                    if (result.Length == 0) //上傳成功
                     {
                         model.FrontCoverImg = upload.Path;
                     }
                     else
                     {
-                        CommonBll.WriteLog("上传出错：" + result); //收集异常信息
-                        return "上传出错！" + result;
+                        CommonBll.WriteLog("上傳出錯：" + result); //收集異常信息
+                        return "上傳出錯！" + result;
                     }
                 }
-                //如果是修改，检查用户是否重新上传过封面图片，如果是删除旧的图片
+                //如果是修改，檢查用戶是否重新上傳過封面圖片，如果是刪除舊的圖片
                 if (model.Id > 0)
                 {
                     UploadFileBll.GetInstence()
                         .Upload_DiffFile(InformationTable.Id, InformationTable.FrontCoverImg, InformationTable.TableName,
                             model.Id, model.FrontCoverImg);
 
-                    //同步UploadFile上传表
+                    //同步UploadFile上傳表
                     UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
                 }
 
                 #endregion
 
                 //----------------------------------------------------------
-                //存储到数据库
+                //存儲到數據庫
                 InformationBll.GetInstence().Save(this, model);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
-                #region 同步更新上传图片表绑定Id
+                #region 同步更新上傳圖片表綁定Id
                 if (id == 0)
                 {
-                    //同步UploadFile上传表记录，绑定刚刚上传成功的文件Id为当前记录Id
+                    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
                     UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
                 }
                 #endregion
@@ -327,9 +328,9 @@ namespace Solution.Web.Managers.WebManage.Informations
             }
             catch (Exception e)
             {
-                result = "保存失败！";
+                result = "保存失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
             }
 

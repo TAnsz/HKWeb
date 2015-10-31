@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DotNet.Utilities;
 using FineUI;
 using Solution.DataAccess.DataModel;
@@ -6,13 +6,13 @@ using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-27
- *   文件名称：UploadFileList.aspx.cs
- *   描    述：上传文件列表管理
+ *   創建日期：2014-06-27
+ *   文件名稱：UploadFileList.aspx.cs
+ *   描    述：上傳文件列表管理
  *             
  *   修 改 人：
  *   修改日期：
@@ -32,54 +32,54 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         }
         #endregion
 
-        #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值
+        #region 接口函數，用於UI頁面初始化，給邏輯層對像、列表等對像賦值
         public override void Init()
         {
-            //逻辑对象赋值
+            //邏輯對像賦值
             bll = UploadFileBll.GetInstence();
-            //表格对象赋值
+            //表格對像賦值
             grid = Grid1;
         }
         #endregion
 
-        #region 加载数据
-        /// <summary>读取数据</summary>
+        #region 加載數據
+        /// <summary>讀取數據</summary>
         public override void LoadData()
         {
-            //设置排序
+            //設置排序
             if (sortList == null)
             {
                 Sort(null);
             }
 
-            //绑定Grid表格
+            //綁定Grid表格
             bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, null, sortList);
         }
 
         #endregion
         
-        #region 列表属性绑定
+        #region 列表屬性綁定
 
-        #region 列表按键绑定——修改列表控件属性
+        #region 列表按鍵綁定——修改列表控件屬性
         /// <summary>
-        /// 列表按键绑定——修改列表控件属性
+        /// 列表按鍵綁定——修改列表控件屬性
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void Grid1_PreRowDataBound(object sender, FineUI.GridPreRowEventArgs e)
         {
-            //绑定用户类型
+            //綁定用戶類型
             GridRow gr = Grid1.Rows[e.RowIndex];
             if (((System.Data.DataRowView)(gr.DataItem)).Row.Table.Rows[e.RowIndex][UploadFileTable.UserType].ToString() == "1")
             {
                 var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
-                lbf.Text = "管理员";
+                lbf.Text = "管理員";
                 lbf.Enabled = false;
             }
             else
             {
                 var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
-                lbf.Text = "会员";
+                lbf.Text = "會員";
                 lbf.Enabled = false;
             }
         }
@@ -87,42 +87,42 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         
         #endregion
 
-        #region 删除记录
+        #region 刪除記錄
         /// <summary>
-        /// 删除记录
+        /// 刪除記錄
         /// </summary>
         /// <returns></returns>
         public override string Delete()
         {
-            //获取要删除的Id组
+            //獲取要刪除的Id組
             var id = GridViewHelper.GetSelectedKeyIntArray(Grid1);
             
-            //如果没有选择记录，则直接退出
+            //如果沒有選擇記錄，則直接退出
             if (id == null)
             {
-                return "请选择要删除的记录。";
+                return "請選擇要刪除的記錄。";
             }
 
             try
             {
-                //逐个文件删除
+                //逐個文件刪除
                 foreach (var i in id)
                 {
-                    //获取文件路径
+                    //獲取文件路徑
                     var path = UploadFileBll.GetInstence().GetFieldValue(i, UploadFileTable.Path) + "";
-                    //删除文件与对应的记录
+                    //刪除文件與對應的記錄
                     UploadFileBll.GetInstence().Upload_OneDelPic(path);
-                    //删除记录
+                    //刪除記錄
                     bll.Delete(this, i);
                 }
                 
-                return "删除编号Id为[" + string.Join(",", id) + "]的数据记录成功。";
+                return "刪除編號Id為[" + string.Join(",", id) + "]的數據記錄成功。";
             }
             catch (Exception e)
             {
-                string result = "尝试删除编号ID为[" + string.Join(",", id) +"]的数据记录失败！";
+                string result = "嘗試刪除編號ID為[" + string.Join(",", id) +"]的數據記錄失敗！";
 
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);
 
                 return result;
@@ -130,9 +130,9 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         }
         #endregion
 
-        #region 全部图片重新生成
+        #region 全部圖片重新生成
         /// <summary>
-        /// 全部图片重新生成
+        /// 全部圖片重新生成
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,22 +141,22 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
             try
             {
                 UploadFileBll.GetInstence().fix_PicSizeAll();
-                FineUI.Alert.ShowInParent("全部图片重新生成成功", FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("全部圖片重新生成成功", FineUI.MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                //出现异常，保存出错日志信息
-                CommonBll.WriteLog("重新生成图片失败", ex);
-                FineUI.Alert.ShowInParent("重新生成图片失败", FineUI.MessageBoxIcon.Information);
+                //出現異常，保存出錯日誌信息
+                CommonBll.WriteLog("重新生成圖片失敗", ex);
+                FineUI.Alert.ShowInParent("重新生成圖片失敗", FineUI.MessageBoxIcon.Information);
             }
         }
         #endregion
 
-        #region 检查扩展名，判断是否是图片
+        #region 檢查擴展名，判斷是否是圖片
         /// <summary>
-        /// 检查扩展名，判断是否是图片
+        /// 檢查擴展名，判斷是否是圖片
         /// </summary>
-        /// <param name="ext">扩展名</param>
+        /// <param name="ext">擴展名</param>
         /// <returns></returns>
         protected string CheckPic(object ext, object path)
         {

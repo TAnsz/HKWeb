@@ -68,7 +68,7 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow5" runat="server">
                                     <Items>
-                                        <f:TextArea runat="server" Label="備注" ID="txtRemark"
+                                        <f:TextArea runat="server" Label="備註" ID="txtRemark"
                                             Height="75px">
                                         </f:TextArea>
                                     </Items>

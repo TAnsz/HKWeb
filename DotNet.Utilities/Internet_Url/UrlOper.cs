@@ -1,8 +1,8 @@
 /// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// 摸弧Assistant
+/// 絪 絏 默
+/// 羛么よΑ361983679  
+/// 穝呼http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text.RegularExpressions;
@@ -12,13 +12,13 @@ using System.Collections.Specialized;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// URL的操作类
+    /// URL巨摸
     /// </summary>
     public class UrlOper
     {
         static System.Text.Encoding encoding = System.Text.Encoding.UTF8;
 
-        #region URL的64位编码
+        #region URL64絪絏
         public static string Base64Encrypt(string sourthUrl)
         {
             string eurl = HttpUtility.UrlEncode(sourthUrl);
@@ -27,9 +27,9 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region URL的64位解码
+        #region URL64秆絏
         public static string Base64Decrypt(string eStr)
-        {        
+        {
             if (!IsBase64(eStr))
             {
                 return eStr;
@@ -40,7 +40,7 @@ namespace DotNet.Utilities
             return sourthUrl;
         }
         /// <summary>
-        /// 是否是Base64字符串
+        /// 琌琌Base64才﹃
         /// </summary>
         /// <param name="eStr"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace DotNet.Utilities
         #endregion
 
         /// <summary>
-        /// 添加URL参数
+        /// 睰URL把计
         /// </summary>
         public static string AddParam(string url, string paramName, string value)
         {
@@ -76,12 +76,12 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>
-        /// 更新URL参数
+        /// 穝URL把计
         /// </summary>
         public static string UpdateParam(string url, string paramName, string value)
         {
-            string keyWord = paramName+"=";
-            int index = url.IndexOf(keyWord)+keyWord.Length;
+            string keyWord = paramName + "=";
+            int index = url.IndexOf(keyWord) + keyWord.Length;
             int index1 = url.IndexOf("&", index);
             if (index1 == -1)
             {
@@ -89,22 +89,22 @@ namespace DotNet.Utilities
                 url = string.Concat(url, value);
                 return url;
             }
-            url = url.Remove(index,index1 - index);
+            url = url.Remove(index, index1 - index);
             url = url.Insert(index, value);
             return url;
         }
 
-        #region 分析URL所属的域
+        #region だ猂URL┮妮办
         public static void GetDomain(string fromUrl, out string domain, out string subDomain)
         {
             domain = "";
             subDomain = "";
             try
             {
-                if (fromUrl.IndexOf("的名片") > -1)
+                if (fromUrl.IndexOf("") > -1)
                 {
                     subDomain = fromUrl;
-                    domain = "名片";
+                    domain = "";
                     return;
                 }
 
@@ -117,7 +117,7 @@ namespace DotNet.Utilities
                 {
                     if (u.IsFile)
                     {
-                        subDomain = domain = "客户端本地文件路径";
+                        subDomain = domain = "め狠セゅン隔畖";
 
                     }
                     else
@@ -129,12 +129,12 @@ namespace DotNet.Utilities
                             Authority = "www." + Authority;
                         }
                         int index = Authority.IndexOf('.', 0);
-                        domain = Authority.Substring(index + 1, Authority.Length - index - 1).Replace("comhttp","com");
-                        subDomain = Authority.Replace("comhttp", "com"); 
+                        domain = Authority.Substring(index + 1, Authority.Length - index - 1).Replace("comhttp", "com");
+                        subDomain = Authority.Replace("comhttp", "com");
                         if (ss.Length < 2)
                         {
-                            domain = "不明路径";
-                            subDomain = "不明路径";
+                            domain = "ぃ隔畖";
+                            subDomain = "ぃ隔畖";
                         }
                     }
                 }
@@ -142,26 +142,26 @@ namespace DotNet.Utilities
                 {
                     if (u.IsFile)
                     {
-                        subDomain = domain = "客户端本地文件路径";
+                        subDomain = domain = "め狠セゅン隔畖";
                     }
                     else
                     {
-                        subDomain = domain = "不明路径";
+                        subDomain = domain = "ぃ隔畖";
                     }
                 }
             }
             catch
             {
-                subDomain = domain = "不明路径";
+                subDomain = domain = "ぃ隔畖";
             }
         }
 
         /// <summary>
-        /// 分析 url 字符串中的参数信息
+        /// だ猂 url 才﹃い把计獺
         /// </summary>
-        /// <param name="url">输入的 URL</param>
-        /// <param name="baseUrl">输出 URL 的基础部分</param>
-        /// <param name="nvc">输出分析后得到的 (参数名,参数值) 的集合</param>
+        /// <param name="url">块 URL</param>
+        /// <param name="baseUrl">块 URL 膀娄场だ</param>
+        /// <param name="nvc">块だ猂眔 (把计,把计) 栋</param>
         public static void ParseUrl(string url, out string baseUrl, out NameValueCollection nvc)
         {
             if (url == null)
@@ -185,7 +185,7 @@ namespace DotNet.Utilities
                 return;
             string ps = url.Substring(questionMarkIndex + 1);
 
-            // 开始分析参数对    
+            // 秨﹍だ猂把计癸    
             Regex re = new Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?", RegexOptions.Compiled);
             MatchCollection mc = re.Matches(ps);
 

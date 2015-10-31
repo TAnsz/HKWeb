@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 文件上传类
+    /// 文件上傳類
     /// </summary>
     public class FileUp
     {
@@ -20,10 +20,10 @@ namespace DotNet.Utilities
         { }
 
         /// <summary>
-        /// 转换为字节数组
+        /// 轉換為字節數組
         /// </summary>
         /// <param name="filename">文件名</param>
-        /// <returns>字节数组</returns>
+        /// <returns>字節數組</returns>
         public byte[] GetBinaryFile(string filename)
         {
             if (File.Exists(filename))
@@ -50,10 +50,10 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 流转化为字节数组
+        /// 流轉化為字節數組
         /// </summary>
         /// <param name="theStream">流</param>
-        /// <returns>字节数组</returns>
+        /// <returns>字節數組</returns>
         public byte[] ConvertStreamToByteBuffer(System.IO.Stream theStream)
         {
             int bi;
@@ -77,11 +77,11 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 上传文件
+        /// 上傳文件
         /// </summary>
         /// <param name="PosPhotoUpload">控件</param>
         /// <param name="saveFileName">保存的文件名</param>
-        /// <param name="imagePath">保存的文件路径</param>
+        /// <param name="imagePath">保存的文件路徑</param>
         public string FileSc(FileUpload PosPhotoUpload, string saveFileName, string imagePath)
         {
             string state = "";
@@ -97,28 +97,28 @@ namespace DotNet.Utilities
                     }
                     else
                     {
-                        state = "上传文件类型不正确";
+                        state = "上傳文件類型不正確";
                     }
                 }
                 else
                 {
-                    state = "上传文件不能大于10M";
+                    state = "上傳文件不能大於10M";
                 }
             }
             else
             {
-                state = "没有上传文件";
+                state = "沒有上傳文件";
             }
             return state;
         }
 
         /// <summary>
-        /// 上传文件
+        /// 上傳文件
         /// </summary>
-        /// <param name="binData">字节数组</param>
+        /// <param name="binData">字節數組</param>
         /// <param name="fileName">文件名</param>
-        /// <param name="fileType">文件类型</param>
-        //-------------------调用----------------------
+        /// <param name="fileType">文件類型</param>
+        //-------------------調用----------------------
         //byte[] by = GetBinaryFile("E:\\Hello.txt");
         //this.SaveFile(by,"Hello",".txt");
         //---------------------------------------------

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -7,7 +7,7 @@ namespace DotNet.Utilities
 {
     class API
     {
-        [DllImport("kernel32")]//内存
+        [DllImport("kernel32")]//內存
         public static extern void GlobalMemoryStatus(ref  MEMORY_INFO meminfo);
 
         [StructLayout(LayoutKind.Sequential)]
@@ -25,7 +25,7 @@ namespace DotNet.Utilities
             public uint dwProcessorRevision;
         }
 
-        //定义内存的信息结构  
+        //定義內存的信息結構  
         [StructLayout(LayoutKind.Sequential)]
         public struct MEMORY_INFO
         {
@@ -38,9 +38,9 @@ namespace DotNet.Utilities
             public uint dwTotalVirtual;
             public uint dwAvailVirtual;
         }  
-        [DllImport("kernel32",EntryPoint="GetComputerName",ExactSpelling=false,SetLastError=true)]//计算机名称
+        [DllImport("kernel32",EntryPoint="GetComputerName",ExactSpelling=false,SetLastError=true)]//計算機名稱
          public static extern bool GetComputerName([MarshalAs(UnmanagedType.LPArray)]byte[] IpBuffer,[MarshalAs(UnmanagedType.LPArray)]Int32[] nSize);
-        [DllImport("advapi32", EntryPoint = "GetUserName", ExactSpelling = false, SetLastError = true)]//计算机用户名
+        [DllImport("advapi32", EntryPoint = "GetUserName", ExactSpelling = false, SetLastError = true)]//計算機用戶名
          public static extern bool GetUserName([MarshalAs(UnmanagedType.LPArray)]byte[] IpBuffer, [MarshalAs(UnmanagedType.LPArray)]Int32[] nSize);
         [DllImport("Iphlpapi.dll")]
         public static extern int SendARP(Int32 dest, Int32 host, ref Int64 mac, ref Int32 length);

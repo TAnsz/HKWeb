@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Media;
@@ -10,7 +10,7 @@ using System.Media;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 处理多媒体的公共类
+    /// 處理多媒體的公共類
     /// </summary>
     public class MediaHandler
     {
@@ -18,16 +18,16 @@ namespace DotNet.Utilities
         /// <summary>
         /// 以同步方式播放wav文件
         /// </summary>
-        /// <param name="sp">SoundPlayer对象</param>
-        /// <param name="wavFilePath">wav文件的路径</param>
+        /// <param name="sp">SoundPlayer對像</param>
+        /// <param name="wavFilePath">wav文件的路徑</param>
         public static void SyncPlayWAV(SoundPlayer sp, string wavFilePath)
         {
             try
             {
-                //设置wav文件的路径 
+                //設置wav文件的路徑 
                 sp.SoundLocation = wavFilePath;
 
-                //使用异步方式加载wav文件
+                //使用異步方式加載wav文件
                 sp.LoadAsync();
 
                 //使用同步方式播放wav文件
@@ -46,15 +46,15 @@ namespace DotNet.Utilities
         /// <summary>
         /// 以同步方式播放wav文件
         /// </summary>
-        /// <param name="wavFilePath">wav文件的路径</param>
+        /// <param name="wavFilePath">wav文件的路徑</param>
         public static void SyncPlayWAV(string wavFilePath)
         {
             try
             {
-                //创建一个SoundPlaryer类，并设置wav文件的路径
+                //創建一個SoundPlaryer類，並設置wav文件的路徑
                 SoundPlayer sp = new SoundPlayer(wavFilePath);
 
-                //使用异步方式加载wav文件
+                //使用異步方式加載wav文件
                 sp.LoadAsync();
 
                 //使用同步方式播放wav文件
@@ -71,23 +71,23 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 异步播放wav文件
+        #region 異步播放wav文件
         /// <summary>
-        /// 以异步方式播放wav文件
+        /// 以異步方式播放wav文件
         /// </summary>
-        /// <param name="sp">SoundPlayer对象</param>
-        /// <param name="wavFilePath">wav文件的路径</param>
+        /// <param name="sp">SoundPlayer對像</param>
+        /// <param name="wavFilePath">wav文件的路徑</param>
         public static void ASyncPlayWAV(SoundPlayer sp, string wavFilePath)
         {
             try
             {
-                //设置wav文件的路径 
+                //設置wav文件的路徑 
                 sp.SoundLocation = wavFilePath;
 
-                //使用异步方式加载wav文件
+                //使用異步方式加載wav文件
                 sp.LoadAsync();
 
-                //使用异步方式播放wav文件
+                //使用異步方式播放wav文件
                 if (sp.IsLoadCompleted)
                 {
                     sp.Play();
@@ -101,20 +101,20 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 以异步方式播放wav文件
+        /// 以異步方式播放wav文件
         /// </summary>
-        /// <param name="wavFilePath">wav文件的路径</param>
+        /// <param name="wavFilePath">wav文件的路徑</param>
         public static void ASyncPlayWAV(string wavFilePath)
         {
             try
             {
-                //创建一个SoundPlaryer类，并设置wav文件的路径
+                //創建一個SoundPlaryer類，並設置wav文件的路徑
                 SoundPlayer sp = new SoundPlayer(wavFilePath);
 
-                //使用异步方式加载wav文件
+                //使用異步方式加載wav文件
                 sp.LoadAsync();
 
-                //使用异步方式播放wav文件
+                //使用異步方式播放wav文件
                 if (sp.IsLoadCompleted)
                 {
                     sp.Play();
@@ -132,7 +132,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sp">SoundPlayer对象</param>
+        /// <param name="sp">SoundPlayer對像</param>
         public static void StopWAV(SoundPlayer sp)
         {
             sp.Stop();

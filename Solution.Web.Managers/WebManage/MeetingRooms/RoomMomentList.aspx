@@ -34,7 +34,7 @@
                         <f:DatePicker runat="server" Label="查詢日期" ID="dpStart" DateFormatString="yyyy-MM-dd" Width="260px" EmptyText="查詢指定日期記錄" />
                     </Items>
                 </f:SimpleForm>
-                <f:Grid ID="Grid1" Title="會議室申請" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" Height="420px"
+                <f:Grid ID="Grid1" Title="會議室申請" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" Height="420px" SortField="Id" SortDirection="DESC"
                     PageSize="15" ShowBorder="true" ShowHeader="False" AllowPaging="true" runat="server" EnableCheckBoxSelect="false" DataKeyNames="Id" EnableColumnLines="true"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>

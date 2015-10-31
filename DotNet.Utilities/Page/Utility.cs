@@ -1,8 +1,8 @@
 /// <summary>
-/// ÀàËµÃ÷£ºAssistant
-/// ±à Âë ÈË£ºËÕ·É
-/// ÁªÏµ·½Ê½£º361983679  
-/// ¸üĞÂÍøÕ¾£ºhttp://www.sufeinet.com/thread-655-1-1.html
+/// é¡èªªæ˜ï¼šAssistant
+/// ç·¨ ç¢¼ äººï¼šè˜‡é£›
+/// è¯ç¹«æ–¹å¼ï¼š361983679  
+/// æ›´æ–°ç¶²ç«™ï¼šhttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 
 using System;
@@ -15,27 +15,27 @@ using System.Web.UI;
 namespace DotNet.Utilities
 {
 	/// <summary>
-	/// Utility µÄÕªÒªËµÃ÷¡£
+	/// Utility çš„æ‘˜è¦èªªæ˜ã€‚
 	/// </summary>
 	public class Utility:Page
 	{
 
-		#region Êı¾İ×ª»»
+		#region æ•¸æ“šè½‰æ›
 		/// <summary>
-		/// ·µ»Ø¶ÔÏóobjµÄStringÖµ,objÎªnullÊ±·µ»Ø¿ÕÖµ¡£
+		/// è¿”å›å°åƒobjçš„Stringå€¼,objç‚ºnullæ™‚è¿”å›ç©ºå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>×Ö·û´®¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>å­—ç¬¦ä¸²ã€‚</returns>
 		public static string ToObjectString(object obj)  
 		{
 			return null == obj ? String.Empty : obj.ToString();
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Int32)ÀàĞÍ,×ª»»Ê§°Ü·µ»Ø-1¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Int32)é¡å‹,è½‰æ›å¤±æ•—è¿”å›-1ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>Int32ÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Int32æ•¸å€¼ã€‚</returns>
 		public static int ToInt(object obj)
 		{
 			try
@@ -47,11 +47,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Int32)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Int32)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>Int32ÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Int32æ•¸å€¼ã€‚</returns>
 		public static int ToInt(object obj,int returnValue)
 		{
 			try
@@ -62,10 +62,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Long)ÀàĞÍ,×ª»»Ê§°Ü·µ»Ø-1¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Long)é¡å‹,è½‰æ›å¤±æ•—è¿”å›-1ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>LongÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Longæ•¸å€¼ã€‚</returns>
 		public static long ToLong(object obj)
 		{
 			try
@@ -76,11 +76,11 @@ namespace DotNet.Utilities
 			{ return -1L; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Long)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Long)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>LongÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Longæ•¸å€¼ã€‚</returns>
 		public static long ToLong(object obj,long returnValue)
 		{
 			try
@@ -91,10 +91,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Decimal)ÀàĞÍ,×ª»»Ê§°Ü·µ»Ø-1¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Decimal)é¡å‹,è½‰æ›å¤±æ•—è¿”å›-1ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>DecimalÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Decimalæ•¸å€¼ã€‚</returns>
 		public static decimal ToDecimal(object obj)
 		{
 			try
@@ -106,11 +106,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Decimal)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Decimal)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>DecimalÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Decimalæ•¸å€¼ã€‚</returns>
 		public static decimal ToDecimal(object obj,decimal returnValue)
 		{
 			try
@@ -121,10 +121,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Double)ÀàĞÍ,×ª»»Ê§°Ü·µ»Ø-1¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Double)é¡å‹,è½‰æ›å¤±æ•—è¿”å›-1ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>DoubleÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Doubleæ•¸å€¼ã€‚</returns>
 		public static double ToDouble(object obj)
 		{
 			try
@@ -136,11 +136,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Double)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Double)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>DoubleÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Doubleæ•¸å€¼ã€‚</returns>
 		public static double ToDouble(object obj,double returnValue)
 		{
 			try
@@ -151,10 +151,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Float)ÀàĞÍ,×ª»»Ê§°Ü·µ»Ø-1¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Float)é¡å‹,è½‰æ›å¤±æ•—è¿”å›-1ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>FloatÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Floatæ•¸å€¼ã€‚</returns>
 		public static float ToFloat(object obj)
 		{
 			try
@@ -166,11 +166,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(Float)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(Float)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>FloatÊıÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Floatæ•¸å€¼ã€‚</returns>
 		public static float ToFloat(object obj,float returnValue)
 		{
 			try
@@ -181,10 +181,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(DateTime)ÀàĞÍ,×ª»»Ê§°Ü·µ»ØNow¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(DateTime)é¡å‹,è½‰æ›å¤±æ•—è¿”å›Nowã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>DateTimeÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>DateTimeå€¼ã€‚</returns>
 		public static DateTime ToDateTime(object obj)
 		{
 			try
@@ -199,11 +199,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ½«¶ÔÏó×ª»»ÎªÊıÖµ(DateTime)ÀàĞÍ¡£
+		/// å°‡å°åƒè½‰æ›ç‚ºæ•¸å€¼(DateTime)é¡å‹ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>DateTimeÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>DateTimeå€¼ã€‚</returns>
 		public static DateTime ToDateTime(object obj,DateTime returnValue)
 		{
 			try
@@ -217,10 +217,10 @@ namespace DotNet.Utilities
 			{ return returnValue; }
 		}
 		/// <summary>
-		/// ´ÓBoolean×ª»»³Ébyte,×ª»»Ê§°Ü·µ»Ø0¡£
+		/// å¾Booleanè½‰æ›æˆbyte,è½‰æ›å¤±æ•—è¿”å›0ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>ByteÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Byteå€¼ã€‚</returns>
 		public static byte ToByteByBool( object obj )
 		{
 			string text = ToObjectString(obj).Trim();
@@ -240,11 +240,11 @@ namespace DotNet.Utilities
 		}
 		
 		/// <summary>
-		/// ´ÓBoolean×ª»»³Ébyte¡£
+		/// å¾Booleanè½‰æ›æˆbyteã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>ByteÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Byteå€¼ã€‚</returns>
 		public static byte ToByteByBool( object obj, byte returnValue )
 		{
 			string text = ToObjectString(obj).Trim();
@@ -263,10 +263,10 @@ namespace DotNet.Utilities
 			}
 		}
 		/// <summary>
-		/// ´Óbyte×ª»»³ÉBoolean,×ª»»Ê§°Ü·µ»Øfalse¡£
+		/// å¾byteè½‰æ›æˆBoolean,è½‰æ›å¤±æ•—è¿”å›falseã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>BooleanÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Booleanå€¼ã€‚</returns>
 		public static bool ToBoolByByte( object obj )
 		{
 			try
@@ -280,11 +280,11 @@ namespace DotNet.Utilities
 			}
 		}
 		/// <summary>
-		/// ´Óbyte×ª»»³ÉBoolean¡£
+		/// å¾byteè½‰æ›æˆBooleanã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <param name="returnValue">×ª»»Ê§°Ü·µ»Ø¸ÃÖµ¡£</param>
-		/// <returns>BooleanÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <param name="returnValue">è½‰æ›å¤±æ•—è¿”å›è©²å€¼ã€‚</param>
+		/// <returns>Booleanå€¼ã€‚</returns>
 		public static bool ToBoolByByte( object obj, bool returnValue )
 		{
 			try
@@ -299,22 +299,22 @@ namespace DotNet.Utilities
 		}
 		#endregion
 
-		#region Êı¾İÅĞ¶Ï
+		#region æ•¸æ“šåˆ¤æ–·
 		/// <summary>
-		/// ÅĞ¶ÏÎÄ±¾objÊÇ·ñÎª¿ÕÖµ¡£
+		/// åˆ¤æ–·æ–‡æœ¬objæ˜¯å¦ç‚ºç©ºå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>BooleanÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Booleanå€¼ã€‚</returns>
 		public static bool IsEmpty(string obj)
 		{
 			return ToObjectString(obj).Trim() == String.Empty ? true : false;
 		}
 
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄÈÕÆÚÖµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„æ—¥æœŸå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>Boolean¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Booleanã€‚</returns>
 		public static bool IsDateTime(object obj)
 		{
 			try
@@ -329,10 +329,10 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄInt32Öµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„Int32å€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>Int32Öµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Int32å€¼ã€‚</returns>
 		public static bool IsInt(object obj)
 		{
 			try
@@ -345,10 +345,10 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄLongÖµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„Longå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>LongÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Longå€¼ã€‚</returns>
 		public static bool IsLong(object obj)
 		{
 			try
@@ -361,10 +361,10 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄFloatÖµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„Floatå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>FloatÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Floatå€¼ã€‚</returns>
 		public static bool IsFloat(object obj)
 		{
 			try
@@ -377,10 +377,10 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄDoubleÖµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„Doubleå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>DoubleÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Doubleå€¼ã€‚</returns>
 		public static bool IsDouble(object obj)
 		{
 			try
@@ -393,10 +393,10 @@ namespace DotNet.Utilities
 		}
 		
 		/// <summary>
-		/// ÅĞ¶Ï¶ÔÏóÊÇ·ñÎªÕıÈ·µÄDecimalÖµ¡£
+		/// åˆ¤æ–·å°è±¡æ˜¯å¦ç‚ºæ­£ç¢ºçš„Decimalå€¼ã€‚
 		/// </summary>
-		/// <param name="obj">¶ÔÏó¡£</param>
-		/// <returns>DecimalÖµ¡£</returns>
+		/// <param name="obj">å°è±¡ã€‚</param>
+		/// <returns>Decimalå€¼ã€‚</returns>
 		public static bool IsDecimal(object obj)
 		{
 			try
@@ -409,12 +409,12 @@ namespace DotNet.Utilities
 		}
 		#endregion
 
-		#region Êı¾İ²Ù×÷
+		#region æ•¸æ“šæ“ä½œ
 		/// <summary>
-		/// È¥³ı×Ö·û´®µÄËùÓĞ¿Õ¸ñ¡£
+		/// å»é™¤å­—ç¬¦ä¸²çš„æ‰€æœ‰ç©ºæ ¼ã€‚
 		/// </summary>
-		/// <param name="text">×Ö·û´®</param>
-		/// <returns>×Ö·û´®</returns>
+		/// <param name="text">å­—ç¬¦ä¸²</param>
+		/// <returns>å­—ç¬¦ä¸²</returns>
 		public static string StringTrimAll( string text )
 		{
 			string _text = ToObjectString(text);
@@ -429,9 +429,9 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// È¥³ıÊıÖµ×Ö·û´®µÄËùÓĞ¿Õ¸ñ¡£
+		/// å»é™¤æ•¸å€¼å­—ç¬¦ä¸²çš„æ‰€æœ‰ç©ºæ ¼ã€‚
 		/// </summary>
-		/// <param name="numricString">ÊıÖµ×Ö·û´®</param>
+		/// <param name="numricString">æ•¸å€¼å­—ç¬¦ä¸²</param>
 		/// <returns>String</returns>
 		public static string NumricTrimAll( string numricString )
 		{
@@ -447,10 +447,10 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÔÚÊı×éÖĞ²éÕÒÆ¥Åä¶ÔÏóÀàĞÍ
+		/// åœ¨æ•¸çµ„ä¸­æŸ¥æ‰¾åŒ¹é…å°åƒé¡å‹
 		/// </summary>
-		/// <param name="array">Êı×é</param>
-		/// <param name="obj">¶ÔÏó</param>
+		/// <param name="array">æ•¸çµ„</param>
+		/// <param name="obj">å°åƒ</param>
 		/// <returns>Boolean</returns>
 		public static bool ArrayFind(Array array,object obj)
 		{
@@ -467,11 +467,11 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ÔÚÊı×éÖĞ²éÕÒÆ¥Åä×Ö·û´®
+		/// åœ¨æ•¸çµ„ä¸­æŸ¥æ‰¾åŒ¹é…å­—ç¬¦ä¸²
 		/// </summary>
-		/// <param name="array">Êı×é</param>
-		/// <param name="obj">¶ÔÏó</param>
-		/// <param name="unUpLower">ÊÇ·ñºöÂÔ´óĞ¡Ğ´</param>
+		/// <param name="array">æ•¸çµ„</param>
+		/// <param name="obj">å°åƒ</param>
+		/// <param name="unUpLower">æ˜¯å¦å¿½ç•¥å¤§å°å¯«</param>
 		/// <returns>Boolean</returns>
 		public static bool ArrayFind(Array array,string obj,bool unUpLower)
 		{
@@ -498,9 +498,9 @@ namespace DotNet.Utilities
 			return b;
 		}
 		/// <summary>
-		/// Ìæ»»×Ö·û´®ÖĞµÄµ¥ÒıºÅ¡£
+		/// æ›¿æ›å­—ç¬¦ä¸²ä¸­çš„å–®å¼•è™Ÿã€‚
 		/// </summary>
-		/// <param name="inputString">×Ö·û´®</param>
+		/// <param name="inputString">å­—ç¬¦ä¸²</param>
 		/// <returns>String</returns>
 		public static string ReplaceInvertedComma( string inputString )
 		{
@@ -509,10 +509,10 @@ namespace DotNet.Utilities
 
 		
 		/// <summary>
-		/// ÅĞ¶ÏÁ½¸ö×Ö½ÚÊı×éÊÇ·ñ¾ßÓĞÏàÍ¬Öµ.
+		/// åˆ¤æ–·å…©å€‹å­—ç¯€æ•¸çµ„æ˜¯å¦å…·æœ‰ç›¸åŒå€¼.
 		/// </summary>
-		/// <param name="bytea">×Ö½Ú1</param>
-		/// <param name="byteb">×Ö½Ú2</param>
+		/// <param name="bytea">å­—ç¯€1</param>
+		/// <param name="byteb">å­—ç¯€2</param>
 		/// <returns>Boolean</returns>
 		public static bool CompareByteArray(byte[] bytea,byte[] byteb)
 		{
@@ -544,9 +544,9 @@ namespace DotNet.Utilities
 
 		
 		/// <summary>
-		/// ÈÕÆÚÖÇÄÜÉú³É¡£
+		/// æ—¥æœŸæ™ºèƒ½ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="inputText">×Ö·û´®</param>
+		/// <param name="inputText">å­—ç¬¦ä¸²</param>
 		/// <returns>DateTime</returns>
 		public static string BuildDate( string inputText )
 		{
@@ -598,9 +598,9 @@ namespace DotNet.Utilities
 		
 
 		/// <summary>
-		/// ¼ì²éÎÄ¼şÊÇ·ñÕæÊµ´æÔÚ¡£
+		/// æª¢æŸ¥æ–‡ä»¶æ˜¯å¦çœŸå¯¦å­˜åœ¨ã€‚
 		/// </summary>
-		/// <param name="path">ÎÄ¼şÈ«Ãû£¨°üÀ¨Â·¾¶£©¡£</param>
+		/// <param name="path">æ–‡ä»¶å…¨åï¼ˆåŒ…æ‹¬è·¯å¾‘ï¼‰ã€‚</param>
 		/// <returns>Boolean</returns>
 		public static bool IsFileExists(string path)
 		{
@@ -613,9 +613,9 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ¼ì²éÄ¿Â¼ÊÇ·ñÕæÊµ´æÔÚ¡£
+		/// æª¢æŸ¥ç›®éŒ„æ˜¯å¦çœŸå¯¦å­˜åœ¨ã€‚
 		/// </summary>
-		/// <param name="path">Ä¿Â¼Â·¾¶.</param>
+		/// <param name="path">ç›®éŒ„è·¯å¾‘.</param>
 		/// <returns>Boolean</returns>
 		public static bool IsDirectoryExists(string path)
 		{
@@ -628,11 +628,11 @@ namespace DotNet.Utilities
 		}
 		
 		/// <summary>
-		/// ²éÕÒÎÄ¼şÖĞÊÇ·ñ´æÔÚÆ¥ÅäĞĞ¡£
+		/// æŸ¥æ‰¾æ–‡ä»¶ä¸­æ˜¯å¦å­˜åœ¨åŒ¹é…è¡Œã€‚
 		/// </summary>
-		/// <param name="fi">Ä¿±êÎÄ¼ş.</param>
-		/// <param name="lineText">Òª²éÕÒµÄĞĞÎÄ±¾.</param>
-		/// <param name="lowerUpper">ÊÇ·ñÇø·Ö´óĞ¡Ğ´.</param>
+		/// <param name="fi">ç›®æ¨™æ–‡ä»¶.</param>
+		/// <param name="lineText">è¦æŸ¥æ‰¾çš„è¡Œæ–‡æœ¬.</param>
+		/// <param name="lowerUpper">æ˜¯å¦å€åˆ†å¤§å°å¯«.</param>
 		/// <returns>Boolean</returns>
 		public static bool FindLineTextFromFile(FileInfo fi,string lineText,bool lowerUpper)
 		{
@@ -674,13 +674,13 @@ namespace DotNet.Utilities
 
 
 		/// <summary>
-		/// ÅĞ¶Ï¸¸×Ó¼¶¹ØÏµÊÇ·ñÕıÈ·¡£
+		/// åˆ¤æ–·çˆ¶å­ç´šé—œä¿‚æ˜¯å¦æ­£ç¢ºã€‚
 		/// </summary>
-		/// <param name="table">Êı¾İ±í¡£</param>
-		/// <param name="columnName">×Ó¼üÁĞÃû¡£</param>
-		/// <param name="parentColumnName">¸¸¼üÁĞÃû¡£</param>
-		/// <param name="inputString">×Ó¼üÖµ¡£</param>
-		/// <param name="compareString">¸¸¼üÖµ¡£</param>
+		/// <param name="table">æ•¸æ“šè¡¨ã€‚</param>
+		/// <param name="columnName">å­éµåˆ—åã€‚</param>
+		/// <param name="parentColumnName">çˆ¶éµåˆ—åã€‚</param>
+		/// <param name="inputString">å­éµå€¼ã€‚</param>
+		/// <param name="compareString">çˆ¶éµå€¼ã€‚</param>
 		/// <returns></returns>
 		public static bool IsRightParent(DataTable table,string columnName,string parentColumnName,string inputString,string compareString)
 		{
@@ -689,12 +689,12 @@ namespace DotNet.Utilities
 			return array.Count == 0;
 		}
 
-		// ÄÚ²¿·½·¨
+		// å…§éƒ¨æ–¹æ³•
 		private static void SearchChild(ArrayList array,DataTable table,string columnName,string parentColumnName,string inputString,string compareString)
 		{
 			DataView view = new DataView(table);
-			view.RowFilter = parentColumnName+"='"+ReplaceInvertedComma(inputString.Trim())+"'";//ÕÒ³öËùÓĞµÄ×ÓÀà¡£
-			//²éÕÒ±íÖĞµÄÊı¾İµÄIDÊÇ·ñÓëcompareStringÏàµÈ£¬ÏàµÈ·µ»Ø false;²»ÏàµÈ¼ÌĞøµü´ú¡£
+			view.RowFilter = parentColumnName+"='"+ReplaceInvertedComma(inputString.Trim())+"'";//æ‰¾å‡ºæ‰€æœ‰çš„å­é¡ã€‚
+			//æŸ¥æ‰¾è¡¨ä¸­çš„æ•¸æ“šçš„IDæ˜¯å¦èˆ‡compareStringç›¸ç­‰ï¼Œç›¸ç­‰è¿”å› false;ä¸ç›¸ç­‰ç¹¼çºŒè¿­ä»£ã€‚
 			for(int index = 0 ;index < view.Count;index ++)
 			{
 				if(Utility.ToObjectString(view[index][columnName]).ToLower() == compareString.Trim().ToLower())
@@ -711,13 +711,13 @@ namespace DotNet.Utilities
 
 		#endregion
 
-		#region ÈÕÆÚ
+		#region æ—¥æœŸ
 
         /// <summary>
-        /// ¸ñÊ½»¯ÈÕÆÚÀàĞÍ£¬·µ»Ø×Ö·û´®
+        /// æ ¼å¼åŒ–æ—¥æœŸé¡å‹ï¼Œè¿”å›å­—ç¬¦ä¸²
         /// </summary>
-        /// <param name="dtime">ÈÕÆÚ</param>
-        /// <param name="s">ÈÕÆÚÄêÔÂÈÕ¼ä¸ô·ûºÅ</param>
+        /// <param name="dtime">æ—¥æœŸ</param>
+        /// <param name="s">æ—¥æœŸå¹´æœˆæ—¥é–“éš”ç¬¦è™Ÿ</param>
         /// <returns></returns>
 		public static String Fomatdate(DateTime dtime,String s)
 		{
@@ -727,11 +727,11 @@ namespace DotNet.Utilities
 		}
 
         /// <summary>
-        /// ·µ»ØÈÕÆÚ²î
+        /// è¿”å›æ—¥æœŸå·®
         /// </summary>
-        /// <param name="sdmin">¿ªÊ¼ÈÕÆÚ</param>
-        /// <param name="sdmax">½áÊøÈÕÆÚ</param>
-        /// <returns>ÈÕÆÚ²î£º¸ºÊıÎªÊ§°Ü</returns>
+        /// <param name="sdmin">é–‹å§‹æ—¥æœŸ</param>
+        /// <param name="sdmax">çµæŸæ—¥æœŸ</param>
+        /// <returns>æ—¥æœŸå·®ï¼šè² æ•¸ç‚ºå¤±æ•—</returns>
 		public static int Datediff(DateTime sdmin,DateTime sdmax)
 		{
 			try
@@ -750,11 +750,11 @@ namespace DotNet.Utilities
 		}
 
         /// <summary>
-        /// ·µ»ØÈÕÆÚ²î
+        /// è¿”å›æ—¥æœŸå·®
         /// </summary>
-        /// <param name="sdmin">¿ªÊ¼ÈÕÆÚ</param>
-        /// <param name="sdmax">½áÊøÈÕÆÚ</param>
-        /// <returns>ÈÕÆÚ²î£º¸ºÊıÎªÊ§°Ü</returns>
+        /// <param name="sdmin">é–‹å§‹æ—¥æœŸ</param>
+        /// <param name="sdmax">çµæŸæ—¥æœŸ</param>
+        /// <returns>æ—¥æœŸå·®ï¼šè² æ•¸ç‚ºå¤±æ•—</returns>
 		public static int Datediff(String sdmin,String sdmax)
 		{
 			try
@@ -778,12 +778,12 @@ namespace DotNet.Utilities
 
 		#endregion
 
-		#region ×ª»»ÓÃ»§ÊäÈë
+		#region è½‰æ›ç”¨æˆ¶è¼¸å…¥
 
 		/// <summary>
-		/// ½«ÓÃ»§ÊäÈëµÄ×Ö·û´®×ª»»Îª¿É»»ĞĞ¡¢Ìæ»»Html±àÂë¡¢ÎŞÎ£º¦Êı¾İ¿âÌØÊâ×Ö·û¡¢È¥µôÊ×Î²¿Õ°×¡¢µÄ°²È«·½±ã´úÂë¡£
+		/// å°‡ç”¨æˆ¶è¼¸å…¥çš„å­—ç¬¦ä¸²è½‰æ›ç‚ºå¯æ›è¡Œã€æ›¿æ›Htmlç·¨ç¢¼ã€ç„¡å±å®³æ•¸æ“šåº«ç‰¹æ®Šå­—ç¬¦ã€å»æ‰é¦–å°¾ç©ºç™½ã€çš„å®‰å…¨æ–¹ä¾¿ä»£ç¢¼ã€‚
 		/// </summary>
-		/// <param name="inputString">ÓÃ»§ÊäÈë×Ö·û´®</param>
+		/// <param name="inputString">ç”¨æˆ¶è¼¸å…¥å­—ç¬¦ä¸²</param>
 		public static string ConvertStr(string inputString)
 		{
 			string retVal=inputString;
@@ -809,7 +809,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// ½«html´úÂëÏÔÊ¾ÔÚÍøÒ³ÉÏ
+        /// å°‡htmlä»£ç¢¼é¡¯ç¤ºåœ¨ç¶²é ä¸Š
         /// </summary>
         /// <param name="inputString"></param>
         /// <returns></returns>
@@ -844,44 +844,44 @@ namespace DotNet.Utilities
 		#endregion
 
    
-        //#region µ¯³ö¿ò
+        //#region å½ˆå‡ºæ¡†
 
         ///// <summary>
-        ///// ·şÎñÆ÷¶Ëµ¯³öalert¶Ô»°¿ò
+        ///// æœå‹™å™¨ç«¯å½ˆå‡ºalertå°è©±æ¡†
         ///// </summary>
-        ///// <param name="str_Message">ÌáÊ¾ĞÅÏ¢,Àı×Ó£º"ÇëÊäÈëÄúĞÕÃû!"</param>
-        ///// <param name="page">PageÀà</param>
+        ///// <param name="str_Message">æç¤ºä¿¡æ¯,ä¾‹å­ï¼š"è«‹è¼¸å…¥æ‚¨å§“å!"</param>
+        ///// <param name="page">Pageé¡</param>
         //public static void Alert(string str_Message,Page page)
         //{
         //    page.RegisterStartupScript("","<script>alert('"+str_Message+"');</script>");
         //}
         ///// <summary>
-        ///// ·şÎñÆ÷¶Ëµ¯³öalert¶Ô»°¿ò
+        ///// æœå‹™å™¨ç«¯å½ˆå‡ºalertå°è©±æ¡†
         ///// </summary>
-        ///// <param name="str_Ctl_Name">»ñµÃ½¹µã¿Ø¼şIdÖµ,±ÈÈç£ºtxt_Name</param>
-        ///// <param name="str_Message">ÌáÊ¾ĞÅÏ¢,Àı×Ó£º"ÇëÊäÈëÄúĞÕÃû!"</param>
-        ///// <param name="page">PageÀà</param>
+        ///// <param name="str_Ctl_Name">ç²å¾—ç„¦é»æ§ä»¶Idå€¼,æ¯”å¦‚ï¼štxt_Name</param>
+        ///// <param name="str_Message">æç¤ºä¿¡æ¯,ä¾‹å­ï¼š"è«‹è¼¸å…¥æ‚¨å§“å!"</param>
+        ///// <param name="page">Pageé¡</param>
         //public static void Alert(string str_Ctl_Name,string str_Message,Page page)
         //{
         //    page.RegisterStartupScript("","<script>alert('"+str_Message+"');document.forms(0)."+str_Ctl_Name+".focus(); document.forms(0)."+str_Ctl_Name+".select();</script>");
         //}
         ///// <summary>
-        ///// ·şÎñÆ÷¶Ëµ¯³öconfirm¶Ô»°¿ò,¸Ãº¯ÊıÓĞ¸ö±×¶Ë,±ØĞë·Åµ½ÏìÓ¦ÊÂ¼şµÄ×îºó,Ä¿Ç°Ã»ÓĞÍ×ÉÆ½â¾ö·½°¸
+        ///// æœå‹™å™¨ç«¯å½ˆå‡ºconfirmå°è©±æ¡†,è©²å‡½æ•¸æœ‰å€‹å¼Šç«¯,å¿…é ˆæ”¾åˆ°éŸ¿æ‡‰äº‹ä»¶çš„æœ€å¾Œ,ç›®å‰æ²’æœ‰å¦¥å–„è§£æ±ºæ–¹æ¡ˆ
         ///// </summary>
-        ///// <param name="str_Message">ÌáÊ¾ĞÅÏ¢,Àı×Ó£º"ÄúÊÇ·ñÈ·ÈÏÉ¾³ı!"</param>
-        ///// <param name="btn">Òş²ØBotton°´Å¥IdÖµ,±ÈÈç£ºbtn_Flow</param>
-        ///// <param name="page">PageÀà</param>
+        ///// <param name="str_Message">æç¤ºä¿¡æ¯,ä¾‹å­ï¼š"æ‚¨æ˜¯å¦ç¢ºèªåˆªé™¤!"</param>
+        ///// <param name="btn">éš±è—BottonæŒ‰éˆ•Idå€¼,æ¯”å¦‚ï¼šbtn_Flow</param>
+        ///// <param name="page">Pageé¡</param>
         //public static void Confirm(string str_Message,string btn,Page page)
         //{
         //    page.RegisterStartupScript("","<script> if (confirm('"+str_Message+"')==true){document.forms(0)."+btn+".click();}</script>");
         //}
         ///// <summary>
-        /////  ·şÎñÆ÷¶Ëµ¯³öconfirm¶Ô»°¿ò,Ñ¯ÎÊÓÃ»§×¼±¸×ªÏòÏàÓ¦²Ù×÷£¬°üÀ¨¡°È·¶¨¡±ºÍ¡°È¡Ïû¡±Ê±µÄ²Ù×÷
+        /////  æœå‹™å™¨ç«¯å½ˆå‡ºconfirmå°è©±æ¡†,è©¢å•ç”¨æˆ¶æº–å‚™è½‰å‘ç›¸æ‡‰æ“ä½œï¼ŒåŒ…æ‹¬ã€Œç¢ºå®šã€å’Œã€Œå–æ¶ˆã€æ™‚çš„æ“ä½œ
         ///// </summary>
-        ///// <param name="str_Message">ÌáÊ¾ĞÅÏ¢£¬±ÈÈç£º"³É¹¦Ôö¼ÓÊı¾İ,µ¥»÷\"È·¶¨\"°´Å¥ÌîĞ´Á÷³Ì,µ¥»÷\"È¡Ïû\"ĞŞ¸ÄÊı¾İ"</param>
-        ///// <param name="btn_Redirect_Flow">"È·¶¨"°´Å¥idÖµ</param>
-        ///// <param name="btn_Redirect_Self">"È¡Ïû"°´Å¥idÖµ</param>
-        ///// <param name="page">PageÀà</param>
+        ///// <param name="str_Message">æç¤ºä¿¡æ¯ï¼Œæ¯”å¦‚ï¼š"æˆåŠŸå¢åŠ æ•¸æ“š,å–®æ“Š\"ç¢ºå®š\"æŒ‰éˆ•å¡«å¯«æµç¨‹,å–®æ“Š\"å–æ¶ˆ\"ä¿®æ”¹æ•¸æ“š"</param>
+        ///// <param name="btn_Redirect_Flow">"ç¢ºå®š"æŒ‰éˆ•idå€¼</param>
+        ///// <param name="btn_Redirect_Self">"å–æ¶ˆ"æŒ‰éˆ•idå€¼</param>
+        ///// <param name="page">Pageé¡</param>
         //public static void Confirm(string str_Message,string btn_Redirect_Flow,string btn_Redirect_Self,Page page)
         //{
         //    page.RegisterStartupScript("","<script> if (confirm('"+str_Message+"')==true){document.forms(0)."+btn_Redirect_Flow+".click();}else{document.forms(0)."+btn_Redirect_Self+".click();}</script>");
@@ -891,10 +891,10 @@ namespace DotNet.Utilities
 
 
 		/// <summary>
-		/// ÉèÖÃ°ó¶¨µ½DataGridµÄDataTableµÄ¼ÇÂ¼ĞĞÊı£¬Èç²»¹»ÔòÌí¼Ó¿ÕĞĞ
+		/// è¨­ç½®ç¶å®šåˆ°DataGridçš„DataTableçš„è¨˜éŒ„è¡Œæ•¸ï¼Œå¦‚ä¸å¤ å‰‡æ·»åŠ ç©ºè¡Œ
 		/// </summary>
-		/// <param name="myDataTable">Êı¾İ±í</param>
-		/// <param name="intPageCount">DataGrid·ÖÒ³Ê±Ã¿Ò³ĞĞÊı</param>
+		/// <param name="myDataTable">æ•¸æ“šè¡¨</param>
+		/// <param name="intPageCount">DataGridåˆ†é æ™‚æ¯é è¡Œæ•¸</param>
 		public static void SetTableRows(DataTable myDataTable,int intPageCount)
 		{
 			try
@@ -926,12 +926,12 @@ namespace DotNet.Utilities
             return System.Configuration.ConfigurationManager.AppSettings[filePath];
         }
 
-        #region   ×Ö·û´®³¤¶ÈÇø·ÖÖĞÓ¢ÎÄ½ØÈ¡
+        #region   å­—ç¬¦ä¸²é•·åº¦å€åˆ†ä¸­è‹±æ–‡æˆªå–
         /// <summary>   
-        /// ½ØÈ¡ÎÄ±¾£¬Çø·ÖÖĞÓ¢ÎÄ×Ö·û£¬ÖĞÎÄËãÁ½¸ö³¤¶È£¬Ó¢ÎÄËãÒ»¸ö³¤¶È
+        /// æˆªå–æ–‡æœ¬ï¼Œå€åˆ†ä¸­è‹±æ–‡å­—ç¬¦ï¼Œä¸­æ–‡ç®—å…©å€‹é•·åº¦ï¼Œè‹±æ–‡ç®—ä¸€å€‹é•·åº¦
         /// </summary>
-        /// <param name="str">´ı½ØÈ¡µÄ×Ö·û´®</param>
-        /// <param name="length">Ğè¼ÆËã³¤¶ÈµÄ×Ö·û´®</param>
+        /// <param name="str">å¾…æˆªå–çš„å­—ç¬¦ä¸²</param>
+        /// <param name="length">éœ€è¨ˆç®—é•·åº¦çš„å­—ç¬¦ä¸²</param>
         /// <returns>string</returns>
         public static string GetSubString(string str, int length)
         {

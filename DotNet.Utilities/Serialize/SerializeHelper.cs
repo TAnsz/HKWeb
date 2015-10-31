@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.IO;
@@ -24,8 +24,8 @@ namespace DotNet.Utilities
         /// <summary>
         /// 文件化XML序列化
         /// </summary>
-        /// <param name="obj">对象</param>
-        /// <param name="filename">文件路径</param>
+        /// <param name="obj">對像</param>
+        /// <param name="filename">文件路徑</param>
         public static void Save(object obj, string filename)
         {
             FileStream fs = null;
@@ -48,8 +48,8 @@ namespace DotNet.Utilities
         /// <summary>
         /// 文件化XML反序列化
         /// </summary>
-        /// <param name="type">对象类型</param>
-        /// <param name="filename">文件路径</param>
+        /// <param name="type">對像類型</param>
+        /// <param name="filename">文件路徑</param>
         public static object Load(Type type, string filename)
         {
             FileStream fs = null;
@@ -72,7 +72,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// 文本化XML序列化
         /// </summary>
-        /// <param name="item">对象</param>
+        /// <param name="item">對像</param>
         public string ToXml<T>(T item)
         {
             XmlSerializer serializer = new XmlSerializer(item.GetType());
@@ -102,7 +102,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// JsonSerializer序列化
         /// </summary>
-        /// <param name="item">对象</param>
+        /// <param name="item">對像</param>
         //public string ToJson<T>(T item)
         //{
         //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(item.GetType());
@@ -131,7 +131,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// SoapFormatter序列化
         /// </summary>
-        /// <param name="item">对象</param>
+        /// <param name="item">對像</param>
         public string ToSoap<T>(T item)
         {
             SoapFormatter formatter = new SoapFormatter();
@@ -167,7 +167,7 @@ namespace DotNet.Utilities
         /// <summary>
         /// BinaryFormatter序列化
         /// </summary>
-        /// <param name="item">对象</param>
+        /// <param name="item">對像</param>
         public string ToBinary<T>(T item)
         {
             BinaryFormatter formatter = new BinaryFormatter();

@@ -1,28 +1,28 @@
-﻿using System;
+using System;
 using System.Web;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 客户端信息获取类
+    /// 客戶端信息獲取類
     /// </summary>
     public class ClientHelper
     {
 
         private HttpBrowserCapabilities bc = new HttpBrowserCapabilities();
-        //定义搜索引擎关键字，用于判断是否是搜索引警进入本站
+        //定義搜索引擎關鍵字，用於判斷是否是搜索引警進入本站
         string[] SearchEngine = { "google", "360.cn", "baidu", "sogou", "soso", "so.com", "youdao", "bing.com", "yahoo", "lycos", "googlesyndication.com", "sm.cn" };
-        //定义搜索引擎关键字，用于判断访问网站的是否是搜索引擎的网络蜘蛛在抓起页面
+        //定義搜索引擎關鍵字，用於判斷訪問網站的是否是搜索引擎的網絡蜘蛛在抓起頁面
         public static readonly string[] _searchEngineList = { "spider", "Googlebot", "bingbot", "Yahoo", "YoudaoBot", "MJ12bot", "alexa", "Wget", "msnbot", "DotBot", "yandex", "google", "msn", "baidu", "sogou", "sohu", "sina", "163", "lycos", "tom", "yisou", "iask", "soso", "gougou", "zhongsou" };
 
-        /// <summary>构造函数
+        /// <summary>構造函數
         /// </summary>
 		public ClientHelper(HttpRequest Request)
         {
             bc = Request.Browser;
         }
 
-        /// <summary>返回浏览器操作系统名称
+        /// <summary>返回瀏覽器操作系統名稱
         /// </summary>
         /// <returns></returns>
         public string GetBrowserOS()
@@ -30,7 +30,7 @@ namespace DotNet.Utilities
             return System.Web.HttpContext.Current.Request.Browser.Platform.ToString();
         }
 
-        /// <summary>返回浏览器IP
+        /// <summary>返回瀏覽器IP
         /// </summary>
         /// <returns></returns>
         public string GetBrowserIP()
@@ -39,7 +39,7 @@ namespace DotNet.Utilities
             //return System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];//此方法也可以
         }
 
-        ///<summary> 返回浏览器是否支持Java
+        ///<summary> 返回瀏覽器是否支持Java
         /// </summary>
         /// <returns></returns>
         public string GetBrowserSupportJava()
@@ -47,7 +47,7 @@ namespace DotNet.Utilities
             return System.Web.HttpContext.Current.Request.Browser.JavaScript.ToString();
         }
 
-        /// <summary>返回浏览器IE版本
+        /// <summary>返回瀏覽器IE版本
         /// </summary>
         /// <returns></returns>
         public string GetBrowserName()
@@ -55,7 +55,7 @@ namespace DotNet.Utilities
             return System.Web.HttpContext.Current.Request.Browser.Browser.ToString() + System.Web.HttpContext.Current.Request.Browser.Version.ToString();
         }
 
-        /// <summary>返回浏览器.NET版本
+        /// <summary>返回瀏覽器.NET版本
         /// </summary>
         /// <returns></returns>
         public string GetBrowserNETCLR()
@@ -63,7 +63,7 @@ namespace DotNet.Utilities
             return System.Web.HttpContext.Current.Request.Browser.ClrVersion.ToString();
         }
 
-        /// <summary>返回浏览器是否支持Cookies
+        /// <summary>返回瀏覽器是否支持Cookies
         /// </summary>
         /// <returns></returns>
         public string GetBrowserSupportCookies()
@@ -71,7 +71,7 @@ namespace DotNet.Utilities
             return System.Web.HttpContext.Current.Request.Browser.Cookies.ToString();
         }
 
-        /// <summary>获取客户端使用的系统</summary>
+        /// <summary>獲取客戶端使用的系統</summary>
         /// <returns></returns>
         public string GetSystem()
         {
@@ -85,7 +85,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断系统属于win16还是win32,还是其他
+        /// <summary>判斷系統屬於win16還是win32,還是其他
         /// </summary>
         /// <returns></returns>
         public string GetSysClass()
@@ -118,7 +118,7 @@ namespace DotNet.Utilities
 
         }
 
-        /// <summary>获取客户端浏览器信息
+        /// <summary>獲取客戶端瀏覽器信息
         /// </summary>
         /// <returns></returns>
         public string GetBrowserInfo()
@@ -133,7 +133,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器的标识
+        /// <summary>獲取瀏覽器的標識
         /// </summary>
         /// <returns></returns>
         public string GetBrowserIdentifying()
@@ -149,7 +149,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器的版本信息
+        /// <summary>獲取瀏覽器的版本信息
         /// </summary>
         /// <returns></returns>
         public string GetBrowserVersion()
@@ -164,7 +164,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器的主版本信息
+        /// <summary>獲取瀏覽器的主版本信息
         /// </summary>
         /// <returns></returns>
         public string GetBrowerMajorVersion()
@@ -179,7 +179,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器的次版本信息
+        /// <summary>獲取瀏覽器的次版本信息
         /// </summary>
         /// <returns></returns>
         public string GetBrowserMinorVersion()
@@ -194,7 +194,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断浏览器是否为测试版本
+        /// <summary>判斷瀏覽器是否為測試版本
         /// </summary>
         /// <returns></returns>
         public bool? IsBrowserBeta()
@@ -209,7 +209,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>是否是 America Online(美国在线服务)浏览器</summary>
+        /// <summary>是否是 America Online(美國在線服務)瀏覽器</summary>
         /// <returns></returns>
         public bool? IsBrowserAOL()
         {
@@ -223,7 +223,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>客户端安装的 .NET Framework 版本</summary>
+        /// <summary>客戶端安裝的 .NET Framework 版本</summary>
         /// <returns></returns>
         public string GetNetClrVersion()
         {
@@ -238,7 +238,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>是否为是搜索引擎的网络爬虫
+        /// <summary>是否為是搜索引擎的網絡爬蟲
         /// </summary>
         /// <returns></returns>
         public bool IsCrawler()
@@ -268,7 +268,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否为移动设备
+        /// 是否為移動設備
         /// </summary>
         /// <returns></returns>
         public bool IsMobileDevice()
@@ -285,7 +285,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 是否为移动设备
+        /// 是否為移動設備
         /// </summary>
         /// <returns></returns>
         public bool IsMobileDevice(string ua)
@@ -301,7 +301,7 @@ namespace DotNet.Utilities
             return false;
         }
 
-        /// <summary>显示的颜色深度
+        /// <summary>顯示的顏色深度
         /// 
         /// </summary>
         /// <returns></returns>
@@ -318,7 +318,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>显示的近似宽度（以字符行为单位)
+        /// <summary>顯示的近似寬度（以字符行為單位)
         /// </summary>
         /// <returns></returns>
         public int? GetScreenCharactersWidth()
@@ -333,7 +333,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>显示的近似高度（以字符行为单位）
+        /// <summary>顯示的近似高度（以字符行為單位）
         /// </summary>
         /// <returns></returns>
         public int? GetScreenCharactersHeight()
@@ -348,7 +348,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>显示的近似宽度（以像素行为单位）
+        /// <summary>顯示的近似寬度（以像素行為單位）
         /// </summary>
         /// <returns></returns>
         public int? GetScreenPixelsWidth()
@@ -364,7 +364,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>显示的近似高度（以像素行为单位）
+        /// <summary>顯示的近似高度（以像素行為單位）
         /// </summary>
         /// <returns></returns>
         public int? GetScreenPixelsHeight()
@@ -441,7 +441,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取javascript版本
+        /// <summary>獲取javascript版本
         /// </summary>
         /// <returns></returns>
         public String GetJScriptVersion()
@@ -457,7 +457,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>是否支持VBScript脚本
+        /// <summary>是否支持VBScript腳本
         /// </summary>
         public bool? IsVBScript()
         {
@@ -520,7 +520,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>是否支持通过 HTTP 接收 XML
+        /// <summary>是否支持通過 HTTP 接收 XML
         /// </summary>
         /// <returns></returns>
         public bool? IsSupportsXmlHttp()
@@ -551,7 +551,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>超链接 a 属性 href 值的最大长度
+        /// <summary>超鏈接 a 屬性 href 值的最大長度
         /// </summary>
         /// <returns></returns>
         public int? GetMaximumHrefLength()
@@ -584,7 +584,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>返回移动设备制造商的名称
+        /// <summary>返回移動設備製造商的名稱
         /// </summary>
         /// <returns></returns>
         public String GetMobileDeviceManufacturer()
@@ -601,7 +601,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>该浏览器设备是否能够启动语音呼叫
+        /// <summary>該瀏覽器設備是否能夠啟動語音呼叫
         /// </summary>
         /// <returns></returns>
         public bool? IsCanInitiateVoiceCall()
@@ -618,7 +618,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断浏览器是否支持Html中mailto发送电子邮件
+        /// <summary>判斷瀏覽器是否支持Html中mailto發送電子郵件
         /// </summary>
         /// <returns></returns>
         public bool? IsCanSendMail()
@@ -635,7 +635,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断浏览器是否支持Web广播的频道定义格式
+        /// <summary>判斷瀏覽器是否支持Web廣播的頻道定義格式
         /// </summary>
         /// <returns></returns>
         public bool? IsCDF()
@@ -651,7 +651,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器EcmaScriptVersion支持的版本
+        /// <summary>獲取瀏覽器EcmaScriptVersion支持的版本
         /// </summary>
         /// <returns></returns>
         public string GetEcmaScriptVersion()
@@ -668,7 +668,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>返回浏览器支持可输入的类型
+        /// <summary>返回瀏覽器支持可輸入的類型
         /// </summary>
         /// <returns></returns>
         public string GetInputType()
@@ -684,9 +684,9 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>判断当前浏览器是否与指定的浏览器相同
+        /// <summary>判斷當前瀏覽器是否與指定的瀏覽器相同
         /// </summary>
-        /// <param name="BrowserName">指定进行对比的浏览器</param>
+        /// <param name="BrowserName">指定進行對比的瀏覽器</param>
         /// <returns></returns>
         public bool? IsAlikeBrowser(string BrowserName)
         {
@@ -701,7 +701,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>返回移动设备上软键的数目
+        /// <summary>返回移動設備上軟鍵的數目
         /// </summary>
         /// <returns></returns>
         public int? GetNumberOfSoftkeys()
@@ -717,7 +717,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary> 获取浏览器请求的首选编码
+        /// <summary> 獲取瀏覽器請求的首選編碼
         /// </summary>
         /// <returns></returns>
         public string GetPreferredRequestEncoding()
@@ -734,7 +734,7 @@ namespace DotNet.Utilities
 
         }
 
-        /// <summary>获取浏览器响应的首选编码
+        /// <summary>獲取瀏覽器響應的首選編碼
         /// </summary>
         /// <returns></returns>
         public string GetPreferredResponseEncoding()
@@ -750,7 +750,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>浏览器是否支持回调脚本
+        /// <summary>瀏覽器是否支持回調腳本
         /// </summary>
         /// <returns></returns>
         public bool? IsSupportsCallback()
@@ -767,7 +767,7 @@ namespace DotNet.Utilities
             }
         }
 
-        /// <summary>获取浏览器的名称+主（整数）版本号
+        /// <summary>獲取瀏覽器的名稱+主（整數）版本號
         /// </summary>
         /// <returns></returns>
         public string GetBrowserType()
@@ -784,7 +784,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 判断是否为搜索引擎
+        /// 判斷是否為搜索引擎
         /// </summary>
         /// <returns></returns>
         public bool IsSearchEnginesGet(string refererUrl)
@@ -803,7 +803,7 @@ namespace DotNet.Utilities
             return false;
         }
         /// <summary>
-        /// 判断是否为搜索引擎
+        /// 判斷是否為搜索引擎
         /// </summary>
         /// <returns></returns>
         public bool IsSearchEnginesGet()
@@ -816,8 +816,8 @@ namespace DotNet.Utilities
             return IsSearchEnginesGet(HttpContext.Current.Request.UrlReferrer.ToString());
         }
 
-        /// <summary> 获得当前页面客户端的IP </summary>
-        /// <returns>当前页面客户端的IP</returns>
+        /// <summary> 獲得當前頁面客戶端的IP </summary>
+        /// <returns>當前頁面客戶端的IP</returns>
         public string GetIP()
         {
             string result = String.Empty;
@@ -842,60 +842,60 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 将所以客户端收集的信息输出来
+        /// 將所以客戶端收集的信息輸出來
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             string temp = "";
-            temp += "返回浏览器操作系统名称:   " + GetBrowserOS() + "\r\n";
-            temp += "返回浏览器IP:   " + GetBrowserIP() + "\r\n";
-            temp += "浏览器是否支持JavaScript:   " + GetBrowserSupportJava() + "\r\n";
-            temp += "浏览器IE版本:   " + GetBrowserName() + "\r\n";
-            temp += "浏览器.NET版本:   " + GetBrowserNETCLR() + "\r\n";
-            temp += "浏览器是否支持Cookies:   " + GetBrowserSupportCookies() + "\r\n";
-            temp += "客户端使用的系统:   " + GetSystem() + "\r\n";
-            temp += "判断系统属于win16还是win32,还是其他:   " + GetSysClass() + "\r\n";
-            temp += "客户端浏览器信息:   " + GetBrowserInfo() + "\r\n";
-            temp += "浏览器的标识:   " + GetBrowserIdentifying() + "\r\n";
-            temp += "浏览器的版本信息:   " + GetBrowserVersion() + "\r\n";
-            temp += "浏览器的主版本信息:   " + GetBrowerMajorVersion() + "\r\n";
-            temp += "浏览器的次版本信息:   " + GetBrowserMinorVersion() + "\r\n";
-            temp += "浏览器是否为测试版本:   " + IsBrowserBeta() + "\r\n";
-            temp += "是否是 America Online(美国在线服务)浏览器:   " + IsBrowserAOL() + "\r\n";
-            temp += "客户端安装的 .NET Framework 版本:   " + GetNetClrVersion() + "\r\n";
-            temp += "是否为是搜索引擎的网络爬虫:   " + IsCrawler() + "\r\n";
-            temp += "是否为移动设备:   " + IsMobileDevice() + "\r\n";
-            temp += "显示的颜色深度:   " + GetScreenBitDepth() + "\r\n";
-            temp += "显示的近似宽度（以字符行为单位):   " + GetScreenCharactersWidth() + "\r\n";
-            temp += "显示的近似高度（以字符行为单位）:   " + GetScreenCharactersHeight() + "\r\n";
-            temp += "显示的近似宽度（以像素行为单位）:   " + GetScreenPixelsWidth() + "\r\n";
-            temp += "显示的近似高度（以像素行为单位）:   " + GetScreenPixelsHeight() + "\r\n";
+            temp += "返回瀏覽器操作系統名稱:   " + GetBrowserOS() + "\r\n";
+            temp += "返回瀏覽器IP:   " + GetBrowserIP() + "\r\n";
+            temp += "瀏覽器是否支持JavaScript:   " + GetBrowserSupportJava() + "\r\n";
+            temp += "瀏覽器IE版本:   " + GetBrowserName() + "\r\n";
+            temp += "瀏覽器.NET版本:   " + GetBrowserNETCLR() + "\r\n";
+            temp += "瀏覽器是否支持Cookies:   " + GetBrowserSupportCookies() + "\r\n";
+            temp += "客戶端使用的系統:   " + GetSystem() + "\r\n";
+            temp += "判斷系統屬於win16還是win32,還是其他:   " + GetSysClass() + "\r\n";
+            temp += "客戶端瀏覽器信息:   " + GetBrowserInfo() + "\r\n";
+            temp += "瀏覽器的標識:   " + GetBrowserIdentifying() + "\r\n";
+            temp += "瀏覽器的版本信息:   " + GetBrowserVersion() + "\r\n";
+            temp += "瀏覽器的主版本信息:   " + GetBrowerMajorVersion() + "\r\n";
+            temp += "瀏覽器的次版本信息:   " + GetBrowserMinorVersion() + "\r\n";
+            temp += "瀏覽器是否為測試版本:   " + IsBrowserBeta() + "\r\n";
+            temp += "是否是 America Online(美國在線服務)瀏覽器:   " + IsBrowserAOL() + "\r\n";
+            temp += "客戶端安裝的 .NET Framework 版本:   " + GetNetClrVersion() + "\r\n";
+            temp += "是否為是搜索引擎的網絡爬蟲:   " + IsCrawler() + "\r\n";
+            temp += "是否為移動設備:   " + IsMobileDevice() + "\r\n";
+            temp += "顯示的顏色深度:   " + GetScreenBitDepth() + "\r\n";
+            temp += "顯示的近似寬度（以字符行為單位):   " + GetScreenCharactersWidth() + "\r\n";
+            temp += "顯示的近似高度（以字符行為單位）:   " + GetScreenCharactersHeight() + "\r\n";
+            temp += "顯示的近似寬度（以像素行為單位）:   " + GetScreenPixelsWidth() + "\r\n";
+            temp += "顯示的近似高度（以像素行為單位）:   " + GetScreenPixelsHeight() + "\r\n";
             temp += "是否支持 CSS:   " + IsSupportsCss() + "\r\n";
             temp += "是否支持 ActiveX 控件:   " + IsActiveXControls() + "\r\n";
             temp += "是否支持 JavaApplets:   " + IsJavaApplets() + "\r\n";
             temp += "是否支持javascript:   " + IsJavaScript() + "\r\n";
-            temp += "获取javascript版本:   " + GetJScriptVersion() + "\r\n";
-            temp += "是否支持VBScript脚本:   " + IsVBScript() + "\r\n";
+            temp += "獲取javascript版本:   " + GetJScriptVersion() + "\r\n";
+            temp += "是否支持VBScript腳本:   " + IsVBScript() + "\r\n";
             temp += "是否支持Cookie:   " + IsCookies() + "\r\n";
             temp += "支持的 MSHTML 的 DOM 版本:   " + GetMSDomVersion() + "\r\n";
             temp += "支持的 W3C 的 DOM 版本:   " + GetW3CDomVersion() + "\r\n";
-            temp += "是否支持通过 HTTP 接收 XML:   " + IsSupportsXmlHttp() + "\r\n";
+            temp += "是否支持通過 HTTP 接收 XML:   " + IsSupportsXmlHttp() + "\r\n";
             temp += "是否支持框架:   " + IsFrames() + "\r\n";
-            temp += "超链接 a 属性 href 值的最大长度:   " + GetMaximumHrefLength() + "\r\n";
+            temp += "超鏈接 a 屬性 href 值的最大長度:   " + GetMaximumHrefLength() + "\r\n";
             temp += "是否支持表格:   " + IsTables() + "\r\n";
-            temp += "返回移动设备制造商的名称:   " + GetMobileDeviceManufacturer() + "\r\n";
-            temp += "该浏览器设备是否能够启动语音呼叫:   " + IsCanInitiateVoiceCall() + "\r\n";
-            temp += "判断浏览器是否支持Html中mailto发送电子邮件:   " + IsCanSendMail() + "\r\n";
-            temp += "判断浏览器是否支持Web广播的频道定义格式:   " + IsCDF() + "\r\n";
-            temp += "获取浏览器EcmaScriptVersion支持的版本:   " + GetEcmaScriptVersion() + "\r\n";
-            temp += "返回浏览器支持可输入的类型:   " + GetInputType() + "\r\n";
-            temp += "返回移动设备上软键的数目:   " + GetNumberOfSoftkeys() + "\r\n";
-            temp += "获取浏览器请求的首选编码:   " + GetPreferredRequestEncoding() + "\r\n";
-            temp += "浏览器是否支持回调脚本:   " + IsSupportsCallback() + "\r\n";
-            temp += "获取浏览器的名称+主（整数）版本号:   " + GetBrowserType() + "\r\n";
-            temp += "判断是否为搜索引擎:   " + IsSearchEnginesGet() + "\r\n";
-            temp += "获得当前页面客户端的IP :   " + GetIP() + "\r\n";
+            temp += "返回移動設備製造商的名稱:   " + GetMobileDeviceManufacturer() + "\r\n";
+            temp += "該瀏覽器設備是否能夠啟動語音呼叫:   " + IsCanInitiateVoiceCall() + "\r\n";
+            temp += "判斷瀏覽器是否支持Html中mailto發送電子郵件:   " + IsCanSendMail() + "\r\n";
+            temp += "判斷瀏覽器是否支持Web廣播的頻道定義格式:   " + IsCDF() + "\r\n";
+            temp += "獲取瀏覽器EcmaScriptVersion支持的版本:   " + GetEcmaScriptVersion() + "\r\n";
+            temp += "返回瀏覽器支持可輸入的類型:   " + GetInputType() + "\r\n";
+            temp += "返回移動設備上軟鍵的數目:   " + GetNumberOfSoftkeys() + "\r\n";
+            temp += "獲取瀏覽器請求的首選編碼:   " + GetPreferredRequestEncoding() + "\r\n";
+            temp += "瀏覽器是否支持回調腳本:   " + IsSupportsCallback() + "\r\n";
+            temp += "獲取瀏覽器的名稱+主（整數）版本號:   " + GetBrowserType() + "\r\n";
+            temp += "判斷是否為搜索引擎:   " + IsSearchEnginesGet() + "\r\n";
+            temp += "獲得當前頁面客戶端的IP :   " + GetIP() + "\r\n";
 
             return temp;
         }

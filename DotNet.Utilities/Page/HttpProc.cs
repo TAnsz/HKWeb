@@ -1,8 +1,8 @@
 /// <summary>
-/// ÀàËµÃ÷£ºAssistant
-/// ±à Âë ÈË£ºËÕ·É
-/// ÁªÏµ·½Ê½£º361983679  
-/// ¸üĞÂÍøÕ¾£ºhttp://www.sufeinet.com/thread-655-1-1.html
+///  ËµÃ·ãºssistant
+/// á  Â« È‹ãº‹Õ·É
+/// jÏµç½Ší£º361983679  
+/// è¼Âè•¾ãº¨ttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text;
@@ -16,14 +16,14 @@ using System.Net.Cache;
 namespace DotNet.Utilities
 {
     /// <summary>    
-    /// ÉÏ´«Êı¾İ²ÎÊı    
+    /// Éä«Ší¾âŠí    
     /// </summary>    
     public class UploadEventArgs : EventArgs
     {
         int bytesSent;
         int totalBytes;
         /// <summary>    
-        /// ÒÑ·¢ËÍµÄ×Ö½ÚÊı    
+        /// Ò‘å²¢ÍµÄ—Ö½ÚŠí    
         /// </summary>    
         public int BytesSent
         {
@@ -31,7 +31,7 @@ namespace DotNet.Utilities
             set { bytesSent = value; }
         }
         /// <summary>    
-        /// ×Ü×Ö½ÚÊı    
+        /// ×œ×–íšŠí    
         /// </summary>    
         public int TotalBytes
         {
@@ -40,7 +40,7 @@ namespace DotNet.Utilities
         }
     }
     /// <summary>    
-    /// ÏÂÔØÊı¾İ²ÎÊı    
+    /// Ï‚Ô˜Ê½î²ÎŠí    
     /// </summary>    
     public class DownloadEventArgs : EventArgs
     {
@@ -48,7 +48,7 @@ namespace DotNet.Utilities
         int totalBytes;
         byte[] receivedData;
         /// <summary>    
-        /// ÒÑ½ÓÊÕµÄ×Ö½ÚÊı    
+        /// Ò‘í“ŠÕµÄ—Ö½ÚŠí    
         /// </summary>    
         public int BytesReceived
         {
@@ -56,7 +56,7 @@ namespace DotNet.Utilities
             set { bytesReceived = value; }
         }
         /// <summary>    
-        /// ×Ü×Ö½ÚÊı    
+        /// ×œ×–íšŠí    
         /// </summary>    
         public int TotalBytes
         {
@@ -64,7 +64,7 @@ namespace DotNet.Utilities
             set { totalBytes = value; }
         }
         /// <summary>    
-        /// µ±Ç°»º³åÇø½ÓÊÕµÄÊı¾İ    
+        /// å±‡à»ºã¥‡è½“Ê•å„Ší¾    
         /// </summary>    
         public byte[] ReceivedData
         {
@@ -89,7 +89,7 @@ namespace DotNet.Utilities
             LoadCookiesFromDisk();
         }
         /// <summary>    
-        /// ´´½¨WebClientµÄÊµÀı    
+        /// ä´½è—¥bClientå„Šå•¥    
         /// </summary>    
         public WebClient()
         {
@@ -97,7 +97,7 @@ namespace DotNet.Utilities
             responseHeaders = new WebHeaderCollection();
         }
         /// <summary>    
-        /// ÉèÖÃ·¢ËÍºÍ½ÓÊÕµÄÊı¾İ»º³å´óĞ¡    
+        /// É¨Öƒå²¢ÍºÍ½ÓŠÕµÄŠí¾ëº³å´³ï²    
         /// </summary>    
         public int BufferSize
         {
@@ -105,21 +105,21 @@ namespace DotNet.Utilities
             set { bufferSize = value; }
         }
         /// <summary>    
-        /// »ñÈ¡ÏìÓ¦Í·¼¯ºÏ    
+        /// ë±ˆá¬Ó¦Í·ì¯ºÏ    
         /// </summary>    
         public WebHeaderCollection ResponseHeaders
         {
             get { return responseHeaders; }
         }
         /// <summary>    
-        /// »ñÈ¡ÇëÇóÍ·¼¯ºÏ    
+        /// ë±ˆá‡«Ç³Í·ì¯ºÏ    
         /// </summary>    
         public WebHeaderCollection RequestHeaders
         {
             get { return requestHeaders; }
         }
         /// <summary>    
-        /// »ñÈ¡»òÉèÖÃ´úÀí    
+        /// ë±ˆá»²É¨Öƒé¾œí    
         /// </summary>    
         public WebProxy Proxy
         {
@@ -127,7 +127,7 @@ namespace DotNet.Utilities
             set { proxy = value; }
         }
         /// <summary>    
-        /// »ñÈ¡»òÉèÖÃÇëÇóÓëÏìÓ¦µÄÎÄ±¾±àÂë·½Ê½    
+        /// ë±ˆá»²É¨ÖƒÇ«Ç³Ó«Ï¬Ó¦è¼‰Ä±î± Â«ç½Ší    
         /// </summary>    
         public Encoding Encoding
         {
@@ -135,7 +135,7 @@ namespace DotNet.Utilities
             set { encoding = value; }
         }
         /// <summary>    
-        /// »ñÈ¡»òÉèÖÃÏìÓ¦µÄhtml´úÂë    
+        /// ë±ˆá»²É¨ÖƒÏ¬Ó¦è³ªtmläº‚ë    
         /// </summary>    
         public string RespHtml
         {
@@ -143,7 +143,7 @@ namespace DotNet.Utilities
             set { respHtml = value; }
         }
         /// <summary>    
-        /// »ñÈ¡»òÉèÖÃÓëÇëÇó¹ØÁªµÄCookieÈİÆ÷    
+        /// ë±ˆá»²É¨ÖƒÓ«Ç«Ç³é–£êµ„CookieÈÆ·    
         /// </summary>    
         public CookieContainer CookieContainer
         {
@@ -151,9 +151,9 @@ namespace DotNet.Utilities
             set { cc = value; }
         }
         /// <summary>    
-        ///  »ñÈ¡ÍøÒ³Ô´´úÂë    
+        ///  ë±ˆá¸Ò³Ô´äº‚ë    
         /// </summary>    
-        /// <param name="url">ÍøÖ·</param>    
+        /// <param name="url">Í¸Ö·</param>    
         /// <returns></returns>    
         public string GetHtml(string url)
         {
@@ -162,10 +162,10 @@ namespace DotNet.Utilities
             return respHtml;
         }
         /// <summary>    
-        /// ÏÂÔØÎÄ¼ş    
+        /// Ï‚Ô˜Î„ì¾    
         /// </summary>    
-        /// <param name="url">ÎÄ¼şURLµØÖ·</param>    
-        /// <param name="filename">ÎÄ¼ş±£´æÍêÕûÂ·¾¶</param>    
+        /// <param name="url">Î„ì¾•RLå˜–ç¹’param>    
+        /// <param name="filename">Î„ì¾±ã´¦ÍªÕ»Â·î¶¼/param>    
         public void DownloadFile(string url, string filename)
         {
             FileStream fs = null;
@@ -182,9 +182,9 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// ´ÓÖ¸¶¨URLÏÂÔØÊı¾İ    
+        /// ä“–è¶¨URLÏ‚Ô˜Ê½î    
         /// </summary>    
-        /// <param name="url">ÍøÖ·</param>    
+        /// <param name="url">Í¸Ö·</param>    
         /// <returns></returns>    
         public byte[] GetData(string url)
         {
@@ -192,10 +192,10 @@ namespace DotNet.Utilities
             return GetData(request);
         }
         /// <summary>    
-        /// ÏòÖ¸¶¨URL·¢ËÍÎÄ±¾Êı¾İ    
+        /// Ï²Ö¸æ¨•RLå²¢ÍÄ±îŠ½î    
         /// </summary>    
-        /// <param name="url">ÍøÖ·</param>    
-        /// <param name="postData">urlencode±àÂëµÄÎÄ±¾Êı¾İ</param>    
+        /// <param name="url">Í¸Ö·</param>    
+        /// <param name="postData">urlencodeá ‚ëµ„Î„á¾Ší¾</param>    
         /// <returns></returns>    
         public string Post(string url, string postData)
         {
@@ -203,10 +203,10 @@ namespace DotNet.Utilities
             return Post(url, data);
         }
         /// <summary>    
-        /// ÏòÖ¸¶¨URL·¢ËÍ×Ö½ÚÊı¾İ    
+        /// Ï²Ö¸æ¨•RLå²¢Í—Ö½ÚŠí¾    
         /// </summary>    
-        /// <param name="url">ÍøÖ·</param>    
-        /// <param name="postData">·¢ËÍµÄ×Ö½ÚÊı×é</param>    
+        /// <param name="url">Í¸Ö·</param>    
+        /// <param name="postData">å²¢ÍµÄ—Ö½ÚŠí—©</param>    
         /// <returns></returns>    
         public string Post(string url, byte[] postData)
         {
@@ -219,9 +219,9 @@ namespace DotNet.Utilities
             return respHtml;
         }
         /// <summary>    
-        /// ÏòÖ¸¶¨ÍøÖ··¢ËÍmulitpart±àÂëµÄÊı¾İ    
+        /// Ï²Ö¸æ¨è–·å²¢Í­ulitpartá ‚ëµ„Ê½î    
         /// </summary>    
-        /// <param name="url">ÍøÖ·</param>    
+        /// <param name="url">Í¸Ö·</param>    
         /// <param name="mulitpartForm">mulitpart form data</param>    
         /// <returns></returns>    
         public string Post(string url, MultipartForm mulitpartForm)
@@ -236,9 +236,9 @@ namespace DotNet.Utilities
         }
         
         /// <summary>    
-        /// ¶ÁÈ¡ÇëÇó·µ»ØµÄÊı¾İ    
+        /// æˆá‡«Ç³çµ»ØµÄŠí¾    
         /// </summary>    
-        /// <param name="request">ÇëÇó¶ÔÏó</param>    
+        /// <param name="request">Ç«Ç³æ”ã¼¯param>    
         /// <returns></returns>    
         private byte[] GetData(HttpWebRequest request)
         {
@@ -266,7 +266,7 @@ namespace DotNet.Utilities
                 }
             }
             stream.Close();
-            //½âÑ¹    
+            //í¢‘é    
             if (ResponseHeaders[HttpResponseHeader.ContentEncoding] != null)
             {
                 MemoryStream msTemp = new MemoryStream();
@@ -295,10 +295,10 @@ namespace DotNet.Utilities
             return ms.ToArray();
         }
         /// <summary>    
-        /// ·¢ËÍÇëÇóÊı¾İ    
+        /// å²¢Í‡ë‡³Ê½î    
         /// </summary>    
-        /// <param name="request">ÇëÇó¶ÔÏó</param>    
-        /// <param name="postData">ÇëÇó·¢ËÍµÄ×Ö½ÚÊı×é</param>    
+        /// <param name="request">Ç«Ç³æ”ã¼¯param>    
+        /// <param name="postData">Ç«Ç³å²¢ÍµÄ—Ö½ÚŠí—©</param>    
         private void PostData(HttpWebRequest request, byte[] postData)
         {
             int offset = 0;
@@ -321,9 +321,9 @@ namespace DotNet.Utilities
             stream.Close();
         }
         /// <summary>    
-        /// ´´½¨HTTPÇëÇó    
+        /// ä´½èˆ”TPÇ«Ç³    
         /// </summary>    
-        /// <param name="url">URLµØÖ·</param>    
+        /// <param name="url">URLå˜–ç¹’param>    
         /// <returns></returns>    
         private HttpWebRequest CreateRequest(string url, string method)
         {
@@ -355,7 +355,7 @@ namespace DotNet.Utilities
             return true;
         }
         /// <summary>    
-        /// ½«Cookie±£´æµ½´ÅÅÌ    
+        /// í«ƒookieá£´æµ½ä……Ì    
         /// </summary>    
         private static void SaveCookiesToDisk()
         {
@@ -373,7 +373,7 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// ´Ó´ÅÅÌ¼ÓÔØCookie    
+        /// ä“´Å…Ì¼Ó”Øƒookie    
         /// </summary>    
         private static void LoadCookiesFromDisk()
         {
@@ -400,7 +400,7 @@ namespace DotNet.Utilities
 
 
     /// <summary>    
-    /// ¶ÔÎÄ¼şºÍÎÄ±¾Êı¾İ½øĞĞMultipartĞÎÊ½µÄ±àÂë    
+    /// æ”Ä¼îºÎ„á¾Ší¾í¸ĞultipartĞÊ½å„±Â«    
     /// </summary>    
     public class MultipartForm
     {
@@ -409,7 +409,7 @@ namespace DotNet.Utilities
         private string boundary;
         private byte[] formData;
         /// <summary>    
-        /// »ñÈ¡±àÂëºóµÄ×Ö½ÚÊı×é    
+        /// ë±ˆá± Â«ê³µÄ—Ö½ÚŠí—©    
         /// </summary>    
         public byte[] FormData
         {
@@ -425,14 +425,14 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// »ñÈ¡´Ë±àÂëÄÚÈİµÄÀàĞÍ    
+        /// ë±ˆá´‹á ‚ë„šÈå„€Ğ    
         /// </summary>    
         public string ContentType
         {
             get { return string.Format("multipart/form-data; boundary={0}", this.boundary); }
         }
         /// <summary>    
-        /// »ñÈ¡»òÉèÖÃ¶Ô×Ö·û´®²ÉÓÃµÄ±àÂëÀàĞÍ    
+        /// ë±ˆá»²É¨Öƒæ”—Ö·ë´®â‰“oÄ±Â« Ğ    
         /// </summary>    
         public Encoding StringEncoding
         {
@@ -440,7 +440,7 @@ namespace DotNet.Utilities
             get { return encoding; }
         }
         /// <summary>    
-        /// ÊµÀı»¯    
+        /// Êµ=ë¯    
         /// </summary>    
         public MultipartForm()
         {
@@ -449,14 +449,14 @@ namespace DotNet.Utilities
             encoding = Encoding.Default;
         }
         /// <summary>    
-        /// Ìí¼ÓÒ»¸öÎÄ¼ş    
+        /// Ì­ì“’ë¸¶Î„ì¾    
         /// </summary>    
-        /// <param name="name">ÎÄ¼şÓòÃû³Æ</param>    
-        /// <param name="filename">ÎÄ¼şµÄÍêÕûÂ·¾¶</param>    
+        /// <param name="name">Î„ì¾“âƒ»ã†¼/param>    
+        /// <param name="filename">Î„ì¾µÄê•»Â·î¶¼/param>    
         public void AddFlie(string name, string filename)
         {
             if (!File.Exists(filename))
-                throw new FileNotFoundException("³¢ÊÔÌí¼Ó²»´æÔÚµÄÎÄ¼ş¡£", filename);
+                throw new FileNotFoundException("ã¢ŠÔŒí¼“â»´æ”šè¼‰Ä¼î¡£", filename);
             FileStream fs = null;
             byte[] fileData = { };
             try
@@ -476,12 +476,12 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// Ìí¼ÓÒ»¸öÎÄ¼ş    
+        /// Ì­ì“’ë¸¶Î„ì¾    
         /// </summary>    
-        /// <param name="name">ÎÄ¼şÓòÃû³Æ</param>    
-        /// <param name="filename">ÎÄ¼şÃû</param>    
-        /// <param name="fileData">ÎÄ¼ş¶ş½øÖÆÊı¾İ</param>    
-        /// <param name="dataLength">¶ş½øÖÆÊı¾İ´óĞ¡</param>    
+        /// <param name="name">Î„ì¾“âƒ»ã†¼/param>    
+        /// <param name="filename">Î„ì¾ƒë¼¯param>    
+        /// <param name="fileData">Î„ì¾¶î½¸Ö†Ê½î¼/param>    
+        /// <param name="dataLength">æ¾½è–†Ê½î´ã¡</param>    
         public void AddFlie(string name, string filename, byte[] fileData, int dataLength)
         {
             if (dataLength <= 0 || dataLength > fileData.Length)
@@ -500,10 +500,10 @@ namespace DotNet.Utilities
             ms.Write(crlf, 0, crlf.Length);
         }
         /// <summary>    
-        /// Ìí¼Ó×Ö·û´®    
+        /// Ì­ì“—Ö·ë´®    
         /// </summary>    
-        /// <param name="name">ÎÄ±¾ÓòÃû³Æ</param>    
-        /// <param name="value">ÎÄ±¾Öµ</param>    
+        /// <param name="name">Î„á¾“âƒ»ã†¼/param>    
+        /// <param name="value">Î„á¾–å½param>    
         public void AddString(string name, string value)
         {
             StringBuilder sb = new StringBuilder();
@@ -515,10 +515,10 @@ namespace DotNet.Utilities
             ms.Write(buf, 0, buf.Length);
         }
         /// <summary>    
-        /// ´Ó×¢²á±í»ñÈ¡ÎÄ¼şÀàĞÍ    
+        /// ä“—â²¡á­»áˆ¡Î„ì¾€Ğ    
         /// </summary>    
-        /// <param name="filename">°üº¬À©Õ¹ÃûµÄÎÄ¼şÃû</param>    
-        /// <returns>Èç£ºapplication/stream</returns>    
+        /// <param name="filename">à¼ºì€©Õ¹uè¼‰Ä¼îƒ»</param>    
+        /// <returns>È§ãº¡pplication/stream</returns>    
         private string GetContentType(string filename)
         {
             Microsoft.Win32.RegistryKey fileExtKey = null; ;

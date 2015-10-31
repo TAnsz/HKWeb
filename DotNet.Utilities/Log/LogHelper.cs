@@ -1,25 +1,25 @@
-﻿using System;
+using System;
 
 namespace DotNet.Utilities.Log
 {
     /// <summary>  
-    /// LogHelper的摘要说明。   
+    /// LogHelper的摘要說明。   
     /// </summary>   
     public class LogHelper
     {
         /// <summary>
-        /// 静态只读实体对象info信息
+        /// 靜態只讀實體對像info信息
         /// </summary>
         public static readonly log4net.ILog Loginfo = log4net.LogManager.GetLogger("loginfo");
         /// <summary>
-        ///  静态只读实体对象error信息
+        ///  靜態只讀實體對像error信息
         /// </summary>
         public static readonly log4net.ILog Logerror = log4net.LogManager.GetLogger("logerror");
 
         /// <summary>
         ///  添加info信息
         /// </summary>
-        /// <param name="info">自定义日志内容说明</param>
+        /// <param name="info">自定義日誌內容說明</param>
         public static void WriteLog(string info)
         {
             try
@@ -34,10 +34,10 @@ namespace DotNet.Utilities.Log
 
 
         /// <summary>
-        /// 添加异常信息
+        /// 添加異常信息
         /// </summary>
-        /// <param name="info">自定义日志内容说明</param>
-        /// <param name="ex">异常信息</param>
+        /// <param name="info">自定義日誌內容說明</param>
+        /// <param name="ex">異常信息</param>
         public static void WriteLog(string info, Exception ex)
         {
             try

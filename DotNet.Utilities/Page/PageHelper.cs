@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Web;
@@ -14,13 +14,13 @@ namespace DotNet.Utilities
 {
     public class PageHelper
     {
-        #region 控件状态设置
+        #region 控件狀態設置
 
         /// <summary>
-        /// 锁定页面上的一些组件
+        /// 鎖定頁面上的一些組件
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="obj">不需锁定的控件</param>
+        /// <param name="obj">不需鎖定的控件</param>
         public static void LockPage(Page page, object[] obj)
         {
             Control htmlForm = null;
@@ -37,22 +37,22 @@ namespace DotNet.Utilities
             {
                 if (IsContains(obj, ctl) == false)
                 {
-                    //锁定
+                    //鎖定
                     LockControl(page, ctl);
                 }
                 else
                 {
-                    //解除锁定
+                    //解除鎖定
                     UnLockControl(page, ctl);
                 }
             }
         }
 
         /// <summary>
-        /// 解除锁定页面上的一些组件
+        /// 解除鎖定頁面上的一些組件
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="obj">继续保持锁定的控件</param>
+        /// <param name="obj">繼續保持鎖定的控件</param>
         public static void UnLockPage(Page page, object[] obj)
         {
             Control htmlForm = null;
@@ -69,12 +69,12 @@ namespace DotNet.Utilities
             {
                 if (IsContains(obj, ctl) == false)
                 {
-                    //解除锁定
+                    //解除鎖定
                     UnLockControl(page, ctl);
                 }
                 else
                 {
-                    //锁定
+                    //鎖定
                     LockControl(page, ctl);
                 }
             }
@@ -93,7 +93,7 @@ namespace DotNet.Utilities
             {
                 ((WebControl)ctl).Enabled = false;
 
-                #region 多行文本框不能禁用，应设为只读，不然滚动条不能使用
+                #region 多行文本框不能禁用，應設為只讀，不然滾動條不能使用
 
                 if (ctl is TextBox)
                 {
@@ -106,7 +106,7 @@ namespace DotNet.Utilities
 
                 #endregion
 
-                #region 时间控件禁用时不显示图片
+                #region 時間控件禁用時不顯示圖片
 
 
 
@@ -121,7 +121,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 开放控件
+        /// 開放控件
         /// </summary>
         /// <param name="page"></param>
         /// <param name="ctl"></param>
@@ -133,19 +133,19 @@ namespace DotNet.Utilities
             {
                 ((WebControl)ctl).Enabled = true;
 
-                //文本框去掉只读属性
+                //文本框去掉只讀屬性
                 if (ctl is TextBox)
                 {
                     ((TextBox)ctl).ReadOnly = false;
                 }
 
-                ////时间输入文本框不禁用时显示按钮
+                ////時間輸入文本框不禁用時顯示按鈕
                 //if (ctl is WebDateTimeEdit)
                 //{
                 //    ((WebDateTimeEdit)ctl).SpinButtons.Display = ButtonDisplay.OnRight;
                 //}
 
-                ////时间选择文本框不禁用时显示按钮
+                ////時間選擇文本框不禁用時顯示按鈕
                 //if (ctl is WebDateChooser)
                 //{
                 //    page.ClientScript.RegisterStartupScript(typeof(string), "Display" + ctl.ClientID + "Image", "<script language=javascript>" +
@@ -161,7 +161,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 数组中是否包含当前控件
+        /// 數組中是否包含當前控件
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="ctl"></param>
@@ -180,10 +180,10 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 页面处理其它辅助方法
+        #region 頁面處理其它輔助方法
 
         /// <summary>
-        /// 得到当前页对象实例
+        /// 得到當前頁對像實例
         /// </summary>
         /// <returns></returns>
         public static Page GetCurrentPage()
@@ -192,9 +192,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 从System.Web.HttpRequest的Url中获取所调用的页面名称
+        /// 從System.Web.HttpRequest的Url中獲取所調用的頁面名稱
         /// </summary>
-        /// <returns>页面名称</returns>
+        /// <returns>頁面名稱</returns>
         public static string GetPageName()
         {
             int start = 0;
@@ -213,9 +213,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 读取QueryString值
+        /// 讀取QueryString值
         /// </summary>
-        /// <param name="queryStringName">QueryString名称</param>
+        /// <param name="queryStringName">QueryString名稱</param>
         /// <returns>QueryString值</returns>
         public static string GetQueryString(string queryStringName)
         {
@@ -231,7 +231,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 页面跳转
+        /// 頁面跳轉
         /// </summary>
         /// <param name="url">URL地址</param>
         public void Redirect(string url)
@@ -241,7 +241,7 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 获取当前请求页面相对于根目录的层级
+        /// 獲取當前請求頁面相對於根目錄的層級
         /// </summary>
         /// <returns></returns>
         public static string GetRelativeLevel()
@@ -257,9 +257,9 @@ namespace DotNet.Utilities
         }
 
         /// <summary>
-        /// 写javascript脚本
+        /// 寫javascript腳本
         /// </summary>
-        /// <param name="script">脚本内容</param>
+        /// <param name="script">腳本內容</param>
         public static void WriteScript(string script)
         {
             Page page = GetCurrentPage();
@@ -288,11 +288,11 @@ namespace DotNet.Utilities
         //}
 
         /// <summary>
-        /// 返回客户端浏览器版本
-        /// 如果是IE类型，返回版本数字
-        /// 如果不是IE类型，返回-1
+        /// 返回客戶端瀏覽器版本
+        /// 如果是IE類型，返回版本數字
+        /// 如果不是IE類型，返回-1
         /// </summary>
-        /// <returns>一位数字版本号</returns>
+        /// <returns>一位數字版本號</returns>
         public static int GetClientBrowserVersion()
         {
             string USER_AGENT = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];

@@ -1,8 +1,8 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
 using System.Text;
@@ -12,16 +12,16 @@ using OWCChart;
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// Assistant 的摘要说明。
+    /// Assistant 的摘要說明。
     /// </summary>
     public sealed class Assistant
     {
 
 
-        #region 创建显示图像的标签
+        #region 創建顯示圖像的標籤
 
         /// <summary>
-        /// 创建显示图像的标签(flash加点击)
+        /// 創建顯示圖像的標籤(flash加點擊)
         /// </summary>
         public static string CreateTag(string ADID, string filename, string desc, string FileType, string LinkURL, int Width, int High)
         {
@@ -110,7 +110,7 @@ namespace DotNet.Utilities
                     break;
 
                 default:
-                    //TagStr.Append("不允许该格式文件显示！");
+                    //TagStr.Append("不允許該格式文件顯示！");
                     break;
             }
 
@@ -120,7 +120,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 创建显示图像的标签(flash无点击)
+        /// 創建顯示圖像的標籤(flash無點擊)
         /// </summary>		
         public static string CreateTag2(string ADID, string filename, string desc, string FileType, string LinkURL, int Width, int High)
         {
@@ -188,7 +188,7 @@ namespace DotNet.Utilities
                     break;
 
                 default:
-                    //					TagStr.Append("不允许该格式文件显示！");
+                    //					TagStr.Append("不允許該格式文件顯示！");
                     break;
             }
 
@@ -198,7 +198,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 创建显示图像的标签(重载)，无宽高限制，(flash加点击)
+        /// 創建顯示圖像的標籤(重載)，無寬高限制，(flash加點擊)
         /// </summary>
         public static string CreateTag(string ADID, string filename, string desc, string FileType, string LinkURL)
         {
@@ -274,7 +274,7 @@ namespace DotNet.Utilities
 
 
         /// <summary>
-        /// 创建显示图像的标签(重载)，无宽高限制，(flash无点击)
+        /// 創建顯示圖像的標籤(重載)，無寬高限制，(flash無點擊)
         /// </summary>
         public static string CreateTag2(string ADID, string filename, string desc, string FileType, string LinkURL)
         {
@@ -335,7 +335,7 @@ namespace DotNet.Utilities
 
         #region
         /// <summary>
-        /// 创建显示图像的标签
+        /// 創建顯示圖像的標籤
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="desc"></param>
@@ -417,8 +417,8 @@ namespace DotNet.Utilities
 
                     break;
 
-                default://其他类型作为附件链接下载
-                    TagStr.Append("不允许该格式文件显示！");
+                default://其他類型作為附件鏈接下載
+                    TagStr.Append("不允許該格式文件顯示！");
                     break;
             }
 
@@ -430,15 +430,15 @@ namespace DotNet.Utilities
 
         #endregion
 
-        //#region	 创建数据图形文件
+        //#region	 創建數據圖形文件
 
         ///// <summary>
-        ///// 创建数据图形文件
+        ///// 創建數據圖形文件
         ///// </summary>
-        ///// <param name="dt">数据源</param>
-        ///// <param name="CharType">图类型 Column,Pie</param>
-        ///// <param name="ImagePath">图像存放目录</param>
-        ///// <param name="Title">图形标题</param>
+        ///// <param name="dt">數據源</param>
+        ///// <param name="CharType">圖類型 Column,Pie</param>
+        ///// <param name="ImagePath">圖像存放目錄</param>
+        ///// <param name="Title">圖形標題</param>
         ///// <returns></returns>
         //public static string CreateChart(DataTable dt, string CharType, string ImagePath, string Title)
         //{
@@ -446,12 +446,12 @@ namespace DotNet.Utilities
         //    OWCChart.OWCChartFactory mychart = new OWCChartFactory(Title, PhaysicalImagePath, 530, 300, new OWCChartFontStyle());
         //    OWCChart.OWCSeriesClass MyItem = new OWCSeriesClass();
   
-        //    MyItem.SeriesName = "次数";
+        //    MyItem.SeriesName = "次數";
         //    MyItem.SetDataSource(dt, "Item", "Value");
         //    switch (CharType)
         //    {
         //        case "Column":
-        //            mychart.CreateOneColumn("时间", "次", MyItem);
+        //            mychart.CreateOneColumn("時間", "次", MyItem);
         //            break;
         //        case "Pie":
         //            mychart.CreateSinglePie(MyItem);
@@ -470,15 +470,15 @@ namespace DotNet.Utilities
         //    OWCChart.OWCSeriesClass[] MyItems = new OWCSeriesClass[dts.Length];
 
         //    MyItems[0] = new OWCSeriesClass();
-        //    MyItems[0].SeriesName = "显示次数";
+        //    MyItems[0].SeriesName = "顯示次數";
         //    MyItems[0].SetDataSource(dts[0], "Item", "Value");
 
         //    MyItems[1] = new OWCSeriesClass();
-        //    MyItems[1].SeriesName = "点击次数";
+        //    MyItems[1].SeriesName = "點擊次數";
         //    MyItems[1].SetDataSource(dts[1], "Item", "Value");
 
 
-        //    mychart.CreateMultiColumns("时间", "次", MyItems);
+        //    mychart.CreateMultiColumns("時間", "次", MyItems);
 
 
         //    String imageName = mychart.ExportPictuire();
@@ -492,7 +492,7 @@ namespace DotNet.Utilities
         //    //OWCChart.OWCChartFactory mychart = new OWCChartFactory(Title, PhaysicalImagePath, 500, 600, new OWCChartFontStyle());
         //    //OWCChart.OWCSeriesClass MyItem = new OWCSeriesClass();
 
-        //    MyItem.SeriesName = "次数";
+        //    MyItem.SeriesName = "次數";
         //    MyItem.SetDataSource(dt, "Item", "Value");
         //    mychart.CreateSingleBar(" ", "", MyItem);
         //    String imageName = mychart.ExportPictuire();
@@ -505,11 +505,11 @@ namespace DotNet.Utilities
         //    //OWCChart.OWCSeriesClass[] MyItems = new OWCSeriesClass[dts.Length];
 
         //    MyItems[0] = new OWCSeriesClass();
-        //    MyItems[0].SeriesName = "显示次数";
+        //    MyItems[0].SeriesName = "顯示次數";
         //    MyItems[0].SetDataSource(dts[0], "Item", "Value");
 
         //    MyItems[1] = new OWCSeriesClass();
-        //    MyItems[1].SeriesName = "点击次数";
+        //    MyItems[1].SeriesName = "點擊次數";
         //    MyItems[1].SetDataSource(dts[1], "Item", "Value");
 
 
@@ -526,7 +526,7 @@ namespace DotNet.Utilities
         #region
 
         /// <summary>
-        /// 从字符串里随机得到，规定个数的字符串.
+        /// 從字符串裡隨機得到，規定個數的字符串.
         /// </summary>
         /// <param name="allChar"></param>
         /// <param name="CodeCount"></param>

@@ -1,15 +1,15 @@
-﻿/// <summary>
-/// 类说明：Assistant
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 更新网站：http://www.sufeinet.com/thread-655-1-1.html
+/// <summary>
+/// 類說明：Assistant
+/// 編 碼 人：蘇飛
+/// 聯繫方式：361983679  
+/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System.Web;
 
 namespace DotNet.Utilities
 {
     /// <summary>
-    /// 网站路径操作类
+    /// 網站路徑操作類
     /// </summary>
     public static class WebSitePathHelper
     {
@@ -47,18 +47,18 @@ namespace DotNet.Utilities
             /// </summary>
             Favorite = 3,
         }
-        #region 根据给出的相对地址获取网站绝对地址
+        #region 根據給出的相對地址獲取網站絕對地址
         /// <summary>
-        /// 根据给出的相对地址获取网站绝对地址
+        /// 根據給出的相對地址獲取網站絕對地址
         /// </summary>
-        /// <param name="localPath">相对地址</param>
-        /// <returns>绝对地址</returns>
+        /// <param name="localPath">相對地址</param>
+        /// <returns>絕對地址</returns>
         public static string GetWebPath(string localPath)
         {
             string path = HttpContext.Current.Request.ApplicationPath;
             string thisPath;
             string thisLocalPath;
-            //如果不是根目录就加上"/" 根目录自己会加"/"
+            //如果不是根目錄就加上"/" 根目錄自己會加"/"
             if (path != "/")
             {
                 thisPath = path + "/";
@@ -80,16 +80,16 @@ namespace DotNet.Utilities
 
         #endregion
 
-        #region 获取网站绝对地址
+        #region 獲取網站絕對地址
         /// <summary>
-        ///  获取网站绝对地址
+        ///  獲取網站絕對地址
         /// </summary>
         /// <returns></returns>
         public static string GetWebPath()
         {
             string path = System.Web.HttpContext.Current.Request.ApplicationPath;
             string thisPath;
-            //如果不是根目录就加上"/" 根目录自己会加"/"
+            //如果不是根目錄就加上"/" 根目錄自己會加"/"
             if (path != "/")
             {
                 thisPath = path + "/";
@@ -102,12 +102,12 @@ namespace DotNet.Utilities
         }
         #endregion
 
-        #region 根据相对路径或绝对路径获取绝对路径
+        #region 根據相對路徑或絕對路徑獲取絕對路徑
         /// <summary>
-        /// 根据相对路径或绝对路径获取绝对路径
+        /// 根據相對路徑或絕對路徑獲取絕對路徑
         /// </summary>
-        /// <param name="localPath">相对路径或绝对路径</param>
-        /// <returns>绝对路径</returns>
+        /// <param name="localPath">相對路徑或絕對路徑</param>
+        /// <returns>絕對路徑</returns>
         public static string GetFilePath(string localPath)
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(localPath, @"([A-Za-z]):\\([\S]*)"))

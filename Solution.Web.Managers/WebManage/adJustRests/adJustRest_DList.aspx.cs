@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DotNet.Utilities;
 using FineUI;
@@ -53,7 +53,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             bll = adJustRest_DBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
-            //設置默認日期，三個月以内的記錄
+            //設置默認日期，三個月以內的記錄
             dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-3);
         }
         #endregion
