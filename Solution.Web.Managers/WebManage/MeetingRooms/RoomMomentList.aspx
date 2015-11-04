@@ -6,11 +6,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>會議室使用列表</title>
+    <link href="../Css/common.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" />
-        <f:Panel ID="Panel1" runat="server" Title="會議室已休列表" EnableFrame="false" BodyPadding="10px"
+        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1"/>
+        <f:Panel ID="Panel1" runat="server" Title="會議室已休列表" EnableFrame="false" BodyPadding="10px" 
             EnableCollapse="True">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
@@ -18,9 +19,6 @@
                         <f:Button ID="ButtonRefresh" runat="server" Text="刷新" Icon="ArrowRefresh" OnClick="ButtonRefresh_Click" CssClass="inline"></f:Button>
                         <f:Button ID="ButtonSearch" runat="server" Text="查詢" Icon="Magnifier" OnClick="ButtonSearch_Click"></f:Button>
                         <f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click"></f:Button>
-                        <f:Button ID="ButtonDelete" runat="server" Text="刪除" Icon="Delete" OnClick="ButtonDelete_Click" ConfirmTitle="刪除提示" ConfirmText="是否刪除記錄？"
-                            OnClientClick="if (!F('Panel1_Grid1').getSelectionModel().hasSelection() ) { F.alert('請選擇你想要刪除的記錄！'); return false; } ">
-                        </f:Button>
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -28,9 +26,6 @@
                 <f:SimpleForm ID="SimpleForm1" BodyPadding="5px" runat="server" EnableFrame="false" EnableCollapse="true"
                     ShowBorder="True" ShowHeader="False">
                     <Items>
-                        <f:DropDownList Label="會議室選擇" runat="server" ID="ddlRoomMoment" Width="250px" Hidden="true"
-                            OnSelectedIndexChanged="dllRoomMoment_SelectedIndexChanged">
-                        </f:DropDownList>
                         <f:DatePicker runat="server" Label="查詢日期" ID="dpStart" DateFormatString="yyyy-MM-dd" Width="260px" EmptyText="查詢指定日期記錄" />
                     </Items>
                 </f:SimpleForm>
@@ -74,7 +69,7 @@
                 <f:Label runat="server" ID="lblSpendingTime" Text=""></f:Label>
             </Items>
         </f:Panel>
-        <f:Window ID="Window1" Width="520px" Height="580px" Icon="TagBlue" Title="編輯" Hidden="True"
+        <f:Window ID="Window1" Width="520px" Height="500px" Icon="TagBlue" Title="編輯" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True" >

@@ -139,13 +139,13 @@ namespace Solution.Web.Managers.WebManage.Meals {
         protected global::FineUI.Form extForm1;
         
         /// <summary>
-        /// txtName 控件。
+        /// Panel2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox txtName;
+        protected global::FineUI.Panel Panel2;
         
         /// <summary>
         /// dpStart 控件。
@@ -157,6 +157,15 @@ namespace Solution.Web.Managers.WebManage.Meals {
         protected global::FineUI.DatePicker dpStart;
         
         /// <summary>
+        /// dpEnd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DatePicker dpEnd;
+        
+        /// <summary>
         /// Grid1 控件。
         /// </summary>
         /// <remarks>
@@ -164,6 +173,15 @@ namespace Solution.Web.Managers.WebManage.Meals {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Grid Grid1;
+        
+        /// <summary>
+        /// Label2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// lblSpendingTime 控件。

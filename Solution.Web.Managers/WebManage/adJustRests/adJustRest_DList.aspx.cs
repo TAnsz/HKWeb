@@ -41,6 +41,11 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         {
             if (!IsPostBack)
             {
+                //綁定下拉列表
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
+                //設置默認日期，三個月以內的記錄
+                dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-1);
+                dpEnd.SelectedDate = DateTime.Now.Date.AddMonths(1);
                 LoadData();
             }
         }
@@ -75,22 +80,22 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
             //員工編號
-            if (!string.IsNullOrEmpty(txtEmpId.Text.Trim()))
+            if (!string.IsNullOrEmpty(ddlEmp.SelectedValue))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(txtEmpId.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(ddlEmp.SelectedValue)));
             }
             //起始時間
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                //wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.Re_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.LessOrEquals, StringHelper.FilterSql(dpStart.Text)));
             }
 
             //是否審批
-            if (!string.IsNullOrEmpty(ddlIsDisplay1.SelectedValue))
+            if (!string.IsNullOrEmpty(ddlIsDisplay.SelectedValue))
             {
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.audit, Comparison.Equals,
-                    StringHelper.FilterSql(ddlIsDisplay1.SelectedValue)));
+                    StringHelper.FilterSql(ddlIsDisplay.SelectedValue)));
             }
             //是否審批
             if (!string.IsNullOrEmpty(ddlIsDisplay2.SelectedValue))

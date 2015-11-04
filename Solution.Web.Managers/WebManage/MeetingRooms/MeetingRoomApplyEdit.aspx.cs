@@ -70,8 +70,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                     return;
 
                 //對頁面窗體進行賦值
-                txtCode.Text = model.Code;
-                txtName.Text = model.Name;
+                hidCode.Text = model.Code;
+                //txtName.Text = model.Name;
                 dllRoomMoment.SelectedValue = model.MeetingRoom_Code;
                 dpDate.SelectedDate = model.ApplyDate;
                 dllStart.SelectedValue = model.StartTime;
@@ -135,21 +135,15 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 //{
                 //    return txtCode.Label + "不能為空！";
                 //}
-                var sCode = CommonBll.GetTableSN(MeetingRoomApplyTable.TableName, MeetingRoomApplyTable.Code);
-                txtCode.Text = sCode;
-                var sName = StringHelper.Left(txtName.Text, 50);
+                if (string.IsNullOrEmpty(hidCode.Text.Trim()))
+                {
+                    hidCode.Text = CommonBll.GetTableSN(MeetingRoomApplyTable.TableName, MeetingRoomApplyTable.Code);
+                }
+                //var sName = StringHelper.Left(txtName.Text, 50);
                 var sRoomCode = dllRoomMoment.SelectedValue;
                 var AppDate = dpDate.SelectedDate;
                 var sTime = dllStart.SelectedValue;
                 var eTime = dllEnd.SelectedValue;
-                if (string.IsNullOrEmpty(sName))
-                {
-                    return txtName.Label + "不能為空！";
-                }
-                if (MeetingRoomApplyBll.GetInstence().Exist(x => (x.Code == sCode) && x.Id != id))
-                {
-                    return txtCode.Label + "已存在！請重新輸入！";
-                }
 
                 if (sRoomCode == "0" || string.IsNullOrEmpty(sRoomCode))
                 {
@@ -184,8 +178,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 var model = new MeetingRoomApply(x => x.Id == id);
 
                 //設置名稱
-                model.Code = sCode;
-                model.Name = sName;
+                model.Code = hidCode.Text;
+                //model.Name = sName;
 
                 model.MeetingRoom_Code = sRoomCode;
                 model.MeetingRoom_Name = dllRoomMoment.SelectedText;

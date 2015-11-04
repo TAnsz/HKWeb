@@ -6,12 +6,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>請假出差列表</title>
+    <link href="../Css/common.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
-        <f:Panel ID="Panel1" runat="server" Title="請假出差列表" EnableFrame="false" BodyPadding="10px"
-            EnableCollapse="True">
+        <f:Panel ID="Panel1" runat="server" Title="請假出差列表" EnableFrame="false" BodyPadding="10px">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
@@ -32,33 +32,47 @@
             </Toolbars>
             <Items>
                 <f:Form ID="Form6" ShowBorder="True" BodyPadding="5px" ShowHeader="False" runat="server">
-                    <Rows>
-                        <f:FormRow ID="FormRow1" runat="server">
+                    <Items>
+                        <f:Panel ID="Panel4" ShowHeader="false" ShowBorder="false"
+                            Layout="Column" runat="server">
                             <Items>
-                                <f:TextBox runat="server" ID="txtName" Label="員工編號" Width="260px" Text="" />
-                                <f:DropDownList CompareType="String" Label="類型" runat="server" ID="ddlOutWorkRecord" Width="260px">
-                                    <f:ListItem Text="==全部==" Value="" />
+                                <f:DropDownList runat="server" ID="ddlEmp" Label="員工" AutoSelectFirstItem="false" EmptyText="請選擇員工" Width="320px"
+                                    EnableEdit="true" ForceSelection="false">
+                                </f:DropDownList>
+                                <f:Label runat="server" Width="50px"></f:Label>
+                                <f:DropDownList CompareType="String" Label="類型" runat="server" ID="ddlOutWorkRecord" AutoSelectFirstItem="false" EmptyText="===全部===">
                                     <f:ListItem Text="請假申請單" Value="leav" />
                                     <f:ListItem Text="出差申請單" Value="tral" />
                                 </f:DropDownList>
-                                <f:Label runat="server"></f:Label>
                             </Items>
-                        </f:FormRow>
-                        <f:FormRow ID="FormRow2" runat="server">
+                        </f:Panel>
+                        <f:Panel ID="Panel2" ShowHeader="false" CssClass="formitem" ShowBorder="false"
+                            Layout="Column" runat="server">
                             <Items>
-                                <f:DatePicker runat="server" Label="查詢日期" ID="dpStart" DateFormatString="yyyy-MM-dd" Width="260px" EmptyText="查詢指定日期後記錄" />
-                                <f:DropDownList CompareType="String" Label="審批狀態"
-                                    runat="server" ID="ddlIsDisplay" Width="260px">
-                                    <f:ListItem Text="==全部==" Value="" />
+                                <f:DropDownList CompareType="String" Label="一級審批狀態"  AutoSelectFirstItem="false" EmptyText="===全部==="
+                                    EnableEdit="true" ForceSelection="false" Width="320px" runat="server" ID="ddlIsDisplay">
                                     <f:ListItem Text="已審批" Value="1" />
                                     <f:ListItem Text="未審批" Value="0" />
                                 </f:DropDownList>
-                                <f:Label runat="server"></f:Label>
+                                <f:Label runat="server" Width="50px"></f:Label>
+                                <f:DropDownList CompareType="String" Label="二級審批狀態" AutoSelectFirstItem="false" EmptyText="===全部==="
+                                    EnableEdit="true" ForceSelection="false" runat="server" ID="ddlIsDisplay2">
+                                    <f:ListItem Text="已審批" Value="1" />
+                                    <f:ListItem Text="未審批" Value="0" />
+                                </f:DropDownList>
                             </Items>
-                        </f:FormRow>
-                    </Rows>
+                        </f:Panel>
+                        <f:Panel ID="Panel3" ShowHeader="false" CssClass="formitem" ShowBorder="false"
+                            Layout="Column" runat="server">
+                            <Items>
+                                <f:Label runat="server" CssClass="marginr" ShowLabel="false" Text="查詢起止日期：" Width="100px"></f:Label>
+                                <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
+                                <f:DatePicker runat="server" ID="dpEnd" CssClass="marginr" CompareControl="dpStart" CompareOperator="GreaterThanEqual" CompareMessage="結束日期應該大於等於開始日期" DateFormatString="yyyy-MM-dd" EmptyText="結束日期" />
+                            </Items>
+                        </f:Panel>
+                    </Items>
                 </f:Form>
-                <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="Id" 
+                <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="Id"
                     PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
                     <Columns>

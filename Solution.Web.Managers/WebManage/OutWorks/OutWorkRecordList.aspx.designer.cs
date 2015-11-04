@@ -121,22 +121,22 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.Form Form6;
         
         /// <summary>
-        /// FormRow1 控件。
+        /// Panel4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FormRow FormRow1;
+        protected global::FineUI.Panel Panel4;
         
         /// <summary>
-        /// txtName 控件。
+        /// ddlEmp 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox txtName;
+        protected global::FineUI.DropDownList ddlEmp;
         
         /// <summary>
         /// ddlOutWorkRecord 控件。
@@ -148,13 +148,40 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.DropDownList ddlOutWorkRecord;
         
         /// <summary>
-        /// FormRow2 控件。
+        /// Panel2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FormRow FormRow2;
+        protected global::FineUI.Panel Panel2;
+        
+        /// <summary>
+        /// ddlIsDisplay 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlIsDisplay;
+        
+        /// <summary>
+        /// ddlIsDisplay2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlIsDisplay2;
+        
+        /// <summary>
+        /// Panel3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Panel Panel3;
         
         /// <summary>
         /// dpStart 控件。
@@ -166,13 +193,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.DatePicker dpStart;
         
         /// <summary>
-        /// ddlIsDisplay 控件。
+        /// dpEnd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlIsDisplay;
+        protected global::FineUI.DatePicker dpEnd;
         
         /// <summary>
         /// Grid1 控件。

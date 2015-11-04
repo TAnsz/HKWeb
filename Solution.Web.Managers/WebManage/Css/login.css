@@ -1,4 +1,4 @@
-body,html{height:100%;margin:0;padding: 0;}
+﻿body,html{height:100%;margin:0;padding: 0;}
 body {
 	text-align: left;
 	font-size: 12px;
@@ -151,11 +151,11 @@ label {
 #img_verifycode{width:100px;height:32px;float:left;margin-left:10px;cursor: pointer;}
 
 
-#txtUserName,
-#txtPassword,
+#lblUserName,
+#lblPassword,
 #lblCode{position:absolute;left:30px;font-size:14px;width:80px;height:32px;text-align: right;color: #999;}
 
-#txtUserName{top:30px;}
-#txtPassword{top:80px;}
+#lblUserName{top:30px;}
+#lblPassword{top:80px;}
 #lblCode{top:130px;}
 

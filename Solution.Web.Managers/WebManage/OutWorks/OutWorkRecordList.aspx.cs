@@ -41,8 +41,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             if (!IsPostBack)
             {
+                //綁定下拉列表
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
                 //設置默認日期，三個月以內的記錄
-                dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-3);
+                dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-1);
+                dpEnd.SelectedDate = DateTime.Now.Date.AddMonths(1);
                 LoadData();
             }
         }
@@ -83,9 +86,9 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
 
             //員工編號
-            if (!string.IsNullOrEmpty(txtName.Text.Trim()))
+            if (!string.IsNullOrEmpty(ddlEmp.SelectedValue))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(txtName.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(ddlEmp.SelectedValue)));
             }
 
             //單據類別
@@ -97,7 +100,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                //wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.Re_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
             }
 
             //是否審批

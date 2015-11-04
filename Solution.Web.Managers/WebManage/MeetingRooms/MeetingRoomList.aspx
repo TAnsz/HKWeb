@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" />
+        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1"/>
         <f:Panel ID="Panel1" runat="server" Title="菜單(頁面)列表" EnableFrame="false" BodyPadding="10px"
             EnableCollapse="True">
             <Toolbars>

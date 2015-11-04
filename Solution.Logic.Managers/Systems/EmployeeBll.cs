@@ -43,6 +43,20 @@ namespace Solution.Logic.Managers
             var name = GetFieldValue(EmployeeTable.EMP_FNAME, EmployeeTable.EMP_ID, id, true);
             return name == null ? id.ToString() : name.ToString();
         }
+        #region 绑定列表
+        public void BandDropDownList(Page page, FineUI.DropDownList ddl)
+        {
+            var dt = DataTableHelper.GetFilterData(GetDataTable(), EmployeeTable.KIND, "'1'", null, null);
+
+            //显示值
+            ddl.DataTextField = EmployeeTable.EMP_FNAME;
+            ddl.DataValueField = EmployeeTable.EMP_ID;
+
+            //绑定数据源
+            ddl.DataSource = dt;
+            ddl.DataBind();
+        }
+        #endregion
         #endregion 自定义函数
 
     }

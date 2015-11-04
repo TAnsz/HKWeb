@@ -32,7 +32,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
             if (!IsPostBack)
             {
                 //綁定下拉框
-                MeetingRoomBll.GetInstence().BandDropDownListShowAll(this, ddlRoomMoment);
+                //MeetingRoomBll.GetInstence().BandDropDownListShowAll(this, ddlRoomMoment);
 
                 LoadData();
             }
@@ -71,14 +71,14 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
             //會議室
-            if (!string.IsNullOrEmpty(ddlRoomMoment.SelectedValue.Trim()) && !ddlRoomMoment.SelectedValue.Equals("0"))
-            {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, RoomMomentTable.MeetingRoom_Code, Comparison.Equals, ddlRoomMoment.SelectedValue));
-            }
+            //if (!string.IsNullOrEmpty(ddlRoomMoment.SelectedValue.Trim()) && !ddlRoomMoment.SelectedValue.Equals("0"))
+            //{
+            //    wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, RoomMomentTable.MeetingRoom_Code, Comparison.Equals, ddlRoomMoment.SelectedValue));
+            //}
             //日期
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MeetingRoomApplyTable.ApplyDate, Comparison.Equals, StringHelper.FilterSql(dpStart.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, RoomMomentTable.RoomDate, Comparison.Equals, StringHelper.FilterSql(dpStart.Text)));
             }
             return wheres;
         }

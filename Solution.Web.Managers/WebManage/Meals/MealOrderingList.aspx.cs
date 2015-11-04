@@ -33,9 +33,11 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
             if (!IsPostBack)
             {
+                //設置默認日期
+                dpStart.SelectedDate = DateTime.Now.Date;
+                dpEnd.SelectedDate = DateTime.Now.Date;
 
                 LoadData();
-
 
             }
         }
@@ -48,8 +50,6 @@ namespace Solution.Web.Managers.WebManage.Meals
             bll = MealOrderingBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
-            //設置默認日期
-            dpStart.SelectedDate = DateTime.Now.Date;
         }
         #endregion
 
@@ -75,15 +75,15 @@ namespace Solution.Web.Managers.WebManage.Meals
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.RecordId, Comparison.Equals, StringHelper.FilterSql(OnlineUsersBll.GetInstence().GetManagerEmpId())));
 
             //員工編號
-            if (!string.IsNullOrEmpty(txtName.Text.Trim()))
-            {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.Equals, StringHelper.FilterSql(txtName.Text)));
-            }
+            //if (!string.IsNullOrEmpty(txtName.Text.Trim()))
+            //{
+            //    wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.Equals, StringHelper.FilterSql(txtName.Text)));
+            //}
             //起始時間
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                //wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.Re_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
             }
 
             return wheres;
@@ -241,15 +241,15 @@ namespace Solution.Web.Managers.WebManage.Meals
                     FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
                     return;
                 }
- 
- 
+
+
                 fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
                 fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
 
                 filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
- 
+
                 //imgPhoto.ImageUrl = "~/upload/" + fileName;
- 
+
                 // 清空文件上传组件
                 filePhoto.Reset();
                 FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);

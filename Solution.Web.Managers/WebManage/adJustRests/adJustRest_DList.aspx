@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>調休申請單列表</title>
+    <link href="../Css/common.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -31,33 +32,40 @@
                 </f:Toolbar>
             </Toolbars>
             <Items>
-                <f:Form ID="Form6" ShowBorder="True" BodyPadding="5px" ShowHeader="False" runat="server">
-                    <Rows>
-                        <f:FormRow ID="FormRow1" runat="server">
+                <f:Form ID="Form6" ShowBorder="True" BodyPadding="5px" ShowHeader="False" runat="server" >
+                    <Items>
+                        <f:Panel ID="Panel4" ShowHeader="false"  ShowBorder="false" CssClass="formitem"
+                            Layout="Column" runat="server">
                             <Items>
-                                <f:TextBox runat="server" ID="txtEmpId" Label="員工編號" Width="260px" Text="" />
-                                <f:DatePicker runat="server" Label="查詢日期" ID="dpStart" DateFormatString="yyyy-MM-dd" Width="260px" EmptyText="查詢指定日期後記錄" />
-                                <f:Label runat="server"></f:Label>
+                                <f:DropDownList runat="server" ID="ddlEmp" Label="員工" AutoSelectFirstItem="false" EmptyText="請選擇員工" Width="320px"
+                                    EnableEdit="true" ForceSelection="false">
+                                </f:DropDownList>
                             </Items>
-                        </f:FormRow>
-                        <f:FormRow ID="FormRow2" runat="server">
+                        </f:Panel> 
+                        <f:Panel ID="Panel2" ShowHeader="false"  ShowBorder="false" CssClass="formitem"
+                            Layout="Column" runat="server">
                             <Items>
-                                <f:DropDownList CompareType="String" Label="一級審批狀態"
-                                    runat="server" ID="ddlIsDisplay1" Width="260px">
-                                    <f:ListItem Text="==全部==" Value="" />
+                                <f:DropDownList CompareType="String" Label="一級審批狀態" CssClass="marginr" AutoSelectFirstItem="false" EmptyText="===全部==="
+                                    EnableEdit="true" ForceSelection="false" Width="320px" runat="server" ID="ddlIsDisplay">
                                     <f:ListItem Text="已審批" Value="1" />
                                     <f:ListItem Text="未審批" Value="0" />
                                 </f:DropDownList>
-                                <f:DropDownList CompareType="String" Label="二級審批狀態"
-                                    runat="server" ID="ddlIsDisplay2" Width="260px">
-                                    <f:ListItem Text="==全部==" Value="" />
+                                <f:DropDownList CompareType="String" Label="二級審批狀態" AutoSelectFirstItem="false" EmptyText="===全部==="
+                                    Width="320px" EnableEdit="true" ForceSelection="false" runat="server" ID="ddlIsDisplay2">
                                     <f:ListItem Text="已審批" Value="1" />
                                     <f:ListItem Text="未審批" Value="0" />
                                 </f:DropDownList>
-                                <f:Label runat="server"></f:Label>
                             </Items>
-                        </f:FormRow>
-                    </Rows>
+                        </f:Panel>
+                        <f:Panel ID="Panel3" ShowHeader="false"  ShowBorder="false" CssClass="formitem"
+                            Layout="Column" runat="server">
+                            <Items>
+                                <f:Label runat="server"   Label="查詢起止日期"></f:Label>
+                                <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
+                                <f:DatePicker runat="server" ID="dpEnd" CssClass="marginr" CompareControl="dpStart" CompareOperator="GreaterThanEqual" CompareMessage="結束日期應該大於等於開始日期" DateFormatString="yyyy-MM-dd" EmptyText="結束日期" />
+                            </Items>
+                        </f:Panel>
+                    </Items>
                 </f:Form>
                 <f:Grid ID="Grid1" Title="調休申請單列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True"
                     PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"

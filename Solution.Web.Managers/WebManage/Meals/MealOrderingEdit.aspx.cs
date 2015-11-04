@@ -35,6 +35,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //綁定下拉列表
                 T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblFood, T_TABLE_DTable.TABLES, "'FOOD'");
                 T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblDrink, T_TABLE_DTable.TABLES, "'DRIN'");
+                rblDrink.SelectedValue = "";
 
                 //添加最小日期選擇
                 dpDate.MinDate = DateTime.Now.Date;
@@ -65,7 +66,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     return;
 
                 //對頁面窗體進行賦值
-                txtCode.Text = model.Code;
+                hidCode.Text = model.Code;
                 dpDate.SelectedDate = model.ApplyDate;
                 txtEmpId.Text = model.Employee_EmpId;
                 txtEmpName.Text = model.Employee_Name;
@@ -81,7 +82,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 txtRemark.Text = model.Remark;
 
                 //判斷能否修改
-                ResolveFormField(!(model.RecordId == OnlineUsersBll.GetInstence().GetManagerEmpId()));
+                CheckEdit(model);
                 ////設置是否有效
                 //rblIsVaild.SelectedValue = model.IsVaild + "";
             }
@@ -95,6 +96,23 @@ namespace Solution.Web.Managers.WebManage.Meals
                 dpDate.SelectedDate = DateTime.Now.Date;
                 txtDeptId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString();
                 txtDeptName.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Name).ToString();
+            }
+        }
+
+        private void CheckEdit(DataAccess.Model.MealOrdering model)
+        {
+            try
+            {
+                bool b1 = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("yyyy-mm-dd") + " 11:50:00"), DateTime.Now) > 0 &&
+                    DateTime.Equals(model.ApplyDate,DateTime.Now);
+                bool b2 = DateTime.Compare(Convert.ToDateTime(model.ApplyDate), DateTime.Now.Date) < 0;
+                bool b3 = model.Employee_EmpId == OnlineUsersBll.GetInstence().GetManagerEmpId();
+                ResolveFormField(b1 || b2 || (!b3));
+            }
+            catch (Exception e)
+            {
+                CommonBll.WriteLog("訂餐判斷修改權限時，時間轉換錯誤，id爲" + model.Id.ToString(), e);
+                return;
             }
         }
 
@@ -136,14 +154,10 @@ namespace Solution.Web.Managers.WebManage.Meals
             try
             {
                 #region 數據驗證
-
-                var sCode = CommonBll.GetTableSN(MealOrderingTable.TableName, MealOrderingTable.Code);
-                txtCode.Text = sCode;
-                if (MealOrderingBll.GetInstence().Exist(x => (x.Code == sCode) && x.Id != id))
+                if (string.IsNullOrEmpty(hidCode.Text.Trim()))
                 {
-                    return txtCode.Label + "已存在！請重新輸入！";
+                    hidCode.Text = CommonBll.GetTableSN(MealOrderingTable.TableName, MealOrderingTable.Code);
                 }
-
                 if (string.IsNullOrEmpty(dpDate.ToString()))
                 {
                     return dpDate.Label + "不能為空！";
@@ -164,7 +178,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 var model = new MealOrdering(x => x.Id == id);
 
                 //設置名稱
-                model.Code = sCode;
+                model.Code = hidCode.Text;
 
                 model.ApplyDate = dpDate.SelectedDate;
                 model.Employee_EmpId = txtEmpId.Text;

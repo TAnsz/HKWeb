@@ -76,6 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="WebManage\Css\common.css" />
+    <Content Include="WebManage\Css\login.css" />
+    <Content Include="WebManage\Css\main.css" />
+    <Content Include="WebManage\Css\metro.css" />
     <Content Include="WebManage\Images\main.jpg" />
     <Content Include="WebManage\Meals\Report.aspx" />
     <Content Include="WebManage\Meals\MealOrderingEdit.aspx" />

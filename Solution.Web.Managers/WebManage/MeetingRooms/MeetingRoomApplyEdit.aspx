@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true"/>
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
@@ -22,11 +22,10 @@
                         <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false"
                             AutoScroll="true" BodyPadding="5px" runat="server" EnableCollapse="True">
                             <Items>
-                                <f:DropDownList Label="會議室選擇" runat="server" ID="dllRoomMoment" Width="400px"
-                                    >
+                                <f:DropDownList Label="會議室選擇" runat="server" ID="dllRoomMoment" Width="400px">
                                 </f:DropDownList>
-                                <f:TextBox runat="server" Label="編號" ID="txtCode" Width="400px" Readonly="True"></f:TextBox>
-                                <f:TextBox runat="server" Label="名稱" ID="txtName" ShowRedStar="true" Width="400px"></f:TextBox>
+                                <%--<f:TextBox runat="server" Label="編號" ID="txtCode" Width="400px" Readonly="True"></f:TextBox>--%>
+                                <%--<f:TextBox runat="server" Label="名稱" ID="txtName" ShowRedStar="true" Width="400px"></f:TextBox>--%>
                                 <f:DatePicker runat="server" Label="會議日期" ID="dpDate" ShowRedStar="true" Width="300px" />
                                 <f:DropDownList Label="開始時間" runat="server" ID="dllStart" Width="250px">
                                     <f:ListItem Text="08:30" Value="08:30" />
@@ -88,7 +87,7 @@
                                 <f:Label runat="server" Width="400px" ID="txtEmpName" Label="申請人" Readonly="True" />
                                 <f:Label runat="server" Width="400px" ID="txtDepartId" Label="申請部門編號" Readonly="True" />
                                 <f:Label runat="server" Width="400px" ID="txtDepartName" Label="申請部門" Readonly="True" />
-                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" Height="60px" ></f:TextArea>
+                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" Height="60px"></f:TextArea>
                                 <f:RadioButtonList ID="rblIsVaild" Label="是否有效" ColumnNumber="2" runat="server"
                                     ShowRedStar="true" Required="true">
                                     <f:RadioItem Text="有效" Value="1" Selected="true" />
@@ -96,6 +95,7 @@
                                 </f:RadioButtonList>
                                 <f:Label runat="server" Text="注:非本人錄入單據，無法修改！" ID="lbtips" CssClass="redlabel" Hidden="true" />
                                 <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
+                                <f:HiddenField runat="server" ID="hidCode" Text=""></f:HiddenField>
                             </Items>
                         </f:SimpleForm>
                     </Items>

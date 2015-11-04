@@ -15,10 +15,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:HiddenField runat="server" ID="hidId" Text="0">
-        </f:HiddenField>
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true"/>
-        <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True" ShowHeader="False">
+
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
+        <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
@@ -33,8 +32,6 @@
                             <Rows>
                                 <f:FormRow ID="FormRow1" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtCode" Label="編號" Width="300px" Text="" Readonly="true"
-                                            MaxLength="50" />
                                         <f:DatePicker runat="server" ID="dpDate" Label="日期" Width="300px" Text="" ShowRedStar="true" />
                                     </Items>
                                 </f:FormRow>
@@ -75,16 +72,21 @@
                                 </f:FormRow>
                             </Rows>
                         </f:Form>
+                        <f:HiddenField runat="server" ID="hidId" Text="0">
+                        </f:HiddenField>
+                        <f:HiddenField runat="server" ID="hidCode" Text="">
+                        </f:HiddenField>
                     </Items>
                     <Items>
                         <f:Panel ID="Panel5" Layout="HBox" BoxConfigAlign="Stretch" CssClass="formitem" ShowHeader="false" ShowBorder="false" runat="server">
                             <Items>
                                 <f:Label runat="server" Label="錄入" Enabled="false" />
-                                <f:Label runat="server" ID="lbuser" Enabled="false" BoxFlex="2"/>
-                                <f:Label runat="server" ID="lbdate" Enabled="false" BoxFlex="3"/>
+                                <f:Label runat="server" ID="lbuser" Enabled="false" BoxFlex="2" />
+                                <f:Label runat="server" ID="lbdate" Enabled="false" BoxFlex="3" />
                                 <f:Label runat="server" Text="注:非本人錄入單據，無法修改！" ID="lbtips" CssClass="redlabel" Hidden="true" />
                             </Items>
                         </f:Panel>
+                        <f:Label runat="server" CssClass="redlabel" Text="注意：當天10：50以後不允許修改和增加當天的訂餐信息！"></f:Label>
                     </Items>
                 </f:Panel>
             </Items>

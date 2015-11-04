@@ -29,14 +29,18 @@ namespace Solution.Web.Managers
     {
         //用戶頁面操作權限
         string _pagePower = "";
+        //按鈕樣式列表
+        protected string[] _btncss = new string[] { "red-stripe", "blue-stripe", "purple-stripe", "green-stripe", "bluegre-stripe" };
 
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+
                 //添加萬年曆按鍵事件，在主窗口中添加新選項卡
                 btnCalendar.OnClientClick = mainTabStrip.GetAddTabReference("calendar_tab", "/WebManage/Help/wannianli.htm", "萬年曆", IconHelper.GetIconUrl(Icon.Calendar), true);
+
 
                 //加載信息
                 LoadData();
@@ -194,6 +198,7 @@ namespace Solution.Web.Managers
                 //判斷是否有節點存在
                 if (dtRoot.Rows.Count != 0)
                 {
+                    int i = 0;
                     //循環讀取節點
                     foreach (DataRow dr in dtRoot.Rows)
                     {
@@ -217,6 +222,13 @@ namespace Solution.Web.Managers
                             //設置節點鏈接地址，並在Url後面添加頁面加密參數
                             treenode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
                             treenode.Leaf = true;
+                            //同時在主界面增加按鈕
+                            FineUI.Button btn1 = new Button();
+                            btn1.Text = dr[MenuInfoTable.Name].ToString();
+                            i = i >= _btncss.Length ? 0 : i;
+                            btn1.CssClass = "btn big " + _btncss[i++];
+                            btn1.OnClientClick = mainTabStrip.GetAddTabReference(dr[MenuInfoTable.Id].ToString(), treenode.NavigateUrl, btn1.Text, null, true);
+                            formMain.Items.Add(btn1);
                         }
                         else
                         {
