@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Web;
 using DotNet.Utilities;
+using FineUI;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
-using Microsoft.Reporting.WebForms;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -22,7 +18,7 @@ using Microsoft.Reporting.WebForms;
  *   修改日期：
  *   修改原因：
  ***********************************************************************/
-namespace Solution.Web.Managers.WebManage
+namespace Solution.Web.Managers
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -31,6 +27,8 @@ namespace Solution.Web.Managers.WebManage
         {
             if (!IsPostBack)
             {
+                ////綁定用戶
+                //EmployeeBll.GetInstence().BandDropDownList(this, ddlUser);
                 //生成驗證碼
                 imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
@@ -59,7 +57,7 @@ namespace Solution.Web.Managers.WebManage
 
             #region 獲取用戶輸入的參數，並進行數據初步處理
             //獲取用戶名，並進行危險字符過濾
-            var username = StringHelper.Left(txtUserName.Text, 50);
+            var username = StringHelper.Left(txtUser.Text, 50);
             //獲取用戶密碼
             var userpass = txtPassword.Text;
             //獲取驗證碼
@@ -68,14 +66,14 @@ namespace Solution.Web.Managers.WebManage
 
             #region 初步驗證
             //開發測試使用，不用每次都輸入帳號與密碼
-            username = "0000000";
-            userpass = "0";
+            //username = "0000000";
+            //userpass = "0";
             //strCode = "12345";
 
             //用戶名驗證
             if (string.IsNullOrEmpty(username.Trim()))
             {
-                txtUserName.Focus();
+                txtUser.Focus();
                 FineUI.Alert.ShowInTop("用戶名不能為空,請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
@@ -119,7 +117,7 @@ namespace Solution.Web.Managers.WebManage
             if (userinfo == null)
             {
                 LoginLogBll.GetInstence().Save(0, "賬號【" + username + "】不存在，登錄失敗！");
-                txtUserName.Focus();
+                txtUser.Focus();
                 FineUI.Alert.ShowInParent("用戶名不存在，請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
@@ -200,7 +198,7 @@ namespace Solution.Web.Managers.WebManage
             onlineUser.Sex = userinfo.SEX;
             //onlineUser.Branch_Id = userinfo.DEPART_ID;
             onlineUser.Branch_Code = userinfo.DEPART_ID;
-            onlineUser.Branch_Name = DepartsBll.GetInstence().GetFieldValue(DepartsTable.depart_name, DepartsTable.depart_id, userinfo.DEPART_ID, true).ToString();
+            onlineUser.Branch_Name = DepartsBll.GetInstence().GetFieldValue(DepartsTable.depart_name, DepartsTable.depart_id, userinfo.DEPART_ID).ToString();
             onlineUser.Position_Id = userinfo.GROUPS.Trim();
             var pname = T_TABLE_DBll.GetInstence().GetFieldValue(T_TABLE_DTable.DESCR, x => x.CODE == onlineUser.Position_Id && x.TABLES == "AUTH").ToString();
             onlineUser.Position_Name = pname.Trim();
@@ -218,7 +216,7 @@ namespace Solution.Web.Managers.WebManage
 
             #region 記錄當前用戶UserId
             //定義HashTable表裡Key的名稱UserId
-            string userHashKey = "";
+            string userHashKey;
             //判斷當前用戶帳戶是否支持同一帳號在不同地方登陸功能，取得用戶在HashTable表裡Key的名稱
             //不支持則
             if (userinfo.IS_SHEBAO == true)
@@ -297,15 +295,7 @@ namespace Solution.Web.Managers.WebManage
             #endregion
 
             //跳轉進入主頁面    
-            if (CommonBll.IsPC(this))
-            {
-                Response.Redirect("Main.aspx");
-            }
-            else
-            {
-                Response.Redirect("PhoneMain.aspx");
-            }
-
+            Response.Redirect(CommonBll.IsPC(this) ? "Main.aspx" : "PhoneMain.aspx");
         }
         #endregion
 
@@ -320,5 +310,13 @@ namespace Solution.Web.Managers.WebManage
         }
         #endregion
 
+        protected void txtUser_TextChanged(object sender, EventArgs e)
+        {
+            var str = txtUser.Text;
+            if (str == null) return;
+            var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID.IndexOf(str, StringComparison.Ordinal) >= 0 || x.EMP_FNAME.IndexOf(str, StringComparison.Ordinal) >= 0);
+            if (model == null) return;
+            txtUser.Text = model.EMP_ID;
+        }
     }
 }

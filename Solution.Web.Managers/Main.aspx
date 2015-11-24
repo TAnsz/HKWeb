@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes minimum-scale=0.5, maximum-scale=4.0" />
     <title>香港信息網絡系統</title>
-    <link href="Css/main.css" rel="stylesheet" />
+    <link href="WebManage/Css/main.css" rel="stylesheet" />
     <style type="text/css">
         body.f-theme-neptune .header {
             background-color: #005999;
@@ -98,35 +98,56 @@
                                             <Items>
                                                 <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Width="300px" Height="100%" ShowBorder="true" EnableCollapse="True">
                                                     <Items>
-                                                        <f:Form runat="server" ID="formMain" Layout="Form" ShowBorder="false" >
+                                                        <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false">
                                                             <Items>
 
-                                                               <%-- <f:Button ID="btnLeave" runat="server" Text="請假出差單管理" CssClass="btn red-stripe big"></f:Button>
+                                                                <%-- <f:Button ID="btnLeave" runat="server" Text="請假出差單管理" CssClass="btn red-stripe big"></f:Button>
                                                                 <f:Button ID="btnAdju" runat="server" Text="調休申請單管理" CssClass="btn blue-stripe big"></f:Button>
                                                                 <f:Button ID="btnMeeting" runat="server" Text="會議室使用管理" CssClass="btn purple-stripe big"></f:Button>
                                                                 <f:Button ID="btnMeal" runat="server" Text="員工訂餐管理" CssClass="btn green-stripe big"></f:Button>--%>
-
                                                             </Items>
                                                         </f:Form>
+                                                        <%-- <f:ContentPanel runat="server">
+                                                        <div class="btn gray" style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #1E95EC;"><strong>請假出差單管理</strong> <span style="color: #666; font-size: medium">人事模塊，請假和出差單的申請和一二級審核</span></div>
+                                                        </f:ContentPanel>--%>
                                                     </Items>
                                                 </f:Panel>
                                                 <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="VBox" BoxFlex="1">
                                                     <Items>
-                                                        <f:Panel runat="server" ID="Panel4" Title="今日請假/出差/調休人員" BoxFlex="1" ShowHeader="true" BodyPadding="10px" Height="300px" ShowBorder="true" EnableCollapse="True">
-                                                            <Items>
-                                                                <f:Label runat="server" Text="功能開發中..."></f:Label>
+                                                        <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="1"
+                                                            ShowBorder="true" ShowHeader="true" runat="server" EnableCheckBoxSelect="false" DataKeyNames="emp_id" EnableColumnLines="true"
+                                                            OnPreRowDataBound="Grid1_PreRowDataBound" SortField="emp_id" OnSort="Grid1_Sort">
+                                                            <Columns>
+                                                                <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="編號" Width="50px" />
+                                                                <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名" Width="200px" />
+                                                                <f:BoundField DataField="emp_ename" SortField="emp_ename" HeaderText="英文名" Width="100px" />
+                                                                <f:BoundField DataField="bill_date" SortField="bill_date" HeaderText="開始日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
+                                                                <f:BoundField DataField="Re_date" SortField="Re_date" HeaderText="結束日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
+                                                                <f:BoundField DataField="DESCR" SortField="DESCR" HeaderText="類型" Width="50px" />
+                                                                <f:TemplateField Width="100px" HeaderText="時段" TextAlign="Center">
+                                                                    <ItemTemplate>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Solution.Logic.Managers.CommonBll.GetWorkType(Eval("work_type").ToString()) %>'></asp:Label>
+                                                                    </ItemTemplate>
+                                                                </f:TemplateField>
+                                                                <f:BoundField DataField="work_days" SortField="work_days" HeaderText="天數" DataFormatString="{0:N2}" Width="50px" />
+                                                                <f:LinkButtonField HeaderText="一級審批" Icon="BulletCross" TextAlign="Center" ColumnID="audit" />
+                                                                <f:LinkButtonField HeaderText="二級審批" Icon="BulletCross" TextAlign="Center" ColumnID="audit2" />
+                                                            </Columns>
+                                                        </f:Grid>
+                                                                <f:Grid ID="Grid2" Title="今日考勤異常人員" EnableFrame="false" EnableCollapse="true" AllowSorting="true" ShowBorder="true" ShowHeader="true" runat="server" 
+                                                                    EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="ENo" OnSort="Grid2_Sort" BoxFlex="2">
+                                                                    <Columns>
+                                                                        <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="50px" />
+                                                                        <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="200px" />
+                                                                        <f:BoundField DataField="EName" SortField="EName" HeaderText="英文名" Width="100px" />
+                                                                        <f:BoundField DataField="CTime" SortField="CTime" HeaderText="上班時間" Width="100px" />
+                                                                        <f:BoundField DataField="Ms" SortField="Ms" HeaderText="異常" Width="130px" />
+                                                                    </Columns>
+                                                                </f:Grid>
                                                             </Items>
-                                                        </f:Panel>
-                                                        <f:Panel runat="server" ID="Panel5" Title="今日考勤異常人員" BoxFlex="1" ShowHeader="true" BodyPadding="10px" MinHeight="200px" Margin="0" ShowBorder="true" EnableCollapse="True">
-                                                            <Items>
-                                                                <f:Label runat="server" Text="功能開發中..."></f:Label>
-                                                            </Items>
-                                                        </f:Panel>
-                                                    </Items>
                                                 </f:Panel>
                                             </Items>
                                         </f:Panel>
-                                        <%--<div style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #1E95EC;"><strong>請假出差單管理</strong> <span style="color: #666; font-size: medium">人事模塊，請假和出差單的申請和一二級審核</span></div>--%>
                                         <%-- <div style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #D84A38;"><strong>調休申請單管理</strong> <span style="color: #666; font-size: medium">人事模塊，人員調休的申請和一二級審核</span></div>
                                             <div style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #D84A38;"><strong>會議室使用管理</strong> <span style="color: #666; font-size: medium">Web模塊，對公司會議室使用時間的管理，查看和預約各會議室的時間</span></div>
                                             <div style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #D84A38;"><strong>員工訂餐管理</strong> <span style="color: #666; font-size: medium">Web模塊，員工中餐選擇和預定，可查看菜單及預定當天以後的中餐</span></div>--%>
@@ -149,7 +170,7 @@
 
         // 頁面控件初始化完畢後，會調用用戶自定義的onReady函數
         F.ready(function () {
-
+            //debugger;
             // 初始化主框架中的樹(或者Accordion+Tree)和選項卡互動，以及地址欄的更新
             // treeMenu： 主框架中的樹控件實例，或者內嵌樹控件的手風琴控件實例
             // mainTabStrip： 選項卡實例

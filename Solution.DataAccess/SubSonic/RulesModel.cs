@@ -211,6 +211,66 @@ namespace Solution.DataAccess.Model
 			set { _memo = value; }
 		}
 
+		byte _IsAllowances;
+		/// <summary>例
+		/// 
+		/// </summary>
+		public byte IsAllowances
+		{
+			get { return _IsAllowances; }
+			set { _IsAllowances = value; }
+		}
+
+		DateTime? _SatOutTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? SatOutTime
+		{
+			get { return _SatOutTime; }
+			set { _SatOutTime = value; }
+		}
+
+		DateTime? _MonInTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? MonInTime
+		{
+			get { return _MonInTime; }
+			set { _MonInTime = value; }
+		}
+
+		DateTime? _FriOutTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? FriOutTime
+		{
+			get { return _FriOutTime; }
+			set { _FriOutTime = value; }
+		}
+
+		DateTime? _HolInTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? HolInTime
+		{
+			get { return _HolInTime; }
+			set { _HolInTime = value; }
+		}
+
+		DateTime? _HolOutTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? HolOutTime
+		{
+			get { return _HolOutTime; }
+			set { _HolOutTime = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -237,6 +297,12 @@ namespace Solution.DataAccess.Model
 			sb.Append("vrestbegtime=" + vrestbegtime + "; ");
 			sb.Append("vrestendtime=" + vrestendtime + "; ");
 			sb.Append("memo=" + memo + "; ");
+			sb.Append("IsAllowances=" + IsAllowances + "; ");
+			sb.Append("SatOutTime=" + SatOutTime + "; ");
+			sb.Append("MonInTime=" + MonInTime + "; ");
+			sb.Append("FriOutTime=" + FriOutTime + "; ");
+			sb.Append("HolInTime=" + HolInTime + "; ");
+			sb.Append("HolOutTime=" + HolOutTime + "; ");
 			return sb.ToString();
         }
 

@@ -27,7 +27,7 @@ namespace Solution.Web.Managers.WebManage.Meals
 {
     public partial class MealOrderingList : PageBase
     {
-        protected readonly static List<string> VALID_FILE_TYPES = new List<string> { ".jpg", ".bmp", ".gif", ".jpeg", ".png" };
+        protected static readonly List<string> ValidFileTypes = new List<string> { ".jpg", ".bmp", ".gif", ".jpeg", ".png" };
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -70,21 +70,15 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
-            //衹能查詢自己增加的記錄
-
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.RecordId, Comparison.Equals, StringHelper.FilterSql(OnlineUsersBll.GetInstence().GetManagerEmpId())));
-
             //員工編號
-            //if (!string.IsNullOrEmpty(txtName.Text.Trim()))
-            //{
-            //    wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.Equals, StringHelper.FilterSql(txtName.Text)));
-            //}
-            //起始時間
-            if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
+            if (!string.IsNullOrEmpty(ttbxEmp.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.Equals, StringHelper.FilterSql(ttbxEmp.Text)));
             }
+            //起始時間
+            if (string.IsNullOrEmpty(dpStart.Text.Trim())) return wheres;
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
 
             return wheres;
         }
@@ -236,7 +230,7 @@ namespace Solution.Web.Managers.WebManage.Meals
             {
                 string fileName = filePhoto.ShortFileName;
 
-                if (!VALID_FILE_TYPES.Contains(FileOperateHelper.GetPostfixStr(fileName)))
+                if (!ValidFileTypes.Contains(FileOperateHelper.GetPostfixStr(fileName)))
                 {
                     FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
                     return;
@@ -255,6 +249,45 @@ namespace Solution.Web.Managers.WebManage.Meals
                 FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);
             }
 
+        }
+        #endregion
+
+
+        #region 員工選擇
+        /// <summary>
+        /// 彈出員工選擇界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger2Click(object sender, EventArgs e)
+        {
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.Hidden = false;
+            ttbxEmp.ShowTrigger1 = true;
+        }
+        /// <summary>
+        /// 清除員工選擇
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger1Click(object sender, EventArgs e)
+        {
+            ttbxEmp.Text = "";
+            ttbxEmp.ShowTrigger1 = false;
+        }
+        #endregion
+
+        #region 子窗口關閉事件
+        /// <summary>
+        /// 關閉子窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        {
+            if (!e.CloseArgument.StartsWith("Emp=")) return;
+            string provinceName = e.CloseArgument.Substring("Emp=".Length);
+            ttbxEmp.Text = provinceName;
         }
         #endregion
 

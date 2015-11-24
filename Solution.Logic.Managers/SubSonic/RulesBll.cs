@@ -313,6 +313,30 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.memo == (string)value);
                         expression = x => x.memo == (string)value;
                         break;
+					case "IsAllowances" :
+						model = list.SingleOrDefault(x => x.IsAllowances == (byte)value);
+                        expression = x => x.IsAllowances == (byte)value;
+                        break;
+					case "SatOutTime" :
+						model = list.SingleOrDefault(x => x.SatOutTime == (DateTime)value);
+                        expression = x => x.SatOutTime == (DateTime)value;
+                        break;
+					case "MonInTime" :
+						model = list.SingleOrDefault(x => x.MonInTime == (DateTime)value);
+                        expression = x => x.MonInTime == (DateTime)value;
+                        break;
+					case "FriOutTime" :
+						model = list.SingleOrDefault(x => x.FriOutTime == (DateTime)value);
+                        expression = x => x.FriOutTime == (DateTime)value;
+                        break;
+					case "HolInTime" :
+						model = list.SingleOrDefault(x => x.HolInTime == (DateTime)value);
+                        expression = x => x.HolInTime == (DateTime)value;
+                        break;
+					case "HolOutTime" :
+						model = list.SingleOrDefault(x => x.HolOutTime == (DateTime)value);
+                        expression = x => x.HolOutTime == (DateTime)value;
+                        break;
 
                     default :
                         return null;
@@ -525,6 +549,12 @@ namespace Solution.Logic.Managers {
                 vrestbegtime = model.vrestbegtime,
                 vrestendtime = model.vrestendtime,
                 memo = model.memo,
+                IsAllowances = model.IsAllowances,
+                SatOutTime = model.SatOutTime,
+                MonInTime = model.MonInTime,
+                FriOutTime = model.FriOutTime,
+                HolInTime = model.HolInTime,
+                HolOutTime = model.HolOutTime,
             };
         }
 
@@ -573,6 +603,12 @@ namespace Solution.Logic.Managers {
                 vrestbegtime = model.vrestbegtime,
                 vrestendtime = model.vrestendtime,
                 memo = model.memo,
+                IsAllowances = model.IsAllowances,
+                SatOutTime = model.SatOutTime,
+                MonInTime = model.MonInTime,
+                FriOutTime = model.FriOutTime,
+                HolInTime = model.HolInTime,
+                HolOutTime = model.HolOutTime,
             };
         }
 
@@ -679,6 +715,24 @@ namespace Solution.Logic.Managers {
                     break;
 				case "memo" :
 					model.memo = (string)value;
+                    break;
+				case "IsAllowances" :
+					model.IsAllowances = ConvertHelper.Ctinyint(value);
+                    break;
+				case "SatOutTime" :
+					model.SatOutTime = (DateTime)value;
+                    break;
+				case "MonInTime" :
+					model.MonInTime = (DateTime)value;
+                    break;
+				case "FriOutTime" :
+					model.FriOutTime = (DateTime)value;
+                    break;
+				case "HolInTime" :
+					model.HolInTime = (DateTime)value;
+                    break;
+				case "HolOutTime" :
+					model.HolOutTime = (DateTime)value;
                     break;
             }
 		}
@@ -1318,6 +1372,18 @@ namespace Solution.Logic.Managers {
 					return model.vrestendtime;
 				case "memo" :
 					return model.memo;
+				case "IsAllowances" :
+					return model.IsAllowances;
+				case "SatOutTime" :
+					return model.SatOutTime;
+				case "MonInTime" :
+					return model.MonInTime;
+				case "FriOutTime" :
+					return model.FriOutTime;
+				case "HolInTime" :
+					return model.HolInTime;
+				case "HolOutTime" :
+					return model.HolOutTime;
 			}
 
 			return null;
@@ -1468,6 +1534,25 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
+		#region 更新IsAllowances字段值
+		/// <summary>
+		/// 更新IsAllowances字段值
+		/// </summary>
+		/// <param name="page">當?頁面指針</param>
+		/// <param name="pkValue">主鍵Id，當等於0時，則更新所有記錄</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否魂步更新緩存</param>
+		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
+		public void UpdateIsAllowances(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//設瞞更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[RulesTable.IsAllowances] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了Rules表id為【" + pkValue + "】的記錄，更新內容為將IsAllowances字段值囊改為" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
+		
     
 		#endregion 模版生成函數
 

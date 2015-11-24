@@ -183,7 +183,7 @@ namespace Solution.Logic.Managers
             }
             else
             {
-                title =  "需要你審批!";
+                title = "需要你審批!";
                 sto = mail;
             }
 
@@ -204,6 +204,33 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
+        #region 判斷是否重複申請
+        public string IsRepetition(adJustRest_D model)
+        {
+            string result = null;
+            //取得請假出差表中數據
+            var mod = OutWork_DBll.GetInstence().GetModelForCache(x => ((model.ori_date > x.bill_date ? model.ori_date : x.bill_date) <=
+               (model.rest_date < x.Re_date ? model.rest_date : x.Re_date)) && x.Id != model.Id);
+            if (mod != null)
+            {
+                if (model.all_day.ToString() == mod.work_type || model.all_day == 0 || mod.work_type == "0")
+                {
+                    result = string.Format("當天已申請{0}單，單號爲{1}，請檢查修改！", mod.outwork_type.ToLower() == "tral" ? "出差" : "請假", mod.bill_id);
+                }
+            }
+            //取得調休單信息
+            var amod = adJustRest_DBll.GetInstence().GetModelForCache(x =>
+                (x.ori_date >= model.ori_date && x.ori_date <= model.rest_date) || (x.rest_date >= model.ori_date && x.rest_date <= model.rest_date) && x.Id != model.Id);
+            if (amod != null)
+            {
+                if (amod.all_day == model.all_day || model.all_day == 0 || amod.all_day == 0)
+                {
+                    result = string.Format("當天已申請調休單，單號爲{0}，請檢查修改！", amod.bill_id);
+                }
+            }
+            return result;
+        }
+        #endregion
         #endregion 自定義函數
     }
 }

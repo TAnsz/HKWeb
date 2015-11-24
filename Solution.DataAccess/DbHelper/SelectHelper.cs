@@ -126,10 +126,10 @@ namespace Solution.DataAccess.DbHelper
         }
 
         /// <summary>
-        /// 直接执行SQL，返回DataTable
+        /// 直接执行SQL，返回DataSet
         /// </summary>
         /// <param name="sql"></param>
-        public DataTable ExcuSQLDataTable(string sql)
+        public DataSet ExcuSQLDataSet(string sql)
         {
             try
             {
@@ -138,7 +138,23 @@ namespace Solution.DataAccess.DbHelper
                 //获取执行语句
                 _execSql = q.CommandSql;
 
-                return q.Provider.ExecuteDataSet(q).Tables[0];
+                return q.Provider.ExecuteDataSet(q);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("查询数据异常,执行语句" + _execSql, e);
+            }
+        }
+
+        /// <summary>
+        /// 直接执行SQL，返回DataTable
+        /// </summary>
+        /// <param name="sql"></param>
+        public DataTable ExcuSQLDataTable(string sql)
+        {
+            try
+            {
+                return ExcuSQLDataSet(sql).Tables[0];
             }
             catch (Exception e)
             {

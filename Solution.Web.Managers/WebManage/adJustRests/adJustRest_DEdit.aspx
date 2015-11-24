@@ -33,14 +33,16 @@
                             <Rows>
                                 <f:FormRow ID="FormRow1" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtEmpId" Label="員工編號" Width="300px" Text="" ShowRedStar="true"
-                                            MaxLength="50" />
+                                        <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"
+                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick"/>
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow2" runat="server">
                                     <Items>
+                                        <f:TextBox runat="server" ID="txtDeptId" Label="部門ID" Width="50px" Text="" Hidden="true"
+                                            MaxLength="50" />
                                         <f:TextBox runat="server" ID="txtDept" Label="部門" Width="600px" Text="" Readonly="True"
                                             MaxLength="50" />
                                     </Items>
@@ -56,10 +58,10 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow4" runat="server">
                                     <Items>
-                                        <f:DatePicker ID="dpStartTime" Label="加班日期" Width="300px" Required="true" runat="server"
+                                        <f:DatePicker ID="dpStartTime" Label="加班日期" Width="300px" Required="true" runat="server" EmptyText="請選擇加班日期"
                                             ShowRedStar="true" />
-                                        <f:DatePicker ID="dpEndTime" Label="調休日期" Width="300px" Required="true" runat="server"
-                                            ShowRedStar="true" />
+                                        <f:DatePicker ID="dpEndTime" Label="調休日期" Width="300px" Required="true" runat="server" EmptyText="請選擇調休日期"
+                                            CompareControl="dpStartTime" CompareOperator="GreaterThan" CompareMessage="調休日期应该大于加班日期" ShowRedStar="true" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">
@@ -104,6 +106,11 @@
                 </f:Panel>
             </Items>
         </f:Panel>
+        <f:Window ID="Window2" Width="500px" Height="400px" Icon="TagBlue" Title="選擇" Hidden="True"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window2_Close" EnableCollapse="true"
+            runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
+            EnableIFrame="true" EnableClose="true" IsModal="True">
+        </f:Window>
     </form>
 </body>
 </html>

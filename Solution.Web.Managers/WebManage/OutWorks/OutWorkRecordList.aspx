@@ -36,9 +36,9 @@
                         <f:Panel ID="Panel4" ShowHeader="false" ShowBorder="false"
                             Layout="Column" runat="server">
                             <Items>
-                                <f:DropDownList runat="server" ID="ddlEmp" Label="員工" AutoSelectFirstItem="false" EmptyText="請選擇員工" Width="320px"
-                                    EnableEdit="true" ForceSelection="false">
-                                </f:DropDownList>
+                                <f:TwinTriggerBox runat="server" ID="ttbxEmp" Label="員工" EmptyText="請選擇員工" Width="320px" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
+                                </f:TwinTriggerBox>
                                 <f:Label runat="server" Width="50px"></f:Label>
                                 <f:DropDownList CompareType="String" Label="類型" runat="server" ID="ddlOutWorkRecord" AutoSelectFirstItem="false" EmptyText="===全部===">
                                     <f:ListItem Text="請假申請單" Value="leav" />
@@ -74,10 +74,10 @@
                 </f:Form>
                 <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="Id"
                     PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
-                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
+                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
                         <f:TemplateField RenderAsRowExpander="true">
-                            <ItemTemplate>
+                            <ItemTemplate >
                                 <div class="expander">
                                     <table width="1100px" style="padding-left: 50px;">
                                         <tr>
@@ -141,8 +141,13 @@
                 <f:HiddenField runat="server" ID="SortColumn" Text="Id"></f:HiddenField>
             </Items>
         </f:Panel>
-        <f:Window ID="Window1" Width="700px" Height="450px" Icon="TagBlue" Title="編輯" Hidden="True"
+        <f:Window ID="Window1" Width="700px" Height="600px" Icon="TagBlue" Title="編輯" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
+            runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
+            EnableIFrame="true" EnableClose="true" IsModal="True">
+        </f:Window>
+        <f:Window ID="Window2" Width="500px" Height="600px" Icon="TagBlue" Title="選擇" Hidden="True"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window2_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>

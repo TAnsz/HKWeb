@@ -176,6 +176,54 @@ namespace Solution.DataAccess.DataModel {
         			return "memo";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string IsAllowances{
+			      get{
+        			return "IsAllowances";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SatOutTime{
+			      get{
+        			return "SatOutTime";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string MonInTime{
+			      get{
+        			return "MonInTime";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string FriOutTime{
+			      get{
+        			return "FriOutTime";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string HolInTime{
+			      get{
+        			return "HolInTime";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string HolOutTime{
+			      get{
+        			return "HolOutTime";
+      			}
+		    }
                     
         }
 }

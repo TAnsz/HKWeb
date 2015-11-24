@@ -3,9 +3,7 @@ using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
-using System.Collections.Generic;
-using Solution.DataAccess.DbHelper;
-using SubSonic.Query;
+using System.Linq;
 using FineUI;
 
 /***********************************************************************
@@ -63,8 +61,9 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                     return;
 
                 //對頁面窗體進行賦值
-                txtEmpId.Text = model.emp_id;
+                tbxEmp.Text = model.emp_id;
                 txtEmpName.Text = EmployeeBll.GetInstence().GetEmpName(model.emp_id);
+                txtDeptId.Text = model.depart_id;
                 txtDept.Text = DepartsBll.GetInstence().GetDeptName(model.depart_id);
 
                 //txtDays.Text = model.all_day.ToString();
@@ -140,16 +139,16 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// <returns></returns>
         public override string Save()
         {
-            string result = string.Empty;
+            string result;
             int id = ConvertHelper.Cint0(hidId.Text);
 
             try
             {
                 #region 數據驗證
 
-                if (string.IsNullOrEmpty(txtEmpId.Text.Trim()))
+                if (string.IsNullOrEmpty(tbxEmp.Text.Trim()))
                 {
-                    return txtEmpId.Label + "不能為空！";
+                    return tbxEmp.Label + "不能為空！";
                 }
                 //判斷是否重複
                 //var sName = StringHelper.Left(txtName.Text, 50);
@@ -180,30 +179,33 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 #region 賦值
 
                 //獲取實體
-                var model = new adJustRest_D(x => x.Id == id);
+                var model = new adJustRest_D(x => x.Id == id)
+                {
+                    emp_id = tbxEmp.Text,
+                    depart_id = txtDeptId.Text,
+                    kind = ddladJustRest_D.SelectedValue,
+                    memo = StringHelper.Left(txtMemo.Text, 100),
+                    ori_date = dpStartTime.SelectedDate ?? DateTime.Now,
+                    rest_date = dpEndTime.SelectedDate ?? DateTime.Now.AddDays(1),
+                    all_day = ConvertHelper.Ctinyint(ddlType.SelectedValue),
+                    audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked),
+                    audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked),
+                    op_date = DateTime.Now,
+                    op_user = OnlineUsersBll.GetInstence().GetManagerCName()
+                };
 
                 //------------------------------------------
                 //設置名稱
-                model.emp_id = txtEmpId.Text;
-                model.kind = ddladJustRest_D.SelectedValue;
                 //model.Url = StringHelper.Left(txtUrl.Text, 200, true, false);
                 //說明
-                model.memo = StringHelper.Left(txtMemo.Text, 100);
 
 
                 //開始時間與結束時間
-                model.ori_date = dpStartTime.SelectedDate ?? DateTime.Now;
-                model.rest_date = dpEndTime.SelectedDate ?? DateTime.Now.AddDays(1);
 
-                model.all_day = ConvertHelper.Ctinyint(ddlType.SelectedValue);
 
-                model.audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked);
-                model.audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked);
 
                 //修改時間與用戶
-                model.op_date = DateTime.Now;
                 //model.op_user = OnlineUsersBll.GetInstence().GetManagerId();
-                model.op_user = OnlineUsersBll.GetInstence().GetManagerCName();
 
                 #endregion
 
@@ -252,24 +254,27 @@ namespace Solution.Web.Managers.WebManage.adJustRests
 
                 #endregion
 
+                //判斷當前申請是否重複
+                result = adJustRest_DBll.GetInstence().IsRepetition(model);
+                if (result == null)
+                {
+                    //----------------------------------------------------------
+                    //存儲到數據庫
+                    adJustRest_DBll.GetInstence().Save(this, model);
+                    //清空字段修改標記
+                    PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
-                //----------------------------------------------------------
-                //存儲到數據庫
-                adJustRest_DBll.GetInstence().Save(this, model);
-                //清空字段修改標記
-                PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
+                    #region 同步更新上傳圖片表綁定Id
+                    //if (id == 0)
+                    //{
+                    //    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
+                    //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, adJustRest_DTable.TableName, model.Id);
+                    //}
 
-                #region 同步更新上傳圖片表綁定Id
-                //if (id == 0)
-                //{
-                //    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
-                //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, adJustRest_DTable.TableName, model.Id);
-                //}
+                    #endregion
 
-                #endregion
-
-                //這裡放置清空前端頁面緩存的代碼（如果前端使用了頁面緩存的話，必須進行清除操作）
-
+                    //這裡放置清空前端頁面緩存的代碼（如果前端使用了頁面緩存的話，必須進行清除操作）
+                }
 
             }
             catch (Exception e)
@@ -285,6 +290,18 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         #endregion
 
         #region 按鍵事件
+        #region 員工選擇
+        /// <summary>
+        /// 彈出員工選擇界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void tbxEmp_TriggerClick(object sender, EventArgs e)
+        {
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?Selection=1&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.Hidden = false;
+        }
+        #endregion
         /// <summary>
         /// 一級審批
         /// </summary>
@@ -298,19 +315,13 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {
-                string result = "請先保存記錄。";
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value , adJustRest_DBll.check1);
-            if (!String.IsNullOrEmpty(ret))
-            {
-                FineUI.Alert.ShowInParent(ret, FineUI.MessageBoxIcon.Information);
-            }
-            else
-            {
-                FineUI.Alert.ShowInParent(string.Format("二級{0}審批成功", value == 0 ? "反" : ""), FineUI.MessageBoxIcon.Information);
-            }
+            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.check1);
+            FineUI.Alert.ShowInParent(
+                !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
+                FineUI.MessageBoxIcon.Information);
             LoadData();
         }
         /// <summary>
@@ -326,44 +337,52 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {
-                string result = "請先保存記錄。";
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value , adJustRest_DBll.check2);
-            if (!String.IsNullOrEmpty(ret))
-            {
-                FineUI.Alert.ShowInParent(ret, FineUI.MessageBoxIcon.Information);
-            }
-            else
-            {
-                FineUI.Alert.ShowInParent(string.Format("二級{0}審批成功", value == 0 ? "反" : ""), FineUI.MessageBoxIcon.Information);
-            }
+            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.check2);
+            FineUI.Alert.ShowInParent(
+                !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
+                FineUI.MessageBoxIcon.Information);
             LoadData();
         }
 
 
         #region 修改表單衹讀屬性
+
         /// <summary>
         /// 修改表單所有屬性
         /// </summary>
-        /// <param name="process"></param>
         private void ResolveFormField(bool b)
         {
-            foreach (FormRow row in extForm1.Rows)
+            foreach (var field in extForm1.Rows.SelectMany(row => row.Items, (row, controlBase) => (Field) controlBase).Where(field => field != null && !(field is Label)))
             {
-                foreach (Field field in row.Items)
-                {
-                    if (field != null && !(field is Label))
-                    {
-                        field.Readonly=b;
-                    }
-                }
+                field.Readonly = b;
             }
         }
-        #endregion
 
         #endregion
 
+        #endregion
+
+        #region 子窗口關閉事件
+        /// <summary>
+        /// 關閉子窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        {
+            if (!e.CloseArgument.StartsWith("Emp=")) return;
+            string provinceName = e.CloseArgument.Substring("Emp=".Length);
+            tbxEmp.Text = provinceName.Trim();
+            var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == tbxEmp.Text);
+            if (model == null) return;
+            txtEmpName.Text = model.EMP_FNAME;
+            var depid = model.DEPART_ID;
+            txtDeptId.Text = depid;
+            txtDept.Text = DepartsBll.GetInstence().GetDeptName(depid);
+        }
+        #endregion
     }
 }

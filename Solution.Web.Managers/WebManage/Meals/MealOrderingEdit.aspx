@@ -37,8 +37,8 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow2" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtEmpId" Label="員工編號" Width="300px" Text="" ShowRedStar="true"
-                                            EnableBlurEvent="true" OnBlur="txtEmpId_Blur" MaxLength="50" />
+                                        <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"
+                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick"/>
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
                                     </Items>
@@ -92,6 +92,11 @@
             </Items>
         </f:Panel>
         <br />
+        <f:Window ID="Window2" Width="500px" Height="400px" Icon="TagBlue" Title="選擇" Hidden="True"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window2_Close" EnableCollapse="true"
+            runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
+            EnableIFrame="true" EnableClose="true" IsModal="True">
+        </f:Window>
     </form>
 </body>
 </html>

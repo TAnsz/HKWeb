@@ -38,7 +38,9 @@
                         <f:Panel ID="Panel2" ShowHeader="false" CssClass="formitem" ShowBorder="false"
                             Layout="Column" runat="server">
                             <Items>
-                                <%--<f:TextBox runat="server" ID="txtName" Label="員工編號" Width="260px" Text="" />--%>
+                                <f:TwinTriggerBox runat="server" ID="ttbxEmp" Label="員工" EmptyText="請選擇員工" Width="320px" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
+                                </f:TwinTriggerBox>
                                 <f:Label runat="server" CssClass="marginr" ShowLabel="false" Text="查詢起止日期: "></f:Label>
                                 <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
                                 <f:DatePicker runat="server" ID="dpEnd" CssClass="marginr" CompareControl="dpStart" CompareOperator="GreaterThanEqual" CompareMessage="結束日期應該大於等於開始日期" DateFormatString="yyyy-MM-dd" EmptyText="結束日期" />
@@ -49,7 +51,7 @@
                 </f:Form>
                 <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC"
                     PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"
-                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand">
+                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
                         <f:RowNumberField />
                         <f:TemplateField Width="100px" HeaderText="星期" TextAlign="Center">
@@ -79,7 +81,7 @@
             EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>
         <f:Window ID="Window2" Width="800px" Height="700px" Icon="TagBlue" Title="列印" Hidden="True"
-            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window2_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>

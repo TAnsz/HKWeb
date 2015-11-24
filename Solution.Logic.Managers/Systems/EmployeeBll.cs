@@ -5,6 +5,7 @@ using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
 using System.Collections.Generic;
 using SubSonic.Query;
+using System.Data;
 
 namespace Solution.Logic.Managers
 {
@@ -24,7 +25,7 @@ namespace Solution.Logic.Managers
         {
             string sql = string.Format("SELECT EMP_ID FROM Employee WHERE EMP_ID = '{0}' AND PWDCOMPARE('{1}', PASSWORD) = 1", empid, pw);
             var ret = new SelectHelper().ExecuteScalar(sql);
-            return (ret!=null);
+            return (ret != null);
         }
         #endregion
 
@@ -36,7 +37,7 @@ namespace Solution.Logic.Managers
         /// <returns></returns>
         public string GetEmpName(object id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return "";
             }

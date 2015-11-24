@@ -32,9 +32,9 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         public enum AccType
         {
             [Description("一級")]
-            ACCEPT1,
+            Accept1,
             [Description("二級")]
-            ACCEPT2,
+            Accept2,
         };
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             if (!IsPostBack)
             {
                 //綁定下拉列表
-                EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
+                //EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
                 //設置默認日期，三個月以內的記錄
                 dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-1);
                 dpEnd.SelectedDate = DateTime.Now.Date.AddMonths(1);
@@ -78,17 +78,25 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
-            //默認衹能看到自己申請或可以審核的單據
+            //默認衹能看到自己申請/可以審核的單據/有權限查看人員的單據
             var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid,true));
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
+            //得到有權限查看人員的數據
+            var str = USERAUTHORITYBll.GetInstence().GetUserWheres(OutWork_DTable.emp_id, empid);
+            if (str.Length > 0)
+            {
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.emp_id, Comparison.In, str));
+            }
             wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
 
             //員工編號
-            if (!string.IsNullOrEmpty(ddlEmp.SelectedValue))
+            if (!string.IsNullOrEmpty(ttbxEmp.Text))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(ddlEmp.SelectedValue)));
+                //轉換成數組
+                var s = ttbxEmp.Text.Trim().Split(',');
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In,s ));
             }
 
             //單據類別
@@ -133,34 +141,50 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //綁定是否顯示
             DataRowView row = e.DataItem as DataRowView;
-            if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "0")
+            if (row != null && row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "0")
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
             }
             else
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
             }
 
-            if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() == "0")
+            if (row == null || row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() != "0")
             {
                 var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
             }
             else
             {
-                var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
+                if (!string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
+                {
+                    var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
+                    if (lbf != null)
+                    {
+                        lbf.Icon = Icon.BulletTick;
+                        lbf.CommandArgument = "0";
+                    }
+                }
             }
 
             //綁定是否編輯列
             var lbfEdit = Grid1.FindColumn("ButtonEdit") as LinkButtonField;
+            if (lbfEdit == null) return;
             lbfEdit.Text = "編輯";
             lbfEdit.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonEdit");
         }
@@ -184,7 +208,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 case "IsAudit":
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.check1);
-                    result = String.IsNullOrEmpty(result) ? String.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = string.IsNullOrEmpty(result) ? string.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();
@@ -193,7 +217,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 case "IsAudit2":
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.check2);
-                    result = String.IsNullOrEmpty(result) ? String.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = string.IsNullOrEmpty(result) ? string.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();
@@ -282,14 +306,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         }
         #endregion
 
-
         #region 審批單據
         /// <summary>
         /// 審批選中記錄
         /// </summary>
         protected void ButtonAccept_Click(object sender, EventArgs e)
         {
-            AcceptRecord(AccType.ACCEPT1);
+            AcceptRecord(AccType.Accept1);
         }
 
         /// <summary>
@@ -297,7 +320,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// </summary>
         protected void ButtonAccept2_Click(object sender, EventArgs e)
         {
-            AcceptRecord(AccType.ACCEPT2);
+            AcceptRecord(AccType.Accept2);
         }
 
         /// <summary>
@@ -322,11 +345,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 try
                 {
-                    if (p == AccType.ACCEPT1)
+                    if (p == AccType.Accept1)
                     {
                         OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.check1);
                     }
-                    else if (p == AccType.ACCEPT2)
+                    else if (p == AccType.Accept2)
                     {
                         OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.check2);
                     }
@@ -343,6 +366,31 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             return;
         }
         #endregion
+
+        #region 員工選擇
+        /// <summary>
+        /// 彈出員工選擇界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger2Click(object sender, EventArgs e)
+        {
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.Hidden = false;
+            ttbxEmp.ShowTrigger1 = true;
+        }
+        /// <summary>
+        /// 清除員工選擇
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger1Click(object sender, EventArgs e)
+        {
+            ttbxEmp.Text = "";
+            ttbxEmp.ShowTrigger1 = false;
+        }
+        #endregion
+
         #region 獲取顯示值
         ///// <summary>
         ///// 時段顯示值
@@ -353,6 +401,22 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         //{
         //    return CommonBll.GetWorkType(id.ToString());
         //}
+        #endregion
+        #region 子窗口關閉事件
+        /// <summary>
+        /// 關閉子窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        {
+            if (e.CloseArgument.StartsWith("Emp="))
+            {
+                string provinceName = e.CloseArgument.Substring("Emp=".Length);
+                ttbxEmp.Text = provinceName;
+            }
+            //LoadData();
+        }
         #endregion
     }
 }

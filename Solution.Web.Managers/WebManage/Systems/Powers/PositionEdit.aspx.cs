@@ -1,10 +1,12 @@
 using System;
 using System.Data;
+using System.Linq;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 using FineUI;
+using Solution.Logic.Managers.Application;
 
 
 /***********************************************************************
@@ -127,7 +129,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             if (e.Checked)
             {
                 MenuTree.CheckAllNodes(e.Node.Nodes);
-                CheckNode(e.Node);
+                TreeBll.CheckNode(e.Node);
             }
             //取消當前節點以下的所有子節點選擇
             else
@@ -140,6 +142,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         /// 添加子節點
         /// </summary>
         /// <param name="dt"></param>
+        /// <param name="pgdt"></param>
         /// <param name="node"></param>
         /// <param name="nodeid"></param>
         public void AddNode(DataTable dt, DataTable pgdt, FineUI.TreeNode node, string nodeid)
@@ -216,21 +219,6 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
 
         }
 
-        /// <summary>
-        /// 勾選當前節點
-        /// </summary>
-        /// <param name="node"></param>
-        public void CheckNode(FineUI.TreeNode node)
-        {
-            FineUI.TreeNode pnode = node.ParentNode;
-
-            while (pnode != null)
-            {
-                pnode.Checked = true;
-                pnode = pnode.ParentNode;
-            }
-        }
-
 
 
         /// <summary>
@@ -239,30 +227,23 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         /// <returns>字符串組成的Tree</returns>
         public void GetCheckTreeNode(FineUI.TreeNodeCollection node)
         {
-            for (int i = 0; i < node.Count; i++)
+            foreach (TreeNode t in node.Where(t => t.Checked))
             {
-                if (node[i].Checked)
+                if (t.NodeID != "0")
                 {
-                    if (node[i].NodeID != "0")
+                    if (t.NodeID.IndexOf("|", StringComparison.Ordinal) < 0)
                     {
-                        if (node[i].NodeID.IndexOf("|") < 0)
-                        {
-                            _hidPositionPagePower += node[i].NodeID + ",";
-                        }
-                        else
-                        {
-                            _hidPositionControlPower += node[i].NodeID + ",";
-                        }
-
+                        _hidPositionPagePower += t.NodeID + ",";
                     }
-
-                    GetCheckTreeNode(node[i].Nodes);
-
+                    else
+                    {
+                        _hidPositionControlPower += t.NodeID + ",";
+                    }
                 }
+                GetCheckTreeNode(t.Nodes);
             }
-
-
         }
+
         #endregion
 
         #region 保存

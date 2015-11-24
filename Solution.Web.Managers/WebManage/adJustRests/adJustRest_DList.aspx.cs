@@ -8,7 +8,6 @@ using Solution.Web.Managers.WebManage.Application;
 using SubSonic.Query;
 using System.Data;
 using Solution.Logic.Managers;
-using Solution.Logic.Managers.Application;
 using System.ComponentModel;
 
 /***********************************************************************
@@ -32,17 +31,15 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         public enum AccType
         {
             [Description("一級")]
-            ACCEPT1,
+            Accept1,
             [Description("二級")]
-            ACCEPT2,
+            Accept2,
         };
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //綁定下拉列表
-                EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
                 //設置默認日期，三個月以內的記錄
                 dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-1);
                 dpEnd.SelectedDate = DateTime.Now.Date.AddMonths(1);
@@ -79,11 +76,27 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
-            //員工編號
-            if (!string.IsNullOrEmpty(ddlEmp.SelectedValue))
+            //默認衹能看到自己申請/可以審核的單據/有權限查看人員的單據
+            var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
+            //得到有權限查看人員的數據
+            var str = USERAUTHORITYBll.GetInstence().GetUserWheres(OutWork_DTable.emp_id, empid);
+            if (str.Length > 0)
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.Equals, StringHelper.FilterSql(ddlEmp.SelectedValue)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.emp_id, Comparison.In, str));
             }
+            wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
+
+            //員工編號
+            if (!string.IsNullOrEmpty(ttbxEmp.Text))
+            {
+                //轉換成數組
+                var s = ttbxEmp.Text.Trim().Split(',');
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.In, s));
+            }
+
             //起始時間
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
@@ -127,36 +140,51 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         {
             //綁定是否顯示
             DataRowView row = e.DataItem as DataRowView;
-            if (row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit].ToString() == "0")
+            if (row != null && row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit].ToString() == "0")
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
             }
             else
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
             }
 
-            if (row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit2].ToString() == "0")
+            if (row != null && row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit2].ToString() == "0")
             {
                 var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
             }
             else
             {
                 var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
+                if (lbf != null)
+                {
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
             }
 
             //綁定是否編輯列
             var lbfEdit = Grid1.FindColumn("ButtonEdit") as LinkButtonField;
-            lbfEdit.Text = "編輯";
-            lbfEdit.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonEdit");
+            if (lbfEdit != null)
+            {
+                lbfEdit.Text = "編輯";
+                lbfEdit.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonEdit");
+            }
         }
         #endregion
 
@@ -222,6 +250,29 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         #endregion
 
         #endregion
+        #region 員工選擇
+        /// <summary>
+        /// 彈出員工選擇界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger2Click(object sender, EventArgs e)
+        {
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.Hidden = false;
+            ttbxEmp.ShowTrigger1 = true;
+        }
+        /// <summary>
+        /// 清除員工選擇
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ttbxEmp_Trigger1Click(object sender, EventArgs e)
+        {
+            ttbxEmp.Text = "";
+            ttbxEmp.ShowTrigger1 = false;
+        }
+        #endregion
 
         #region 添加新記錄
         /// <summary>
@@ -283,7 +334,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// </summary>
         protected void ButtonAccept_Click(object sender, EventArgs e)
         {
-            AcceptRecord(AccType.ACCEPT1);
+            AcceptRecord(AccType.Accept1);
         }
 
         /// <summary>
@@ -291,7 +342,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// </summary>
         protected void ButtonAccept2_Click(object sender, EventArgs e)
         {
-            AcceptRecord(AccType.ACCEPT2);
+            AcceptRecord(AccType.Accept2);
         }
 
         /// <summary>
@@ -316,11 +367,11 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             {
                 try
                 {
-                    if (p == AccType.ACCEPT1)
+                    if (p == AccType.Accept1)
                     {
                         adJustRest_DBll.GetInstence().Accept(this, id[i], 1,adJustRest_DBll.check1);
                     }
-                    else if (p == AccType.ACCEPT2)
+                    else if (p == AccType.Accept2)
                     {
                         adJustRest_DBll.GetInstence().Accept(this, id[i], 1,adJustRest_DBll.check2);
                     }

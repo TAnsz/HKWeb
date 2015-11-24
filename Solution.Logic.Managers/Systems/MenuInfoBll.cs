@@ -208,7 +208,7 @@ namespace Solution.Logic.Managers
             {
                 //获取当前访问页面的名称
                 var currentPage = page.Request.Url.AbsolutePath;
-                if (currentPage.Equals("/WebManage/Main.aspx") || currentPage.Equals("/WebManage/PhoneMain.aspx"))
+                if (currentPage.Equals("/Main.aspx") || currentPage.Equals("/PhoneMain.aspx"))
                     return;
 
                 //检查是否从正确路径进入

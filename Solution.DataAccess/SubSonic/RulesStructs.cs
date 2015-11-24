@@ -236,6 +236,72 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 50,
 					PropertyName = "memo"
                 });
+
+                Columns.Add(new DatabaseColumn("IsAllowances", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "IsAllowances"
+                });
+
+                Columns.Add(new DatabaseColumn("SatOutTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "SatOutTime"
+                });
+
+                Columns.Add(new DatabaseColumn("MonInTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "MonInTime"
+                });
+
+                Columns.Add(new DatabaseColumn("FriOutTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "FriOutTime"
+                });
+
+                Columns.Add(new DatabaseColumn("HolInTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "HolInTime"
+                });
+
+                Columns.Add(new DatabaseColumn("HolOutTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "HolOutTime"
+                });
                     
                 
                 
@@ -377,6 +443,48 @@ namespace Solution.DataAccess.DataModel {
             public IColumn memo{
                 get{
                     return this.GetColumn("memo");
+                }
+            }
+				
+            
+            public IColumn IsAllowances{
+                get{
+                    return this.GetColumn("IsAllowances");
+                }
+            }
+				
+            
+            public IColumn SatOutTime{
+                get{
+                    return this.GetColumn("SatOutTime");
+                }
+            }
+				
+            
+            public IColumn MonInTime{
+                get{
+                    return this.GetColumn("MonInTime");
+                }
+            }
+				
+            
+            public IColumn FriOutTime{
+                get{
+                    return this.GetColumn("FriOutTime");
+                }
+            }
+				
+            
+            public IColumn HolInTime{
+                get{
+                    return this.GetColumn("HolInTime");
+                }
+            }
+				
+            
+            public IColumn HolOutTime{
+                get{
+                    return this.GetColumn("HolOutTime");
                 }
             }
 				

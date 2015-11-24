@@ -84,7 +84,7 @@
     <Content Include="WebManage\Meals\Report.aspx" />
     <Content Include="WebManage\Meals\MealOrderingEdit.aspx" />
     <Content Include="WebManage\Meals\MealOrderingList.aspx" />
-    <Content Include="WebManage\PhoneMain.aspx" />
+    <Content Include="PhoneMain.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx" />
     <Content Include="WebManage\MeetingRooms\RoomMomentList.aspx" />
@@ -104,10 +104,11 @@
     <Content Include="WebManage\Informations\InformationClassEdit.aspx" />
     <Content Include="WebManage\Informations\InformationList.aspx" />
     <Content Include="WebManage\Informations\InformationEdit.aspx" />
-    <Content Include="WebManage\Main.aspx" />
-    <Content Include="WebManage\Login.aspx" />
+    <Content Include="Main.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
+    <Content Include="WebManage\Systems\Pop\EmpChoose.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoEdit.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoList.aspx" />
     <Content Include="WebManage\Systems\Powers\PagePowerSignPublicList.aspx" />
@@ -151,11 +152,11 @@
     <Compile Include="WebManage\Meals\MealOrderingList.aspx.designer.cs">
       <DependentUpon>MealOrderingList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebManage\PhoneMain.aspx.cs">
+    <Compile Include="PhoneMain.aspx.cs">
       <DependentUpon>PhoneMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebManage\PhoneMain.aspx.designer.cs">
+    <Compile Include="PhoneMain.aspx.designer.cs">
       <DependentUpon>PhoneMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx.cs">
@@ -242,11 +243,11 @@
     <Compile Include="WebManage\Informations\InformationEdit.aspx.designer.cs">
       <DependentUpon>InformationEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebManage\Main.aspx.cs">
+    <Compile Include="Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebManage\Main.aspx.designer.cs">
+    <Compile Include="Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Application\IPageBase.cs" />
@@ -256,11 +257,11 @@
     <Compile Include="WebManage\Application\Vcode.ashx.cs">
       <DependentUpon>Vcode.ashx</DependentUpon>
     </Compile>
-    <Compile Include="WebManage\Login.aspx.cs">
+    <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebManage\Login.aspx.designer.cs">
+    <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.cs">
@@ -276,6 +277,13 @@
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.designer.cs">
       <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Pop\EmpChoose.aspx.cs">
+      <DependentUpon>EmpChoose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Pop\EmpChoose.aspx.designer.cs">
+      <DependentUpon>EmpChoose.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\Powers\MenuInfoEdit.aspx.cs">
       <DependentUpon>MenuInfoEdit.aspx</DependentUpon>
@@ -432,6 +440,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\web.pubxml" />
+    <None Include="Properties\PublishProfiles\web22.pubxml" />
     <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
   </ItemGroup>
   <ItemGroup>

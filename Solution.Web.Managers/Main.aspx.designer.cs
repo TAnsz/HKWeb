@@ -274,22 +274,31 @@ namespace Solution.Web.Managers {
         protected global::FineUI.Panel Panel3;
         
         /// <summary>
-        /// Panel4 控件。
+        /// Grid1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Panel Panel4;
+        protected global::FineUI.Grid Grid1;
         
         /// <summary>
-        /// Panel5 控件。
+        /// Label2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Panel Panel5;
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// Grid2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Grid Grid2;
         
         /// <summary>
         /// Window1 控件。

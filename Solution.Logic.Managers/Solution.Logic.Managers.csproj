@@ -52,6 +52,7 @@
     <Compile Include="Application\ILogicBase.cs" />
     <Compile Include="Application\LogicBase.cs" />
     <Compile Include="Application\MailBll.cs" />
+    <Compile Include="Application\TreeBll.cs" />
     <Compile Include="Application\UploadFileBll.cs" />
     <Compile Include="MeetingRooms\MeetingRoomApplyBll.cs" />
     <Compile Include="OutWork\OutWork_DBll.cs" />

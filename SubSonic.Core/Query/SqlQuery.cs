@@ -1140,7 +1140,28 @@ namespace SubSonic.Query
             DataTable result;
             try
             {
-                result = _provider.ExecuteDataSet(GetCommand()).Tables[0];
+                result = ExecuteDataSet().Tables[0];
+            }
+            catch (Exception x)
+            {
+                InvalidOperationException ex = GenerateException(x);
+                throw ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 修 改 人：TAn
+        /// 修改时间：2015-11-20
+        /// 功能说明：执行查询，返回DataSet
+        /// </summary>
+        /// <returns></returns>
+        public virtual DataSet ExecuteDataSet()
+        {
+            DataSet result;
+            try
+            {
+                result = _provider.ExecuteDataSet(GetCommand());
             }
             catch (Exception x)
             {

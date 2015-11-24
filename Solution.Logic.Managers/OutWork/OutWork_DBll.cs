@@ -260,6 +260,33 @@ namespace Solution.Logic.Managers
             return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString());
         }
         #endregion
+        #region 判斷是否重複申請
+        public string IsRepetition(OutWork_D model)
+        {
+            string result = null;
+            //取得請假出差表中數據
+            var mod = OutWork_DBll.GetInstence().GetModelForCache(x => ((model.bill_date > x.bill_date ? model.bill_date : x.bill_date) <=
+               (model.Re_date < x.Re_date ? model.Re_date : x.Re_date)) && x.Id != model.Id);
+            if (mod != null)
+            {
+                if (model.work_type == mod.work_type || model.work_type == "0" || mod.work_type == "0")
+                {
+                    result = string.Format("當天已申請{0}單，單號爲{1}，請檢查修改！", mod.outwork_type.ToLower() == "tral" ? "出差" : "請假", mod.bill_id);
+                }
+            }
+            //取得調休單信息
+            var amod = adJustRest_DBll.GetInstence().GetModelForCache(x =>
+                (x.ori_date >= model.bill_date && x.ori_date <= model.Re_date) || (x.rest_date >= model.bill_date && x.rest_date <= model.Re_date) && x.Id != model.Id);
+            if (amod != null)
+            {
+                if (amod.all_day.ToString() == model.work_type || model.work_type == "0" || amod.all_day == 0)
+                {
+                    result = string.Format("當天已申請調休單，單號爲{0}，請檢查修改！", amod.bill_id);
+                }
+            }
+            return result;
+        }
+        #endregion
 
         #endregion 自定義函數
     }

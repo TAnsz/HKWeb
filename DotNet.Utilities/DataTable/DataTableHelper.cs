@@ -35,7 +35,7 @@ namespace DotNet.Utilities
             if (ti > 0)
             {
                 return foundRows[0][retField];
-                
+
             }
 
             return null;
@@ -116,7 +116,7 @@ namespace DotNet.Utilities
             string sort = null;
             if (!string.IsNullOrEmpty(sortName))
             {
-               sort = sortName + " " + orderby;
+                sort = sortName + " " + orderby;
             }
             return GetFilterData(dt, wheres, sort);
         }
@@ -317,13 +317,13 @@ namespace DotNet.Utilities
             DataTable tidyUpdata = dtable.Clone();
 
             //父ID列表，用於使用條件查詢時，只將指定父ID節點（根節點）以及它下面的子節點顯示出來，其他節點不顯示
-            string parentIDList = ",";
+            string parentIdList = ",";
 
             //循環讀取表中的記錄
             foreach (DataRow item in dtable.Rows)
             {
                 //獲取父ID值
-                int pid = int.Parse(item[parentIdFiled].ToString());
+                var pid = (item[parentIdFiled] == null || string.IsNullOrEmpty(item[parentIdFiled].ToString())) ? 0 : int.Parse(item[parentIdFiled].ToString());
                 //判斷當前的父ID是否為0（即是否是根節點），為0則直接加入,否則尋找其父id的位置
                 if (pid == 0)
                 {
@@ -337,7 +337,7 @@ namespace DotNet.Utilities
                         //如果指定了只顯示指定根節點以及它的子節點，則將當前節點ID加入列表
                         if (parentId > 0)
                         {
-                            parentIDList += item[pkFiled].ToString() + ",";
+                            parentIdList += item[pkFiled].ToString() + ",";
                         }
                         //添加一行記錄
                         tidyUpdata.ImportRow(item);
@@ -346,46 +346,53 @@ namespace DotNet.Utilities
                 }
 
                 //如果指定了只顯示指定根節點以及它的子節點，且當前父ID不存在父ID列表中，則終止本次循環
-                if (parentId > 0 && parentIDList.IndexOf("," + pid + ",") < 0)
+                if (parentId > 0 && parentIdList.IndexOf("," + pid + ",") < 0)
                 {
                     continue;
                 }
                 //將當前ID加入列表中
                 if (parentId > 0)
                 {
-                    parentIDList += item[pkFiled].ToString() + ",";
+                    parentIdList += item[pkFiled].ToString() + ",";
                 }
 
                 //尋找父id的位置
                 DataRow pdrow = tidyUpdata.Rows.Find(pid);
                 //獲取父ID所在行索引號
                 int index = tidyUpdata.Rows.IndexOf(pdrow);
-
-                int _pid = 0;
-                //查找下一個位置的父ID與當前行的父ID是否一樣，是的話將插入行向下移動
-                do
+                //父ID不在索引中直接抛棄
+                if (index < 0)
                 {
-                    //索引號增加
-                    index++;
-                    try
-                    {
-                        //獲取下一行的父ID值
-                        _pid = ConvertHelper.Cint0(tidyUpdata.Rows[index][parentIdFiled]);
-                    }
-                    catch (Exception)
-                    {
-                        _pid = 0;
-                    }
+                    index = tidyUpdata.Rows.Count + 1;
                 }
-                //如果下一行的父ID值與當前要插入的ID值一樣，則循環繼續
-                while (pid != 0 && pid == _pid);
+                else
+                {
+                    int _pid = 0;
+                    //查找下一個位置的父ID與當前行的父ID是否一樣，是的話將插入行向下移動
+                    do
+                    {
+                        //索引號增加
+                        index++;
+                        try
+                        {
+                            //獲取下一行的父ID值
+                            _pid = ConvertHelper.Cint0(tidyUpdata.Rows[index][parentIdFiled]);
+                        }
+                        catch (Exception)
+                        {
+                            _pid = 0;
+                        }
+                    }
+                    //如果下一行的父ID值與當前要插入的ID值一樣，則循環繼續
+                    while (pid != 0 && pid == _pid);
+                }
 
                 //當前行創建新行
-                DataRow CurrentRow = tidyUpdata.NewRow();
-                CurrentRow.ItemArray = item.ItemArray;
+                DataRow currentRow = tidyUpdata.NewRow();
+                currentRow.ItemArray = item.ItemArray;
 
                 //插入新行
-                tidyUpdata.Rows.InsertAt(CurrentRow, index);
+                tidyUpdata.Rows.InsertAt(currentRow, index);
             }
 
 

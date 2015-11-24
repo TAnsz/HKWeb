@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using DotNet.Utilities;
+using Solution.DataAccess.DataModel;
+using Solution.DataAccess.DbHelper;
+using SubSonic.Query;
 
 /***********************************************************************
  *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
@@ -27,7 +31,15 @@ namespace Solution.Logic.Managers
          ***********************************************************************/
         #region 自定义函数
 
-        
+        #region 獲取有權限查看人員的權限
+
+        public string[] GetUserWheres(string colname, string empid)
+        {
+            var drs = SPs.pro_USERAUTHORITY_REPORT(empid).ExecuteDataTable().Select("SType='0'");
+            return drs.Length > 0 ? drs.Select(x => x["Id"].ToString()).ToArray() : null;
+        }
+        #endregion
+
 
         #endregion 自定义函数
 

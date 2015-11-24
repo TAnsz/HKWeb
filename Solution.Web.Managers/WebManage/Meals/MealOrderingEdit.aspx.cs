@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using System.Linq;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
@@ -68,7 +70,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //對頁面窗體進行賦值
                 hidCode.Text = model.Code;
                 dpDate.SelectedDate = model.ApplyDate;
-                txtEmpId.Text = model.Employee_EmpId;
+                tbxEmp.Text = model.Employee_EmpId;
                 txtEmpName.Text = model.Employee_Name;
                 txtDeptId.Text = model.DepartId;
                 txtDeptName.Text = model.DepartName;
@@ -91,7 +93,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 var key = OnlineUsersBll.GetInstence().GetUserHashKey();
                 var empid = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_LoginName).ToString();
                 var name = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_CName).ToString();
-                txtEmpId.Text = empid;
+                tbxEmp.Text = empid;
                 txtEmpName.Text = name;
                 dpDate.SelectedDate = DateTime.Now.Date;
                 txtDeptId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString();
@@ -104,39 +106,49 @@ namespace Solution.Web.Managers.WebManage.Meals
             try
             {
                 bool b1 = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("yyyy-mm-dd") + " 11:50:00"), DateTime.Now) > 0 &&
-                    DateTime.Equals(model.ApplyDate,DateTime.Now);
+                    Equals(model.ApplyDate,DateTime.Now.Date);
                 bool b2 = DateTime.Compare(Convert.ToDateTime(model.ApplyDate), DateTime.Now.Date) < 0;
                 bool b3 = model.Employee_EmpId == OnlineUsersBll.GetInstence().GetManagerEmpId();
                 ResolveFormField(b1 || b2 || (!b3));
             }
             catch (Exception e)
             {
-                CommonBll.WriteLog("訂餐判斷修改權限時，時間轉換錯誤，id爲" + model.Id.ToString(), e);
-                return;
+                CommonBll.WriteLog("訂餐判斷修改權限時，時間轉換錯誤，id爲" + model.Id, e);
             }
         }
 
         #endregion
         #region 列表屬性綁定
-
-        #region 員工編號輸入
-        protected void txtEmpId_Blur(object sender, EventArgs e)
+        #region 員工選擇
+        /// <summary>
+        /// 彈出員工選擇界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
-            var empid = txtEmpId.Text;
-            var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid);
-            if (model == null)
-            {
-                txtEmpId.Text = "";
-                FineUI.Alert.ShowInParent("員工編號不存在！", FineUI.MessageBoxIcon.Information);
-            }
-            else
-            {
-                txtEmpName.Text = model.EMP_FNAME;
-                var depid = model.DEPART_ID;
-                txtDeptId.Text = depid;
-                txtDeptName.Text = DepartsBll.GetInstence().GetDeptName(depid);
-            }
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?Selection=1&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.Hidden = false;
         }
+        #endregion
+        #region 員工編號輸入
+        //protected void txtEmpId_Blur(object sender, EventArgs e)
+        //{
+        //    var empid = tbxEmp.Text;
+        //    var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid);
+        //    if (model == null)
+        //    {
+        //        tbxEmp.Text = "";
+        //        FineUI.Alert.ShowInParent("員工編號不存在！", FineUI.MessageBoxIcon.Information);
+        //    }
+        //    else
+        //    {
+        //        txtEmpName.Text = model.EMP_FNAME;
+        //        var depid = model.DEPART_ID;
+        //        txtDeptId.Text = depid;
+        //        txtDeptName.Text = DepartsBll.GetInstence().GetDeptName(depid);
+        //    }
+        //}
 
         #endregion
         #endregion
@@ -167,7 +179,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     return rblFood.Label + "不能為空！";
                 }
 
-                if (MealOrderingBll.GetInstence().Exist(x => (x.Employee_EmpId == txtEmpId.Text && x.ApplyDate == dpDate.SelectedDate) && x.Id != id))
+                if (MealOrderingBll.GetInstence().Exist(x => (x.Employee_EmpId == tbxEmp.Text && x.ApplyDate == dpDate.SelectedDate) && x.Id != id))
                 {
                     return "該員工當天已訂餐，請勿重複申請！";
                 }
@@ -175,22 +187,24 @@ namespace Solution.Web.Managers.WebManage.Meals
 
                 #region 賦值
                 //獲取實體
-                var model = new MealOrdering(x => x.Id == id);
+                var model = new MealOrdering(x => x.Id == id)
+                {
+                    Code = hidCode.Text,
+                    ApplyDate = dpDate.SelectedDate,
+                    Employee_EmpId = tbxEmp.Text,
+                    Employee_Name = txtEmpName.Text,
+                    DepartId = txtDeptId.Text,
+                    DepartName = txtDeptName.Text,
+                    FoodCode = rblFood.SelectedValue,
+                    DrinkCode = rblDrink.SelectedValue,
+                    Remark = txtRemark.Text
+                };
 
                 //設置名稱
-                model.Code = hidCode.Text;
 
-                model.ApplyDate = dpDate.SelectedDate;
-                model.Employee_EmpId = txtEmpId.Text;
-                model.Employee_Name = txtEmpName.Text;
-                model.DepartId = txtDeptId.Text;
-                model.DepartName = txtDeptName.Text;
 
-                model.FoodCode = rblFood.SelectedValue;
-                model.DrinkCode = rblDrink.SelectedValue;
 
                 //地址
-                model.Remark = txtRemark.Text;
                 var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
                 var name = OnlineUsersBll.GetInstence().GetManagerCName();
                 if (id == 0)
@@ -198,7 +212,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     model.RecordId = empid;
                     model.RecordName = lbuser.Text = name;
                     model.RecordDate = DateTime.Now;
-                    lbdate.Text = DateTime.Now.ToString();
+                    lbdate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                 }
                 #endregion
 
@@ -218,19 +232,39 @@ namespace Solution.Web.Managers.WebManage.Meals
         }
         #endregion
         #region 修改表單衹讀屬性
+
         /// <summary>
         /// 修改表單所有屬性
         /// </summary>
-        /// <param name="process"></param>
         private void ResolveFormField(bool b)
         {
             lbtips.Hidden = !b;
-            foreach (Field field in extForm1.Items)
+            foreach (var field in extForm1.Items.Cast<Field>().Where(field => field != null && !(field is Label)))
             {
-                if (field != null && !(field is Label))
-                {
-                    field.Readonly = b;
-                }
+                field.Readonly = b;
+            }
+        }
+
+        #endregion
+
+        #region 子窗口關閉事件
+        /// <summary>
+        /// 關閉子窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        {
+            if (e.CloseArgument.StartsWith("Emp="))
+            {
+                string provinceName = e.CloseArgument.Substring("Emp=".Length);
+                tbxEmp.Text = provinceName.Trim();
+                var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == tbxEmp.Text);
+                if (model == null) return;
+                txtEmpName.Text = model.EMP_FNAME;
+                var depid = model.DEPART_ID;
+                txtDeptId.Text = depid;
+                txtDeptName.Text = DepartsBll.GetInstence().GetDeptName(depid);
             }
         }
         #endregion

@@ -156,6 +156,18 @@ namespace Solution.DataAccess.DataModel
             vrestendtime = readRecord.get_datetime("vrestendtime",null);
                
             memo = readRecord.get_string("memo",null);
+               
+            IsAllowances = readRecord.get_byte("IsAllowances",null);
+               
+            SatOutTime = readRecord.get_datetime("SatOutTime",null);
+               
+            MonInTime = readRecord.get_datetime("MonInTime",null);
+               
+            FriOutTime = readRecord.get_datetime("FriOutTime",null);
+               
+            HolInTime = readRecord.get_datetime("HolInTime",null);
+               
+            HolOutTime = readRecord.get_datetime("HolOutTime",null);
                 }   
 
         partial void OnCreated();
@@ -317,6 +329,12 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("vrestbegtime=" + vrestbegtime + "; ");
 			sb.Append("vrestendtime=" + vrestendtime + "; ");
 			sb.Append("memo=" + memo + "; ");
+			sb.Append("IsAllowances=" + IsAllowances + "; ");
+			sb.Append("SatOutTime=" + SatOutTime + "; ");
+			sb.Append("MonInTime=" + MonInTime + "; ");
+			sb.Append("FriOutTime=" + FriOutTime + "; ");
+			sb.Append("HolInTime=" + HolInTime + "; ");
+			sb.Append("HolOutTime=" + HolOutTime + "; ");
 			return sb.ToString();
         }
 
@@ -781,6 +799,138 @@ namespace Solution.DataAccess.DataModel
                 if(_memo!=value || _isLoaded){
                     _memo=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="memo");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte _IsAllowances;
+		/// <summary>
+		/// 
+		/// </summary>
+        public byte IsAllowances
+        {
+            get { return _IsAllowances; }
+            set
+            {
+                if(_IsAllowances!=value || _isLoaded){
+                    _IsAllowances=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IsAllowances");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _SatOutTime;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? SatOutTime
+        {
+            get { return _SatOutTime; }
+            set
+            {
+                if(_SatOutTime!=value || _isLoaded){
+                    _SatOutTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SatOutTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _MonInTime;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? MonInTime
+        {
+            get { return _MonInTime; }
+            set
+            {
+                if(_MonInTime!=value || _isLoaded){
+                    _MonInTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MonInTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _FriOutTime;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? FriOutTime
+        {
+            get { return _FriOutTime; }
+            set
+            {
+                if(_FriOutTime!=value || _isLoaded){
+                    _FriOutTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="FriOutTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _HolInTime;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? HolInTime
+        {
+            get { return _HolInTime; }
+            set
+            {
+                if(_HolInTime!=value || _isLoaded){
+                    _HolInTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="HolInTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _HolOutTime;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? HolOutTime
+        {
+            get { return _HolOutTime; }
+            set
+            {
+                if(_HolOutTime!=value || _isLoaded){
+                    _HolOutTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="HolOutTime");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

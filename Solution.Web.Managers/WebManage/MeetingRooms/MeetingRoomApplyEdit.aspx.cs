@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
@@ -89,7 +90,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 rblIsVaild.SelectedValue = model.IsVaild + "";
 
                 //判斷能否修改
-                ResolveFormField(!(model.Employee_EmpId == OnlineUsersBll.GetInstence().GetManagerEmpId()));
+                ResolveFormField(model.Employee_EmpId != OnlineUsersBll.GetInstence().GetManagerEmpId());
             }
             else
             {
@@ -141,7 +142,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 }
                 //var sName = StringHelper.Left(txtName.Text, 50);
                 var sRoomCode = dllRoomMoment.SelectedValue;
-                var AppDate = dpDate.SelectedDate;
+                var appDate = dpDate.SelectedDate;
                 var sTime = dllStart.SelectedValue;
                 var eTime = dllEnd.SelectedValue;
 
@@ -155,17 +156,17 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                     return dpDate.Label + "不能為空！";
                 }
 
-                if (sTime.CompareTo(eTime) > 0)
+                if (String.Compare(sTime, eTime, StringComparison.Ordinal) > 0)
                 {
                     return "開始時間不能大於結束時間！";
                 }
                 //同時段不能重複申請
                 if (MeetingRoomApplyBll.GetInstence().Exist(x => x.MeetingRoom_Code == sRoomCode &&
-                    x.ApplyDate == AppDate &&
+                    x.ApplyDate == appDate &&
                     x.IsVaild == 1 &&
-                    ((x.StartTime.CompareTo(sTime) <= 0 && x.EndTime.CompareTo(sTime) > 0) ||
-                    (x.StartTime.CompareTo(eTime) <= 0 && x.EndTime.CompareTo(eTime) > 0) ||
-                    (x.StartTime.CompareTo(sTime) >= 0 && x.EndTime.CompareTo(eTime) < 0)
+                    ((string.Compare(x.StartTime, sTime, StringComparison.Ordinal) <= 0 && string.Compare(x.EndTime, sTime, StringComparison.Ordinal) > 0) ||
+                    (string.Compare(x.StartTime, eTime, StringComparison.Ordinal) <= 0 && string.Compare(x.EndTime, eTime, StringComparison.Ordinal) > 0) ||
+                    (string.Compare(x.StartTime, sTime, StringComparison.Ordinal) >= 0 && string.Compare(x.EndTime, eTime, StringComparison.Ordinal) < 0)
                     ) && x.Id != id))
                 {
                     return "該時間段已申請！請更換時間段！";
@@ -175,25 +176,25 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
 
                 #region 賦值
                 //獲取實體
-                var model = new MeetingRoomApply(x => x.Id == id);
+                var model = new MeetingRoomApply(x => x.Id == id)
+                {
+                    Code = hidCode.Text,
+                    MeetingRoom_Code = sRoomCode,
+                    MeetingRoom_Name = dllRoomMoment.SelectedText,
+                    ApplyDate = appDate,
+                    StartTime = sTime,
+                    EndTime = eTime,
+                    Employee_EmpId = txtEmpId.Text,
+                    Employee_Name = txtEmpName.Text,
+                    DepartName = txtDepartName.Text,
+                    DepartId = txtDepartId.Text,
+                    Remark = txtRemark.Text,
+                    IsVaild = ConvertHelper.StringToByte(rblIsVaild.SelectedValue)
+                };
 
-                //設置名稱
-                model.Code = hidCode.Text;
-                //model.Name = sName;
-
-                model.MeetingRoom_Code = sRoomCode;
-                model.MeetingRoom_Name = dllRoomMoment.SelectedText;
-                model.ApplyDate = AppDate;
-                model.StartTime = sTime;
-                model.EndTime = eTime;
-                model.Employee_EmpId = txtEmpId.Text;
-                model.Employee_Name = txtEmpName.Text;
-                model.DepartName = txtDepartName.Text;
-                model.DepartId = txtDepartId.Text;
-                model.Remark = txtRemark.Text;
 
                 //設定當前項是否顯示
-                model.IsVaild = ConvertHelper.StringToByte(rblIsVaild.SelectedValue);
+
                 #endregion
 
                 //----------------------------------------------------------
@@ -216,21 +217,19 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
         #endregion
 
         #region 修改表單衹讀屬性
+
         /// <summary>
         /// 修改表單所有屬性
         /// </summary>
-        /// <param name="process"></param>
         private void ResolveFormField(bool b)
         {
             lbtips.Hidden = !b;
-            foreach (Field field in SimpleForm1.Items)
+            foreach (var field in SimpleForm1.Items.Cast<Field>().Where(field => field != null && !(field is Label)))
             {
-                if (field != null && !(field is Label))
-                {
-                    field.Readonly = b;
-                }
+                field.Readonly = b;
             }
         }
+
         #endregion
     }
 }

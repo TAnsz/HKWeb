@@ -130,13 +130,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.Panel Panel4;
         
         /// <summary>
-        /// ddlEmp 控件。
+        /// ttbxEmp 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlEmp;
+        protected global::FineUI.TwinTriggerBox ttbxEmp;
         
         /// <summary>
         /// ddlOutWorkRecord 控件。
@@ -263,5 +263,14 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Window Window1;
+        
+        /// <summary>
+        /// Window2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window2;
     }
 }

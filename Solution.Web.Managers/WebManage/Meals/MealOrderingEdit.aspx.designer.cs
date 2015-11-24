@@ -112,13 +112,13 @@ namespace Solution.Web.Managers.WebManage.Meals {
         protected global::FineUI.FormRow FormRow2;
         
         /// <summary>
-        /// txtEmpId 控件。
+        /// tbxEmp 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox txtEmpId;
+        protected global::FineUI.TriggerBox tbxEmp;
         
         /// <summary>
         /// txtEmpName 控件。
@@ -263,5 +263,14 @@ namespace Solution.Web.Managers.WebManage.Meals {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Label lbtips;
+        
+        /// <summary>
+        /// Window2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window2;
     }
 }

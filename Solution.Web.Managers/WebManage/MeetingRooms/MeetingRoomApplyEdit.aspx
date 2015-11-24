@@ -49,11 +49,6 @@
                                     <f:ListItem Text="17:30" Value="17:30" />
                                     <f:ListItem Text="18:00" Value="18:00" />
                                     <f:ListItem Text="18:30" Value="18:30" />
-                                    <f:ListItem Text="19:00" Value="19:00" />
-                                    <f:ListItem Text="19:30" Value="19:30" />
-                                    <f:ListItem Text="20:00" Value="20:00" />
-                                    <f:ListItem Text="20:30" Value="20:30" />
-                                    <f:ListItem Text="21:00" Value="21:00" />
                                 </f:DropDownList>
                                 <f:DropDownList Label="結束時間" runat="server" ID="dllEnd" Width="250px">
                                     <f:ListItem Text="09:00" Value="09:00" />
@@ -77,11 +72,6 @@
                                     <f:ListItem Text="18:00" Value="18:00" />
                                     <f:ListItem Text="18:30" Value="18:30" />
                                     <f:ListItem Text="19:00" Value="19:00" />
-                                    <f:ListItem Text="19:30" Value="19:30" />
-                                    <f:ListItem Text="20:00" Value="20:00" />
-                                    <f:ListItem Text="20:30" Value="20:30" />
-                                    <f:ListItem Text="21:00" Value="21:00" />
-                                    <f:ListItem Text="21:30" Value="21:30" />
                                 </f:DropDownList>
                                 <f:Label runat="server" Width="400px" ID="txtEmpId" Label="申請員工編號" Readonly="True" />
                                 <f:Label runat="server" Width="400px" ID="txtEmpName" Label="申請人" Readonly="True" />
