@@ -9,6 +9,7 @@ using SubSonic.Query;
 using System.Data;
 using Solution.Logic.Managers;
 using System.ComponentModel;
+using System.Linq;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -309,7 +310,11 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 //    //刪除文章封面圖片
                 //    adJustRest_DBll.GetInstence().DelAdImg(this, i);
                 //}
-
+                //判斷是否可以刪除
+                if (adJustRest_DBll.GetInstence().GetRecordCount(x => id.Contains(x.Id) && x.audit == 1) > 0)
+                {
+                    return "所選單據中有部分已審核，請檢查";
+                }
                 //刪除記錄
                 bll.Delete(this, id);
 

@@ -27,8 +27,8 @@ namespace Solution.Web.Managers
         {
             if (!IsPostBack)
             {
-                ////綁定用戶
-                //EmployeeBll.GetInstence().BandDropDownList(this, ddlUser);
+                //綁定用戶
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlUser);
                 //生成驗證碼
                 imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
@@ -57,7 +57,7 @@ namespace Solution.Web.Managers
 
             #region 獲取用戶輸入的參數，並進行數據初步處理
             //獲取用戶名，並進行危險字符過濾
-            var username = StringHelper.Left(txtUser.Text, 50);
+            var username = StringHelper.Left(ddlUser.SelectedItem == null ? ddlUser.Text : ddlUser.SelectedValue, 50);
             //獲取用戶密碼
             var userpass = txtPassword.Text;
             //獲取驗證碼
@@ -73,7 +73,7 @@ namespace Solution.Web.Managers
             //用戶名驗證
             if (string.IsNullOrEmpty(username.Trim()))
             {
-                txtUser.Focus();
+                ddlUser.Focus();
                 FineUI.Alert.ShowInTop("用戶名不能為空,請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
@@ -117,7 +117,7 @@ namespace Solution.Web.Managers
             if (userinfo == null)
             {
                 LoginLogBll.GetInstence().Save(0, "賬號【" + username + "】不存在，登錄失敗！");
-                txtUser.Focus();
+                ddlUser.Focus();
                 FineUI.Alert.ShowInParent("用戶名不存在，請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }

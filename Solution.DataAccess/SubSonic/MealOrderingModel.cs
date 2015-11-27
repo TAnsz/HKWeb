@@ -31,6 +31,16 @@ namespace Solution.DataAccess.Model
 			set { _Code = value; }
 		}
 
+		string _Employee_EmpId = "";
+		/// <summary>
+		/// 申請人編號
+		/// </summary>
+		public string Employee_EmpId
+		{
+			get { return _Employee_EmpId; }
+			set { _Employee_EmpId = value; }
+		}
+
 		string _Employee_Name = "";
 		/// <summary>
 		/// 申請人
@@ -91,16 +101,6 @@ namespace Solution.DataAccess.Model
 			set { _ApplyDate = value; }
 		}
 
-		string _Employee_EmpId = "";
-		/// <summary>
-		/// 申請人編號
-		/// </summary>
-		public string Employee_EmpId
-		{
-			get { return _Employee_EmpId; }
-			set { _Employee_EmpId = value; }
-		}
-
 		string _RecordId = "";
 		/// <summary>
 		/// 錄入人編號
@@ -151,6 +151,36 @@ namespace Solution.DataAccess.Model
 			set { _IsVaild = value; }
 		}
 
+		DateTime? _ModifyDate = new DateTime(1900,1,1);
+		/// <summary>
+		/// 修改日期
+		/// </summary>
+		public DateTime? ModifyDate
+		{
+			get { return _ModifyDate; }
+			set { _ModifyDate = value; }
+		}
+
+		string _ModifyId = "";
+		/// <summary>
+		/// 修改人編號
+		/// </summary>
+		public string ModifyId
+		{
+			get { return _ModifyId; }
+			set { _ModifyId = value; }
+		}
+
+		string _ModifyBy = "";
+		/// <summary>
+		/// 修改人
+		/// </summary>
+		public string ModifyBy
+		{
+			get { return _ModifyBy; }
+			set { _ModifyBy = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -159,18 +189,21 @@ namespace Solution.DataAccess.Model
 			var sb = new StringBuilder();
 			sb.Append("Id=" + Id + "; ");
 			sb.Append("Code=" + Code + "; ");
+			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
 			sb.Append("FoodCode=" + FoodCode + "; ");
 			sb.Append("DrinkCode=" + DrinkCode + "; ");
 			sb.Append("ApplyDate=" + ApplyDate + "; ");
-			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("RecordId=" + RecordId + "; ");
 			sb.Append("RecordName=" + RecordName + "; ");
 			sb.Append("RecordDate=" + RecordDate + "; ");
 			sb.Append("Remark=" + Remark + "; ");
 			sb.Append("IsVaild=" + IsVaild + "; ");
+			sb.Append("ModifyDate=" + ModifyDate + "; ");
+			sb.Append("ModifyId=" + ModifyId + "; ");
+			sb.Append("ModifyBy=" + ModifyBy + "; ");
 			return sb.ToString();
         }
 

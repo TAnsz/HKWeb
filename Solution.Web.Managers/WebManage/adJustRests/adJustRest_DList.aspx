@@ -109,7 +109,7 @@
                             </ItemTemplate>
                         </f:TemplateField>
                         <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="員工編號" Width="100px" />
-                        <f:TemplateField Width="200px" HeaderText="姓名" TextAlign="Center">
+                        <f:TemplateField Width="250px" HeaderText="姓名" TextAlign="Center">
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Solution.Logic.Managers.EmployeeBll.GetInstence().GetEmpName(Eval("emp_id")) %>'></asp:Label>
                             </ItemTemplate>

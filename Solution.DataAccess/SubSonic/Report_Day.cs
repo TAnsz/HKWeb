@@ -485,17 +485,17 @@ namespace Solution.DataAccess.DataModel
 
         public string KeyName()
         {
-            return "join_id";
+            return "Id";
         }
 
         public object KeyValue()
         {
-            return this.join_id;
+            return this.Id;
         }
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<int>();
+                var settable = value.ChangeTypeTo<long>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -638,11 +638,6 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        
-        public override int GetHashCode() {
-            return this.join_id;
-        }
-        
         public string DescriptorValue()
         {
                             return this.emp_id.ToString();
@@ -653,7 +648,7 @@ namespace Solution.DataAccess.DataModel
         }
         public static string GetKeyColumn()
         {
-            return "join_id";
+            return "Id";
         }        
         public static string GetDescriptorColumn()
         {
@@ -668,6 +663,7 @@ namespace Solution.DataAccess.DataModel
 		/// <summary>
 		/// 
 		/// </summary>
+		[SubSonicPrimaryKey]
         public long Id
         {
             get { return _Id; }
@@ -734,7 +730,6 @@ namespace Solution.DataAccess.DataModel
 		/// <summary>
 		/// 
 		/// </summary>
-		[SubSonicPrimaryKey]
         public int join_id
         {
             get { return _join_id; }

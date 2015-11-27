@@ -212,7 +212,7 @@ namespace Solution.Logic.Managers
                 if (userinfoId == 0)
                 {
                     //通知用户
-                    FineUI.Alert.Show("您太久没有操作已退出系统，请重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/WebManage/Login.aspx';");
+                    FineUI.Alert.Show("您太久没有操作已退出系统，请重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
                     return true;
                 }
                 else
@@ -238,7 +238,7 @@ namespace Solution.Logic.Managers
                         CommonBll.WriteLog("当前帐号已经下线，用户Id【" + userinfoId + "】");
 
                         //通知用户
-                        FineUI.Alert.Show("您的账号已经在另一处登录，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "window.location.href='/WebManage/Login.aspx';");
+                        FineUI.Alert.Show("您的账号已经在另一处登录，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
                         return true;
                     }
                 }
@@ -248,7 +248,7 @@ namespace Solution.Logic.Managers
             {
                 CommonBll.WriteLog("Logic.Systems.Manager.CheckIsOffline出现异常", ex);
 
-                FineUI.Alert.Show("系统已经开始更新维护，请稍后重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/WebManage/Login.aspx';");
+                FineUI.Alert.Show("系统已经开始更新维护，请稍后重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
                 return true;
             }
 
@@ -332,7 +332,7 @@ namespace Solution.Logic.Managers
                 //用户不存在，直接退出
                 //FineUI.Alert.Show("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='Login.aspx'");
                 //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
-                HttpContext.Current.Response.Redirect("/WebManage/Login.aspx");
+                HttpContext.Current.Response.Redirect("/Login.aspx");
                 HttpContext.Current.Response.End();
             }
         }

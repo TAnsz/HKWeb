@@ -5,10 +5,14 @@
 <head id="Head1" runat="server">
     <title>員工訂餐管理</title>
     <link href="../Css/common.css" rel="stylesheet" />
+    <link href="../Css/lightbox.css" rel="stylesheet" />
+    <link href="../Css/screen.css" rel="stylesheet" />
+    <script src="../Js/jquery-1.10.2.min.js"></script>
+    <script src="../Js/lightbox-2.6.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1"/>
+        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" Title="員工訂餐管理列表" EnableFrame="false" BodyPadding="10px"
             EnableCollapse="True">
             <Toolbars>
@@ -24,8 +28,8 @@
                             OnClientClick="if (!F('Panel1_Grid1').getSelectionModel().hasSelection() ) { F.alert('刪除時必須選擇一條將要刪除的記錄！'); return false; }  if (F('Panel1_Grid1').getSelectionModel().getCount() >= 2) { F.alert('只能選擇一條記錄進行刪除！');return false; }">
                         </f:Button>
                         <f:Button ID="ButtonPrint" runat="server" Text="列印" Icon="printer" EnablePostBack="false" OnClientClick="ShowWindow()"></f:Button>
-                        <f:Button ID="Button1" runat="server" Text="查看菜單" Icon="printer" EnablePostBack="false" OnClientClick="window.open('../../UploadFile/menu.jpg')"></f:Button>
-                        <f:FileUpload runat="server" ID="filePhoto" ButtonText="上传菜單" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
+                        <f:Button ID="Button1" runat="server" Text="查看菜單" Icon="ApplicationViewIcons" EnablePostBack="false" OnClientClick="window.open('../../UploadFile/menu.jpg')"></f:Button>
+                        <f:FileUpload runat="server" ID="filePhoto" ButtonText="上传菜單" ButtonIcon="FolderUp" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
                             AutoPostBack="true" OnFileSelected="filePhoto_FileSelected">
                         </f:FileUpload>
                     </Items>
@@ -39,7 +43,7 @@
                             Layout="Column" runat="server">
                             <Items>
                                 <f:TwinTriggerBox runat="server" ID="ttbxEmp" Label="員工" EmptyText="請選擇員工" Width="320px" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
+                                    OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
                                 </f:TwinTriggerBox>
                                 <f:Label runat="server" CssClass="marginr" ShowLabel="false" Text="查詢起止日期: "></f:Label>
                                 <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
@@ -50,9 +54,33 @@
                     </Items>
                 </f:Form>
                 <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC"
-                    PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"
+                    PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="false" DataKeyNames="Id" EnableColumnLines="true"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
+                        <f:TemplateField RenderAsRowExpander="true">
+                            <ItemTemplate>
+                                <div class="expander">
+                                    <table width="1100px" style="padding-left: 50px;">
+                                        <tr>
+                                            <td style="width: 600px; padding-top: 10px;">
+                                                <strong>錄入人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyBy)%>
+                                            </td>
+                                            <td style="width: 400px; padding-top: 10px;">
+                                                <strong>錄入時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyDate)%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 600px; padding-top: 10px;">
+                                                <strong>修改人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordName)%>
+                                            </td>
+                                            <td style="width: 400px; padding-top: 10px;">
+                                                <strong>修改時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordDate)%>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </ItemTemplate>
+                        </f:TemplateField>
                         <f:RowNumberField />
                         <f:TemplateField Width="100px" HeaderText="星期" TextAlign="Center">
                             <ItemTemplate>
@@ -62,7 +90,7 @@
                         <%--<f:BoundField Width="100px" DataField="Code" SortField="Code" HeaderText="編號" Hidden="true"/>--%>
                         <f:BoundField Width="100px" DataField="ApplyDate" SortField="ApplyDate" HeaderText="申請日期" DataFormatString="{0:yyyy-MM-dd}" />
                         <%--<f:BoundField Width="100px" DataField="Employee_EmpId" SortField="Employee_EmpId" HeaderText="申請人編號" />--%>
-                        <f:BoundField Width="150px" DataField="Employee_Name" SortField="Employee_Name" HeaderText="申請人" />
+                        <f:BoundField Width="250px" DataField="Employee_Name" SortField="Employee_Name" HeaderText="申請人" />
                         <%--<f:BoundField Width="100px" DataField="DepartId" SortField="DepartId" HeaderText="部門編號" />--%>
                         <f:BoundField Width="150px" DataField="DepartName" SortField="DepartName" HeaderText="部門名稱" />
                         <f:BoundField Width="100px" DataField="FoodCode" SortField="FoodCode" HeaderText="飯類" TextAlign="Center" />
@@ -73,6 +101,12 @@
                     </Columns>
                 </f:Grid>
                 <f:Label runat="server" ID="lblSpendingTime" Text=""></f:Label>
+                <f:ContentPanel ID="ContentPanel3" runat="server"
+                                        ShowBorder="false" ShowHeader="false">
+                <div class="image-row">
+			        <a class="example-image-link" href="../../UploadFile/menu.jpg" data-lightbox="example-1" title="菜單"><img class="example-image" src="../../UploadFile/menu.jpg" alt="thumb-1" style="height:400px"/></a>
+		        </div>
+                </f:ContentPanel>
             </Items>
         </f:Panel>
         <f:Window ID="Window1" Width="800px" Height="450px" Icon="TagBlue" Title="編輯" Hidden="True"
@@ -82,6 +116,11 @@
         </f:Window>
         <f:Window ID="Window2" Width="800px" Height="700px" Icon="TagBlue" Title="列印" Hidden="True"
             EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window2_Close" EnableCollapse="true"
+            runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
+            EnableIFrame="true" EnableClose="true" IsModal="True">
+        </f:Window>
+        <f:Window ID="Window3" Width="500px" Height="600px" Icon="TagBlue" Title="選擇" Hidden="True"
+            EnableMaximize="True" CloseAction="HidePostBack" OnClose="Window3_Close" EnableCollapse="true"
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>

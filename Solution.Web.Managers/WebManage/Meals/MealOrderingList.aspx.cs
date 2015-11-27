@@ -8,7 +8,6 @@ using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
-using System.Collections.Generic;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -59,7 +58,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), null);
+            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition());
         }
 
         /// <summary>
@@ -69,6 +68,8 @@ namespace Solution.Web.Managers.WebManage.Meals
         private List<ConditionHelper.SqlqueryCondition> InquiryCondition()
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
+            //隻顯示有效的記錄
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild, Comparison.Equals, 1));
 
             //員工編號
             if (!string.IsNullOrEmpty(ttbxEmp.Text.Trim()))
@@ -102,19 +103,26 @@ namespace Solution.Web.Managers.WebManage.Meals
                 if (row.Row.Table.Rows[e.RowIndex][MealOrderingTable.IsVaild].ToString() == "0")
                 {
                     var lbf = Grid1.FindColumn("IsVaild") as LinkButtonField;
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
+                    if (lbf != null)
+                    {
+                        lbf.Icon = Icon.BulletCross;
+                        lbf.CommandArgument = "1";
+                    }
                 }
                 else
                 {
                     var lbf = Grid1.FindColumn("IsVaild") as LinkButtonField;
-                    lbf.Icon = Icon.BulletTick;
-                    lbf.CommandArgument = "0";
+                    if (lbf != null)
+                    {
+                        lbf.Icon = Icon.BulletTick;
+                        lbf.CommandArgument = "0";
+                    }
                 }
             }
 
             //綁定是否編輯列
             var lbfEdit = Grid1.FindColumn("ButtonEdit") as LinkButtonField;
+            if (lbfEdit == null) return;
             lbfEdit.Text = "編輯";
             lbfEdit.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonEdit");
         }
@@ -207,7 +215,12 @@ namespace Solution.Web.Managers.WebManage.Meals
             {
 
                 //刪除記錄
-                bll.Delete(this, id);
+                // bll.Delete(this, id);
+
+                //刪除改成設置成無效狀態
+                var setValue = new Dictionary<string, object>();
+                setValue[MealOrderingTable.IsVaild] = 0;
+                MealOrderingBll.GetInstence().UpdateValue(this, id, setValue);
 
                 return "刪除編號ID為[" + id + "]的數據記錄成功。";
             }
@@ -226,29 +239,23 @@ namespace Solution.Web.Managers.WebManage.Meals
         #region 上傳圖片
         protected void filePhoto_FileSelected(object sender, EventArgs e)
         {
-            if (filePhoto.HasFile)
+            if (!filePhoto.HasFile) return;
+            string fileName = filePhoto.ShortFileName;
+
+            if (!ValidFileTypes.Contains(FileOperateHelper.GetPostfixStr(fileName)))
             {
-                string fileName = filePhoto.ShortFileName;
-
-                if (!ValidFileTypes.Contains(FileOperateHelper.GetPostfixStr(fileName)))
-                {
-                    FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
-                    return;
-                }
-
-
-                fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
-                fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
-
-                filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
-
-                //imgPhoto.ImageUrl = "~/upload/" + fileName;
-
-                // 清空文件上传组件
-                filePhoto.Reset();
-                FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
+                return;
             }
 
+
+            filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
+
+            //imgPhoto.ImageUrl = "~/upload/" + fileName;
+
+            // 清空文件上传组件
+            filePhoto.Reset();
+            FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);
         }
         #endregion
 
@@ -261,8 +268,8 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <param name="e"></param>
         protected void ttbxEmp_Trigger2Click(object sender, EventArgs e)
         {
-            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
-            Window2.Hidden = false;
+            Window3.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window3.Hidden = false;
             ttbxEmp.ShowTrigger1 = true;
         }
         /// <summary>
@@ -283,7 +290,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        protected override void Window3_Close(object sender, WindowCloseEventArgs e)
         {
             if (!e.CloseArgument.StartsWith("Emp=")) return;
             string provinceName = e.CloseArgument.Substring("Emp=".Length);

@@ -37,7 +37,7 @@
                             Layout="Column" runat="server">
                             <Items>
                                 <f:TwinTriggerBox runat="server" ID="ttbxEmp" Label="員工" EmptyText="請選擇員工" Width="320px" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
+                                    OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
                                 </f:TwinTriggerBox>
                                 <f:Label runat="server" Width="50px"></f:Label>
                                 <f:DropDownList CompareType="String" Label="類型" runat="server" ID="ddlOutWorkRecord" AutoSelectFirstItem="false" EmptyText="===全部===">
@@ -49,7 +49,7 @@
                         <f:Panel ID="Panel2" ShowHeader="false" CssClass="formitem" ShowBorder="false"
                             Layout="Column" runat="server">
                             <Items>
-                                <f:DropDownList CompareType="String" Label="一級審批狀態"  AutoSelectFirstItem="false" EmptyText="===全部==="
+                                <f:DropDownList CompareType="String" Label="一級審批狀態" AutoSelectFirstItem="false" EmptyText="===全部==="
                                     EnableEdit="true" ForceSelection="false" Width="320px" runat="server" ID="ddlIsDisplay">
                                     <f:ListItem Text="已審批" Value="1" />
                                     <f:ListItem Text="未審批" Value="0" />
@@ -77,7 +77,7 @@
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
                         <f:TemplateField RenderAsRowExpander="true">
-                            <ItemTemplate >
+                            <ItemTemplate>
                                 <div class="expander">
                                     <table width="1100px" style="padding-left: 50px;">
                                         <tr>
@@ -114,7 +114,7 @@
                             </ItemTemplate>
                         </f:TemplateField>
                         <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="員工編號" Width="100px" />
-                        <f:TemplateField Width="200px" HeaderText="姓名" TextAlign="Center">
+                        <f:TemplateField Width="250px" HeaderText="姓名" TextAlign="Center">
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Solution.Logic.Managers.EmployeeBll.GetInstence().GetEmpName(Eval("emp_id")) %>'></asp:Label>
                             </ItemTemplate>

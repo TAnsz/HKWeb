@@ -165,7 +165,7 @@
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="Systems\DepartsBll.cs" />
-    <Compile Include="Systems\MeetingRoomBll.cs" />
+    <Compile Include="MeetingRooms\MeetingRoomBll.cs" />
     <Compile Include="Systems\T_TABLE_DBll.cs" />
     <Compile Include="Systems\LoginLogBll.cs" />
     <Compile Include="Systems\MenuInfoBll.cs" />

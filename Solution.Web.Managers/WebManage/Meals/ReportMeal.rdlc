@@ -12,16 +12,16 @@
               <Width>1.865cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.28354cm</Width>
+              <Width>5.42279cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.28958cm</Width>
+              <Width>1.46937cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.35417cm</Width>
+              <Width>1.71917cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.19875cm</Width>
+              <Width>5.04cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -445,7 +445,7 @@
         <Top>2.64266cm</Top>
         <Left>0.52599cm</Left>
         <Height>1.2cm</Height>
-        <Width>18.98354cm</Width>
+        <Width>16.50883cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -592,8 +592,10 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value />
-                            <Style />
+                            <Value>數量</Value>
+                            <Style>
+                              <FontFamily>微软雅黑</FontFamily>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -1002,7 +1004,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>8.42355in</Width>
+  <Width>6.9548in</Width>
   <Page>
     <PageHeader>
       <Height>3.48078cm</Height>
@@ -1062,7 +1064,7 @@
           <Top>2.40453cm</Top>
           <Left>0.52599cm</Left>
           <Height>0.6cm</Height>
-          <Width>13.06987cm</Width>
+          <Width>11.46883cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1092,9 +1094,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox53</rd:DefaultName>
           <Top>2.40453cm</Top>
-          <Left>14.30096cm</Left>
+          <Left>12.39596cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.36229cm</Width>
+          <Width>1.1999cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1126,9 +1128,9 @@
           </Paragraphs>
           <rd:DefaultName>ApplyDate</rd:DefaultName>
           <Top>2.40453cm</Top>
-          <Left>15.80436cm</Left>
+          <Left>13.58186cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.4525cm</Width>
+          <Width>2.84396cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>

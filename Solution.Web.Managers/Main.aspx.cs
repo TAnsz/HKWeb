@@ -31,7 +31,7 @@ namespace Solution.Web.Managers
         string _pagePower = "";
         //按鈕樣式列表
         protected string[] Btncss = { "black red-stripe", "purple blue-stripe", "green purple-stripe", "blue green-stripe", "red bluegre-stripe" };
-        protected Icon[] BtnIcon = { Icon.Vcard, Icon.Theme, Icon.FeedDisk, Icon.CommentEdit, Icon.DatabaseSave, Icon.PrinterColor, Icon.RewindBlue, Icon.ServerLink };
+        protected string[] BtnIcon = { "icon/main1.png", "icon/main2.png", "icon/main3.png", "icon/main4.png", "icon/main5.png", };
 
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
@@ -310,11 +310,12 @@ namespace Solution.Web.Managers
                             FineUI.Button btn1 = new Button();
                             btn1.Text = dr[MenuInfoTable.Name].ToString();
                             i = i >= Btncss.Length ? 0 : i;
-                            btn1.CssClass = "btn big " + Btncss[i++];
+                            btn1.CssClass = "btn big " + Btncss[i];
                             btn1.Size = FineUI.ButtonSize.Large;
-                            btn1.Icon = BtnIcon[i];
+                            btn1.IconUrl = BtnIcon[i];
                             btn1.OnClientClick = mainTabStrip.GetAddTabReference(dr[MenuInfoTable.Id].ToString(), treenode.NavigateUrl, btn1.Text, null, true);
                             formMain.Items.Add(btn1);
+                            i++;
                         }
                         else
                         {

@@ -7,7 +7,7 @@ using System.Data;
 namespace Solution.DataAccess.DataModel {
         /// <summary>
         /// Table: Report_Day
-        /// Primary Key: join_id
+        /// Primary Key: Id
         /// </summary>
 
         public class Report_DayStructs: DatabaseTable {
@@ -19,7 +19,7 @@ namespace Solution.DataAccess.DataModel {
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
-	                IsPrimaryKey = false,
+	                IsPrimaryKey = true,
 	                DataType = DbType.Int64,
 	                IsNullable = false,
 	                AutoIncrement = true,
@@ -52,7 +52,7 @@ namespace Solution.DataAccess.DataModel {
 
                 Columns.Add(new DatabaseColumn("join_id", this)
                 {
-	                IsPrimaryKey = true,
+	                IsPrimaryKey = false,
 	                DataType = DbType.Int32,
 	                IsNullable = false,
 	                AutoIncrement = false,

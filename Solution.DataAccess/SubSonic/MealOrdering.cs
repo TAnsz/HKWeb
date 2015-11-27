@@ -121,6 +121,8 @@ namespace Solution.DataAccess.DataModel
                
             Code = readRecord.get_string("Code",null);
                
+            Employee_EmpId = readRecord.get_string("Employee_EmpId",null);
+               
             Employee_Name = readRecord.get_string("Employee_Name",null);
                
             DepartId = readRecord.get_string("DepartId",null);
@@ -133,8 +135,6 @@ namespace Solution.DataAccess.DataModel
                
             ApplyDate = readRecord.get_datetime("ApplyDate",null);
                
-            Employee_EmpId = readRecord.get_string("Employee_EmpId",null);
-               
             RecordId = readRecord.get_string("RecordId",null);
                
             RecordName = readRecord.get_string("RecordName",null);
@@ -144,6 +144,12 @@ namespace Solution.DataAccess.DataModel
             Remark = readRecord.get_string("Remark",null);
                
             IsVaild = readRecord.get_byte("IsVaild",null);
+               
+            ModifyDate = readRecord.get_datetime("ModifyDate",null);
+               
+            ModifyId = readRecord.get_string("ModifyId",null);
+               
+            ModifyBy = readRecord.get_string("ModifyBy",null);
                 }   
 
         partial void OnCreated();
@@ -287,18 +293,21 @@ namespace Solution.DataAccess.DataModel
 			var sb = new StringBuilder();
 			sb.Append("Id=" + Id + "; ");
 			sb.Append("Code=" + Code + "; ");
+			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
 			sb.Append("FoodCode=" + FoodCode + "; ");
 			sb.Append("DrinkCode=" + DrinkCode + "; ");
 			sb.Append("ApplyDate=" + ApplyDate + "; ");
-			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("RecordId=" + RecordId + "; ");
 			sb.Append("RecordName=" + RecordName + "; ");
 			sb.Append("RecordDate=" + RecordDate + "; ");
 			sb.Append("Remark=" + Remark + "; ");
 			sb.Append("IsVaild=" + IsVaild + "; ");
+			sb.Append("ModifyDate=" + ModifyDate + "; ");
+			sb.Append("ModifyId=" + ModifyId + "; ");
+			sb.Append("ModifyBy=" + ModifyBy + "; ");
 			return sb.ToString();
         }
 
@@ -367,6 +376,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Code!=value || _isLoaded){
                     _Code=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Code");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Employee_EmpId;
+		/// <summary>
+		/// 申請人編號
+		/// </summary>
+        public string Employee_EmpId
+        {
+            get { return _Employee_EmpId; }
+            set
+            {
+                if(_Employee_EmpId!=value || _isLoaded){
+                    _Employee_EmpId=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Employee_EmpId");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -509,28 +540,6 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _Employee_EmpId;
-		/// <summary>
-		/// 申請人編號
-		/// </summary>
-        public string Employee_EmpId
-        {
-            get { return _Employee_EmpId; }
-            set
-            {
-                if(_Employee_EmpId!=value || _isLoaded){
-                    _Employee_EmpId=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Employee_EmpId");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
         string _RecordId;
 		/// <summary>
 		/// 錄入人編號
@@ -631,6 +640,72 @@ namespace Solution.DataAccess.DataModel
                 if(_IsVaild!=value || _isLoaded){
                     _IsVaild=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IsVaild");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _ModifyDate;
+		/// <summary>
+		/// 修改日期
+		/// </summary>
+        public DateTime? ModifyDate
+        {
+            get { return _ModifyDate; }
+            set
+            {
+                if(_ModifyDate!=value || _isLoaded){
+                    _ModifyDate=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ModifyDate");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _ModifyId;
+		/// <summary>
+		/// 修改人編號
+		/// </summary>
+        public string ModifyId
+        {
+            get { return _ModifyId; }
+            set
+            {
+                if(_ModifyId!=value || _isLoaded){
+                    _ModifyId=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ModifyId");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _ModifyBy;
+		/// <summary>
+		/// 修改人
+		/// </summary>
+        public string ModifyBy
+        {
+            get { return _ModifyBy; }
+            set
+            {
+                if(_ModifyBy!=value || _isLoaded){
+                    _ModifyBy=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ModifyBy");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

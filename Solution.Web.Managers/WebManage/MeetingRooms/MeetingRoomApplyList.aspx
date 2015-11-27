@@ -41,14 +41,13 @@
                         <f:RowNumberField />
                         <f:BoundField DataField="Id" HeaderText="ID" Hidden="True" />
                         <f:BoundField Width="75px" DataField="Code" SortField="Code" HeaderText="編號" />
-                        <f:BoundField Width="100px" DataField="Name" SortField="Name" HeaderText="名稱" />
                         <f:BoundField Width="75px" DataField="MeetingRoom_Code" SortField="MeetingRoom_Code" HeaderText="會議室編號" />
                         <f:BoundField Width="100px" DataField="MeetingRoom_Name" SortField="MeetingRoom_Name" HeaderText="會議室名稱" />
                         <f:BoundField Width="100px" DataField="ApplyDate" SortField="ApplyDate" HeaderText="申請日期" DataFormatString="{0:yyyy-MM-dd}" />
                         <f:BoundField Width="100px" DataField="StartTime" SortField="StartTime" HeaderText="開始時間" />
                         <f:BoundField Width="100px" DataField="EndTime" SortField="EndTime" HeaderText="結束時間" />
                         <f:BoundField Width="100px" DataField="Employee_EmpId" SortField="Employee_EmpId" HeaderText="申請員工編號" />
-                        <f:BoundField Width="140px" DataField="Employee_Name" SortField="Employee_Name" HeaderText="申請人" />
+                        <f:BoundField Width="250px" DataField="Employee_Name" SortField="Employee_Name" HeaderText="申請人" />
                         <f:BoundField Width="120px" DataField="DepartName" SortField="DepartName" HeaderText="申請部門" />
                         <f:BoundField Width="200px" DataField="Remark" HeaderText="備註" />
                         <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="IsVaild" CommandName="IsVaild" />

@@ -1,10 +1,10 @@
 //------------------------------------------------------------------------------
-// <自動生成>
-//     此代碼由工具生成。
+// <自动生成>
+//     此代码由工具生成。
 //
-//     對此文件的更改可能會導致不正確的行為，並且如果
-//     重新生成代碼，這些更改將會丟失。 
-// </自動生成>
+//     对此文件的更改可能会导致不正确的行为，并且如果
+//     重新生成代码，这些更改将会丢失。 
+// </自动生成>
 //------------------------------------------------------------------------------
 
 namespace Solution.Web.Managers.WebManage.Informations {
@@ -16,8 +16,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// Head1 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
@@ -25,8 +25,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// form1 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -34,8 +34,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// PageManager1 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.PageManager PageManager1;
         
@@ -43,8 +43,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// Panel1 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Panel Panel1;
         
@@ -52,8 +52,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// toolBar 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Toolbar toolBar;
         
@@ -61,8 +61,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// ButtonSave 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Button ButtonSave;
         
@@ -70,8 +70,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// ButtonDeleteImage 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Button ButtonDeleteImage;
         
@@ -79,8 +79,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// Panel2 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Panel Panel2;
         
@@ -88,8 +88,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// SimpleForm1 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.SimpleForm SimpleForm1;
         
@@ -97,8 +97,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtName 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtName;
         
@@ -106,8 +106,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// ddlParentId 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DropDownList ddlParentId;
         
@@ -115,8 +115,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtParent 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtParent;
         
@@ -124,8 +124,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtSort 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtSort;
         
@@ -133,8 +133,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// rblIsShow 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsShow;
         
@@ -142,8 +142,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// rblIsPage 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.RadioButtonList rblIsPage;
         
@@ -151,8 +151,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtSeoTitle 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtSeoTitle;
         
@@ -160,8 +160,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtSeoKey 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtSeoKey;
         
@@ -169,8 +169,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtSeoDesc 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextArea txtSeoDesc;
         
@@ -178,8 +178,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// fuClassImg 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.FileUpload fuClassImg;
         
@@ -187,8 +187,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// imgClassImg 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Image imgClassImg;
         
@@ -196,8 +196,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// txtNotes 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextArea txtNotes;
         
@@ -205,8 +205,8 @@ namespace Solution.Web.Managers.WebManage.Informations {
         /// hidId 控件。
         /// </summary>
         /// <remarks>
-        /// 自動生成的字段。
-        /// 若要進行修改，請將字段聲明從設計器文件移到代碼隱藏文件。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.HiddenField hidId;
     }

@@ -20,6 +20,7 @@
 
         .btnlarge {
             width: 150px;
+            background-image: none;
         }
     </style>
 </head>
@@ -35,8 +36,10 @@
                         <%-- <f:Image runat="server" ImageUrl="Images/logintop.png" ImageHeight="70" >
                                 </f:Image>--%>
                         <f:TextBox ID="txtUser" Label="用戶名" EmptyText="請輸入工號或姓名" runat="server" Height="32px" FocusOnPageLoad="true"
-                            NextFocusControl="txtPassword" EnableBlurEvent="true" OnBlur="txtUser_TextChanged" Required="true">
+                            NextFocusControl="txtPassword" EnableBlurEvent="true" OnBlur="txtUser_TextChanged" Required="true" Hidden="true">
                         </f:TextBox>
+                        <f:DropDownList runat="server" ID="ddlUser" Label="用戶名" EmptyText="請輸入工號或姓名" Required="true"
+                            EnableEdit="true" NextFocusControl="txtPassword" ForceSelection="false" AutoSelectFirstItem="false" Height="32px"></f:DropDownList>
                         <f:TextBox ID="txtPassword" Label="密   碼" EmptyText="輸入密碼" TextMode="Password" runat="server" Height="32px"
                             NextFocusControl="Button1">
                         </f:TextBox>

@@ -4,7 +4,7 @@ using System;
 namespace Solution.DataAccess.DataModel {
         /// <summary>
         /// Table: Report_Day
-        /// Primary Key: join_id
+        /// Primary Key: Id
         /// </summary>
         public class Report_DayTable {
 			/// <summary>

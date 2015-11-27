@@ -33,6 +33,14 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
+			/// 申請人編號
+			/// </summary>
+   			public static string Employee_EmpId{
+			      get{
+        			return "Employee_EmpId";
+      			}
+		    }
+			/// <summary>
 			/// 申請人
 			/// </summary>
    			public static string Employee_Name{
@@ -81,14 +89,6 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 申請人編號
-			/// </summary>
-   			public static string Employee_EmpId{
-			      get{
-        			return "Employee_EmpId";
-      			}
-		    }
-			/// <summary>
 			/// 錄入人編號
 			/// </summary>
    			public static string RecordId{
@@ -126,6 +126,30 @@ namespace Solution.DataAccess.DataModel {
    			public static string IsVaild{
 			      get{
         			return "IsVaild";
+      			}
+		    }
+			/// <summary>
+			/// 修改日期
+			/// </summary>
+   			public static string ModifyDate{
+			      get{
+        			return "ModifyDate";
+      			}
+		    }
+			/// <summary>
+			/// 修改人編號
+			/// </summary>
+   			public static string ModifyId{
+			      get{
+        			return "ModifyId";
+      			}
+		    }
+			/// <summary>
+			/// 修改人
+			/// </summary>
+   			public static string ModifyBy{
+			      get{
+        			return "ModifyBy";
       			}
 		    }
                     

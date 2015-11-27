@@ -39,6 +39,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Code"
                 });
 
+                Columns.Add(new DatabaseColumn("Employee_EmpId", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 16,
+					PropertyName = "Employee_EmpId"
+                });
+
                 Columns.Add(new DatabaseColumn("Employee_Name", this)
                 {
 	                IsPrimaryKey = false,
@@ -105,17 +116,6 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "ApplyDate"
                 });
 
-                Columns.Add(new DatabaseColumn("Employee_EmpId", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 16,
-					PropertyName = "Employee_EmpId"
-                });
-
                 Columns.Add(new DatabaseColumn("RecordId", this)
                 {
 	                IsPrimaryKey = false,
@@ -170,6 +170,39 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "IsVaild"
                 });
+
+                Columns.Add(new DatabaseColumn("ModifyDate", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "ModifyDate"
+                });
+
+                Columns.Add(new DatabaseColumn("ModifyId", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 16,
+					PropertyName = "ModifyId"
+                });
+
+                Columns.Add(new DatabaseColumn("ModifyBy", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "ModifyBy"
+                });
                     
                 
                 
@@ -185,6 +218,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Code{
                 get{
                     return this.GetColumn("Code");
+                }
+            }
+				
+            
+            public IColumn Employee_EmpId{
+                get{
+                    return this.GetColumn("Employee_EmpId");
                 }
             }
 				
@@ -231,13 +271,6 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn Employee_EmpId{
-                get{
-                    return this.GetColumn("Employee_EmpId");
-                }
-            }
-				
-            
             public IColumn RecordId{
                 get{
                     return this.GetColumn("RecordId");
@@ -269,6 +302,27 @@ namespace Solution.DataAccess.DataModel {
             public IColumn IsVaild{
                 get{
                     return this.GetColumn("IsVaild");
+                }
+            }
+				
+            
+            public IColumn ModifyDate{
+                get{
+                    return this.GetColumn("ModifyDate");
+                }
+            }
+				
+            
+            public IColumn ModifyId{
+                get{
+                    return this.GetColumn("ModifyId");
+                }
+            }
+				
+            
+            public IColumn ModifyBy{
+                get{
+                    return this.GetColumn("ModifyBy");
                 }
             }
 				

@@ -162,7 +162,7 @@ namespace Solution.Logic.Managers
             //dic.Add(OutWork_DTable.check_date2, DateTime.Now);
 
             //var where = new List<ConditionHelper.SqlqueryCondition>();
-            //where.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.Id, Comparison.Equals, id));
+            //where.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.id, Comparison.Equals, id));
 
             //var update = new UpdateHelper();
             //update.Update<OutWork_D>(dic, where);
@@ -287,7 +287,6 @@ namespace Solution.Logic.Managers
             return result;
         }
         #endregion
-
         #endregion 自定義函數
     }
 }

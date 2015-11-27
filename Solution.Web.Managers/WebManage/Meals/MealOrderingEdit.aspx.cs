@@ -214,6 +214,12 @@ namespace Solution.Web.Managers.WebManage.Meals
                     model.RecordDate = DateTime.Now;
                     lbdate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                 }
+                else
+                {
+                    model.ModifyId = empid;
+                    model.ModifyBy = name;
+                    model.ModifyDate = DateTime.Now;
+                }
                 #endregion
 
                 //----------------------------------------------------------

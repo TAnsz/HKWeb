@@ -2030,7 +2030,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "Report_Day", sortName, "join_id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "Report_Day", sortName, "Id"))
 		    {
 				//判斷是否?用緩存
                 if (CommonBll.IsUseCache())
@@ -2063,7 +2063,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("join_id", "Report_Day", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "Report_Day", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判斷是否?用緩存
                 if (CommonBll.IsUseCache())
@@ -2484,7 +2484,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用戶操作記錄
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}囊改了Report_Day表記錄。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了Report_Day表記錄。");				
 				}
 				else
 				{
@@ -2505,7 +2505,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
 	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}囊改了Report_Day表主鍵Id值為" + id + "的記錄。";
+			content = content != "" ? content : "{0}修改了Report_Day表主鍵Id值為" + id + "的記錄。";
 			
             //條件
 		    List<ConditionHelper.SqlqueryCondition> wheres = null;

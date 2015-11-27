@@ -98,7 +98,7 @@
                                             <Items>
                                                 <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Width="300px" Height="100%" ShowBorder="true" EnableCollapse="True">
                                                     <Items>
-                                                        <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false">
+                                                        <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 10 0">
                                                             <Items>
 
                                                                 <%-- <f:Button ID="btnLeave" runat="server" Text="請假出差單管理" CssClass="btn red-stripe big"></f:Button>
@@ -118,8 +118,8 @@
                                                             ShowBorder="true" ShowHeader="true" runat="server" EnableCheckBoxSelect="false" DataKeyNames="emp_id" EnableColumnLines="true"
                                                             OnPreRowDataBound="Grid1_PreRowDataBound" SortField="emp_id" OnSort="Grid1_Sort">
                                                             <Columns>
-                                                                <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="編號" Width="50px" />
-                                                                <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名" Width="200px" />
+                                                                <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="編號" Width="70px" />
+                                                                <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名" Width="250px" />
                                                                 <f:BoundField DataField="emp_ename" SortField="emp_ename" HeaderText="英文名" Width="100px" />
                                                                 <f:BoundField DataField="bill_date" SortField="bill_date" HeaderText="開始日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
                                                                 <f:BoundField DataField="Re_date" SortField="Re_date" HeaderText="結束日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
@@ -137,10 +137,10 @@
                                                                 <f:Grid ID="Grid2" Title="今日考勤異常人員" EnableFrame="false" EnableCollapse="true" AllowSorting="true" ShowBorder="true" ShowHeader="true" runat="server" 
                                                                     EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="ENo" OnSort="Grid2_Sort" BoxFlex="2">
                                                                     <Columns>
-                                                                        <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="50px" />
-                                                                        <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="200px" />
+                                                                        <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="70px" />
+                                                                        <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="250px" />
                                                                         <f:BoundField DataField="EName" SortField="EName" HeaderText="英文名" Width="100px" />
-                                                                        <f:BoundField DataField="CTime" SortField="CTime" HeaderText="上班時間" Width="100px" />
+                                                                        <f:BoundField DataField="CTime" SortField="CTime" HeaderText="上班時間" Width="100px" Hidden="true"/>
                                                                         <f:BoundField DataField="Ms" SortField="Ms" HeaderText="異常" Width="130px" />
                                                                     </Columns>
                                                                 </f:Grid>

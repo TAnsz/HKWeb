@@ -241,6 +241,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Code == (string)value);
                         expression = x => x.Code == (string)value;
                         break;
+					case "Employee_EmpId" :
+						model = list.SingleOrDefault(x => x.Employee_EmpId == (string)value);
+                        expression = x => x.Employee_EmpId == (string)value;
+                        break;
 					case "Employee_Name" :
 						model = list.SingleOrDefault(x => x.Employee_Name == (string)value);
                         expression = x => x.Employee_Name == (string)value;
@@ -265,10 +269,6 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.ApplyDate == (DateTime)value);
                         expression = x => x.ApplyDate == (DateTime)value;
                         break;
-					case "Employee_EmpId" :
-						model = list.SingleOrDefault(x => x.Employee_EmpId == (string)value);
-                        expression = x => x.Employee_EmpId == (string)value;
-                        break;
 					case "RecordId" :
 						model = list.SingleOrDefault(x => x.RecordId == (string)value);
                         expression = x => x.RecordId == (string)value;
@@ -288,6 +288,18 @@ namespace Solution.Logic.Managers {
 					case "IsVaild" :
 						model = list.SingleOrDefault(x => x.IsVaild == (byte)value);
                         expression = x => x.IsVaild == (byte)value;
+                        break;
+					case "ModifyDate" :
+						model = list.SingleOrDefault(x => x.ModifyDate == (DateTime)value);
+                        expression = x => x.ModifyDate == (DateTime)value;
+                        break;
+					case "ModifyId" :
+						model = list.SingleOrDefault(x => x.ModifyId == (string)value);
+                        expression = x => x.ModifyId == (string)value;
+                        break;
+					case "ModifyBy" :
+						model = list.SingleOrDefault(x => x.ModifyBy == (string)value);
+                        expression = x => x.ModifyBy == (string)value;
                         break;
 
                     default :
@@ -483,18 +495,21 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 Code = model.Code,
+                Employee_EmpId = model.Employee_EmpId,
                 Employee_Name = model.Employee_Name,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
                 FoodCode = model.FoodCode,
                 DrinkCode = model.DrinkCode,
                 ApplyDate = model.ApplyDate,
-                Employee_EmpId = model.Employee_EmpId,
                 RecordId = model.RecordId,
                 RecordName = model.RecordName,
                 RecordDate = model.RecordDate,
                 Remark = model.Remark,
                 IsVaild = model.IsVaild,
+                ModifyDate = model.ModifyDate,
+                ModifyId = model.ModifyId,
+                ModifyBy = model.ModifyBy,
             };
         }
 
@@ -525,18 +540,21 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 Code = model.Code,
+                Employee_EmpId = model.Employee_EmpId,
                 Employee_Name = model.Employee_Name,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
                 FoodCode = model.FoodCode,
                 DrinkCode = model.DrinkCode,
                 ApplyDate = model.ApplyDate,
-                Employee_EmpId = model.Employee_EmpId,
                 RecordId = model.RecordId,
                 RecordName = model.RecordName,
                 RecordDate = model.RecordDate,
                 Remark = model.Remark,
                 IsVaild = model.IsVaild,
+                ModifyDate = model.ModifyDate,
+                ModifyId = model.ModifyId,
+                ModifyBy = model.ModifyBy,
             };
         }
 
@@ -590,6 +608,9 @@ namespace Solution.Logic.Managers {
 				case "Code" :
 					model.Code = (string)value;
                     break;
+				case "Employee_EmpId" :
+					model.Employee_EmpId = (string)value;
+                    break;
 				case "Employee_Name" :
 					model.Employee_Name = (string)value;
                     break;
@@ -608,9 +629,6 @@ namespace Solution.Logic.Managers {
 				case "ApplyDate" :
 					model.ApplyDate = (DateTime)value;
                     break;
-				case "Employee_EmpId" :
-					model.Employee_EmpId = (string)value;
-                    break;
 				case "RecordId" :
 					model.RecordId = (string)value;
                     break;
@@ -625,6 +643,15 @@ namespace Solution.Logic.Managers {
                     break;
 				case "IsVaild" :
 					model.IsVaild = ConvertHelper.Ctinyint(value);
+                    break;
+				case "ModifyDate" :
+					model.ModifyDate = (DateTime)value;
+                    break;
+				case "ModifyId" :
+					model.ModifyId = (string)value;
+                    break;
+				case "ModifyBy" :
+					model.ModifyBy = (string)value;
                     break;
             }
 		}
@@ -1228,6 +1255,8 @@ namespace Solution.Logic.Managers {
 					return model.Id;
 				case "Code" :
 					return model.Code;
+				case "Employee_EmpId" :
+					return model.Employee_EmpId;
 				case "Employee_Name" :
 					return model.Employee_Name;
 				case "DepartId" :
@@ -1240,8 +1269,6 @@ namespace Solution.Logic.Managers {
 					return model.DrinkCode;
 				case "ApplyDate" :
 					return model.ApplyDate;
-				case "Employee_EmpId" :
-					return model.Employee_EmpId;
 				case "RecordId" :
 					return model.RecordId;
 				case "RecordName" :
@@ -1252,6 +1279,12 @@ namespace Solution.Logic.Managers {
 					return model.Remark;
 				case "IsVaild" :
 					return model.IsVaild;
+				case "ModifyDate" :
+					return model.ModifyDate;
+				case "ModifyId" :
+					return model.ModifyId;
+				case "ModifyBy" :
+					return model.ModifyBy;
 			}
 
 			return null;

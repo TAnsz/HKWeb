@@ -8,8 +8,8 @@ using Solution.Web.Managers.WebManage.Application;
 using SubSonic.Query;
 using System.Data;
 using Solution.Logic.Managers;
-using Solution.Logic.Managers.Application;
 using System.ComponentModel;
+using System.Linq;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -96,7 +96,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 //轉換成數組
                 var s = ttbxEmp.Text.Trim().Split(',');
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In,s ));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In, s));
             }
 
             //單據類別
@@ -105,10 +105,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.outwork_type, Comparison.Equals, StringHelper.FilterSql(ddlOutWorkRecord.SelectedValue)));
             }
             //起始時間
-            if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
+            if (!string.IsNullOrEmpty(dpStart.Text))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.GreaterOrEquals, dpStart.Text));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.LessOrEquals, dpEnd.Text));
             }
 
             //是否審批
@@ -282,13 +282,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
             try
             {
-                //逐個刪除對應圖片
-                //foreach (var i in id)
-                //{
-                //    //刪除文章封面圖片
-                //    OutWork_DBll.GetInstence().DelAdImg(this, i);
-                //}
-
+                //判斷是否可以刪除
+                if (OutWork_DBll.GetInstence().GetRecordCount(x => id.Contains((int)x.Id)&& x.audit == 1) > 0)
+                {
+                    return "所選單據中有部分已審核，請檢查";
+                }
                 //刪除記錄
                 bll.Delete(this, id);
 
