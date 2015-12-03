@@ -126,6 +126,28 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 50,
 					PropertyName = "EmailDomain"
                 });
+
+                Columns.Add(new DatabaseColumn("MealLockDate", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "MealLockDate"
+                });
+
+                Columns.Add(new DatabaseColumn("IsMealLock", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "IsMealLock"
+                });
                     
                 
                 
@@ -197,6 +219,20 @@ namespace Solution.DataAccess.DataModel {
             public IColumn EmailDomain{
                 get{
                     return this.GetColumn("EmailDomain");
+                }
+            }
+				
+            
+            public IColumn MealLockDate{
+                get{
+                    return this.GetColumn("MealLockDate");
+                }
+            }
+				
+            
+            public IColumn IsMealLock{
+                get{
+                    return this.GetColumn("IsMealLock");
                 }
             }
 				

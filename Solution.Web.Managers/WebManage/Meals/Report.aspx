@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Report" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Report" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" Height="650px" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="900px">
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="600px" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="700px" >
             <LocalReport ReportPath="WebManage\Meals\ReportMeal.rdlc">
             </LocalReport>
         </rsweb:ReportViewer>

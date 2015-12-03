@@ -5,6 +5,7 @@ using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 using System.Linq;
 using FineUI;
+using Solution.DataAccess.DbHelper;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -66,6 +67,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 txtDeptId.Text = model.depart_id;
                 txtDept.Text = DepartsBll.GetInstence().GetDeptName(model.depart_id);
 
+                hbillId.Text = model.bill_id;
                 //txtDays.Text = model.all_day.ToString();
 
                 //開始時間與結束時間
@@ -75,7 +77,9 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 ddlType.SelectedValue = model.all_day.ToString();
                 ddladJustRest_D.SelectedValue = model.kind;
 
+                hchecker1.Text = model.checker;
                 txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.checker);
+                hchecker2.Text = model.CHECKER2;
                 txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
 
                 cbIsCheck1.Checked = model.audit == 1;
@@ -87,8 +91,24 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 txtMemo.Text = model.memo;
 
                 //判斷能否修改
-                ResolveFormField(!(model.op_user == OnlineUsersBll.GetInstence().GetManagerEmpId() && model.audit == 0));
+                ResolveFormField(!(model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() && model.audit == 0));
 
+            }
+            else
+            {
+                var key = OnlineUsersBll.GetInstence().GetUserHashKey();
+                var empid = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_LoginName).ToString();
+                var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid);
+                tbxEmp.Text = empid;
+                txtEmpName.Text = model.EMP_FNAME;
+                hjId.Text = model.Id.ToString();
+                hchecker1.Text = model.LINK_MAN;
+                txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.LINK_MAN);
+                hchecker2.Text = model.CHECKER2;
+                txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
+                var depid = model.DEPART_ID;
+                txtDeptId.Text = depid;
+                txtDept.Text = DepartsBll.GetInstence().GetDeptName(depid);
             }
         }
 
@@ -99,35 +119,8 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         #region 頁面控件綁定功能
 
         #region 下拉列表改變事件
-        /// <summary>下拉列表改變事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void ddladJustRest_D_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = ConvertHelper.Cint0(ddladJustRest_D.SelectedValue);
-            if (id == 0) return;
+ 
 
-            //var model = adJustRest_DBll.GetInstence().GetModelForCache(id);
-            //if (model != null)
-            //{
-            //    //修改Key
-            //    ddladJustRest_D.SelectedValue = model.leave_id;
-            //}
-        }
-
-        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = ConvertHelper.Cint0(ddlType.SelectedValue);
-            if (id == 0) return;
-
-            //var model = adJustRest_DBll.GetInstence().GetModelForCache(id);
-            //if (model != null)
-            //{
-
-            //    txtKeyword.Text = model.bill_id;
-            //}
-        }
         #endregion
 
         #endregion
@@ -182,17 +175,36 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 var model = new adJustRest_D(x => x.Id == id)
                 {
                     emp_id = tbxEmp.Text,
+                    join_id = ConvertHelper.Ctinyint(hjId.Text),
                     depart_id = txtDeptId.Text,
                     kind = ddladJustRest_D.SelectedValue,
                     memo = StringHelper.Left(txtMemo.Text, 100),
-                    ori_date = dpStartTime.SelectedDate ?? DateTime.Now,
-                    rest_date = dpEndTime.SelectedDate ?? DateTime.Now.AddDays(1),
+                    ori_date = dpStartTime.SelectedDate.Value.Date,
+                    rest_date = dpEndTime.SelectedDate.Value.Date,
                     all_day = ConvertHelper.Ctinyint(ddlType.SelectedValue),
+                    checker = hchecker1.Text,
+                    CHECKER2 = hchecker2.Text,
                     audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked),
                     audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked),
                     op_date = DateTime.Now,
                     op_user = OnlineUsersBll.GetInstence().GetManagerCName()
                 };
+                if (string.IsNullOrEmpty(hbillId.Text))
+                {
+                    var str = new SelectHelper().GetMax<adJustRest_D>(adJustRest_DTable.bill_id).ToString();
+                    string headDate = str.Substring(0,6);
+                    int lastNumber = int.Parse(str.Substring(6));
+                    //如果数据库最大值流水号中日期和生成日期在同一天，则顺序号加1
+                    if (headDate == DateTime.Now.ToString("yyyyMM"))
+                    {
+                        lastNumber++;
+                        model.bill_id = headDate + lastNumber.ToString("0000");
+                    }
+                    else
+                    {
+                        model.bill_id = DateTime.Now.Date.ToString("yyyyMM") + "0001";
+                    }
+                }
 
                 //------------------------------------------
                 //設置名稱
@@ -298,7 +310,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
-            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?Selection=1&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }
         #endregion
@@ -318,9 +330,9 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.check1);
+            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.Check1);
             FineUI.Alert.ShowInParent(
-                !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
+                !string.IsNullOrEmpty(ret) ? ret : string.Format("一級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
             LoadData();
         }
@@ -340,7 +352,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.check2);
+            string ret = adJustRest_DBll.GetInstence().Accept(this, id, value, adJustRest_DBll.Check2);
             FineUI.Alert.ShowInParent(
                 !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
@@ -355,7 +367,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// </summary>
         private void ResolveFormField(bool b)
         {
-            foreach (var field in extForm1.Rows.SelectMany(row => row.Items, (row, controlBase) => (Field) controlBase).Where(field => field != null && !(field is Label)))
+            foreach (var field in extForm1.Rows.SelectMany(row => row.Items, (row, controlBase) => (Field)controlBase).Where(field => field != null && !(field is Label)))
             {
                 field.Readonly = b;
             }
@@ -379,9 +391,15 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == tbxEmp.Text);
             if (model == null) return;
             txtEmpName.Text = model.EMP_FNAME;
+            hjId.Text = model.Id.ToString();
             var depid = model.DEPART_ID;
             txtDeptId.Text = depid;
             txtDept.Text = DepartsBll.GetInstence().GetDeptName(depid);
+            hchecker1.Text = model.LINK_MAN;
+            txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.LINK_MAN);
+            hchecker2.Text = model.CHECKER2;
+            txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
+
         }
         #endregion
     }

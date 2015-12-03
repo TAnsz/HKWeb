@@ -7,7 +7,7 @@ using System.Data;
 namespace Solution.DataAccess.DataModel {
         /// <summary>
         /// Table: adJustRest_D
-        /// Primary Key: bill_id
+        /// Primary Key: Id
         /// </summary>
 
         public class adJustRest_DStructs: DatabaseTable {
@@ -19,7 +19,7 @@ namespace Solution.DataAccess.DataModel {
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
-	                IsPrimaryKey = false,
+	                IsPrimaryKey = true,
 	                DataType = DbType.Int32,
 	                IsNullable = false,
 	                AutoIncrement = true,
@@ -30,7 +30,7 @@ namespace Solution.DataAccess.DataModel {
 
                 Columns.Add(new DatabaseColumn("bill_id", this)
                 {
-	                IsPrimaryKey = true,
+	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
 	                IsNullable = false,
 	                AutoIncrement = false,

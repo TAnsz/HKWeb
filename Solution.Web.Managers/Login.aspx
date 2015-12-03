@@ -68,9 +68,6 @@
                 </f:Toolbar>
             </Toolbars>
         </f:Window>
-        <f:Image ID="imgCaptcha" runat="server" ImageWidth="100px"
-            ImageHeight="32px" Hidden="true">
-        </f:Image>
     </form>
 </body>
 </html>

@@ -32,6 +32,7 @@
                         <f:FileUpload runat="server" ID="filePhoto" ButtonText="上传菜單" ButtonIcon="FolderUp" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
                             AutoPostBack="true" OnFileSelected="filePhoto_FileSelected">
                         </f:FileUpload>
+                        <f:Button ID="Button2" runat="server" Text="訂餐鎖定" Icon="Lock" OnClick="Button2_Click"></f:Button>
                     </Items>
                 </f:Toolbar>
             </Toolbars>

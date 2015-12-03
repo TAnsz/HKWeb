@@ -111,6 +111,26 @@ namespace Solution.DataAccess.Model
 			set { _EmailDomain = value; }
 		}
 
+		DateTime? _MealLockDate = new DateTime(1900,1,1);
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? MealLockDate
+		{
+			get { return _MealLockDate; }
+			set { _MealLockDate = value; }
+		}
+
+		byte? _IsMealLock;
+		/// <summary>例
+		/// 
+		/// </summary>
+		public byte? IsMealLock
+		{
+			get { return _IsMealLock; }
+			set { _IsMealLock = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -127,6 +147,8 @@ namespace Solution.DataAccess.Model
 			sb.Append("EmailUserName=" + EmailUserName + "; ");
 			sb.Append("EmailPassWord=" + EmailPassWord + "; ");
 			sb.Append("EmailDomain=" + EmailDomain + "; ");
+			sb.Append("MealLockDate=" + MealLockDate + "; ");
+			sb.Append("IsMealLock=" + IsMealLock + "; ");
 			return sb.ToString();
         }
 

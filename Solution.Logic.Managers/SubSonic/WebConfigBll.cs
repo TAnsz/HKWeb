@@ -273,6 +273,14 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.EmailDomain == (string)value);
                         expression = x => x.EmailDomain == (string)value;
                         break;
+					case "MealLockDate" :
+						model = list.SingleOrDefault(x => x.MealLockDate == (DateTime)value);
+                        expression = x => x.MealLockDate == (DateTime)value;
+                        break;
+					case "IsMealLock" :
+						model = list.SingleOrDefault(x => x.IsMealLock == (byte)value);
+                        expression = x => x.IsMealLock == (byte)value;
+                        break;
 
                     default :
                         return null;
@@ -475,6 +483,8 @@ namespace Solution.Logic.Managers {
                 EmailUserName = model.EmailUserName,
                 EmailPassWord = model.EmailPassWord,
                 EmailDomain = model.EmailDomain,
+                MealLockDate = model.MealLockDate,
+                IsMealLock = model.IsMealLock,
             };
         }
 
@@ -513,6 +523,8 @@ namespace Solution.Logic.Managers {
                 EmailUserName = model.EmailUserName,
                 EmailPassWord = model.EmailPassWord,
                 EmailDomain = model.EmailDomain,
+                MealLockDate = model.MealLockDate,
+                IsMealLock = model.IsMealLock,
             };
         }
 
@@ -589,6 +601,12 @@ namespace Solution.Logic.Managers {
                     break;
 				case "EmailDomain" :
 					model.EmailDomain = (string)value;
+                    break;
+				case "MealLockDate" :
+					model.MealLockDate = (DateTime)value;
+                    break;
+				case "IsMealLock" :
+					model.IsMealLock = ConvertHelper.Ctinyint(value);
                     break;
             }
 		}
@@ -1208,6 +1226,10 @@ namespace Solution.Logic.Managers {
 					return model.EmailPassWord;
 				case "EmailDomain" :
 					return model.EmailDomain;
+				case "MealLockDate" :
+					return model.MealLockDate;
+				case "IsMealLock" :
+					return model.IsMealLock;
 			}
 
 			return null;
@@ -1384,6 +1406,25 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
+		#region 更新IsMealLock字段值
+		/// <summary>
+		/// 更新IsMealLock字段值
+		/// </summary>
+		/// <param name="page">當?頁面指針</param>
+		/// <param name="pkValue">主鍵Id，當等於0時，則更新所有記錄</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否魂步更新緩存</param>
+		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
+		public void UpdateIsMealLock(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//設瞞更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[WebConfigTable.IsMealLock] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了WebConfig表id為【" + pkValue + "】的記錄，更新內容為將IsMealLock字段值囊改為" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
+		
     
 		#endregion 模版生成函數
 

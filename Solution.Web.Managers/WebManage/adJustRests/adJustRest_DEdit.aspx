@@ -8,9 +8,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:HiddenField runat="server" ID="hidId" Text="0">
-        </f:HiddenField>
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true"/>
+        <f:HiddenField runat="server" ID="hidId" Text="0" />
+        <f:HiddenField runat="server" ID="hbillId" />
+        <f:HiddenField runat="server" ID="hjId" />
+        <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
+        <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
             ShowHeader="False">
             <Toolbars>
@@ -34,7 +37,7 @@
                                 <f:FormRow ID="FormRow1" runat="server">
                                     <Items>
                                         <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"
-                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick"/>
+                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick" />
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
                                     </Items>
@@ -50,7 +53,7 @@
                                 <f:FormRow ID="FormRow3" runat="server">
                                     <Items>
                                         <f:DropDownList Label="調休類型" AutoPostBack="true" CompareType="String" EnableSimulateTree="true"
-                                            runat="server" ID="ddladJustRest_D" Width="300px" ShowRedStar="true" OnSelectedIndexChanged="ddladJustRest_D_SelectedIndexChanged">
+                                            runat="server" ID="ddladJustRest_D" Width="300px" ShowRedStar="true">
                                         </f:DropDownList>
                                         <%--<f:TextBox runat="server" ID="txtDays" Label="天數" Width="200px" Text="" Readonly="True"
                                             MaxLength="50" />--%>
@@ -66,21 +69,18 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">
                                     <Items>
-                                        <f:DropDownList Label="時段" AutoPostBack="true" CompareType="String" EnableSimulateTree="true"
-                                            runat="server" ID="ddlType" Width="300px" ShowRedStar="true" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
-                                            <f:ListItem Text ="全天" Value="0" />
-                                            <f:ListItem Text ="上午" Value="1" />
-                                            <f:ListItem Text ="下午" Value="2" />
-                                            <f:ListItem Text ="按時間" Value="3" />
+                                        <f:DropDownList Label="時段" runat="server" ID="ddlType" Width="300px" ShowRedStar="true" ForceSelection="true" AutoSelectFirstItem="true">
+                                            <f:ListItem Text="全天" Value="0" />
+                                            <f:ListItem Text="上午" Value="1" />
+                                            <f:ListItem Text="下午" Value="2" />
+                                            <f:ListItem Text="按時間" Value="3" />
                                         </f:DropDownList>
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow7" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審核人" Width="300px" Text="" ShowRedStar="true" Readonly="True"
-                                            MaxLength="100" />
-                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審核人" Width="300px" Text="" ShowRedStar="true" Readonly="True"
-                                            MaxLength="100" />
+                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審核人" Width="300px" Readonly="true" />
+                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審核人" Width="300px" Readonly="true" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow8" runat="server">

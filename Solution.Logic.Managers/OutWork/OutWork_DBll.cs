@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
-using Solution.DataAccess.DbHelper;
-using System.Diagnostics;
-using System.Web;
-using SubSonic.Query;
 using System.Text;
 
 /***********************************************************************
@@ -30,9 +24,9 @@ namespace Solution.Logic.Managers
     /// </summary>
     public partial class OutWork_DBll : LogicBase
     {
-        public const string TRAL = "tral";
-        public const string LEAVE = "leav";
-        public delegate string delCheckEventHandler(int p, ref OutWork_D m);
+        public const string Tral = "tral";
+        public const string Leave = "leav";
+        public delegate string DelCheckEventHandler(int p, ref OutWork_D m);
         /***********************************************************************
 		 * 自定義函數                                                          *
 		 ***********************************************************************/
@@ -51,16 +45,15 @@ namespace Solution.Logic.Managers
 
         #endregion
         #region 審批單據
-        public string Accept(Page page, int id, int updateValue, delCheckEventHandler del, bool isAddUseLog = true)
+        public string Accept(Page page, int id, int updateValue, DelCheckEventHandler del, bool isAddUseLog = true)
         {
-            string result = null;
             //判斷是否可以審批
             var model = new OutWork_D(x => x.Id == id);
-            if (model == null)
+            if (model.Id == 0)
             {
                 return "記錄不存在！";
             }
-            result = del(updateValue, ref model);
+            var result = del(updateValue, ref model);
             if (!string.IsNullOrEmpty(result))
             {
                 return result;
@@ -95,17 +88,17 @@ namespace Solution.Logic.Managers
         /// <param name="p"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static string check1(int p, ref OutWork_D model)
+        public static string Check1(int p, ref OutWork_D model)
         {
             if (model.audit == 0 && p == 0)
             {
                 return "一級未審批，無需反審批";
             }
-            else if (model.audit == 1 && p == 1)
+            if (model.audit == 1 && p == 1)
             {
                 return "一級已審批，無需重新審批";
             }
-            else if (!(model.checker == OnlineUsersBll.GetInstence().GetManagerEmpId()))
+            if (model.checker != OnlineUsersBll.GetInstence().GetManagerEmpId())
             {
                 return "你不是該申請單的一級審批人，無法審批！";
             }
@@ -120,17 +113,17 @@ namespace Solution.Logic.Managers
         /// <param name="p"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static string check2(int p, ref OutWork_D model)
+        public static string Check2(int p, ref OutWork_D model)
         {
             if (model.audit == 0 && p == 1)
             {
                 return "一級未審批，無法二級審批";
             }
-            else if (model.audit2 == 1 && p == 1)
+            if (model.audit2 == 1 && p == 1)
             {
                 return "二級已審批，無需重新審批";
             }
-            else if (!(model.CHECKER2 == OnlineUsersBll.GetInstence().GetManagerEmpId()))
+            if (model.CHECKER2 != OnlineUsersBll.GetInstence().GetManagerEmpId())
             {
                 return "你不是該申請單的二級審批人，無法審批！";
             }
@@ -145,7 +138,7 @@ namespace Solution.Logic.Managers
             string result = null;
             //判斷是否可以審批
             var model = new OutWork_D(x => x.Id == id);
-            if (model == null)
+            if (model.Id == 0)
             {
                 return "記錄不存在！";
             }
@@ -157,15 +150,6 @@ namespace Solution.Logic.Managers
             {
                 return "二級已審批，無需重新審批";
             }
-            //var dic = new Dictionary<string, object>();
-            //dic.Add(OutWork_DTable.audit2, updateValue);
-            //dic.Add(OutWork_DTable.check_date2, DateTime.Now);
-
-            //var where = new List<ConditionHelper.SqlqueryCondition>();
-            //where.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.id, Comparison.Equals, id));
-
-            //var update = new UpdateHelper();
-            //update.Update<OutWork_D>(dic, where);
 
             model.audit2 = ConvertHelper.StringToByte(updateValue.ToString());
             model.check_date2 = DateTime.Now;
@@ -189,7 +173,7 @@ namespace Solution.Logic.Managers
 
             if (isAddUseLog)
             {
-                UseLogBll.GetInstence().Save(page, "{0}二級" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id.ToString() + "的記錄！");
+                UseLogBll.GetInstence().Save(page, "{0}二級" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id + "的記錄！");
             }
             return result;
         }
@@ -197,18 +181,18 @@ namespace Solution.Logic.Managers
         #region 發送郵件
         public string SendMail(Page page, OutWork_D model)
         {
-            //獲取申請人郵箱
-            string mail = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.emp_id).ToString();
-            string sto = "";
-            string title = "";
-            string stype = model.outwork_type.Equals(TRAL) ? "出差申請單" : "請假申請單";
-            var name = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMP_FNAME, x => x.EMP_ID == model.emp_id).ToString();
-            var outtype = T_TABLE_DBll.GetInstence().GetFieldValue(T_TABLE_DTable.DESCR, x => x.CODE == model.leave_id && (x.TABLES == TRAL.ToUpper() || x.TABLES == LEAVE.ToUpper())).ToString();
-            StringBuilder msg = new StringBuilder();
             if (model == null)
             {
                 return "記錄不存在！";
             }
+            //獲取申請人郵箱
+            string mail = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.emp_id).ToString();
+            string sto = "";
+            string title;
+            string stype = model.outwork_type.Equals(Tral) ? "出差申請單" : "請假申請單";
+            var name = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMP_FNAME, x => x.EMP_ID == model.emp_id).ToString();
+            var outtype = T_TABLE_DBll.GetInstence().GetFieldValue(T_TABLE_DTable.DESCR, x => x.CODE == model.leave_id && (x.TABLES == Tral.ToUpper() || x.TABLES == Leave.ToUpper())).ToString();
+            StringBuilder msg = new StringBuilder();
             if (model.audit2 == 1 || model.audit2 == 4)
             {
                 //組合標題信息
@@ -225,7 +209,7 @@ namespace Solution.Logic.Managers
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        if ((!string.IsNullOrEmpty(mail2)) && sto.IndexOf(mail2) > 0)
+                        if ((!string.IsNullOrEmpty(mail2)) && sto.IndexOf(mail2, StringComparison.Ordinal) > 0)
                         {
                             sto = mail + ";" + mail2;
                         }
@@ -239,15 +223,16 @@ namespace Solution.Logic.Managers
             }
             else
             {
-                title = (model.outwork_type.Equals(TRAL) && model.leave_id.Equals("1004")) ||
-                model.outwork_type.Equals(LEAVE) ? "需要你審批!" : "";
+                title = (model.outwork_type.Equals(Tral) && model.leave_id.Equals("1004")) ||
+                model.outwork_type.Equals(Leave) ? "需要你審批!" : "";
                 sto = mail;
             }
 
             msg.AppendLine(string.Format("單號:{0}", model.bill_id));
             msg.AppendLine(string.Format("姓名:{0} 的{1}", name, stype + title));
             msg.AppendLine();
-            msg.AppendLine(string.Format("開始日期:{0}結束日期:{1}", model.bill_date.ToShortDateString(), ((DateTime)model.Re_date).ToShortDateString()));
+            if (model.Re_date != null)
+                msg.AppendLine(string.Format("開始日期:{0}結束日期:{1}", model.bill_date.ToShortDateString(), ((DateTime)model.Re_date).ToShortDateString()));
             msg.AppendLine();
             msg.AppendLine(outtype + "  " + CommonBll.GetWorkType(model.work_type));
             msg.AppendLine();
@@ -255,7 +240,7 @@ namespace Solution.Logic.Managers
             msg.AppendLine("申請人郵箱:" + mail);
             msg.AppendLine();
             msg.AppendLine("詳細信息請進入人事考勤系統進行查看，謝謝！");
-            msg.AppendLine("打開系統:http://192.168.8.48/WebManage/Login.aspx！");
+            msg.AppendLine("打開系統:http://192.168.0.10！");
 
             return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString());
         }
@@ -265,8 +250,8 @@ namespace Solution.Logic.Managers
         {
             string result = null;
             //取得請假出差表中數據
-            var mod = OutWork_DBll.GetInstence().GetModelForCache(x => ((model.bill_date > x.bill_date ? model.bill_date : x.bill_date) <=
-               (model.Re_date < x.Re_date ? model.Re_date : x.Re_date)) && x.Id != model.Id);
+            var mod = GetInstence().GetModelForCache(x => ((model.bill_date > x.bill_date ? model.bill_date : x.bill_date) <=
+               (model.Re_date < x.Re_date ? model.Re_date : x.Re_date)) && x.Id != model.Id && x.emp_id == model.emp_id);
             if (mod != null)
             {
                 if (model.work_type == mod.work_type || model.work_type == "0" || mod.work_type == "0")
@@ -276,13 +261,11 @@ namespace Solution.Logic.Managers
             }
             //取得調休單信息
             var amod = adJustRest_DBll.GetInstence().GetModelForCache(x =>
-                (x.ori_date >= model.bill_date && x.ori_date <= model.Re_date) || (x.rest_date >= model.bill_date && x.rest_date <= model.Re_date) && x.Id != model.Id);
-            if (amod != null)
+                ((x.ori_date >= model.bill_date && x.ori_date <= model.Re_date) || (x.rest_date >= model.bill_date && x.rest_date <= model.Re_date)) && x.Id != model.Id && x.emp_id == model.emp_id);
+            if (amod == null) return result;
+            if (amod.all_day.ToString() == model.work_type || model.work_type == "0" || amod.all_day == 0)
             {
-                if (amod.all_day.ToString() == model.work_type || model.work_type == "0" || amod.all_day == 0)
-                {
-                    result = string.Format("當天已申請調休單，單號爲{0}，請檢查修改！", amod.bill_id);
-                }
+                result = string.Format("當天已申請調休單，單號爲{0}，請檢查修改！", amod.bill_id);
             }
             return result;
         }

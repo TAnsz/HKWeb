@@ -79,30 +79,27 @@ namespace Solution.Web.Managers.WebManage.adJustRests
 
             //默認衹能看到自己申請/可以審核的單據/有權限查看人員的單據
             var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
-            //得到有權限查看人員的數據
-            var str = USERAUTHORITYBll.GetInstence().GetUserWheres(OutWork_DTable.emp_id, empid);
-            if (str.Length > 0)
-            {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.emp_id, Comparison.In, str));
-            }
-            wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
-
             //員工編號
             if (!string.IsNullOrEmpty(ttbxEmp.Text))
             {
                 //轉換成數組
                 var s = ttbxEmp.Text.Trim().Split(',');
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.In, s));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.emp_id, Comparison.In, s, true));
             }
+            else
+            {
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
+            }
+
+            wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
 
             //起始時間
             if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.LessOrEquals, StringHelper.FilterSql(dpStart.Text)));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.GreaterOrEquals, dpStart.SelectedDate));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.rest_date, Comparison.LessOrEquals, dpEnd.SelectedDate));
             }
 
             //是否審批
@@ -117,13 +114,6 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.audit2, Comparison.Equals,
                     StringHelper.FilterSql(ddlIsDisplay2.SelectedValue)));
             }
-            //廣告名稱
-            //if (!string.IsNullOrEmpty(txtName.Text.Trim()))
-            //{
-            //    wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, adJustRest_DTable.Manager_CName,
-            //        Comparison.Like, "%" + StringHelper.FilterSql(txtName.Text) + "%"));
-            //}
-            //Keyword
 
             return wheres;
         }
@@ -206,7 +196,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             {
                 case "IsAudit":
                     //更新狀態
-                    result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.check1);
+                    result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.Check1);
                     result = String.IsNullOrEmpty(result) ? String.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
@@ -215,7 +205,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                     break;
                 case "IsAudit2":
                     //更新狀態
-                    result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.check2);
+                    result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.Check2);
                     result = String.IsNullOrEmpty(result) ? String.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
@@ -374,11 +364,11 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 {
                     if (p == AccType.Accept1)
                     {
-                        adJustRest_DBll.GetInstence().Accept(this, id[i], 1,adJustRest_DBll.check1);
+                        adJustRest_DBll.GetInstence().Accept(this, id[i], 1, adJustRest_DBll.Check1);
                     }
                     else if (p == AccType.Accept2)
                     {
-                        adJustRest_DBll.GetInstence().Accept(this, id[i], 1,adJustRest_DBll.check2);
+                        adJustRest_DBll.GetInstence().Accept(this, id[i], 1, adJustRest_DBll.Check2);
                     }
                 }
                 catch (Exception ex)
@@ -391,6 +381,22 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             result = String.IsNullOrEmpty(result) ? String.Format("{0}審批編號Id為[{1}]的數據並發送郵件記錄成功。", CommonBll.GetDescription(p), String.Join(",", id)) : result;
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
             return;
+        }
+        #endregion
+        #region 子窗口關閉事件
+        /// <summary>
+        /// 關閉子窗口事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void Window2_Close(object sender, WindowCloseEventArgs e)
+        {
+            if (e.CloseArgument.StartsWith("Emp="))
+            {
+                string provinceName = e.CloseArgument.Substring("Emp=".Length);
+                ttbxEmp.Text = provinceName;
+            }
+            //LoadData();
         }
         #endregion
     }

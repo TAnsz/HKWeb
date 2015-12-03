@@ -96,6 +96,22 @@ namespace Solution.DataAccess.DataModel {
         			return "EmailDomain";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string MealLockDate{
+			      get{
+        			return "MealLockDate";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string IsMealLock{
+			      get{
+        			return "IsMealLock";
+      			}
+		    }
                     
         }
 }

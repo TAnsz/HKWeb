@@ -83,10 +83,9 @@
                                 <f:Label runat="server" Label="錄入" Enabled="false" />
                                 <f:Label runat="server" ID="lbuser" Enabled="false" BoxFlex="2" />
                                 <f:Label runat="server" ID="lbdate" Enabled="false" BoxFlex="3" />
-                                <f:Label runat="server" Text="注:非本人錄入單據，無法修改！" ID="lbtips" CssClass="redlabel" Hidden="true" />
                             </Items>
                         </f:Panel>
-                        <f:Label runat="server" CssClass="redlabel" Text="注意：當天10：50以後不允許修改和增加當天的訂餐信息！"></f:Label>
+                        <f:Label runat="server" ID="redtips" CssClass="redlabel" Text="注意：當天訂餐系統已鎖定，無法修改和增加當天的訂餐信息！"></f:Label>
                     </Items>
                 </f:Panel>
             </Items>

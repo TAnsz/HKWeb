@@ -136,6 +136,10 @@ namespace Solution.DataAccess.DataModel
             EmailPassWord = readRecord.get_string("EmailPassWord",null);
                
             EmailDomain = readRecord.get_string("EmailDomain",null);
+               
+            MealLockDate = readRecord.get_datetime("MealLockDate",null);
+               
+            IsMealLock = readRecord.get_byte("IsMealLock",null);
                 }   
 
         partial void OnCreated();
@@ -287,6 +291,8 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("EmailUserName=" + EmailUserName + "; ");
 			sb.Append("EmailPassWord=" + EmailPassWord + "; ");
 			sb.Append("EmailDomain=" + EmailDomain + "; ");
+			sb.Append("MealLockDate=" + MealLockDate + "; ");
+			sb.Append("IsMealLock=" + IsMealLock + "; ");
 			return sb.ToString();
         }
 
@@ -536,6 +542,50 @@ namespace Solution.DataAccess.DataModel
                 if(_EmailDomain!=value || _isLoaded){
                     _EmailDomain=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EmailDomain");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime? _MealLockDate;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime? MealLockDate
+        {
+            get { return _MealLockDate; }
+            set
+            {
+                if(_MealLockDate!=value || _isLoaded){
+                    _MealLockDate=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MealLockDate");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte? _IsMealLock;
+		/// <summary>
+		/// 
+		/// </summary>
+        public byte? IsMealLock
+        {
+            get { return _IsMealLock; }
+            set
+            {
+                if(_IsMealLock!=value || _isLoaded){
+                    _IsMealLock=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IsMealLock");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

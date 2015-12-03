@@ -108,6 +108,7 @@
     <Content Include="Login.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
+    <Content Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpChoose.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoEdit.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoList.aspx" />
@@ -277,6 +278,13 @@
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.designer.cs">
       <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx.cs">
+      <DependentUpon>EmpSimpleChoose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx.designer.cs">
+      <DependentUpon>EmpSimpleChoose.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\Pop\EmpChoose.aspx.cs">
       <DependentUpon>EmpChoose.aspx</DependentUpon>

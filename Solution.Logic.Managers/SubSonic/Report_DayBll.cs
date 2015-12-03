@@ -2484,7 +2484,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用戶操作記錄
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了Report_Day表記錄。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}囊改了Report_Day表記錄。");				
 				}
 				else
 				{
@@ -2505,7 +2505,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
 	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了Report_Day表主鍵Id值為" + id + "的記錄。";
+			content = content != "" ? content : "{0}囊改了Report_Day表主鍵Id值為" + id + "的記錄。";
 			
             //條件
 		    List<ConditionHelper.SqlqueryCondition> wheres = null;

@@ -6,6 +6,7 @@ using Solution.Web.Managers.WebManage.Application;
 using System.Globalization;
 using System.Linq;
 using FineUI;
+using Solution.DataAccess.DbHelper;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -34,7 +35,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
                 //綁定下拉列表
-                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'LEAV'", "'TRAL'");
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'LEAV'", "'Tral'");
                 //加載數據
                 LoadData();
             }
@@ -76,7 +77,9 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 ddlType.SelectedValue = model.work_type;
                 ddlOutWorkRecord.SelectedValue = model.leave_id;
 
+                hchecker1.Text = model.checker;
                 txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.checker);
+                hchecker2.Text = model.CHECKER2;
                 txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
 
                 cbIsCheck1.Checked = model.audit == 1;
@@ -122,6 +125,22 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //顯示對應的界面元素
                 DisplayTral(model.work_type, model.work_type);
             }
+            else
+            {
+                var key = OnlineUsersBll.GetInstence().GetUserHashKey();
+                var empid = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_LoginName).ToString();
+                var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid);
+                tbxEmp.Text = empid;
+                txtEmpName.Text = model.EMP_FNAME;
+                hjId.Text = model.Id.ToString();
+                hchecker1.Text = model.LINK_MAN;
+                txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.LINK_MAN);
+                hchecker2.Text = model.CHECKER2;
+                txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
+                var depid = model.DEPART_ID;
+                txtDeptId.Text = depid;
+                txtDept.Text = DepartsBll.GetInstence().GetDeptName(depid);
+            }
         }
 
         /// <summary>
@@ -129,7 +148,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// </summary>
         /// <param name="s">請假出差類型</param>
         /// <param name="t">時段</param>
-        private void DisplayTral(string s,string t)
+        private void DisplayTral(string s, string t)
         {
             switch (s)
             {
@@ -169,7 +188,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //int id = ConvertHelper.Cint0(ddlOutWorkRecord.SelectedValue);
             //if (id == 0) return;
-            DisplayTral(ddlOutWorkRecord.SelectedValue,ddlType.SelectedValue);
+            DisplayTral(ddlOutWorkRecord.SelectedValue, ddlType.SelectedValue);
 
             Paneltp.Hidden = ddlType.SelectedValue != "3";
 
@@ -191,7 +210,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             if (string.IsNullOrEmpty(ddlOutWorkRecord.SelectedValue)) return;
             if (string.IsNullOrEmpty(ddlType.SelectedValue)) return;
-            
+
             //計算天數
             GetDays();
 
@@ -256,59 +275,80 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 #region 賦值
 
                 //獲取實體
-                var model = new OutWork_D(x => x.Id == id);
+                var model = new OutWork_D(x => x.Id == id)
+                {
+                    emp_id = tbxEmp.Text,
+                    leave_id = ddlOutWorkRecord.SelectedValue,
+                    depart_id = txtDeptId.Text,
+                    memo = StringHelper.Left(txtMemo.Text, 100),
+                    bill_date = dpStartTime.SelectedDate.Value.Date,
+                    Re_date = dpEndTime.SelectedDate.Value.Date,
+                    work_days = ConvertHelper.Cdecimal(txtDays.Text),
+                    work_type = ddlType.SelectedValue,
+                    checker = hchecker1.Text,
+                    CHECKER2 = hchecker2.Text,
+                    audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked),
+                    audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked),
+                    op_date = DateTime.Now,
+                    op_user = OnlineUsersBll.GetInstence().GetManagerCName(),
+                    transportation = RB1.SelectedValue,
+                    hotel_type = RB2.SelectedValue,
+                    outwork_addr = txtRemark.Text,
+                    Start_ag = ddlSt.SelectedValue,
+                    re_ag = ddlRe.SelectedValue,
+                    peers = ConvertHelper.Cint0(nbPeers.Text),
+                    Hostel = ConvertHelper.Ctinyint(cbxHostel.Checked),
+                    hotel = ConvertHelper.Cint0(nbhotel.Text),
+                    Destination = txtA1.Text,
+                    Destination2 = txtA2.Text,
+                    Destination3 = txtA3.Text,
+                    Destination4 = txtA4.Text,
+                    IDate = txtB1.Text,
+                    IDate2 = txtB2.Text,
+                    IDate3 = txtB3.Text,
+                    IDate4 = txtB4.Text,
+                    Nights = txtC1.Text,
+                    Nights2 = txtC2.Text,
+                    Nights3 = txtC3.Text,
+                    Nights4 = txtC4.Text
+                };
 
+                //生成流水號
+                if (string.IsNullOrEmpty(hbillId.Text))
+                {
+                    var str = new SelectHelper().GetMax<adJustRest_D>(adJustRest_DTable.bill_id).ToString();
+                    string headDate = str.Substring(0, 6);
+                    int lastNumber = int.Parse(str.Substring(6));
+                    //如果数据库最大值流水号中日期和生成日期在同一月，则顺序号加1
+                    if (headDate == DateTime.Now.ToString("yyyyMMdd"))
+                    {
+                        lastNumber++;
+                        model.bill_id = headDate + lastNumber.ToString("0000");
+                    }
+                    else
+                    {
+                        model.bill_id = DateTime.Now.Date.ToString("yyyymmdd") + "0001";
+                    }
+                }
                 //------------------------------------------
                 //設置名稱
-                model.emp_id = tbxEmp.Text;
-                model.leave_id = ddlOutWorkRecord.SelectedValue;
-                model.depart_id = txtDeptId.Text;
                 //model.Url = StringHelper.Left(txtUrl.Text, 200, true, false);
                 //說明
-                model.memo = StringHelper.Left(txtMemo.Text, 100);
 
 
                 //開始時間與結束時間
-                model.bill_date = dpStartTime.SelectedDate ?? DateTime.Now.Date;
-                model.Re_date = dpEndTime.SelectedDate ?? DateTime.Now.Date.AddDays(1);
 
-                model.work_days = ConvertHelper.Cdecimal(txtDays.Text);
-                model.work_type = ddlType.SelectedValue;
 
-                model.audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked);
-                model.audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked);
 
                 //修改時間與用戶
-                model.op_date = DateTime.Now;
                 //model.op_user = OnlineUsersBll.GetInstence().GetManagerId();
-                model.op_user = OnlineUsersBll.GetInstence().GetManagerCName();
 
-                model.transportation = RB1.SelectedValue;
-                model.hotel_type = RB2.SelectedValue;
 
-                model.outwork_addr = txtRemark.Text;
 
-                model.Start_ag = ddlSt.SelectedValue;
-                model.re_ag = ddlRe.SelectedValue;
 
-                model.peers = ConvertHelper.Cint0(nbPeers.Text);
-                model.Hostel = ConvertHelper.Ctinyint(cbxHostel.Checked);
-                model.hotel = ConvertHelper.Cint0(nbhotel.Text);
 
-                model.Destination = txtA1.Text;
-                model.Destination2 = txtA2.Text;
-                model.Destination3 = txtA3.Text;
-                model.Destination4 = txtA4.Text;
 
-                model.IDate = txtB1.Text;
-                model.IDate2 = txtB2.Text;
-                model.IDate3 = txtB3.Text;
-                model.IDate4 = txtB4.Text;
 
-                model.Nights = txtC1.Text;
-                model.Nights2 = txtC2.Text;
-                model.Nights3 = txtC3.Text;
-                model.Nights4 = txtC4.Text;
 
                 #endregion
 
@@ -347,7 +387,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
-            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?Selection=1&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }
         #endregion
@@ -368,7 +408,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.check1);
+            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.Check1);
             FineUI.Alert.ShowInParent(
                 !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
@@ -390,7 +430,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.check2);
+            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.Check2);
             FineUI.Alert.ShowInParent(
                 !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
@@ -490,6 +530,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     var depid = model.DEPART_ID;
                     txtDeptId.Text = depid;
                     txtDept.Text = DepartsBll.GetInstence().GetDeptName(depid);
+                    hchecker1.Text = model.LINK_MAN;
+                    txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.LINK_MAN);
+                    hchecker2.Text = model.CHECKER2;
+                    txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
                 }
             }
         }

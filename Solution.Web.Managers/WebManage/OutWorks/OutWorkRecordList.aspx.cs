@@ -79,25 +79,22 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
             //默認衹能看到自己申請/可以審核的單據/有權限查看人員的單據
-            var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
-            //得到有權限查看人員的數據
-            var str = USERAUTHORITYBll.GetInstence().GetUserWheres(OutWork_DTable.emp_id, empid);
-            if (str.Length > 0)
-            {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.emp_id, Comparison.In, str));
-            }
-            wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
-
             //員工編號
             if (!string.IsNullOrEmpty(ttbxEmp.Text))
             {
                 //轉換成數組
                 var s = ttbxEmp.Text.Trim().Split(',');
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In, s));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In, s, true));
             }
+            else
+            {
+                var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals, empid, true));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.checker, Comparison.Equals, empid));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.Or, OutWork_DTable.CHECKER2, Comparison.Equals, empid));
+            }
+            wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
+
 
             //單據類別
             if (!string.IsNullOrEmpty(ddlOutWorkRecord.SelectedValue))
@@ -105,10 +102,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.outwork_type, Comparison.Equals, StringHelper.FilterSql(ddlOutWorkRecord.SelectedValue)));
             }
             //起始時間
-            if (!string.IsNullOrEmpty(dpStart.Text))
+            if (dpStart.SelectedDate.HasValue)
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.GreaterOrEquals, dpStart.Text));
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.LessOrEquals, dpEnd.Text));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.GreaterOrEquals, dpStart.SelectedDate.Value.Date));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.bill_date, Comparison.LessOrEquals, dpEnd.SelectedDate));
             }
 
             //是否審批
@@ -171,13 +168,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
             else
             {
-                if (!string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
+                if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
                 {
                     var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
                     if (lbf != null)
                     {
-                        lbf.Icon = Icon.BulletTick;
-                        lbf.CommandArgument = "0";
+                        //lbf.Icon = Icon.;
+                        lbf.CommandArgument = "";
                     }
                 }
             }
@@ -207,28 +204,29 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 case "IsAudit":
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.check1);
-                    result = string.IsNullOrEmpty(result) ? string.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check1);
+                    result = string.IsNullOrEmpty(result)
+                        ? string.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id))
+                        : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();
-
                     break;
                 case "IsAudit2":
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.check2);
-                    result = string.IsNullOrEmpty(result) ? string.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check2);
+                    result = string.IsNullOrEmpty(result)
+                        ? string.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id))
+                        : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();
-
                     break;
-
                 case "ButtonEdit":
                     //打開編輯窗口
-                    Window1.IFrameUrl = "OutWorkRecordEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
+                    Window1.IFrameUrl = "OutWorkRecordEdit.aspx?Id=" + id + "&" +
+                                        MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
                     Window1.Hidden = false;
-
                     break;
             }
         }
@@ -283,7 +281,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             try
             {
                 //判斷是否可以刪除
-                if (OutWork_DBll.GetInstence().GetRecordCount(x => id.Contains((int)x.Id)&& x.audit == 1) > 0)
+                if (OutWork_DBll.GetInstence().GetRecordCount(x => id.Contains((int)x.Id) && x.audit == 1) > 0)
                 {
                     return "所選單據中有部分已審核，請檢查";
                 }
@@ -345,11 +343,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 {
                     if (p == AccType.Accept1)
                     {
-                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.check1);
+                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.Check1);
                     }
                     else if (p == AccType.Accept2)
                     {
-                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.check2);
+                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.Check2);
                     }
                 }
                 catch (Exception ex)

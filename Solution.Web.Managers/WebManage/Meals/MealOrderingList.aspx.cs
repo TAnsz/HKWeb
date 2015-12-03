@@ -67,14 +67,19 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <returns></returns>
         private List<ConditionHelper.SqlqueryCondition> InquiryCondition()
         {
-            var wheres = new List<ConditionHelper.SqlqueryCondition>();
+            var wheres = new List<ConditionHelper.SqlqueryCondition>
+            {
+                new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild, Comparison.Equals,
+                    1)
+            };
             //隻顯示有效的記錄
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild, Comparison.Equals, 1));
 
             //員工編號
             if (!string.IsNullOrEmpty(ttbxEmp.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.Equals, StringHelper.FilterSql(ttbxEmp.Text)));
+                //轉換成數組
+                var s = ttbxEmp.Text.Trim().Split(',');
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In, s));
             }
             //起始時間
             if (string.IsNullOrEmpty(dpStart.Text.Trim())) return wheres;
@@ -297,6 +302,36 @@ namespace Solution.Web.Managers.WebManage.Meals
             ttbxEmp.Text = provinceName;
         }
         #endregion
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string result;
+            try
+            {
+                var model = new WebConfig(x => x.Id == 1);
+                if (model.MealLockDate == DateTime.Now.Date && model.IsMealLock == 1)
+                {
+                    model.IsMealLock = 0;
+                    result = "解鎖當天訂餐成功，可以修改和錄入訂餐信息！";
+                    Button2.Text = "鎖定訂餐";
+                }
+                else
+                {
+                    model.IsMealLock = 1;
+                    model.MealLockDate = DateTime.Now.Date;
+                    result = "鎖定當天訂餐系統成功，無法繼續錄入和修改訂單系統";
+                    Button2.Text = "解鎖訂餐";
+                }
+                WebConfigBll.GetInstence().Save(this, model);
+            }
+            catch (Exception e1)
+            {
+                result = "保存失敗！";
+                //出現異常，保存出錯日誌信息
+                CommonBll.WriteLog(result, e1);
+            }
+            FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
+        }
 
     }
 }

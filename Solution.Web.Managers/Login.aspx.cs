@@ -30,7 +30,7 @@ namespace Solution.Web.Managers
                 //綁定用戶
                 EmployeeBll.GetInstence().BandDropDownList(this, ddlUser);
                 //生成驗證碼
-                imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
+                //imgCaptcha.ImageUrl = "WebManage/Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
                 #region 初始化用戶Session變量
                 //清空Session
@@ -306,7 +306,7 @@ namespace Solution.Web.Managers
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
             //重新生成驗證碼
-            imgCaptcha.ImageUrl = "Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
+            //imgCaptcha.ImageUrl = "WebManage/Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
         }
         #endregion
 

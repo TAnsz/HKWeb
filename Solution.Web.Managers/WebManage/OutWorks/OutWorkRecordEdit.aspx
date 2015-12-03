@@ -8,7 +8,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:HiddenField runat="server" ID="hidId" Text="0"/>
+        <f:HiddenField runat="server" ID="hbillId" Text="0" />
+        <f:HiddenField runat="server" ID="hidId" Text="0" />
+        <f:HiddenField runat="server" ID="hjId" />
+        <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
+        <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
         <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
             ShowHeader="False">
@@ -33,7 +37,7 @@
                                 <f:FormRow ID="FormRow1" runat="server">
                                     <Items>
                                         <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"
-                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick"/>
+                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick" />
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
                                     </Items>
@@ -167,10 +171,8 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow7" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審批人" Width="300px" Text="" ShowRedStar="true" Readonly="True"
-                                            MaxLength="100" />
-                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審批人" Width="300px" Text="" ShowRedStar="true" Readonly="True"
-                                            MaxLength="100" />
+                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審批人" Width="300px" Readonly="True"/>
+                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審批人" Width="300px" Readonly="True"/>
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow8" runat="server">

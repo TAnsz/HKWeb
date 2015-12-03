@@ -1130,7 +1130,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "adJustRest_D", sortName, "bill_id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "adJustRest_D", sortName, "Id"))
 		    {
 				//判斷是否?用緩存
                 if (CommonBll.IsUseCache())
@@ -1163,7 +1163,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("bill_id", "adJustRest_D", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "adJustRest_D", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判斷是否?用緩存
                 if (CommonBll.IsUseCache())

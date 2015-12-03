@@ -123,7 +123,7 @@
                                                                 <f:BoundField DataField="emp_ename" SortField="emp_ename" HeaderText="英文名" Width="100px" />
                                                                 <f:BoundField DataField="bill_date" SortField="bill_date" HeaderText="開始日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
                                                                 <f:BoundField DataField="Re_date" SortField="Re_date" HeaderText="結束日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
-                                                                <f:BoundField DataField="DESCR" SortField="DESCR" HeaderText="類型" Width="50px" />
+                                                                <f:BoundField DataField="DESCR" SortField="DESCR" HeaderText="類型" Width="150px" />
                                                                 <f:TemplateField Width="100px" HeaderText="時段" TextAlign="Center">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="Label2" runat="server" Text='<%# Solution.Logic.Managers.CommonBll.GetWorkType(Eval("work_type").ToString()) %>'></asp:Label>

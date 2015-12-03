@@ -45,6 +45,13 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //加載數據
                 LoadData();
             }
+            var model = WebConfigBll.GetInstence().GetModelForCache(1);
+            if (model != null)
+            {
+                bool b = model.IsMealLock == 1 && model.MealLockDate == DateTime.Now.Date;
+                ResolveFormField(b);
+                redtips.Hidden = !b;
+            }
         }
         #endregion
 
@@ -83,8 +90,8 @@ namespace Solution.Web.Managers.WebManage.Meals
 
                 txtRemark.Text = model.Remark;
 
-                //判斷能否修改
-                CheckEdit(model);
+                //判斷能否修改 當天之前的數據不能修改
+                ResolveFormField(DateTime.Compare(Convert.ToDateTime(model.ApplyDate), DateTime.Now.Date) < 0);
                 ////設置是否有效
                 //rblIsVaild.SelectedValue = model.IsVaild + "";
             }
@@ -101,21 +108,7 @@ namespace Solution.Web.Managers.WebManage.Meals
             }
         }
 
-        private void CheckEdit(DataAccess.Model.MealOrdering model)
-        {
-            try
-            {
-                bool b1 = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("yyyy-mm-dd") + " 11:50:00"), DateTime.Now) > 0 &&
-                    Equals(model.ApplyDate,DateTime.Now.Date);
-                bool b2 = DateTime.Compare(Convert.ToDateTime(model.ApplyDate), DateTime.Now.Date) < 0;
-                bool b3 = model.Employee_EmpId == OnlineUsersBll.GetInstence().GetManagerEmpId();
-                ResolveFormField(b1 || b2 || (!b3));
-            }
-            catch (Exception e)
-            {
-                CommonBll.WriteLog("訂餐判斷修改權限時，時間轉換錯誤，id爲" + model.Id, e);
-            }
-        }
+
 
         #endregion
         #region 列表屬性綁定
@@ -127,7 +120,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
-            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpChoose.aspx?Selection=1&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?EmpId=0000000&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }
         #endregion
@@ -166,6 +159,18 @@ namespace Solution.Web.Managers.WebManage.Meals
             try
             {
                 #region 數據驗證
+                //判斷是否鎖定
+                var mod = WebConfigBll.GetInstence().GetModelForCache(1);
+                if (mod != null)
+                {
+                    bool b = mod.IsMealLock == 1 && mod.MealLockDate == DateTime.Now.Date;
+                    if (b && dpDate.SelectedDate == DateTime.Now.Date)
+                    {
+                        PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
+                        return "當天訂餐系統已鎖定，無法修改和增加當天的訂餐信息！";
+                    }
+                }
+
                 if (string.IsNullOrEmpty(hidCode.Text.Trim()))
                 {
                     hidCode.Text = CommonBll.GetTableSN(MealOrderingTable.TableName, MealOrderingTable.Code);
@@ -203,7 +208,6 @@ namespace Solution.Web.Managers.WebManage.Meals
                 //設置名稱
 
 
-
                 //地址
                 var empid = OnlineUsersBll.GetInstence().GetManagerEmpId();
                 var name = OnlineUsersBll.GetInstence().GetManagerCName();
@@ -212,6 +216,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     model.RecordId = empid;
                     model.RecordName = lbuser.Text = name;
                     model.RecordDate = DateTime.Now;
+                    model.IsVaild = 1;
                     lbdate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                 }
                 else
@@ -244,7 +249,6 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// </summary>
         private void ResolveFormField(bool b)
         {
-            lbtips.Hidden = !b;
             foreach (var field in extForm1.Items.Cast<Field>().Where(field => field != null && !(field is Label)))
             {
                 field.Readonly = b;

@@ -4,7 +4,7 @@ using System;
 namespace Solution.DataAccess.DataModel {
         /// <summary>
         /// Table: adJustRest_D
-        /// Primary Key: bill_id
+        /// Primary Key: Id
         /// </summary>
         public class adJustRest_DTable {
 			/// <summary>

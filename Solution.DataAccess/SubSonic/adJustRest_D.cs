@@ -285,17 +285,17 @@ namespace Solution.DataAccess.DataModel
 
         public string KeyName()
         {
-            return "bill_id";
+            return "Id";
         }
 
         public object KeyValue()
         {
-            return this.bill_id;
+            return this.Id;
         }
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<string>();
+                var settable = value.ChangeTypeTo<int>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -338,6 +338,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
         public string DescriptorValue()
         {
                             return this.bill_id.ToString();
@@ -348,7 +353,7 @@ namespace Solution.DataAccess.DataModel
         }
         public static string GetKeyColumn()
         {
-            return "bill_id";
+            return "Id";
         }        
         public static string GetDescriptorColumn()
         {
@@ -363,6 +368,7 @@ namespace Solution.DataAccess.DataModel
 		/// <summary>
 		/// 
 		/// </summary>
+		[SubSonicPrimaryKey]
         public int Id
         {
             get { return _Id; }
@@ -385,7 +391,6 @@ namespace Solution.DataAccess.DataModel
 		/// <summary>
 		/// 
 		/// </summary>
-		[SubSonicPrimaryKey]
         public string bill_id
         {
             get { return _bill_id; }
