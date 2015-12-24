@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MeetingRoomList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.MeetingRoomList" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>會議室列表</title>
 </head>
@@ -37,7 +37,7 @@
                         <f:BoundField DataField="Qty" HeaderText="可容納人數" />
                         <f:BoundField Width="150px" DataField="Address" HeaderText="地址" />
                         <f:BoundField Width="200px" DataField="Remark" HeaderText="備註" />
-                        <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="IsVaild" CommandName="IsVaild" />
+                        <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="isVaild" CommandName="isVaild" />
                         <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />
                     </Columns>
                 </f:Grid>

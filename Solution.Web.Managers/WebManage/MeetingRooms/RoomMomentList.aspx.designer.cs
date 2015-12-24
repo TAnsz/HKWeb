@@ -112,6 +112,15 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms {
         protected global::FineUI.Grid Grid1;
         
         /// <summary>
+        /// T0800 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.LinkButtonField T0800;
+        
+        /// <summary>
         /// T0830 控件。
         /// </summary>
         /// <remarks>

@@ -37,8 +37,13 @@ namespace Solution.Web.Managers.WebManage
 
                 #region 報表測試
                 //顯示當天的記錄
-                var wheres = new List<ConditionHelper.SqlqueryCondition>();
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.Equals, DateTime.Now.Date));
+                var wheres = new List<ConditionHelper.SqlqueryCondition>
+                {
+                    new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate,
+                        Comparison.Equals, DateTime.Now.Date),
+                    new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild,
+                        Comparison.Equals, 1)
+                };
                 var dt = MealOrderingBll.GetInstence().GetDataTable(false,0,null,0,0,wheres);
                 ReportViewer1.LocalReport.EnableExternalImages = true;
                 //ReportViewer1.LocalReport.ReportPath = @"WebManage\Meals\ReportMeal.rdlc";

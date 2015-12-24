@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 申?日期
+			/// 申請日期
 			/// </summary>
    			public static string ApplyDate{
 			      get{
@@ -65,7 +65,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// ?始??
+			/// 開始時間
 			/// </summary>
    			public static string StartTime{
 			      get{
@@ -73,7 +73,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// ?束?据
+			/// 結束時間
 			/// </summary>
    			public static string EndTime{
 			      get{
@@ -110,6 +110,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string DepartName{
 			      get{
         			return "DepartName";
+      			}
+		    }
+			/// <summary>
+			/// 是否視頻會議
+			/// </summary>
+   			public static string IsVideo{
+			      get{
+        			return "IsVideo";
       			}
 		    }
 			/// <summary>

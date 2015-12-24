@@ -49,6 +49,14 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
+			/// 08:00--
+			/// </summary>
+   			public static string T0800{
+			      get{
+        			return "T0800";
+      			}
+		    }
+			/// <summary>
 			/// 08:30--
 			/// </summary>
    			public static string T0830{

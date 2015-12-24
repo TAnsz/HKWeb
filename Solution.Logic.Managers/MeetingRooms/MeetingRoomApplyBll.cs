@@ -6,8 +6,11 @@ using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
 using System.Diagnostics;
+using System.Linq;
 using System.Web;
+using Solution.DataAccess.Model;
 using SubSonic.Query;
+using RoomMoment = Solution.DataAccess.DataModel.RoomMoment;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -53,9 +56,9 @@ namespace Solution.Logic.Managers
         /// </summary>
         /// <param name="page"></param>
         /// <param name="id">修改的ID</param>
-        /// <param name="IsVaild">更新或取消</param>
+        /// <param name="isVaild">更新或取消</param>
         /// <param name="isAddUseLog"></param>
-        public void UpdateRoomMoment(Page page, long id, byte? IsVaild, bool isAddUseLog = true)
+        public void UpdateRoomMoment(Page page, long id, byte? isVaild, bool isAddUseLog = true)
         {
             //判斷是否可以審核
             try
@@ -86,7 +89,7 @@ namespace Solution.Logic.Managers
                 while (dt1 != dt2)
                 {
                     string s = "T" + dt1.ToString("HHmm");
-                    SetModelValue(modelRoom, s, IsVaild);
+                    SetModelValue(modelRoom, s, isVaild);
                     dt1 = dt1.AddMinutes(30);
                     //防止死循環
                     if (dt1.Subtract(dt2).Days > 1)
@@ -234,6 +237,29 @@ namespace Solution.Logic.Managers
                 && x.MeetingRoom_Code == model.MeetingRoom_Code && x.StartTime.CompareTo(time) <= 0
                 && x.EndTime.CompareTo(time) > 0));
 
+        }
+        #endregion
+
+        #region 轉換會議日程數組
+        public List<object[]> ConvertToStringArray(ICollection<CalendarM> list)
+        {
+            List<object[]> relist = new List<object[]>();
+
+            if (list != null && list.Count > 0)
+            {
+                int serverzone = TimeHelper.GetTimeZone();
+                relist.AddRange(from entity in list
+                                let clientzone = entity.MasterId ?? 8
+                                let zonediff = clientzone - serverzone
+                                let s = entity.StartTime.AddHours(zonediff)
+                                let e = entity.EndTime.AddHours(zonediff)
+                                let attends = entity.AttendeeNames + (string.IsNullOrEmpty(entity.OtherAttendee) ? "" : "," + entity.OtherAttendee)
+                                select new object[]
+                    {
+                        entity.Id, entity.Subject, entity.StartTime, entity.EndTime, entity.IsAllDayEvent ? 1 : 0, s.ToShortDateString() != e.ToShortDateString() ? 1 : 0, entity.InstanceType == 2 ? 1 : 0, string.IsNullOrEmpty(entity.Category) ? -1 : Convert.ToInt32(entity.Category), 1, entity.Location, attends
+                    });
+            }
+            return relist;
         }
         #endregion
 

@@ -1,7 +1,6 @@
 /// <summary>
 ///  ˵÷㺁ssistant
-/// ᠠ« ȋ㺋շɍ
-/// jϵ罊���361983679  
+/// ?��??㺋շ�?/// jϵ罊���361983679  
 /// 輐蕾㺨ttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
@@ -10,12 +9,12 @@ using System.Web;
 namespace DotNet.Utilities
 {
 	/// <summary>
-	/// 뺴揠陣Ĳٗ瀠
+	/// 뺴�???�ٗ�?
 	/// </summary>
 	public class DataCache
 	{
 		/// <summary>
-		/// 뱈ᵱǰӦӃ㌐▸樃acheKey儃acheֵ
+		/// 뱈ᵱǰӦ??�▸樃acheKey?�acheֵ
 		/// </summary>
 		/// <param name="CacheKey"></param>
 		/// <returns></returns>
@@ -26,7 +25,7 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ɨփ屇ӦӃ㌐▸樃acheKey儃acheֵ
+		/// ɨ?屇ӦӃ�??��?acheKey?�acheֵ
 		/// </summary>
 		/// <param name="CacheKey"></param>
 		/// <param name="objObject"></param>
@@ -37,7 +36,7 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// ɨփ屇ӦӃ㌐▸樃acheKey儃acheֵ
+		/// ɨ?屇ӦӃ�??��?acheKey?�acheֵ
 		/// </summary>
 		/// <param name="CacheKey"></param>
 		/// <param name="objObject"></param>

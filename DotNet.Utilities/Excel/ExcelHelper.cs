@@ -501,7 +501,7 @@ namespace DotNet.Utilities
             ArrayList TableList = new ArrayList();
             TableList = GetExcelTables(ExcelFilePath);
 
-            if (TableList.IndexOf(TableName) < 0)
+            if (TableName.IndexOf(TableName) < 0)
             {
                 TableName = TableList[0].ToString().Trim();
             }

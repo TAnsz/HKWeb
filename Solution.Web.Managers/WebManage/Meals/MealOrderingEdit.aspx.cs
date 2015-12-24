@@ -120,15 +120,15 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
-            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?EmpId=0000000&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?EmpId=0000000&Default=" + tbxEmp.Text + "&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }
         #endregion
-        #region 員工編號輸入
-        //protected void txtEmpId_Blur(object sender, EventArgs e)
+        //#region 員工編號輸入
+        //protected void tbxEmp_TextChanged(object sender, EventArgs e)
         //{
         //    var empid = tbxEmp.Text;
-        //    var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid);
+        //    var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID.IndexOf(empid, StringComparison.Ordinal) >= 0 || x.EMP_FNAME.IndexOf(empid, StringComparison.Ordinal) >= 0);
         //    if (model == null)
         //    {
         //        tbxEmp.Text = "";
@@ -143,7 +143,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         //    }
         //}
 
-        #endregion
+        //#endregion
         #endregion
 
         #region 保存
@@ -184,7 +184,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     return rblFood.Label + "不能為空！";
                 }
 
-                if (MealOrderingBll.GetInstence().Exist(x => (x.Employee_EmpId == tbxEmp.Text && x.ApplyDate == dpDate.SelectedDate) && x.Id != id))
+                if (MealOrderingBll.GetInstence().Exist(x => x.Employee_EmpId == tbxEmp.Text && x.ApplyDate == dpDate.SelectedDate && x.Id != id && x.IsVaild == 1))
                 {
                     return "該員工當天已訂餐，請勿重複申請！";
                 }
@@ -278,5 +278,20 @@ namespace Solution.Web.Managers.WebManage.Meals
             }
         }
         #endregion
+
+        //#region 員工編號輸入，支持輸入名字中的字符
+        //protected void tbxEmp_TextChanged(object sender, EventArgs e)
+        //{
+        //    var str = tbxEmp.Text;
+        //    if (str == null) return;
+        //    var model = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID.IndexOf(str, StringComparison.Ordinal) >= 0 || x.EMP_FNAME.IndexOf(str, StringComparison.Ordinal) >= 0);
+        //    if (model == null) return;
+        //    tbxEmp.Text = model.EMP_ID;
+        //    txtEmpName.Text = model.EMP_FNAME;
+        //    var depid = model.DEPART_ID;
+        //    txtDeptId.Text = depid;
+        //    txtDeptName.Text = DepartsBll.GetInstence().GetDeptName(depid);
+        //}
+        //#endregion
     }
 }

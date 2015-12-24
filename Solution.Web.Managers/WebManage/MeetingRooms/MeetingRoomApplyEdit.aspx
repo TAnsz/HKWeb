@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MeetingRoomApplyEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.MeetingRoomApplyEdit" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>會議室申請單編輯</title>
 </head>
@@ -13,6 +13,7 @@
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
                         <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click"></f:Button>
+                        <f:Button ID="ButtonDelete" runat="server" Text="刪除" Icon="Delete" OnClick="ButtonDelete_Click" ConfirmTitle="刪除提示" ConfirmText="是否刪除記錄？"/>
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -22,12 +23,13 @@
                         <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false"
                             AutoScroll="true" BodyPadding="5px" runat="server" EnableCollapse="True">
                             <Items>
-                                <f:DropDownList Label="會議室選擇" runat="server" ID="dllRoomMoment" Width="400px">
-                                </f:DropDownList>
+                                <f:DropDownList Label="會議室選擇" runat="server" ID="dllRoomMoment" Width="400px" AutoSelectFirstItem="false" EmptyText="請選擇會議室" 
+                                    Required="true" ShowRedStar="true"></f:DropDownList>
                                 <%--<f:TextBox runat="server" Label="編號" ID="txtCode" Width="400px" Readonly="True"></f:TextBox>--%>
                                 <%--<f:TextBox runat="server" Label="名稱" ID="txtName" ShowRedStar="true" Width="400px"></f:TextBox>--%>
-                                <f:DatePicker runat="server" Label="會議日期" ID="dpDate" ShowRedStar="true" Width="300px" />
+                                <f:DatePicker runat="server" Label="會議日期" ID="dpDate" ShowRedStar="true" Width="300px" Required="true"/>
                                 <f:DropDownList Label="開始時間" runat="server" ID="dllStart" Width="250px">
+                                    <f:ListItem Text="08:00" Value="08:00" />
                                     <f:ListItem Text="08:30" Value="08:30" />
                                     <f:ListItem Text="09:00" Value="09:00" />
                                     <f:ListItem Text="09:30" Value="09:30" />
@@ -51,6 +53,7 @@
                                     <f:ListItem Text="18:30" Value="18:30" />
                                 </f:DropDownList>
                                 <f:DropDownList Label="結束時間" runat="server" ID="dllEnd" Width="250px">
+                                    <f:ListItem Text="08:30" Value="08:30" />
                                     <f:ListItem Text="09:00" Value="09:00" />
                                     <f:ListItem Text="09:30" Value="09:30" />
                                     <f:ListItem Text="10:00" Value="10:00" />
@@ -77,15 +80,14 @@
                                 <f:Label runat="server" Width="400px" ID="txtEmpName" Label="申請人" Readonly="True" />
                                 <f:Label runat="server" Width="400px" ID="txtDepartId" Label="申請部門編號" Readonly="True" />
                                 <f:Label runat="server" Width="400px" ID="txtDepartName" Label="申請部門" Readonly="True" />
-                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" Height="60px"></f:TextArea>
-                                <f:RadioButtonList ID="rblIsVaild" Label="是否有效" ColumnNumber="2" runat="server"
-                                    ShowRedStar="true" Required="true">
-                                    <f:RadioItem Text="有效" Value="1" Selected="true" />
-                                    <f:RadioItem Text="無效" Value="0" />
+                                <f:RadioButtonList ID="rblIsVideo" Label="是否視頻會議" ColumnNumber="2" runat="server">
+                                    <f:RadioItem Text="是" Value="1" />
+                                    <f:RadioItem Text="不是" Value="0" Selected="true" />
                                 </f:RadioButtonList>
+                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" Height="60px" />
                                 <f:Label runat="server" Text="注:非本人錄入單據，無法修改！" ID="lbtips" CssClass="redlabel" Hidden="true" />
-                                <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
-                                <f:HiddenField runat="server" ID="hidCode" Text=""></f:HiddenField>
+                                <f:HiddenField runat="server" ID="hidId" Text="0" />
+                                <f:HiddenField runat="server" ID="hidCode" Text="" />
                             </Items>
                         </f:SimpleForm>
                     </Items>

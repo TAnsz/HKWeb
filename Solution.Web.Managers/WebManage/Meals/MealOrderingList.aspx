@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MealOrderingList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Meals.MealOrderingList" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>員工訂餐管理</title>
     <link href="../Css/common.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
                         </f:Button>
                         <f:Button ID="ButtonPrint" runat="server" Text="列印" Icon="printer" EnablePostBack="false" OnClientClick="ShowWindow()"></f:Button>
                         <f:Button ID="Button1" runat="server" Text="查看菜單" Icon="ApplicationViewIcons" EnablePostBack="false" OnClientClick="window.open('../../UploadFile/menu.jpg')"></f:Button>
-                        <f:FileUpload runat="server" ID="filePhoto" ButtonText="上传菜單" ButtonIcon="FolderUp" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
+                        <f:FileUpload runat="server" ID="filePhoto" ButtonText="上傳菜單" ButtonIcon="FolderUp" AcceptFileTypes="image/*.jpg" ButtonOnly="true"
                             AutoPostBack="true" OnFileSelected="filePhoto_FileSelected">
                         </f:FileUpload>
                         <f:Button ID="Button2" runat="server" Text="訂餐鎖定" Icon="Lock" OnClick="Button2_Click"></f:Button>
@@ -46,7 +46,8 @@
                                 <f:TwinTriggerBox runat="server" ID="ttbxEmp" Label="員工" EmptyText="請選擇員工" Width="320px" Trigger1Icon="Clear" Trigger2Icon="Search"
                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
                                 </f:TwinTriggerBox>
-                                <f:Label runat="server" CssClass="marginr" ShowLabel="false" Text="查詢起止日期: "></f:Label>
+                                <f:Label runat="server" Width="40px"></f:Label>
+                                <f:Label runat="server" CssClass="marginr" label="查詢起止日期"></f:Label>
                                 <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
                                 <f:DatePicker runat="server" ID="dpEnd" CssClass="marginr" CompareControl="dpStart" CompareOperator="GreaterThanEqual" CompareMessage="結束日期應該大於等於開始日期" DateFormatString="yyyy-MM-dd" EmptyText="結束日期" />
                                 <%--<f:Label runat="server"></f:Label>--%>
@@ -63,19 +64,19 @@
                                 <div class="expander">
                                     <table width="1100px" style="padding-left: 50px;">
                                         <tr>
-                                            <td style="width: 600px; padding-top: 10px;">
-                                                <strong>錄入人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyBy)%>
+                                            <td style="width: 400px; padding-top: 10px;">
+                                                <strong>錄入人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordName)%>
                                             </td>
                                             <td style="width: 400px; padding-top: 10px;">
-                                                <strong>錄入時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyDate)%>
+                                                <strong>錄入時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordDate)%>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 600px; padding-top: 10px;">
-                                                <strong>修改人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordName)%>
+                                            <td style="width: 400px; padding-top: 10px;">
+                                                <strong>修改人：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyBy)%>
                                             </td>
                                             <td style="width: 400px; padding-top: 10px;">
-                                                <strong>修改時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.RecordDate)%>
+                                                <strong>修改時間：</strong><%# Eval(Solution.DataAccess.DataModel.MealOrderingTable.ModifyDate)%>
                                             </td>
                                         </tr>
                                     </table>
@@ -97,7 +98,7 @@
                         <f:BoundField Width="100px" DataField="FoodCode" SortField="FoodCode" HeaderText="飯類" TextAlign="Center" />
                         <f:BoundField Width="100px" DataField="DrinkCode" SortField="DrinkCode" HeaderText="餐飲" TextAlign="Center" />
                         <f:BoundField Width="200px" DataField="Remark" HeaderText="備註" />
-                        <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="IsVaild" CommandName="IsVaild" Hidden="true" />
+                        <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="isVaild" CommandName="isVaild" Hidden="true" />
                         <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />
                     </Columns>
                 </f:Grid>
@@ -105,7 +106,7 @@
                 <f:ContentPanel ID="ContentPanel3" runat="server"
                                         ShowBorder="false" ShowHeader="false">
                 <div class="image-row">
-			        <a class="example-image-link" href="../../UploadFile/menu.jpg" data-lightbox="example-1" title="菜單"><img class="example-image" src="../../UploadFile/menu.jpg" alt="thumb-1" style="height:400px"/></a>
+			        <a class="example-image-link" href="../../UploadFile/menu.jpg" data-lightbox="example-1" title="菜單"><img class="example-image" src="../../UploadFile/menu.jpg" alt="thumb-1" style="height:500px"/></a>
 		        </div>
                 </f:ContentPanel>
             </Items>

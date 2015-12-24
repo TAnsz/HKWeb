@@ -68,6 +68,7 @@
     <Compile Include="Cookie_Session_Cache\SessionHelper2.cs" />
     <Compile Include="CSV\CsvHelper.cs" />
     <Compile Include="DataTable\DataTableHelper.cs" />
+    <Compile Include="Date\CalendarViewFormat.cs" />
     <Compile Include="DEncrypt\MySecurity.cs" />
     <Compile Include="Encoding\FileEncoding.cs" />
     <Compile Include="Internet_Url\AdslHelper.cs" />

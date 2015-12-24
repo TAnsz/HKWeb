@@ -765,6 +765,31 @@ namespace DotNet.Utilities
         }
         #endregion
 
+        #region 获取字符串中的数字
+        /// <summary>
+        /// 获取字符串中的数字
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns>数字</returns>
+        public static decimal GetNumber(string str)
+        {
+            decimal result = 0;
+            if (!string.IsNullOrEmpty(str))
+            {
+                // 正则表达式剔除非数字字符（不包含小数点.）
+                str = Regex.Replace(str, @"[^\d.\d]", "");
+
+                // 如果是数字，则转换为decimal类型
+                if (Regex.IsMatch(str, @"^[+-]?\d*[.]?\d*$"))
+                {
+                    result = decimal.Parse(str);
+                }
+            }
+
+            return result;
+        }
+        #endregion
+
         #region 驗證操作函數
         /// <summary> 檢查字符串裡每個字是否都在指定字符集內的字.
         /// 比如:整數(0123456789)

@@ -129,9 +129,9 @@ namespace Solution.DataAccess.DataModel
                
             ApplyDate = readRecord.get_datetime("ApplyDate",null);
                
-            StartTime = readRecord.get_string("StartTime",null);
+            StartTime = readRecord.get_datetime("StartTime",null);
                
-            EndTime = readRecord.get_string("EndTime",null);
+            EndTime = readRecord.get_datetime("EndTime",null);
                
             Employee_EmpId = readRecord.get_string("Employee_EmpId",null);
                
@@ -140,6 +140,8 @@ namespace Solution.DataAccess.DataModel
             DepartId = readRecord.get_string("DepartId",null);
                
             DepartName = readRecord.get_string("DepartName",null);
+               
+            IsVideo = readRecord.get_byte("IsVideo",null);
                
             Remark = readRecord.get_string("Remark",null);
                
@@ -297,6 +299,7 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
+			sb.Append("IsVideo=" + IsVideo + "; ");
 			sb.Append("Remark=" + Remark + "; ");
 			sb.Append("IsVaild=" + IsVaild + "; ");
 			return sb.ToString();
@@ -443,11 +446,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        DateTime? _ApplyDate;
+        DateTime _ApplyDate;
 		/// <summary>
-		/// 申?日期
+		/// 申請日期
 		/// </summary>
-        public DateTime? ApplyDate
+        public DateTime ApplyDate
         {
             get { return _ApplyDate; }
             set
@@ -465,11 +468,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _StartTime;
+        DateTime _StartTime;
 		/// <summary>
-		/// ?始??
+		/// 開始時間
 		/// </summary>
-        public string StartTime
+        public DateTime StartTime
         {
             get { return _StartTime; }
             set
@@ -487,11 +490,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _EndTime;
+        DateTime _EndTime;
 		/// <summary>
-		/// ?束?据
+		/// 結束時間
 		/// </summary>
-        public string EndTime
+        public DateTime EndTime
         {
             get { return _EndTime; }
             set
@@ -587,6 +590,28 @@ namespace Solution.DataAccess.DataModel
                 if(_DepartName!=value || _isLoaded){
                     _DepartName=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="DepartName");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte _IsVideo;
+		/// <summary>
+		/// 是否視頻會議
+		/// </summary>
+        public byte IsVideo
+        {
+            get { return _IsVideo; }
+            set
+            {
+                if(_IsVideo!=value || _isLoaded){
+                    _IsVideo=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IsVideo");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

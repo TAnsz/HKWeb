@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MealOrderingEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Meals.MealOrderingEdit" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>訂餐記錄編輯</title>
     <link href="../res/css/main.css" rel="stylesheet" type="text/css" />
@@ -37,8 +37,8 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow2" runat="server">
                                     <Items>
-                                        <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"
-                                            MaxLength="50" TriggerIcon="Search" EnableEdit="false" OnTriggerClick="tbxEmp_TriggerClick"/>
+                                        <f:TriggerBox runat="server" ID="tbxEmp" Label="員工編號" Width="300px" Text="" ShowRedStar="true" EmptyText="請選擇員工"   
+                                            MaxLength="50" TriggerIcon="Search" EnablePostBack="true" OnTriggerClick="tbxEmp_TriggerClick"/>
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
                                     </Items>

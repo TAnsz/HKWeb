@@ -1,7 +1,6 @@
 /// <summary>
 ///  ˵÷㺁ssistant
-/// ᠠ« ȋ㺋շɍ
-/// jϵ罊���361983679  
+/// ?��??㺋շ�?/// jϵ罊���361983679  
 /// 輐蕾㺨ttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
@@ -10,12 +9,12 @@ using System.Configuration;
 namespace DotNet.Utilities
 {
 	/// <summary>
-	/// web.config♗瀠
+	/// web.config?��?
 	/// </summary>
 	public sealed class ConfigHelper
 	{
 		/// <summary>
-		/// 僵큰pSettings֐儅䖃ז維Ϣ
+		/// ?�큰pSettings??��??維�?Ϣ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -40,7 +39,7 @@ namespace DotNet.Utilities
 		}
 
 		/// <summary>
-		/// 僵큰pSettings֐儅䖃BoolЅϢ
+		/// ?�큰pSettings??��?Bool?Ϣ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -62,7 +61,7 @@ namespace DotNet.Utilities
 			return result;
 		}
 		/// <summary>
-		/// 僵큰pSettings֐儅䖃DecimalЅϢ
+		/// ?�큰pSettings??��?Decimal?Ϣ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -85,7 +84,7 @@ namespace DotNet.Utilities
 			return result;
 		}
 		/// <summary>
-		/// 僵큰pSettings֐儅䖃intЅϢ
+		/// ?�큰pSettings??��?int?Ϣ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>

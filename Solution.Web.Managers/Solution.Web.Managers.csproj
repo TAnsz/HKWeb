@@ -76,17 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="WebManage\Css\common.css" />
-    <Content Include="WebManage\Css\login.css" />
-    <Content Include="WebManage\Css\main.css" />
-    <Content Include="WebManage\Css\metro.css" />
-    <Content Include="WebManage\Images\main.jpg" />
     <Content Include="WebManage\Meals\Report.aspx" />
     <Content Include="WebManage\Meals\MealOrderingEdit.aspx" />
     <Content Include="WebManage\Meals\MealOrderingList.aspx" />
     <Content Include="PhoneMain.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomApplyEdit.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx" />
+    <Content Include="WebManage\MeetingRooms\RoomMomentCal.aspx" />
     <Content Include="WebManage\MeetingRooms\RoomMomentList.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomEdit.aspx" />
     <Content Include="WebManage\MeetingRooms\MeetingRoomList.aspx" />
@@ -106,6 +102,7 @@
     <Content Include="WebManage\Informations\InformationEdit.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="WebManage\MeetingRooms\RoomQuick.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx" />
@@ -131,6 +128,9 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomData.ashx.cs">
+      <DependentUpon>RoomData.ashx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Meals\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -173,6 +173,13 @@
     </Compile>
     <Compile Include="WebManage\MeetingRooms\MeetingRoomApplyList.aspx.designer.cs">
       <DependentUpon>MeetingRoomApplyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomMomentCal.aspx.cs">
+      <DependentUpon>RoomMomentCal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomMomentCal.aspx.designer.cs">
+      <DependentUpon>RoomMomentCal.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\MeetingRooms\RoomMomentList.aspx.cs">
       <DependentUpon>RoomMomentList.aspx</DependentUpon>
@@ -264,6 +271,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomQuick.aspx.cs">
+      <DependentUpon>RoomQuick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\MeetingRooms\RoomQuick.aspx.designer.cs">
+      <DependentUpon>RoomQuick.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.cs">
       <DependentUpon>OutWorkRecordEdit.aspx</DependentUpon>
@@ -433,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="WebManage\Employees\" />
+    <Folder Include="WebManage\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebManage\Application\Vcode.ashx" />
@@ -450,6 +465,7 @@
     <None Include="Properties\PublishProfiles\web.pubxml" />
     <None Include="Properties\PublishProfiles\web22.pubxml" />
     <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
+    <Content Include="WebManage\MeetingRooms\RoomData.ashx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WebManage\Meals\ReportMeal.rdlc" />

@@ -1,14 +1,14 @@
 <%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeBehind="OutWorkRecordEdit.aspx.cs"
     Inherits="Solution.Web.Managers.WebManage.OutWorks.OutWorkRecordEdit" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>請假出差編輯</title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:HiddenField runat="server" ID="hbillId" Text="0" />
+        <f:HiddenField runat="server" ID="hbillId" Text="" />
         <f:HiddenField runat="server" ID="hidId" Text="0" />
         <f:HiddenField runat="server" ID="hjId" />
         <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>

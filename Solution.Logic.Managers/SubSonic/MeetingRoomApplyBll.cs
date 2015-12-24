@@ -258,12 +258,12 @@ namespace Solution.Logic.Managers {
                         expression = x => x.ApplyDate == (DateTime)value;
                         break;
 					case "StartTime" :
-						model = list.SingleOrDefault(x => x.StartTime == (string)value);
-                        expression = x => x.StartTime == (string)value;
+						model = list.SingleOrDefault(x => x.StartTime == (DateTime)value);
+                        expression = x => x.StartTime == (DateTime)value;
                         break;
 					case "EndTime" :
-						model = list.SingleOrDefault(x => x.EndTime == (string)value);
-                        expression = x => x.EndTime == (string)value;
+						model = list.SingleOrDefault(x => x.EndTime == (DateTime)value);
+                        expression = x => x.EndTime == (DateTime)value;
                         break;
 					case "Employee_EmpId" :
 						model = list.SingleOrDefault(x => x.Employee_EmpId == (string)value);
@@ -280,6 +280,10 @@ namespace Solution.Logic.Managers {
 					case "DepartName" :
 						model = list.SingleOrDefault(x => x.DepartName == (string)value);
                         expression = x => x.DepartName == (string)value;
+                        break;
+					case "IsVideo" :
+						model = list.SingleOrDefault(x => x.IsVideo == (byte)value);
+                        expression = x => x.IsVideo == (byte)value;
                         break;
 					case "Remark" :
 						model = list.SingleOrDefault(x => x.Remark == (string)value);
@@ -493,6 +497,7 @@ namespace Solution.Logic.Managers {
                 Employee_Name = model.Employee_Name,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
+                IsVideo = model.IsVideo,
                 Remark = model.Remark,
                 IsVaild = model.IsVaild,
             };
@@ -535,6 +540,7 @@ namespace Solution.Logic.Managers {
                 Employee_Name = model.Employee_Name,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
+                IsVideo = model.IsVideo,
                 Remark = model.Remark,
                 IsVaild = model.IsVaild,
             };
@@ -603,10 +609,10 @@ namespace Solution.Logic.Managers {
 					model.ApplyDate = (DateTime)value;
                     break;
 				case "StartTime" :
-					model.StartTime = (string)value;
+					model.StartTime = (DateTime)value;
                     break;
 				case "EndTime" :
-					model.EndTime = (string)value;
+					model.EndTime = (DateTime)value;
                     break;
 				case "Employee_EmpId" :
 					model.Employee_EmpId = (string)value;
@@ -619,6 +625,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "DepartName" :
 					model.DepartName = (string)value;
+                    break;
+				case "IsVideo" :
+					model.IsVideo = ConvertHelper.Ctinyint(value);
                     break;
 				case "Remark" :
 					model.Remark = (string)value;
@@ -1248,6 +1257,8 @@ namespace Solution.Logic.Managers {
 					return model.DepartId;
 				case "DepartName" :
 					return model.DepartName;
+				case "IsVideo" :
+					return model.IsVideo;
 				case "Remark" :
 					return model.Remark;
 				case "IsVaild" :
@@ -1480,6 +1491,25 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
+		#region 更新IsVideo字段值
+		/// <summary>
+		/// 更新IsVideo字段值
+		/// </summary>
+		/// <param name="page">當?頁面指針</param>
+		/// <param name="pkValue">主鍵Id，當等於0時，則更新所有記錄</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否魂步更新緩存</param>
+		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
+		public void UpdateIsVideo(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//設瞞更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[MeetingRoomApplyTable.IsVideo] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了MeetingRoomApply表id為【" + pkValue + "】的記錄，更新內容為將IsVideo字段值囊改為" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
+		
 		#region 更新IsVaild字段值
 		/// <summary>
 		/// 更新IsVaild字段值

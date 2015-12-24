@@ -1,9 +1,3 @@
-/// <summary>
-/// 類說明：時間類SecondToMinute(int Second) 把秒轉換成分鐘
-/// 編 碼 人：蘇飛
-/// 聯繫方式：361983679  
-/// 更新網站：http://www.sufeinet.com/thread-655-1-1.html
-/// </summary>
 using System;
 using System.Text.RegularExpressions;
 
@@ -15,7 +9,12 @@ namespace DotNet.Utilities
     /// </summary>
     public class TimeHelper
     {
-        //返回每月的第一天和最後一天
+        /// <summary>
+        /// 返回每月的第一天和最後一天
+        /// </summary>
+        /// <param name="month"></param>
+        /// <param name="firstDay"></param>
+        /// <param name="lastDay"></param>
         public static void ReturnDateFormat(int month, out string firstDay, out string lastDay)
         {
             int year = DateTime.Now.Year + month / 12;
@@ -385,5 +384,30 @@ namespace DotNet.Utilities
             return new DateTime(1900, 1, 1);
         }
         #endregion
+
+        /// <summary>
+        /// Millis the time stamp.
+        /// </summary>
+        /// <param name="theDate">The date.</param>
+        /// <returns></returns>
+        public static long MilliTimeStamp(DateTime theDate)
+        {
+            DateTime d = theDate.ToUniversalTime();
+            TimeSpan ts = new TimeSpan(d.Ticks - GetMinDate().Ticks);
+            return (long)ts.TotalMilliseconds;
+        }
+        /// <summary>
+        /// Gets the time zone.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetTimeZone()
+        {
+            DateTime now = DateTime.Now;
+            var utcnow = now.ToUniversalTime();
+
+            var sp = now - utcnow;
+
+            return sp.Hours;
+        }
     }
 }

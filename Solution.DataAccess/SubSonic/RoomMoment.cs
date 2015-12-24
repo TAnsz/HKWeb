@@ -125,6 +125,8 @@ namespace Solution.DataAccess.DataModel
                
             RoomDate = readRecord.get_datetime("RoomDate",null);
                
+            T0800 = readRecord.get_byte("T0800",null);
+               
             T0830 = readRecord.get_byte("T0830",null);
                
             T0900 = readRecord.get_byte("T0900",null);
@@ -323,6 +325,7 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("MeetingRoom_Code=" + MeetingRoom_Code + "; ");
 			sb.Append("MeetingRoom_Name=" + MeetingRoom_Name + "; ");
 			sb.Append("RoomDate=" + RoomDate + "; ");
+			sb.Append("T0800=" + T0800 + "; ");
 			sb.Append("T0830=" + T0830 + "; ");
 			sb.Append("T0900=" + T0900 + "; ");
 			sb.Append("T0930=" + T0930 + "; ");
@@ -462,6 +465,28 @@ namespace Solution.DataAccess.DataModel
                 if(_RoomDate!=value || _isLoaded){
                     _RoomDate=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RoomDate");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte? _T0800;
+		/// <summary>
+		/// 08:00--
+		/// </summary>
+        public byte? T0800
+        {
+            get { return _T0800; }
+            set
+            {
+                if(_T0800!=value || _isLoaded){
+                    _T0800=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="T0800");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

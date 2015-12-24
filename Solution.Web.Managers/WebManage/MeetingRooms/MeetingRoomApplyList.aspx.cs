@@ -66,7 +66,6 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
         private List<ConditionHelper.SqlqueryCondition> InquiryCondition()
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
-
             //會議室
             if (!string.IsNullOrEmpty(ddlRoomMoment.SelectedValue.Trim()) && !ddlRoomMoment.SelectedValue.Equals("0"))
             {

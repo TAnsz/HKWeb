@@ -1,9 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoomMomentList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.RoomMomentList" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoomMomentCal.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.RoomMomentCal" %>
 
 <%@ Import Namespace="DotNet.Utilities" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head id="Head1" runat="server">
     <title>會議室使用列表</title>
     <link href="../Css/common.css" rel="stylesheet" />
@@ -37,6 +37,7 @@
                         <f:BoundField DataField="Id" HeaderText="ID" Width="50px" Hidden="true" />
                         <f:BoundField DataField="RoomDate" SortField="RoomDate" HeaderText="日期" DataFormatString="{0:yyyy-MM-dd}" Width="100px" />
                         <f:BoundField DataField="MeetingRoom_Name" SortField="MeetingRoom_Name" HeaderText="會議室" Width="100px" />
+                        <f:LinkButtonField Width="60px" runat="server" HeaderText="08:00" Icon="BulletCross" TextAlign="Center" ToolTip="點擊申請會議室" ID="T0800" CommandName="T0800" />
                         <f:LinkButtonField Width="60px" runat="server" HeaderText="08:30" Icon="BulletCross" TextAlign="Center" ToolTip="點擊申請會議室" ID="T0830" CommandName="T0830" />
                         <f:LinkButtonField Width="60px" runat="server" HeaderText="09:00" Icon="BulletCross" TextAlign="Center" ToolTip="點擊申請會議室" ID="T0900" CommandName="T0900" />
                         <f:LinkButtonField Width="60px" runat="server" HeaderText="09:30" Icon="BulletCross" TextAlign="Center" ToolTip="點擊申請會議室" ID="T0930" CommandName="T0930" />

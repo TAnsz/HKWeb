@@ -51,6 +51,16 @@ namespace Solution.DataAccess.Model
 			set { _RoomDate = value; }
 		}
 
+		byte? _T0800;
+		/// <summary>例
+		/// 08:00--
+		/// </summary>
+		public byte? T0800
+		{
+			get { return _T0800; }
+			set { _T0800 = value; }
+		}
+
 		byte? _T0830;
 		/// <summary>例
 		/// 08:30--
@@ -331,6 +341,7 @@ namespace Solution.DataAccess.Model
 			sb.Append("MeetingRoom_Code=" + MeetingRoom_Code + "; ");
 			sb.Append("MeetingRoom_Name=" + MeetingRoom_Name + "; ");
 			sb.Append("RoomDate=" + RoomDate + "; ");
+			sb.Append("T0800=" + T0800 + "; ");
 			sb.Append("T0830=" + T0830 + "; ");
 			sb.Append("T0900=" + T0900 + "; ");
 			sb.Append("T0930=" + T0930 + "; ");

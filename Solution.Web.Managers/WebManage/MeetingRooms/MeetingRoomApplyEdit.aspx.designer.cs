@@ -67,6 +67,15 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms {
         protected global::FineUI.Button ButtonSave;
         
         /// <summary>
+        /// ButtonDelete 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDelete;
+        
+        /// <summary>
         /// Panel2 控件。
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms {
         protected global::FineUI.Label txtDepartName;
         
         /// <summary>
+        /// rblIsVideo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.RadioButtonList rblIsVideo;
+        
+        /// <summary>
         /// txtRemark 控件。
         /// </summary>
         /// <remarks>
@@ -164,15 +182,6 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextArea txtRemark;
-        
-        /// <summary>
-        /// rblIsVaild 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.RadioButtonList rblIsVaild;
         
         /// <summary>
         /// lbtips 控件。

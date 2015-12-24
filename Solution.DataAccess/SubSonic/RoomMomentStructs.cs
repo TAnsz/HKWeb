@@ -61,6 +61,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "RoomDate"
                 });
 
+                Columns.Add(new DatabaseColumn("T0800", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "T0800"
+                });
+
                 Columns.Add(new DatabaseColumn("T0830", this)
                 {
 	                IsPrimaryKey = false,
@@ -386,6 +397,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn RoomDate{
                 get{
                     return this.GetColumn("RoomDate");
+                }
+            }
+				
+            
+            public IColumn T0800{
+                get{
+                    return this.GetColumn("T0800");
                 }
             }
 				

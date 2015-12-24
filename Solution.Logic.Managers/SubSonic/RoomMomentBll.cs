@@ -249,6 +249,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.RoomDate == (DateTime)value);
                         expression = x => x.RoomDate == (DateTime)value;
                         break;
+					case "T0800" :
+						model = list.SingleOrDefault(x => x.T0800 == (byte)value);
+                        expression = x => x.T0800 == (byte)value;
+                        break;
 					case "T0830" :
 						model = list.SingleOrDefault(x => x.T0830 == (byte)value);
                         expression = x => x.T0830 == (byte)value;
@@ -553,6 +557,7 @@ namespace Solution.Logic.Managers {
                 MeetingRoom_Code = model.MeetingRoom_Code,
                 MeetingRoom_Name = model.MeetingRoom_Name,
                 RoomDate = model.RoomDate,
+                T0800 = model.T0800,
                 T0830 = model.T0830,
                 T0900 = model.T0900,
                 T0930 = model.T0930,
@@ -612,6 +617,7 @@ namespace Solution.Logic.Managers {
                 MeetingRoom_Code = model.MeetingRoom_Code,
                 MeetingRoom_Name = model.MeetingRoom_Name,
                 RoomDate = model.RoomDate,
+                T0800 = model.T0800,
                 T0830 = model.T0830,
                 T0900 = model.T0900,
                 T0930 = model.T0930,
@@ -697,6 +703,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "RoomDate" :
 					model.RoomDate = (DateTime)value;
+                    break;
+				case "T0800" :
+					model.T0800 = ConvertHelper.Ctinyint(value);
                     break;
 				case "T0830" :
 					model.T0830 = ConvertHelper.Ctinyint(value);
@@ -1385,6 +1394,8 @@ namespace Solution.Logic.Managers {
 					return model.MeetingRoom_Name;
 				case "RoomDate" :
 					return model.RoomDate;
+				case "T0800" :
+					return model.T0800;
 				case "T0830" :
 					return model.T0830;
 				case "T0900" :
@@ -1589,6 +1600,25 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
+		#region 更新T0800字段值
+		/// <summary>
+		/// 更新T0800字段值
+		/// </summary>
+		/// <param name="page">當?頁面指針</param>
+		/// <param name="pkValue">主鍵Id，當等於0時，則更新所有記錄</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否魂步更新緩存</param>
+		/// <param name="isAddUseLog">是否添加用戶操作?志</param>
+		public void UpdateT0800(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//設瞞更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[RoomMomentTable.T0800] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了RoomMoment表id為【" + pkValue + "】的記錄，更新內容為將T0800字段值囊改為" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
+		
 		#region 更新T0830字段值
 		/// <summary>
 		/// 更新T0830字段值

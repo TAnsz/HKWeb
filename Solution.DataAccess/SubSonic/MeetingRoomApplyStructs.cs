@@ -54,7 +54,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
-	                IsNullable = true,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 16,
@@ -76,7 +76,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.DateTime,
-	                IsNullable = true,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -86,22 +86,22 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("StartTime", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
+	                DataType = DbType.DateTime,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 5,
+	                MaxLength = 0,
 					PropertyName = "StartTime"
                 });
 
                 Columns.Add(new DatabaseColumn("EndTime", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
+	                DataType = DbType.DateTime,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 5,
+	                MaxLength = 0,
 					PropertyName = "EndTime"
                 });
 
@@ -109,7 +109,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
-	                IsNullable = true,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 16,
@@ -147,6 +147,17 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 100,
 					PropertyName = "DepartName"
+                });
+
+                Columns.Add(new DatabaseColumn("IsVideo", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "IsVideo"
                 });
 
                 Columns.Add(new DatabaseColumn("Remark", this)
@@ -255,6 +266,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn DepartName{
                 get{
                     return this.GetColumn("DepartName");
+                }
+            }
+				
+            
+            public IColumn IsVideo{
+                get{
+                    return this.GetColumn("IsVideo");
                 }
             }
 				

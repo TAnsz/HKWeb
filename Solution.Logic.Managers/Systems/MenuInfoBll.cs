@@ -214,6 +214,8 @@ namespace Solution.Logic.Managers
                 //检查是否从正确路径进入
                 CheckPageEncrypt(page);
 
+                //非页面按页面前缀检测，即页面的函数同页面的权限
+                currentPage = StringHelper.DelLastChar(currentPage, ".aspx") + ".aspx";
 
                 //获取当前用户所有可以访问的页面ID
                 var menuId = GetMenuInfo(currentPage).Id + "";

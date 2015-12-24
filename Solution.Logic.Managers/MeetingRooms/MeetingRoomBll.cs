@@ -4,6 +4,8 @@ using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
 using System.Collections.Generic;
+using System.Linq;
+using Solution.DataAccess.Model;
 using SubSonic.Query;
 
 namespace Solution.Logic.Managers
@@ -38,10 +40,10 @@ namespace Solution.Logic.Managers
                 //绑定数据源
                 ddl.DataSource = dt;
                 ddl.DataBind();
-                ddl.SelectedIndex = 0;
+                //ddl.SelectedIndex = 0;
 
-                ddl.Items.Insert(0, new FineUI.ListItem("请选择会议室", "0"));
-                ddl.SelectedValue = "0";
+                //ddl.Items.Insert(0, new FineUI.ListItem("請選擇會議室", "0"));
+                //ddl.SelectedValue = "0";
             }
             catch (Exception e)
             {
@@ -50,7 +52,7 @@ namespace Solution.Logic.Managers
             }
         }
         #endregion
-
+        
         #endregion 自定义函数
 
     }

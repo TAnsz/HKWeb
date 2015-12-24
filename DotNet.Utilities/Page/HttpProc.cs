@@ -1,7 +1,6 @@
 /// <summary>
 ///  ˵÷㺁ssistant
-/// ᠠ« ȋ㺋շɍ
-/// jϵ罊���361983679  
+/// ?��??㺋շ�?/// jϵ罊���361983679  
 /// 輐蕾㺨ttp://www.sufeinet.com/thread-655-1-1.html
 /// </summary>
 using System;
@@ -16,14 +15,14 @@ using System.Net.Cache;
 namespace DotNet.Utilities
 {
     /// <summary>    
-    /// ɏ䫊���⎊���  
+    /// ?䫊�??��?  
     /// </summary>    
     public class UploadEventArgs : EventArgs
     {
         int bytesSent;
         int totalBytes;
         /// <summary>    
-        /// ґ岢͵ėֽڊ���  
+        /// ?岢͵ėֽڊ�?  
         /// </summary>    
         public int BytesSent
         {
@@ -31,7 +30,7 @@ namespace DotNet.Utilities
             set { bytesSent = value; }
         }
         /// <summary>    
-        /// לז횊���  
+        /// ???��?  
         /// </summary>    
         public int TotalBytes
         {
@@ -40,7 +39,7 @@ namespace DotNet.Utilities
         }
     }
     /// <summary>    
-    /// ςԘʽΊ���  
+    /// ??ʽ?�Ί�?  
     /// </summary>    
     public class DownloadEventArgs : EventArgs
     {
@@ -48,7 +47,7 @@ namespace DotNet.Utilities
         int totalBytes;
         byte[] receivedData;
         /// <summary>    
-        /// ґ퓊յėֽڊ���  
+        /// ??�յėֽڊ�?  
         /// </summary>    
         public int BytesReceived
         {
@@ -56,7 +55,7 @@ namespace DotNet.Utilities
             set { bytesReceived = value; }
         }
         /// <summary>    
-        /// לז횊���  
+        /// ???��?  
         /// </summary>    
         public int TotalBytes
         {
@@ -64,7 +63,7 @@ namespace DotNet.Utilities
             set { totalBytes = value; }
         }
         /// <summary>    
-        /// 屇໺㥇轓ʕ儊���    
+        /// 屇໺㥇�???��?    
         /// </summary>    
         public byte[] ReceivedData
         {
@@ -89,7 +88,7 @@ namespace DotNet.Utilities
             LoadCookiesFromDisk();
         }
         /// <summary>    
-        /// 䴽藥bClient儊啥    
+        /// 䴽藥bClient?�啥    
         /// </summary>    
         public WebClient()
         {
@@ -97,7 +96,7 @@ namespace DotNet.Utilities
             responseHeaders = new WebHeaderCollection();
         }
         /// <summary>    
-        /// ɨփ岢ͺͽӊյĊ���뺳崳    
+        /// ɨ?岢ͺͽӊյĊ�?뺳崳??   
         /// </summary>    
         public int BufferSize
         {
@@ -105,21 +104,21 @@ namespace DotNet.Utilities
             set { bufferSize = value; }
         }
         /// <summary>    
-        /// 뱈ᏬӦͷ쯺Ϡ   
+        /// 뱈ᏬӦͷ쯺�?  
         /// </summary>    
         public WebHeaderCollection ResponseHeaders
         {
             get { return responseHeaders; }
         }
         /// <summary>    
-        /// 뱈ᇫǳͷ쯺Ϡ   
+        /// 뱈ᇫǳͷ쯺�?  
         /// </summary>    
         public WebHeaderCollection RequestHeaders
         {
             get { return requestHeaders; }
         }
         /// <summary>    
-        /// 뱈Ỳɨփ龜���  
+        /// 뱈Ỳɨ?龜�?  
         /// </summary>    
         public WebProxy Proxy
         {
@@ -127,7 +126,7 @@ namespace DotNet.Utilities
             set { proxy = value; }
         }
         /// <summary>    
-        /// 뱈ỲɨփǫǳӫϬӦ載ı«罊���  
+        /// 뱈Ỳɨ?ǫǳӫϬӦ載ı�?«罊�?  
         /// </summary>    
         public Encoding Encoding
         {
@@ -135,7 +134,7 @@ namespace DotNet.Utilities
             set { encoding = value; }
         }
         /// <summary>    
-        /// 뱈ỲɨփϬӦ質tml亂렠  
+        /// 뱈Ỳɨ?ϬӦ質tml亂�?  
         /// </summary>    
         public string RespHtml
         {
@@ -143,7 +142,7 @@ namespace DotNet.Utilities
             set { respHtml = value; }
         }
         /// <summary>    
-        /// 뱈Ỳɨփӫǫǳ閣굄CookieȝƷ    
+        /// 뱈Ỳɨ?ӫǫǳ???Cookie?Ʒ    
         /// </summary>    
         public CookieContainer CookieContainer
         {
@@ -151,7 +150,7 @@ namespace DotNet.Utilities
             set { cc = value; }
         }
         /// <summary>    
-        ///  뱈፸ҳԴ亂렠  
+        ///  뱈፸ҳԴ亂�?  
         /// </summary>    
         /// <param name="url">͸ַ</param>    
         /// <returns></returns>    
@@ -162,10 +161,10 @@ namespace DotNet.Utilities
             return respHtml;
         }
         /// <summary>    
-        /// ςԘ΄쾠   
+        /// ???�?  
         /// </summary>    
-        /// <param name="url">΄쾕RL嘖繒param>    
-        /// <param name="filename">΄쾱㴦ͪջ·/param>    
+        /// <param name="url">?쾕RL?��?param>    
+        /// <param name="filename">?쾱㴦ͪջ·�?param>    
         public void DownloadFile(string url, string filename)
         {
             FileStream fs = null;
@@ -182,7 +181,7 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// 䓖趨URLςԘʽ   
+        /// ?�趨URL??ʽ??  
         /// </summary>    
         /// <param name="url">͸ַ</param>    
         /// <returns></returns>    
@@ -192,10 +191,10 @@ namespace DotNet.Utilities
             return GetData(request);
         }
         /// <summary>    
-        /// ϲָ樕RL岢͎ı   
+        /// ϲָ樕RL岢͎ı??  
         /// </summary>    
         /// <param name="url">͸ַ</param>    
-        /// <param name="postData">urlencode᠂뵄΄ᾊ���</param>    
+        /// <param name="postData">urlencode?��??ᾊ�?</param>    
         /// <returns></returns>    
         public string Post(string url, string postData)
         {
@@ -203,7 +202,7 @@ namespace DotNet.Utilities
             return Post(url, data);
         }
         /// <summary>    
-        /// ϲָ樕RL岢ֽ͗ڊ���    
+        /// ϲָ樕RL岢ֽ͗ڊ�?    
         /// </summary>    
         /// <param name="url">͸ַ</param>    
         /// <param name="postData">岢͵ėֽڊ헩</param>    
@@ -219,7 +218,7 @@ namespace DotNet.Utilities
             return respHtml;
         }
         /// <summary>    
-        /// ϲָ樍薷岢ͭulitpart᠂뵄ʽ   
+        /// ϲָ樍薷岢ͭulitpart?��?ʽ??  
         /// </summary>    
         /// <param name="url">͸ַ</param>    
         /// <param name="mulitpartForm">mulitpart form data</param>    
@@ -236,9 +235,9 @@ namespace DotNet.Utilities
         }
         
         /// <summary>    
-        /// 恈ᇫǳ絻صĊ���    
+        /// ?�ᇫǳ絻صĊ�?    
         /// </summary>    
-        /// <param name="request">ǫǳ攏㼯param>    
+        /// <param name="request">ǫǳ?�㼯param>    
         /// <returns></returns>    
         private byte[] GetData(HttpWebRequest request)
         {
@@ -266,7 +265,7 @@ namespace DotNet.Utilities
                 }
             }
             stream.Close();
-            //���頠  
+            //����?  
             if (ResponseHeaders[HttpResponseHeader.ContentEncoding] != null)
             {
                 MemoryStream msTemp = new MemoryStream();
@@ -295,9 +294,9 @@ namespace DotNet.Utilities
             return ms.ToArray();
         }
         /// <summary>    
-        /// 岢͇뇳ʽ   
+        /// 岢͇뇳ʽ??  
         /// </summary>    
-        /// <param name="request">ǫǳ攏㼯param>    
+        /// <param name="request">ǫǳ?�㼯param>    
         /// <param name="postData">ǫǳ岢͵ėֽڊ헩</param>    
         private void PostData(HttpWebRequest request, byte[] postData)
         {
@@ -321,9 +320,9 @@ namespace DotNet.Utilities
             stream.Close();
         }
         /// <summary>    
-        /// 䴽舔TPǫǳ    
+        /// 䴽�?TPǫǳ    
         /// </summary>    
-        /// <param name="url">URL嘖繒param>    
+        /// <param name="url">URL?��?param>    
         /// <returns></returns>    
         private HttpWebRequest CreateRequest(string url, string method)
         {
@@ -355,7 +354,7 @@ namespace DotNet.Utilities
             return true;
         }
         /// <summary>    
-        /// ���ookieᣴ浽䅅̠   
+        /// ���ookieᣴ浽?��?  
         /// </summary>    
         private static void SaveCookiesToDisk()
         {
@@ -373,7 +372,7 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// 䓴Ņ̼Ӕ؃ookie    
+        /// ?�Ņ̼Ӕ؃ookie    
         /// </summary>    
         private static void LoadCookiesFromDisk()
         {
@@ -400,7 +399,7 @@ namespace DotNet.Utilities
 
 
     /// <summary>    
-    /// 攎ļ΄ᾊ������ЍultipartЎʽ儱«    
+    /// ?�ļ�??ᾊ�?���Ѝultipart?ʽ?��?   
     /// </summary>    
     public class MultipartForm
     {
@@ -409,7 +408,7 @@ namespace DotNet.Utilities
         private string boundary;
         private byte[] formData;
         /// <summary>    
-        /// 뱈ᱠ«공ėֽڊ헩    
+        /// 뱈�?«공ėֽڊ헩    
         /// </summary>    
         public byte[] FormData
         {
@@ -425,14 +424,14 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// 뱈ᴋ᠂넚ȝ儀Ѝ    
+        /// 뱈�??��???�?    
         /// </summary>    
         public string ContentType
         {
             get { return string.Format("multipart/form-data; boundary={0}", this.boundary); }
         }
         /// <summary>    
-        /// 뱈Ỳɨփ攗ַ봮≓oı« Ѝ    
+        /// 뱈Ỳɨ??�ַ봮?�oı« ?    
         /// </summary>    
         public Encoding StringEncoding
         {
@@ -440,7 +439,7 @@ namespace DotNet.Utilities
             get { return encoding; }
         }
         /// <summary>    
-        /// ʵ=믠   
+        /// ʵ=�?  
         /// </summary>    
         public MultipartForm()
         {
@@ -449,14 +448,14 @@ namespace DotNet.Utilities
             encoding = Encoding.Default;
         }
         /// <summary>    
-        /// ̭쓒븶΄쾠   
+        /// ̭?�븶?�?  
         /// </summary>    
-        /// <param name="name">΄쾓⃻ㆼ/param>    
-        /// <param name="filename">΄쾵čꕻ·/param>    
+        /// <param name="name">?쾓⃻??param>    
+        /// <param name="filename">?쾵čꕻ·�?param>    
         public void AddFlie(string name, string filename)
         {
             if (!File.Exists(filename))
-                throw new FileNotFoundException("㢊Ԍ���⻴攚載ļ", filename);
+                throw new FileNotFoundException("㢊Ԍ�?⻴�?載ļ", filename);
             FileStream fs = null;
             byte[] fileData = { };
             try
@@ -476,12 +475,12 @@ namespace DotNet.Utilities
             }
         }
         /// <summary>    
-        /// ̭쓒븶΄쾠   
+        /// ̭?�븶?�?  
         /// </summary>    
-        /// <param name="name">΄쾓⃻ㆼ/param>    
-        /// <param name="filename">΄쾃뼯param>    
-        /// <param name="fileData">΄쾶ֆʽ/param>    
-        /// <param name="dataLength">澽薆ʽ㐡</param>    
+        /// <param name="name">?쾓⃻??param>    
+        /// <param name="filename">?쾃뼯param>    
+        /// <param name="fileData">?쾶?ʽ??param>    
+        /// <param name="dataLength">澽�?ʽ?�㐡</param>    
         public void AddFlie(string name, string filename, byte[] fileData, int dataLength)
         {
             if (dataLength <= 0 || dataLength > fileData.Length)
@@ -500,10 +499,10 @@ namespace DotNet.Utilities
             ms.Write(crlf, 0, crlf.Length);
         }
         /// <summary>    
-        /// ̭쓗ַ봮    
+        /// ̭?�ַ봮    
         /// </summary>    
-        /// <param name="name">΄ᾓ⃻ㆼ/param>    
-        /// <param name="value">΄ᾖ彎param>    
+        /// <param name="name">?ᾓ⃻??param>    
+        /// <param name="value">?ᾖ�?param>    
         public void AddString(string name, string value)
         {
             StringBuilder sb = new StringBuilder();
@@ -515,7 +514,7 @@ namespace DotNet.Utilities
             ms.Write(buf, 0, buf.Length);
         }
         /// <summary>    
-        /// 䓗ⲡ᭻ሡ΄쾀Ѝ    
+        /// ?�ⲡ᭻ሡ?쾀?    
         /// </summary>    
         /// <param name="filename">༺쀩չu載ļ</param>    
         /// <returns>ȧ㺡pplication/stream</returns>    

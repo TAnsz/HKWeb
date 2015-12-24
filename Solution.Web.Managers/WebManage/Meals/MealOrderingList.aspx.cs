@@ -67,25 +67,29 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <returns></returns>
         private List<ConditionHelper.SqlqueryCondition> InquiryCondition()
         {
+            //隻顯示有效的記錄
             var wheres = new List<ConditionHelper.SqlqueryCondition>
             {
                 new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild, Comparison.Equals,
                     1)
             };
-            //隻顯示有效的記錄
-
             //員工編號
             if (!string.IsNullOrEmpty(ttbxEmp.Text.Trim()))
             {
                 //轉換成數組
                 var s = ttbxEmp.Text.Trim().Split(',');
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.In, s));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.Employee_EmpId, Comparison.In, s, true));
+                wheres.Add(new ConditionHelper.SqlqueryCondition());//加右括號
             }
-            //起始時間
-            if (string.IsNullOrEmpty(dpStart.Text.Trim())) return wheres;
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.GreaterOrEquals, StringHelper.FilterSql(dpStart.Text)));
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate, Comparison.LessOrEquals, StringHelper.FilterSql(dpEnd.Text)));
 
+            //起始時間
+            if (!string.IsNullOrEmpty(dpStart.Text.Trim()))
+            {
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate,
+                    Comparison.GreaterOrEquals, dpStart.SelectedDate));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate,
+                    Comparison.LessOrEquals, dpEnd.SelectedDate));
+            }
             return wheres;
         }
         #endregion

@@ -31,6 +31,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Pop
             if (!IsPostBack)
             {
                 var empid = RequestHelper.GetString("EmpId");
+                txtFind.Text = RequestHelper.GetString("Default");
                 hEmpid.Text = string.IsNullOrEmpty(empid) ? OnlineUsersBll.GetInstence().GetManagerEmpId() : empid;
                 //加載數據
                 LoadData();
@@ -54,7 +55,22 @@ namespace Solution.Web.Managers.WebManage.Systems.Pop
             var empid = hEmpid.Text;
             var dt = SPs.pro_USERAUTHORITY_REPORT(empid).ExecuteDataTable();
             if (dt == null) return;
-            BandingTree(dt);
+            if (string.IsNullOrEmpty(txtFind.Text))
+            {
+                BandingTree(dt);
+                return;
+            }
+
+            DataRow[] drs = dt.Select(string.Format("{0} Like '%{2}%' OR {1} Like '%{2}%'", dt.Columns[2].ColumnName, dt.Columns[1].ColumnName, txtFind.Text));
+            if (drs.Length > 0)
+            {
+                MenuTree.Nodes.Clear();
+                foreach (var row in drs)
+                {
+                    row[dt.Columns[4].ColumnName] = "0";
+                }
+                BandingTree(drs.CopyToDataTable());
+            }
         }
         /// <summary>
         /// 綁定數據到樹

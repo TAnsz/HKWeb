@@ -61,31 +61,31 @@ namespace Solution.DataAccess.Model
 			set { _MeetingRoom_Name = value; }
 		}
 
-		DateTime? _ApplyDate = new DateTime(1900,1,1);
+		DateTime _ApplyDate = new DateTime(1900,1,1);
 		/// <summary>
-		/// 申?日期
+		/// 申請日期
 		/// </summary>
-		public DateTime? ApplyDate
+		public DateTime ApplyDate
 		{
 			get { return _ApplyDate; }
 			set { _ApplyDate = value; }
 		}
 
-		string _StartTime = "";
+		DateTime _StartTime = new DateTime(1900,1,1);
 		/// <summary>
-		/// ?始??
+		/// 開始時間
 		/// </summary>
-		public string StartTime
+		public DateTime StartTime
 		{
 			get { return _StartTime; }
 			set { _StartTime = value; }
 		}
 
-		string _EndTime = "";
+		DateTime _EndTime = new DateTime(1900,1,1);
 		/// <summary>
-		/// ?束?据
+		/// 結束時間
 		/// </summary>
-		public string EndTime
+		public DateTime EndTime
 		{
 			get { return _EndTime; }
 			set { _EndTime = value; }
@@ -131,6 +131,16 @@ namespace Solution.DataAccess.Model
 			set { _DepartName = value; }
 		}
 
+		byte _IsVideo;
+		/// <summary>例
+		/// 是否視頻會議
+		/// </summary>
+		public byte IsVideo
+		{
+			get { return _IsVideo; }
+			set { _IsVideo = value; }
+		}
+
 		string _Remark = "";
 		/// <summary>
 		/// 備注
@@ -169,6 +179,7 @@ namespace Solution.DataAccess.Model
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
+			sb.Append("IsVideo=" + IsVideo + "; ");
 			sb.Append("Remark=" + Remark + "; ");
 			sb.Append("IsVaild=" + IsVaild + "; ");
 			return sb.ToString();
