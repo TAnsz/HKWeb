@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="WebManage\Js\page\index.js" />
+    <Content Include="WebManage\Js\plugin\xgcalendar.js" />
     <Content Include="WebManage\Meals\Report.aspx" />
     <Content Include="WebManage\Meals\MealOrderingEdit.aspx" />
     <Content Include="WebManage\Meals\MealOrderingList.aspx" />
