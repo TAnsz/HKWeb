@@ -184,7 +184,7 @@ namespace Solution.Logic.Managers
             else
             {
                 title = "需要你審批!";
-                sto = mail;
+                sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
             }
 
             msg.AppendLine(string.Format("單號:{0}", model.bill_id));

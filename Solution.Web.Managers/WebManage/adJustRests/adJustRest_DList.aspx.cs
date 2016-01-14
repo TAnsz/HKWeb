@@ -131,41 +131,43 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         {
             //綁定是否顯示
             DataRowView row = e.DataItem as DataRowView;
-            if (row != null && row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit].ToString() == "0")
+            if (row != null)
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
                 if (lbf != null)
                 {
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
+                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "1")
+                    {
+                        lbf.Icon = Icon.BulletTick;
+                        lbf.CommandArgument = "0";
+                    }
+                    else
+                    {
+                        lbf.Icon = Icon.BulletCross;
+                        lbf.CommandArgument = "1";
+                    }
                 }
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                if (lbf != null)
+                var lbf2 = Grid1.FindColumn("audit") as LinkButtonField;
+                if (lbf2 != null)
                 {
-                    lbf.Icon = Icon.BulletTick;
-                    lbf.CommandArgument = "0";
-                }
-            }
-
-            if (row != null && row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit2].ToString() == "0")
-            {
-                var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                if (lbf != null)
-                {
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
-                }
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                if (lbf != null)
-                {
-                    lbf.Icon = Icon.BulletTick;
-                    lbf.CommandArgument = "0";
+                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() == "1")
+                    {
+                        lbf2.Icon = Icon.BulletTick;
+                        lbf2.CommandArgument = "0";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
+                        {
+                            lbf2.Icon = Icon.PageWhite;
+                            lbf2.CommandArgument = "";
+                        }
+                        else
+                        {
+                            lbf2.Icon = Icon.BulletCross;
+                            lbf2.CommandArgument = "1";
+                        }
+                    }
                 }
             }
 

@@ -127,7 +127,7 @@
                 prevent = p;
             if (prevent) {
                 return this.each(function () {
-                    if ($.browser.msie || $.browser.safari) $(this).bind('selectstart', function () { return false; });
+                    if ((/msie/.test(navigator.userAgent.toLowerCase()) || $.browser.safari)) $(this).bind('selectstart', function () { return false; });
                     else if ($.browser.mozilla) {
                         $(this).css('MozUserSelect', 'none');
                         $('body').trigger('focus');
@@ -138,7 +138,7 @@
 
             } else {
                 return this.each(function () {
-                    if ($.browser.msie || $.browser.safari) $(this).unbind('selectstart');
+                    if ((/msie/.test(navigator.userAgent.toLowerCase()) || $.browser.safari)) $(this).unbind('selectstart');
                     else if ($.browser.mozilla) $(this).css('MozUserSelect', 'inherit');
                     else if ($.browser.opera) $(this).unbind('mousedown');
                     else $(this).removeAttr('unselectable', 'on');
@@ -374,7 +374,7 @@
             html.push("</div>");
 
             //onclick=\"javascript:FunProxy('rowhandler',event,this);\"
-            html.push("<div id=\"dvtec\"  class=\"scolltimeevent\"><table style=\"table-layout: fixed;", jQuery.browser.msie ? "" : "width:100%", "\" cellspacing=\"0\" cellpadding=\"0\"><tbody><tr><td>");
+            html.push("<div id=\"dvtec\"  class=\"scolltimeevent\"><table style=\"table-layout: fixed;",/msie/.test(navigator.userAgent.toLowerCase()) ? "" : "width:100%", "\" cellspacing=\"0\" cellpadding=\"0\"><tbody><tr><td>");
             html.push("<table style=\"height: ", alheight, "px\" id=\"tgTable\" class=\"tg-timedevents\" cellspacing=\"0\" cellpadding=\"0\"><tbody>");
             BuildDayScollEventContainer(html, days, scollDayEvents);
             html.push("</tbody></table></td></tr></tbody></table></div>");
@@ -1290,10 +1290,10 @@
             var sy2 = Math.max(y1, y2);
             var t1 = (sy1 - pt) / 42;
             var t2 = parseInt(t1) + option.stime;
-            var t3 = t1 - t2 >= 0.5 ? 30 : 0;
+            var t3 = t1 + option.stime - t2 >= 0.5 ? 30 : 0;
             var t4 = (sy2 - pt) / 42;
             var t5 = parseInt(t4) + option.stime;
-            var t6 = t4 - t5 >= 0.5 ? 30 : 0;
+            var t6 = t4 + option.stime - t5 >= 0.5 ? 30 : 0;
             return { sh: t2, sm: t3, eh: t5, em: t6, h: sy2 - sy1 };
         }
         function pZero(n) {
@@ -1419,7 +1419,7 @@
                 starttime: [pZero(sh), pZero(sm)].join(":"),
                 endtime: [pZero(eh), pZero(em)].join(":"),
                 content: title ? title : i18n.xgcalendar.new_event,
-                remark:"",
+                remark: "",
                 title: title ? title : i18n.xgcalendar.new_event,
                 icon: "<I class=\"cic cic-tmr\">&nbsp;</I>",
                 top: "0px",
@@ -1677,13 +1677,15 @@
                 }
                 option.isloading = true;
                 var id = data[0];
+                var title = data[1];
                 var os = data[2];
                 var od = data[3];
                 var zone = new Date().getTimezoneOffset() / 60 * -1;
                 var param = [{ "name": "calendarId", value: id },
-                            { "name": "CalendarStartTime", value: dateFormat.call(start, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
-                            { "name": "CalendarEndTime", value: dateFormat.call(end, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
-                            { "name": "timezone", value: zone }
+                    { "name": "CalendarTitle", value: title },
+                    { "name": "CalendarStartTime", value: dateFormat.call(start, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
+                    { "name": "CalendarEndTime", value: dateFormat.call(end, i18n.xgcalendar.dateformat.fulldayvalue + " HH:mm") },
+                    { "name": "timezone", value: zone }
                 ];
                 var d;
                 if (option.quickUpdateHandler && $.isFunction(option.quickUpdateHandler)) {
@@ -1867,7 +1869,7 @@
                 realsedragevent();
             });
 
-            
+
 
             return false;
         }
@@ -1968,7 +1970,7 @@
                 }
                 var dvwkH = $dvwkcontaienr.height() + 2;
                 var calH = option.height - 8 - dvwkH;
-                $dvtec.height(calH);
+                $dvtec.height(Math.min($dvtec.height, calH));
                 if (typeof (option.scoll) == "undefined") {
                     //设置滚动条的位置
                     var currentday = new Date();

@@ -138,47 +138,45 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //綁定是否顯示
             DataRowView row = e.DataItem as DataRowView;
-            if (row != null && row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "0")
+            if (row != null)
             {
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
                 if (lbf != null)
                 {
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
-                }
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("audit") as LinkButtonField;
-                if (lbf != null)
-                {
-                    lbf.Icon = Icon.BulletTick;
-                    lbf.CommandArgument = "0";
-                }
-            }
-
-            if (row == null || row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() != "0")
-            {
-                var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                if (lbf != null)
-                {
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
-                }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
-                {
-                    var lbf = Grid1.FindColumn("audit2") as LinkButtonField;
-                    if (lbf != null)
+                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "1")
                     {
-                        //lbf.Icon = Icon.;
-                        lbf.CommandArgument = "";
+                        lbf.Icon = Icon.BulletTick;
+                        lbf.CommandArgument = "0";
+                    }
+                    else
+                    {
+                        lbf.Icon = Icon.BulletCross;
+                        lbf.CommandArgument = "1";
+                    }
+                }
+                var lbf2 = Grid1.FindColumn("audit2") as LinkButtonField;
+                if (lbf2 != null)
+                {
+                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() == "1")
+                    {
+                        lbf2.Icon = Icon.BulletTick;
+                        lbf2.CommandArgument = "0";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
+                        {
+                            lbf2.Icon = Icon.PageWhite;
+                            lbf2.CommandArgument = "2";
+                        }
+                        else
+                        {
+                            lbf2.Icon = Icon.BulletCross;
+                            lbf2.CommandArgument = "1";
+                        }
                     }
                 }
             }
-
             //綁定是否編輯列
             var lbfEdit = Grid1.FindColumn("ButtonEdit") as LinkButtonField;
             if (lbfEdit == null) return;
@@ -203,6 +201,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             switch (e.CommandName)
             {
                 case "IsAudit":
+                    if (value > 1)
+                    {
+                        return;
+                    }
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check1);
                     result = string.IsNullOrEmpty(result)
@@ -213,6 +215,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     LoadData();
                     break;
                 case "IsAudit2":
+                    if (value > 1)
+                    {
+                        return;
+                    }
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check2);
                     result = string.IsNullOrEmpty(result)
@@ -281,7 +287,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             try
             {
                 //判斷是否可以刪除
-                if (OutWork_DBll.GetInstence().GetRecordCount(x => id.Contains((int)x.Id) && x.audit == 1) > 0)
+                if (OutWork_DBll.GetInstence().GetRecordCount(x => id.Contains((int)x.Id) && x.audit == 1 && (x.leave_id != "1001") && (x.leave_id != "1002") && (x.leave_id != "1003")) > 0)
                 {
                     return "所選單據中有部分已審核，請檢查";
                 }

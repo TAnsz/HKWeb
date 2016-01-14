@@ -82,7 +82,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                     Comparison.GreaterOrEquals, qstart),
                     new ConditionHelper.SqlqueryCondition(ConstraintType.And, MeetingRoomApplyTable.ApplyDate,
                     Comparison.LessOrEquals, qend)
-            });
+            }, new List<string> { MeetingRoomApplyTable.StartTime + " ASC" });
                 List<CalendarM> list = new List<CalendarM>();
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -90,23 +90,14 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                                   select new CalendarM
                                   {
                                       Id = int.Parse(dr[MeetingRoomApplyTable.Id].ToString()),
-                                      Subject = dr[MeetingRoomApplyTable.MeetingRoom_Name].ToString(),
+                                      Subject = string.Format("{0}[{1}]{2}", dr[MeetingRoomApplyTable.MeetingRoom_Name], dr[MeetingRoomApplyTable.Employee_Name], dr[MeetingRoomApplyTable.IsVideo].ToString() == "1" ? "(視頻)" : " "),
                                       StartTime = Convert.ToDateTime(dr[MeetingRoomApplyTable.StartTime]),
                                       EndTime = Convert.ToDateTime(dr[MeetingRoomApplyTable.EndTime]),
-                                      Location = string.Format("{0}({1})", dr[MeetingRoomApplyTable.Employee_Name], dr[MeetingRoomApplyTable.DepartName]),
+                                      Location = dr[MeetingRoomApplyTable.DepartName] + "",
                                       Category = StringHelper.GetNumber(dr[MeetingRoomApplyTable.MeetingRoom_Code].ToString()) + ""
                                   });
-                    //callist.AddRange(dt.Select(item => new CalendarM
-                    //{
-                    //    Id = (int)item.,
-                    //    Subject = item.MeetingRoom_Name,
-                    //    StartTime = item.StartTime,
-                    //    EndTime = item.EndTime,
-                    //    Description = string.Format("申請人:{0} 部門:{1}", item.Employee_Name, item.DepartName)
-                    //}));
                 }
                 //日程格式
-
                 data =
                     JsonConvert.SerializeObject(
                         new JsonCalendarViewData(ConvertToStringArray(list), format.StartDate, format.EndDate),
@@ -138,53 +129,62 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
         {
             Page page = HttpContext.Current.Handler as Page;
             var form = context.Request.Form;
+            var msg = new JsonReturnMessages();
             var id = ConvertHelper.Clng(form["calendarId"]);
             //取得人员部门相关信息
             var key = context.Session[OnlineUsersTable.UserHashKey] + "";
 
-            var model = new DataAccess.DataModel.MeetingRoomApply(x => x.Id == id)
-                {
-                    MeetingRoom_Code = form["CalendarCode"],
-                    MeetingRoom_Name = form["CalendarTitle"],
-                    ApplyDate = Convert.ToDateTime(form["CalendarStartTime"]).Date,
-                    StartTime = Convert.ToDateTime(form["CalendarStartTime"]),
-                    EndTime = Convert.ToDateTime(form["CalendarEndTime"]),
-                    Employee_EmpId = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_LoginName).ToString(),
-                    Employee_Name = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_CName).ToString(),
-                    DepartId = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString(),
-                    DepartName = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Name).ToString(),
-                };
-            var msg = new JsonReturnMessages();
-            try
+            //判斷是否有權限修改
+
+            if (!MeetingRoomApplyBll.GetInstence().DeleteBefore((int)id))
             {
-                //----------------------------------------------------------
-                //判断是否重复申请
-                //同時段不能重複申請
-                if (MeetingRoomApplyBll.GetInstence().Exist(x => x.MeetingRoom_Code == model.MeetingRoom_Code &&
-                    x.ApplyDate == model.ApplyDate &&
-                    x.IsVaild == 1 &&
-                    ((x.StartTime <= model.StartTime && x.EndTime > model.StartTime) ||
-                    (x.StartTime <= model.EndTime && x.EndTime > model.EndTime) ||
-                    (x.StartTime >= model.StartTime && x.EndTime < model.EndTime)
-                    ) && x.Id != model.Id))
-                {
-                    msg.IsSuccess = false;
-                    msg.Msg = "該時間段已申請！請更換時間段！";
-                }
-                else
-                {
-                    //存儲到數據庫
-                    MeetingRoomApplyBll.GetInstence().Save(page, model);
-                    msg.IsSuccess = true;
-                    msg.Msg = "操作成功！";
-                }
-            }
-            catch (Exception e)
-            {
-                //出現異常，保存出錯?志信息
-                CommonBll.WriteLog("日程更新失败Id:" + id, e);
                 msg.IsSuccess = false;
-                msg.Msg = "操作失败！";
+                msg.Msg = "非本人申請單據，無法修改！";
+            }
+            else
+            {
+                var model = new DataAccess.DataModel.MeetingRoomApply(x => x.Id == id)
+                    {
+                        ApplyDate = Convert.ToDateTime(form["CalendarStartTime"]).Date,
+                        StartTime = Convert.ToDateTime(form["CalendarStartTime"]),
+                        EndTime = Convert.ToDateTime(form["CalendarEndTime"]),
+                        Employee_EmpId = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_LoginName).ToString(),
+                        Employee_Name = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_CName).ToString(),
+                        DepartId = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString(),
+                        DepartName = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Name).ToString(),
+                    };
+                model.MeetingRoom_Code = form["CalendarCode"] ?? model.MeetingRoom_Code;
+                model.MeetingRoom_Name = form["CalendarTitle"] ?? model.MeetingRoom_Name;
+                try
+                {
+                    //----------------------------------------------------------
+                    //判断是否重复申请
+                    //同時段不能重複申請
+                    if (MeetingRoomApplyBll.GetInstence().Exist(x => x.MeetingRoom_Name == model.MeetingRoom_Name
+                        && x.ApplyDate == model.ApplyDate
+                        && ((x.StartTime > model.StartTime ? x.StartTime : model.StartTime) <
+                                                       (x.EndTime < model.EndTime ? x.EndTime : model.EndTime))
+                        && x.Id != model.Id))
+                    {
+                        msg.IsSuccess = false;
+                        msg.Msg = "該時間段已申請！請更換時間段！";
+                    }
+                    else
+                    {
+                        //存儲到數據庫
+                        MeetingRoomApplyBll.GetInstence().Save(page, model);
+                        msg.IsSuccess = true;
+                        msg.Msg = "操作成功！";
+                        msg.Data = model.Id;
+                    }
+                }
+                catch (Exception e)
+                {
+                    //出現異常，保存出錯?志信息
+                    CommonBll.WriteLog("日程更新失败Id:" + id, e);
+                    msg.IsSuccess = false;
+                    msg.Msg = "操作失败！";
+                }
             }
             var data = JsonConvert.SerializeObject(msg);
             context.Response.Write(data);
@@ -202,21 +202,34 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
 
             var form = context.Request.Form;
             var id = Convert.ToInt32(form["calendarId"]);
+            bool issuccess = true;
+            string smsg = "刪除成功";
             if (id >= 0)
             {
                 try
                 {
-                    MeetingRoomApplyBll.GetInstence().Delete(page, id);
+                    //判斷是否有權限刪除
+                    issuccess = MeetingRoomApplyBll.GetInstence().DeleteBefore(id);
+                    if (issuccess)
+                    {
+                        MeetingRoomApplyBll.GetInstence().Delete(page, id);
+                    }
+                    else
+                    {
+                        smsg = "非本人申請或申請不存在，請檢查";
+                    }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     UseLogBll.GetInstence().Save(page, "{0}刪除MeetingRoomApply表id為【" + id + "】的記錄失败！");
+                    issuccess = false;
+                    smsg = "刪除出錯:" + e.Message;
                 }
             }
             var msg = new JsonReturnMessages
             {
-                IsSuccess = true,
-                Msg = "刪除成功！"
+                IsSuccess = issuccess,
+                Msg = smsg
             };
             var data = JsonConvert.SerializeObject(msg);
             context.Response.Write(data);

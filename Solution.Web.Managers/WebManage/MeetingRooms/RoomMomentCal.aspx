@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoomMomentCal.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.RoomMomentCal" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoomMomentCal.aspx.cs" Inherits="Solution.Web.Managers.WebManage.MeetingRooms.RoomMomentCal" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
-        <f:Panel ID="Panel1" runat="server" Title="會議室已休列表" EnableFrame="false" BodyPadding="10px"
+        <f:Panel ID="Panel1" runat="server" Title="會議室使用列表" EnableFrame="false" BodyPadding="10px"
             EnableCollapse="True">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
@@ -31,6 +31,8 @@
                         <f:Button ID="ButtonRefresh" runat="server" Text="刷新" Icon="ArrowRefresh" OnClick="ButtonRefresh_Click" CssClass="inline"></f:Button>
                         <f:Button ID="ButtonSearch" runat="server" Text="查詢" Icon="Magnifier" OnClick="ButtonSearch_Click"></f:Button>
                         <f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click"></f:Button>
+                        <f:Button ID="ButtonPrint" runat="server" Text="列印" Icon="printer" EnablePostBack="false" OnClientClick="printdiv()"></f:Button>
+
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -46,7 +48,7 @@
                         <div id="toppanel">
                             <div id="loadingpannel" style="display: none;">操作成功!</div>
                             <div id="errorpannel" style="display: none;">非常抱歉，无法加载您的活动，请稍后再试</div>
-                            <p class="logo">我的日程</p>
+                            <p class="logo">會議室日程安排</p>
                             <div class="calbtnp1">
                                 <button class="btn" id="todaybtn" type="button">今天</button>
                                 <div class="btngroup">
@@ -109,6 +111,26 @@
         function ShowWindow(url) {
             F('<% =Window1.ClientID %>').f_show(url, '編輯', 520, 500);
         }
+        function printdiv()  
+            {  
+                //var headstr = "<html><head><title></title></head><body>";  
+                //var footstr = "</body>";  
+                //var printData = document.getElementById("xgcalendarp").innerHTML;
+                //var oldstr = document.body.innerHTML;  
+                //document.body.innerHTML = headstr + printData + footstr;
+                //window.print();  
+                //document.body.innerHTML = oldstr;  
+
+                var cssStr = '<link href="../Css/plugin/calendar.css" rel="stylesheet" />';
+                var newWindow = window.open("打印窗口", "_blank");//打印窗口要换成页面的url
+                var docStr = document.getElementById("xgcalendarp").innerHTML;
+                newWindow.document.write(cssStr + docStr);
+                newWindow.document.close();
+                newWindow.print();
+                newWindow.close();
+
+                }  
+
     </script>
 
 </body>

@@ -1,4 +1,5 @@
-define(function (require, exports, module) { //参数名字不能改
+define(function (require, exports, module) {
+    //参数名字不能改
     require("locales/zh-tw");
     var minicalendar = require("../plugin/minicalendar");
     require("plugin/xgcalendar");
@@ -13,7 +14,8 @@ define(function (require, exports, module) { //参数名字不能改
         var op = {
             view: "week",
             theme: 1,
-            autoload: true, //
+            autoload: true,
+            //
             showday: new Date(),
             EditCmdhandler: edit,
             //DeleteCmdhandler:dcal,
@@ -25,7 +27,8 @@ define(function (require, exports, module) { //参数名字不能改
             url: dataFeedUrl + "?Method=List",
             quickAddUrl: dataFeedUrl + "?Method=Update",
             quickUpdateUrl: dataFeedUrl + "?Method=Update",
-            quickDeleteUrl: dataFeedUrl + "?Method=Del",//快速删除日程的
+            quickDeleteUrl: dataFeedUrl + "?Method=Del",
+            //快速删除日程的
             /* timeFormat:" hh:mm t", //t表示上午下午标识,h 表示12小时制的小时，H表示24小时制的小时,m表示分钟
             tgtimeFormat:"ht" //同上 */
             stime: 8,
@@ -33,7 +36,8 @@ define(function (require, exports, module) { //参数名字不能改
             ClickCmdhandler: roomlist
         };
         // var _MH = document.documentElement.clientHeight;
-        op.height = 600;// _MH - 200;
+        op.height = 600;
+        // _MH - 200;
         op.eventItems = [];
         var p = $("#xgcalendarp").bcalendar(op).BcalGetOp();
         if (p && p.datestrshow) {
@@ -46,7 +50,6 @@ define(function (require, exports, module) { //参数名字不能改
         //        }
         //    });
         //});
-
         $("#daybtn").click(function () {
             switchview.call(this, "day");
         });
@@ -74,7 +77,6 @@ define(function (require, exports, module) { //参数名字不能改
                 $("#dateshow").text(p.datestrshow);
             }
         });
-
         function switchview(view) {
             $("#viewswithbtn button.current").each(function () {
                 $(this).removeClass("current");
@@ -97,6 +99,7 @@ define(function (require, exports, module) { //参数名字不能改
                 case 1:
                     t = loadingmsg;
                     break;
+
                 case 2:
                 case 3:
                 case 4:
@@ -111,40 +114,33 @@ define(function (require, exports, module) { //参数名字不能改
                 case 1:
                     $("#loadingpannel").hide();
                     break;
+
                 case 2:
                 case 3:
                 case 4:
                     $("#loadingpannel").html(sucessmsg);
-                    window.setTimeout(function () { $("#loadingpannel").hide(); }, 2000);
+                    window.setTimeout(function () {
+                        $("#loadingpannel").hide();
+                    }, 2e3);
                     break;
             }
         }
         function cal_onerror(type, data) {
-            $("#errorpannel").show();
+            $("#errorpannel").html(data.Msg).show();
         }
         function edit(data) {
             if (data) {
                 var url = StrFormat("MeetingRoomApplyEdit.aspx" + key + "&calId={0}&start={2}&end={3}&isallday={4}&title={1}", data);
                 ShowWindow(url);
-                //OpenModalDialog(url, {
-                //    caption: "編輯", width: 580, height: 460, onclose: function () {
-                //        $("#xgcalendarp").BCalReload();
-                //    }
-                //});
             }
         }
         function view(data) {
             if (data) {
-                var url = StrFormat("RoomQuick.aspx?Id={0}&start={2}&end={3}&isallday={4}&title={1}", data);
-                OpenModalDialog(url, {
-                    caption: "修改活动", width: 580, height: 460, onclose: function () {
-                        $("#xgcalendarp").BCalReload();
-                    }
-                });
+                var url = StrFormat("MeetingRoomApplyEdit.aspx" + key + "&calId={0}", data);
+                ShowWindow(url);
             }
         }
-        function dcal(data, callback) {
-        }
+        function dcal(data, callback) { }
         function wtd(p) {
             if (p && p.datestrshow) {
                 $("#txtdatetimeshow").text(p.datestrshow);
@@ -157,12 +153,13 @@ define(function (require, exports, module) { //参数名字不能改
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
-            if (r != null) return unescape(r[2]); return null;
+            if (r != null) return unescape(r[2]);
+            return null;
         }
         function roomlist() {
             $.get("RoomData.ashx" + "?Method=GetRoomList", function (data) {
                 $("#bbit-cal-what").append(data);
-                $('.ui-select').ui_select();
+                $(".ui-select").ui_select();
             }, "text");
         }
     };

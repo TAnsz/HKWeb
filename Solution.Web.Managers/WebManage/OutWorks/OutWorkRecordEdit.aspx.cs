@@ -82,8 +82,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 hchecker2.Text = model.CHECKER2;
                 txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
 
-                cbIsCheck1.Checked = model.audit == 1;
-                cbIsCheck2.Checked = model.audit2 == 1;
+                cbIsCheck1.Checked = ConvertHelper.Cint0(model.audit) == 1;
+                cbIsCheck2.Checked = ConvertHelper.Cint0(model.audit2) == 1;
 
                 ButtonAccept.Text = model.audit == 1 ? "一級反審批" : "一級審批";
                 ButtonAccept2.Text = model.audit2 == 1 ? "二級反審批" : "二級審批";
@@ -120,7 +120,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 txtMemo.Text = model.memo;
 
                 //判斷能否修改
-                ResolveFormField(!(model.op_user == OnlineUsersBll.GetInstence().GetManagerEmpId() && model.audit == 0));
+                ResolveFormField(model.audit == 0 && (model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() || model.emp_id == OnlineUsersBll.GetInstence().GetManagerEmpId()));
 
                 //顯示對應的界面元素
                 DisplayTral(model.work_type, model.work_type);
@@ -152,8 +152,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             switch (s)
             {
-                case "1001":
-                case "1002":
+                case "1001": //出差番禺
+                case "1002"://出差恩平
                     GP1.Hidden = false;
                     Paneltrl1.Hidden = false;
                     Form2.Hidden = true;
@@ -188,7 +188,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //int id = ConvertHelper.Cint0(ddlOutWorkRecord.SelectedValue);
             //if (id == 0) return;
-            DisplayTral(ddlOutWorkRecord.SelectedValue, ddlType.SelectedValue);
+            var s = ddlOutWorkRecord.SelectedValue;
+            DisplayTral(s, ddlType.SelectedValue);
+
+            cbIsCheck1.Checked = s == "1001" || s == "1002" || s == "1003";
 
             Paneltp.Hidden = ddlType.SelectedValue != "3";
 
@@ -205,6 +208,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             //    ddlOutWorkRecord.SelectedValue = model.leave_id;
             //}
         }
+
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -287,12 +291,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     work_type = ddlType.SelectedValue,
                     checker = hchecker1.Text,
                     CHECKER2 = hchecker2.Text,
-                    audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked),
-                    audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked),
+                    audit = (short?)(cbIsCheck1.Checked ? 1 : 0),
+                    audit2 = (short?)(cbIsCheck2.Checked ? 1 : 0),
                     op_date = DateTime.Now,
                     op_user = OnlineUsersBll.GetInstence().GetManagerCName(),
                     transportation = RB1.SelectedValue,
                     hotel_type = RB2.SelectedValue,
+                    outwork_type = ddlOutWorkRecord.SelectedValue[0] == '1' ? "tral" : "leav",
                     outwork_addr = txtRemark.Text,
                     Start_ag = ddlSt.SelectedValue,
                     re_ag = ddlRe.SelectedValue,
@@ -330,25 +335,6 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                         model.bill_id = DateTime.Now.Date.ToString("yyyymmdd") + "0001";
                     }
                 }
-                //------------------------------------------
-                //設置名稱
-                //model.Url = StringHelper.Left(txtUrl.Text, 200, true, false);
-                //說明
-
-
-                //開始時間與結束時間
-
-
-
-                //修改時間與用戶
-                //model.op_user = OnlineUsersBll.GetInstence().GetManagerId();
-
-
-
-
-
-
-
 
                 #endregion
 
@@ -360,6 +346,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     //----------------------------------------------------------
                     //存儲到數據庫
                     OutWork_DBll.GetInstence().Save(this, model);
+                    //發送郵件
+                    if (id == 0) OutWork_DBll.GetInstence().SendMail(this, model);
                     //清空字段修改標記
                     PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
                     //這裡放置清空前端頁面緩存的代碼（如果前端使用了頁面緩存的話，必須進行清除操作）
@@ -387,6 +375,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
+            if (ddlOutWorkRecord.Readonly)
+            {
+                return;
+            }
             Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }
@@ -444,15 +436,12 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// <param name="e"></param>
         protected void dpStartTime_TextChanged(object sender, EventArgs e)
         {
-            if (dpEndTime.SelectedDate.HasValue)
+            if (!dpEndTime.SelectedDate.HasValue)
             {
                 dpEndTime.SelectedDate = dpStartTime.SelectedDate;
             }
-            else
-            {
-                //計算天數
-                GetDays();
-            }
+            //計算天數
+            GetDays();
         }
 
         /// <summary>
@@ -538,6 +527,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
         }
         #endregion
+
+
+
+
 
     }
 }

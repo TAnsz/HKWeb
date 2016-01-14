@@ -10,6 +10,8 @@ using Solution.Logic.Managers;
 using Microsoft.Reporting.WebForms;
 using Solution.DataAccess.DbHelper;
 using System.Collections.Generic;
+using System.IO;
+using System.Web.UI;
 using SubSonic.Query;
 
 /***********************************************************************

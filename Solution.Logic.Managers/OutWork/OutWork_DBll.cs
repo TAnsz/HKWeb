@@ -225,7 +225,8 @@ namespace Solution.Logic.Managers
             {
                 title = (model.outwork_type.Equals(Tral) && model.leave_id.Equals("1004")) ||
                 model.outwork_type.Equals(Leave) ? "需要你審批!" : "";
-                sto = mail;
+                //海外出差增加Mandy郵箱
+                sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker) + (model.leave_id.Equals("1004") ? ";mandy.chiang@kamhingintl.com" : "");
             }
 
             msg.AppendLine(string.Format("單號:{0}", model.bill_id));

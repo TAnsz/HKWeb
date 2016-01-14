@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using DotNet.Utilities;
-using Solution.DataAccess.DataModel;
-using Solution.DataAccess.DbHelper;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
+using Solution.DataAccess.DataModel;
 using Solution.DataAccess.Model;
-using SubSonic.Query;
 using RoomMoment = Solution.DataAccess.DataModel.RoomMoment;
 
 /***********************************************************************
@@ -263,6 +258,18 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
+        #region 判斷是否有權限刪除
+
+        public bool DeleteBefore(int id)
+        {
+            var model = GetModelForCache(x => x.Id == id);
+            if (model == null)
+            {
+                return true;
+            }
+            return model.Employee_EmpId == OnlineUsersBll.GetInstence().GetManagerEmpId();
+        }
+        #endregion
         #endregion 自定義函數
     }
 }

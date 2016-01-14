@@ -192,7 +192,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
 
             try
             {
-                MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, id, 0);
+               // MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, id, 0);
                 //刪除記錄
                 bll.Delete(this, id);
 

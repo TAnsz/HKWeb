@@ -72,7 +72,7 @@
                         </f:Panel>
                     </Items>
                 </f:Form>
-                <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="Id"
+                <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="bill_date"
                     PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>

@@ -57,7 +57,7 @@
     <Compile Include="DbHelper\DeleteHelper.cs" />
     <Compile Include="DbHelper\SelectHelper.cs" />
     <Compile Include="DbHelper\UpdateHelper.cs" />
-    <Compile Include="Model\Calendar.cs" />
+    <Compile Include="Model\CalendarM.cs" />
     <Compile Include="Model\JsonCalendarViewData.cs" />
     <Compile Include="Model\JsonError.cs" />
     <Compile Include="Model\JsonReturnMessages.cs" />

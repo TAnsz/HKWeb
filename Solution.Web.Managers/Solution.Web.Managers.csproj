@@ -126,6 +126,7 @@
     <Content Include="WebManage\Systems\Set\UploadConfigList.aspx" />
     <Content Include="WebManage\Systems\Set\UploadConfigEdit.aspx" />
     <Content Include="WebManage\Systems\Set\UploadFileList.aspx" />
+    <Content Include="WebServices\Weather.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -427,6 +428,10 @@
     </Compile>
     <Compile Include="WebManage\Systems\Set\UploadFileList.aspx.designer.cs">
       <DependentUpon>UploadFileList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\Weather.asmx.cs">
+      <DependentUpon>Weather.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -52,7 +52,7 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow3" runat="server">
                                     <Items>
-                                        <f:DropDownList Label="請假出差類型" AutoPostBack="true" EmptyText="選擇請假出差類型" AutoSelectFirstItem="false"
+                                        <f:DropDownList Label="請假出差類型" AutoPostBack="true" AutoSelectFirstItem="false"
                                             runat="server" ID="ddlOutWorkRecord" Width="300px" ShowRedStar="true" OnSelectedIndexChanged="ddlOutWorkRecord_SelectedIndexChanged">
                                         </f:DropDownList>
                                         <f:TextBox runat="server" ID="txtDays" Label="天數" Width="200px" Text="" Readonly="True"
@@ -61,11 +61,11 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow4" runat="server">
                                     <Items>
-                                        <f:DatePicker ID="dpStartTime" Label="開始日期" Width="300px" Required="true" runat="server" EmptyText="請選擇開始日期"
-                                            OnTextChanged="dpStartTime_TextChanged" ShowRedStar="true" />
-                                        <f:DatePicker ID="dpEndTime" Label="結束日期" Width="300px" Required="true" runat="server" EmptyText="請選擇結束日期"
+                                        <f:DatePicker ID="dpStartTime" Label="開始日期" Width="300px" Required="true" runat="server" AutoPostBack="true"
+                                            ShowRedStar="true" OnTextChanged="dpStartTime_TextChanged"/>
+                                        <f:DatePicker ID="dpEndTime" Label="結束日期" Width="300px" Required="true" runat="server" 
                                             CompareControl="dpStartTime" CompareOperator="GreaterThanEqual" CompareMessage="结束日期应该大于开始日期" ShowRedStar="true"
-                                            OnTextChanged="dpEndTime_TextChanged" />
+                                            AutoPostBack="true" OnTextChanged="dpEndTime_TextChanged"/>
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">
@@ -107,13 +107,13 @@
                                                                 </f:RadioButtonList>
                                                                 <f:Panel runat="server" ID="Panel7" ShowBorder="false" Layout="Column">
                                                                     <Items>
-                                                                        <f:DropDownList runat="server" ID="ddlSt" Label="出發船期">
+                                                                        <f:DropDownList runat="server" ID="ddlSt" Label="出發船期" AutoSelectFirstItem="false">
                                                                             <f:ListItem Text="08:00" Value="08:00" />
                                                                             <f:ListItem Text="11:00" Value="11:00" />
                                                                             <f:ListItem Text="13:30" Value="13:30" />
                                                                             <f:ListItem Text="16:15" Value="16:15" />
                                                                         </f:DropDownList>
-                                                                        <f:DropDownList runat="server" ID="ddlRe" Label="回程船期">
+                                                                        <f:DropDownList runat="server" ID="ddlRe" Label="回程船期" AutoSelectFirstItem="false">
                                                                             <f:ListItem Text="09:15" Value="09:15" />
                                                                             <f:ListItem Text="11:10" Value="11:10" />
                                                                             <f:ListItem Text="16:00" Value="16:00" />

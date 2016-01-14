@@ -82,8 +82,8 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 hchecker2.Text = model.CHECKER2;
                 txtchecker2.Text = EmployeeBll.GetInstence().GetEmpName(model.CHECKER2);
 
-                cbIsCheck1.Checked = model.audit == 1;
-                cbIsCheck2.Checked = model.audit2 == 1;
+                cbIsCheck1.Checked = ConvertHelper.Cint0(model.audit) == 1;
+                cbIsCheck2.Checked = ConvertHelper.Cint0(model.audit2) == 1;
 
                 ButtonAccept.Text = model.audit == 1 ? "一級反審批" : "一級審批";
                 ButtonAccept2.Text = model.audit2 == 1 ? "二級反審批" : "二級審批";
@@ -91,7 +91,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 txtMemo.Text = model.memo;
 
                 //判斷能否修改
-                ResolveFormField(!(model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() && model.audit == 0));
+                ResolveFormField(!(model.audit == 0 && (model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() || model.emp_id == OnlineUsersBll.GetInstence().GetManagerEmpId())));
 
             }
             else
@@ -184,8 +184,8 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                     all_day = ConvertHelper.Ctinyint(ddlType.SelectedValue),
                     checker = hchecker1.Text,
                     CHECKER2 = hchecker2.Text,
-                    audit = ConvertHelper.Ctinyint(cbIsCheck1.Checked),
-                    audit2 = ConvertHelper.Ctinyint(cbIsCheck2.Checked),
+                    audit = (short?)(cbIsCheck1.Checked ? 1 : 0),
+                    audit2 = (short?)(cbIsCheck2.Checked ? 1 : 0),
                     op_date = DateTime.Now,
                     op_user = OnlineUsersBll.GetInstence().GetManagerCName()
                 };
@@ -273,6 +273,8 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                     //----------------------------------------------------------
                     //存儲到數據庫
                     adJustRest_DBll.GetInstence().Save(this, model);
+                    if (id == 0) adJustRest_DBll.GetInstence().SendMail(this, model);
+
                     //清空字段修改標記
                     PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
@@ -310,6 +312,10 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         /// <param name="e"></param>
         protected void tbxEmp_TriggerClick(object sender, EventArgs e)
         {
+            if (ddladJustRest_D.Readonly)
+            {
+                return;
+            }
             Window2.IFrameUrl = "/WebManage/Systems/Pop/EmpSimpleChoose.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window2.Hidden = false;
         }

@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
     <title>信息編輯</title>
     <link rel="stylesheet" type="text/css" href="../Css/main.css" />
-    <script type="text/javascript" src="../Js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../Js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../Js/tools.js"></script>
     <script type="text/javascript" src="../Js/ke4/kindeditor-min.js" charset="utf-8"></script>
     <script type="text/javascript">

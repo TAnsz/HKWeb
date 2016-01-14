@@ -12,7 +12,8 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="600px" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="700px" >
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" CssClass="ReportFont"  Width="100%" Height="100%"
+             ZoomMode="PageWidth" ShowBackButton="true"  SizeToReportContent="True" Font-Size="8pt" InteractiveDeviceInfos="(Collection)"  ShowPrintButton="true">
             <LocalReport ReportPath="WebManage\Meals\ReportMeal.rdlc">
             </LocalReport>
         </rsweb:ReportViewer>

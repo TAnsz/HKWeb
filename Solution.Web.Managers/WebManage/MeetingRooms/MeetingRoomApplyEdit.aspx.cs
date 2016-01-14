@@ -32,11 +32,11 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
             {
                 //獲取ID值
                 int id = RequestHelper.GetInt0("Id");
-                if (id==0)
+                if (id == 0)
                 {
                     id = RequestHelper.GetInt0("calId");
                 }
-                
+
                 hidId.Text = id + "";
                 //綁定下拉框
                 MeetingRoomBll.GetInstence().BandDropDownListShowAll(this, dllRoomMoment);
@@ -44,7 +44,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 //添加最小時間選擇
                 dpDate.MinDate = DateTime.Now.Date;
 
-                if (id==0)
+                if (id == 0)
                 {
                     var stime = RequestHelper.GetString("start");
                     var etime = RequestHelper.GetString("end");
@@ -64,11 +64,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                         dllRoomMoment.SelectedValue = sroom;
                     }
                 }
-                else
-                {
-                    //加載數據
-                    LoadData();
-                }
+                //加載數據
+                LoadData();
             }
         }
         #endregion
@@ -177,22 +174,20 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                     return dpDate.Label + "不能為空！";
                 }
 
-                if (String.Compare(dllStart.SelectedText, dllStart.SelectedText, StringComparison.Ordinal) > 0)
+                if (string.Compare(dllStart.SelectedText, dllEnd.SelectedText, StringComparison.Ordinal) >= 0)
                 {
-                    return "開始時間不能大於結束時間！";
+                    return string.Format("{0}不能小於{1}，請修改！" ,dllEnd.Label,dllStart.Label);
                 }
                 var sRoomCode = dllRoomMoment.SelectedValue;
                 DateTime appDate = Convert.ToDateTime(dpDate.SelectedDate);
                 var sTime = Convert.ToDateTime(appDate.ToShortDateString() + " " + dllStart.SelectedText);
                 var eTime = Convert.ToDateTime(appDate.ToShortDateString() + " " + dllEnd.SelectedText);
                 //同時段不能重複申請
-                if (MeetingRoomApplyBll.GetInstence().Exist(x => x.MeetingRoom_Code == sRoomCode &&
-                    x.ApplyDate == appDate &&
-                    x.IsVaild == 1 &&
-                    ((x.StartTime <= sTime && x.EndTime > sTime) ||
-                    (x.StartTime <= eTime && x.EndTime > eTime) ||
-                    (x.StartTime >= sTime && x.EndTime < eTime)
-                    ) && x.Id != id))
+                if (MeetingRoomApplyBll.GetInstence().Exist(x => x.MeetingRoom_Code == sRoomCode 
+                    &&x.ApplyDate == appDate
+                    &&((x.StartTime > sTime ? x.StartTime : sTime) <
+                                                   (x.EndTime < eTime ? x.EndTime : eTime))
+                    && x.Id != id))
                 {
                     return "該時間段已申請！請更換時間段！";
                 }
@@ -226,7 +221,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                 //----------------------------------------------------------
                 //存儲到數據庫
                 MeetingRoomApplyBll.GetInstence().Save(this, model);
-               // MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, model.Id, 1);
+                // MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, model.Id, 1);
                 //清空字段修改標記
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
             }
@@ -250,7 +245,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
         public override string Delete()
         {
             //獲取要刪除的ID
-            int id = RequestHelper.GetInt0("Id");
+            int id = ConvertHelper.Cint0(hidId.Text);
 
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
@@ -260,7 +255,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
 
             try
             {
-               // MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, id, 0);
+                // MeetingRoomApplyBll.GetInstence().UpdateRoomMoment(this, id, 0);
                 //刪除記錄
                 bll.Delete(this, id);
 
