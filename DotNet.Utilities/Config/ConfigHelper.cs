@@ -47,18 +47,16 @@ namespace DotNet.Utilities
 		{
 			bool result = false;
 			string cfgVal = GetConfigString(key);
-			if(null != cfgVal && string.Empty != cfgVal)
-			{
-				try
-				{
-					result = bool.Parse(cfgVal);
-				}
-				catch(FormatException)
-				{
-					// Ignore format exceptions.
-				}
-			}
-			return result;
+		    if (string.IsNullOrEmpty(cfgVal)) return false;
+		    try
+		    {
+		        result = bool.Parse(cfgVal);
+		    }
+		    catch(FormatException)
+		    {
+		        // Ignore format exceptions.
+		    }
+		    return result;
 		}
 		/// <summary>
 		/// ?µÌÅ∞pSettings??Ö‰?Decimal?œ¢

@@ -45,12 +45,14 @@ namespace Solution.Logic.Managers
             ddl.DataSource = dt;
             ddl.DataBind();
         }
+
         /// <summary>
         /// 綁定下拉列表
         /// </summary>
         /// <param name="page"></param>
         /// <param name="ddl"></param>
-        /// <param name="table">明細類型</param>
+        /// <param name="colName"></param>
+        /// <param name="colValue"></param>
         public void BandDropDownList(Page page, FineUI.DropDownList ddl, string colName,params string[] colValue)
         {
             var dt = new DataTable();
@@ -75,22 +77,25 @@ namespace Solution.Logic.Managers
             //ddl.SelectedValue = "0";
         }
 
-        /// <summary>
-        /// 綁定單選列表
-        /// </summary>
-        /// <param name="page"></param>
-        /// <param name="ddl"></param>
-        /// <param name="table">明細類型</param>
-        public void BandRadioButtonList(Page page, FineUI.RadioButtonList rbl, string colName,params string[] colValue)
+         /// <summary>
+         /// 綁定單選列表
+         /// </summary>
+         /// <param name="page"></param>
+         /// <param name="rbl">列表控件</param>
+         /// <param name="colName"></param>
+         /// <param name="colValue"></param>
+         /// <param name="sortName">排序字段</param>
+         /// <param name="orderby"></param>
+        public void BandRadioButtonList(Page page, FineUI.RadioButtonList rbl, string colName,string sortName=null, string orderby=null,params string[] colValue)
         {
             var dt = new DataTable();
             var dt2 = GetDataTable();
-            for (int i = 0; i < colValue.Length; i++)
+            foreach (string str in colValue)
             {
-                var dt1 = DataTableHelper.GetFilterData(dt2, colName, colValue[i], null, null);
+                var dt1 = DataTableHelper.GetFilterData(dt2, colName, str, sortName, orderby);
                 if (dt1!=null)
                 {
-                dt.Merge(dt1);  
+                    dt.Merge(dt1);  
                 }
             }
 
@@ -241,10 +246,12 @@ namespace Solution.Logic.Managers
             return name;
         }
         #endregion
+
         /// <summary>
         /// 获取显示值
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
         public string GetDescr(object id, object type)
         {

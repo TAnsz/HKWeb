@@ -43,9 +43,6 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 //綁定下拉列表
                 //EmployeeBll.GetInstence().BandDropDownList(this, ddlEmp);
-                //設置默認日期，三個月以內的記錄
-                dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-1);
-                dpEnd.SelectedDate = DateTime.Now.Date.AddMonths(1);
                 LoadData();
             }
         }
@@ -58,7 +55,14 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             bll = OutWork_DBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
-
+            //初始化默認排序
+            if (grid != null && grid.AllowSorting)
+            {
+                sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
+            }
+            //設置默認日期，兩個月以內的記錄
+            dpStart.SelectedDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-01"));
+            dpEnd.SelectedDate = TimeHelper.GetMonthLastDate(DateTime.Now.AddMonths(1));
         }
         #endregion
 
@@ -208,7 +212,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check1);
                     result = string.IsNullOrEmpty(result)
-                        ? string.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id))
+                        ? string.Format("一級{0}審批成功。", value == 0 ? "反" : "")
                         : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
@@ -222,7 +226,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     //更新狀態
                     result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check2);
                     result = string.IsNullOrEmpty(result)
-                        ? string.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id))
+                        ? string.Format("二級{0}審批成功。", value == 0 ? "反" : "")
                         : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載

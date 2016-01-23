@@ -37,7 +37,7 @@
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" AutoSizePanelID="regionPanel" runat="server" />
-        <f:Timer ID="Timer1" Interval="120" Enabled="false" OnTick="Timer1_Tick" runat="server">
+        <f:Timer ID="Timer1" Interval="600" Enabled="false" OnTick="Timer1_Tick" runat="server">
         </f:Timer>
         <f:RegionPanel ID="regionPanel" ShowBorder="false" runat="server">
             <Regions>
@@ -96,7 +96,7 @@
                                     <Items>
                                         <f:Panel runat="server" ID="Panel1" Title="歡迎使用該系統" ShowHeader="true" BoxConfigPadding="10px" Layout="HBox" BoxConfigChildMargin="0 5 0 0">
                                             <Items>
-                                                <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Width="300px" Height="100%" ShowBorder="true" EnableCollapse="True">
+                                                <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Width="280px" Height="100%" ShowBorder="true" EnableCollapse="True">
                                                     <Items>
                                                         <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 10 0">
                                                             <Items>
@@ -116,7 +116,7 @@
                                                     <Items>
                                                         <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="1"
                                                             ShowBorder="true" ShowHeader="true" runat="server" EnableCheckBoxSelect="false" DataKeyNames="emp_id" EnableColumnLines="true"
-                                                            OnPreRowDataBound="Grid1_PreRowDataBound" SortField="emp_id" OnSort="Grid1_Sort">
+                                                            OnPreRowDataBound="Grid1_PreRowDataBound" SortField="EMP_FNAME" OnSort="Grid1_Sort">
                                                             <Columns>
                                                                 <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="編號" Width="70px" />
                                                                 <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名" Width="250px" />
@@ -135,7 +135,7 @@
                                                             </Columns>
                                                         </f:Grid>
                                                                 <f:Grid ID="Grid2" Title="今日考勤異常人員" EnableFrame="false" EnableCollapse="true" AllowSorting="true" ShowBorder="true" ShowHeader="true" runat="server" 
-                                                                    EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="ENo" OnSort="Grid2_Sort" BoxFlex="2">
+                                                                    EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="Name" OnSort="Grid2_Sort" BoxFlex="2">
                                                                     <Columns>
                                                                         <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="70px" />
                                                                         <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="250px" />

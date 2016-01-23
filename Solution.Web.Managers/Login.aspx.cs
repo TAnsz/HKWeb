@@ -28,16 +28,17 @@ namespace Solution.Web.Managers
             if (!IsPostBack)
             {
                 //綁定用戶
-                EmployeeBll.GetInstence().BandDropDownList(this, ddlUser);
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlUser,EmployeeTable.EMP_FNAME,"ASC");
                 //生成驗證碼
                 //imgCaptcha.ImageUrl = "WebManage/Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
                 #region 初始化用戶Session變量
                 //清空Session
-                SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
-                SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
-                SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
-                SessionHelper.RemoveSession(OnlineUsersTable.Md5);
+                SessionHelper.ClearSession();
+                //SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
+                //SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                //SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
+                //SessionHelper.RemoveSession(OnlineUsersTable.Md5);
                 //刪除Cookies
                 CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                 CookieHelper.ClearCookie(OnlineUsersTable.Md5);
@@ -219,7 +220,7 @@ namespace Solution.Web.Managers
             string userHashKey;
             //判斷當前用戶帳戶是否支持同一帳號在不同地方登陸功能，取得用戶在HashTable表裡Key的名稱
             //不支持則
-            if (userinfo.IS_SHEBAO == true)
+            if (userinfo.IS_SHEBAO == null || userinfo.IS_SHEBAO==false)
             {
                 userHashKey = userinfo.Id + "";
             }
@@ -258,8 +259,8 @@ namespace Solution.Web.Managers
                     //添加用戶下線記錄
                     LoginLogBll.GetInstence().Save(userHashKey, "用戶【{0}】的賬號已經在另一處登錄，本次登陸下線！在線時間【{1}】");
 
-                    //清除在線表裡與當前用戶同名的記錄
-                    OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_Id == onlineUser.Manager_Id);
+                    //清除在線表裡與當前用戶同SessionId的記錄
+                    OnlineUsersBll.GetInstence().Delete(this, x => x.SessionId == onlineUser.SessionId);
                 }
 
                 //將在線實體保存到數據庫的在線表中

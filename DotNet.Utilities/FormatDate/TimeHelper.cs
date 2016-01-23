@@ -123,6 +123,20 @@ namespace DotNet.Utilities
         }
 
         #region 返回某年某月最後一天
+
+        /// <summary>
+        /// 返回某個日期的當月最後一天
+        /// </summary>
+        /// <param name="dateTime">日期</param>
+        /// <returns>日</returns>
+        public static DateTime GetMonthLastDate(DateTime dateTime)
+        {
+            DateTime lastDay = new DateTime(dateTime.Year, dateTime.Month, new System.Globalization.GregorianCalendar().GetDaysInMonth(dateTime.Year, dateTime.Month));
+            return lastDay;
+        }
+        #endregion
+
+        #region 返回某年某月最後一天
         /// <summary>
         /// 返回某年某月最後一天
         /// </summary>
@@ -138,18 +152,18 @@ namespace DotNet.Utilities
         #endregion
 
         #region 返回時間差
-        public static string DateDiff(DateTime DateTime1, DateTime DateTime2)
+        public static string DateDiff(DateTime dateTime1, DateTime dateTime2)
         {
             string dateDiff = null;
             try
             {
-                //TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
-                //TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
+                //TimeSpan ts1 = new TimeSpan(dateTime1.Ticks);
+                //TimeSpan ts2 = new TimeSpan(dateTime2.Ticks);
                 //TimeSpan ts = ts1.Subtract(ts2).Duration();
-                TimeSpan ts = DateTime2 - DateTime1;
+                TimeSpan ts = dateTime2 - dateTime1;
                 if (ts.Days >= 1)
                 {
-                    dateDiff = DateTime1.Month.ToString() + "月" + DateTime1.Day.ToString() + "日";
+                    dateDiff = dateTime1.Month.ToString() + "月" + dateTime1.Day.ToString() + "日";
                 }
                 else
                 {

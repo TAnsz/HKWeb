@@ -143,7 +143,7 @@ namespace Solution.Logic.Managers
         {
             //獲取申請人郵箱
             string mail = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.emp_id).ToString();
-            string sto = "";
+            string sto = mail;
             string title;
             const string stype = "調休申請單";
             var name = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMP_FNAME, x => x.EMP_ID == model.emp_id).ToString();
@@ -156,7 +156,6 @@ namespace Solution.Logic.Managers
             if (model.audit2 == 1 || model.audit2 == 4)
             {
                 //組合標題信息
-                sto = mail;
                 title = model.audit2 == 1 ? "二級審批通過" : "二級審批不通過";
             }
             else if (model.audit == 1 || model.audit == 4)
@@ -169,10 +168,7 @@ namespace Solution.Logic.Managers
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        if ((!string.IsNullOrEmpty(mail2)) && sto.IndexOf(mail2, StringComparison.Ordinal) > 0)
-                        {
-                            sto = mail + ";" + mail2;
-                        }
+                        sto += mail + (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) > 0 ? "" : ";" + mail2);
                     }
                 }
                 else
@@ -190,7 +186,8 @@ namespace Solution.Logic.Managers
             msg.AppendLine(string.Format("單號:{0}", model.bill_id));
             msg.AppendLine(string.Format("姓名:{0} 的{1}", name, stype + title));
             msg.AppendLine();
-            msg.AppendLine(string.Format("調休日期:{0}加班日期:{1}", model.rest_date.ToShortDateString(), ((DateTime)model.ori_date).ToShortDateString()));
+            if (model.ori_date != null)
+                msg.AppendLine(string.Format("調休日期:{0}加班日期:{1}", model.rest_date.ToShortDateString(), ((DateTime)model.ori_date).ToShortDateString()));
             msg.AppendLine();
             msg.AppendLine(outtype + "  " + CommonBll.GetWorkType(model.all_day.ToString()));
             msg.AppendLine();

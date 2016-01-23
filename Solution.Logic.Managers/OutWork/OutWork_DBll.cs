@@ -157,11 +157,6 @@ namespace Solution.Logic.Managers
             Save(page, model);
 
             //發送郵件
-            string ss = SendMail(page, model);
-            if (ss.Length > 0)
-            {
-                result = ss;
-            }
             //判斷是否?用緩存
             if (CommonBll.IsUseCache())
             {
@@ -170,10 +165,14 @@ namespace Solution.Logic.Managers
                 //重新載?緩存
                 GetList();
             }
-
             if (isAddUseLog)
             {
                 UseLogBll.GetInstence().Save(page, "{0}二級" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id + "的記錄！");
+            }
+            string ss = SendMail(page, model);
+            if (ss.Length > 0)
+            {
+                result = ss;
             }
             return result;
         }
@@ -187,7 +186,7 @@ namespace Solution.Logic.Managers
             }
             //獲取申請人郵箱
             string mail = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.emp_id).ToString();
-            string sto = "";
+            string sto = mail;
             string title;
             string stype = model.outwork_type.Equals(Tral) ? "出差申請單" : "請假申請單";
             var name = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMP_FNAME, x => x.EMP_ID == model.emp_id).ToString();
@@ -196,7 +195,6 @@ namespace Solution.Logic.Managers
             if (model.audit2 == 1 || model.audit2 == 4)
             {
                 //組合標題信息
-                sto = mail;
                 title = model.audit2 == 1 ? "二級審批通過" : "二級審批不通過";
             }
             else if (model.audit == 1 || model.audit == 4)
@@ -209,10 +207,7 @@ namespace Solution.Logic.Managers
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        if ((!string.IsNullOrEmpty(mail2)) && sto.IndexOf(mail2, StringComparison.Ordinal) > 0)
-                        {
-                            sto = mail + ";" + mail2;
-                        }
+                        sto += (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) > 0 ? "" : ";" + mail2);
                     }
                 }
                 else

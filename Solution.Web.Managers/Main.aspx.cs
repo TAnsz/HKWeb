@@ -307,12 +307,10 @@ namespace Solution.Web.Managers
                             treenode.NavigateUrl = dr[MenuInfoTable.Url] + "?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
                             treenode.Leaf = true;
                             //同時在主界面增加按鈕
-                            FineUI.Button btn1 = new Button();
-                            btn1.Text = dr[MenuInfoTable.Name].ToString();
-                            i = i >= Btncss.Length ? 0 : i;
-                            btn1.CssClass = "btn big " + Btncss[i];
+                            FineUI.Button btn1 = new Button { Text = dr[MenuInfoTable.Name].ToString() };
+                            btn1.CssClass = "btn big " + Btncss[3];
                             btn1.Size = FineUI.ButtonSize.Large;
-                            btn1.IconUrl = BtnIcon[i];
+                            btn1.IconUrl = BtnIcon[i % BtnIcon.Length];
                             btn1.OnClientClick = mainTabStrip.GetAddTabReference(dr[MenuInfoTable.Id].ToString(), treenode.NavigateUrl, btn1.Text, null, true);
                             formMain.Items.Add(btn1);
                             i++;

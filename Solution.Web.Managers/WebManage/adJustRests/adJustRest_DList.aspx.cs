@@ -56,8 +56,14 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             bll = adJustRest_DBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
-            //設置默認日期，三個月以內的記錄
-            dpStart.SelectedDate = DateTime.Now.Date.AddMonths(-3);
+            //初始化默認排序
+            if (grid != null && grid.AllowSorting)
+            {
+                sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
+            }
+            //設置默認日期，兩個月以內的記錄
+            dpStart.SelectedDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-01"));
+            dpEnd.SelectedDate =TimeHelper.GetMonthLastDate(DateTime.Now.AddMonths(1));
         }
         #endregion
 
@@ -136,7 +142,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 var lbf = Grid1.FindColumn("audit") as LinkButtonField;
                 if (lbf != null)
                 {
-                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit].ToString() == "1")
+                    if (row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit].ToString() == "1")
                     {
                         lbf.Icon = Icon.BulletTick;
                         lbf.CommandArgument = "0";
@@ -147,20 +153,20 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                         lbf.CommandArgument = "1";
                     }
                 }
-                var lbf2 = Grid1.FindColumn("audit") as LinkButtonField;
+                var lbf2 = Grid1.FindColumn("audit2") as LinkButtonField;
                 if (lbf2 != null)
                 {
-                    if (row.Row.Table.Rows[e.RowIndex][OutWork_DTable.audit2].ToString() == "1")
+                    if (row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.audit2].ToString() == "1")
                     {
                         lbf2.Icon = Icon.BulletTick;
                         lbf2.CommandArgument = "0";
                     }
                     else
                     {
-                        if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][OutWork_DTable.CHECKER2].ToString()))
+                        if (string.IsNullOrEmpty(row.Row.Table.Rows[e.RowIndex][adJustRest_DTable.CHECKER2].ToString()))
                         {
                             lbf2.Icon = Icon.PageWhite;
-                            lbf2.CommandArgument = "";
+                            lbf2.CommandArgument = "2";
                         }
                         else
                         {
@@ -199,7 +205,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 case "IsAudit":
                     //更新狀態
                     result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.Check1);
-                    result = String.IsNullOrEmpty(result) ? String.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = string.IsNullOrEmpty(result) ? String.Format("一級{0}審批編號Id為[{1}]的數據成功。", value == 0 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();
@@ -208,7 +214,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 case "IsAudit2":
                     //更新狀態
                     result = adJustRest_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, adJustRest_DBll.Check2);
-                    result = String.IsNullOrEmpty(result) ? String.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 1 ? "反" : "", String.Join(",", id)) : result;
+                    result = string.IsNullOrEmpty(result) ? String.Format("二級{0}審批編號Id為[{1}]的數據成功。", value == 0 ? "反" : "", String.Join(",", id)) : result;
                     FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
                     //重新加載
                     LoadData();

@@ -95,8 +95,16 @@
                         <f:BoundField Width="250px" DataField="Employee_Name" SortField="Employee_Name" HeaderText="申請人" />
                         <%--<f:BoundField Width="100px" DataField="DepartId" SortField="DepartId" HeaderText="部門編號" />--%>
                         <f:BoundField Width="150px" DataField="DepartName" SortField="DepartName" HeaderText="部門名稱" />
-                        <f:BoundField Width="100px" DataField="FoodCode" SortField="FoodCode" HeaderText="飯類" TextAlign="Center" />
-                        <f:BoundField Width="100px" DataField="DrinkCode" SortField="DrinkCode" HeaderText="餐飲" TextAlign="Center" />
+                        <f:TemplateField Width="100px" HeaderText="飯類" TextAlign="Center">
+                            <ItemTemplate>
+                                <asp:Label ID="lbfood" runat="server" Text='<%# Solution.Logic.Managers.T_TABLE_DBll.GetInstence().GetDescr(Eval("FoodCode"),"FOOD") %>'></asp:Label>
+                            </ItemTemplate>
+                        </f:TemplateField>
+                        <f:TemplateField Width="100px" HeaderText="餐飲" TextAlign="Center">
+                            <ItemTemplate>
+                                <asp:Label ID="lbdrink" runat="server" Text='<%# Solution.Logic.Managers.T_TABLE_DBll.GetInstence().GetDescr(Eval("DrinkCode"),"DRIN") %>'></asp:Label>
+                            </ItemTemplate>
+                        </f:TemplateField>
                         <f:BoundField Width="200px" DataField="Remark" HeaderText="備註" />
                         <f:LinkButtonField HeaderText="是否有效" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否有效" ColumnID="isVaild" CommandName="isVaild" Hidden="true" />
                         <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />

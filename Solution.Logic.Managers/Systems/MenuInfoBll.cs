@@ -170,28 +170,16 @@ namespace Solution.Logic.Managers
             {
                 return false;
             }
-            else
+            var controlPower = OnlineUsersBll.GetInstence().GetControlPower();
+            if (string.IsNullOrEmpty(controlPower))
             {
-                var controlPower = OnlineUsersBll.GetInstence().GetControlPower();
-                if (string.IsNullOrEmpty(controlPower))
-                {
-                    return false;
-                }
-                //获取当前控件ID
-                string ppsID = PagePowerSignPublicBll.GetInstence().GetHashtable()[controlName].ToString();
-
-                //检查是否有权限
-                if (controlPower.IndexOf("," + menuId + "|" + ppsID + ",") >= 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
+                return false;
             }
+            //获取当前控件ID
+            string ppsId = PagePowerSignPublicBll.GetInstence().GetHashtable()[controlName].ToString();
 
+            //检查是否有权限
+            return controlPower.IndexOf("," + menuId + "|" + ppsId + ",", StringComparison.Ordinal) >= 0;
         }
 
         #endregion

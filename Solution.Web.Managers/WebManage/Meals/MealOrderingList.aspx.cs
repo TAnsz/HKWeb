@@ -49,6 +49,11 @@ namespace Solution.Web.Managers.WebManage.Meals
             bll = MealOrderingBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
+            //初始化默認排序
+            if (grid != null && grid.AllowSorting)
+            {
+                sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
+            }
         }
         #endregion
 

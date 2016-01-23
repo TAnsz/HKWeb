@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using DotNet.Utilities;
@@ -181,17 +182,12 @@ namespace Solution.Logic.Managers
                 return;
 
             //循环读取在线信息
-            for (int i = 0; i < onlineUsers.Count; i++)
+            foreach (var model in onlineUsers.Where(model => TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now) > 120))
             {
-                var model = onlineUsers[i];
-                //判断该用户最后更新时间是否已经有10分钟未更新，是的话则不将其添加到缓存中
-                if (TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now) > 10)
-                {
-                    //添加用户下线记录
-                    LoginLogBll.GetInstence().Save(model.UserHashKey, "用户【{0}】退出系统！在线时间【{1}】");
-                    //移除在线数据
-                    Delete(null, model.Id);
-                }
+                //添加用户下线记录
+                LoginLogBll.GetInstence().Save(model.UserHashKey, "用户【{0}】退出系统！在线时间【{1}】");
+                //移除在线数据
+                Delete(null, model.Id);
             }
 
         }
@@ -289,7 +285,7 @@ namespace Solution.Logic.Managers
                                 //获取用户权限并存储到用户Session里
                                 T_TABLE_DBll.GetInstence().SetUserPower(model.Position_Id);
                                 //更新用户当前SessionId到在线表中
-                                //UpdateUserOnlineInfo(model.Id + "", OnlineUsersTable.SessionId, HttpContext.Current.Session.SessionID);
+                                UpdateUserOnlineInfo(model.Id + "", OnlineUsersTable.SessionId, HttpContext.Current.Session.SessionID);
 
                                 return;
                             }
@@ -311,7 +307,7 @@ namespace Solution.Logic.Managers
                         else
                         {
                             //删除数据库记录与IIS缓存
-                            Delete(null, x => x.UserHashKey == userHashKey);
+                            //Delete(null, x => x.UserHashKey == userHashKey,false);
                             //清空Session
                             SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                             SessionHelper.RemoveSession(OnlineUsersTable.Md5);
@@ -366,8 +362,10 @@ namespace Solution.Logic.Managers
                     CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                //出现异常，保存出错日志信息
+                CommonBll.WriteLog("", e);
             }
         }
 

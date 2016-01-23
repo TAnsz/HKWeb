@@ -59,7 +59,7 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow6" runat="server">
                                     <Items>
-                                        <f:RadioButtonList ID="rblDrink" Label="餐飲" ColumnNumber="3" runat="server" ShowRedStar="true">
+                                        <f:RadioButtonList ID="rblDrink" Label="餐飲" ColumnNumber="3" runat="server" ShowRedStar="true" >
                                         </f:RadioButtonList>
                                     </Items>
                                 </f:FormRow>

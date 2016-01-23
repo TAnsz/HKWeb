@@ -68,11 +68,23 @@ namespace Solution.Web.Managers.WebManage.Application
                         if (btnControl.ID != "ButtonRefresh" && btnControl.ID != "ButtonSearch" && btnControl.ID != "ButtonClose" && btnControl.ID != "ButtonReset")
                         {
                             //是的話檢查該按鍵當前用戶是否有控件權限，沒有的話則禁用該按鍵
-                            ((FineUI.Button)btnControl).Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, btnControl.ID);
+                            var s = MenuInfoBll.GetInstence().CheckControlPower(this, btnControl.ID);
+                            if (btnControl is FineUI.Button)
+                            {
+                                ((FineUI.Button) btnControl).Enabled = s;
+                            }
+                            if (btnControl is FineUI.FileUpload)
+                            {
+                                ((FineUI.FileUpload)btnControl).Enabled = s;
+                            }
                         }
                     }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    // ignored
+                }
+
                 #endregion
 
                 //記錄用戶當前所在的頁面位置
