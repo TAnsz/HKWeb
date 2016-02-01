@@ -380,6 +380,14 @@ namespace DotNet.Utilities
         /// <summary>把string 轉 int32,小於0返回0,否則返回int值</summary>
         /// <param name="str"></param>
         /// <returns>返回>=0的int型</returns>
+        public static int Cint0(bool str)
+        {
+            return str ? 1 : 0;
+        }
+
+        /// <summary>把string 轉 int32,小於0返回0,否則返回int值</summary>
+        /// <param name="str"></param>
+        /// <returns>返回>=0的int型</returns>
         public static int Cint0(string str)
         {
             return CintMinValue(str, 0);
@@ -407,6 +415,14 @@ namespace DotNet.Utilities
         public static int Cint1(object str)
         {
             return CintMinValue(str, 1);
+        }
+
+        /// <summary>不等於"1",就為"0",用於審核之類的</summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static byte Ctinyint(bool str)
+        {
+            return (byte)(str ? 1 : 0);
         }
 
         /// <summary>不等於"1",就為"0",用於審核之類的</summary>

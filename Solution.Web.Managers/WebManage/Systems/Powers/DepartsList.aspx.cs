@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using DotNet.Utilities;
 using FineUI;
 using Solution.DataAccess.DataModel;
+using Solution.DataAccess.DbHelper;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
+using SubSonic.Query;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -12,7 +14,7 @@ using Solution.Web.Managers.WebManage.Application;
  *   技 術 群：327360708
  *  
  *   創建日期：2014-06-21
- *   文件名稱：BranchList.aspx.cs
+ *   文件名稱：DepartsList.aspx.cs
  *   描    述：部門列表文件
  *             
  *   修 改 人：
@@ -21,7 +23,7 @@ using Solution.Web.Managers.WebManage.Application;
  ***********************************************************************/
 namespace Solution.Web.Managers.WebManage.Systems.Powers
 {
-    public partial class BranchList : PageBase
+    public partial class DepartsList : PageBase
     {
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +31,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             if (!IsPostBack)
             {
                 //綁定下拉列表
-                BranchBll.GetInstence().BandDropDownList(this, ddlParentId);
+                //DepartsBll.GetInstence().BandDropDownList(this, ddlParentId,true);
 
                 LoadData();
             }
@@ -40,7 +42,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         public override void Init()
         {
             //邏輯對像賦值
-            bll = BranchBll.GetInstence();
+            bll = DepartsBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
         }
@@ -57,23 +59,24 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             }
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, InquiryCondition(), sortList);
+            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, null, sortList);
         }
 
         /// <summary>
         /// 查詢條件
         /// </summary>
         /// <returns></returns>
-        private int InquiryCondition()
+        private List<ConditionHelper.SqlqueryCondition> InquiryCondition()
         {
-            int value = 0;
+            var wheres = new List<ConditionHelper.SqlqueryCondition>();
 
             //選擇菜單
-            if (ddlParentId.SelectedValue != "0")
-            {
-                value = ConvertHelper.Cint0(ddlParentId.SelectedValue);
-            }
-            return value;
+            //if (ddlParentId.SelectedValue != "0")
+            //{
+            //    wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, DepartsTable.Up_ID, Comparison.In,
+            //        ddlParentId.SelectedValue));
+            //}
+            return wheres;
         }
 
         #region 排序
@@ -84,8 +87,8 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         {
             //設置排序
             sortList = new List<string>();
-            sortList.Add(BranchTable.Depth + " asc");
-            sortList.Add(BranchTable.Sort + " asc");
+            //sortList.Add(DepartsTable.Depth + " asc");
+            sortList.Add(DepartsTable.inside_id + " asc");
         }
         #endregion
 
@@ -124,7 +127,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             {
                 case "ButtonEdit":
                     //打開編輯窗口
-                    Window1.IFrameUrl = "BranchEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
+                    Window1.IFrameUrl = "DepartsEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id + "");
                     Window1.Hidden = false;
 
                     break;
@@ -140,7 +143,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
         /// </summary>
         public override void Add()
         {
-            Window1.IFrameUrl = "BranchEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            Window1.IFrameUrl = "DepartsEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
             Window1.Hidden = false;
         }
         #endregion
@@ -161,19 +164,25 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 return "請選擇要刪除的記錄。";
             }
 
+            var modle = DepartsBll.GetInstence().GetModelForCache(id);
+
+            if (modle==null)
+            {
+                return "刪除失敗，部門信息不存在，請刷新！";
+            }
             try
             {
                 //刪除前判斷一下
-                if (BranchBll.GetInstence().Exist(x => x.ParentId == id))
+                if (DepartsBll.GetInstence().Exist(x => x.Up_ID == modle.depart_id))
                 {
                     return "刪除失敗，本部門下面存在子部門，不能直接刪除！";
                 }
                 //刪除前判斷一下
-                if (PositionBll.GetInstence().Exist(x => x.Branch_Id == id))
-                {
-                    return "刪除失敗，相關職位已綁定本部門，不能直接刪除！";
-                }
-                if (ManagerBll.GetInstence().Exist(x => x.Branch_Id == id))
+                //if (PositionBll.GetInstence().Exist(x => x.Departs_Id == id))
+                //{
+                //    return "刪除失敗，相關職位已綁定本部門，不能直接刪除！";
+                //}
+                if (EmployeeBll.GetInstence().Exist(x => x.DEPART_ID == modle.depart_id))
                 {
                     return "刪除失敗，已有員工綁定本部門，不能直接刪除！";
                 }

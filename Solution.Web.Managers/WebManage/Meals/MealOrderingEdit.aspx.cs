@@ -35,8 +35,8 @@ namespace Solution.Web.Managers.WebManage.Meals
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
 
                 //綁定下拉列表
-                T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblFood, T_TABLE_DTable.TABLES,"CODE","ASC", "'FOOD'");
-                T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblDrink, T_TABLE_DTable.TABLES, "CODE", "ASC", "'DRIN'");
+                T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblFood, T_TABLE_DTable.TABLES, "CODE", "ASC", "'FOOD'");
+                T_TABLE_DBll.GetInstence().BandRadioButtonList(this, rblDrink, T_TABLE_DTable.TABLES, T_TABLE_DTable.Id, "ASC", "'DRIN'");
                 rblDrink.SelectedValue = "";
 
                 //添加最小日期選擇
@@ -105,6 +105,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 dpDate.SelectedDate = DateTime.Now.Date;
                 txtDeptId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString();
                 txtDeptName.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Name).ToString();
+                rblDrink.SelectedIndex = 0;
             }
         }
 

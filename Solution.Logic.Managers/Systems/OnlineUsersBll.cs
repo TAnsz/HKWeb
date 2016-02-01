@@ -61,7 +61,7 @@ namespace Solution.Logic.Managers
             catch (Exception e)
             {
                 //记录出错日志
-                CommonBll.WriteLog("", e);
+                CommonBll.WriteLog("獲取用户表实体出錯", e);
             }
 
             return null;
@@ -182,14 +182,18 @@ namespace Solution.Logic.Managers
                 return;
 
             //循环读取在线信息
-            foreach (var model in onlineUsers.Where(model => TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now) > 120))
+            List<int> list = new List<int>();
+            foreach (var model in onlineUsers.Where(model => TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now) > 10))
             {
                 //添加用户下线记录
                 LoginLogBll.GetInstence().Save(model.UserHashKey, "用户【{0}】退出系统！在线时间【{1}】");
                 //移除在线数据
-                Delete(null, model.Id);
+                list.Add(model.Id);
             }
-
+            if (list.Count > 0)
+            {
+                Delete(null, list.ToArray());
+            }
         }
         #endregion
 
@@ -304,31 +308,27 @@ namespace Solution.Logic.Managers
                             CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                             CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                         }
-                        else
-                        {
-                            //删除数据库记录与IIS缓存
-                            //Delete(null, x => x.UserHashKey == userHashKey,false);
-                            //清空Session
-                            SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
-                            SessionHelper.RemoveSession(OnlineUsersTable.Md5);
-                            SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
-                            SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
-                            //删除Cookies
-                            CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
-                            CookieHelper.ClearCookie(OnlineUsersTable.Md5);
-                        }
+                        //删除数据库记录与IIS缓存
+                        //Delete(null, x => x.UserHashKey == userHashKey,false);
+                        //清空Session
+                        SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Md5);
+                        SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
+                        SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                        //删除Cookies
+                        CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
+                        CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                     }
                 }
                 catch (Exception e)
                 {
                     //出现异常，保存出错日志信息
-                    CommonBll.WriteLog("", e);
+                    CommonBll.WriteLog("檢測用戶超時出錯", e);
                 }
-
                 //用户不存在，直接退出
-                //FineUI.Alert.Show("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='Login.aspx'");
+                FineUI.Alert.Show("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
                 //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
-                HttpContext.Current.Response.Redirect("/Login.aspx");
+                //HttpContext.Current.Response.Redirect("/Login.aspx");
                 HttpContext.Current.Response.End();
             }
         }

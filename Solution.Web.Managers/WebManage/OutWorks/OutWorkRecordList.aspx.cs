@@ -58,11 +58,13 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             //初始化默認排序
             if (grid != null && grid.AllowSorting)
             {
-                sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
+                sortList = new List<string> { "audit ASC", grid.SortField + " " + grid.SortDirection };
             }
             //設置默認日期，兩個月以內的記錄
             dpStart.SelectedDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-01"));
             dpEnd.SelectedDate = TimeHelper.GetMonthLastDate(DateTime.Now.AddMonths(1));
+            //pc界面自動縮放
+            PageManager1.AutoSizePanelID = CommonBll.IsPC(this) ? "Panel1" : "";
         }
         #endregion
 
@@ -319,6 +321,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         protected void ButtonAccept_Click(object sender, EventArgs e)
         {
             AcceptRecord(AccType.Accept1);
+            LoadData();
         }
 
         /// <summary>
@@ -327,6 +330,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         protected void ButtonAccept2_Click(object sender, EventArgs e)
         {
             AcceptRecord(AccType.Accept2);
+            LoadData();
         }
 
         /// <summary>
@@ -347,33 +351,37 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 return;
             }
             //將數組轉為逗號分隔的字串
-            for (int i = 0; i < id.Length; i++)
+            foreach (int t in id)
             {
                 try
                 {
-                    if (p == AccType.Accept1)
+                    switch (p)
                     {
-                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.Check1);
-                    }
-                    else if (p == AccType.Accept2)
-                    {
-                        OutWork_DBll.GetInstence().Accept(this, id[i], 1, OutWork_DBll.Check2);
+                        case AccType.Accept1:
+                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check1);
+                            break;
+                        case AccType.Accept2:
+                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check2);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException("p", p, null);
                     }
                 }
                 catch (Exception ex)
                 {
-                    string s = String.Format("{0}審批編號Id為[{1}]的數據記錄出錯。", CommonBll.GetDescription(p), id[i].ToString());
+                    string s = string.Format("{0}審批編號Id為[{1}]的數據記錄出錯。", CommonBll.GetDescription(p), t.ToString());
                     result += s;
                     CommonBll.WriteLog(s, ex);
                 }
             }
-            result = String.IsNullOrEmpty(result) ? String.Format("{0}審批編號Id為[{1}]的數據並發送郵件記錄成功。", CommonBll.GetDescription(p), String.Join(",", id)) : result;
+            result = string.IsNullOrEmpty(result) ? string.Format("{0}審批編號Id為[{1}]的數據並發送郵件記錄成功。", CommonBll.GetDescription(p), string.Join(",", id)) : result;
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
-            return;
         }
+
         #endregion
 
         #region 員工選擇
+
         /// <summary>
         /// 彈出員工選擇界面
         /// </summary>
@@ -385,6 +393,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             Window2.Hidden = false;
             ttbxEmp.ShowTrigger1 = true;
         }
+
         /// <summary>
         /// 清除員工選擇
         /// </summary>
@@ -395,9 +404,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             ttbxEmp.Text = "";
             ttbxEmp.ShowTrigger1 = false;
         }
+
         #endregion
 
         #region 獲取顯示值
+
         ///// <summary>
         ///// 時段顯示值
         ///// </summary>
@@ -407,8 +418,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         //{
         //    return CommonBll.GetWorkType(id.ToString());
         //}
+
         #endregion
+
         #region 子窗口關閉事件
+
         /// <summary>
         /// 關閉子窗口事件
         /// </summary>
@@ -423,6 +437,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
             //LoadData();
         }
+
         #endregion
     }
 }

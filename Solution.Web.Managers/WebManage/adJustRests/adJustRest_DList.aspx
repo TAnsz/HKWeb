@@ -1,7 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adJustRest_DList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.adJustRests.adJustRest_DList" %>
 
-<%@ Import Namespace="DotNet.Utilities" %>
-
 <!DOCTYPE html>
 <html>
 <head id="Head1" runat="server">
@@ -10,9 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" />
+        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1"/>
         <f:Panel ID="Panel1" runat="server" Title="調休申請單列表" EnableFrame="false" BodyPadding="10px"
-            EnableCollapse="True">
+            EnableCollapse="True" AutoScroll="true">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
@@ -68,7 +66,7 @@
                     </Items>
                 </f:Form>
                 <f:Grid ID="Grid1" Title="調休申請單列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="rest_date"
-                    PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
+                    PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
                         <f:TemplateField RenderAsRowExpander="true">
@@ -127,8 +125,8 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Solution.Logic.Managers.T_TABLE_DBll.GetInstence().GetDescr(Eval("kind"),"ADJU") %>'></asp:Label>
                             </ItemTemplate>
                         </f:TemplateField>
-                        <f:LinkButtonField HeaderText="是否一級審核" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否一級審核" ColumnID="audit" CommandName="IsAudit" />
-                        <f:LinkButtonField HeaderText="是否二級審核" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否二級審核" ColumnID="audit2" CommandName="IsAudit2" />
+                        <f:LinkButtonField HeaderText="是否一級審核" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否一級審核" ColumnID="audit" CommandName="IsAudit" SortField="audit"/>
+                        <f:LinkButtonField HeaderText="是否二級審核" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否二級審核" ColumnID="audit2" CommandName="IsAudit2" SortField="audit2"/>
                         <f:LinkButtonField Width="100px" HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />
                     </Columns>
                 </f:Grid>

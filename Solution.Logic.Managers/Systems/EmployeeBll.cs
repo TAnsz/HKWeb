@@ -37,11 +37,11 @@ namespace Solution.Logic.Managers
         /// <returns></returns>
         public string GetEmpName(object id)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(id.ToString()))
             {
                 return "";
             }
-            var name = GetFieldValue(EmployeeTable.EMP_FNAME, EmployeeTable.EMP_ID, id, true);
+            var name = GetFieldValue(EmployeeTable.EMP_FNAME, EmployeeTable.EMP_ID, id.ToString(), true);
             return name == null ? id.ToString() : name.ToString();
         }
         #region 绑定列表

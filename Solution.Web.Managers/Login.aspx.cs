@@ -28,7 +28,7 @@ namespace Solution.Web.Managers
             if (!IsPostBack)
             {
                 //綁定用戶
-                EmployeeBll.GetInstence().BandDropDownList(this, ddlUser,EmployeeTable.EMP_FNAME,"ASC");
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlUser, EmployeeTable.EMP_FNAME, "ASC");
                 //生成驗證碼
                 //imgCaptcha.ImageUrl = "WebManage/Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
@@ -43,7 +43,6 @@ namespace Solution.Web.Managers
                 CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                 CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 #endregion
-
             }
         }
         #endregion
@@ -220,7 +219,7 @@ namespace Solution.Web.Managers
             string userHashKey;
             //判斷當前用戶帳戶是否支持同一帳號在不同地方登陸功能，取得用戶在HashTable表裡Key的名稱
             //不支持則
-            if (userinfo.IS_SHEBAO == null || userinfo.IS_SHEBAO==false)
+            if (userinfo.IS_SHEBAO == null || userinfo.IS_SHEBAO == false)
             {
                 userHashKey = userinfo.Id + "";
             }
@@ -243,7 +242,10 @@ namespace Solution.Web.Managers
             if (onlineUsersList == null || onlineUsersList.Count == 0)
             {
                 //清除在線表裡與當前用戶同名的記錄
-                OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_LoginName == onlineUser.Manager_LoginName);
+                if (userinfo.IS_SHEBAO == null || userinfo.IS_SHEBAO == false)
+                {
+                    OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_LoginName == onlineUser.Manager_LoginName);
+                }
 
                 //將在線實體保存到數據庫的在線表中
                 OnlineUsersBll.GetInstence().Save(this, onlineUser, null, true, false);

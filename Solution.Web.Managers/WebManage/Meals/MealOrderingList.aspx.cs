@@ -26,7 +26,7 @@ namespace Solution.Web.Managers.WebManage.Meals
 {
     public partial class MealOrderingList : PageBase
     {
-        protected static readonly List<string> ValidFileTypes = new List<string> { ".jpg", ".bmp", ".gif", ".jpeg", ".png" };
+        protected static readonly List<string> ValidFileTypes = new List<string> { ".jpg", ".bmp", ".gif", ".jpeg", ".png", ".tiff" };
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,6 +54,8 @@ namespace Solution.Web.Managers.WebManage.Meals
             {
                 sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
             }
+            //pc界面自動縮放
+            PageManager1.AutoSizePanelID = CommonBll.IsPC(this) ? "Panel1" : "";
         }
         #endregion
 
@@ -63,7 +65,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition());
+            bll.BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
         }
 
         /// <summary>
@@ -180,7 +182,8 @@ namespace Solution.Web.Managers.WebManage.Meals
         /// <param name="e"></param>
         protected void ButtonPrint_Click(object sender, EventArgs e)
         {
-            Window1.IFrameUrl = "Report.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey("");
+
+            Window1.IFrameUrl = "Report.aspx?Date=" + (dpStart.SelectedDate == null ? DateTime.Now.Date : dpStart.SelectedDate.Value.Date) + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey("");
             Window1.Hidden = false;
         }
         #endregion
@@ -258,18 +261,19 @@ namespace Solution.Web.Managers.WebManage.Meals
 
             if (!ValidFileTypes.Contains(FileOperateHelper.GetPostfixStr(fileName)))
             {
-                FineUI.Alert.ShowInParent("無效的文件類型，請上傳後綴爲jpg的文件！", FineUI.MessageBoxIcon.Information);
+                FineUI.Alert.ShowInParent("無效的文件類型，請上傳圖片文件！", FineUI.MessageBoxIcon.Information);
                 return;
             }
 
 
             filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
 
-            //imgPhoto.ImageUrl = "~/upload/" + fileName;
+            //imgphoto.ImageUrl = "~/UploadFile/menu.jpg";// + fileName;
 
             // 清空文件上传组件
             filePhoto.Reset();
             FineUI.Alert.ShowInParent("上傳成功", FineUI.MessageBoxIcon.Information);
+            PageContext.RegisterStartupScript("ImageRefresh();");
         }
         #endregion
 

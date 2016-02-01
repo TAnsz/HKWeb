@@ -136,6 +136,7 @@ namespace Solution.DataAccess.DataModel
         }
 			
         public Query<DataAccess.Model.adJustRest_D> adJustRest_D { get; set; }
+        public Query<DataAccess.Model.ANNUALLEAVE> ANNUALLEAVE { get; set; }
         public Query<DataAccess.Model.CardDetail> CardDetail { get; set; }
         public Query<DataAccess.Model.Departs> Departs { get; set; }
         public Query<DataAccess.Model.Employee> Employee { get; set; }
@@ -275,6 +276,7 @@ namespace Solution.DataAccess.DataModel
 
             #region ' Query Defs '
             adJustRest_D = new Query<DataAccess.Model.adJustRest_D>(provider);
+            ANNUALLEAVE = new Query<DataAccess.Model.ANNUALLEAVE>(provider);
             CardDetail = new Query<DataAccess.Model.CardDetail>(provider);
             Departs = new Query<DataAccess.Model.Departs>(provider);
             Employee = new Query<DataAccess.Model.Employee>(provider);
@@ -317,6 +319,7 @@ namespace Solution.DataAccess.DataModel
         	if(DataProvider.Schema.Tables.Count == 0)
 			{
             	DataProvider.Schema.Tables.Add(new adJustRest_DStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new ANNUALLEAVEStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new CardDetailStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new DepartsStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new EmployeeStructs(DataProvider));

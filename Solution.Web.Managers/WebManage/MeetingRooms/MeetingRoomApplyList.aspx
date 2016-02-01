@@ -9,7 +9,7 @@
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1"/>
         <f:Panel ID="Panel1" runat="server" Title="會議室申請單列表" EnableFrame="false" BodyPadding="10px"
-            EnableCollapse="True">
+            EnableCollapse="True" AutoScroll="true">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>

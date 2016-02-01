@@ -9,6 +9,7 @@ using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 
 /***********************************************************************
@@ -502,16 +503,13 @@ namespace Solution.Logic.Managers
         #region 判斷是否pc訪問
         public static bool IsPC(System.Web.UI.Page page)
         {
-            string agent = page.Request.UserAgent.ToString().ToLower();
-            string[] Agents = new string[] { "android", "iPhone", "ipad", "ipod", "symbian", "windows phone", "ucweb", "midp", "rv:1.2.3.4" };
-            for (int i = 0; i < Agents.Length; i++)
+            if (page.Request.UserAgent == null)
             {
-                if (agent.IndexOf(Agents[i]) > 0)
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
+            string agent = page.Request.UserAgent.ToLower();
+            string[] agents = { "android", "iphone", "ipad", "ipod", "symbian", "windows phone", "ucweb", "midp", "rv:1.2.3.4" };
+            return agents.All(t => agent.IndexOf(t, StringComparison.Ordinal) <= 0);
         }
         #endregion
 

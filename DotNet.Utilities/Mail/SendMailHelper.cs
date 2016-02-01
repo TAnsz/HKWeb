@@ -13,7 +13,7 @@ namespace DotNet.Utilities.Mail
         /// <summary> 
         /// 設定語言代碼，默認設定為GB2312，如不需要可設置為"" 
         /// </summary> 
-        public string Charset = "BIG5";
+        public string Charset = "UTF-8";
         /// <summary> 
         /// 發件人地址 
         /// </summary> 
@@ -313,7 +313,7 @@ namespace DotNet.Utilities.Mail
         /// <param name="str">要編碼的字符串</param> 
         private string Base64Encode(string str)
         {
-            byte[] barray = Encoding.Default.GetBytes(str);
+            byte[] barray = Encoding.UTF8.GetBytes(str);
             return Convert.ToBase64String(barray);
         }
 
@@ -598,7 +598,7 @@ namespace DotNet.Utilities.Mail
             if (!Dialog(sendBufferstr, ""))
                 return false;
 
-            sendBufferstr = "From:" + FromName + "<" + From + ">" + Enter;
+            sendBufferstr = "From:=?" + Charset.ToUpper() + "?B?"+ Base64Encode(FromName) + "?=<" + From + ">" + Enter;
             sendBufferstr += "To:=?" + Charset.ToUpper() + "?B?" + Base64Encode(RecipientName) + "?=" + "<" + Recipient[0] + ">" + Enter;
 
             //抄送代碼

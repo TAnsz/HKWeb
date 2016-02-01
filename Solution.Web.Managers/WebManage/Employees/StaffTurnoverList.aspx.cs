@@ -31,7 +31,7 @@ namespace Solution.Web.Managers.WebManage.Employees
             if (!IsPostBack)
             {
                 //綁定部門
-                BranchBll.GetInstence().BandDropDownListShowAll(this, ddlBranch_Id, true);
+                DepartsBll.GetInstence().BandDropDownListShowAll(this, ddlBranch_Id, false);
 
                 LoadData();
             }
@@ -42,7 +42,7 @@ namespace Solution.Web.Managers.WebManage.Employees
         public override void Init()
         {
             //邏輯對像賦值
-            bll = ManagerBll.GetInstence();
+            bll = EmployeeBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
         }
@@ -70,22 +70,22 @@ namespace Solution.Web.Managers.WebManage.Employees
         {
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
             //添加條件：只顯示離職人員
-            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, ManagerTable.IsWork, Comparison.Equals, 0));
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.KIND, Comparison.Equals, 0));
 
             //登陸賬號
             if (!string.IsNullOrEmpty(txtLoginName.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, ManagerTable.LoginName, Comparison.Like, "%" + StringHelper.FilterSql(txtLoginName.Text) + "%"));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.EMP_ID, Comparison.Like, "%" + StringHelper.FilterSql(txtLoginName.Text) + "%"));
             }
             //中文名稱
             if (!string.IsNullOrEmpty(txtCName.Text.Trim()))
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, ManagerTable.CName, Comparison.Like, "%" + StringHelper.FilterSql(txtCName.Text) + "%"));
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.EMP_FNAME, Comparison.Like, "%" + StringHelper.FilterSql(txtCName.Text) + "%"));
             }
             //綁定部門編碼
             if (ddlBranch_Id.SelectedValue != "0")
             {
-                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, ManagerTable.Branch_Code, Comparison.StartsWith,
+                wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.DEPART_ID, Comparison.StartsWith,
                     StringHelper.FilterSql(ddlBranch_Id.SelectedValue)));
             }
 
@@ -156,10 +156,10 @@ namespace Solution.Web.Managers.WebManage.Employees
             try
             {
                 //逐個刪除對應的圖片
-                foreach (var i in id)
-                {
-                    ManagerBll.GetInstence().DelPhotoImg(this, i);
-                }
+                //foreach (var i in id)
+                //{
+                //    EmployeeBll.GetInstence().DelPhotoImg(this, i);
+                //}
 
                 //刪除記錄
                 bll.Delete(this, id);
@@ -200,8 +200,8 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //逐個設置離職
                 foreach (var i in id)
                 {
-                    var name = ManagerBll.GetInstence().GetCName(this, i);
-                    ManagerBll.GetInstence().UpdateValue(this, i, ManagerTable.IsWork, 1, ManagerTable.IsEnable, 1, "{0}將員工" + name + "[" + i + "]設置為正常（復職）狀態");
+                    var name = EmployeeBll.GetInstence().GetEMP_FNAME(this, i);
+                    EmployeeBll.GetInstence().UpdateValue(this, i, EmployeeTable.ISSUED, 1, EmployeeTable.KIND, 1, "{0}將員工" + name + "[" + i + "]設置為正常（復職）狀態");
                 }
 
                 LoadData();

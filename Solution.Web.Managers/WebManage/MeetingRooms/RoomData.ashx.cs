@@ -43,9 +43,9 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                     method.Invoke(this, new object[] { context });
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                CommonBll.WriteLog("错误的参数调用", ex);
+                //CommonBll.WriteLog("錯誤的參數調用", ex);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
                                       Subject = string.Format("{0}[{1}]{2}", dr[MeetingRoomApplyTable.MeetingRoom_Name], dr[MeetingRoomApplyTable.Employee_Name], dr[MeetingRoomApplyTable.IsVideo].ToString() == "1" ? "(視頻)" : " "),
                                       StartTime = Convert.ToDateTime(dr[MeetingRoomApplyTable.StartTime]),
                                       EndTime = Convert.ToDateTime(dr[MeetingRoomApplyTable.EndTime]),
-                                      Location = dr[MeetingRoomApplyTable.DepartName] + "",
+                                      Location = dr[MeetingRoomApplyTable.Remark] + "",
                                       Category = StringHelper.GetNumber(dr[MeetingRoomApplyTable.MeetingRoom_Code].ToString()) + ""
                                   });
                 }

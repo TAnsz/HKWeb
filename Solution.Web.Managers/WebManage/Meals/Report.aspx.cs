@@ -38,15 +38,18 @@ namespace Solution.Web.Managers.WebManage
             {
 
                 #region 報表測試
-                //顯示當天的記錄
+                //取出日期
+                string date = RequestHelper.GetString("Date");
+                var d = string.IsNullOrEmpty(date) ? DateTime.Today : TimeHelper.CDate(date);
+                //var d = DateTime.Today;
                 var wheres = new List<ConditionHelper.SqlqueryCondition>
                 {
                     new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.ApplyDate,
-                        Comparison.Equals, DateTime.Now.Date),
+                        Comparison.Equals, d),
                     new ConditionHelper.SqlqueryCondition(ConstraintType.And, MealOrderingTable.IsVaild,
                         Comparison.Equals, 1)
                 };
-                var dt = MealOrderingBll.GetInstence().GetDataTable(false,0,null,0,0,wheres);
+                var dt = MealOrderingBll.GetInstence().GetDataTable(false, 0, null, 0, 0, wheres);
                 ReportViewer1.LocalReport.EnableExternalImages = true;
                 //ReportViewer1.LocalReport.ReportPath = @"WebManage\Meals\ReportMeal.rdlc";
                 //ReportViewer1.LocalReport.SetParameters(new ReportParameter(ReportParameter1, Guid.NewGuid().ToString()));

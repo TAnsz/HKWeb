@@ -48,6 +48,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
             grid = Grid1;
             //設置默認日期，當天的
             dpStart.SelectedDate = DateTime.Now.Date;
+            //pc界面自動縮放
+            PageManager1.AutoSizePanelID = CommonBll.IsPC(this) ? "Panel1" : "";
         }
         #endregion
 

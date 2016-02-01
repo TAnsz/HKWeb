@@ -59,11 +59,13 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             //初始化默認排序
             if (grid != null && grid.AllowSorting)
             {
-                sortList = new List<string> { grid.SortField + " " + grid.SortDirection };
+                sortList = new List<string> { "audit ASC", grid.SortField + " " + grid.SortDirection };
             }
             //設置默認日期，兩個月以內的記錄
             dpStart.SelectedDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-01"));
-            dpEnd.SelectedDate =TimeHelper.GetMonthLastDate(DateTime.Now.AddMonths(1));
+            dpEnd.SelectedDate = TimeHelper.GetMonthLastDate(DateTime.Now.AddMonths(1));
+            //pc界面自動縮放
+            PageManager1.AutoSizePanelID = CommonBll.IsPC(this) ? "Panel1" : "";
         }
         #endregion
 
@@ -338,6 +340,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         protected void ButtonAccept_Click(object sender, EventArgs e)
         {
             AcceptRecord(AccType.Accept1);
+            LoadData();
         }
 
         /// <summary>
@@ -346,6 +349,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
         protected void ButtonAccept2_Click(object sender, EventArgs e)
         {
             AcceptRecord(AccType.Accept2);
+            LoadData();
         }
 
         /// <summary>

@@ -76,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="WebManage\Employees\ManagerEdit.aspx" />
+    <Content Include="WebManage\Employees\ManagerList.aspx" />
+    <Content Include="WebManage\Employees\StaffTurnoverList.aspx" />
     <Content Include="WebManage\Js\page\index.js" />
     <Content Include="WebManage\Js\plugin\xgcalendar.js" />
     <Content Include="WebManage\Meals\Report.aspx" />
@@ -107,8 +110,11 @@
     <Content Include="WebManage\MeetingRooms\RoomQuick.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
+    <Content Include="WebManage\Reports\MonthReportsList.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpChoose.aspx" />
+    <Content Include="WebManage\Systems\Powers\DepartsEdit.aspx" />
+    <Content Include="WebManage\Systems\Powers\DepartsList.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoEdit.aspx" />
     <Content Include="WebManage\Systems\Powers\MenuInfoList.aspx" />
     <Content Include="WebManage\Systems\Powers\PagePowerSignPublicList.aspx" />
@@ -131,6 +137,27 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Employees\ManagerEdit.aspx.cs">
+      <DependentUpon>ManagerEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Employees\ManagerEdit.aspx.designer.cs">
+      <DependentUpon>ManagerEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Employees\ManagerList.aspx.cs">
+      <DependentUpon>ManagerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Employees\ManagerList.aspx.designer.cs">
+      <DependentUpon>ManagerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Employees\StaffTurnoverList.aspx.cs">
+      <DependentUpon>StaffTurnoverList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Employees\StaffTurnoverList.aspx.designer.cs">
+      <DependentUpon>StaffTurnoverList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\MeetingRooms\RoomData.ashx.cs">
       <DependentUpon>RoomData.ashx</DependentUpon>
@@ -296,6 +323,13 @@
     <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.designer.cs">
       <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebManage\Reports\MonthReportsList.aspx.cs">
+      <DependentUpon>MonthReportsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Reports\MonthReportsList.aspx.designer.cs">
+      <DependentUpon>MonthReportsList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx.cs">
       <DependentUpon>EmpSimpleChoose.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -309,6 +343,20 @@
     </Compile>
     <Compile Include="WebManage\Systems\Pop\EmpChoose.aspx.designer.cs">
       <DependentUpon>EmpChoose.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\DepartsEdit.aspx.cs">
+      <DependentUpon>DepartsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\DepartsEdit.aspx.designer.cs">
+      <DependentUpon>DepartsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\DepartsList.aspx.cs">
+      <DependentUpon>DepartsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\Powers\DepartsList.aspx.designer.cs">
+      <DependentUpon>DepartsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\Powers\MenuInfoEdit.aspx.cs">
       <DependentUpon>MenuInfoEdit.aspx</DependentUpon>
@@ -453,7 +501,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WebManage\Employees\" />
     <Folder Include="WebManage\Images\" />
   </ItemGroup>
   <ItemGroup>

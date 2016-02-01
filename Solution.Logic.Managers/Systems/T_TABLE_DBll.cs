@@ -260,7 +260,7 @@ namespace Solution.Logic.Managers
                 return "";
             }
             var name = GetFieldValue(T_TABLE_DTable.DESCR,
-                (x => x.CODE.ToUpper() == id.ToString().ToUpper() && x.TABLES.ToUpper() == type.ToString().ToUpper()));
+                (x => x.CODE.ToUpper() == id.ToString().ToUpper() && String.Equals(x.TABLES, type.ToString(), StringComparison.CurrentCultureIgnoreCase)));
             return name == null ? id.ToString() : name.ToString();
         }
         #endregion 自定义函数

@@ -57,7 +57,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
             if (id != 0)
             {
                 //獲取指定ID的菜單內容，如果不存在，則創建一個菜單實體
-                var model = adJustRest_DBll.GetInstence().GetModelForCache(x => x.Id == id);
+                var model = adJustRest_DBll.GetInstence().GetModelForCache(x => x.Id == id)??adJustRest_DBll.GetInstence().GetModel(id,false);
                 if (model == null)
                     return;
 
@@ -175,7 +175,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 var model = new adJustRest_D(x => x.Id == id)
                 {
                     emp_id = tbxEmp.Text,
-                    join_id = ConvertHelper.Ctinyint(hjId.Text),
+                    join_id = ConvertHelper.Cint0(hjId.Text),
                     depart_id = txtDeptId.Text,
                     kind = ddladJustRest_D.SelectedValue,
                     memo = StringHelper.Left(txtMemo.Text, 100),

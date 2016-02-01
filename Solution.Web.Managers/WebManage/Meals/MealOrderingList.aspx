@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" Title="員工訂餐管理列表" EnableFrame="false" BodyPadding="10px"
-            EnableCollapse="True">
+            EnableCollapse="True" AutoScroll="true">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
@@ -47,7 +47,7 @@
                                     OnTrigger1Click="ttbxEmp_Trigger1Click" OnTrigger2Click="ttbxEmp_Trigger2Click" ShowTrigger1="false" EnableEdit="false">
                                 </f:TwinTriggerBox>
                                 <f:Label runat="server" Width="40px"></f:Label>
-                                <f:Label runat="server" CssClass="marginr" label="查詢起止日期"></f:Label>
+                                <f:Label runat="server" CssClass="marginr" Label="查詢起止日期"></f:Label>
                                 <f:DatePicker runat="server" ID="dpStart" CssClass="marginr" Required="true" DateFormatString="yyyy-MM-dd" EmptyText="開始日期" />
                                 <f:DatePicker runat="server" ID="dpEnd" CssClass="marginr" CompareControl="dpStart" CompareOperator="GreaterThanEqual" CompareMessage="結束日期應該大於等於開始日期" DateFormatString="yyyy-MM-dd" EmptyText="結束日期" />
                                 <%--<f:Label runat="server"></f:Label>--%>
@@ -55,8 +55,8 @@
                         </f:Panel>
                     </Items>
                 </f:Form>
-                <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC"
-                    PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="false" DataKeyNames="Id" EnableColumnLines="true"
+                <f:Grid ID="Grid1" Title="訂餐列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" SortField="Id" SortDirection="DESC" Height="410px"
+                    ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="false" DataKeyNames="Id" EnableColumnLines="true"
                     OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                     <Columns>
                         <f:TemplateField RenderAsRowExpander="true">
@@ -112,10 +112,11 @@
                 </f:Grid>
                 <f:Label runat="server" ID="lblSpendingTime" Text=""></f:Label>
                 <f:ContentPanel ID="ContentPanel3" runat="server"
-                                        ShowBorder="false" ShowHeader="false">
-                <div class="image-row">
-			        <a class="example-image-link" href="../../UploadFile/menu.jpg" data-lightbox="example-1" title="菜單"><img class="example-image" src="../../UploadFile/menu.jpg" alt="thumb-1" style="height:500px"/></a>
-		        </div>
+                    ShowBorder="false" ShowHeader="false">
+                    <div class="image-row">
+                        <a class="example-image-link" href="../../UploadFile/menu.jpg" data-lightbox="example-1" title="菜單">
+                            <img id="imgphoto" class="example-image" src="../../UploadFile/menu.jpg" alt="thumb-1" style="height: 500px" /></a>
+                    </div>
                 </f:ContentPanel>
             </Items>
         </f:Panel>
@@ -136,8 +137,20 @@
         </f:Window>
     </form>
     <script>
+        ImageRefresh();
         function ShowWindow() {
-            F('<% =Window2.ClientID %>').f_show('./Report.aspx', '列印', 800, 700);
+            var ds = F('<% =dpStart.ClientID %>').getValue();
+            var d = new Date(ds);
+            var s = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            F('<% =Window2.ClientID %>').f_show('./Report.aspx?Date=' + s, '列印', 800, 700);
+        }
+        function ImageRefresh() {
+            var url;
+            if ($("#imgphoto") != "undefined") {
+                url = $("#imgphoto").attr("src");
+                // alert(url);
+                $("#imgphoto").attr("src", url + "?tempid=" + Math.random());
+            }
         }
     </script>
 </body>

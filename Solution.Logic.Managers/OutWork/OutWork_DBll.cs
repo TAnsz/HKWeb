@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Web.UI;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
@@ -42,7 +45,13 @@ namespace Solution.Logic.Managers
             //判斷需要綁定的下拉框
 
         }
-
+        #endregion
+        #region 修改隻緩存往前三個月以後的數據
+        public new Expression<Func<OutWork_D, bool>> GetExpression<T>()
+        {
+            var d = DateTime.Now.Date.AddMonths(-3);
+            return x => x.bill_date > d;
+        }
         #endregion
         #region 審批單據
         public string Accept(Page page, int id, int updateValue, DelCheckEventHandler del, bool isAddUseLog = true)
@@ -203,16 +212,17 @@ namespace Solution.Logic.Managers
                 if (model.audit == 1)
                 {
                     title = "一級審批通過";
+                    //sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
                     if (!string.IsNullOrEmpty(model.CHECKER2))
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        sto += (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) > 0 ? "" : ";" + mail2);
+                        sto += (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0) ? "" : (";" + mail2);
                     }
                 }
                 else
                 {
-                    sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
+                    //sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
                     title = "一級審批不通過";
                 }
             }
@@ -224,21 +234,47 @@ namespace Solution.Logic.Managers
                 sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker) + (model.leave_id.Equals("1004") ? ";mandy.chiang@kamhingintl.com" : "");
             }
 
-            msg.AppendLine(string.Format("單號:{0}", model.bill_id));
-            msg.AppendLine(string.Format("姓名:{0} 的{1}", name, stype + title));
-            msg.AppendLine();
-            if (model.Re_date != null)
-                msg.AppendLine(string.Format("開始日期:{0}結束日期:{1}", model.bill_date.ToShortDateString(), ((DateTime)model.Re_date).ToShortDateString()));
-            msg.AppendLine();
-            msg.AppendLine(outtype + "  " + CommonBll.GetWorkType(model.work_type));
-            msg.AppendLine();
-            msg.AppendLine(model.memo);
-            msg.AppendLine("申請人郵箱:" + mail);
-            msg.AppendLine();
-            msg.AppendLine("詳細信息請進入人事考勤系統進行查看，謝謝！");
-            msg.AppendLine("打開系統:http://192.168.0.10！");
+            msg.AppendFormat(MailBll.Headtem, stype, title);
+            msg.AppendFormat(MailBll.Bodytem, "單號:", model.bill_id);
+            msg.AppendFormat(MailBll.Bodytem, "姓名:", name);
+            msg.AppendFormat(MailBll.Bodytem, "單據類型:", outtype + "  " + CommonBll.GetWorkType(model.work_type));
+            msg.AppendFormat(MailBll.Bodytem, "日期:", model.bill_date.ToShortDateString() + "--" + Convert.ToDateTime(model.Re_date).ToShortDateString());
+            if (model.work_type == "3")
+            {
+                msg.AppendFormat(MailBll.Bodytem, "時間:", Convert.ToDateTime(model.begin_time).ToString("HH:mm") + "--" + Convert.ToDateTime(model.end_time).ToString("HH:mm"));
+            }
+            msg.AppendFormat(MailBll.Bodytem, "備注:", model.memo);
+            msg.AppendFormat(MailBll.Bodytem, "申請人郵箱:", mail);
+            msg.AppendFormat(MailBll.Bodytem, "詳細信息請進入系統查看，謝謝！", "");
+            msg.Append(MailBll.Foottem);
+            //如果需要派車住宿，給車隊發送郵件
+            if (model.leave_id == "1001" || model.leave_id == "1002")
+            {
+                StringBuilder msg2 = new StringBuilder();
+                //取出對應用戶組的郵件地址
+                if (EmployeeBll.GetInstence().GetRecordCount(x => x.GROUPS == model.leave_id) > 0)
+                {
+                    var list = EmployeeBll.GetInstence().Find(x => x.GROUPS == model.leave_id);
+                    if (list != null)
+                    {
+                        var mails = (from item in list where !string.IsNullOrEmpty(item.EMAIL) select item.EMAIL).ToArray();
+                        msg2.AppendFormat(MailBll.Headtem, "出差單需要處理", "姓名:" + name);
+                        msg2.AppendFormat(MailBll.Bodytem, "交通方式:", model.transportation);
+                        if (model.transportation == "派車")
+                        {
+                            msg2.AppendFormat(MailBll.Bodytem, "接送地點:", model.hotel_type);
+                            msg2.AppendFormat(MailBll.Bodytem, "船期:", model.Start_ag ?? "" + "--" + (model.re_ag ?? ""));
+                        }
+                        if (model.Hostel == 1)
+                        {
+                            msg2.AppendFormat(MailBll.Bodytem, "安排宿舍:", model.hotel + "晚");
+                        }
+                        MailBll.GetInstence().SendMail(string.Join(";", mails), "姓名:" + name + " 出差單需要處理", msg2.ToString(), true);
+                    }
+                }
+            }
 
-            return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString());
+            return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString(), true);
         }
         #endregion
         #region 判斷是否重複申請

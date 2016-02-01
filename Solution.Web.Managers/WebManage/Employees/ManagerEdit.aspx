@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <f:PageManager ID="PageManager1" runat="server" />
+    <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
     <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
         ShowHeader="False">
         <Toolbars>
@@ -129,13 +129,13 @@
         </Items>
     </f:Panel>
     <f:Window ID="SelectWindows" Title="編輯" Hidden="true" EnableIFrame="true" runat="server" CloseAction="HidePostBack" 
-        EnableMaximize="true" EnableResize="true" Target="Parent" OnClose="SelectWindows_Close" EnableClose="true" EnableConfirmOnClose="True"
+        EnableMaximize="true" EnableResize="true" Target="Parent" OnClose="SelectWindows_Close" EnableClose="true"
         IsModal="True" Width="468px" Height="413px">
     </f:Window>
     <f:Window ID="Window1" Hidden="True"
         CloseAction="HidePostBack" OnClose="Window1_Close" EnableCollapse="true"
         runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
-        EnableIFrame="true" EnableClose="true"  IsModal="True" EnableConfirmOnClose="True">
+        EnableIFrame="true" EnableClose="true"  IsModal="True" >
     </f:Window>
     </form>
 </body>

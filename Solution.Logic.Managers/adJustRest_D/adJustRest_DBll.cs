@@ -6,6 +6,7 @@ using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Web;
 using SubSonic.Query;
 using System.Text;
@@ -47,6 +48,13 @@ namespace Solution.Logic.Managers
 
         }
 
+        #endregion
+        #region 修改隻緩存往前三個月以後的數據
+        public new Expression<Func<adJustRest_D, bool>> GetExpression<T>()
+        {
+            var d = DateTime.Now.Date.AddMonths(-3);
+            return x => x.ori_date > d;
+        }
         #endregion
         #region 審批單據
         public string Accept(Page page, int id, int updateValue, delCheckEventHandler del, bool isAddUseLog = true)
@@ -164,16 +172,17 @@ namespace Solution.Logic.Managers
                 if (model.audit == 1)
                 {
                     title = "一級審批通過";
+                    //sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
                     if (!string.IsNullOrEmpty(model.CHECKER2))
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        sto += mail + (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) > 0 ? "" : ";" + mail2);
+                        sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : ";" + mail2;
                     }
                 }
                 else
                 {
-                    sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
+                    //sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
                     title = "一級審批不通過";
                 }
             }
@@ -183,21 +192,19 @@ namespace Solution.Logic.Managers
                 sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
             }
 
-            msg.AppendLine(string.Format("單號:{0}", model.bill_id));
-            msg.AppendLine(string.Format("姓名:{0} 的{1}", name, stype + title));
-            msg.AppendLine();
+            msg.AppendFormat(MailBll.Headtem, stype, title);
+            msg.AppendFormat(MailBll.Bodytem, "單號:", model.bill_id);
+            msg.AppendFormat(MailBll.Bodytem, "姓名:", name);
+            msg.AppendFormat(MailBll.Bodytem, "單據類型:", CommonBll.GetWorkType(model.all_day.ToString()));
             if (model.ori_date != null)
-                msg.AppendLine(string.Format("調休日期:{0}加班日期:{1}", model.rest_date.ToShortDateString(), ((DateTime)model.ori_date).ToShortDateString()));
-            msg.AppendLine();
-            msg.AppendLine(outtype + "  " + CommonBll.GetWorkType(model.all_day.ToString()));
-            msg.AppendLine();
-            msg.AppendLine(model.memo);
-            msg.AppendLine("申請人郵箱:" + mail);
-            msg.AppendLine();
-            msg.AppendLine("詳細信息請進入人事考勤系統進行查看，謝謝！");
-            msg.AppendLine("打開系統:http://192.168.0.10！");
+                msg.AppendFormat(MailBll.Bodytem, "日期:", Convert.ToDateTime(model.ori_date).ToShortDateString() + "調整到" + model.rest_date.ToShortDateString());
 
-            return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString());
+            msg.AppendFormat(MailBll.Bodytem, "備注:", model.memo);
+            msg.AppendFormat(MailBll.Bodytem, "申請人郵箱:", mail);
+            msg.AppendFormat(MailBll.Bodytem, "詳細信息請進入系統查看，謝謝！", "");
+            msg.Append(MailBll.Foottem);
+
+            return MailBll.GetInstence().SendMail(sto, stype + title, msg.ToString(), true);
         }
         #endregion
 

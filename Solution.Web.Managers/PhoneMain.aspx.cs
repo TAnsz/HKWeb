@@ -1,14 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using DotNet.Utilities;
+using FineUI;
 using Solution.DataAccess.DataModel;
+using Solution.DataAccess.DbHelper;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
-using System.Data;
-using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
-using System.Collections.Generic;
-using FineUI;
-
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -23,7 +22,7 @@ using FineUI;
  *   修改日期：
  *   修改原因：
  ***********************************************************************/
-namespace Solution.Web.Managers.WebManage
+namespace Solution.Web.Managers
 {
     public partial class PhoneMain : PageBase
     {
@@ -82,7 +81,7 @@ namespace Solution.Web.Managers.WebManage
         {
             OnlineUsersBll.GetInstence().UserExit(this);
 
-            //FineUI.Alert.ShowInTop("成功退出系統！", "安全退出", MessageBoxIcon.Information, "top.location='Login.aspx'");
+            FineUI.Alert.ShowInTop("成功退出系統！", "安全退出", MessageBoxIcon.Information, "top.location='Login.aspx'");
         }
         #endregion
 
@@ -112,7 +111,7 @@ namespace Solution.Web.Managers.WebManage
                     {
                         //判斷當前節點是否有權限訪問，沒有則跳過本次循環
                         //暫時先註釋掉權限判斷，等添加相關權限後再開啟
-                        if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",") < 0)
+                        if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",", StringComparison.Ordinal) < 0)
                         {
                             continue;
                         }
@@ -123,7 +122,7 @@ namespace Solution.Web.Managers.WebManage
                         treenode.NodeID = dr[MenuInfoTable.Id].ToString();
                         //設置節點名稱
                         treenode.Text = dr[MenuInfoTable.Name].ToString();
-                        treenode.Target = "mainRegion";
+                        treenode.Target = "_top";
                         //判斷當前節點是否為最終節點
                         if (int.Parse(dr[MenuInfoTable.IsMenu].ToString()) != 0)
                         {
@@ -171,45 +170,47 @@ namespace Solution.Web.Managers.WebManage
                 foreach (DataRow dr in Childdt.Rows)
                 {
                     //判斷當前節點是否有權限訪問，沒有則跳過本次循環
-                    if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",") < 0)
+                    if (_pagePower.IndexOf("," + dr[MenuInfoTable.Id].ToString() + ",", StringComparison.Ordinal) < 0)
                     {
                         continue;
                     }
 
                     //創建子節點
-                    var TreeChildNode = new FineUI.TreeNode();
+                    var treeChildNode = new FineUI.TreeNode
+                    {
+                        NodeID = dr[MenuInfoTable.Id].ToString(),
+                        Text = dr[MenuInfoTable.Name].ToString(),
+                        Target = "_top"
+                    };
                     //設置節點ID
-                    TreeChildNode.NodeID = dr[MenuInfoTable.Id].ToString();
                     //設置節點名稱
-                    TreeChildNode.Text = dr[MenuInfoTable.Name].ToString();
-                    TreeChildNode.Target = "mainRegion";
                     //判斷當前節點是否為最終節點
                     if (int.Parse(dr[MenuInfoTable.IsMenu].ToString()) != 0)
                     {
                         //設置節點鏈接地址
-                        if (dr[MenuInfoTable.Url].ToString().IndexOf("?") > 0)
+                        if (dr[MenuInfoTable.Url].ToString().IndexOf("?", StringComparison.Ordinal) > 0)
                         {
-                            TreeChildNode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+                            treeChildNode.NavigateUrl = dr[MenuInfoTable.Url] + "&" + MenuInfoBll.GetInstence().PageUrlEncryptString();
                         }
                         else
                         {
-                            TreeChildNode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+                            treeChildNode.NavigateUrl = dr[MenuInfoTable.Url] + "?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
                         }
                         //TreeChildNode.NavigateUrl = dr[MenuInfoTable.Url].ToString() + "?" + MenuInfoBll.PageURLEncryptString();
-                        TreeChildNode.Leaf = true;
+                        treeChildNode.Leaf = true;
                     }
                     else
                     {
-                        TreeChildNode.NavigateUrl = "";
-                        TreeChildNode.Leaf = false;
+                        treeChildNode.NavigateUrl = "";
+                        treeChildNode.Leaf = false;
                         //設置樹節點擴張
-                        TreeChildNode.Expanded = true;
+                        treeChildNode.Expanded = true;
                     }
                     //將節點添加進樹列表中
-                    treenode.Nodes.Add(TreeChildNode);
+                    treenode.Nodes.Add(treeChildNode);
 
                     //遞歸添加子節點
-                    AddChildrenNode(dt, TreeChildNode, dr[MenuInfoTable.Id].ToString());
+                    AddChildrenNode(dt, treeChildNode, dr[MenuInfoTable.Id].ToString());
 
                 }
 

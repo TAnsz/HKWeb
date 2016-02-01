@@ -310,10 +310,9 @@ namespace Solution.Web.Managers
                             FineUI.Button btn1 = new Button { Text = dr[MenuInfoTable.Name].ToString() };
                             btn1.CssClass = "btn big " + Btncss[3];
                             btn1.Size = FineUI.ButtonSize.Large;
-                            btn1.IconUrl = BtnIcon[i % BtnIcon.Length];
+                            btn1.IconUrl = BtnIcon[i++ % BtnIcon.Length];
                             btn1.OnClientClick = mainTabStrip.GetAddTabReference(dr[MenuInfoTable.Id].ToString(), treenode.NavigateUrl, btn1.Text, null, true);
                             formMain.Items.Add(btn1);
-                            i++;
                         }
                         else
                         {

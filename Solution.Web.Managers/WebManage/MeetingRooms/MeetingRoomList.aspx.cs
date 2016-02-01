@@ -43,6 +43,8 @@ namespace Solution.Web.Managers.WebManage.MeetingRooms
             bll = MeetingRoomBll.GetInstence();
             //表格對像賦值
             grid = Grid1;
+            //pc界面自動縮放
+            PageManager1.AutoSizePanelID = CommonBll.IsPC(this) ? "Panel1" : "";
         }
         #endregion
 

@@ -102,6 +102,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
                 }
                 catch
                 {
+                    // ignored
                 }
             }
         }

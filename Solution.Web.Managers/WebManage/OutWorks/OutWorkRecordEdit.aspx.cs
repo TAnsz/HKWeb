@@ -35,7 +35,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
                 //綁定下拉列表
-                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'LEAV'", "'Tral'");
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'Tral'","'LEAV'" );
                 //加載數據
                 LoadData();
             }
@@ -57,8 +57,9 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
             if (id != 0)
             {
-                //獲取指定ID的菜單內容，如果不存在，則創建一個菜單實體
-                var model = OutWork_DBll.GetInstence().GetModelForCache(x => x.Id == id);
+                //從緩存中獲取指定ID的內容，如果不存在，則從數據庫獲取
+                var model = OutWork_DBll.GetInstence().GetModelForCache(x => x.Id == id) ??
+                            OutWork_DBll.GetInstence().GetModel(id,false);
                 if (model == null)
                     return;
 
@@ -246,7 +247,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 #region 數據驗證
 
-                if (string.IsNullOrEmpty(tbxEmp.Text.Trim()))
+                var empid = tbxEmp.Text.Trim();
+                if (string.IsNullOrEmpty(empid))
                 {
                     return tbxEmp.Label + "不能為空！";
                 }
@@ -281,7 +283,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //獲取實體
                 var model = new OutWork_D(x => x.Id == id)
                 {
-                    emp_id = tbxEmp.Text,
+                    emp_id = empid,
+                    join_id = ConvertHelper.Cint0(hjId.Text),
                     leave_id = ddlOutWorkRecord.SelectedValue,
                     depart_id = txtDeptId.Text,
                     memo = StringHelper.Left(txtMemo.Text, 100),
@@ -393,7 +396,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //獲取ID，調用審批函數
             int id = ConvertHelper.Cint0(hidId.Text);
-            int value = ConvertHelper.Cint0(cbIsCheck1.Checked);
+            //傳入需要修改后的值
+            int value = cbIsCheck1.Checked ? 0 : 1;
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {
@@ -402,7 +406,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
             string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.Check1);
             FineUI.Alert.ShowInParent(
-                !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
+                !string.IsNullOrEmpty(ret) ? ret : string.Format("一級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
             LoadData();
         }
@@ -415,7 +419,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             //獲取ID，調用審批函數
             int id = ConvertHelper.Cint0(hidId.Text);
-            int value = ConvertHelper.Cint0(cbIsCheck2.Checked);
+            int value = cbIsCheck1.Checked ? 0 : 1;
             //如果沒有選擇記錄，則直接退出
             if (id == 0)
             {

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BranchEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Powers.BranchEdit" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DepartsEdit.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.Powers.DepartsEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,7 +27,7 @@
                                 EnableSimulateTree="true" runat="server" ID="ddlParentId" Width="250px" ShowRedStar="True"
                                 OnSelectedIndexChanged="ddlParentId_SelectedIndexChanged">
                             </f:DropDownList>
-                            <f:TextBox runat="server" Label="部門編碼" ID="txtCode" Width="250px" EmptyText="系統自動生成" Readonly="True"></f:TextBox>
+                            <f:TextBox runat="server" Label="部門編號" ID="txtCode" Width="250px" EmptyText="輸入部門編號" ></f:TextBox>
                             <f:TextBox Readonly="true" runat="server" ID="txtParent" Label="父Id" EmptyText="對應的父類Id" Width="200px" Text="0"></f:TextBox>
                             <f:TextBox runat="server" ID="txtSort" Label="排序" Width="200px" Text="0"></f:TextBox>
                             <f:TextArea runat="server" Label="備註" ID="txtNotes" Width="300px" Height="60px"></f:TextArea>

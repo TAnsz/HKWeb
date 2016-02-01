@@ -15,9 +15,9 @@ namespace Solution.Web.Managers
             new MenuInfo();
 
             //初始化日志文件 
-            string state = WebConfigurationManager.AppSettings["IsWriteLog"];
+            var state = Convert.ToBoolean(WebConfigurationManager.AppSettings["IsWriteLog"]);
             //判断是否开启日志记录
-            if (state == "1")
+            if (state)
             {
                 var path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase +
                            WebConfigurationManager.AppSettings["log4net"];

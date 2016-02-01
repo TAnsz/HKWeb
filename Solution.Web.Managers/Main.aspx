@@ -4,7 +4,6 @@
 <html>
 <head id="Head2" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes minimum-scale=0.5, maximum-scale=4.0" />
     <title>香港信息網絡系統</title>
     <link href="WebManage/Css/main.css" rel="stylesheet" />
     <style type="text/css">
@@ -114,17 +113,18 @@
                                                 </f:Panel>
                                                 <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="VBox" BoxFlex="1">
                                                     <Items>
-                                                        <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="1"
+                                                        <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="3"
                                                             ShowBorder="true" ShowHeader="true" runat="server" EnableCheckBoxSelect="false" DataKeyNames="emp_id" EnableColumnLines="true"
                                                             OnPreRowDataBound="Grid1_PreRowDataBound" SortField="EMP_FNAME" OnSort="Grid1_Sort">
                                                             <Columns>
                                                                 <f:BoundField DataField="emp_id" SortField="emp_id" HeaderText="編號" Width="70px" />
                                                                 <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名" Width="250px" />
                                                                 <f:BoundField DataField="emp_ename" SortField="emp_ename" HeaderText="英文名" Width="100px" />
-                                                                <f:BoundField DataField="bill_date" SortField="bill_date" HeaderText="開始日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
-                                                                <f:BoundField DataField="Re_date" SortField="Re_date" HeaderText="結束日期" DataFormatString="{0:yyyy-MM-dd}" Width="130px" />
+                                                                <f:BoundField DataField="DepartName" SortField="DepartName" HeaderText="部門" Width="130px" />
+                                                                <f:BoundField DataField="bill_date" SortField="bill_date" HeaderText="開始日期" DataFormatString="{0:yyyy-MM-dd}" Width="100px" />
+                                                                <f:BoundField DataField="Re_date" SortField="Re_date" HeaderText="結束日期" DataFormatString="{0:yyyy-MM-dd}" Width="100px" />
                                                                 <f:BoundField DataField="DESCR" SortField="DESCR" HeaderText="類型" Width="150px" />
-                                                                <f:TemplateField Width="100px" HeaderText="時段" TextAlign="Center">
+                                                                <f:TemplateField Width="60px" HeaderText="時段" TextAlign="Center">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="Label2" runat="server" Text='<%# Solution.Logic.Managers.CommonBll.GetWorkType(Eval("work_type").ToString()) %>'></asp:Label>
                                                                     </ItemTemplate>
@@ -179,7 +179,7 @@
             // refreshWhenExist： 添加選項卡時，如果選項卡已經存在，是否刷新內部IFrame
             // refreshWhenTabChange: 切換選項卡時，是否刷新內部IFrame
             F.util.initTreeTabStrip(F(menuClientID), F(tabStripClientID), null, true, false, false);
-
+            
         });
     </script>
 </body>

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Solution.Web.Managers.WebManage {
+namespace Solution.Web.Managers {
     
     
     public partial class PhoneMain {
@@ -76,13 +76,13 @@ namespace Solution.Web.Managers.WebManage {
         protected global::FineUI.ToolbarText txtUser;
         
         /// <summary>
-        /// ToolbarFill1 控件。
+        /// Toolbar2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.ToolbarFill ToolbarFill1;
+        protected global::FineUI.Toolbar Toolbar2;
         
         /// <summary>
         /// btnExit 控件。

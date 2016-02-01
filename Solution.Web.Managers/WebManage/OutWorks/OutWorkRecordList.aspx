@@ -1,6 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OutWorkRecordList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.OutWorks.OutWorkRecordList" %>
 
-<%@ Import Namespace="DotNet.Utilities" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,8 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" AutoSizePanelID="Panel1" />
-        <f:Panel ID="Panel1" runat="server" Title="請假出差列表" EnableFrame="false" BodyPadding="10px">
+        <f:PageManager ID="PageManager1" runat="server" />
+        <f:Panel ID="Panel1" runat="server" Title="請假出差列表" EnableFrame="false" BodyPadding="10px" EnableCollapse="True" AutoScroll="true">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
@@ -50,7 +49,7 @@
                             Layout="Column" runat="server">
                             <Items>
                                 <f:DropDownList CompareType="String" Label="一級審批狀態" AutoSelectFirstItem="false" EmptyText="===全部==="
-                                    EnableEdit="true" ForceSelection="false" Width="320px" runat="server" ID="ddlIsDisplay">
+                                    EnableEdit="true" ForceSelection="false" Width="320px" runat="server" ID="ddlIsDisplay" >
                                     <f:ListItem Text="已審批" Value="1" />
                                     <f:ListItem Text="未審批" Value="0" />
                                 </f:DropDownList>
@@ -73,13 +72,13 @@
                     </Items>
                 </f:Form>
                 <f:Grid ID="Grid1" Title="請假出差列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" IsDatabasePaging="True" AllowPaging="True" SortField="bill_date"
-                    PageSize="20" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
-                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
+                    PageSize="15" ShowBorder="true" ShowHeader="False" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true" SortDirection="DESC"
+                    OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort" AutoScroll="true" >
                     <Columns>
                         <f:TemplateField RenderAsRowExpander="true">
                             <ItemTemplate>
                                 <div class="expander">
-                                    <table width="1100px" style="padding-left: 50px;">
+                                    <table style="padding-left: 50px;">
                                         <tr>
                                             <td style="width: 600px; padding-top: 10px;">
                                                 <strong>修改人員：</strong><%# Eval(Solution.DataAccess.DataModel.OutWork_DTable.op_user)%>
@@ -132,8 +131,8 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Solution.Logic.Managers.T_TABLE_DBll.GetInstence().GetDescr(Eval("leave_id"),Eval("outwork_type")) %>'></asp:Label>
                             </ItemTemplate>
                         </f:TemplateField>
-                        <f:LinkButtonField HeaderText="是否一級審批" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否一級審批" ColumnID="audit" CommandName="IsAudit" />
-                        <f:LinkButtonField HeaderText="是否二級審批" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否二級審批" ColumnID="audit2" CommandName="IsAudit2" />
+                        <f:LinkButtonField HeaderText="是否一級審批" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否一級審批" ColumnID="audit" CommandName="IsAudit" SortField="audit"/>
+                        <f:LinkButtonField HeaderText="是否二級審批" Icon="BulletCross" TextAlign="Center" ToolTip="點擊修改是否二級審批" ColumnID="audit2" CommandName="IsAudit2" SortField="audit2"/>
                         <f:LinkButtonField Width="100px" HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />
                     </Columns>
                 </f:Grid>

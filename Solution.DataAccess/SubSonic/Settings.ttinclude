@@ -42,10 +42,10 @@
 	"attn_raw",
 	"LeaveType",
 	"Security_apps",
-	"ANNUALLEAVE",
 	"DAYSONYEAR",
 	"update_log",
 	"Job",
+	
     };
 
      string CleanUp(string tableName){
