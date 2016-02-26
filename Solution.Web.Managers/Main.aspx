@@ -36,7 +36,7 @@
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" AutoSizePanelID="regionPanel" runat="server" />
-        <f:Timer ID="Timer1" Interval="600" Enabled="false" OnTick="Timer1_Tick" runat="server">
+        <f:Timer ID="Timer1" Interval="120" Enabled="false" OnTick="Timer1_Tick" runat="server">
         </f:Timer>
         <f:RegionPanel ID="regionPanel" ShowBorder="false" runat="server">
             <Regions>

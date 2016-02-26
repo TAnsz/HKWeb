@@ -35,7 +35,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //獲取ID值
                 hidId.Text = RequestHelper.GetInt0("Id") + "";
                 //綁定下拉列表
-                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'Tral'","'LEAV'" );
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlOutWorkRecord, T_TABLE_DTable.TABLES, "'Tral'", "'LEAV'");
                 //加載數據
                 LoadData();
             }
@@ -59,7 +59,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             {
                 //從緩存中獲取指定ID的內容，如果不存在，則從數據庫獲取
                 var model = OutWork_DBll.GetInstence().GetModelForCache(x => x.Id == id) ??
-                            OutWork_DBll.GetInstence().GetModel(id,false);
+                            OutWork_DBll.GetInstence().GetModel(id, false);
                 if (model == null)
                     return;
 
@@ -68,6 +68,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 txtEmpName.Text = EmployeeBll.GetInstence().GetEmpName(model.emp_id);
                 txtDeptId.Text = model.depart_id;
                 txtDept.Text = DepartsBll.GetInstence().GetDeptName(model.depart_id);
+                hjId.Text = model.join_id + "";
 
                 txtDays.Text = model.work_days.ToString();
 
@@ -194,7 +195,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
             cbIsCheck1.Checked = s == "1001" || s == "1002" || s == "1003";
 
-            Paneltp.Hidden = ddlType.SelectedValue != "3";
+            //Paneltp.Hidden = ddlType.SelectedValue != "3";
 
             var lt = ddlType.Items.FindByValue("3");
 
@@ -215,6 +216,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             if (string.IsNullOrEmpty(ddlOutWorkRecord.SelectedValue)) return;
             if (string.IsNullOrEmpty(ddlType.SelectedValue)) return;
+
+            Paneltp.Hidden = ddlType.SelectedValue != "3";
 
             //計算天數
             GetDays();
@@ -289,6 +292,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     depart_id = txtDeptId.Text,
                     memo = StringHelper.Left(txtMemo.Text, 100),
                     bill_date = dpStartTime.SelectedDate.Value.Date,
+                    begin_time = tpStart.SelectedDate,
+                    end_time = tpEnd.SelectedDate,
                     Re_date = dpEndTime.SelectedDate.Value.Date,
                     work_days = ConvertHelper.Cdecimal(txtDays.Text),
                     work_type = ddlType.SelectedValue,
@@ -324,19 +329,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 //生成流水號
                 if (string.IsNullOrEmpty(hbillId.Text))
                 {
-                    var str = new SelectHelper().GetMax<adJustRest_D>(adJustRest_DTable.bill_id).ToString();
-                    string headDate = str.Substring(0, 6);
-                    int lastNumber = int.Parse(str.Substring(6));
-                    //如果数据库最大值流水号中日期和生成日期在同一月，则顺序号加1
-                    if (headDate == DateTime.Now.ToString("yyyyMMdd"))
-                    {
-                        lastNumber++;
-                        model.bill_id = headDate + lastNumber.ToString("0000");
-                    }
-                    else
-                    {
-                        model.bill_id = DateTime.Now.Date.ToString("yyyymmdd") + "0001";
-                    }
+                    model.bill_id = GetSerialNumber();
                 }
 
                 #endregion
@@ -532,6 +525,25 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         }
         #endregion
 
+        #region 生成流水號
+
+        protected string GetSerialNumber()
+        {
+            var str = new SelectHelper().GetMax<OutWork_D>(OutWork_DTable.bill_id).ToString();
+            string headDate = str.Substring(0, 6);
+            int lastNumber = int.Parse(str.Substring(6));
+            //如果数据库最大值流水号中日期和生成日期在同一月，则顺序号加1
+            if (headDate == DateTime.Now.ToString("yyyyMMdd"))
+            {
+                lastNumber++;
+                return headDate + lastNumber.ToString("0000");
+            }
+            else
+            {
+                return DateTime.Now.Date.ToString("yyyymmdd") + "0001";
+            }
+        }
+        #endregion
 
 
 

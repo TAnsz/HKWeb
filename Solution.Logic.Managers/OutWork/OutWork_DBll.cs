@@ -54,7 +54,7 @@ namespace Solution.Logic.Managers
         }
         #endregion
         #region 審批單據
-        public string Accept(Page page, int id, int updateValue, DelCheckEventHandler del, bool isAddUseLog = true)
+        public string Accept(Page page, int id, int updateValue, DelCheckEventHandler del, bool isSendMail = true, bool isAddUseLog = true)
         {
             //判斷是否可以審批
             var model = new OutWork_D(x => x.Id == id);
@@ -70,7 +70,7 @@ namespace Solution.Logic.Managers
 
             Save(page, model);
             //發送郵件
-            if (updateValue == 1)
+            if (updateValue == 1 && isSendMail)
             {
                 result = SendMail(page, model);
             }
@@ -142,7 +142,7 @@ namespace Solution.Logic.Managers
         }
 
 
-        public string Accept2(Page page, int id, int updateValue, bool isAddUseLog = true)
+        public string Accept2(Page page, int id, int updateValue, bool isSendMail = true, bool isAddUseLog = true)
         {
             string result = null;
             //判斷是否可以審批
@@ -178,9 +178,10 @@ namespace Solution.Logic.Managers
             {
                 UseLogBll.GetInstence().Save(page, "{0}二級" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id + "的記錄！");
             }
-            string ss = SendMail(page, model);
-            if (ss.Length > 0)
+            //發送郵件
+            if (updateValue == 1 && isSendMail)
             {
+                string ss = SendMail(page, model);
                 result = ss;
             }
             return result;
@@ -196,7 +197,7 @@ namespace Solution.Logic.Managers
             //獲取申請人郵箱
             string mail = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.emp_id).ToString();
             string sto = mail;
-            string title;
+            string title = "";
             string stype = model.outwork_type.Equals(Tral) ? "出差申請單" : "請假申請單";
             var name = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMP_FNAME, x => x.EMP_ID == model.emp_id).ToString();
             var outtype = T_TABLE_DBll.GetInstence().GetFieldValue(T_TABLE_DTable.DESCR, x => x.CODE == model.leave_id && (x.TABLES == Tral.ToUpper() || x.TABLES == Leave.ToUpper())).ToString();
@@ -211,13 +212,22 @@ namespace Solution.Logic.Managers
                 //組合標題信息
                 if (model.audit == 1)
                 {
-                    title = "一級審批通過";
-                    //sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
+                    if (model.leave_id == "1001" || model.leave_id == "1002" || model.leave_id == "1003")
+                    {
+                        sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
+                    }
+                    else
+                    {
+                        title = "一級審批通過";
+
+                    }
+                    //如果默認一級審核通過，發送郵件給一級審核人
+
                     if (!string.IsNullOrEmpty(model.CHECKER2))
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        sto += (string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0) ? "" : (";" + mail2);
+                        sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : (";" + mail2);
                     }
                 }
                 else
@@ -228,8 +238,7 @@ namespace Solution.Logic.Managers
             }
             else
             {
-                title = (model.outwork_type.Equals(Tral) && model.leave_id.Equals("1004")) ||
-                model.outwork_type.Equals(Leave) ? "需要你審批!" : "";
+                title = "需要你審批!";
                 //海外出差增加Mandy郵箱
                 sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker) + (model.leave_id.Equals("1004") ? ";mandy.chiang@kamhingintl.com" : "");
             }
@@ -300,6 +309,20 @@ namespace Solution.Logic.Managers
                 result = string.Format("當天已申請調休單，單號爲{0}，請檢查修改！", amod.bill_id);
             }
             return result;
+        }
+        #endregion
+        #region 重新載入數據
+
+        public void DelThisCache()
+        {
+            //判斷是否?用緩存
+            if (CommonBll.IsUseCache())
+            {
+                //刪除?部緩存	
+                DelAllCache();
+                //重新載?緩存
+                GetList();
+            }
         }
         #endregion
         #endregion 自定義函數

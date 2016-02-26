@@ -19,6 +19,8 @@ using Solution.DataAccess.DataModel;
  *   修改原因：
  ***********************************************************************/
 using System.Data;
+using System.Linq;
+
 namespace Solution.Logic.Managers
 {
     /// <summary>
@@ -57,13 +59,9 @@ namespace Solution.Logic.Managers
         {
             var dt = new DataTable();
             var dt2 = GetDataTable();
-            for (int i = 0; i < colValue.Length; i++)
+            foreach (var dt1 in colValue.Select(t => DataTableHelper.GetFilterData(dt2, colName, t, null, null)).Where(dt1 => dt1!=null))
             {
-                var dt1 = DataTableHelper.GetFilterData(dt2, colName, colValue[i], null, null);
-                if (dt1!=null)
-                {
-                dt.Merge(dt1);  
-                }
+                dt.Merge(dt1);
             }
 
             //显示值
@@ -90,13 +88,9 @@ namespace Solution.Logic.Managers
         {
             var dt = new DataTable();
             var dt2 = GetDataTable();
-            foreach (string str in colValue)
+            foreach (var dt1 in colValue.Select(str => DataTableHelper.GetFilterData(dt2, colName, str, sortName, @orderby)).Where(dt1 => dt1!=null))
             {
-                var dt1 = DataTableHelper.GetFilterData(dt2, colName, str, sortName, orderby);
-                if (dt1!=null)
-                {
-                    dt.Merge(dt1);  
-                }
+                dt.Merge(dt1);
             }
 
             //显示值
@@ -112,33 +106,26 @@ namespace Solution.Logic.Managers
         #endregion
 
         #region 获取用户权限并记录到用户Session里
+
         /// <summary>
         /// 获取用户权限并存储到用户Session里
         /// </summary>
         /// <param name="positionId"></param>
         public void SetUserPower(string positionId)
         {
-            if (!string.IsNullOrEmpty(positionId))
+            if (string.IsNullOrEmpty(positionId)) return;
+            //去掉两边的逗号
+            positionId = StringHelper.DelStrSign(positionId);
+
+            //因用户有的拥有多个职位，所以将用户职位取出并存入数组
+            string[] arr = positionId.Split(new char[] { ',' });
+
+            //循环读取用户职位权限
+            foreach (var model in arr.Select(item1 => GetInstence().GetModelForCache(x => x.CODE == item1 && x.TABLES.Equals("AUTH"))).Where(model => model != null))
             {
-                //去掉两边的逗号
-                positionId = StringHelper.DelStrSign(positionId);
-
-                //因用户有的拥有多个职位，所以将用户职位取出并存入数组
-                string[] arr = positionId.Split(new char[] { ',' });
-
-                //循环读取用户职位权限
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    var group = arr[i];
-                    //取得职位实体对象
-                    var model = T_TABLE_DBll.GetInstence().GetModelForCache(x => x.CODE == group && x.TABLES.Equals("AUTH"));
-                    if (model != null)
-                    {
-                        //将用户权限记录到用户Session里
-                        SetPagePower(model.PagePower);
-                        SetControlPower(model.ControlPower);
-                    }
-                }
+                //将用户权限记录到用户Session里
+                SetPagePower(model.PagePower);
+                SetControlPower(model.ControlPower);
             }
         }
 
@@ -146,7 +133,7 @@ namespace Solution.Logic.Managers
         /// 将用户的页面访问权限记录到Session["PagePower"]里
         /// </summary>
         /// <param name="pagePower">页面访问权限</param>
-        private void SetPagePower(string pagePower)
+        private static void SetPagePower(string pagePower)
         {
             //如果页面访问权限Session为空，则直接赋值
             if (HttpContext.Current.Session["PagePower"] == null)
@@ -156,21 +143,17 @@ namespace Solution.Logic.Managers
             else
             {
                 //从Session中读取出已存储的权限字串
-                string spp = HttpContext.Current.Session["PagePower"] + "";
+                string[] spp = {HttpContext.Current.Session["PagePower"] + ""};
 
                 //将传入的变量存入数组pp
-                string[] pp = pagePower.Split(new char[] { ',' });
+                string[] pp = pagePower.Split(',');
                 //循环逐个判断权限是否存在
-                for (int i = 0; i < pp.Length; i++)
+                foreach (string s in pp.Where(t => spp[0].IndexOf("," + t + ",", StringComparison.Ordinal) < 0 && t != ""))
                 {
-                    //权限不存在的，则加入该权限
-                    if (spp.IndexOf("," + pp[i] + ",") < 0 && pp[i] != "")
-                    {
-                        spp += pp[i] + ",";
-                    }
+                    spp[0] += s + ",";
                 }
                 //将添加了其他职位权限后的权限字符串存入Session
-                HttpContext.Current.Session["PagePower"] = spp;
+                HttpContext.Current.Session["PagePower"] = spp[0];
             }
         }
 
@@ -178,7 +161,7 @@ namespace Solution.Logic.Managers
         /// 将用户页面的控件访问权限记录到Session["ControlPower"]里
         /// </summary>
         /// <param name="controlPower">页面的控件访问权限</param>
-        private void SetControlPower(string controlPower)
+        private static void SetControlPower(string controlPower)
         {
             //如果页面访问权限Session为空，则直接赋值
             if (HttpContext.Current.Session["ControlPower"] == null)
@@ -188,21 +171,17 @@ namespace Solution.Logic.Managers
             else
             {
                 //从Session中读取出已存储的权限字串
-                string spp = Convert.ToString(HttpContext.Current.Session["ControlPower"]);
+                string[] spp = {Convert.ToString(HttpContext.Current.Session["ControlPower"])};
 
                 //将传入的变量存入数组pp
                 string[] pp = controlPower.Split(new char[] { '|' });
                 //循环逐个判断权限是否存在
-                for (int i = 0; i < pp.Length; i++)
+                foreach (string t in pp.Where(s => spp[0].IndexOf("|" + s + "|", StringComparison.Ordinal) < 0 && s != ""))
                 {
-                    //权限不存在的，则加入该权限
-                    if (spp.IndexOf("|" + pp[i] + "|") < 0 && pp[i] != "")
-                    {
-                        spp += pp[i] + "|";
-                    }
+                    spp[0] += t + "|";
                 }
                 //将添加了其他职位权限后的权限字符串存入Session
-                HttpContext.Current.Session["ControlPower"] = spp;
+                HttpContext.Current.Session["ControlPower"] = spp[0];
             }
         }
         #endregion
@@ -226,15 +205,8 @@ namespace Solution.Logic.Managers
                 string[] arr = StringHelper.GetArrayStr(positionId);
 
                 //循环读取用户职位权限
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    //取得职位实体对象
-                    var model = T_TABLE_DBll.GetInstence().GetModelForCache(x => x.CODE == arr[i] && x.TABLES.Equals("AUTH"));
-                    if (model != null)
-                    {
-                        name += model.DESCR + ", ";
-                    }
-                }
+                name = arr.Select((t, i) => GetInstence().GetModelForCache(x => x.CODE == arr[i] && x.TABLES.Equals("AUTH"))).
+                    Where(model => model != null).Aggregate(name, (current, model) => current + model.DESCR + ", ");
             }
 
             //去除后面的逗号

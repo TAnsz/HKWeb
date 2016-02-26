@@ -56,27 +56,25 @@ namespace Solution.Web.Managers.WebManage.Application
                 try
                 {
                     //定義按鍵控件
-                    Control btnControl = null;
                     //找到頁面放置按鍵控件的位置
-                    ControlCollection controls = MenuInfoBll.GetInstence().GetControls(this.Controls, "toolBar");
+                    ControlCollection controls = MenuInfoBll.GetInstence().GetControls(Controls, "toolBar");
                     //逐個讀取出來
                     for (int i = 0; i < controls.Count; i++)
                     {
                         //取出控件
-                        btnControl = controls[i];
+                        var btnControl = controls[i];
                         //判斷是否除了刷新、查詢和關閉以外的按鍵
-                        if (btnControl.ID != "ButtonRefresh" && btnControl.ID != "ButtonSearch" && btnControl.ID != "ButtonClose" && btnControl.ID != "ButtonReset")
+                        if (btnControl.ID == "ButtonRefresh" || btnControl.ID == "ButtonSearch" ||
+                            btnControl.ID == "ButtonClose" || btnControl.ID == "ButtonReset") continue;
+                        //是的話檢查該按鍵當前用戶是否有控件權限，沒有的話則禁用該按鍵
+                        var s = MenuInfoBll.GetInstence().CheckControlPower(this, btnControl.ID);
+                        if (btnControl is FineUI.Button)
                         {
-                            //是的話檢查該按鍵當前用戶是否有控件權限，沒有的話則禁用該按鍵
-                            var s = MenuInfoBll.GetInstence().CheckControlPower(this, btnControl.ID);
-                            if (btnControl is FineUI.Button)
-                            {
-                                ((FineUI.Button) btnControl).Enabled = s;
-                            }
-                            if (btnControl is FineUI.FileUpload)
-                            {
-                                ((FineUI.FileUpload)btnControl).Enabled = s;
-                            }
+                            ((FineUI.Button) btnControl).Enabled = s;
+                        }
+                        if (btnControl is FineUI.FileUpload)
+                        {
+                            ((FineUI.FileUpload)btnControl).Enabled = s;
                         }
                     }
                 }
@@ -96,7 +94,7 @@ namespace Solution.Web.Managers.WebManage.Application
 
             //如果列表項不為空時，綁定空數據顯示內容
             if (grid != null)
-                grid.EmptyText = String.Format("<img src=\"{0}\" alt=\"No Data Found!\"/>", ResolveUrl("/WebManage/Images/no_data_found.jpg"));
+                grid.EmptyText = string.Format("<img src=\"{0}\" alt=\"No Data Found!\"/>", ResolveUrl("/WebManage/Images/no_data_found.jpg"));
         }
 
 

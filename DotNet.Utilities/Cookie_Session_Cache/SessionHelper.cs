@@ -69,7 +69,7 @@ namespace DotNet.Utilities
         /// 刪除所有的ession
         /// </summary>
         /// <returns></returns>
-        public static void RemoveAllSession(string name)
+        public static void RemoveAllSession()
         {
             HttpContext.Current.Session.RemoveAll();
         }

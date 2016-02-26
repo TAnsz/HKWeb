@@ -257,18 +257,31 @@ namespace Solution.Web.Managers.WebManage.Meals
         protected void filePhoto_FileSelected(object sender, EventArgs e)
         {
             if (!filePhoto.HasFile) return;
-            string fileName = filePhoto.ShortFileName;
-
-            if (!ValidFileTypes.Contains(FileOperateHelper.GetPostfixStr(fileName)))
+            string fileName = filePhoto.ShortFileName.ToLower();
+            string filetype = FileOperateHelper.GetPostfixStr(fileName);
+            if (!ValidFileTypes.Contains(filetype))
             {
                 FineUI.Alert.ShowInParent("無效的文件類型，請上傳圖片文件！", FineUI.MessageBoxIcon.Information);
                 return;
             }
 
+            string url = Server.MapPath("~/UploadFile/");
+            filePhoto.SaveAs(url + "menu" + filetype);
+            //轉換文件爲jpg格式
+            if (filetype != ".jpg")
+            {
+                //imgphoto.ImageUrl = "~/UploadFile/menu.jpg";// + fileName;
+                System.Drawing.Image image = System.Drawing.Image.FromFile(url + "menu" + filetype);
+                try
+                {
+                    image.Save(url + "menu.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
 
-            filePhoto.SaveAs(Server.MapPath("~/UploadFile/menu.jpg"));
-
-            //imgphoto.ImageUrl = "~/UploadFile/menu.jpg";// + fileName;
+            }
 
             // 清空文件上传组件
             filePhoto.Reset();

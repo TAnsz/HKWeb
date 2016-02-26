@@ -37,7 +37,7 @@ namespace Solution.Logic.Managers
         /// <returns></returns>
         public string GetEmpName(object id)
         {
-            if (string.IsNullOrEmpty(id.ToString()))
+            if (id == null || string.IsNullOrEmpty(id.ToString()))
             {
                 return "";
             }

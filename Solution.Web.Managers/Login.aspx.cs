@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Web;
 using DotNet.Utilities;
 using FineUI;
@@ -32,17 +33,13 @@ namespace Solution.Web.Managers
                 //生成驗證碼
                 //imgCaptcha.ImageUrl = "WebManage/Application/Vcode.ashx?t=" + DateTime.Now.Ticks;
 
-                #region 初始化用戶Session變量
-                //清空Session
-                SessionHelper.ClearSession();
-                //SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
-                //SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
-                //SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
-                //SessionHelper.RemoveSession(OnlineUsersTable.Md5);
-                //刪除Cookies
-                CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
-                CookieHelper.ClearCookie(OnlineUsersTable.Md5);
-                #endregion
+                //判斷是否登陸
+                if (Session[OnlineUsersTable.UserHashKey] != null && !string.IsNullOrEmpty(Session[OnlineUsersTable.UserHashKey].ToString()))
+                {
+                    //跳轉進入主頁面    
+                    Response.Redirect(CommonBll.IsPC(this) ? "Main.aspx" : "PhoneMain.aspx");
+                }
+
             }
         }
         #endregion
@@ -151,6 +148,17 @@ namespace Solution.Web.Managers
 
             #endregion
 
+            #region 初始化用戶Session變量
+            //初始化Session
+            SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
+            SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+            SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
+            SessionHelper.RemoveSession(OnlineUsersTable.Md5);
+            //刪除Cookies
+            CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
+            CookieHelper.ClearCookie(OnlineUsersTable.Md5);
+            #endregion
+
             #region 存儲在線用戶資料
 
             #region 獲取用戶操作權限
@@ -164,17 +172,16 @@ namespace Solution.Web.Managers
                 FineUI.Alert.ShowInParent("您的賬號未綁定職位，請與管理員聯繫！", FineUI.MessageBoxIcon.Error);
                 return;
             }
-            else
-            {
-                //獲取用戶權限並存儲到用戶Session裡
-                T_TABLE_DBll.GetInstence().SetUserPower(userinfo.GROUPS);
-                //HttpContext.Current.Session["PagePower"] = ",28,29,30,31,32,36,37,38,39,40,41,42,43,24,25,26,27,1,2,5,19,20,21,22,23,3,6,7,8,9,10,11,12,13,14,33,34,35,4,15,16,17,18,";
-                //HttpContext.Current.Session["ControlPower"] = ",29|1,29|2,29|3,29|5,29|6,30|4,30|10,31|1,31|2,31|3,31|5,31|6,32|4,32|10,37|1,37|2,37|3,37|5,37|6,38|4,39|1,39|2,39|3,39|5,39|6,40|4,42|1,42|2,42|3,42|4,43|1,43|2,43|4,43|3,25|1,25|2,25|11,26|4,27|2,27|3,27|12,5|4,19|1,19|2,19|3,20|4,21|1,21|2,21|3,22|4,23|9,23|3,6|1,6|2,6|3,6|5,6|6,7|4,8|1,8|2,8|3,9|4,11|1,11|2,11|3,11|5,11|6,12|4,13|1,13|2,13|3,14|4,15|8,";
-            }
+            //獲取用戶權限並存儲到用戶Session裡
+            T_TABLE_DBll.GetInstence().SetUserPower(userinfo.GROUPS);
+            //HttpContext.Current.Session["PagePower"] = ",28,29,30,31,32,36,37,38,39,40,41,42,43,24,25,26,27,1,2,5,19,20,21,22,23,3,6,7,8,9,10,11,12,13,14,33,34,35,4,15,16,17,18,";
+            //HttpContext.Current.Session["ControlPower"] = ",29|1,29|2,29|3,29|5,29|6,30|4,30|10,31|1,31|2,31|3,31|5,31|6,32|4,32|10,37|1,37|2,37|3,37|5,37|6,38|4,39|1,39|2,39|3,39|5,39|6,40|4,42|1,42|2,42|3,42|4,43|1,43|2,43|4,43|3,25|1,25|2,25|11,26|4,27|2,27|3,27|12,5|4,19|1,19|2,19|3,20|4,21|1,21|2,21|3,22|4,23|9,23|3,6|1,6|2,6|3,6|5,6|6,7|4,8|1,8|2,8|3,9|4,11|1,11|2,11|3,11|5,11|6,12|4,13|1,13|2,13|3,14|4,15|8,";
 
             #endregion
 
             #region 當前用戶在線信息
+
+
             //當前時間
             var localTime = DateTime.Now.ToLocalTime();
             //創建客戶端信息獲取實體
@@ -239,13 +246,10 @@ namespace Solution.Web.Managers
             var onlineUsersList = OnlineUsersBll.GetInstence().GetList();
 
             //判斷緩存中["OnlineUsers"]是否存在，不存在則直接將在線實體添加到緩存中
-            if (onlineUsersList == null || onlineUsersList.Count == 0)
+            if (onlineUsersList.SingleOrDefault(x => x.UserHashKey == userHashKey) != null)
             {
                 //清除在線表裡與當前用戶同名的記錄
-                if (userinfo.IS_SHEBAO == null || userinfo.IS_SHEBAO == false)
-                {
-                    OnlineUsersBll.GetInstence().Delete(this, x => x.Manager_LoginName == onlineUser.Manager_LoginName);
-                }
+                OnlineUsersBll.GetInstence().Delete(this, x => x.UserHashKey == userHashKey);
 
                 //將在線實體保存到數據庫的在線表中
                 OnlineUsersBll.GetInstence().Save(this, onlineUser, null, true, false);

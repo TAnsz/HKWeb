@@ -108,7 +108,9 @@
     <Content Include="Main.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="WebManage\MeetingRooms\RoomQuick.aspx" />
+    <Content Include="WebManage\OutWorks\OutWorkRecordLotEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
+    <Content Include="WebManage\OutWorks\OutWorkRecordLotList.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
     <Content Include="WebManage\Reports\MonthReportsList.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx" />
@@ -309,12 +311,26 @@
     <Compile Include="WebManage\MeetingRooms\RoomQuick.aspx.designer.cs">
       <DependentUpon>RoomQuick.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordLotEdit.aspx.cs">
+      <DependentUpon>OutWorkRecordLotEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordLotEdit.aspx.designer.cs">
+      <DependentUpon>OutWorkRecordLotEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.cs">
       <DependentUpon>OutWorkRecordEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordEdit.aspx.designer.cs">
       <DependentUpon>OutWorkRecordEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordLotList.aspx.cs">
+      <DependentUpon>OutWorkRecordLotList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\OutWorks\OutWorkRecordLotList.aspx.designer.cs">
+      <DependentUpon>OutWorkRecordLotList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.cs">
       <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
@@ -329,6 +345,9 @@
     </Compile>
     <Compile Include="WebManage\Reports\MonthReportsList.aspx.designer.cs">
       <DependentUpon>MonthReportsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Reports\ReportData.ashx.cs">
+      <DependentUpon>ReportData.ashx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx.cs">
       <DependentUpon>EmpSimpleChoose.aspx</DependentUpon>
@@ -520,6 +539,7 @@
     <None Include="Properties\PublishProfiles\web22.pubxml" />
     <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
     <Content Include="WebManage\MeetingRooms\RoomData.ashx" />
+    <Content Include="WebManage\Reports\ReportData.ashx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WebManage\Meals\ReportMeal.rdlc" />

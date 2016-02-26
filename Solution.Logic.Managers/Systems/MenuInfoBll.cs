@@ -287,7 +287,7 @@ namespace Solution.Logic.Managers
                 //添加用户访问记录
                 UseLogBll.GetInstence().Save(page, "{0}没有权限访问【{1}】页面");
 
-                HttpContext.Current.Response.Write("你从错误的路径进入当前页面！");
+                HttpContext.Current.Response.Write("你从错误的路径进入当前页面或者登陸已過期，請刷新重試！");
                 HttpContext.Current.Response.End();
             }
         }

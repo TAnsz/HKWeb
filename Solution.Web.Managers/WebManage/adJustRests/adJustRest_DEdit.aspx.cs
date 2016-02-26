@@ -66,6 +66,7 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 txtEmpName.Text = EmployeeBll.GetInstence().GetEmpName(model.emp_id);
                 txtDeptId.Text = model.depart_id;
                 txtDept.Text = DepartsBll.GetInstence().GetDeptName(model.depart_id);
+                hjId.Text = model.join_id + "";
 
                 hbillId.Text = model.bill_id;
                 //txtDays.Text = model.all_day.ToString();

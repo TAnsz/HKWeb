@@ -224,7 +224,7 @@ namespace Solution.Logic.Managers
                         LoginLogBll.GetInstence().Save(userinfoId, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
 
                         //清除在线表里与当前用户同名的记录
-                        Delete(null, x => x.Id == userinfoId);
+                       // Delete(null, x => x.Id == GetOnlineUsersId());
 
                         //清空Session
                         SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
@@ -238,7 +238,7 @@ namespace Solution.Logic.Managers
                         CommonBll.WriteLog("当前帐号已经下线，用户Id【" + userinfoId + "】");
 
                         //通知用户
-                        FineUI.Alert.Show("您的账号已经在另一处登录，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
+                        FineUI.Alert.Show("您的账号已经在另一处登录或已退出，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
                         return true;
                     }
                 }
@@ -262,54 +262,42 @@ namespace Solution.Logic.Managers
         /// </summary>
         public void IsTimeOut()
         {
-            if (HttpContext.Current.Session == null || HttpContext.Current.Session[OnlineUsersTable.UserHashKey] == null)
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session[OnlineUsersTable.UserHashKey] != null)
+                return;
+            try
             {
-                try
+                //不存在则表示Session失效了，重新从Cookies中加载
+                var userHashKey = CookieHelper.GetCookieValue(OnlineUsersTable.UserHashKey);
+                var md5 = CookieHelper.GetCookieValue(OnlineUsersTable.Md5);
+
+                //判断Cookies是否存在，存在则查询在线列表，重新获取用户信息
+                if (userHashKey.Length > 0 && md5.Length == 32)
                 {
-                    //不存在则表示Session失效了，重新从Cookies中加载
-                    var userHashKey = CookieHelper.GetCookieValue(OnlineUsersTable.UserHashKey);
-                    var md5 = CookieHelper.GetCookieValue(OnlineUsersTable.Md5);
-
-                    //判断Cookies是否存在，存在则查询在线列表，重新获取用户信息
-                    if (userHashKey.Length > 0 && md5.Length == 32)
+                    //读取当前用户在线实体
+                    var model = GetOnlineUsersModel(userHashKey);
+                    //当前用户存在在线列表中
+                    if (model != null)
                     {
-                        //读取当前用户在线实体
-                        var model = GetOnlineUsersModel(userHashKey);
-                        //当前用户存在在线列表中
-                        if (model != null)
+                        //计算用户md5值
+                        var key = GenerateMd5(model);
+
+                        //判断用户的md5值是否正确
+                        if (md5 == key)
                         {
-                            //计算用户md5值
-                            var key = GenerateMd5(model);
-
-                            //判断用户的md5值是否正确
-                            if (md5 == key)
-                            {
-                                //将UserHashKey存储到缓存中
-                                HttpContext.Current.Session[OnlineUsersTable.UserHashKey] = userHashKey;
-                                //获取用户权限并存储到用户Session里
-                                T_TABLE_DBll.GetInstence().SetUserPower(model.Position_Id);
-                                //更新用户当前SessionId到在线表中
-                                UpdateUserOnlineInfo(model.Id + "", OnlineUsersTable.SessionId, HttpContext.Current.Session.SessionID);
-
-                                return;
-                            }
-                            //添加用户下线记录
-                            LoginLogBll.GetInstence().Save(model.Id, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
-
-                            //清除在线表里与当前用户同名的记录
-                            Delete(null, x => x.Id == model.Id);
-
-                            //清空Session
-                            SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
-                            SessionHelper.RemoveSession(OnlineUsersTable.Md5);
-                            SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
-                            SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
-                            //删除Cookies
-                            CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
-                            CookieHelper.ClearCookie(OnlineUsersTable.Md5);
+                            //将UserHashKey存储到缓存中
+                            HttpContext.Current.Session[OnlineUsersTable.UserHashKey] = userHashKey;
+                            //获取用户权限并存储到用户Session里
+                            T_TABLE_DBll.GetInstence().SetUserPower(model.Position_Id);
+                            //更新用户当前SessionId到在线表中
+                            UpdateUserOnlineInfo(model.Id + "", OnlineUsersTable.SessionId, HttpContext.Current.Session.SessionID);
+                            return;
                         }
-                        //删除数据库记录与IIS缓存
-                        //Delete(null, x => x.UserHashKey == userHashKey,false);
+                        //添加用户下线记录
+                        LoginLogBll.GetInstence().Save(model.Id, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
+
+                        //清除在线表里与当前用户同名的记录
+                        Delete(null, x => x.Id == model.Id);
+
                         //清空Session
                         SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                         SessionHelper.RemoveSession(OnlineUsersTable.Md5);
@@ -319,18 +307,28 @@ namespace Solution.Logic.Managers
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                     }
+                    //删除数据库记录与IIS缓存
+                    //Delete(null, x => x.UserHashKey == userHashKey,false);
+                    //清空Session
+                    SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
+                    SessionHelper.RemoveSession(OnlineUsersTable.Md5);
+                    SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
+                    SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                    //删除Cookies
+                    CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
+                    CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 }
-                catch (Exception e)
-                {
-                    //出现异常，保存出错日志信息
-                    CommonBll.WriteLog("檢測用戶超時出錯", e);
-                }
-                //用户不存在，直接退出
-                FineUI.Alert.Show("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
-                //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
-                //HttpContext.Current.Response.Redirect("/Login.aspx");
-                HttpContext.Current.Response.End();
             }
+            catch (Exception e)
+            {
+                //出现异常，保存出错日志信息
+                CommonBll.WriteLog("檢測用戶超時出錯", e);
+            }
+            //用户不存在，直接退出
+            //FineUI.Alert.ShowInTop("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='/Login.aspx';");
+            //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
+            HttpContext.Current.Response.Redirect("/Login.aspx");
+            HttpContext.Current.Response.End();
         }
         #endregion
 

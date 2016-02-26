@@ -31,6 +31,12 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("USER",USER,DbType.AnsiStringFixedLength);
             return sp;
         }
+        public static StoredProcedure PRO_DAY_REPORT(string Id){
+            StoredProcedure sp=new StoredProcedure("PRO_DAY_REPORT");
+			
+            sp.Command.AddParameter("Id",Id,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure PRO_INSERT_DAYSONYEAR(string YEAR){
             StoredProcedure sp=new StoredProcedure("PRO_INSERT_DAYSONYEAR");
 			
