@@ -76,7 +76,7 @@ namespace Solution.Web.Managers.WebManage.Reports
                         new JavaScriptDateTimeConverter());
             }
 
-            context.Response.Write("jsonpCallback1(" + data + ")");
+            context.Response.Write(data);
             context.Response.End();
 
         }

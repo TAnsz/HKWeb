@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <div id = "test">222</div>
+
+    <script src="WebManage/Js/jquery-1.10.2.min.js"></script>
+<script>
+    //$.get("WebManage/Reports/ReportData.ashx" + "?Method=GetReportById&Id=7773", function (data) {
+    //    $("#test").html(JSON.stringify(data));
+    //    alert(data);
+    //}, "text");
+
+    var param = [
+                { name: "Id", value: "7773" },
+                { name: "Method", value: "GetReportById" }
+    ];
+
+    $.ajax({
+        type: "POST", //
+        url: "WebManage/Reports/ReportData.ashx" ,
+        data: param,
+        dataType: "text",  // fixed jquery 1.4 not support Ms Date Json Format /Date(@Tickets)/
+        //dataType: "json",
+        //dataFilter: function(data, type) { return data.replace(/"\\\/(Date\([0-9-]+\))\\\/"/gi, "new $1"); },
+        success://function(data) {
+            function (data) {
+                //datastr = datastr.replace(/"\\\/(Date\([0-9-]+\))\\\/"/gi, 'new $1');
+                //var data = (new Function("return " + datastr))();
+                //debugger;
+                if (data != null) {
+                    $("#test").html(JSON.stringify(data));
+                    alert(data);
+                }
+            },
+        error: function (data) {
+            alert(data);
+        }
+    });
+
+</script>
+    
+</body>
+</html>
