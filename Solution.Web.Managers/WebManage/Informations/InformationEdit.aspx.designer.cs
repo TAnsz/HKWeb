@@ -31,42 +31,6 @@ namespace Solution.Web.Managers.WebManage.Informations {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtText 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtText;
-        
-        /// <summary>
-        /// txtUpload 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtUpload;
-        
-        /// <summary>
-        /// txtRndKey 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtRndKey;
-        
-        /// <summary>
-        /// hidId 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.HiddenField hidId;
-        
-        /// <summary>
         /// PageManager1 控件。
         /// </summary>
         /// <remarks>
@@ -247,22 +211,40 @@ namespace Solution.Web.Managers.WebManage.Informations {
         protected global::FineUI.TextBox txtRedirectUrl;
         
         /// <summary>
-        /// FormRow4 控件。
+        /// FormRow9 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FormRow FormRow4;
+        protected global::FineUI.FormRow FormRow9;
         
         /// <summary>
-        /// ContentPanel1 控件。
+        /// filePhoto 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.ContentPanel ContentPanel1;
+        protected global::FineUI.FileUpload filePhoto;
+        
+        /// <summary>
+        /// FormRow12 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.FormRow FormRow12;
+        
+        /// <summary>
+        /// ContentPanel3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.ContentPanel ContentPanel3;
         
         /// <summary>
         /// FormRow5 控件。
@@ -310,24 +292,6 @@ namespace Solution.Web.Managers.WebManage.Informations {
         protected global::FineUI.TextArea txtSeoDesc;
         
         /// <summary>
-        /// FormRow7 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.FormRow FormRow7;
-        
-        /// <summary>
-        /// txtNotes 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextArea txtNotes;
-        
-        /// <summary>
         /// FormRow8 控件。
         /// </summary>
         /// <remarks>
@@ -355,39 +319,75 @@ namespace Solution.Web.Managers.WebManage.Informations {
         protected global::FineUI.TextBox txtFromName;
         
         /// <summary>
-        /// FormRow9 控件。
+        /// FormRow7 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FormRow FormRow9;
+        protected global::FineUI.FormRow FormRow7;
         
         /// <summary>
-        /// filePhoto 控件。
+        /// txtNotes 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FileUpload filePhoto;
+        protected global::FineUI.TextArea txtNotes;
         
         /// <summary>
-        /// FormRow12 控件。
+        /// FormRow4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.FormRow FormRow12;
+        protected global::FineUI.FormRow FormRow4;
         
         /// <summary>
-        /// ContentPanel3 控件。
+        /// ContentPanel1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.ContentPanel ContentPanel3;
+        protected global::FineUI.ContentPanel ContentPanel1;
+        
+        /// <summary>
+        /// txtText 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtText;
+        
+        /// <summary>
+        /// txtUpload 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtUpload;
+        
+        /// <summary>
+        /// txtRndKey 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtRndKey;
+        
+        /// <summary>
+        /// hidId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.HiddenField hidId;
     }
 }

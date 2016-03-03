@@ -142,7 +142,7 @@ namespace Solution.Web.Managers.WebManage.Application
                     //上傳成功，輸出結果
                     if (isEditor)//編輯器 (ke4)
                     {
-                        ShowMsg_Editor("上傳成功", m_r.Path);
+                        ShowMsg_Editor("上傳成功", m_r.Path,m_r.Src);
                     }
                     else
                     {
@@ -159,7 +159,8 @@ namespace Solution.Web.Managers.WebManage.Application
         /// <summary>提示信息輸出（編輯器ke4專用）</summary>
         /// <param name="msg">提示內容</param>
         /// <param name="filePath">上傳後新的url地址</param>
-        private void ShowMsg_Editor(string msg, string filePath = "")
+        /// <param name="fileName">文件原名稱</param>
+        private void ShowMsg_Editor(string msg, string filePath = "",string fileName="")
         {
             var hash = new Hashtable();
 
@@ -172,6 +173,7 @@ namespace Solution.Web.Managers.WebManage.Application
             {
                 hash["error"] = 0;
                 hash["url"] = filePath;
+                hash["title"] = fileName;
             }
 
             string str = JsonHelper.ToJson(hash);

@@ -231,6 +231,9 @@ namespace Solution.Logic.Managers
                         SessionHelper.RemoveSession(OnlineUsersTable.Md5);
                         SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
                         SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
                         //删除Cookies
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
@@ -303,6 +306,9 @@ namespace Solution.Logic.Managers
                         SessionHelper.RemoveSession(OnlineUsersTable.Md5);
                         SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
                         SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
+                        SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
                         //删除Cookies
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
@@ -314,6 +320,9 @@ namespace Solution.Logic.Managers
                     SessionHelper.RemoveSession(OnlineUsersTable.Md5);
                     SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
                     SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
+                    SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
+                    SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
+                    SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
                     //删除Cookies
                     CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                     CookieHelper.ClearCookie(OnlineUsersTable.Md5);

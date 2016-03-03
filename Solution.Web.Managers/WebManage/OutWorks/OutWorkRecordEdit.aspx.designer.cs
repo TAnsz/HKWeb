@@ -31,6 +31,15 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// PageManager1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.PageManager PageManager1;
+        
+        /// <summary>
         /// hbillId 控件。
         /// </summary>
         /// <remarks>
@@ -74,15 +83,6 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.HiddenField hchecker2;
-        
-        /// <summary>
-        /// PageManager1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.PageManager PageManager1;
         
         /// <summary>
         /// Panel1 控件。
@@ -227,6 +227,51 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtDays;
+        
+        /// <summary>
+        /// FormRow6 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.FormRow FormRow6;
+        
+        /// <summary>
+        /// GPanelal 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.GroupPanel GPanelal;
+        
+        /// <summary>
+        /// lbal1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Label lbal1;
+        
+        /// <summary>
+        /// lbal2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Label lbal2;
+        
+        /// <summary>
+        /// lbal3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Label lbal3;
         
         /// <summary>
         /// FormRow4 控件。

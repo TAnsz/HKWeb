@@ -195,10 +195,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     switch (p)
                     {
                         case AccType.Accept1:
-                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check1,false);
+                            result += OutWork_DBll.GetInstence().Accept1(this, t, 1, false,false);
                             break;
                         case AccType.Accept2:
-                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check2, false);
+                            result += OutWork_DBll.GetInstence().Accept2(this, t, 1, false, false);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException("p", p, null);
@@ -297,7 +297,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                         return;
                     }
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check1);
+                    result = OutWork_DBll.GetInstence().Accept1(this, ConvertHelper.Cint0(id), value);
                     result = string.IsNullOrEmpty(result)
                         ? string.Format("一級{0}審批成功。", value == 0 ? "反" : "")
                         : result;
@@ -311,7 +311,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                         return;
                     }
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check2);
+                    result = OutWork_DBll.GetInstence().Accept2(this, ConvertHelper.Cint0(id), value);
                     result = string.IsNullOrEmpty(result)
                         ? string.Format("二級{0}審批成功。", value == 0 ? "反" : "")
                         : result;

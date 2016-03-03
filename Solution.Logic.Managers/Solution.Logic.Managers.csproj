@@ -55,7 +55,7 @@
     <Compile Include="Application\TreeBll.cs" />
     <Compile Include="Application\UploadFileBll.cs" />
     <Compile Include="MeetingRooms\MeetingRoomApplyBll.cs" />
-    <Compile Include="OutWork\OutWork_DBll.cs" />
+    <Compile Include="OutWork\OutWorkDBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Report_MonthBll.cs" />
     <Compile Include="SubSonic\adJustRest_DBll.cs">
@@ -111,7 +111,7 @@
     <Compile Include="SubSonic\OnlineUsersBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\OutWork_DBll.cs">
+    <Compile Include="SubSonic\OutWorkDBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\PagePowerSignBll.cs">

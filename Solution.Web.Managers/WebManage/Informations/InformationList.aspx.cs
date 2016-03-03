@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using DotNet.Utilities;
 using FineUI;
 using Solution.DataAccess.DataModel;
@@ -95,7 +96,7 @@ namespace Solution.Web.Managers.WebManage.Informations
             return list;
         }
         #endregion
-        
+
         #region 列表屬性綁定
 
         #region 列表按鍵綁定——修改列表控件屬性
@@ -107,46 +108,55 @@ namespace Solution.Web.Managers.WebManage.Informations
         protected void Grid1_PreRowDataBound(object sender, FineUI.GridPreRowEventArgs e)
         {
             //綁定是否顯示
-            GridRow gr = Grid1.Rows[e.RowIndex];
-            if (((System.Data.DataRowView)(gr.DataItem)).Row.Table.Rows[e.RowIndex][InformationTable.IsDisplay].ToString() == "0")
+            DataRowView row = e.DataItem as DataRowView;
+            if (row != null)
             {
-                var lbf = Grid1.FindColumn("IsDisplay") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("IsDisplay") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
-            }
+                if (
+                    row.Row.Table.Rows[e.RowIndex][InformationTable.IsDisplay]
+                        .ToString() == "0")
+                {
+                    var lbf = Grid1.FindColumn("IsDisplay") as LinkButtonField;
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
+                else
+                {
+                    var lbf = Grid1.FindColumn("IsDisplay") as LinkButtonField;
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
 
-            //綁定是否置頂
-            if (((System.Data.DataRowView)(gr.DataItem)).Row.Table.Rows[e.RowIndex][InformationTable.IsTop].ToString() == "0")
-            {
-                var lbf = Grid1.FindColumn("IsTop") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("IsTop") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
-            }
+                //綁定是否置頂
+                if (
+                    row.Row.Table.Rows[e.RowIndex][InformationTable.IsTop]
+                        .ToString() == "0")
+                {
+                    var lbf = Grid1.FindColumn("IsTop") as LinkButtonField;
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
+                else
+                {
+                    var lbf = Grid1.FindColumn("IsTop") as LinkButtonField;
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
 
-            //綁定是否推薦
-            if (((System.Data.DataRowView)(gr.DataItem)).Row.Table.Rows[e.RowIndex][InformationTable.IsHot].ToString() == "0")
-            {
-                var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
-                lbf.Icon = Icon.BulletCross;
-                lbf.CommandArgument = "1";
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
-                lbf.Icon = Icon.BulletTick;
-                lbf.CommandArgument = "0";
+                //綁定是否推薦
+                if (
+                    row.Row.Table.Rows[e.RowIndex][InformationTable.IsHot]
+                        .ToString() == "0")
+                {
+                    var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
+                    lbf.Icon = Icon.BulletCross;
+                    lbf.CommandArgument = "1";
+                }
+                else
+                {
+                    var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
+                    lbf.Icon = Icon.BulletTick;
+                    lbf.CommandArgument = "0";
+                }
             }
 
             //綁定是否編輯列
@@ -242,7 +252,7 @@ namespace Solution.Web.Managers.WebManage.Informations
         {
             //獲取要刪除的Id組
             var id = GridViewHelper.GetSelectedKeyIntArray(Grid1);
-            
+
             //如果沒有選擇記錄，則直接退出
             if (id == null)
             {
@@ -267,7 +277,7 @@ namespace Solution.Web.Managers.WebManage.Informations
             }
             catch (Exception e)
             {
-                string result = "嘗試刪除編號ID為[" + string.Join(",", id) +"]的數據記錄失敗！";
+                string result = "嘗試刪除編號ID為[" + string.Join(",", id) + "]的數據記錄失敗！";
 
                 //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);

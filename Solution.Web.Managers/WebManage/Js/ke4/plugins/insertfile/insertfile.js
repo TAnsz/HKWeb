@@ -77,10 +77,12 @@ KindEditor.plugin('insertfile', function(K) {
 					dialog.hideLoading();
 					if (data.error === 0) {
 						var url = data.url;
+						var title = data.title;
 						if (formatUploadUrl) {
 							url = K.formatUrl(url, 'absolute');
 						}
 						urlBox.val(url);
+						titleBox.val(title);
 						if (self.afterUpload) {
 							self.afterUpload.call(self, url, data, name);
 						}

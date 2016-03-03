@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8"utf-8" />
+<meta name="keywords" content="百度地圖,百度地圖API，百度地圖自定義工具，百度地圖所見即所得工具" />
+<meta name="description" content="百度地圖API自定義地圖，幫助用戶在可視化操作下生成百度地圖" />
+<title>百度地圖API自定義地圖</title>
+<!--引用百度地圖API-->
+<style type="text/css">
+	html,body{margin:0;padding:0;}
+	.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+	.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+
+<body onload="initMap();">
+  <!--百度地圖容器-->
+  <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+</body>
+<script type="text/javascript">
+	function getParam(name) {
+		return location.href.match(new RegExp('[?&]' + name + '=([^?&]+)', 'i')) ? decodeURIComponent(RegExp.$1) : '';
+	}
+	var centerParam = getParam('center');
+	var zoomParam = getParam('zoom');
+	var widthParam = getParam('width');
+	var heightParam = getParam('height');
+	var markersParam = getParam('markers');
+	var markerStylesParam = getParam('markerStyles');
+
+	//創建和初始化地圖函數：
+	function initMap(){
+		// [FF]切換模式後報錯
+		if (!window.BMap) {
+			return;
+		}
+		var dituContent = document.getElementById('dituContent');
+		dituContent.style.width = widthParam + 'px';
+		dituContent.style.height = heightParam + 'px';
+
+		createMap();//創建地圖
+		setMapEvent();//設置地圖事件
+		addMapControl();//向地圖添加控件
+
+		// 創建標注
+		var markersArr = markersParam.split(',');
+		var point = new BMap.Point(markersArr[0], markersArr[1]);
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker); // 將標注添加到地圖中
+	}
+
+	//創建地圖函數：
+	function createMap(){
+		var map = new BMap.Map("dituContent");//在百度地圖容器中創建一個地圖
+		var centerArr = centerParam.split(',');
+		var point = new BMap.Point(centerArr[0], centerArr[1]);//定義一個中心點坐標
+		map.centerAndZoom(point, zoomParam);//設定地圖的中心點和坐標並將地圖顯示在地圖容器中
+		window.map = map;//將map變量存儲在全局
+	}
+
+	//地圖事件設置函數：
+	function setMapEvent(){
+		map.enableDragging();//啟用地圖拖拽事件，默認啟用(可不寫)
+		map.enableScrollWheelZoom();//啟用地圖滾輪放大縮小
+		map.enableDoubleClickZoom();//啟用鼠標雙擊放大，默認啟用(可不寫)
+		map.enableKeyboard();//啟用鍵盤上下左右鍵移動地圖
+	}
+
+	//地圖控件添加函數：
+	function addMapControl(){
+		//向地圖中添加縮放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+		//向地圖中添加縮略圖控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+		//向地圖中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+	}
+</script>
+</html>

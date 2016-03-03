@@ -688,6 +688,20 @@ F.addCSS = function () {
     F.util.addCSS.apply(window, arguments);
 };
 
+F.initTreeTabStrip = function () {
+    F.util.initTreeTabStrip.apply(window, arguments);
+};
+
+
+F.addMainTab = function () {
+    F.util.addMainTab.apply(window, arguments);
+};
+
+F.getActiveWindow = function () {
+    return F.wnd.getActiveWindow.apply(window, arguments);
+};
+
+
 // 记录最后一个控件的序号
 F.f_objectIndex = 0;
 
@@ -835,6 +849,26 @@ F.removeCookie = function (key, options) {
 };
 
 
+// 能否访问 iframe 中的 window.F 对象
+F.canAccess = function (iframeWnd) {
+
+    // 访问 iframeWnd.F 时，可能出现错误 Blocked a frame with origin "http://fineui.com/" from accessing a cross-origin frame.
+    // Blocked：这个问题出现在 http://fineui.com/ 页面加载一个 http://baidu.com/ 的 iframe 页面
+    try {
+        iframeWnd.F;
+        iframeWnd.window;
+    } catch (e) {
+        return false;
+    }
+
+    if (!iframeWnd.F || !iframeWnd.window) {
+        return false;
+    }
+
+    return true;
+};
+
+
 Ext.onReady(function () {
 
     // 加延迟，以保证在 zh_CN 中通过 Ext.onReady 注册的脚本先执行（其中对 Ext.Date 进行了初始化）
@@ -863,7 +897,7 @@ Ext.onReady(function () {
         });
     }
 
-
+    /*
     // 能否访问 iframe 中的 window.F 对象
     function canIFrameWindowAccessed(iframeWnd) {
 
@@ -881,6 +915,7 @@ Ext.onReady(function () {
 
         return true;
     }
+    */
 
 
     // FineUI常用函数域（Utility）
@@ -930,7 +965,7 @@ Ext.onReady(function () {
             F.ajaxLoadingMask = Ext.create('Ext.LoadMask', Ext.getBody(), { msg: F.util.loading });
 
 
-            F.form_upload_file = false;
+            //F.form_upload_file = false;
             //F.global_disable_ajax = false;
             //F.x_window_manager = new Ext.WindowManager();
             //F.x_window_manager.zseed = 6000;
@@ -1282,7 +1317,7 @@ Ext.onReady(function () {
             iframeEls.each(function (iframeEl) {
                 var iframeWnd = iframeEl.dom.contentWindow;
 
-                if (!canIFrameWindowAccessed(iframeWnd)) {
+                if (!F.canAccess(iframeWnd)) {
                     return true; // continue
                 }
 
@@ -1486,6 +1521,7 @@ Ext.onReady(function () {
                 Ext.removeNode(node.dom);
             }
 
+			/*
             var ss1;
 
             if (isCSSFile) {
@@ -1509,6 +1545,32 @@ Ext.onReady(function () {
 
             var hh1 = document.getElementsByTagName("head")[0];
             hh1.appendChild(ss1);
+			*/
+			
+			var ss1;
+			var hh1 = document.getElementsByTagName('head')[0];
+			if (isCSSFile) {
+				ss1 = document.createElement('link');
+				//ss1.setAttribute('type', 'text/css');
+				ss1.setAttribute('rel', 'stylesheet');
+				ss1.setAttribute('id', id);
+				ss1.setAttribute('href', content);
+				hh1.appendChild(ss1);
+			} else {
+				// Tricks From: http://www.phpied.com/dynamic-script-and-style-elements-in-ie/
+				ss1 = document.createElement('style');
+				//ss1.setAttribute('type', 'text/css');
+				ss1.setAttribute('id', id);
+				// Update: note that it's important for IE that you append the style to the head *before* setting its content. Otherwise IE678 will *crash* is the css string contains an @import. 
+				hh1.appendChild(ss1); 
+				if (ss1.styleSheet) {   // IE
+					ss1.styleSheet.cssText = content;
+				} else {                // the world
+					var tt1 = document.createTextNode(content);
+					ss1.appendChild(tt1);
+				}
+			}
+			
         },
 
         /*
@@ -1876,7 +1938,7 @@ Ext.onReady(function () {
             }
 
             var wnd = F.util.getTargetWindow(options.target);
-            if (!canIFrameWindowAccessed(wnd)) {
+            if (!F.canAccess(wnd)) {
                 return; // return
             }
 
@@ -1925,7 +1987,7 @@ Ext.onReady(function () {
 
 
             var wnd = F.util.getTargetWindow(options.target);
-            if (!canIFrameWindowAccessed(wnd)) {
+            if (!F.canAccess(wnd)) {
                 return; // return
             }
 
@@ -2017,6 +2079,8 @@ Ext.onReady(function () {
         },
 
 
+        
+
         noop: function () { }
 
     };
@@ -2026,6 +2090,9 @@ Ext.onReady(function () {
 
 })();﻿
 (function () {
+
+    // 正在进行中的AJAX请求个数
+    var __ajaxUnderwayCount = 0;
 
     F.ajax = {
 
@@ -2155,15 +2222,21 @@ Ext.onReady(function () {
 
             }
 
+            ajaxStart();
+
+
+            // 判断是否有文件上传
+            var isFileUpload = !!Ext.get(theForm).query('input[type=file]').length;
+
             Ext.Ajax.request({
                 form: theForm.id,
                 url: url,
-                isUpload: F.form_upload_file,
+                isUpload: isFileUpload, //F.form_upload_file,
                 //params: serializeForm(theForm) + '&X_AJAX=true',
                 success: function (data) {
                     var scripts = data.responseText;
 
-                    if (scripts && F.form_upload_file) {
+                    if (scripts && isFileUpload) {
                         // 文件上传时，输出内容经过encodeURIComponent编码（在ResponseFilter中的Close函数中）
                         //scripts = scripts.replace(/<\/?pre[^>]*>/ig, '');
                         scripts = decodeURIComponent(scripts);
@@ -2508,7 +2581,8 @@ Ext.onReady(function () {
 
     // 显示“正在载入...”的提示信息
     function _showAjaxLoading(ajaxLoadingType) {
-        if (_ajaxStarted) {
+        // 延迟后，要再次检查当前有 AJAX 正在进行，才显示提示信息
+        if (__ajaxUnderwayCount > 0) {
 
             if (ajaxLoadingType === "default") {
                 F.ajaxLoadingDefault.setStyle('left', (Ext.getBody().getWidth() - F.ajaxLoadingDefault.getWidth()) / 2 + 'px');
@@ -2522,7 +2596,7 @@ Ext.onReady(function () {
 
     // 隐藏“正在载入...”的提示信息
     function _hideAjaxLoading(ajaxLoadingType) {
-        if (!_ajaxStarted) {
+        if (__ajaxUnderwayCount === 0) {
 
             if (ajaxLoadingType === "default") {
                 F.ajaxLoadingDefault.hide();
@@ -2535,6 +2609,14 @@ Ext.onReady(function () {
 
     function ajaxStart() {
 
+        // 计数加一
+        __ajaxUnderwayCount++;
+
+        // 仅在第一个 AJAX 发起时，延迟显示提示信息
+        if (__ajaxUnderwayCount !== 1) {
+            return;
+        }
+
         if (!enableAjaxLoading()) {
             // Do nothing
         } else {
@@ -2544,19 +2626,25 @@ Ext.onReady(function () {
     }
 
     function ajaxStop() {
+        // 计数减一
+        __ajaxUnderwayCount--;
+        if (__ajaxUnderwayCount < 0) {
+            __ajaxUnderwayCount = 0;
+        }
 
         if (!enableAjaxLoading()) {
             // ...
         } else {
-            Ext.defer(_hideAjaxLoading, 0, window, [ajaxLoadingType()]);
+           Ext.defer(_hideAjaxLoading, 0, window, [ajaxLoadingType()]);
         }
 
-        if (!_ajaxStarted) {
+        if (__ajaxUnderwayCount === 0) {
             F.controlEnableAjaxLoading = undefined;
             F.controlAjaxLoadingType = undefined;
         }
     }
 
+    /*
     // 当前 Ajax 的并发请求数
     //var _requestCount = 0;
     var _ajaxStarted = false;
@@ -2573,34 +2661,17 @@ Ext.onReady(function () {
     Ext.Ajax.on('requestcomplete', function (conn, options) {
         //_requestCount--;
         _ajaxStarted = false;
-
-        /*
-        if (!enableAjaxLoading()) {
-            // ...
-        } else {
-            Ext.defer(_hideAjaxLoading, 0, window, [ajaxLoadingType()]);
-        }
-        F.controlEnableAjaxLoading = undefined;
-        F.controlAjaxLoadingType = undefined;
-        */
+        
     });
 
     // Ajax 请求发生异常
     Ext.Ajax.on('requestexception', function (conn, options) {
         //_requestCount--;
         _ajaxStarted = false;
+        
 
-        /*
-        if (!enableAjaxLoading()) {
-            // ...
-        } else {
-            Ext.defer(_hideAjaxLoading, 0, window, [ajaxLoadingType()]);
-        }
-        F.controlEnableAjaxLoading = undefined;
-        F.controlAjaxLoadingType = undefined;
-        */
     });
-
+    */
 
 
 
@@ -2703,11 +2774,16 @@ Ext.onReady(function () {
         // isGoldenSection : 弹出窗体位于页面的黄金分隔位置
         // hiddenHiddenFieldID : 隐藏表单字段记录此窗体是否弹出，也页面回发时保持状态用
         show: function (panel, iframeUrl, windowTitle, left, top, isGoldenSection, hiddenHiddenFieldID, width, height) {
-            var target = F.util.getTargetWindow(panel['f_property_target']);
-            var guid = panel['f_property_guid'];
-            if (window.frameElement && target !== window) {
-                // 当前页面在IFrame中（也即时 window.frameElement 存在）
-                // 此弹出窗体需要在父窗口中弹出
+            var target = F.util.getTargetWindow(panel.f_property_target);
+            var guid = panel.f_property_guid;
+
+            // 当前页面在IFrame中（window.frameElement 存在） - 这个判断有问题
+            // ----如果外部页面是 http://a.com/ 而内部页面是 http://b.com/ 在 b.com 内弹出窗体时， window.frameElement 就会出现拒绝访问
+
+            // parent != window - 当前窗体不是顶层窗体
+            // target !== window - 并且当前窗体不是需要弹出的位置（target）
+            if (parent != window && target !== window) {
+                
                 if (!target.F[guid]) {
                     // 父窗口中已经创建了这个Ext-Window对象
                     var wrapper = guid + '_wrapper';
@@ -2718,14 +2794,19 @@ Ext.onReady(function () {
                     }
                     // Ext.apply 的第三个参数是default obejct
                     var config = Ext.apply({}, {
-                        'renderTo': wrapper,
-                        'id': guid,
-                        'f_property_window': window,
-                        'f_property_ext_window': panel
+                        renderTo: wrapper,
+                        id: guid,
+                        f_property_window: window,
+                        f_property_ext_window: panel
                     }, panel.initialConfig);
+                    delete config.f_state;
+                    delete config.items;
+                    delete config.listeners;
+
 
                     // 在父页面中创建一个Ext-Window的幻影（拷贝）
-                    target.F[guid] = target.Ext.create('Ext.window.Window', config);
+                    //target.F[guid] = target.Ext.create('Ext.window.Window', config);
+                    target.F.wnd.createGhostWindow(config);
                 }
                 panel = target.F[guid];
             }
@@ -2773,6 +2854,39 @@ Ext.onReady(function () {
             F.wnd.fixMaximize(panel);
         },
 
+        createGhostWindow: function (config) {
+
+            var ghostWnd = Ext.create('Ext.window.Window', config);
+            ghostWnd.on('beforeclose', function () {
+
+                // 如果原始窗体所在的页面存在，则触发原始窗体的 beforeclose 事件
+                if (F.canAccess(config.f_property_window)) {
+                    config.f_property_ext_window.fireEvent('beforeclose', config.f_property_ext_window);
+
+                    return false;
+                }
+
+                // 如果原始窗体已经被关闭，则不拦截 beforeclose 事件，会简单的关闭窗体
+
+            });
+
+
+            ghostWnd.on('maximize', function () {
+
+                // 如果原始窗体所在的页面存在，则触发原始窗体的 maximize 事件
+                if (F.canAccess(config.f_property_window)) {
+                    config.f_property_ext_window.fireEvent('maximize', config.f_property_ext_window);
+                } else {
+                    F.wnd.fixMaximize(ghostWnd);
+                }
+
+            });
+            
+
+            F[config.id] = ghostWnd;
+        },
+
+
         // 获取Ghost Panel实例
         getGhostPanel: function (panel, targetName, guid) {
             if (typeof (targetName) === 'undefined') {
@@ -2782,7 +2896,7 @@ Ext.onReady(function () {
                 guid = panel.f_property_guid;   
             }
             var target = F.util.getTargetWindow(targetName);
-            if (window.frameElement && target !== window) {
+            if (parent != window && target !== window) {
                 // 从父页面中查找幻影Ext-Window对象
                 panel = target.F[guid];
             }
@@ -2834,7 +2948,7 @@ Ext.onReady(function () {
         // 现在的 Window 控件时渲染在 from 表单里面的一个 DIV 中的
         fixMaximize: function (panel) {
             if (panel.maximized) {
-                var target = F.util.getTargetWindow(panel['f_property_target']);
+                var target = F.util.getTargetWindow(panel.f_property_target);
                 var bodySize = target.window.Ext.getBody().getViewSize();
                 panel.setSize(bodySize.width, bodySize.height);
                 // 不要忘记左上角坐标
@@ -2916,12 +3030,14 @@ Ext.onReady(function () {
         },
 
         // 返回当前活动Window组件对象（浏览器窗口对象通过F.wnd.getActiveWindow().window获取）
-        getActiveWindow: function () {
+        getActiveWindow: function (justParentWindow) {
 
             // Ext.WindowManager.getActive();有可能返回一个弹出对话框
             function getActiveFineUIWindow(wnd) {
                 var result = wnd.Ext.WindowManager.getActive();
-                if (!result.f_property_guid) {
+
+                // 如果弹出的窗体不是 FineUI.Window 生成的窗体（有可能是Alert、Notify），则需要从排序列表中找
+                if (result && !result.f_property_guid) {
                     wnd.Ext.WindowManager.eachTopDown(function (cmp) {
                         if (cmp.f_property_guid) {
                             result = cmp;
@@ -2934,10 +3050,11 @@ Ext.onReady(function () {
 
             var activeWindow = parent.window;
             var activeExtWindow = getActiveFineUIWindow(activeWindow);
+
             if (activeExtWindow) {
-                if (activeExtWindow['f_property_window']) {
-                    activeWindow = activeExtWindow['f_property_window'];
-                    activeExtWindow = activeExtWindow['f_property_ext_window'];
+                if (activeExtWindow.f_property_window && !justParentWindow) {
+                    activeWindow = activeExtWindow.f_property_window;
+                    activeExtWindow = activeExtWindow.f_property_ext_window;
                 }
                 activeExtWindow.window = activeWindow;
             }
@@ -2948,14 +3065,62 @@ Ext.onReady(function () {
         // 向弹出此Ext-Window的页面写入值
         writeBackValue: function () {
             var aw = F.wnd.getActiveWindow();
-            var controlIds = aw['f_property_save_state_control_client_ids'];
-            var controlCount = Math.min(controlIds.length, arguments.length);
-            for (var i = 0; i < controlCount; i++) {
-                aw.window.Ext.getCmp(controlIds[i]).setValue(arguments[i]);
+            if (F.canAccess(aw.window)) {
+                var controlIds = aw.f_property_save_state_control_client_ids;
+                var controlCount = Math.min(controlIds.length, arguments.length);
+                for (var i = 0; i < controlCount; i++) {
+                    aw.window.Ext.getCmp(controlIds[i]).setValue(arguments[i]);
+                }
             }
         }
 
     };
+
+
+
+    function hideActiveWindow(type, param) {
+        var aw = F.getActiveWindow();
+        if (aw) {
+            if (F.canAccess(aw.window)) {
+                if (type === 'hide') {
+                    aw.f_hide();
+                } else if (type === 'hiderefresh') {
+                    aw.f_hide_refresh();
+                } else if (type === 'hidepostback') {
+                    aw.f_hide_postback.call(aw, param)
+                } else if (type === 'hideexecutescript') {
+                    aw.f_hide_executescript.call(aw, param)
+                }
+            } else {
+                var parentAW = F.getActiveWindow(true);
+                parentAW.hide();
+            }
+        }
+    }
+
+    // 当前激活窗体
+    F.activeWnd = {
+
+        hide: function () {
+            hideActiveWindow('hide');
+        },
+
+        hideRefresh: function () {
+            hideActiveWindow('hiderefresh');
+        },
+
+        hidePostBack: function (param) {
+            hideActiveWindow('hidepostback', param);
+        },
+
+        hideExecuteScript: function (param) {
+            hideActiveWindow('hideexecutescript', param);
+        }
+
+
+    };
+
+
 
 })();
 ﻿
@@ -3821,13 +3986,17 @@ if (Ext.grid.Panel) {
 
         // 选中某些行
         f_selectRows: function (rows) {
-            rows = rows || this.f_state['SelectedRowIndexArray'] || [];
-            var sm = this.getSelectionModel();
-            if (sm.select) {
+            var me = this;
+            rows = rows || me.f_state['SelectedRowIDArray'] || [];
+
+            var sm = me.getSelectionModel();
+            var store = me.getStore();
+
+            if (rows.length && sm.select) {
                 sm.deselectAll(true);
                 Ext.Array.each(rows, function (row, index) {
                     // select( records, [keepExisting], [suppressEvent] )
-                    sm.select(row, true, true);
+                    sm.select(store.getById(row), true, true);
                 });
             }
         },
@@ -4494,7 +4663,9 @@ if (Ext.tree.Panel) {
                 // 19 - EnableExpandEvent
                 // 20 - EnableCollapseEvent
 
-                // 21 - Nodes
+                // 21 - CssClass
+
+                // 22 - Nodes
                 node.text = data[0];
                 node.leaf = !!data[1];
                 node.id = data[2];
@@ -4527,9 +4698,12 @@ if (Ext.tree.Panel) {
                 node.f_enableexpandevent = !!data[19];
                 node.f_enablecollapseevent = !!data[20];
 
+                if (data[21]) {
+                    node.cls = data[21];
+                }
 
-                if (data[21] && data[21].length > 0) {
-                    node.children = that.f_tranformData(data[21]);
+                if (data[22] && data[22].length > 0) {
+                    node.children = that.f_tranformData(data[22]);
                 }
 
                 nodes.push(node);

@@ -15,7 +15,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
         <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
@@ -24,7 +23,7 @@
                         <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click" ValidateForms="extForm1"></f:Button>
                     </Items>
                 </f:Toolbar>
-            </Toolbars>
+            </Toolbars> 
             <Items>
                 <f:Panel ID="Panel2" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False" ShowBorder="False">
                     <Items>

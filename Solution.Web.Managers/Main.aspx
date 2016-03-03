@@ -95,7 +95,10 @@
                                     <Items>
                                         <f:Panel runat="server" ID="Panel1" Title="歡迎使用該系統" ShowHeader="true" BoxConfigPadding="10px" Layout="HBox" BoxConfigChildMargin="0 5 0 0">
                                             <Items>
-                                                <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Width="280px" Height="100%" ShowBorder="true" EnableCollapse="True">
+                                                <f:Panel runat="server" ID="Panel4" ShowBorder="false" Layout="HBox" Width="460px" BoxConfigChildMargin="0 5 0 0">
+                                                <Items>
+                                                <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" BoxFlex="1" Height="100%" ShowBorder="true" 
+                                                     EnableCollapse="True">
                                                     <Items>
                                                         <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 10 0">
                                                             <Items>
@@ -111,6 +114,17 @@
                                                         </f:ContentPanel>--%>
                                                     </Items>
                                                 </f:Panel>
+                                                     <f:Panel runat="server" ID="Panel5" Title="最新訊息" ShowHeader="true" BodyPadding="10px" BoxFlex="1" Height="100%" ShowBorder="true" EnableCollapse="True">
+                                                    <Items>
+                                                        <f:Form runat="server" ID="formInfo" Layout="Vbox" ShowBorder="false" BoxConfigPosition="Left" BoxConfigChildMargin="0 0 10 0">
+                                                            <Items>
+
+                                                            </Items>
+                                                        </f:Form>
+                                                    </Items>
+                                                </f:Panel>
+                                                </Items>
+                                                    </f:Panel>
                                                 <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="VBox" BoxFlex="1">
                                                     <Items>
                                                         <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="3"
@@ -181,6 +195,9 @@
             F.util.initTreeTabStrip(F(menuClientID), F(tabStripClientID), null, true, false, false);
             
         });
+        function ShowWindow(url) {
+            F('<% =Window1.ClientID %>').f_show(url, '編輯', 520, 500);
+        }
     </script>
 </body>
 </html>

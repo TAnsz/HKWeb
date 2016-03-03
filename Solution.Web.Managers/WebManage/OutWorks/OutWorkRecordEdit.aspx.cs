@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using Solution.Logic.Managers;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using FineUI;
 using Solution.DataAccess.DbHelper;
+using SubSonic.Query;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -78,6 +80,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
                 ddlType.SelectedValue = model.work_type;
                 ddlOutWorkRecord.SelectedValue = model.leave_id;
+                //顯示年假
+                if (model.leave_id == "0001")
+                {
+                    DisplayAl(model.emp_id);
+                }
 
                 hchecker1.Text = model.checker;
                 txtchecker.Text = EmployeeBll.GetInstence().GetEmpName(model.checker);
@@ -89,6 +96,8 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
                 ButtonAccept.Text = model.audit == 1 ? "一級反審批" : "一級審批";
                 ButtonAccept2.Text = model.audit2 == 1 ? "二級反審批" : "二級審批";
+                //增加出差廠區無法一級反審核
+                ButtonAccept.Enabled = !(model.audit == 1 && (model.leave_id == "1001" || model.leave_id == "1002" || model.leave_id == "1003"));
 
                 ButtonAccept2.Enabled = !string.IsNullOrEmpty(model.CHECKER2);
 
@@ -122,7 +131,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 txtMemo.Text = model.memo;
 
                 //判斷能否修改
-                ResolveFormField(model.audit == 0 && (model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() || model.emp_id == OnlineUsersBll.GetInstence().GetManagerEmpId()));
+                ResolveFormField(!(model.audit == 0 && (model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() || model.emp_id == OnlineUsersBll.GetInstence().GetManagerEmpId())));
 
                 //顯示對應的界面元素
                 DisplayTral(model.work_type, model.work_type);
@@ -145,6 +154,34 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
         }
 
+        private void DisplayAl(string empId)
+        {
+            lbal1.Text = GetAlall(empId).ToString("F");
+            lbal2.Text = GetAlyet(empId).ToString("F");
+            lbal3.Text = (ConvertHelper.Cdecimal(lbal1.Text) - ConvertHelper.Cdecimal(lbal2.Text)).ToString("F");
+            GPanelal.Hidden = false;
+        }
+
+        private decimal GetAlyet(string empId)
+        {
+            return OutWork_DBll.GetInstence().GetSum(new List<ConditionHelper.SqlqueryCondition>
+            {
+                new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.emp_id, Comparison.Equals,
+                    empId),
+                new ConditionHelper.SqlqueryCondition(ConstraintType.And, OutWork_DTable.leave_id, Comparison.Equals,
+                    "0001"),
+                new ConditionHelper.SqlqueryCondition(ConstraintType.And,
+                    string.Format("Year({0})", OutWork_DTable.bill_date), Comparison.Equals,
+                    dpStartTime.SelectedDate.HasValue ? dpStartTime.SelectedDate.Value.Year : DateTime.Now.Year)
+            });
+        }
+
+        private decimal GetAlall(string empId)
+        {
+            return ConvertHelper.Cdecimal(ANNUALLEAVEBll.GetInstence()
+                .GetFieldValue(ANNUALLEAVETable.DATA, x => x.EMP_ID == empId && x.YEARS == DateTime.Now.Year));
+        }
+
         /// <summary>
         /// 處理是否顯示出差相關字段
         /// </summary>
@@ -154,6 +191,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         {
             switch (s)
             {
+                case "0001"://年假
+                    string empid = tbxEmp.Text;
+                    DisplayAl(empid);
+                    
+                    break;
                 case "1001": //出差番禺
                 case "1002"://出差恩平
                     GP1.Hidden = false;
@@ -279,6 +321,12 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     return dpStartTime.Label + "不能大於" + dpEndTime.Label;
                 }
 
+                var days = ConvertHelper.Cdecimal(lbal3.Text) - ConvertHelper.Cdecimal(txtDays.Text);
+                if (days <= 0)
+                {
+                    ddlOutWorkRecord.SelectedValue = "0008";
+                    return "年假申請超出" +days.ToString("F")+ "天，已自動修改爲無薪假，請確認無誤后再保存！";
+                }
                 #endregion
 
                 #region 賦值
@@ -397,7 +445,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.Check1);
+            string ret = OutWork_DBll.GetInstence().Accept1(this, id, value);
             FineUI.Alert.ShowInParent(
                 !string.IsNullOrEmpty(ret) ? ret : string.Format("一級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
@@ -419,7 +467,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 FineUI.Alert.ShowInParent("請先保存記錄。", FineUI.MessageBoxIcon.Information);
                 return;
             }
-            string ret = OutWork_DBll.GetInstence().Accept(this, id, value, OutWork_DBll.Check2);
+            string ret = OutWork_DBll.GetInstence().Accept2(this, id, value);
             FineUI.Alert.ShowInParent(
                 !string.IsNullOrEmpty(ret) ? ret : string.Format("二級{0}審批成功", value == 0 ? "反" : ""),
                 FineUI.MessageBoxIcon.Information);
@@ -485,7 +533,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
         /// <summary>
         /// 修改表單所有屬性
         /// </summary>
-        private void ResolveFormField(bool b)
+        public void ResolveFormField(bool b)
         {
             foreach (var field in extForm1.Rows.SelectMany(row => row.Items, (row, controlBase) => controlBase).Where(field => field is Field).Cast<Field>())
             {

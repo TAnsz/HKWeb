@@ -37,11 +37,11 @@
                     </f:FormRow>
                     <f:FormRow ID="FormRow3" runat="server">
                         <Items>
-                            <f:DropDownList CompareType="String" Label="審批狀態"
+                            <f:DropDownList CompareType="String" Label="顯示狀態"
                                 runat="server" ID="ddlIsDisplay" Width="260px" >
                                 <f:ListItem Text="==全部==" Value="" />
-                                <f:ListItem Text="已審批" Value="1" />
-                                <f:ListItem Text="未審批" Value="0" />
+                                <f:ListItem Text="顯示" Value="1" />
+                                <f:ListItem Text="未顯示" Value="0" />
                             </f:DropDownList>
                             <f:DropDownList CompareType="String" Label="推薦狀態"
                                 runat="server" ID="ddlIsHot" Width="260px" >
@@ -73,17 +73,17 @@
                     <f:BoundField DataField="Title" SortField="Title" HeaderText="文章標題" Width="250px" />
                     <f:BoundField DataField="Keywords" SortField="Keywords" HeaderText="關鍵字" Width="80px" />
                     <f:BoundField DataField="ViewCount" SortField="ViewCount" HeaderText="瀏覽數" Width="60px" />
-                    <f:BoundField DataField="CommentCount" SortField="CommentCount" HeaderText="評論數" Width="60px" />
+                    <f:BoundField DataField="CommentCount" SortField="CommentCount" HeaderText="評論數" Width="60px" Hidden="true"/>
                     <f:TemplateField HeaderText="排序" Width="100px">
                         <ItemTemplate>
                             <asp:TextBox ID="tbSort" runat="server" Width="50px" Text='<%# Eval("Sort") %>' AutoPostBack="false"></asp:TextBox>
                         </ItemTemplate>
                     </f:TemplateField>
-                    <f:LinkButtonField ColumnID="IsDisplay" SortField="IsDisplay" HeaderText="審核" TextAlign="Center" CommandName="IsDisplay" Width="40px"  />
-                    <f:LinkButtonField ColumnID="IsTop" SortField="IsTop" HeaderText="置頂" TextAlign="Center" CommandName="IsTop" Width="40px"  />
-                    <f:LinkButtonField ColumnID="IsHot" SortField="IsHot" HeaderText="推薦" TextAlign="Center" CommandName="IsHot" Width="40px"  />
-                    <f:BoundField DataField="UpdateDate" SortField="UpdateDate" HeaderText="更新時間" TextAlign="left" Width="130px" />
-                    <f:BoundField DataField="Manager_CName" SortField="Manager_CName" HeaderText="更新人" TextAlign="left" Width="80px" />
+                    <f:LinkButtonField ColumnID="IsDisplay" SortField="IsDisplay" HeaderText="顯示" TextAlign="Center" CommandName="IsDisplay" Width="50px"  />
+                    <f:LinkButtonField ColumnID="IsTop" SortField="IsTop" HeaderText="置頂" TextAlign="Center" CommandName="IsTop" Width="50px"  />
+                    <f:LinkButtonField ColumnID="IsHot" SortField="IsHot" HeaderText="推薦" TextAlign="Center" CommandName="IsHot" Width="50px"  />
+                    <f:BoundField DataField="UpdateDate" SortField="UpdateDate" HeaderText="更新時間" TextAlign="left" Width="150px" />
+                    <f:BoundField DataField="Manager_CName" SortField="Manager_CName" HeaderText="更新人" TextAlign="left" Width="180px" />
                     <f:LinkButtonField Width="60px" HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />
                 </Columns>
             </f:Grid>

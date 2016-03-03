@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web;
 using DotNet.Utilities;
 using FineUI;
@@ -95,6 +96,8 @@ namespace Solution.Web.Managers
             BandingTree(dt);
             LoadGrid1Data();
             LoadGrid2Data();
+            //顯示通知
+            LoadInfo();
             #endregion
 
             #region 開啟時鐘檢測
@@ -102,6 +105,7 @@ namespace Solution.Web.Managers
             #endregion
 
         }
+
 
 
 
@@ -123,7 +127,28 @@ namespace Solution.Web.Managers
             FineUI.Alert.ShowInTop("緩存清除成功！", "提示", MessageBoxIcon.Information);
         }
         #endregion
-
+        #region 加載通知信息
+        private void LoadInfo()
+        {
+            if (InformationBll.GetInstence().GetRecordCount(x => x.IsDisplay == 1) > 0)
+            {
+                var list = Information.Find(x => x.IsDisplay == 1).OrderByDescending(x => x.IsTop).ThenByDescending(x=>x.Id);
+                foreach (var link in list.Select(item => new Button
+                {
+                    Text = item.NewsTime.ToString("dd/MM/yyyy") + "   " + item.Title,
+                    EnablePostBack = false,
+                    Size = FineUI.ButtonSize.Medium,
+                    Icon = item.IsTop==1? Icon.ArrowJoin:Icon.PageWhiteText,
+                    OnClientClick = "ShowWindow('" + "WebManage/Informations/InformationPage.aspx?Id=" + item.Id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(item.Id + "") + "')",
+                    ToolTip = item.Content,
+                    CssClass = "btn medium purple-stripe blue"
+                }))
+                {
+                    formInfo.Items.Add(link);
+                }
+            }
+        }
+        #endregion
         private void LoadGrid1Data()
         {
             //綁定今日請假出差人員

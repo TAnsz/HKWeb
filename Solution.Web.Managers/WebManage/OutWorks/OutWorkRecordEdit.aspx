@@ -8,12 +8,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1" />
         <f:HiddenField runat="server" ID="hbillId" Text="" />
         <f:HiddenField runat="server" ID="hidId" Text="0" />
         <f:HiddenField runat="server" ID="hjId" />
         <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
         <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
             ShowHeader="False">
             <Toolbars>
@@ -59,13 +59,24 @@
                                             MaxLength="50" />
                                     </Items>
                                 </f:FormRow>
+                                <f:FormRow ID="FormRow6" runat="server" >
+                                    <Items>
+                                        <f:GroupPanel ID="GPanelal" runat="server" Hidden="true" Layout="Column" Title="已休年假資料">
+                                            <Items>
+                                                <f:Label runat="server" ID="lbal1" Label="總年假" ColumnWidth="30%"></f:Label>
+                                                <f:Label runat="server" ID="lbal2" Label="已休年假" ColumnWidth="30%"></f:Label>
+                                                <f:Label runat="server" ID="lbal3" Label="剩餘年假" ></f:Label>
+                                            </Items>
+                                        </f:GroupPanel>
+                                    </Items>
+                                </f:FormRow>
                                 <f:FormRow ID="FormRow4" runat="server">
                                     <Items>
                                         <f:DatePicker ID="dpStartTime" Label="開始日期" Width="300px" Required="true" runat="server" AutoPostBack="true"
-                                            ShowRedStar="true" OnTextChanged="dpStartTime_TextChanged"/>
-                                        <f:DatePicker ID="dpEndTime" Label="結束日期" Width="300px" Required="true" runat="server" 
+                                            ShowRedStar="true" OnTextChanged="dpStartTime_TextChanged" />
+                                        <f:DatePicker ID="dpEndTime" Label="結束日期" Width="300px" Required="true" runat="server"
                                             CompareControl="dpStartTime" CompareOperator="GreaterThanEqual" CompareMessage="结束日期应该大于开始日期" ShowRedStar="true"
-                                            AutoPostBack="true" OnTextChanged="dpEndTime_TextChanged"/>
+                                            AutoPostBack="true" OnTextChanged="dpEndTime_TextChanged" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">
@@ -171,8 +182,8 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow7" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審批人" Width="300px" Readonly="True"/>
-                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審批人" Width="300px" Readonly="True"/>
+                                        <f:TextBox runat="server" ID="txtchecker" Label="一級審批人" Width="300px" Readonly="True" />
+                                        <f:TextBox runat="server" ID="txtchecker2" Label="二級審批人" Width="300px" Readonly="True" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow8" runat="server">

@@ -212,7 +212,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                         return;
                     }
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check1);
+                    result = OutWork_DBll.GetInstence().Accept1(this, ConvertHelper.Cint0(id), value);
                     result = string.IsNullOrEmpty(result)
                         ? string.Format("一級{0}審批成功。", value == 0 ? "反" : "")
                         : result;
@@ -226,7 +226,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                         return;
                     }
                     //更新狀態
-                    result = OutWork_DBll.GetInstence().Accept(this, ConvertHelper.Cint0(id), value, OutWork_DBll.Check2);
+                    result = OutWork_DBll.GetInstence().Accept2(this, ConvertHelper.Cint0(id), value);
                     result = string.IsNullOrEmpty(result)
                         ? string.Format("二級{0}審批成功。", value == 0 ? "反" : "")
                         : result;
@@ -358,10 +358,10 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     switch (p)
                     {
                         case AccType.Accept1:
-                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check1);
+                            result += OutWork_DBll.GetInstence().Accept1(this, t, 1) ?? "";
                             break;
                         case AccType.Accept2:
-                            OutWork_DBll.GetInstence().Accept(this, t, 1, OutWork_DBll.Check2);
+                            result += OutWork_DBll.GetInstence().Accept2(this, t, 1) ?? "";
                             break;
                         default:
                             throw new ArgumentOutOfRangeException("p", p, null);
@@ -374,7 +374,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     CommonBll.WriteLog(s, ex);
                 }
             }
-            result = string.IsNullOrEmpty(result) ? string.Format("{0}審批編號Id為[{1}]的數據並發送郵件記錄成功。", CommonBll.GetDescription(p), string.Join(",", id)) : result;
+            result = string.IsNullOrEmpty(result.Trim()) ? string.Format("{0}審批編號Id為[{1}]的數據並發送郵件記錄成功。", CommonBll.GetDescription(p), string.Join(",", id)) : result;
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
         }
 

@@ -118,7 +118,7 @@ namespace Solution.Web.Managers
                 FineUI.Alert.ShowInParent("用戶名不存在，請仔細檢查您輸入的用戶名！", FineUI.MessageBoxIcon.Error);
                 return;
             }
-
+            username = userinfo.EMP_ID;
             //密碼不匹配
             if (!EmployeeBll.GetInstence().CheckPassWord(username, userpass))
             {
@@ -154,6 +154,9 @@ namespace Solution.Web.Managers
             SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
             SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
             SessionHelper.RemoveSession(OnlineUsersTable.Md5);
+            SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
+            SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
+            SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
             //刪除Cookies
             CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
             CookieHelper.ClearCookie(OnlineUsersTable.Md5);

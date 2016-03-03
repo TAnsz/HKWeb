@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using DotNet.Utilities;
 using FineUI;
 using Solution.DataAccess.DataModel;
@@ -57,7 +58,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         }
 
         #endregion
-        
+
         #region 列表屬性綁定
 
         #region 列表按鍵綁定——修改列表控件屬性
@@ -69,22 +70,25 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         protected void Grid1_PreRowDataBound(object sender, FineUI.GridPreRowEventArgs e)
         {
             //綁定用戶類型
-            GridRow gr = Grid1.Rows[e.RowIndex];
-            if (((System.Data.DataRowView)(gr.DataItem)).Row.Table.Rows[e.RowIndex][UploadFileTable.UserType].ToString() == "1")
+            DataRowView row = e.DataItem as DataRowView;
+            if (row != null)
             {
-                var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
-                lbf.Text = "管理員";
-                lbf.Enabled = false;
-            }
-            else
-            {
-                var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
-                lbf.Text = "會員";
-                lbf.Enabled = false;
+                if (row.Row.Table.Rows[e.RowIndex][UploadFileTable.UserType].ToString() == "1")
+                {
+                    var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
+                    lbf.Text = "管理員";
+                    lbf.Enabled = false;
+                }
+                else
+                {
+                    var lbf = Grid1.FindColumn("UserType") as LinkButtonField;
+                    lbf.Text = "會員";
+                    lbf.Enabled = false;
+                }
             }
         }
         #endregion
-        
+
         #endregion
 
         #region 刪除記錄
@@ -96,7 +100,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
         {
             //獲取要刪除的Id組
             var id = GridViewHelper.GetSelectedKeyIntArray(Grid1);
-            
+
             //如果沒有選擇記錄，則直接退出
             if (id == null)
             {
@@ -115,12 +119,12 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
                     //刪除記錄
                     bll.Delete(this, i);
                 }
-                
+
                 return "刪除編號Id為[" + string.Join(",", id) + "]的數據記錄成功。";
             }
             catch (Exception e)
             {
-                string result = "嘗試刪除編號ID為[" + string.Join(",", id) +"]的數據記錄失敗！";
+                string result = "嘗試刪除編號ID為[" + string.Join(",", id) + "]的數據記錄失敗！";
 
                 //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog(result, e);

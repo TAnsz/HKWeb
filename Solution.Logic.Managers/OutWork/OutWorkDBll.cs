@@ -6,6 +6,7 @@ using System.Web.UI;
 using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using System.Text;
+using Solution.DataAccess.DbHelper;
 
 /***********************************************************************
  *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
@@ -29,7 +30,6 @@ namespace Solution.Logic.Managers
     {
         public const string Tral = "tral";
         public const string Leave = "leav";
-        public delegate string DelCheckEventHandler(int p, ref OutWork_D m);
         /***********************************************************************
 		 * 自定義函數                                                          *
 		 ***********************************************************************/
@@ -53,24 +53,46 @@ namespace Solution.Logic.Managers
             return x => x.bill_date > d;
         }
         #endregion
-        #region 審批單據
-        public string Accept(Page page, int id, int updateValue, DelCheckEventHandler del, bool isSendMail = true, bool isAddUseLog = true)
+        #region 獲取類型總計天數
+        public decimal GetSum(List<ConditionHelper.SqlqueryCondition> wheres)
         {
+            var select = new SelectHelper();
+            var ret = select.GetSum<OutWork_D>(OutWork_DTable.work_days, wheres);
+            return ConvertHelper.Cdecimal(ret);
+        }
+        #endregion
+        #region 審批單據
+        public string Accept1(Page page, int id, int updateValue, bool isSendMail = true, bool ischecker = true, bool isAddUseLog = true)
+        {
+            string result = "";
             //判斷是否可以審批
             var model = new OutWork_D(x => x.Id == id);
             if (model.Id == 0)
             {
                 return "記錄不存在！";
             }
-            var result = del(updateValue, ref model);
-            if (!string.IsNullOrEmpty(result))
+            if (model.audit == 0 && updateValue == 0)
             {
-                return result;
+                return "一級未審批，無需反審批";
             }
+            if (model.audit == 1 && updateValue == 1)
+            {
+                return "一級已審批，無需重新審批";
+            }
+            if (model.audit == 1 && updateValue == 0 && (model.leave_id == "1001" || model.leave_id == "1002" || model.leave_id == "1003"))
+            {
+                return T_TABLE_DBll.GetInstence().GetDescr(model.leave_id, model.outwork_type) + "一級已審批，無法一級反審批";
+            }
+            if (!ischecker && model.checker != OnlineUsersBll.GetInstence().GetManagerEmpId())
+            {
+                return "你不是該申請單的一級審批人，無法審批！";
+            }
+            model.audit = ConvertHelper.StringToByte(updateValue.ToString());
+            model.check_date = DateTime.Now;
 
             Save(page, model);
             //發送郵件
-            if (updateValue == 1 && isSendMail)
+            if (updateValue == 1 && isSendMail && ischecker)
             {
                 result = SendMail(page, model);
             }
@@ -86,71 +108,16 @@ namespace Solution.Logic.Managers
 
             if (isAddUseLog)
             {
-                UseLogBll.GetInstence().Save(page, "{0}" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id.ToString() + "的記錄！");
+                UseLogBll.GetInstence().Save(page, "一級{0}" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id.ToString() + "的記錄！");
             }
             return result;
         }
 
-        /// <summary>
-        /// 一級審批判斷，修改內容
-        /// </summary>
-        /// <param name="p"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static string Check1(int p, ref OutWork_D model)
+        public string Accept2(Page page, int id, int updateValue, bool isSendMail = true, bool ischecker = true, bool isAddUseLog = true)
         {
-            if (model.audit == 0 && p == 0)
-            {
-                return "一級未審批，無需反審批";
-            }
-            if (model.audit == 1 && p == 1)
-            {
-                return "一級已審批，無需重新審批";
-            }
-            if (model.checker != OnlineUsersBll.GetInstence().GetManagerEmpId())
-            {
-                return "你不是該申請單的一級審批人，無法審批！";
-            }
-            model.audit = ConvertHelper.StringToByte(p.ToString());
-            model.check_date = DateTime.Now;
-            return null;
-        }
-
-        /// <summary>
-        /// 二級審批判斷修改內容
-        /// </summary>
-        /// <param name="p"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static string Check2(int p, ref OutWork_D model)
-        {
-            if (model.audit == 0 && p == 1)
-            {
-                return "一級未審批，無法二級審批";
-            }
-            if (model.audit2 == 1 && p == 1)
-            {
-                return "二級已審批，無需重新審批";
-            }
-            if (model.CHECKER2 != OnlineUsersBll.GetInstence().GetManagerEmpId())
-            {
-                return "你不是該申請單的二級審批人，無法審批！";
-            }
-            model.audit2 = ConvertHelper.StringToByte(p.ToString());
-            model.check_date2 = DateTime.Now;
-            return null;
-        }
-
-
-        public string Accept2(Page page, int id, int updateValue, bool isSendMail = true, bool isAddUseLog = true)
-        {
-            string result = null;
+            string result = "";
             //判斷是否可以審批
             var model = new OutWork_D(x => x.Id == id);
-            if (model.Id == 0)
-            {
-                return "記錄不存在！";
-            }
             if (model.audit == 0 && updateValue == 1)
             {
                 return "一級未審批，無法二級審批";
@@ -159,13 +126,20 @@ namespace Solution.Logic.Managers
             {
                 return "二級已審批，無需重新審批";
             }
-
+            if (model.CHECKER2 != OnlineUsersBll.GetInstence().GetManagerEmpId())
+            {
+                return "你不是該申請單的二級審批人，無法審批！";
+            }
             model.audit2 = ConvertHelper.StringToByte(updateValue.ToString());
             model.check_date2 = DateTime.Now;
 
             Save(page, model);
-
             //發送郵件
+            if (updateValue == 1 && isSendMail && ischecker)
+            {
+                result = SendMail(page, model);
+            }
+
             //判斷是否?用緩存
             if (CommonBll.IsUseCache())
             {
@@ -174,18 +148,14 @@ namespace Solution.Logic.Managers
                 //重新載?緩存
                 GetList();
             }
+
             if (isAddUseLog)
             {
-                UseLogBll.GetInstence().Save(page, "{0}二級" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id + "的記錄！");
-            }
-            //發送郵件
-            if (updateValue == 1 && isSendMail)
-            {
-                string ss = SendMail(page, model);
-                result = ss;
+                UseLogBll.GetInstence().Save(page, "二級{0}" + (updateValue == 1 ? "" : "反") + "審批了OutWork_D表Id為" + id.ToString() + "的記錄！");
             }
             return result;
         }
+
         #endregion
         #region 發送郵件
         public string SendMail(Page page, OutWork_D model)

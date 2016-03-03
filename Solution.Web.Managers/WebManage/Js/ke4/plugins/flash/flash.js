@@ -71,8 +71,7 @@ KindEditor.plugin('flash', function(K) {
 								type : K.mediaType('.swf'),
 								width : width,
 								height : height,
-								quality : 'high',
-								allowfullscreen:'true'	//july
+								quality : 'high'
 							});
 						self.insertHtml(html).hideDialog().focus();
 					}
@@ -154,7 +153,7 @@ KindEditor.plugin('flash', function(K) {
 		},
 		'delete' : function() {
 			self.plugin.getSelectedFlash().remove();
-			// [IE] 刪除圖片後立即點擊圖片按鈕出鑀
+			// [IE] 删除图片后立即点击图片按钮出错
 			self.addBookmark();
 		}
 	};
