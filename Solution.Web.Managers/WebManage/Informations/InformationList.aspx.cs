@@ -58,9 +58,9 @@ namespace Solution.Web.Managers.WebManage.Informations
             {
                 Sort(null);
             }
-
+            
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), sortList);
+            if (bll != null) bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), sortList);
         }
 
         //條件
@@ -138,22 +138,6 @@ namespace Solution.Web.Managers.WebManage.Informations
                 else
                 {
                     var lbf = Grid1.FindColumn("IsTop") as LinkButtonField;
-                    lbf.Icon = Icon.BulletTick;
-                    lbf.CommandArgument = "0";
-                }
-
-                //綁定是否推薦
-                if (
-                    row.Row.Table.Rows[e.RowIndex][InformationTable.IsHot]
-                        .ToString() == "0")
-                {
-                    var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
-                    lbf.Icon = Icon.BulletCross;
-                    lbf.CommandArgument = "1";
-                }
-                else
-                {
-                    var lbf = Grid1.FindColumn("IsHot") as LinkButtonField;
                     lbf.Icon = Icon.BulletTick;
                     lbf.CommandArgument = "0";
                 }

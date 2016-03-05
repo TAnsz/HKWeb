@@ -37,15 +37,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1"/>
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1" />
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
                     <Items>
                         <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="ButtonSave_Click" OnClientClick="Keditor_GetHtml();">
                         </f:Button>
-                        <f:Button ID="ButtonDeleteImage" runat="server" Text="刪除圖片" Icon="Delete" OnClick="ButtonDeleteImage_Click"
-                            ConfirmTitle="刪除提示" ConfirmText="是否刪除圖片？" />
                     </Items>
                 </f:Toolbar>
             </Toolbars>
@@ -61,13 +59,21 @@
                                             ShowRedStar="true" Required="true" MaxLength="100" />
                                         <f:DropDownList Label="所屬欄目" AutoPostBack="true" ShowRedStar="true" Required="true"
                                             CompareType="String" EnableSimulateTree="true" runat="server" ID="ddlInformationClass_Id"
-                                            OnSelectedIndexChanged="ddlInformationClassId_SelectedIndexChanged" Width="300px" />
+                                            Width="300px" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow2" runat="server">
                                     <Items>
-                                        <f:TextBox runat="server" ID="txtKeywords" Label="關鍵字" Width="300px" Text="" MaxLength="50" />
-                                        <f:DatePicker ID="dpNewsTime" Label="發佈時間" Width="300px" Required="true" runat="server" />
+                                        <f:TextBox runat="server" ID="txtAuthor" Label="發佈人" Width="300px" Text=""
+                                            MaxLength="50" />
+                                        <f:Panel runat="server" ShowBorder="false" Layout="HBox" >
+                                            <Items>
+                                                <f:DatePicker ID="dpNewsTime" Label="起止時間" Required="true" runat="server"  Width="235px"/>
+                                                <f:DatePicker runat="server" ID="dpEndTime" Width="130px" EmptyText="請輸入結束日期" CompareControl="dpNewsTime" Margin="0 5px"
+                                                    CompareOperator="GreaterThan" CompareMessage="结束時間应该大于發佈時間">
+                                                </f:DatePicker>
+                                            </Items>
+                                        </f:Panel>
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">
@@ -76,58 +82,10 @@
                                             <f:RadioItem Text="顯示" Value="1" Selected="true" />
                                             <f:RadioItem Text="不顯示" Value="0" />
                                         </f:RadioButtonList>
-                                    </Items>
-                                </f:FormRow>
-                                <f:FormRow ID="FormRow3" runat="server">
-                                    <Items>
                                         <f:RadioButtonList ID="rblIsTop" Label="是否置頂" ColumnNumber="2" runat="server" Width="300px">
                                             <f:RadioItem Text="是" Value="1" />
                                             <f:RadioItem Text="否" Value="0" Selected="true" />
                                         </f:RadioButtonList>
-                                        <f:RadioButtonList ID="rblIsHot" Label="是否推薦" ColumnNumber="2" runat="server" Width="300px">
-                                            <f:RadioItem Text="是" Value="1" Selected="true" />
-                                            <f:RadioItem Text="否" Value="0" />
-                                        </f:RadioButtonList>
-                                    </Items>
-                                </f:FormRow>
-                                <f:FormRow ID="FormRow10" runat="server" Hidden="true">
-                                    <Items>
-                                        <f:TextBox runat="server" ID="txtRedirectUrl" Label="重定向頁面" Width="716px" Text=""
-                                            MaxLength="50" />
-                                    </Items>
-                                </f:FormRow>
-                                <f:FormRow ID="FormRow9" runat="server">
-                                    <Items>
-                                        <f:FileUpload runat="server" ID="filePhoto" Label="文章封面" Width="300px" />
-                                    </Items>
-                                </f:FormRow>
-
-                                <f:FormRow ID="FormRow12" runat="server" >
-                                    <Items>
-                                        <f:ContentPanel ID="ContentPanel3" runat="server" Width="90%"
-                                            ShowBorder="false" ShowHeader="false">
-                                            <%=(p_Img != null && p_Img.Length > 5) ? "<a href='" + p_Img + "' target=\"_blank\" class='PicToolTip2'><img src='" + p_Img + "'></a>" : ""%>
-                                        </f:ContentPanel>
-                                    </Items>
-                                </f:FormRow>
-                                <f:FormRow ID="FormRow5" runat="server" Hidden="true">
-                                    <Items>
-                                        <f:TextBox runat="server" ID="txtSeoTitle" Label="Seo標題" Width="300px" Text="" MaxLength="100" />
-                                        <f:TextBox runat="server" ID="txtSeoKey" Label="SEO關鍵字" Width="300px" Text="" MaxLength="100" />
-                                    </Items>
-                                </f:FormRow>
-                                <f:FormRow ID="FormRow6" runat="server" Hidden="true">
-                                    <Items>
-                                        <f:TextArea runat="server" ID="txtSeoDesc" Label="SEO說明" Width="716px" Height="50px" Text="" MaxLength="200" />
-                                    </Items>
-                                </f:FormRow>
-
-                                <f:FormRow ID="FormRow8" runat="server" Hidden="true">
-                                    <Items>
-                                        <f:TextBox runat="server" ID="txtAuthor" Label="文章作者" Width="300px" Text=""
-                                            MaxLength="50" />
-                                        <f:TextBox runat="server" ID="txtFromName" Label="文章出處" Width="300px" Text=""
-                                            MaxLength="50" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow7" runat="server">
@@ -136,17 +94,16 @@
                                             MaxLength="200" Height="50px" />
                                     </Items>
                                 </f:FormRow>
-                                <f:FormRow ID="FormRow4" runat="server" >
+                                <f:FormRow ID="FormRow4" runat="server">
                                     <Items>
-                                        <f:ContentPanel ID="ContentPanel1" runat="server" Width="800px" BodyPadding="5px" Height="280px"
+                                        <f:ContentPanel ID="ContentPanel1" runat="server" Width="800px" Height="370px"
                                             ShowBorder="false" ShowHeader="false">
-                                            <textarea name="FCKeditor1" id="FCKeditor1" style="width: 100%; height: 270px; display: none;"></textarea>
+                                            <textarea name="FCKeditor1" id="FCKeditor1" style="width: 100%; height: 360px; display: none;"></textarea>
                                             <input type="hidden" id="FCKeditor1___UpFileList" name="FCKeditor1___UpFileList"
                                                 value="" />
                                         </f:ContentPanel>
                                     </Items>
                                 </f:FormRow>
-                                
                             </Rows>
                         </f:Form>
                     </Items>

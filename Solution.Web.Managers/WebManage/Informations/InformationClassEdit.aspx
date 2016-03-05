@@ -40,9 +40,9 @@
                                 <f:RadioItem Text="單頁（沒有評論）" Value="1" Selected="true" />
                                 <f:RadioItem Text="不是（一般文章）" Value="0" />
                             </f:RadioButtonList>
-                            <f:TextBox runat="server" ID="txtSeoTitle" Label="Seo標題" Width="400px" Text="" MaxLength="100" />
-                            <f:TextBox runat="server" ID="txtSeoKey" Label="SEO關鍵字" Width="400px" Text="" MaxLength="100" />
-                            <f:TextArea runat="server" ID="txtSeoDesc" Label="SEO說明" Width="400px" Height="60px" Text="" MaxLength="200" />
+                            <f:TextBox runat="server" ID="txtSeoTitle" Label="Seo標題" Width="400px" Text="" MaxLength="100" Hidden="True"/>
+                            <f:TextBox runat="server" ID="txtSeoKey" Label="SEO關鍵字" Width="400px" Text="" MaxLength="100" Hidden="True"/>
+                            <f:TextArea runat="server" ID="txtSeoDesc" Label="SEO說明" Width="400px" Height="60px" Text="" MaxLength="200" Hidden="True"/>
                             <f:FileUpload runat="server" ID="fuClassImg" Label="分類圖" Width="400px" />
                             <f:Image runat="server" ID="imgClassImg">
                             </f:Image>

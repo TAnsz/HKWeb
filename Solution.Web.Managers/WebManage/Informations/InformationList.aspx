@@ -64,16 +64,9 @@
             OnPageIndexChange="Grid1_PageIndexChange" OnPreRowDataBound="Grid1_PreRowDataBound" OnRowCommand="Grid1_RowCommand" OnSort="Grid1_Sort">
                 <Columns>
                     <f:BoundField DataField="Id" SortField="Id" HeaderText="ID" Width="50px" />
-                    <f:TemplateField HeaderText="封面" Width="100px">
-                        <ItemTemplate>
-                            <%# Eval("FrontCoverImg").ToString().Length > 5 ? "<a href='" + Eval("FrontCoverImg") + "' target=\"_blank\" class='PicToolTip'><img src='" + DirFileHelper.GetFilePathPostfix(Eval("FrontCoverImg")+ "", "s") + "'></a>" : ""%>
-                        </ItemTemplate>
-                    </f:TemplateField>
-                    <f:BoundField DataField="InformationClass_Name" SortField="InformationClass_Id"  HeaderText="分類" Width="80px" />
+                    <f:BoundField DataField="InformationClass_Name" SortField="InformationClass_Id"  HeaderText="分類" Width="100px" />
                     <f:BoundField DataField="Title" SortField="Title" HeaderText="文章標題" Width="250px" />
-                    <f:BoundField DataField="Keywords" SortField="Keywords" HeaderText="關鍵字" Width="80px" />
                     <f:BoundField DataField="ViewCount" SortField="ViewCount" HeaderText="瀏覽數" Width="60px" />
-                    <f:BoundField DataField="CommentCount" SortField="CommentCount" HeaderText="評論數" Width="60px" Hidden="true"/>
                     <f:TemplateField HeaderText="排序" Width="100px">
                         <ItemTemplate>
                             <asp:TextBox ID="tbSort" runat="server" Width="50px" Text='<%# Eval("Sort") %>' AutoPostBack="false"></asp:TextBox>
@@ -81,7 +74,6 @@
                     </f:TemplateField>
                     <f:LinkButtonField ColumnID="IsDisplay" SortField="IsDisplay" HeaderText="顯示" TextAlign="Center" CommandName="IsDisplay" Width="50px"  />
                     <f:LinkButtonField ColumnID="IsTop" SortField="IsTop" HeaderText="置頂" TextAlign="Center" CommandName="IsTop" Width="50px"  />
-                    <f:LinkButtonField ColumnID="IsHot" SortField="IsHot" HeaderText="推薦" TextAlign="Center" CommandName="IsHot" Width="50px"  />
                     <f:BoundField DataField="UpdateDate" SortField="UpdateDate" HeaderText="更新時間" TextAlign="left" Width="150px" />
                     <f:BoundField DataField="Manager_CName" SortField="Manager_CName" HeaderText="更新人" TextAlign="left" Width="180px" />
                     <f:LinkButtonField Width="60px" HeaderText="操作" TextAlign="Center" ToolTip="點擊修改當前記錄" ColumnID="ButtonEdit" CommandName="ButtonEdit" />

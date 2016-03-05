@@ -113,6 +113,14 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
+			/// 通知到期時間
+			/// </summary>
+   			public static string EndTime{
+			      get{
+        			return "EndTime";
+      			}
+		    }
+			/// <summary>
 			/// 文章关键字
 			/// </summary>
    			public static string Keywords{

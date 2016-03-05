@@ -54,7 +54,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Set
             }
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, null, sortList);
+            if (bll != null) bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, null, sortList);
         }
 
         #endregion

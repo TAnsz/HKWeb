@@ -96,6 +96,22 @@ namespace Solution.DataAccess.DataModel {
         			return "empid";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string comingtype{
+			      get{
+        			return "comingtype";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string overtype{
+			      get{
+        			return "overtype";
+      			}
+		    }
                     
         }
 }

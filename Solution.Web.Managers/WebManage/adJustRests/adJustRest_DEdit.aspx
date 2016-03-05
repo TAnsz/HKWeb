@@ -8,12 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:HiddenField runat="server" ID="hidId" Text="0" />
-        <f:HiddenField runat="server" ID="hbillId" />
-        <f:HiddenField runat="server" ID="hjId" />
-        <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
-        <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
+        
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1"/>
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
             ShowHeader="False">
             <Toolbars>
@@ -111,6 +107,11 @@
             runat="server" EnableResize="true" BodyPadding="5px" EnableFrame="True" IFrameUrl="about:blank"
             EnableIFrame="true" EnableClose="true" IsModal="True">
         </f:Window>
+        <f:HiddenField runat="server" ID="hidId" Text="0" />
+        <f:HiddenField runat="server" ID="hbillId" />
+        <f:HiddenField runat="server" ID="hjId" />
+        <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
+        <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
     </form>
 </body>
 </html>

@@ -136,6 +136,10 @@ namespace Solution.DataAccess.DataModel
             no = readRecord.get_int("no",null);
                
             empid = readRecord.get_string("empid",null);
+               
+            comingtype = readRecord.get_byte("comingtype",null);
+               
+            overtype = readRecord.get_byte("overtype",null);
                 }   
 
         partial void OnCreated();
@@ -287,6 +291,8 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("remark=" + remark + "; ");
 			sb.Append("no=" + no + "; ");
 			sb.Append("empid=" + empid + "; ");
+			sb.Append("comingtype=" + comingtype + "; ");
+			sb.Append("overtype=" + overtype + "; ");
 			return sb.ToString();
         }
 
@@ -536,6 +542,50 @@ namespace Solution.DataAccess.DataModel
                 if(_empid!=value || _isLoaded){
                     _empid=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="empid");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte? _comingtype;
+		/// <summary>
+		/// 
+		/// </summary>
+        public byte? comingtype
+        {
+            get { return _comingtype; }
+            set
+            {
+                if(_comingtype!=value || _isLoaded){
+                    _comingtype=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="comingtype");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte? _overtype;
+		/// <summary>
+		/// 
+		/// </summary>
+        public byte? overtype
+        {
+            get { return _overtype; }
+            set
+            {
+                if(_overtype!=value || _isLoaded){
+                    _overtype=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="overtype");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

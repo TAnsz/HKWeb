@@ -126,6 +126,28 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 50,
 					PropertyName = "empid"
                 });
+
+                Columns.Add(new DatabaseColumn("comingtype", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "comingtype"
+                });
+
+                Columns.Add(new DatabaseColumn("overtype", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "overtype"
+                });
                     
                 
                 
@@ -197,6 +219,20 @@ namespace Solution.DataAccess.DataModel {
             public IColumn empid{
                 get{
                     return this.GetColumn("empid");
+                }
+            }
+				
+            
+            public IColumn comingtype{
+                get{
+                    return this.GetColumn("comingtype");
+                }
+            }
+				
+            
+            public IColumn overtype{
+                get{
+                    return this.GetColumn("overtype");
                 }
             }
 				

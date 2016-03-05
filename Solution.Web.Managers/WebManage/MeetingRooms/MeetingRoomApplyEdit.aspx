@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" />
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1"/>
         <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True" ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
@@ -84,7 +84,7 @@
                                     <f:RadioItem Text="是" Value="1" />
                                     <f:RadioItem Text="不是" Value="0" Selected="true" />
                                 </f:RadioButtonList>
-                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" Height="60px" />
+                                <f:TextArea runat="server" Label="備註" ID="txtRemark" Width="400px" AutoGrowHeight="True" AutoGrowHeightMax="100px"/>
                                 <f:Label runat="server" Text="注:非本人錄入單據，無法修改！" ID="lbtips" CssClass="redlabel" Hidden="true" />
                                 <f:HiddenField runat="server" ID="hidId" Text="0" />
                                 <f:HiddenField runat="server" ID="hidCode" Text="" />

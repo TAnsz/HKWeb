@@ -42,7 +42,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("node", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiStringFixedLength,
+	                DataType = DbType.AnsiString,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,

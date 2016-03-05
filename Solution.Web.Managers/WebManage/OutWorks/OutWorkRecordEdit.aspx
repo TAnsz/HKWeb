@@ -61,7 +61,7 @@
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow6" runat="server" >
                                     <Items>
-                                        <f:GroupPanel ID="GPanelal" runat="server" Hidden="true" Layout="Column" Title="已休年假資料">
+                                        <f:GroupPanel ID="GPanelal" runat="server" Hidden="true" Layout="Column" Title="年假資料">
                                             <Items>
                                                 <f:Label runat="server" ID="lbal1" Label="總年假" ColumnWidth="30%"></f:Label>
                                                 <f:Label runat="server" ID="lbal2" Label="已休年假" ColumnWidth="30%"></f:Label>
@@ -88,12 +88,12 @@
                                             <f:ListItem Text="下午" Value="2" />
                                             <f:ListItem Text="按時間" Value="3" />
                                         </f:DropDownList>
-                                        <f:Panel runat="server" ID="Paneltp" ShowBorder="false" Layout="HBox" Hidden="true">
+                                        <f:Panel runat="server" ID="Paneltp" ShowBorder="false" Layout="HBox" Hidden="true" >
                                             <Items>
-                                                <f:TimePicker runat="server" ID="tpStart" EmptyText="請輸入開始時間" MinTimeText="09:00" MaxTimeText="17:30"
+                                                <f:TimePicker runat="server" ID="tpStart" EmptyText="請輸入開始時間" MinTimeText="09:00" MaxTimeText="17:30" BoxFlex="1"
                                                     Increment="30">
                                                 </f:TimePicker>
-                                                <f:TimePicker runat="server" ID="tpEnd" EmptyText="請輸入結束時間" MinTimeText="09:30" MaxTimeText="18:00" OnTextChanged="dpEndTime_TextChanged"
+                                                <f:TimePicker runat="server" ID="tpEnd" EmptyText="請輸入結束時間" MinTimeText="09:30" MaxTimeText="18:00" OnTextChanged="dpEndTime_TextChanged" BoxFlex="1"
                                                     Increment="30" CompareControl="tpStart" CompareOperator="GreaterThan" CompareMessage="结束時間应该大于开始時間">
                                                 </f:TimePicker>
                                             </Items>

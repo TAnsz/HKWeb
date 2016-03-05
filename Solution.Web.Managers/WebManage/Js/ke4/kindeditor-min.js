@@ -214,21 +214,12 @@ function CreateKindEditor(DivName, vid, key) {
 	cfg_allowMediaUpload = false;
 
     cfg_items = [
-		'source', 'preview', '|', 'undo', 'redo', '|',
 		'cut', 'copy', 'paste', 'plainpaste', 'wordpaste', '|',
 		'link', 'unlink', '|',
 		'image', 'flash', 'insertfile','|',
-		'flvshare','clearlinks','remoteupload','|', 
-		'table','|', 
-		'clearhtml', 'removeformat','selectall', '|',
-		'fullscreen', '/',
-		'fontname', 'fontsize', '|',
+		'table', 'fontsize', '|',
 		'forecolor', 'hilitecolor', '|',
-		'bold', 'italic', 'underline', 'strikethrough', '|',
-		'justifyleft', 'justifycenter', 'justifyright','justifyfull',
-		'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent','|',
-		'lineheight','quickformat', 'pagebreak', 'hr', 'julybr',
-		'|', 'about'
+		'bold', 'italic', 'underline', 'strikethrough','fullscreen' 
 	];
 
     return KindEditor.create(DivID, {

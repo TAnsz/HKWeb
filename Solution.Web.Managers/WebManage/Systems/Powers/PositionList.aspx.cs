@@ -55,7 +55,7 @@ namespace Solution.Web.Managers.WebManage.Systems.Powers
             var wheres = new List<ConditionHelper.SqlqueryCondition>();
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And,T_TABLE_DTable.TABLES,Comparison.Equals,"AUTH"));
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, wheres, order);
+            if (bll != null) bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, wheres, order);
         }
 
 

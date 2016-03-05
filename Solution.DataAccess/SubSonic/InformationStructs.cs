@@ -149,6 +149,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "NewsTime"
                 });
 
+                Columns.Add(new DatabaseColumn("EndTime", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "EndTime"
+                });
+
                 Columns.Add(new DatabaseColumn("Keywords", this)
                 {
 	                IsPrimaryKey = false,
@@ -464,6 +475,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn NewsTime{
                 get{
                     return this.GetColumn("NewsTime");
+                }
+            }
+				
+            
+            public IColumn EndTime{
+                get{
+                    return this.GetColumn("EndTime");
                 }
             }
 				

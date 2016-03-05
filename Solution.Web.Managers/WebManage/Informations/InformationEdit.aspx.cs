@@ -68,43 +68,45 @@ namespace Solution.Web.Managers.WebManage.Informations
                 txtTitle.Text = model.Title;
                 ddlInformationClass_Id.SelectedValue = model.InformationClass_Id + "";
 
-                txtKeywords.Text = model.Keywords;
+                //txtKeywords.Text = model.Keywords;
                 dpNewsTime.SelectedDate = model.NewsTime;
+                dpEndTime.SelectedDate = model.EndTime;
 
                 txtNotes.Text = model.Notes;
 
                 txtAuthor.Text = model.Author;
-                txtFromName.Text = model.FromName;
+                //txtFromName.Text = model.FromName;
 
                 //置頂、審核、推薦
                 rblIsTop.SelectedValue = model.IsTop + "";
                 rblIsDisplay.SelectedValue = model.IsDisplay + "";
-                rblIsHot.SelectedValue = model.IsHot + "";
+                //rblIsHot.SelectedValue = model.IsHot + "";
 
-                txtRedirectUrl.Text = model.RedirectUrl;
+                //txtRedirectUrl.Text = model.RedirectUrl;
 
-                //SEO
-                txtSeoTitle.Text = model.SeoTitle;
-                txtSeoKey.Text = model.SeoKey;
-                txtSeoDesc.Text = model.SeoDesc;
+                ////SEO
+                //txtSeoTitle.Text = model.SeoTitle;
+                //txtSeoKey.Text = model.SeoKey;
+                //txtSeoDesc.Text = model.SeoDesc;
 
                 //Key（如果存在編輯器必須下面代碼）
                 txtText.Text = model.Content;
                 txtUpload.Text = model.Upload;
 
-                if (!String.IsNullOrEmpty(model.FrontCoverImg))
-                {
-                    p_Img = model.FrontCoverImg;
-                    ButtonDeleteImage.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonDeleteImage");
-                }
-                else
-                {
-                    ButtonDeleteImage.Visible = false;
-                }
+                //if (!String.IsNullOrEmpty(model.FrontCoverImg))
+                //{
+                //    p_Img = model.FrontCoverImg;
+                //    ButtonDeleteImage.Enabled = MenuInfoBll.GetInstence().CheckControlPower(this, "ButtonDeleteImage");
+                //}
+                //else
+                //{
+                    //ButtonDeleteImage.Visible = false;
+                //}
             }
             else
             {
-                ButtonDeleteImage.Visible = false;
+                //ButtonDeleteImage.Visible = false;
+                txtAuthor.Text = OnlineUsersBll.GetInstence().GetManagerCName();
             }
         }
 
@@ -117,47 +119,47 @@ namespace Solution.Web.Managers.WebManage.Informations
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void ddlInformationClassId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = ConvertHelper.Cint0(hidId.Text);
-            if (id > 0) return;
+        //protected void ddlInformationClassId_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int id = ConvertHelper.Cint0(hidId.Text);
+        //    if (id > 0) return;
 
-            //如果選擇根節點，則將SEO全部置空
-            if (ddlInformationClass_Id.SelectedValue == "0")
-            {
-                txtSeoTitle.Text = "";
-                txtSeoKey.Text = "";
-                txtSeoDesc.Text = "";
-            }
-            //否則讀取分類節點的SEO值
-            else
-            {
-                var icId = ConvertHelper.Cint0(ddlInformationClass_Id.SelectedValue);
-                var model = InformationClassBll.GetInstence().GetModelForCache(x => x.Id == icId);
-                if (model != null)
-                {
-                    txtSeoTitle.Text = model.SeoTitle;
-                    txtSeoKey.Text = model.SeoKey;
-                    txtSeoDesc.Text = model.SeoDesc;
-                }
-            }
-        }
+        //    //如果選擇根節點，則將SEO全部置空
+        //    if (ddlInformationClass_Id.SelectedValue == "0")
+        //    {
+        //        txtSeoTitle.Text = "";
+        //        txtSeoKey.Text = "";
+        //        txtSeoDesc.Text = "";
+        //    }
+        //    //否則讀取分類節點的SEO值
+        //    else
+        //    {
+        //        var icId = ConvertHelper.Cint0(ddlInformationClass_Id.SelectedValue);
+        //        var model = InformationClassBll.GetInstence().GetModelForCache(x => x.Id == icId);
+        //        if (model != null)
+        //        {
+        //            txtSeoTitle.Text = model.SeoTitle;
+        //            txtSeoKey.Text = model.SeoKey;
+        //            txtSeoDesc.Text = model.SeoDesc;
+        //        }
+        //    }
+        //}
         #endregion
 
         #region 刪除圖片
         /// <summary>刪除圖片</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ButtonDeleteImage_Click(object sender, EventArgs e)
-        {
-            int id = ConvertHelper.Cint0(hidId.Text);
-            if (id > 0)
-            {
-                InformationBll.GetInstence().DelFrontCoverImg(this, id);
+        //public void ButtonDeleteImage_Click(object sender, EventArgs e)
+        //{
+        //    int id = ConvertHelper.Cint0(hidId.Text);
+        //    if (id > 0)
+        //    {
+        //        InformationBll.GetInstence().DelFrontCoverImg(this, id);
 
-                FineUI.PageContext.RegisterStartupScript("window.location.reload()");
-            }
-        }
+        //        FineUI.PageContext.RegisterStartupScript("window.location.reload()");
+        //    }
+        //}
 
         #endregion
 
@@ -219,7 +221,7 @@ namespace Solution.Web.Managers.WebManage.Informations
                 model.InformationClass_Name = StringHelper.Left(ddlInformationClass_Id.SelectedText, 20);
 
                 //重定向
-                model.RedirectUrl = StringHelper.Left(txtRedirectUrl.Text, 250);
+//                model.RedirectUrl = StringHelper.Left(txtRedirectUrl.Text, 250);
 
                 //------------------------------------------
                 //編輯器
@@ -236,25 +238,26 @@ namespace Solution.Web.Managers.WebManage.Informations
                 //------------------------------------------
                 //其它值
                 model.NewsTime = dpNewsTime.SelectedDate ?? DateTime.Now;
+                model.EndTime = dpEndTime.SelectedDate ?? DateTime.Now.AddMonths(1);
                 model.AddYear = model.NewsTime.Year;
                 model.AddMonth = model.NewsTime.Month;
                 model.AddDay = model.NewsTime.Day;
 
                 model.Notes = StringHelper.Left(txtNotes.Text, 200);
 
-                model.Keywords = StringHelper.Left(txtKeywords.Text, 50);
+                //model.Keywords = StringHelper.Left(txtKeywords.Text, 50);
                 model.Author = StringHelper.Left(txtAuthor.Text, 50);
-                model.FromName = StringHelper.Left(txtFromName.Text, 50);
+                //model.FromName = StringHelper.Left(txtFromName.Text, 50);
 
 
-                model.SeoTitle = StringHelper.Left(txtSeoTitle.Text, 100);
-                model.SeoKey = StringHelper.Left(txtSeoKey.Text, 100);
-                model.SeoDesc = StringHelper.Left(txtSeoDesc.Text, 200);
-                model.Sort = 0;
+                //model.SeoTitle = StringHelper.Left(txtSeoTitle.Text, 100);
+                //model.SeoKey = StringHelper.Left(txtSeoKey.Text, 100);
+                //model.SeoDesc = StringHelper.Left(txtSeoDesc.Text, 200);
+                //model.Sort = 0;
 
                 //設定當前項是否顯示
                 model.IsDisplay = ConvertHelper.StringToByte(rblIsDisplay.SelectedValue);
-                model.IsHot = ConvertHelper.StringToByte(rblIsHot.SelectedValue);
+//                model.IsHot = ConvertHelper.StringToByte(rblIsHot.SelectedValue);
                 model.IsTop = ConvertHelper.StringToByte(rblIsTop.SelectedValue);
 
                 //------------------------------------------
@@ -280,36 +283,36 @@ namespace Solution.Web.Managers.WebManage.Informations
 
                 #region 上傳圖片
 
-                if (this.filePhoto.HasFile && this.filePhoto.FileName.Length > 3)
-                {
-                    int vid = 3; //3	文章封面
-                    //---------------------------------------------------
-                    var upload = new UploadFile();
-                    result = new UploadFileBll().Upload_AspNet(this.filePhoto.PostedFile, vid, RndKey,
-                        OnlineUsersBll.GetInstence().GetManagerId(), OnlineUsersBll.GetInstence().GetManagerCName(),
-                        upload);
-                    this.filePhoto.Dispose();
-                    //---------------------------------------------------
-                    if (result.Length == 0) //上傳成功
-                    {
-                        model.FrontCoverImg = upload.Path;
-                    }
-                    else
-                    {
-                        CommonBll.WriteLog("上傳出錯：" + result); //收集異常信息
-                        return "上傳出錯！" + result;
-                    }
-                }
-                //如果是修改，檢查用戶是否重新上傳過封面圖片，如果是刪除舊的圖片
-                if (model.Id > 0)
-                {
-                    UploadFileBll.GetInstence()
-                        .Upload_DiffFile(InformationTable.Id, InformationTable.FrontCoverImg, InformationTable.TableName,
-                            model.Id, model.FrontCoverImg);
+                //if (this.filePhoto.HasFile && this.filePhoto.FileName.Length > 3)
+                //{
+                //    int vid = 3; //3	文章封面
+                //    //---------------------------------------------------
+                //    var upload = new UploadFile();
+                //    result = new UploadFileBll().Upload_AspNet(this.filePhoto.PostedFile, vid, RndKey,
+                //        OnlineUsersBll.GetInstence().GetManagerId(), OnlineUsersBll.GetInstence().GetManagerCName(),
+                //        upload);
+                //    this.filePhoto.Dispose();
+                //    //---------------------------------------------------
+                //    if (result.Length == 0) //上傳成功
+                //    {
+                //        model.FrontCoverImg = upload.Path;
+                //    }
+                //    else
+                //    {
+                //        CommonBll.WriteLog("上傳出錯：" + result); //收集異常信息
+                //        return "上傳出錯！" + result;
+                //    }
+                //}
+                ////如果是修改，檢查用戶是否重新上傳過封面圖片，如果是刪除舊的圖片
+                //if (model.Id > 0)
+                //{
+                //    UploadFileBll.GetInstence()
+                //        .Upload_DiffFile(InformationTable.Id, InformationTable.FrontCoverImg, InformationTable.TableName,
+                //            model.Id, model.FrontCoverImg);
 
-                    //同步UploadFile上傳表
-                    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
-                }
+                //    //同步UploadFile上傳表
+                //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
+                //}
 
                 #endregion
 
@@ -320,11 +323,11 @@ namespace Solution.Web.Managers.WebManage.Informations
                 PageContext.RegisterStartupScript(Panel1.GetClearDirtyReference());
 
                 #region 同步更新上傳圖片表綁定Id
-                if (id == 0)
-                {
-                    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
-                    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
-                }
+                //if (id == 0)
+                //{
+                //    //同步UploadFile上傳表記錄，綁定剛剛上傳成功的文件Id為當前記錄Id
+                //    UploadFileBll.GetInstence().Upload_UpdateRs(RndKey, InformationTable.TableName, model.Id);
+                //}
                 #endregion
 
             }

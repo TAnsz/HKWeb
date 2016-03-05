@@ -878,7 +878,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("GROUPS", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiStringFixedLength,
+	                DataType = DbType.AnsiString,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,

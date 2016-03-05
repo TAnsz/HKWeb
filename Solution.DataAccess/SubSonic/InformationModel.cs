@@ -131,6 +131,16 @@ namespace Solution.DataAccess.Model
 			set { _NewsTime = value; }
 		}
 
+		DateTime _EndTime = new DateTime(1900,1,1);
+		/// <summary>
+		/// 通知到期時間
+		/// </summary>
+		public DateTime EndTime
+		{
+			get { return _EndTime; }
+			set { _EndTime = value; }
+		}
+
 		string _Keywords = "";
 		/// <summary>
 		/// 文章关键字
@@ -359,6 +369,7 @@ namespace Solution.DataAccess.Model
 			sb.Append("FrontCoverImg=" + FrontCoverImg + "; ");
 			sb.Append("Notes=" + Notes + "; ");
 			sb.Append("NewsTime=" + NewsTime + "; ");
+			sb.Append("EndTime=" + EndTime + "; ");
 			sb.Append("Keywords=" + Keywords + "; ");
 			sb.Append("SeoTitle=" + SeoTitle + "; ");
 			sb.Append("SeoKey=" + SeoKey + "; ");

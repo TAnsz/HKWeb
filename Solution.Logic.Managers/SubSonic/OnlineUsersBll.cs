@@ -1099,12 +1099,12 @@ namespace Solution.Logic.Managers {
                 //重新載?緩存
                 GetList();
             }
-			
 			if (isAddUseLog)
 		    {
 				//添加用戶操作記錄
 				UseLogBll.GetInstence().Save(page, "{0}刪除了OnlineUsers表記錄！");
 			}
+			
         }
 
 		/// <summary>

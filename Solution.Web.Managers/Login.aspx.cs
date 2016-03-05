@@ -276,8 +276,7 @@ namespace Solution.Web.Managers
                 OnlineUsersBll.GetInstence().Save(this, onlineUser, null, true, false);
             }
 
-            //檢查在線列表數據，將不在線人員刪除
-            OnlineUsersBll.GetInstence().CheckOnline();
+            
 
             #endregion
 

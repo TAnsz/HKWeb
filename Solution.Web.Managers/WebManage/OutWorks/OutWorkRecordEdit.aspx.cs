@@ -194,7 +194,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                 case "0001"://年假
                     string empid = tbxEmp.Text;
                     DisplayAl(empid);
-                    
+
                     break;
                 case "1001": //出差番禺
                 case "1002"://出差恩平
@@ -321,11 +321,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     return dpStartTime.Label + "不能大於" + dpEndTime.Label;
                 }
 
-                var days = ConvertHelper.Cdecimal(lbal3.Text) - ConvertHelper.Cdecimal(txtDays.Text);
-                if (days <= 0)
+                var days = ConvertHelper.Cdecimal(txtDays.Text) - ConvertHelper.Cdecimal(lbal3.Text);
+                if (days > 0 && ddlOutWorkRecord.SelectedValue == "0001")
                 {
                     ddlOutWorkRecord.SelectedValue = "0008";
-                    return "年假申請超出" +days.ToString("F")+ "天，已自動修改爲無薪假，請確認無誤后再保存！";
+                    return "年假申請超出" + days.ToString("F") + "天，已自動修改爲無薪假，請確認無誤后再保存！";
                 }
                 #endregion
 

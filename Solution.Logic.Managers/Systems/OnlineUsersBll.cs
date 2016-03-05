@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.UI;
 using DotNet.Utilities;
@@ -142,8 +143,12 @@ namespace Solution.Logic.Managers
         {
             try
             {
+                var id = GetOnlineUsersId();
+                if (id > 0)
+                {
+                    UpdateValue(null, id, OnlineUsersTable.UpdateTime, DateTime.Now, "", true, false);
+                }
                 //更新数据库与缓存中的最后在线时间
-                UpdateValue(null, GetOnlineUsersId(), OnlineUsersTable.UpdateTime, DateTime.Now, "", true, false);
 
                 //修改在线缓存表中的用户最后在线时间
                 //UpdateUserOnlineInfo(GetUserHashKey(), OnlineUsersTable.UpdateTime, DateTime.Now);
@@ -212,7 +217,7 @@ namespace Solution.Logic.Managers
                 if (userinfoId == 0)
                 {
                     //通知用户
-                    FineUI.Alert.Show("您太久没有操作已退出系统，请重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
+                    FineUI.Alert.Show("您太久没有操作已退出系统，请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                     return true;
                 }
                 else
@@ -224,7 +229,7 @@ namespace Solution.Logic.Managers
                         LoginLogBll.GetInstence().Save(userinfoId, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
 
                         //清除在线表里与当前用户同名的记录
-                       // Delete(null, x => x.Id == GetOnlineUsersId());
+                        //Delete(null, x => x.Id == GetOnlineUsersId());
 
                         //清空Session
                         SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
@@ -241,7 +246,7 @@ namespace Solution.Logic.Managers
                         CommonBll.WriteLog("当前帐号已经下线，用户Id【" + userinfoId + "】");
 
                         //通知用户
-                        FineUI.Alert.Show("您的账号已经在另一处登录或已退出，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
+                        FineUI.Alert.ShowInTop("您的账号已经在另一处登录或已退出，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                         return true;
                     }
                 }
@@ -251,7 +256,7 @@ namespace Solution.Logic.Managers
             {
                 CommonBll.WriteLog("Logic.Systems.Manager.CheckIsOffline出现异常", ex);
 
-                FineUI.Alert.Show("系统已经开始更新维护，请稍后重新登录！", "检测通知", MessageBoxIcon.Information, "window.location.href='/Login.aspx';");
+                FineUI.Alert.ShowInTop("系统已经开始更新维护，请稍后重新登录！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                 return true;
             }
 
@@ -314,7 +319,7 @@ namespace Solution.Logic.Managers
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                     }
                     //删除数据库记录与IIS缓存
-                    //Delete(null, x => x.UserHashKey == userHashKey,false);
+                    Delete(null, x => x.UserHashKey == userHashKey);
                     //清空Session
                     SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                     SessionHelper.RemoveSession(OnlineUsersTable.Md5);
@@ -334,10 +339,10 @@ namespace Solution.Logic.Managers
                 CommonBll.WriteLog("檢測用戶超時出錯", e);
             }
             //用户不存在，直接退出
-            //FineUI.Alert.ShowInTop("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='/Login.aspx';");
+            FineUI.Alert.ShowInTop("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='/Login.aspx';");
             //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
-            HttpContext.Current.Response.Redirect("/Login.aspx");
-            HttpContext.Current.Response.End();
+            //HttpContext.Current.Response.Redirect("/Login.aspx");
+            //HttpContext.Current.Response.End();
         }
         #endregion
 
@@ -454,9 +459,9 @@ namespace Solution.Logic.Managers
             var id = SessionHelper.GetSession("OnlineUsersId");
             if (id == null)
             {
-                id = GetUserOnlineInfo(GetUserHashKey(), "OnlineUsersId") + "";
+                id = GetUserOnlineInfo(GetUserHashKey(), "Id") + "";
 
-                SessionHelper.SetSession(OnlineUsersTable.Id, id);
+                SessionHelper.SetSession("OnlineUsersId", id);
             }
 
             return ConvertHelper.Cint0(id);
@@ -642,7 +647,34 @@ namespace Solution.Logic.Managers
             return controlPower + "";
         }
         #endregion
+        #region 重寫刪除函數
+        /// <summary>
+        /// 刪除OnlineUsers表記錄——?果使用了緩存，刪除成功後會?空本表的所有緩存記錄，?後重新加載進緩存
+        /// </summary>
+        /// <param name="page">當?頁面指針</param>
+        /// <param name="expression">條件語句</param>
+        /// <param name="isAddUseLog">是否添加用戶操作?志</param>
+        public void Delete(Page page, Expression<Func<OnlineUsers, bool>> expression)
+        {
+            if (OnlineUsers.Exists(expression))
+            {
+                //添加用戶操作記錄
+                UseLogBll.GetInstence().Save(page, "{0}刪除了OnlineUsers表記錄！");
+            }
+            //執行刪除
+            OnlineUsers.Delete(expression);
 
+            //判斷是否?用緩存
+            if (CommonBll.IsUseCache())
+            {
+                //?空當?表所有緩存記錄
+                DelAllCache();
+                //重新載?緩存
+                GetList();
+            }
+
+        }
+        #endregion
         #endregion 自定义函数
     }
 }

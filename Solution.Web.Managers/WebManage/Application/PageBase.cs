@@ -37,18 +37,19 @@ namespace Solution.Web.Managers.WebManage.Application
         #endregion
 
         #region 初始化函數
+
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
 
-            //檢測用戶是否超時退出
-            OnlineUsersBll.GetInstence().IsTimeOut();
-            //檢測用戶登錄的有效性（是否被系統踢下線或管理員踢下線）
-            if (OnlineUsersBll.GetInstence().IsOffline(this))
-                return;
 
             if (!IsPostBack)
             {
+                //檢測用戶是否超時退出
+                OnlineUsersBll.GetInstence().IsTimeOut();
+                //檢測用戶登錄的有效性（是否被系統踢下線或管理員踢下線）
+                if (OnlineUsersBll.GetInstence().IsOffline(this))
+                    return;
                 //檢測當前頁面是否有訪問權限
                 MenuInfoBll.GetInstence().CheckPagePower(this);
 
@@ -70,7 +71,7 @@ namespace Solution.Web.Managers.WebManage.Application
                         var s = MenuInfoBll.GetInstence().CheckControlPower(this, btnControl.ID);
                         if (btnControl is FineUI.Button)
                         {
-                            ((FineUI.Button) btnControl).Enabled = s;
+                            ((FineUI.Button)btnControl).Enabled = s;
                         }
                         if (btnControl is FineUI.FileUpload)
                         {

@@ -66,7 +66,7 @@ namespace Solution.Web.Managers.WebManage.Employees
             }
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), sortList);
+            if (bll != null) bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), sortList);
         }
 
         /// <summary>

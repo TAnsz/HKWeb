@@ -35,7 +35,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" AutoSizePanelID="regionPanel" runat="server" />
+        <f:PageManager ID="PageManager1" AutoSizePanelID="regionPanel" runat="server" OnCustomEvent="PageManager1_OnCustomEvent" />
         <f:Timer ID="Timer1" Interval="120" Enabled="false" OnTick="Timer1_Tick" runat="server">
         </f:Timer>
         <f:RegionPanel ID="regionPanel" ShowBorder="false" runat="server">
@@ -93,38 +93,38 @@
                             <Tabs>
                                 <f:Tab ID="Tab1" Title="首頁" Layout="Fit" Icon="House" runat="server">
                                     <Items>
-                                        <f:Panel runat="server" ID="Panel1" Title="歡迎使用該系統" ShowHeader="true" BoxConfigPadding="10px" Layout="HBox" BoxConfigChildMargin="0 5 0 0">
+                                        <f:Panel runat="server" ID="Panel1" Title="歡迎使用該系統" ShowHeader="true" BoxConfigPadding="5px" Layout="HBox" BoxConfigChildMargin="0 0 0 0">
                                             <Items>
-                                                <f:Panel runat="server" ID="Panel4" ShowBorder="false" Layout="HBox" Width="460px" BoxConfigChildMargin="0 5 0 0">
-                                                <Items>
-                                                <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" BoxFlex="1" Height="100%" ShowBorder="true" 
-                                                     EnableCollapse="True">
+                                                <f:Panel runat="server" ID="Panel4" ShowBorder="false" Layout="HBox" Width="540px" BoxConfigChildMargin="0 5 0 0">
                                                     <Items>
-                                                        <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 10 0">
+                                                        <f:Panel runat="server" ID="Panel5" Title="最新訊息" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true"
+                                                            EnableCollapse="True">
                                                             <Items>
+                                                                <f:Form runat="server" ID="formInfo" Layout="Vbox" ShowBorder="false" BoxConfigPosition="Left" BoxConfigChildMargin="0 0 5 0" LabelAlign="Left">
+                                                                    <Items>
+                                                                    </Items>
+                                                                </f:Form>
+                                                            </Items>
+                                                        </f:Panel>
+                                                        <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true" BoxFlex="1"
+                                                            EnableCollapse="True">
+                                                            <Items>
+                                                                <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 5 0">
+                                                                    <Items>
 
-                                                                <%-- <f:Button ID="btnLeave" runat="server" Text="請假出差單管理" CssClass="btn red-stripe big"></f:Button>
+                                                                        <%-- <f:Button ID="btnLeave" runat="server" Text="請假出差單管理" CssClass="btn red-stripe big"></f:Button>
                                                                 <f:Button ID="btnAdju" runat="server" Text="調休申請單管理" CssClass="btn blue-stripe big"></f:Button>
                                                                 <f:Button ID="btnMeeting" runat="server" Text="會議室使用管理" CssClass="btn purple-stripe big"></f:Button>
                                                                 <f:Button ID="btnMeal" runat="server" Text="員工訂餐管理" CssClass="btn green-stripe big"></f:Button>--%>
-                                                            </Items>
-                                                        </f:Form>
-                                                        <%-- <f:ContentPanel runat="server">
+                                                                    </Items>
+                                                                </f:Form>
+                                                                <%-- <f:ContentPanel runat="server">
                                                         <div class="btn gray" style="background-color: #e5e5e5; width: 100%; margin: 10px; padding: 10px; font-size: large; border-left: 3px solid #1E95EC;"><strong>請假出差單管理</strong> <span style="color: #666; font-size: medium">人事模塊，請假和出差單的申請和一二級審核</span></div>
                                                         </f:ContentPanel>--%>
-                                                    </Items>
-                                                </f:Panel>
-                                                     <f:Panel runat="server" ID="Panel5" Title="最新訊息" ShowHeader="true" BodyPadding="10px" BoxFlex="1" Height="100%" ShowBorder="true" EnableCollapse="True">
-                                                    <Items>
-                                                        <f:Form runat="server" ID="formInfo" Layout="Vbox" ShowBorder="false" BoxConfigPosition="Left" BoxConfigChildMargin="0 0 10 0">
-                                                            <Items>
-
                                                             </Items>
-                                                        </f:Form>
+                                                        </f:Panel>
                                                     </Items>
                                                 </f:Panel>
-                                                </Items>
-                                                    </f:Panel>
                                                 <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="VBox" BoxFlex="1">
                                                     <Items>
                                                         <f:Grid ID="Grid1" Title="今日請假/出差/調休列表" EnableFrame="false" EnableCollapse="true" AllowSorting="true" AllowPaging="false" BoxFlex="3"
@@ -148,17 +148,17 @@
                                                                 <f:LinkButtonField HeaderText="二級審批" Icon="BulletCross" TextAlign="Center" ColumnID="audit2" />
                                                             </Columns>
                                                         </f:Grid>
-                                                                <f:Grid ID="Grid2" Title="今日考勤異常人員" EnableFrame="false" EnableCollapse="true" AllowSorting="true" ShowBorder="true" ShowHeader="true" runat="server" 
-                                                                    EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="Name" OnSort="Grid2_Sort" BoxFlex="2">
-                                                                    <Columns>
-                                                                        <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="70px" />
-                                                                        <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="250px" />
-                                                                        <f:BoundField DataField="EName" SortField="EName" HeaderText="英文名" Width="100px" />
-                                                                        <f:BoundField DataField="CTime" SortField="CTime" HeaderText="上班時間" Width="100px" Hidden="true"/>
-                                                                        <f:BoundField DataField="Ms" SortField="Ms" HeaderText="異常" Width="130px" />
-                                                                    </Columns>
-                                                                </f:Grid>
-                                                            </Items>
+                                                        <f:Grid ID="Grid2" Title="今日考勤異常人員" EnableFrame="false" EnableCollapse="true" AllowSorting="true" ShowBorder="true" ShowHeader="true" runat="server"
+                                                            EnableCheckBoxSelect="false" DataKeyNames="ENo" EnableColumnLines="true" AllowPaging="false" SortField="Name" OnSort="Grid2_Sort" BoxFlex="2">
+                                                            <Columns>
+                                                                <f:BoundField DataField="ENo" SortField="ENo" HeaderText="編號" Width="70px" />
+                                                                <f:BoundField DataField="Name" SortField="Name" HeaderText="姓名" Width="250px" />
+                                                                <f:BoundField DataField="EName" SortField="EName" HeaderText="英文名" Width="100px" />
+                                                                <f:BoundField DataField="CTime" SortField="CTime" HeaderText="上班時間" Width="100px" Hidden="true" />
+                                                                <f:BoundField DataField="Ms" SortField="Ms" HeaderText="異常" Width="130px" />
+                                                            </Columns>
+                                                        </f:Grid>
+                                                    </Items>
                                                 </f:Panel>
                                             </Items>
                                         </f:Panel>
@@ -181,7 +181,6 @@
     <script>
         var menuClientID = '<%= leftMenuTree.ClientID %>';
         var tabStripClientID = '<%= mainTabStrip.ClientID %>';
-
         // 頁面控件初始化完畢後，會調用用戶自定義的onReady函數
         F.ready(function () {
             //debugger;
@@ -193,11 +192,26 @@
             // refreshWhenExist： 添加選項卡時，如果選項卡已經存在，是否刷新內部IFrame
             // refreshWhenTabChange: 切換選項卡時，是否刷新內部IFrame
             F.util.initTreeTabStrip(F(menuClientID), F(tabStripClientID), null, true, false, false);
-            
+            F('<%= Grid1.ClientID %>').addTool({
+                type: 'refresh',
+                tooltip: '刷新',
+                handler: function (event) {
+                    F.customEvent('Grid1_refresh');
+                }
+            });
+
+            F('<%= Grid2.ClientID %>').addTool({
+                type: 'refresh',
+                tooltip: '刷新',
+                handler: function (event) {
+                    F.customEvent('Grid2_refresh');
+                }
+            });
+
         });
         function ShowWindow(url) {
-            F('<% =Window1.ClientID %>').f_show(url, '編輯', 520, 500);
-        }
+            F('<% =Window1.ClientID %>').f_show(url, '查看詳情', 520, 500);
+        };
     </script>
 </body>
 </html>

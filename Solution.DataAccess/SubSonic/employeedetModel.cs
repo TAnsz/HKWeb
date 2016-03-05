@@ -111,6 +111,26 @@ namespace Solution.DataAccess.Model
 			set { _empid = value; }
 		}
 
+		byte? _comingtype;
+		/// <summary>例
+		/// 
+		/// </summary>
+		public byte? comingtype
+		{
+			get { return _comingtype; }
+			set { _comingtype = value; }
+		}
+
+		byte? _overtype;
+		/// <summary>例
+		/// 
+		/// </summary>
+		public byte? overtype
+		{
+			get { return _overtype; }
+			set { _overtype = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -127,6 +147,8 @@ namespace Solution.DataAccess.Model
 			sb.Append("remark=" + remark + "; ");
 			sb.Append("no=" + no + "; ");
 			sb.Append("empid=" + empid + "; ");
+			sb.Append("comingtype=" + comingtype + "; ");
+			sb.Append("overtype=" + overtype + "; ");
 			return sb.ToString();
         }
 

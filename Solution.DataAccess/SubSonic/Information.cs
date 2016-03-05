@@ -141,6 +141,8 @@ namespace Solution.DataAccess.DataModel
                
             NewsTime = readRecord.get_datetime("NewsTime",null);
                
+            EndTime = readRecord.get_datetime("EndTime",null);
+               
             Keywords = readRecord.get_string("Keywords",null);
                
             SeoTitle = readRecord.get_string("SeoTitle",null);
@@ -335,6 +337,7 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("FrontCoverImg=" + FrontCoverImg + "; ");
 			sb.Append("Notes=" + Notes + "; ");
 			sb.Append("NewsTime=" + NewsTime + "; ");
+			sb.Append("EndTime=" + EndTime + "; ");
 			sb.Append("Keywords=" + Keywords + "; ");
 			sb.Append("SeoTitle=" + SeoTitle + "; ");
 			sb.Append("SeoKey=" + SeoKey + "; ");
@@ -649,6 +652,28 @@ namespace Solution.DataAccess.DataModel
                 if(_NewsTime!=value || _isLoaded){
                     _NewsTime=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="NewsTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _EndTime;
+		/// <summary>
+		/// 通知到期時間
+		/// </summary>
+        public DateTime EndTime
+        {
+            get { return _EndTime; }
+            set
+            {
+                if(_EndTime!=value || _isLoaded){
+                    _EndTime=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EndTime");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

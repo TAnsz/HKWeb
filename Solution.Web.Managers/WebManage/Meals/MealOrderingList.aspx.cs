@@ -65,7 +65,7 @@ namespace Solution.Web.Managers.WebManage.Meals
         {
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            if (bll != null) bll.BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
         }
 
         /// <summary>

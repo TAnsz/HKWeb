@@ -281,6 +281,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.NewsTime == (DateTime)value);
                         expression = x => x.NewsTime == (DateTime)value;
                         break;
+					case "EndTime" :
+						model = list.SingleOrDefault(x => x.EndTime == (DateTime)value);
+                        expression = x => x.EndTime == (DateTime)value;
+                        break;
 					case "Keywords" :
 						model = list.SingleOrDefault(x => x.Keywords == (string)value);
                         expression = x => x.Keywords == (string)value;
@@ -569,6 +573,7 @@ namespace Solution.Logic.Managers {
                 FrontCoverImg = model.FrontCoverImg,
                 Notes = model.Notes,
                 NewsTime = model.NewsTime,
+                EndTime = model.EndTime,
                 Keywords = model.Keywords,
                 SeoTitle = model.SeoTitle,
                 SeoKey = model.SeoKey,
@@ -630,6 +635,7 @@ namespace Solution.Logic.Managers {
                 FrontCoverImg = model.FrontCoverImg,
                 Notes = model.Notes,
                 NewsTime = model.NewsTime,
+                EndTime = model.EndTime,
                 Keywords = model.Keywords,
                 SeoTitle = model.SeoTitle,
                 SeoKey = model.SeoKey,
@@ -733,6 +739,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "NewsTime" :
 					model.NewsTime = (DateTime)value;
+                    break;
+				case "EndTime" :
+					model.EndTime = (DateTime)value;
                     break;
 				case "Keywords" :
 					model.Keywords = (string)value;
@@ -1419,6 +1428,8 @@ namespace Solution.Logic.Managers {
 					return model.Notes;
 				case "NewsTime" :
 					return model.NewsTime;
+				case "EndTime" :
+					return model.EndTime;
 				case "Keywords" :
 					return model.Keywords;
 				case "SeoTitle" :

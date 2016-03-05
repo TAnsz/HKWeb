@@ -58,7 +58,7 @@ namespace Solution.Web.Managers.WebManage.Informations
             }
 
             //綁定Grid表格
-            bll.BindGrid(Grid1, InquiryCondition(), sortList);
+            if (bll != null) bll.BindGrid(Grid1, InquiryCondition(), sortList);
         }
 
         /// <summary>

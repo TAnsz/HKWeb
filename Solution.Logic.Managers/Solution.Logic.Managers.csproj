@@ -111,7 +111,7 @@
     <Compile Include="SubSonic\OnlineUsersBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\OutWorkDBll.cs">
+    <Compile Include="SubSonic\OutWork_DBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\PagePowerSignBll.cs">

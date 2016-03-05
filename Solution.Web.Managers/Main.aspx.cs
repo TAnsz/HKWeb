@@ -132,16 +132,19 @@ namespace Solution.Web.Managers
         {
             if (InformationBll.GetInstence().GetRecordCount(x => x.IsDisplay == 1) > 0)
             {
-                var list = Information.Find(x => x.IsDisplay == 1).OrderByDescending(x => x.IsTop).ThenByDescending(x=>x.Id);
+                formInfo.Items.Clear();
+                var list = Information.Find(x => x.IsDisplay == 1 && x.IsDel == 0 && x.EndTime > DateTime.Now).OrderByDescending(x => x.IsTop).ThenByDescending(x => x.Sort).ThenByDescending(x => x.Id);
                 foreach (var link in list.Select(item => new Button
                 {
-                    Text = item.NewsTime.ToString("dd/MM/yyyy") + "   " + item.Title,
+                    Text = string.Format("<span style='font-size: smaller'>{0}</span>{1}", item.NewsTime.ToString("dd/MM/yyyy"), item.Title),
                     EnablePostBack = false,
-                    Size = FineUI.ButtonSize.Medium,
-                    Icon = item.IsTop==1? Icon.ArrowJoin:Icon.PageWhiteText,
+                    //Size = FineUI.ButtonSize.Medium,
+                    Icon = item.IsTop == 1 ? Icon.ArrowJoin : Icon.PageWhiteText,
+                    IconAlign = IconAlign.Left,
+                    Size = ButtonSize.Medium,
                     OnClientClick = "ShowWindow('" + "WebManage/Informations/InformationPage.aspx?Id=" + item.Id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(item.Id + "") + "')",
                     ToolTip = item.Content,
-                    CssClass = "btn medium purple-stripe blue"
+                    CssClass = "btn mediumlink purple-stripe blue"
                 }))
                 {
                     formInfo.Items.Add(link);
@@ -260,6 +263,9 @@ namespace Solution.Web.Managers
             if (OnlineUsersBll.GetInstence().IsOffline(this))
                 return;
             #endregion
+
+            //檢查在線列表數據，將不在線人員刪除
+            OnlineUsersBll.GetInstence().CheckOnline();
 
             #region 更新信息（在線人數，未讀取的短消息）
             if (HttpRuntime.Cache == null)
@@ -443,7 +449,17 @@ namespace Solution.Web.Managers
 
         #endregion
 
-
-
+        protected void PageManager1_OnCustomEvent(object sender, CustomEventArgs e)
+        {
+            switch (e.EventArgument)
+            {
+                case "Grid1_refresh":
+                    LoadGrid1Data();
+                    break;
+                case "Grid2_refresh":
+                    LoadGrid2Data();
+                    break;
+            }
+        }
     }
 }
