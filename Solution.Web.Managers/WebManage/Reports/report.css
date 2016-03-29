@@ -1,0 +1,46 @@
+﻿.dPage {
+    page-break-after: always;
+}
+
+/*body, textarea, button, input, select {
+            font-size: 12px !important;
+        }*/
+
+.b {
+    font-weight: bold;
+}
+
+.th {
+    height: 18px;
+}
+
+.tb1 {
+    width: 2.5cm;
+}
+
+.tb2 {
+    width: 1cm;
+    text-align: left;
+}
+
+.tb3 {
+    width: 2cm;
+    text-align: center;
+}
+
+.tb4 {
+    width: 3cm;
+    text-align: center;
+}
+
+.unLine {
+    border-bottom: 1px solid;
+}
+
+.div {
+    font-size: 12px !important;
+    overflow: hidden;
+    line-height: 1.1;
+    font-family: 新細明體;
+    /*-webkit-transform : scale(0.9,0.9) ;*/
+}

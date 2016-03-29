@@ -56,7 +56,7 @@ namespace Solution.Logic.Managers
         public void BandDropDownList(Page page, FineUI.DropDownList ddl,bool isTree=false)
         {
 
-            var dt = DataTableHelper.GetFilterData(GetDataTable(), DepartsTable.Up_ID, null, DepartsTable.inside_id, "ASC");
+            var dt = DataTableHelper.GetFilterData(GetDataTable(), null, null, DepartsTable.inside_id, "ASC");
 
 
             //显示值

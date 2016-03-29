@@ -77,10 +77,16 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Test.html" />
+    <Content Include="WebManage\ActiveFiles\ActiveFileEdit.aspx" />
+    <Content Include="WebManage\ActiveFiles\ActiveFileList.aspx" />
+    <Content Include="WebManage\ActiveFiles\ActiveFileClassEdit.aspx" />
+    <Content Include="WebManage\ActiveFiles\ActiveFileClassList.aspx" />
     <Content Include="WebManage\Css\common.css" />
     <Content Include="WebManage\Css\form.css" />
     <Content Include="WebManage\Css\lightbox.css" />
     <Content Include="WebManage\Css\login.css" />
+    <Content Include="WebManage\Reports\Report.aspx" />
+    <Content Include="WebManage\Reports\report.css" />
     <Content Include="WebManage\Css\main.css" />
     <Content Include="WebManage\Css\metro.css" />
     <Content Include="WebManage\Css\plugin\calendar.css" />
@@ -126,6 +132,7 @@
     <Content Include="WebManage\OutWorks\OutWorkRecordEdit.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordLotList.aspx" />
     <Content Include="WebManage\OutWorks\OutWorkRecordList.aspx" />
+    <Content Include="WebManage\Reports\MonthReportsEdit.aspx" />
     <Content Include="WebManage\Reports\MonthReportsList.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpSimpleChoose.aspx" />
     <Content Include="WebManage\Systems\Pop\EmpChoose.aspx" />
@@ -153,6 +160,34 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileEdit.aspx.cs">
+      <DependentUpon>ActiveFileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileEdit.aspx.designer.cs">
+      <DependentUpon>ActiveFileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileList.aspx.cs">
+      <DependentUpon>ActiveFileList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileList.aspx.designer.cs">
+      <DependentUpon>ActiveFileList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileClassEdit.aspx.cs">
+      <DependentUpon>ActiveFileClassEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileClassEdit.aspx.designer.cs">
+      <DependentUpon>ActiveFileClassEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileClassList.aspx.cs">
+      <DependentUpon>ActiveFileClassList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\ActiveFiles\ActiveFileClassList.aspx.designer.cs">
+      <DependentUpon>ActiveFileClassList.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Employees\ManagerEdit.aspx.cs">
       <DependentUpon>ManagerEdit.aspx</DependentUpon>
@@ -359,6 +394,20 @@
     </Compile>
     <Compile Include="WebManage\OutWorks\OutWorkRecordList.aspx.designer.cs">
       <DependentUpon>OutWorkRecordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Reports\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Reports\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Reports\MonthReportsEdit.aspx.cs">
+      <DependentUpon>MonthReportsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Reports\MonthReportsEdit.aspx.designer.cs">
+      <DependentUpon>MonthReportsEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Reports\MonthReportsList.aspx.cs">
       <DependentUpon>MonthReportsList.aspx</DependentUpon>

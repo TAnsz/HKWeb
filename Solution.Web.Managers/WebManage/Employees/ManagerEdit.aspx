@@ -76,20 +76,22 @@
                                         <f:RadioItem Text="男" Value="男" Selected="true" />
                                         <f:RadioItem Text="女" Value="女" />
                                     </f:RadioButtonList>
-                                    <f:DropDownList runat="server" ID="ddlBranch_Id" Label="所屬部門" ShowRedStar="true"
+                                    <f:DropDownList runat="server" ID="ddlBranch_Id" Label="所屬部門" ShowRedStar="true" AutoSelectFirstItem="False"
                                         Required="true">
                                     </f:DropDownList>
                                     <f:HiddenField ID="hidPositionId" runat="server">
                                     </f:HiddenField>
-                                    <f:TextBox runat="server" Label="所屬職位" ID="txtPosition" ShowRedStar="true" Readonly="True">
-                                    </f:TextBox>
-                                    <f:Button ID="ButtonSelectPosition" runat="server" Text="選擇職位" Icon="Magnifier" EnablePostBack="False">
-                                    </f:Button>
+                                    <f:DropDownList runat="server" Label="所屬職位" ID="ddlPosition" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <%--<f:Button ID="ButtonSelectPosition" runat="server" Text="選擇職位" Icon="Magnifier" EnablePostBack="False">
+                                    </f:Button>--%>
                                     <f:TextBox runat="server" Label="民族" ID="txtNationalName">
                                     </f:TextBox>
                                     <f:DatePicker runat="server" Label="出生日期" ID="dpBirthday" DateFormatString="yyyy-M-d">
                                     </f:DatePicker>
-                                    <f:TextBox runat="server" Label="手機號碼" ID="txtMobile">
+                                    <f:TextBox runat="server" Label="手提電話" ID="txtMobile">
+                                    </f:TextBox>
+                                    <f:TextBox runat="server" Label="公司直綫" ID="txtTel">
                                     </f:TextBox>
                                     <f:TextBox runat="server" Label="聯繫地址" ID="txtAddress">
                                     </f:TextBox>
@@ -109,12 +111,6 @@
                                     <f:TextBox runat="server" Label="專業" ID="txtGraduateSpecialty">
                                     </f:TextBox>
                                     <f:TextBox runat="server" Label="畢業學院" ID="txtGraduateCollege">
-                                    </f:TextBox>
-                                    <f:TextBox runat="server" Label="家庭電話" ID="txtTel">
-                                    </f:TextBox>
-                                    <f:TextBox runat="server" Label="QQ" ID="txtQq">
-                                    </f:TextBox>
-                                    <f:TextBox runat="server" Label="MSN" ID="txtMsn">
                                     </f:TextBox>
                                     <f:TextBox runat="server" Label="聯繫郵箱" ID="txtEmail">
                                     </f:TextBox>

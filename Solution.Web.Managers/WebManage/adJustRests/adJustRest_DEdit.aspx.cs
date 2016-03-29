@@ -163,10 +163,6 @@ namespace Solution.Web.Managers.WebManage.adJustRests
                 {
                     return "請選擇" + dpEndTime.Label;
                 }
-                if (dpStartTime.SelectedDate > dpEndTime.SelectedDate)
-                {
-                    return dpStartTime.Label + "不能大於" + dpEndTime.Label;
-                }
 
                 #endregion
 

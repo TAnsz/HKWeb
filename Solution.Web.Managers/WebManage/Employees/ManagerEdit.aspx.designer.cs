@@ -229,22 +229,13 @@ namespace Solution.Web.Managers.WebManage.Employees {
         protected global::FineUI.HiddenField hidPositionId;
         
         /// <summary>
-        /// txtPosition 控件。
+        /// ddlPosition 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox txtPosition;
-        
-        /// <summary>
-        /// ButtonSelectPosition 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button ButtonSelectPosition;
+        protected global::FineUI.DropDownList ddlPosition;
         
         /// <summary>
         /// txtNationalName 控件。
@@ -272,6 +263,15 @@ namespace Solution.Web.Managers.WebManage.Employees {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtMobile;
+        
+        /// <summary>
+        /// txtTel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtTel;
         
         /// <summary>
         /// txtAddress 控件。
@@ -335,33 +335,6 @@ namespace Solution.Web.Managers.WebManage.Employees {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtGraduateCollege;
-        
-        /// <summary>
-        /// txtTel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtTel;
-        
-        /// <summary>
-        /// txtQq 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtQq;
-        
-        /// <summary>
-        /// txtMsn 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtMsn;
         
         /// <summary>
         /// txtEmail 控件。

@@ -15,12 +15,27 @@ namespace Solution.DataAccess.DataModel{
 			
             return sp;
         }
+        public static StoredProcedure P_ErrorLog_Delete(){
+            StoredProcedure sp=new StoredProcedure("P_ErrorLog_Delete");
+			
+            return sp;
+        }
+        public static StoredProcedure P_LoginLog_Delete(){
+            StoredProcedure sp=new StoredProcedure("P_LoginLog_Delete");
+			
+            return sp;
+        }
         public static StoredProcedure p_ToIDENTITY(string TableName,string FieldName,int increment){
             StoredProcedure sp=new StoredProcedure("p_ToIDENTITY");
 			
             sp.Command.AddParameter("TableName",TableName,DbType.String);
             sp.Command.AddParameter("FieldName",FieldName,DbType.String);
             sp.Command.AddParameter("increment",increment,DbType.Int32);
+            return sp;
+        }
+        public static StoredProcedure P_Userlog_Delete(){
+            StoredProcedure sp=new StoredProcedure("P_Userlog_Delete");
+			
             return sp;
         }
         public static StoredProcedure PRO_CHANGE_PASSWORD(string OLD,string NEW,string USER){

@@ -39,9 +39,8 @@ namespace Solution.Logic.Managers
             try
             {
                 //创建用户操作日志对象
-                var uselog = new UseLog();
+                var uselog = new UseLog {AddDate = DateTime.Now};
                 //记录登录时间
-                uselog.AddDate = DateTime.Now;
                 //获取用户在线实体
                 var model = OnlineUsersBll.GetInstence().GetOnlineUsersModel();
                 if (model != null)
@@ -76,7 +75,7 @@ namespace Solution.Logic.Managers
                     //判断是否为首页
                     if (uselog.MenuInfo_Id == 0)
                     {
-                        if (page.Request.Url.AbsolutePath.Equals("/WebManage/Main.aspx"))
+                        if (page.Request.Url.AbsolutePath.Equals("/Main.aspx"))
                         {
                             //当前页面名称
                             uselog.MenuInfo_Name = "首页";

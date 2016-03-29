@@ -15,7 +15,7 @@ using SubSonic.SqlGeneration.Schema;
 namespace Solution.DataAccess.DataModel
 {    
     /// <summary>
-    /// A class which represents the CardDetail table in the HRtest Database.
+    /// A class which represents the CardDetail table in the HKHR Database.
     /// </summary>
     public partial class CardDetail: IActiveRecord
     {
@@ -26,7 +26,7 @@ namespace Solution.DataAccess.DataModel
 
         
         static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<CardDetail>(new Solution.DataAccess.DataModel.HRtestDB());
+            _testRepo = _testRepo ?? new TestRepository<CardDetail>(new Solution.DataAccess.DataModel.HKHRDB());
         }
         public static void ResetTestRepo(){
             _testRepo = null;
@@ -86,10 +86,10 @@ namespace Solution.DataAccess.DataModel
             return _dirtyColumns;
         }
 
-        Solution.DataAccess.DataModel.HRtestDB _db;
+        Solution.DataAccess.DataModel.HKHRDB _db;
         public CardDetail(string connectionString, string providerName) {
 
-            _db=new Solution.DataAccess.DataModel.HRtestDB(connectionString, providerName);
+            _db=new Solution.DataAccess.DataModel.HKHRDB(connectionString, providerName);
             Init();            
          }
         void Init(){
@@ -108,7 +108,7 @@ namespace Solution.DataAccess.DataModel
         }
         
         public CardDetail(){
-			_db=new Solution.DataAccess.DataModel.HRtestDB();
+			_db=new Solution.DataAccess.DataModel.HKHRDB();
             Init();            
         }
 
@@ -172,11 +172,11 @@ namespace Solution.DataAccess.DataModel
        
         
         internal static IRepository<CardDetail> GetRepo(string connectionString, string providerName){
-            Solution.DataAccess.DataModel.HRtestDB db;
+            Solution.DataAccess.DataModel.HKHRDB db;
             if(String.IsNullOrEmpty(connectionString)){
-                db=new Solution.DataAccess.DataModel.HRtestDB();
+                db=new Solution.DataAccess.DataModel.HKHRDB();
             }else{
-                db=new Solution.DataAccess.DataModel.HRtestDB(connectionString, providerName);
+                db=new Solution.DataAccess.DataModel.HKHRDB(connectionString, providerName);
             }
             IRepository<CardDetail> _repo;
             

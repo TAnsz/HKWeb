@@ -25,7 +25,7 @@
     //This is the name of your database and is used in naming
     //the repository. By default we set it to the connection string name
 	
-    const string DatabaseName = "HRtest";
+    const string DatabaseName = "HKHR";
 
     const bool TreatTinyint1AsBool = false;
 

@@ -12,13 +12,13 @@ using Solution.DataAccess.DbHelper;
 using SubSonic.Query;
 
 /***********************************************************************
- *   作    者：AllEmpty（陈焕）-- 1654937@qq.com
+ *   作    者：AllEmpty（陳煥）-- 1654937@qq.com
  *   博    客：http://www.cnblogs.com/EmptyFS/
- *   技 术 群：327360708
+ *   技 術 群：327360708
  *  
- *   创建日期：2014-06-17
- *   文件名称：OnlineUsersBll.cs
- *   描    述：用户在线列表缓存管理逻辑类
+ *   創建日期：2014-06-17
+ *   文件名稱：OnlineUsersBll.cs
+ *   描    述：用戶在線列表緩存管理邏輯類
  *             
  *   修 改 人：
  *   修改日期：
@@ -27,18 +27,18 @@ using SubSonic.Query;
 namespace Solution.Logic.Managers
 {
     /// <summary>
-    /// OnlineUsersBll逻辑类
+    /// OnlineUsersBll邏輯類
     /// </summary>
     public partial class OnlineUsersBll : LogicBase
     {
         /***********************************************************************
-         * 自定义函数                                                          *
+         * 自定義函數                                                          *
          ***********************************************************************/
-        #region 自定义函数
+        #region 自定義函數
 
-        #region 获取在线用户表实体
+        #region 獲取在線用戶表實體
         /// <summary>
-        /// 根据字段名称，获取当前用户在线表中的内容
+        /// 根據字段名稱，獲取當前用戶在線表中的內容
         /// </summary>
         /// <returns></returns>
         public DataAccess.Model.OnlineUsers GetOnlineUsersModel(string userHashKey = null)
@@ -50,43 +50,43 @@ namespace Solution.Logic.Managers
                     userHashKey = GetUserHashKey();
                 }
 
-                //如果不存在在线表则退出
+                //如果不存在在線表則退出
                 if (string.IsNullOrEmpty(userHashKey))
                     return null;
 
-                //返回指定字段的内容
+                //返回指定字段的內容
                 var model = GetModelForCache(x => x.UserHashKey == userHashKey);
 
                 return model;
             }
             catch (Exception e)
             {
-                //记录出错日志
-                CommonBll.WriteLog("獲取用户表实体出錯", e);
+                //記錄出錯日誌
+                CommonBll.WriteLog("獲取用戶表實體出錯", e);
             }
 
             return null;
         }
         #endregion
 
-        #region 获取在线用户表内容
+        #region 獲取在線用戶表內容
         /// <summary>
-        /// 根据字段名称，获取指定用户在线表中的内容
+        /// 根據字段名稱，獲取指定用戶在線表中的內容
         /// </summary>
-        /// <param name="userHashKey">用户在线列表的Key</param>
+        /// <param name="userHashKey">用戶在線列表的Key</param>
         /// <param name="colName">字段名<para/>
-        /// userId : 当前用户的ID编号<para/>
-        /// LoginDate : 登录时间<para/>
-        /// OnlineTime : 在线时长<para/>
-        /// LoginIp : 当前用户IP<para/>
-        /// LoginName : 当前用户登陆名<para/>
-        /// CName : 当前用户中文名<para/>
-        /// Sex : 当前用户的性别<para/>
-        /// BranchId : 部门自动ID<para/>
-        /// BranchCode : 部门编码<para/>
-        /// BranchName : 部门名称<para/>
-        /// PositionInfoId : 职位ID<para/>
-        /// PositionInfoName : 职位名称<para/>
+        /// userId : 當前用戶的ID編號<para/>
+        /// LoginDate : 登錄時間<para/>
+        /// OnlineTime : 在線時長<para/>
+        /// LoginIp : 當前用戶IP<para/>
+        /// LoginName : 當前用戶登陸名<para/>
+        /// CName : 當前用戶中文名<para/>
+        /// Sex : 當前用戶的性別<para/>
+        /// BranchId : 部門自動ID<para/>
+        /// BranchCode : 部門編碼<para/>
+        /// BranchName : 部門名稱<para/>
+        /// PositionInfoId : 職位ID<para/>
+        /// PositionInfoName : 職位名稱<para/>
         /// </param>
         /// <returns></returns>
         public object GetUserOnlineInfo(string userHashKey, string colName)
@@ -98,7 +98,7 @@ namespace Solution.Logic.Managers
                     return null;
                 }
 
-                //返回指定字段的内容
+                //返回指定字段的內容
                 var model = GetOnlineUsersModel(userHashKey);
                 if (model == null)
                     return null;
@@ -107,7 +107,7 @@ namespace Solution.Logic.Managers
             }
             catch (Exception e)
             {
-                //记录出错日志
+                //記錄出錯日誌
                 CommonBll.WriteLog("", e);
             }
 
@@ -115,13 +115,13 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 更新在线用户信息
+        #region 更新在線用戶信息
         /// <summary>
-        /// 更新在线用户信息
+        /// 更新在線用戶信息
         /// </summary>
-        /// <param name="userHashKey">用户在线Hashtable Key</param>
-        /// <param name="colName">要更新的字段名称</param>
-        /// <param name="value">将要赋的值</param>
+        /// <param name="userHashKey">用戶在線Hashtable Key</param>
+        /// <param name="colName">要更新的字段名稱</param>
+        /// <param name="value">將要賦的值</param>
         public void UpdateUserOnlineInfo(string userHashKey, string colName, object value)
         {
             try
@@ -129,15 +129,15 @@ namespace Solution.Logic.Managers
                 SetModelValue(GetOnlineUsersModel(userHashKey), colName, value);
             }
             catch (Exception e)
-            { //记录出错日志
+            { //記錄出錯日誌
                 CommonBll.WriteLog("", e);
             }
         }
         #endregion
 
-        #region 更新在线用户缓存表中最后在线时间
+        #region 更新在線用戶緩存表中最後在線時間
         /// <summary>
-        /// 更新在线用户缓存表中最后在线时间
+        /// 更新在線用戶緩存表中最後在線時間
         /// </summary>
         public void UpdateTime()
         {
@@ -148,22 +148,22 @@ namespace Solution.Logic.Managers
                 {
                     UpdateValue(null, id, OnlineUsersTable.UpdateTime, DateTime.Now, "", true, false);
                 }
-                //更新数据库与缓存中的最后在线时间
+                //更新數據庫與緩存中的最後在線時間
 
-                //修改在线缓存表中的用户最后在线时间
+                //修改在線緩存表中的用戶最後在線時間
                 //UpdateUserOnlineInfo(GetUserHashKey(), OnlineUsersTable.UpdateTime, DateTime.Now);
             }
             catch (Exception e)
             {
-                //记录出错日志
+                //記錄出錯日誌
                 CommonBll.WriteLog("", e);
             }
         }
         #endregion
 
-        #region 获取在线人数
+        #region 獲取在線人數
         /// <summary>
-        /// 获取在线人数
+        /// 獲取在線人數
         /// </summary>
         /// <returns></returns>
         public int GetUserOnlineCount()
@@ -173,26 +173,26 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 检查在线列表
+        #region 檢查在線列表
         /// <summary>
-        /// 检查在线列表，将不在线人员删除
+        /// 檢查在線列表，將不在線人員刪除
         /// </summary>
         public void CheckOnline()
         {
-            //获取在线列表
+            //獲取在線列表
             var onlineUsers = GetList();
 
-            //如果不存在在线表则退出
+            //如果不存在在線表則退出
             if (onlineUsers == null || onlineUsers.Count == 0)
                 return;
 
-            //循环读取在线信息
+            //循環讀取在線信息
             List<int> list = new List<int>();
-            foreach (var model in onlineUsers.Where(model => TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now) > 10))
+            foreach (var model in onlineUsers.Where(model => Math.Abs(TimeHelper.DateDiff("n", model.UpdateTime, DateTime.Now)) > 10))
             {
-                //添加用户下线记录
-                LoginLogBll.GetInstence().Save(model.UserHashKey, "用户【{0}】退出系统！在线时间【{1}】");
-                //移除在线数据
+                //添加用戶下線記錄
+                LoginLogBll.GetInstence().Save(model.UserHashKey, "用戶【{0}】超時被踢出系統！在線時間【{1}】");
+                //移除在線數據
                 list.Add(model.Id);
             }
             if (list.Count > 0)
@@ -202,33 +202,33 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 判断用户是否被强迫离线
+        #region 判斷用戶是否被強迫離線
         /// <summary>
-        /// 判断用户是否被强迫离线[true是；false否]
+        /// 判斷用戶是否被強迫離線[true是；false否]
         /// </summary>
         public bool IsOffline(Page page)
         {
             try
             {
-                //获取当前用户Id
+                //獲取當前用戶Id
                 var userinfoId = GetManagerId();
 
-                //判断当前用户是否已经被系统清除
+                //判斷當前用戶是否已經被系統清除
                 if (userinfoId == 0)
                 {
-                    //通知用户
-                    FineUI.Alert.Show("您太久没有操作已退出系统，请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
+                    //通知用戶
+                    FineUI.Alert.Show("您太久沒有操作已退出系統，請重新登錄！", "檢測通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                     return true;
                 }
                 else
                 {
-                    //判断在线用户的Md5与当前用户存储的Md5是否一致
+                    //判斷在線用戶的Md5與當前用戶存儲的Md5是否一致
                     if (GenerateMd5() != CookieHelper.GetCookieValue(OnlineUsersTable.Md5))
                     {
-                        //添加用户下线记录
-                        LoginLogBll.GetInstence().Save(userinfoId, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
+                        //添加用戶下線記錄
+                        LoginLogBll.GetInstence().Save(userinfoId, "用戶【{0}】的賬號已經在另一處登錄，本次登陸下線！在線時間【{1}】");
 
-                        //清除在线表里与当前用户同名的记录
+                        //清除在線表裡與當前用戶同名的記錄
                         //Delete(null, x => x.Id == GetOnlineUsersId());
 
                         //清空Session
@@ -239,14 +239,14 @@ namespace Solution.Logic.Managers
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
-                        //删除Cookies
+                        //刪除Cookies
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
 
-                        CommonBll.WriteLog("当前帐号已经下线，用户Id【" + userinfoId + "】");
+                        CommonBll.WriteLog("當前賬號已經下線，用戶Id【" + userinfoId + "】");
 
-                        //通知用户
-                        FineUI.Alert.ShowInTop("您的账号已经在另一处登录或已退出，当前账号已经下线！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
+                        //通知用戶
+                        FineUI.Alert.ShowInTop("您的賬號已經在另一處登錄或已退出，當前賬號已經下線！", "檢測通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                         return true;
                     }
                 }
@@ -254,19 +254,19 @@ namespace Solution.Logic.Managers
             }
             catch (Exception ex)
             {
-                CommonBll.WriteLog("Logic.Systems.Manager.CheckIsOffline出现异常", ex);
+                CommonBll.WriteLog("Logic.Systems.Manager.CheckIsOffline出現異常", ex);
 
-                FineUI.Alert.ShowInTop("系统已经开始更新维护，请稍后重新登录！", "检测通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
+                FineUI.Alert.ShowInTop("系統已經開始更新維護，請稍後重新登錄！", "檢測通知", MessageBoxIcon.Information, "top.location.href='/Login.aspx';");
                 return true;
             }
 
         }
         #endregion
 
-        #region 判断用户是否超时退出
+        #region 判斷用戶是否超時退出
 
         /// <summary>
-        /// 判断用户是否超时退出（退出情况：1.系统更新，2.用户自动退出）
+        /// 判斷用戶是否超時退出（退出情況：1.系統更新，2.用戶自動退出）
         /// </summary>
         public void IsTimeOut()
         {
@@ -274,36 +274,36 @@ namespace Solution.Logic.Managers
                 return;
             try
             {
-                //不存在则表示Session失效了，重新从Cookies中加载
+                //不存在則表示Session失效了，重新從Cookies中加載
                 var userHashKey = CookieHelper.GetCookieValue(OnlineUsersTable.UserHashKey);
                 var md5 = CookieHelper.GetCookieValue(OnlineUsersTable.Md5);
 
-                //判断Cookies是否存在，存在则查询在线列表，重新获取用户信息
+                //判斷Cookies是否存在，存在則查詢在線列表，重新獲取用戶信息
                 if (userHashKey.Length > 0 && md5.Length == 32)
                 {
-                    //读取当前用户在线实体
+                    //讀取當前用戶在線實體
                     var model = GetOnlineUsersModel(userHashKey);
-                    //当前用户存在在线列表中
+                    //當前用戶存在在線列表中
                     if (model != null)
                     {
-                        //计算用户md5值
+                        //計算用戶md5值
                         var key = GenerateMd5(model);
 
-                        //判断用户的md5值是否正确
+                        //判斷用戶的md5值是否正確
                         if (md5 == key)
                         {
-                            //将UserHashKey存储到缓存中
+                            //將UserHashKey存儲到緩存中
                             HttpContext.Current.Session[OnlineUsersTable.UserHashKey] = userHashKey;
-                            //获取用户权限并存储到用户Session里
+                            //獲取用戶權限並存儲到用戶Session裡
                             T_TABLE_DBll.GetInstence().SetUserPower(model.Position_Id);
-                            //更新用户当前SessionId到在线表中
+                            //更新用戶當前SessionId到在線表中
                             UpdateUserOnlineInfo(model.Id + "", OnlineUsersTable.SessionId, HttpContext.Current.Session.SessionID);
                             return;
                         }
-                        //添加用户下线记录
-                        LoginLogBll.GetInstence().Save(model.Id, "用户【{0}】的账号已经在另一处登录，本次登陆下线！在线时间【{1}】");
+                        //添加用戶下線記錄
+                        LoginLogBll.GetInstence().Save(model.Id, "用戶【{0}】的賬號已經在另一處登錄，本次登陸超時下線！在線時間【{1}】");
 
-                        //清除在线表里与当前用户同名的记录
+                        //清除在線表裡與當前用戶同名的記錄
                         Delete(null, x => x.Id == model.Id);
 
                         //清空Session
@@ -314,11 +314,11 @@ namespace Solution.Logic.Managers
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
                         SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
-                        //删除Cookies
+                        //刪除Cookies
                         CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                         CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                     }
-                    //删除数据库记录与IIS缓存
+                    //刪除數據庫記錄與IIS緩存
                     Delete(null, x => x.UserHashKey == userHashKey);
                     //清空Session
                     SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
@@ -328,82 +328,82 @@ namespace Solution.Logic.Managers
                     SessionHelper.RemoveSession(OnlineUsersTable.Manager_Id);
                     SessionHelper.RemoveSession(OnlineUsersTable.Manager_LoginName);
                     SessionHelper.RemoveSession(OnlineUsersTable.Manager_CName);
-                    //删除Cookies
+                    //刪除Cookies
                     CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                     CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 }
             }
             catch (Exception e)
             {
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog("檢測用戶超時出錯", e);
             }
-            //用户不存在，直接退出
-            FineUI.Alert.ShowInTop("当前用户登录已经过时或系统已更新,请重新登录！", "检测通知", MessageBoxIcon.Information, "top.location='/Login.aspx';");
-            //DotNet.Utilities.JsHelper.AlertAndParentUrl("当前用户登录已经过时或系统已更新,请重新登录！", "Login.aspx");
+            //用戶不存在，直接退出
+            FineUI.Alert.ShowInTop("當前用戶登錄已經過時或系統已更新,請重新登錄！", "檢測通知", MessageBoxIcon.Information, "top.location='/Login.aspx';");
+            //DotNet.Utilities.JsHelper.AlertAndParentUrl("當前用戶登錄已經過時或系統已更新,請重新登錄！", "Login.aspx");
             //HttpContext.Current.Response.Redirect("/Login.aspx");
             //HttpContext.Current.Response.End();
         }
         #endregion
 
-        #region 管理员退出系统
+        #region 管理員退出系統
         /// <summary>
-        /// 用户点击退出系统时，调用本函数，本函数将在在线用户表中删除当前用户，并添加用户退出日志
+        /// 用戶點擊退出系統時，調用本函數，本函數將在在線用戶表中刪除當前用戶，並添加用戶退出日誌
         /// </summary>
         public void UserExit(Page page)
         {
             try
             {
-                //获取用户Hashtable Key
+                //獲取用戶Hashtable Key
                 var userHashKey = GetUserHashKey();
-                //判断用户的Session["UserHashKey"]是否存在，即用户是否TimeOut退出了
+                //判斷用戶的Session["UserHashKey"]是否存在，即用戶是否TimeOut退出了
                 if (userHashKey != null)
                 {
-                    //添加用户退出日志
-                    LoginLogBll.GetInstence().Save(userHashKey + "", "用户【{0}】退出系统！在线时间【{1}】");
+                    //添加用戶退出日誌
+                    LoginLogBll.GetInstence().Save(userHashKey + "", "用戶【{0}】退出系統！在線時間【{1}】");
 
-                    //删除数据库记录与IIS缓存
+                    //刪除數據庫記錄與IIS緩存
                     Delete(page, x => x.UserHashKey == userHashKey);
                     //清空Session
                     SessionHelper.RemoveSession(OnlineUsersTable.UserHashKey);
                     SessionHelper.RemoveSession(OnlineUsersTable.Md5);
                     SessionHelper.RemoveSession(T_TABLE_DTable.PagePower);
                     SessionHelper.RemoveSession(T_TABLE_DTable.ControlPower);
-                    //删除Cookies
+                    //刪除Cookies
                     CookieHelper.ClearCookie(OnlineUsersTable.UserHashKey);
                     CookieHelper.ClearCookie(OnlineUsersTable.Md5);
                 }
             }
             catch (Exception e)
             {
-                //出现异常，保存出错日志信息
+                //出現異常，保存出錯日誌信息
                 CommonBll.WriteLog("", e);
             }
         }
 
         /// <summary>
-        /// 将指定用户踢下线，并添加用户退出日志
+        /// 將指定用戶踢下線，並添加用戶退出日誌
         /// </summary>
         public void UserExit(Page page, string userHashKey)
         {
             var model = GetOnlineUsersModel(userHashKey);
             if (model != null)
             {
-                //添加用户退出日志
-                LoginLogBll.GetInstence().Save(userHashKey, "用户【" + model.Manager_CName + "】给管理员【" + GetManagerCName() + "】踢出系统！在线时间【{1}】");
+                //添加用戶退出日誌
+                LoginLogBll.GetInstence().Save(userHashKey, "用戶【" + model.Manager_CName + "】給管理員【" + GetManagerCName() + "】踢出系統！在線時間【{1}】");
 
-                //删除数据库记录与IIS缓存
+                //刪除數據庫記錄與IIS緩存
                 Delete(page, model.Id);
             }
         }
 
         #endregion
 
-        #region 生成加密串——用户加密密钥计算
+        #region 生成加密串——用戶加密密鑰計算
         /// <summary>
-        /// 生成加密串——用户加密密钥计算
+        /// 生成加密串——用戶加密密鑰計算
         /// </summary>
-        /// <param name="model">在线实体</param>
+        /// <param name="model">在線實體</param>
         /// <returns></returns>
         public string GenerateMd5(DataAccess.Model.OnlineUsers model)
         {
@@ -413,7 +413,7 @@ namespace Solution.Logic.Managers
             }
             else
             {
-                //Md5(密钥+登陆帐号+密码+IP+密钥.Substring(6,8))
+                //Md5(密鑰+登陸帳號+密碼+IP+密鑰.Substring(6,8))
                 //return Encrypt.Md5(model.UserKey + model.Manager_LoginName + model.Manager_LoginPass +
                 //            IpHelper.GetUserIp() + model.UserKey.Substring(6, 8));
                 return Encrypt.Md5(model.UserKey + model.Manager_LoginName + model.Manager_LoginPass + model.UserKey.Substring(6, 8));
@@ -421,9 +421,9 @@ namespace Solution.Logic.Managers
         }
 
         /// <summary>
-        /// 生成加密串——用户加密密钥计算
+        /// 生成加密串——用戶加密密鑰計算
         /// </summary>
-        /// <param name="model">在线实体</param>
+        /// <param name="model">在線實體</param>
         /// <returns></returns>
         public string GenerateMd5(OnlineUsers model)
         {
@@ -438,20 +438,20 @@ namespace Solution.Logic.Managers
         }
 
         /// <summary>
-        /// 生成加密串——用户加密密钥计算，直接读取当前用户实体
+        /// 生成加密串——用戶加密密鑰計算，直接讀取當前用戶實體
         /// </summary>
         /// <returns></returns>
         public string GenerateMd5()
         {
-            //读取当前用户实体
+            //讀取當前用戶實體
             var model = GetOnlineUsersModel();
             return GenerateMd5(model);
         }
         #endregion
 
-        #region 获取当前在线用户Id
+        #region 獲取當前在線用戶Id
         /// <summary>
-        /// 获取当前在线用户Id
+        /// 獲取當前在線用戶Id
         /// </summary>
         /// <returns></returns>
         public int GetOnlineUsersId()
@@ -468,7 +468,7 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 獲取當前在綫用戶員工編號
+        #region 獲取當前在線用戶員工編號
         public string GetManagerEmpId()
         {
             var name = SessionHelper.GetSessionString(OnlineUsersTable.Manager_LoginName);
@@ -483,9 +483,9 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 获取当前管理员Id
+        #region 獲取當前管理員Id
         /// <summary>
-        /// 从缓存中读取当前管理员Id
+        /// 從緩存中讀取當前管理員Id
         /// </summary>
         /// <returns></returns>
         public int GetManagerId()
@@ -502,9 +502,9 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 获取用户中文名称
+        #region 獲取用戶中文名稱
         /// <summary>
-        /// 从Session中读取用户中文名称,如果Session为Null时,返回""
+        /// 從Session中讀取用戶中文名稱,如果Session為Null時,返回""
         /// </summary>
         /// <returns></returns>
         public string GetManagerCName()
@@ -521,7 +521,7 @@ namespace Solution.Logic.Managers
         }
 
         /// <summary>
-        /// 从Session中读取用户中文名称,如果Session为Null时,返回""
+        /// 從Session中讀取用戶中文名稱,如果Session為Null時,返回""
         /// </summary>
         /// <returns></returns>
         public string GetManagerCName(int userId)
@@ -543,39 +543,39 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 获取用户UserHashKey
+        #region 獲取用戶UserHashKey
         /// <summary>
-        /// 获取用户UserHashKey
+        /// 獲取用戶UserHashKey
         /// </summary>
         /// <returns></returns>
         public string GetUserHashKey()
         {
-            //读取Session中存储的UserHashKey值
+            //讀取Session中存儲的UserHashKey值
             var userHashKey = SessionHelper.GetSession(OnlineUsersTable.UserHashKey);
-            //如果为null
+            //如果為null
             if (userHashKey == null)
             {
-                //为null则表示用户Session过期了，所以要检查用户登陆，避免用户权限问题
+                //為null則表示用戶Session過期了，所以要檢查用戶登陸，避免用戶權限問題
                 IsTimeOut();
             }
             return SessionHelper.GetSessionString(OnlineUsersTable.UserHashKey);
         }
         #endregion
 
-        #region 获取用户加密串——用户加密密钥Md5值
+        #region 獲取用戶加密串——用戶加密密鑰Md5值
         /// <summary>
-        /// 获取用户加密串——用户加密密钥Md5值
+        /// 獲取用戶加密串——用戶加密密鑰Md5值
         /// </summary>
         /// <returns></returns>
         public string GetMd5()
         {
-            //读取Session中存储的Md5值
+            //讀取Session中存儲的Md5值
             var md5 = SessionHelper.GetSessionString(OnlineUsersTable.Md5);
-            //如果为null
+            //如果為null
             if (string.IsNullOrEmpty(md5))
             {
-                //由于GenerateMd5()获取在线实体时，会执行IsTimeOut()函数，所以这里注释掉
-                //为null则表示用户Session过期了，所以要检查用户登陆，避免用户权限问题
+                //由於GenerateMd5()獲取在線實體時，會執行IsTimeOut()函數，所以這裡註釋掉
+                //為null則表示用戶Session過期了，所以要檢查用戶登陸，避免用戶權限問題
                 //IsTimeOut();
                 md5 = GenerateMd5();
 
@@ -586,7 +586,7 @@ namespace Solution.Logic.Managers
         }
 
         /// <summary>
-        /// 获取用户加密串——用户加密密钥Md5值
+        /// 獲取用戶加密串——用戶加密密鑰Md5值
         /// </summary>
         /// <returns></returns>
         public string GetMd5(int userId)
@@ -608,19 +608,19 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 获取用户页面操作权限
+        #region 獲取用戶頁面操作權限
         /// <summary>
-        /// 获取用户页面操作权限
+        /// 獲取用戶頁面操作權限
         /// </summary>
         /// <returns></returns>
         public string GetPagePower()
         {
-            //读取Session中存储的PagePower值
+            //讀取Session中存儲的PagePower值
             var pagePower = SessionHelper.GetSession("PagePower");
-            //如果为null
+            //如果為null
             if (pagePower == null)
             {
-                //获取用户权限并存储到用户Session里
+                //獲取用戶權限並存儲到用戶Session裡
                 T_TABLE_DBll.GetInstence().SetUserPower(GetUserOnlineInfo(GetUserHashKey(), OnlineUsersTable.Position_Id) + "");
             }
             pagePower = SessionHelper.GetSession("PagePower");
@@ -628,19 +628,19 @@ namespace Solution.Logic.Managers
         }
         #endregion
 
-        #region 获取用户页面控件（按键）操作权限
+        #region 獲取用戶頁面控件（按鍵）操作權限
         /// <summary>
-        /// 获取用户页面控件（按键）操作权限
+        /// 獲取用戶頁面控件（按鍵）操作權限
         /// </summary>
         /// <returns></returns>
         public string GetControlPower()
         {
-            //读取Session中存储的ControlPower值
+            //讀取Session中存儲的ControlPower值
             var controlPower = SessionHelper.GetSession(T_TABLE_DTable.ControlPower);
-            //如果为null
+            //如果為null
             if (controlPower == null)
             {
-                //获取用户权限并存储到用户Session里
+                //獲取用戶權限並存儲到用戶Session裡
                 T_TABLE_DBll.GetInstence().SetUserPower(GetUserOnlineInfo(GetUserHashKey(), OnlineUsersTable.Position_Id) + "");
             }
             controlPower = SessionHelper.GetSession(T_TABLE_DTable.ControlPower);
@@ -648,12 +648,12 @@ namespace Solution.Logic.Managers
         }
         #endregion
         #region 重寫刪除函數
+
         /// <summary>
         /// 刪除OnlineUsers表記錄——?果使用了緩存，刪除成功後會?空本表的所有緩存記錄，?後重新加載進緩存
         /// </summary>
         /// <param name="page">當?頁面指針</param>
         /// <param name="expression">條件語句</param>
-        /// <param name="isAddUseLog">是否添加用戶操作?志</param>
         public void Delete(Page page, Expression<Func<OnlineUsers, bool>> expression)
         {
             if (OnlineUsers.Exists(expression))
@@ -675,6 +675,6 @@ namespace Solution.Logic.Managers
 
         }
         #endregion
-        #endregion 自定义函数
+        #endregion 自定義函數
     }
 }

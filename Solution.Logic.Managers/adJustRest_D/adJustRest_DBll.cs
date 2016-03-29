@@ -190,6 +190,12 @@ namespace Solution.Logic.Managers
             {
                 title = "需要你審批!";
                 sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker).ToString();
+                if (!string.IsNullOrEmpty(model.CHECKER2))
+                {
+                    title += ",需要二級審批!";
+                    var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
+                    sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : ";" + mail2;
+                }
             }
 
             msg.AppendFormat(MailBll.Headtem, stype, title);

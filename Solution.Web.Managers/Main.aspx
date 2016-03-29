@@ -97,7 +97,7 @@
                                             <Items>
                                                 <f:Panel runat="server" ID="Panel4" ShowBorder="false" Layout="HBox" Width="540px" BoxConfigChildMargin="0 5 0 0">
                                                     <Items>
-                                                        <f:Panel runat="server" ID="Panel5" Title="最新訊息" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true"
+                                                        <f:Panel runat="server" ID="Panel5" Title="最新訊息" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true" BoxFlex="1"
                                                             EnableCollapse="True">
                                                             <Items>
                                                                 <f:Form runat="server" ID="formInfo" Layout="Vbox" ShowBorder="false" BoxConfigPosition="Left" BoxConfigChildMargin="0 0 5 0" LabelAlign="Left">
@@ -106,7 +106,7 @@
                                                                 </f:Form>
                                                             </Items>
                                                         </f:Panel>
-                                                        <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true" BoxFlex="1"
+                                                        <f:Panel runat="server" ID="Panel2" Title="功能模塊" ShowHeader="true" BodyPadding="10px" Height="100%" ShowBorder="true" Width="220px"
                                                             EnableCollapse="True">
                                                             <Items>
                                                                 <f:Form runat="server" ID="formMain" Layout="Vbox" ShowBorder="false" BoxConfigChildMargin="0 0 5 0">

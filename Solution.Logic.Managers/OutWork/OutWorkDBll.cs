@@ -197,7 +197,7 @@ namespace Solution.Logic.Managers
                     {
                         title += ",需要二級審批!";
                         var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
-                        sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : (";" + mail2);
+                        sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : ";" + mail2;
                     }
                 }
                 else
@@ -211,6 +211,11 @@ namespace Solution.Logic.Managers
                 title = "需要你審批!";
                 //海外出差增加Mandy郵箱
                 sto = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.checker) + (model.leave_id.Equals("1004") ? ";mandy.chiang@kamhingintl.com" : "");
+                if (!string.IsNullOrEmpty(model.CHECKER2))
+                {
+                    var mail2 = EmployeeBll.GetInstence().GetFieldValue(EmployeeTable.EMAIL, x => x.EMP_ID == model.CHECKER2).ToString();
+                    sto += string.IsNullOrEmpty(mail2) || sto.IndexOf(mail2, StringComparison.Ordinal) >= 0 ? "" : ";" + mail2;
+                }
             }
 
             msg.AppendFormat(MailBll.Headtem, stype, title);
@@ -265,7 +270,7 @@ namespace Solution.Logic.Managers
                (model.Re_date < x.Re_date ? model.Re_date : x.Re_date)) && x.Id != model.Id && x.emp_id == model.emp_id);
             if (mod != null)
             {
-                if (model.work_type == mod.work_type || model.work_type == "0" || mod.work_type == "0")
+                if ((model.work_type == mod.work_type && model.work_type != "3") || model.work_type == "0" || mod.work_type == "0")
                 {
                     result = string.Format("當天已申請{0}單，單號爲{1}，請檢查修改！", mod.outwork_type.ToLower() == "tral" ? "出差" : "請假", mod.bill_id);
                 }

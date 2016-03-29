@@ -60,7 +60,7 @@
                                         <f:DatePicker ID="dpStartTime" Label="加班日期" Width="300px" Required="true" runat="server" EmptyText="請選擇加班日期"
                                             ShowRedStar="true" />
                                         <f:DatePicker ID="dpEndTime" Label="調休日期" Width="300px" Required="true" runat="server" EmptyText="請選擇調休日期"
-                                            CompareControl="dpStartTime" CompareOperator="GreaterThan" CompareMessage="調休日期应该大于加班日期" ShowRedStar="true" />
+                                            ShowRedStar="true" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow11" runat="server">

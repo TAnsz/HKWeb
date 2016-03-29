@@ -100,7 +100,7 @@
         </f:Window>
     </form>
     <script src="../Js/sea.js"></script>
-    <script src="../Js/seaconfig.js"></script>
+    <script src="../Js/seaconfig.js?0004"></script>
     <script type="text/javascript">
         var loadingmsg = '數據加載中，請稍後...';
         var sucessmsg = '數據加載成功';
@@ -111,25 +111,25 @@
         function ShowWindow(url) {
             F('<% =Window1.ClientID %>').f_show(url, '編輯', 520, 500);
         }
-        function printdiv()  
-            {  
-                //var headstr = "<html><head><title></title></head><body>";  
-                //var footstr = "</body>";  
-                //var printData = document.getElementById("xgcalendarp").innerHTML;
-                //var oldstr = document.body.innerHTML;  
-                //document.body.innerHTML = headstr + printData + footstr;
-                //window.print();  
-                //document.body.innerHTML = oldstr;  
+        function printdiv() {
+            $("#xgcalendarp").jqprint();
+            //var headstr = "<html><head><title></title></head><body>";  
+            //var footstr = "</body>";  
+            //var printData = document.getElementById("xgcalendarp").innerHTML;
+            //var oldstr = document.body.innerHTML;  
+            //document.body.innerHTML = headstr + printData + footstr;
+            //window.print();  
+            //document.body.innerHTML = oldstr;  
 
-                var cssStr = '<link href="../Css/plugin/calendar.css" rel="stylesheet" />';
-                var newWindow = window.open("打印窗口", "_blank");//打印窗口要换成页面的url
-                var docStr = document.getElementById("xgcalendarp").innerHTML;
-                newWindow.document.write(cssStr + docStr);
-                newWindow.document.close();
-                newWindow.print();
-                newWindow.close();
+            //var cssStr = '<link href="../Css/plugin/calendar.css" rel="stylesheet" />';
+            //var newWindow = window.open("打印窗口", "_blank");//打印窗口要换成页面的url
+            //var docStr = document.getElementById("xgcalendarp").innerHTML;
+            //newWindow.document.write(cssStr + docStr);
+            //newWindow.document.close();
+            //newWindow.print();
+            //newWindow.close();
 
-                }  
+        }
 
     </script>
 

@@ -112,7 +112,7 @@ namespace DotNet.Utilities
         /// <returns>返回篩選後的數據表</returns>
         public static DataTable GetFilterData(DataTable dt, string colName, string colValue, string sortName, string orderby)
         {
-            var wheres = string.IsNullOrEmpty(colName) ? "" : colName + "=" + colValue;
+            var wheres = string.IsNullOrEmpty(colName) ? "" : colName + (string.IsNullOrEmpty(colValue) ? " is null" : "=" + colValue);
             string sort = null;
             if (!string.IsNullOrEmpty(sortName))
             {
@@ -147,6 +147,10 @@ namespace DotNet.Utilities
                     //CopyToDataTable 必須 引用 System.Data.DataSetExtensions
                     _dt = drs.Length > 0 ? drs.CopyToDataTable() : dt.Clone();
                 }
+                else
+                {
+                    _dt = dt;
+                }
                 //設置排序
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -157,7 +161,10 @@ namespace DotNet.Utilities
                 dt.Dispose();
                 return _dt;
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
 
             return null;
         }

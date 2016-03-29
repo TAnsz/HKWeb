@@ -8,13 +8,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1" />
+        <f:PageManager ID="PageManager1" runat="server" EnableFormChangeConfirm="true" AutoSizePanelID="Panel1"/>
         <f:HiddenField runat="server" ID="hbillId" Text="" />
         <f:HiddenField runat="server" ID="hidId" Text="0" />
         <f:HiddenField runat="server" ID="hjId" />
         <f:HiddenField runat="server" ID="hchecker1"></f:HiddenField>
         <f:HiddenField runat="server" ID="hchecker2"></f:HiddenField>
-        <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"
+        <f:Panel ID="Panel1" runat="server" EnableFrame="false" BodyPadding="10px" EnableCollapse="True"  AutoScroll="True"
             ShowHeader="False">
             <Toolbars>
                 <f:Toolbar ID="toolBar" runat="server">
@@ -59,13 +59,13 @@
                                             MaxLength="50" />
                                     </Items>
                                 </f:FormRow>
-                                <f:FormRow ID="FormRow6" runat="server" >
+                                <f:FormRow ID="FormRow6" runat="server">
                                     <Items>
                                         <f:GroupPanel ID="GPanelal" runat="server" Hidden="true" Layout="Column" Title="年假資料">
                                             <Items>
                                                 <f:Label runat="server" ID="lbal1" Label="總年假" ColumnWidth="30%"></f:Label>
                                                 <f:Label runat="server" ID="lbal2" Label="已休年假" ColumnWidth="30%"></f:Label>
-                                                <f:Label runat="server" ID="lbal3" Label="剩餘年假" ></f:Label>
+                                                <f:Label runat="server" ID="lbal3" Label="剩餘年假"></f:Label>
                                             </Items>
                                         </f:GroupPanel>
                                     </Items>
@@ -88,7 +88,7 @@
                                             <f:ListItem Text="下午" Value="2" />
                                             <f:ListItem Text="按時間" Value="3" />
                                         </f:DropDownList>
-                                        <f:Panel runat="server" ID="Paneltp" ShowBorder="false" Layout="HBox" Hidden="true" >
+                                        <f:Panel runat="server" ID="Paneltp" ShowBorder="false" Layout="HBox" Hidden="true">
                                             <Items>
                                                 <f:TimePicker runat="server" ID="tpStart" EmptyText="請輸入開始時間" MinTimeText="09:00" MaxTimeText="17:30" BoxFlex="1"
                                                     Increment="30">
@@ -108,38 +108,59 @@
                                                     <Items>
                                                         <f:Panel runat="server" ID="Panelt1" ShowBorder="false" Layout="VBox">
                                                             <Items>
-                                                                <f:RadioButtonList runat="server" ID="RB1" Width="200px" Label="交通安排">
-                                                                    <f:RadioItem Text="自行安排" Value="自行安排" />
+                                                                <f:RadioButtonList runat="server" ID="RB1" Width="200px" Label="交通安排" AutoPostBack="True" OnSelectedIndexChanged="RB1_SelectedIndexChanged">
+                                                                    <f:RadioItem Text="自行安排" Value="自行安排" Selected="True" />
                                                                     <f:RadioItem Text="派車" Value="派車" />
                                                                 </f:RadioButtonList>
-                                                                <f:RadioButtonList runat="server" ID="RB2" Width="200px" Label="接送地點">
-                                                                    <f:RadioItem Text="南沙碼頭" Value="南沙碼頭" />
-                                                                    <f:RadioItem Text="中山港碼頭" Value="中山港碼頭" />
-                                                                </f:RadioButtonList>
-                                                                <f:Panel runat="server" ID="Panel7" ShowBorder="false" Layout="Column">
+                                                                <f:Panel runat="server" ID="Panel7" ShowBorder="false" Layout="VBox" Hidden="True">
                                                                     <Items>
-                                                                        <f:DropDownList runat="server" ID="ddlSt" Label="出發船期" AutoSelectFirstItem="false">
-                                                                            <f:ListItem Text="08:00" Value="08:00" />
-                                                                            <f:ListItem Text="11:00" Value="11:00" />
-                                                                            <f:ListItem Text="13:30" Value="13:30" />
-                                                                            <f:ListItem Text="16:15" Value="16:15" />
-                                                                        </f:DropDownList>
-                                                                        <f:DropDownList runat="server" ID="ddlRe" Label="回程船期" AutoSelectFirstItem="false">
-                                                                            <f:ListItem Text="09:15" Value="09:15" />
-                                                                            <f:ListItem Text="11:10" Value="11:10" />
-                                                                            <f:ListItem Text="16:00" Value="16:00" />
-                                                                            <f:ListItem Text="18:00" Value="18:00" />
-                                                                        </f:DropDownList>
-                                                                        <f:NumberBox runat="server" ID="nbPeers" MaxValue="20" MinValue="0" NoDecimal="true" NoNegative="True" Label="人數"></f:NumberBox>
+                                                                        <f:Panel runat="server" ID="Panel9" ShowBorder="false" Layout="Column">
+                                                                            <Items>
+                                                                                <f:RadioButtonList runat="server" ID="RB2" Width="400px" Label="接送地點">
+                                                                                    <f:RadioItem Text="南沙碼頭" Value="南沙碼頭" />
+                                                                                    <f:RadioItem Text="中山港碼頭" Value="中山港碼頭" />
+                                                                                </f:RadioButtonList>
+                                                                                <f:DropDownList runat="server" ID="ddlSt" Label="出發船期" AutoSelectFirstItem="false">
+                                                                                    <f:ListItem Text="08:00" Value="08:00" />
+                                                                                    <f:ListItem Text="11:00" Value="11:00" />
+                                                                                    <f:ListItem Text="13:30" Value="13:30" />
+                                                                                    <f:ListItem Text="16:15" Value="16:15" />
+                                                                                </f:DropDownList>
+                                                                                <f:DropDownList runat="server" ID="ddlRe" Label="回程船期" AutoSelectFirstItem="false">
+                                                                                    <f:ListItem Text="09:15" Value="09:15" />
+                                                                                    <f:ListItem Text="11:10" Value="11:10" />
+                                                                                    <f:ListItem Text="16:00" Value="16:00" />
+                                                                                    <f:ListItem Text="18:00" Value="18:00" />
+                                                                                </f:DropDownList>
+                                                                                <f:NumberBox runat="server" ID="nbPeers" MaxValue="20" MinValue="0" NoDecimal="true" NoNegative="True" Label="人數"></f:NumberBox>
+                                                                            </Items>
+                                                                        </f:Panel>
+                                                                        <f:GroupPanel runat="server" Title="廠回復" Layout="Column">
+                                                                            <Items>
+                                                                                <f:CheckBox runat="server" ID="cbxIsCar" Text="已安排車" />
+                                                                                <f:TextBox runat="server" ID="txtreply" ColumnWidth="100%"/>
+                                                                            </Items>
+                                                                        </f:GroupPanel>
                                                                     </Items>
                                                                 </f:Panel>
+                                                                <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="HBox" Width="100%">
+                                                                    <Items>
+                                                                        <f:GroupPanel runat="server" Title="住宿" Layout="Column" ColumnWidth="100%">
+                                                                            <Items>
+                                                                                <f:CheckBox runat="server" ID="cbxHostel" Text="安排宿舍,幾晚"></f:CheckBox>
+                                                                                <f:NumberBox runat="server" ID="nbhotel" MaxValue="20" MinValue="0" NoDecimal="true" NoNegative="True" Width="100px"></f:NumberBox>
+                                                                            </Items>
+                                                                        </f:GroupPanel>
+                                                                        <f:GroupPanel runat="server" Title="廠回復" Layout="Column" Margin="0 0 0 10px" BoxFlex="1">
+                                                                            <Items>
+                                                                                <f:CheckBox runat="server" ID="cbxIsHotel" Text="已安排宿舍" />
+                                                                                <f:TextBox runat="server" ID="txtreply2" ColumnWidth="100%"/>
+                                                                            </Items>
+                                                                        </f:GroupPanel>
+                                                                    </Items>
+                                                                </f:Panel>
+
                                                                 <f:TextArea runat="server" ID="txtRemark" Label="備注" AutoGrowHeight="true"></f:TextArea>
-                                                                <f:Panel runat="server" ID="Panel3" ShowBorder="false" Layout="Column">
-                                                                    <Items>
-                                                                        <f:CheckBox runat="server" ID="cbxHostel" Text="安排宿舍,幾晚"></f:CheckBox>
-                                                                        <f:NumberBox runat="server" ID="nbhotel" MaxValue="20" MinValue="0" NoDecimal="true" NoNegative="True" Width="100px"></f:NumberBox>
-                                                                    </Items>
-                                                                </f:Panel>
                                                             </Items>
                                                         </f:Panel>
                                                     </Items>

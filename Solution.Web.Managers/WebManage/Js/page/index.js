@@ -4,6 +4,8 @@ define(function (require, exports, module) {
     var minicalendar = require("../plugin/minicalendar");
     require("plugin/xgcalendar");
     require("plugin/ui-select");
+    require("jqmigrate");
+    require("jqprint");
     exports.init = function () {
         var minical = new minicalendar({
             onchange: datechange

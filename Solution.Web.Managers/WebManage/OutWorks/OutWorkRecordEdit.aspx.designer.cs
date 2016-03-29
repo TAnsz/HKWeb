@@ -382,15 +382,6 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.RadioButtonList RB1;
         
         /// <summary>
-        /// RB2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.RadioButtonList RB2;
-        
-        /// <summary>
         /// Panel7 控件。
         /// </summary>
         /// <remarks>
@@ -398,6 +389,24 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Panel Panel7;
+        
+        /// <summary>
+        /// Panel9 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Panel Panel9;
+        
+        /// <summary>
+        /// RB2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.RadioButtonList RB2;
         
         /// <summary>
         /// ddlSt 控件。
@@ -427,13 +436,22 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         protected global::FineUI.NumberBox nbPeers;
         
         /// <summary>
-        /// txtRemark 控件。
+        /// cbxIsCar 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextArea txtRemark;
+        protected global::FineUI.CheckBox cbxIsCar;
+        
+        /// <summary>
+        /// txtreply 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtreply;
         
         /// <summary>
         /// Panel3 控件。
@@ -461,6 +479,33 @@ namespace Solution.Web.Managers.WebManage.OutWorks {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox nbhotel;
+        
+        /// <summary>
+        /// cbxIsHotel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.CheckBox cbxIsHotel;
+        
+        /// <summary>
+        /// txtreply2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtreply2;
+        
+        /// <summary>
+        /// txtRemark 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextArea txtRemark;
         
         /// <summary>
         /// Form2 控件。

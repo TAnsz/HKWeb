@@ -35,6 +35,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //綁定下拉列表
                 //綁定部門
                 DepartsBll.GetInstence().BandDropDownList(this, ddlBranch_Id);
+                T_TABLE_DBll.GetInstence().BandDropDownList(this,ddlPosition,T_TABLE_DTable.TABLES,"'JOBS'");
 
                 //加載數據
                 LoadData();
@@ -85,6 +86,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                // txtNationalName.Text = model.NationalName;
 
                 txtMobile.Text = model.PHONE_CODE;
+                txtTel.Text = model.DEF1;
                 txtAddress.Text = model.ADDRESS;
                 txtLoginName.Text = model.EMP_ID;
                 //txtNativePlace.Text = model.NativePlace;
@@ -98,12 +100,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                 txtContent.Text = model.REMARK;
 
                 //綁定選擇職位按鍵
-                ButtonSelectPosition.OnClientClick = SelectWindows.GetSaveStateReference(hidPositionId.ClientID) + SelectWindows.GetShowReference("../Systems/Powers/PositionSelect.aspx?Id=" + hidPositionId.Text + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(hidPositionId.Text));
-            }
-            else
-            {
-                //綁定選擇職位按鍵
-                ButtonSelectPosition.OnClientClick = SelectWindows.GetSaveStateReference(hidPositionId.ClientID) + SelectWindows.GetShowReference("../Systems/Powers/PositionSelect.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString());
+                //ButtonSelectPosition.OnClientClick = SelectWindows.GetSaveStateReference(hidPositionId.ClientID) + SelectWindows.GetShowReference("../Systems/Powers/PositionSelect.aspx?Id=" + hidPositionId.Text + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(hidPositionId.Text));
             }
         }
 
@@ -155,11 +152,11 @@ namespace Solution.Web.Managers.WebManage.Employees
                 {
                     return ddlBranch_Id.Label + "為必選項，請選擇！";
                 }
-                //所屬職位
-                if (string.IsNullOrEmpty(hidPositionId.Text))
-                {
-                    return txtPosition.Label + "為必選項，請選擇！";
-                }
+                ////所屬職位
+                //if (string.IsNullOrEmpty(hidPositionId.Text))
+                //{
+                //    return txtPosition.Label + "為必選項，請選擇！";
+                //}
                 #endregion
 
                 #region 賦值
@@ -211,6 +208,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //model.GraduateSpecialty = StringHelper.Left(txtGraduateSpecialty.Text, 50);
                 model.PHONE_CODE = StringHelper.Left(txtTel.Text, 30);
                // model.Mobile = StringHelper.Left(txtMobile.Text, 30);
+                model.DEF1 = txtTel.Text;
                 model.EMAIL = StringHelper.Left(txtEmail.Text, 50);
                 //model.Qq = StringHelper.Left(txtQq.Text, 30);
                 //model.Msn = StringHelper.Left(txtMsn.Text, 30);
@@ -290,10 +288,10 @@ namespace Solution.Web.Managers.WebManage.Employees
         protected virtual void SelectWindows_Close(object sender, WindowCloseEventArgs e)
         {
             //讀取新選擇的職位名稱
-            txtPosition.Text = T_TABLE_DBll.GetInstence().GetName(hidPositionId.Text);
+            //txtPosition.Text = T_TABLE_DBll.GetInstence().GetName(hidPositionId.Text);
 
             //綁定選擇職位按鍵
-            ButtonSelectPosition.OnClientClick = SelectWindows.GetSaveStateReference(hidPositionId.ClientID) + SelectWindows.GetShowReference("../Systems/Powers/PositionSelect.aspx?Id=" + hidPositionId.Text + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(hidPositionId.Text));
+            //ButtonSelectPosition.OnClientClick = SelectWindows.GetSaveStateReference(hidPositionId.ClientID) + SelectWindows.GetShowReference("../Systems/Powers/PositionSelect.aspx?Id=" + hidPositionId.Text + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(hidPositionId.Text));
         }
         #endregion
     }

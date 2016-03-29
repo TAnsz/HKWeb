@@ -130,11 +130,17 @@ namespace Solution.Web.Managers.WebManage.OutWorks
 
                 txtMemo.Text = model.memo;
 
+                //廠回復
+                cbxIsCar.Checked = ConvertHelper.Cint0(model.IsCar) == 1;
+                txtreply.Text = model.reply;
+                cbxIsHotel.Checked = ConvertHelper.Cint0(model.IsHotel) == 1;
+                txtreply2.Text = model.reply2;
+
                 //判斷能否修改
                 ResolveFormField(!(model.audit == 0 && (model.op_user == OnlineUsersBll.GetInstence().GetManagerCName() || model.emp_id == OnlineUsersBll.GetInstence().GetManagerEmpId())));
 
                 //顯示對應的界面元素
-                DisplayTral(model.work_type, model.work_type);
+                DisplayTral(model.leave_id, model.work_type);
             }
             else
             {
@@ -201,6 +207,7 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     GP1.Hidden = false;
                     Paneltrl1.Hidden = false;
                     Form2.Hidden = true;
+                    Panel7.Hidden = RB1.SelectedValue != "派車";
                     break;
                 case "1003":
                     GP1.Hidden = true;
@@ -371,7 +378,11 @@ namespace Solution.Web.Managers.WebManage.OutWorks
                     Nights = txtC1.Text,
                     Nights2 = txtC2.Text,
                     Nights3 = txtC3.Text,
-                    Nights4 = txtC4.Text
+                    Nights4 = txtC4.Text,
+                    IsCar = (short?)(cbxIsCar.Checked ? 1 : 0),
+                    IsHotel = (short?)(cbxIsHotel.Checked ? 1 : 0),
+                    reply = txtreply.Text,
+                    reply2 = txtreply2.Text
                 };
 
                 //生成流水號
@@ -592,6 +603,17 @@ namespace Solution.Web.Managers.WebManage.OutWorks
             }
         }
         #endregion
+
+        protected void RB1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RB1.SelectedValue == "自行安排")
+            {
+                RB2.Reset();
+                ddlSt.Reset();
+                ddlRe.Reset();
+            }
+            Panel7.Hidden = RB1.SelectedValue != "派車";
+        }
 
 
 

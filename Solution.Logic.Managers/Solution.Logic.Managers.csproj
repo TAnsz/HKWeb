@@ -54,10 +54,17 @@
     <Compile Include="Application\MailBll.cs" />
     <Compile Include="Application\TreeBll.cs" />
     <Compile Include="Application\UploadFileBll.cs" />
+    <Compile Include="Informations\ActiveFileClassBll.cs" />
     <Compile Include="MeetingRooms\MeetingRoomApplyBll.cs" />
     <Compile Include="OutWork\OutWorkDBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Report_MonthBll.cs" />
+    <Compile Include="SubSonic\ActiveFileBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileClassBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\adJustRest_DBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>

@@ -226,7 +226,7 @@ namespace Solution.Web.Managers.WebManage.Informations
                 //------------------------------------------
                 //編輯器
                 //model.Content = StringHelper.Left(HttpUtility.UrlDecode(txtText.Text), 0, true, false);
-                model.Content = StringHelper.Left(txtText.Text, 0, true, false);
+                model.Content = txtText.Text;
                 model.Upload = StringHelper.Left(txtUpload.Text, 0, true, false);
                 //這裡必須用回前端存放的Key，不然刪除時無法同步刪除編輯器上傳的圖片
                 RndKey = StringHelper.Left(txtRndKey.Text, 0);

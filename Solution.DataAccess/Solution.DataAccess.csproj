@@ -62,7 +62,36 @@
     <Compile Include="Model\JsonError.cs" />
     <Compile Include="Model\JsonReturnMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubSonic\ActiveFile.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileClass.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileClassModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileClassStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileClassTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveFileTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\ActiveRecord.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ActiveRecord1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ActiveRecord.tt</DependentUpon>
@@ -543,7 +572,7 @@
     </None>
     <None Include="SubSonic\ActiveRecord.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ActiveRecord.cs</LastGenOutput>
+      <LastGenOutput>ActiveRecord1.cs</LastGenOutput>
     </None>
     <None Include="SubSonic\Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

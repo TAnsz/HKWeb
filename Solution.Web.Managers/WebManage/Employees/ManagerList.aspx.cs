@@ -1,5 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web.UI;
 using DotNet.Utilities;
 using FineUI;
 using Solution.DataAccess.DataModel;
@@ -66,7 +70,7 @@ namespace Solution.Web.Managers.WebManage.Employees
             }
 
             //綁定Grid表格
-            if (bll != null) bll.BindGrid(Grid1, Grid1.PageIndex + 1, Grid1.PageSize, InquiryCondition(), sortList);
+            if (bll != null) bll.BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
         }
 
         /// <summary>
@@ -79,6 +83,10 @@ namespace Solution.Web.Managers.WebManage.Employees
             //添加條件：只顯示在職人員
             wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.KIND, Comparison.Equals,
                 1));
+
+            //默認不顯示無卡號員工
+            wheres.Add(new ConditionHelper.SqlqueryCondition(ConstraintType.And, EmployeeTable.CARD_ID,
+                    Comparison.GreaterThan, "''"));
 
             //登陸賬號
             if (!string.IsNullOrEmpty(txtLoginName.Text.Trim()))
@@ -207,6 +215,97 @@ namespace Solution.Web.Managers.WebManage.Employees
             }
         }
         #endregion
+
+        protected void Button1_OnClick1_Click(object sender, EventArgs e)
+        {
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=employee.xls");
+            Response.ContentType = "application/excel";
+            Response.ContentEncoding = Encoding.UTF8;
+            var html = GetGridTableHtml(Grid1);
+            Response.Write(html);
+            Response.End();
+
+        }
+        private string GetGridTableHtml(Grid grid1)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("<meta http-equiv=\"content-type\" content=\"application/excel; charset=UTF-8\"/>");
+
+            sb.Append("<table cellspacing=\"0\" rules=\"all\" border=\"1\" style=\"border-collapse:collapse;\">");
+
+            sb.Append("<tr>");
+            foreach (GridColumn column in grid1.Columns.TakeWhile(column => column.ColumnID != "LoginLog"))
+            {
+                sb.AppendFormat("<td>{0}</td>", column.HeaderText);
+            }
+            sb.Append("</tr>");
+
+
+            foreach (GridRow row in grid1.Rows)
+            {
+                sb.Append("<tr>");
+                foreach (object value in row.Values)
+                {
+                    string html = value.ToString();
+                    if (html.Contains("LoginLog"))
+                    {
+                        break;
+                    }
+                    if (html.StartsWith(Grid.TEMPLATE_PLACEHOLDER_PREFIX))
+                    {
+                        // 模板列
+                        string templateId = html.Substring(Grid.TEMPLATE_PLACEHOLDER_PREFIX.Length);
+                        Control templateCtrl = row.FindControl(templateId);
+                        html = GetRenderedHtmlSource(templateCtrl);
+                    }
+                    else
+                    {
+                        // 处理CheckBox
+                        if (html.Contains("f-grid-static-checkbox"))
+                        {
+                            html = html.Contains("uncheck") ? "×" : "√";
+                        }
+
+                        // 处理图片
+                        if (html.Contains("<img"))
+                        {
+                            string prefix = Request.Url.AbsoluteUri.Replace(Request.Url.AbsolutePath, "");
+                            html = html.Replace("src=\"", "src=\"" + prefix);
+                        }
+                    }
+                    //處理數字格式
+                    sb.AppendFormat(
+                        StringPlus.IsNumberId(html) ? "<td style='vnd.ms-excel.numberformat:@;'>{0}</td>" : "<td>{0}</td>",
+                        html);
+                }
+                sb.Append("</tr>");
+            }
+
+            sb.Append("</table>");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 获取控件渲染后的HTML源代码
+        /// </summary>
+        /// <param name="ctrl"></param>
+        /// <returns></returns>
+        private string GetRenderedHtmlSource(Control ctrl)
+        {
+            if (ctrl == null) return string.Empty;
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter htw = new HtmlTextWriter(sw))
+                {
+                    ctrl.RenderControl(htw);
+
+                    return sw.ToString();
+                }
+            }
+        }
 
     }
 }

@@ -15,7 +15,7 @@ using SubSonic.SqlGeneration.Schema;
 namespace Solution.DataAccess.DataModel
 {    
     /// <summary>
-    /// A class which represents the TOOL_LIST table in the HRtest Database.
+    /// A class which represents the TOOL_LIST table in the HKHR Database.
     /// </summary>
     public partial class TOOL_LIST: IActiveRecord
     {
@@ -26,7 +26,7 @@ namespace Solution.DataAccess.DataModel
 
         
         static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<TOOL_LIST>(new Solution.DataAccess.DataModel.HRtestDB());
+            _testRepo = _testRepo ?? new TestRepository<TOOL_LIST>(new Solution.DataAccess.DataModel.HKHRDB());
         }
         public static void ResetTestRepo(){
             _testRepo = null;
@@ -86,10 +86,10 @@ namespace Solution.DataAccess.DataModel
             return _dirtyColumns;
         }
 
-        Solution.DataAccess.DataModel.HRtestDB _db;
+        Solution.DataAccess.DataModel.HKHRDB _db;
         public TOOL_LIST(string connectionString, string providerName) {
 
-            _db=new Solution.DataAccess.DataModel.HRtestDB(connectionString, providerName);
+            _db=new Solution.DataAccess.DataModel.HKHRDB(connectionString, providerName);
             Init();            
          }
         void Init(){
@@ -108,7 +108,7 @@ namespace Solution.DataAccess.DataModel
         }
         
         public TOOL_LIST(){
-			_db=new Solution.DataAccess.DataModel.HRtestDB();
+			_db=new Solution.DataAccess.DataModel.HKHRDB();
             Init();            
         }
 
@@ -168,11 +168,11 @@ namespace Solution.DataAccess.DataModel
        
         
         internal static IRepository<TOOL_LIST> GetRepo(string connectionString, string providerName){
-            Solution.DataAccess.DataModel.HRtestDB db;
+            Solution.DataAccess.DataModel.HKHRDB db;
             if(String.IsNullOrEmpty(connectionString)){
-                db=new Solution.DataAccess.DataModel.HRtestDB();
+                db=new Solution.DataAccess.DataModel.HKHRDB();
             }else{
-                db=new Solution.DataAccess.DataModel.HRtestDB(connectionString, providerName);
+                db=new Solution.DataAccess.DataModel.HKHRDB(connectionString, providerName);
             }
             IRepository<TOOL_LIST> _repo;
             

@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace Solution.DataAccess.DataModel
 {
-    public partial class HRtestDB : IQuerySurface
+    public partial class HKHRDB : IQuerySurface
     {
 
         public IDataProvider DataProvider;
@@ -38,7 +38,7 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        public HRtestDB() 
+        public HKHRDB() 
         {
             if (DataProvider == null) {
                 DataProvider = GetDataProvider();
@@ -49,13 +49,13 @@ namespace Solution.DataAccess.DataModel
             Init();
         }
 
-        public HRtestDB(string connectionStringName)
+        public HKHRDB(string connectionStringName)
         {
             DataProvider = ProviderFactory.GetProvider(connectionStringName);
             Init();
         }
 
-		public HRtestDB(string connectionString, string providerName)
+		public HKHRDB(string connectionString, string providerName)
         {
             DataProvider = ProviderFactory.GetProvider(connectionString,providerName);
             Init();
@@ -135,6 +135,8 @@ namespace Solution.DataAccess.DataModel
             return null;
         }
 			
+        public Query<DataAccess.Model.ActiveFile> ActiveFile { get; set; }
+        public Query<DataAccess.Model.ActiveFileClass> ActiveFileClass { get; set; }
         public Query<DataAccess.Model.adJustRest_D> adJustRest_D { get; set; }
         public Query<DataAccess.Model.ANNUALLEAVE> ANNUALLEAVE { get; set; }
         public Query<DataAccess.Model.CardDetail> CardDetail { get; set; }
@@ -275,6 +277,8 @@ namespace Solution.DataAccess.DataModel
             provider = new DbQueryProvider(this.Provider);
 
             #region ' Query Defs '
+            ActiveFile = new Query<DataAccess.Model.ActiveFile>(provider);
+            ActiveFileClass = new Query<DataAccess.Model.ActiveFileClass>(provider);
             adJustRest_D = new Query<DataAccess.Model.adJustRest_D>(provider);
             ANNUALLEAVE = new Query<DataAccess.Model.ANNUALLEAVE>(provider);
             CardDetail = new Query<DataAccess.Model.CardDetail>(provider);
@@ -318,6 +322,8 @@ namespace Solution.DataAccess.DataModel
             #region ' Schemas '
         	if(DataProvider.Schema.Tables.Count == 0)
 			{
+            	DataProvider.Schema.Tables.Add(new ActiveFileStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new ActiveFileClassStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new adJustRest_DStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new ANNUALLEAVEStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new CardDetailStructs(DataProvider));
