@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 20,
+	                MaxLength = 50,
 					PropertyName = "Manager_CName"
                 });
 

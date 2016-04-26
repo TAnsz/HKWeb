@@ -57,9 +57,9 @@
                         <f:BoundField DataField="EMP_FNAME" SortField="EMP_FNAME" HeaderText="姓名(中)" Width="220px" />
                         <f:BoundField DataField="EN_NAME" SortField="EN_NAME" HeaderText="姓名(英)" Width="80px" />
                         <%--<f:BoundField DataField="LoginName" SortField="LoginName" HeaderText="登錄名(系統)" Width="100px" />--%>
-                        <f:BoundField DataField="Sex" SortField="Sex" HeaderText="性別" Width="60px" TextAlign="Center"/>
                         <f:BoundField DataField="PHONE_CODE" HeaderText="手提電話" Width="150px" />
                         <f:BoundField DataField="DEF1" HeaderText="公司直綫" Width="100px" />
+                        <f:BoundField DataField="DEF2" HeaderText="Fax地址" Width="100px" />
                         <f:BoundField DataField="EMAIL" HeaderText="Email" Width="200px" />
                         <%--<f:BoundField DataField="LoginTime" SortField="LoginTime" HeaderText="最後登錄時間" Width="140px" />--%>
                         <%--<f:BoundField DataField="LoginIP" HeaderText="最後登錄IP" Width="100px" />--%>

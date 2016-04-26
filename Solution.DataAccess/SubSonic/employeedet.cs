@@ -140,6 +140,10 @@ namespace Solution.DataAccess.DataModel
             comingtype = readRecord.get_byte("comingtype",null);
                
             overtype = readRecord.get_byte("overtype",null);
+               
+            ComingMac = readRecord.get_string("ComingMac",null);
+               
+            OverMac = readRecord.get_string("OverMac",null);
                 }   
 
         partial void OnCreated();
@@ -293,6 +297,8 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("empid=" + empid + "; ");
 			sb.Append("comingtype=" + comingtype + "; ");
 			sb.Append("overtype=" + overtype + "; ");
+			sb.Append("ComingMac=" + ComingMac + "; ");
+			sb.Append("OverMac=" + OverMac + "; ");
 			return sb.ToString();
         }
 
@@ -586,6 +592,50 @@ namespace Solution.DataAccess.DataModel
                 if(_overtype!=value || _isLoaded){
                     _overtype=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="overtype");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _ComingMac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string ComingMac
+        {
+            get { return _ComingMac; }
+            set
+            {
+                if(_ComingMac!=value || _isLoaded){
+                    _ComingMac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ComingMac");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _OverMac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string OverMac
+        {
+            get { return _OverMac; }
+            set
+            {
+                if(_OverMac!=value || _isLoaded){
+                    _OverMac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="OverMac");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

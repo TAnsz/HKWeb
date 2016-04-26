@@ -49,6 +49,14 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
+			/// 申請人英文名
+			/// </summary>
+   			public static string Employee_EName{
+			      get{
+        			return "Employee_EName";
+      			}
+		    }
+			/// <summary>
 			/// 申請人部門編號
 			/// </summary>
    			public static string DepartId{

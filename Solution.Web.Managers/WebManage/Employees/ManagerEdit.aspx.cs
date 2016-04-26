@@ -35,7 +35,13 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //綁定下拉列表
                 //綁定部門
                 DepartsBll.GetInstence().BandDropDownList(this, ddlBranch_Id);
-                T_TABLE_DBll.GetInstence().BandDropDownList(this,ddlPosition,T_TABLE_DTable.TABLES,"'JOBS'");
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlPosition, T_TABLE_DTable.TABLES, "'JOBS'");
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlShort, T_TABLE_DTable.TABLES, "'WEEK'");
+                ShiftsBll.GetInstence().BandDropDownList(this, ddlShift);
+                RulesBll.GetInstence().BandDropDownList(this, ddlRule);
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlGroup, T_TABLE_DTable.TABLES, "'AUTH'");
+                EmployeeBll.GetInstence().BandDropDownList(this, ddlChecker1);
+                T_TABLE_DBll.GetInstence().BandDropDownList(this, ddlChecker2);
 
                 //加載數據
                 LoadData();
@@ -79,14 +85,21 @@ namespace Solution.Web.Managers.WebManage.Employees
                 hidPositionId.Text = model.POST_CODE;
                 //txtPosition.Text = model.Position_Name;
 
-                dpBirthday.Text = model.JOIN_DATE.ToString();
+                dpBirthday.SelectedDate = model.JOIN_DATE;
                 rblIsEnable.SelectedValue = model.KIND + "";
                 rblIsMultiUser.SelectedValue = model.IS_SHEBAO + "";
 
-               // txtNationalName.Text = model.NationalName;
+                ddlShift.SelectedValue = model.SHIFTS;
+                ddlRule.SelectedValue = model.RULE_ID;
+                ddlGroup.SelectedValue = model.GROUPS;
+                ddlShort.SelectedValue = model.HANDER_CODE;
+                ddlChecker1.SelectedValue = model.LINK_MAN;
+                ddlChecker2.SelectedValue = model.CHECKER2;
+                // txtNationalName.Text = model.NationalName;
 
                 txtMobile.Text = model.PHONE_CODE;
                 txtTel.Text = model.DEF1;
+                txtFax.Text = model.DEF2;
                 txtAddress.Text = model.ADDRESS;
                 txtLoginName.Text = model.EMP_ID;
                 //txtNativePlace.Text = model.NativePlace;
@@ -179,7 +192,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                     //修改時間與管理員
                     model.OP_DATE = DateTime.Now;
                     model.OP_USER = OnlineUsersBll.GetInstence().GetManagerEmpId();
-                   // model.Manager_CName = OnlineUsersBll.GetInstence().GetManagerCName();
+                    // model.Manager_CName = OnlineUsersBll.GetInstence().GetManagerCName();
 
                     //修改用戶時，填寫了密碼，則更新密碼
                     //if (txtLoginPass.Text.Trim().Length >= 6)
@@ -189,12 +202,12 @@ namespace Solution.Web.Managers.WebManage.Employees
 
                 }
                 model.DEPART_ID = ddlBranch_Id.SelectedValue;
-                var branch = DepartsBll.GetInstence().GetModelForCache(x => x.depart_id == model.DEPART_ID);
-                if (branch != null)
-                {
-                    model.DEPART_ID = branch.depart_id;
-                    //model.Branch_Name = branch.depart_name;
-                }
+                //var branch = DepartsBll.GetInstence().GetModelForCache(x => x.depart_id == model.DEPART_ID);
+                //if (branch != null)
+                //{
+                //    model.DEPART_ID = branch.depart_id;
+                //    //model.Branch_Name = branch.depart_name;
+                //}
 
                 model.POST_CODE = StringHelper.Left(hidPositionId.Text, 100);
                 //model.Position_Name = StringHelper.Left(txtPosition.Text, 500);
@@ -202,19 +215,28 @@ namespace Solution.Web.Managers.WebManage.Employees
                 model.EMP_FNAME = StringHelper.Left(txtCName.Text, 20);
                 model.EN_NAME = StringHelper.Left(txtEName.Text, 50);
                 model.SEX = StringHelper.Left(rblSex.SelectedValue, 4);
-                model.JOIN_DATE = Convert.ToDateTime(StringHelper.Left(dpBirthday.Text, 20));
+                model.JOIN_DATE = dpBirthday.SelectedDate;
                 //model.Record = StringHelper.Left(txtRecord.Text, 25);
                 //model.GraduateCollege = StringHelper.Left(txtGraduateCollege.Text, 30);
                 //model.GraduateSpecialty = StringHelper.Left(txtGraduateSpecialty.Text, 50);
-                model.PHONE_CODE = StringHelper.Left(txtTel.Text, 30);
-               // model.Mobile = StringHelper.Left(txtMobile.Text, 30);
+                model.PHONE_CODE = StringHelper.Left(txtMobile.Text, 30);
+                // model.Mobile = StringHelper.Left(txtMobile.Text, 30);
+
+                model.SHIFTS = ddlShift.SelectedValue;
+                model.RULE_ID = ddlRule.SelectedValue;
+                model.GROUPS = ddlGroup.SelectedValue;
+                model.HANDER_CODE = ddlShort.SelectedValue;
+                model.LINK_MAN = ddlChecker1.SelectedValue;
+                model.CHECKER2 = ddlChecker2.SelectedValue;
+
                 model.DEF1 = txtTel.Text;
+                model.DEF2 = txtFax.Text;
                 model.EMAIL = StringHelper.Left(txtEmail.Text, 50);
                 //model.Qq = StringHelper.Left(txtQq.Text, 30);
                 //model.Msn = StringHelper.Left(txtMsn.Text, 30);
                 model.ADDRESS = StringHelper.Left(txtAddress.Text, 100);
                 model.KIND = ConvertHelper.Ctinyint(rblIsEnable.SelectedValue);
-                model.IS_SHEBAO = rblIsMultiUser.SelectedValue=="1";
+                model.IS_SHEBAO = rblIsMultiUser.SelectedValue == "1";
                 model.REMARK = StringHelper.Left(txtContent.Text, 0);
                 //model.NationalName = StringHelper.Left(txtNationalName.Text, 50);
                 //model.NativePlace = StringHelper.Left(txtNativePlace.Text, 100);
@@ -265,7 +287,7 @@ namespace Solution.Web.Managers.WebManage.Employees
                 //}
 
                 #endregion
-                
+
             }
             catch (Exception e)
             {

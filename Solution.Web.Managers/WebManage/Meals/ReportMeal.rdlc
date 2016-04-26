@@ -67,7 +67,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>工號</Value>
+                              <Value>英文名</Value>
                               <Style>
                                 <FontFamily>微软雅黑</FontFamily>
                               </Style>
@@ -260,14 +260,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Employee_EmpId1">
+                    <Textbox Name="Employee_EName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Employee_EmpId.Value</Value>
+                              <Value>=Fields!Employee_EName.Value</Value>
                               <Style>
                                 <FontFamily>微软雅黑</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -277,7 +277,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Employee_EmpId1</rd:DefaultName>
+                      <rd:DefaultName>Employee_EName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -448,6 +448,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!Employee_EName.Value</Value>
+          </SortExpression>
+        </SortExpressions>
         <Top>2.64266cm</Top>
         <Left>0.52599cm</Left>
         <Height>1.2cm</Height>
@@ -1244,6 +1249,10 @@
         <Field Name="IsVaild">
           <DataField>IsVaild</DataField>
           <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="Employee_EName">
+          <DataField>Employee_EName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

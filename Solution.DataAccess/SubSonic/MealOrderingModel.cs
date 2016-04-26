@@ -51,6 +51,16 @@ namespace Solution.DataAccess.Model
 			set { _Employee_Name = value; }
 		}
 
+		string _Employee_EName = "";
+		/// <summary>
+		/// 申請人英文名
+		/// </summary>
+		public string Employee_EName
+		{
+			get { return _Employee_EName; }
+			set { _Employee_EName = value; }
+		}
+
 		string _DepartId = "";
 		/// <summary>
 		/// 申請人部門編號
@@ -191,6 +201,7 @@ namespace Solution.DataAccess.Model
 			sb.Append("Code=" + Code + "; ");
 			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
+			sb.Append("Employee_EName=" + Employee_EName + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
 			sb.Append("FoodCode=" + FoodCode + "; ");

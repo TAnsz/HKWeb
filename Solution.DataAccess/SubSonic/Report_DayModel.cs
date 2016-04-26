@@ -1241,6 +1241,46 @@ namespace Solution.DataAccess.Model
 			set { _leave5_min = value; }
 		}
 
+		string _In1Mac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string In1Mac
+		{
+			get { return _In1Mac; }
+			set { _In1Mac = value; }
+		}
+
+		string _Out1Mac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string Out1Mac
+		{
+			get { return _Out1Mac; }
+			set { _Out1Mac = value; }
+		}
+
+		string _In2Mac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string In2Mac
+		{
+			get { return _In2Mac; }
+			set { _In2Mac = value; }
+		}
+
+		string _Out2Mac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string Out2Mac
+		{
+			get { return _Out2Mac; }
+			set { _Out2Mac = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -1370,6 +1410,10 @@ namespace Solution.DataAccess.Model
 			sb.Append("leave3_min=" + leave3_min + "; ");
 			sb.Append("leave4_min=" + leave4_min + "; ");
 			sb.Append("leave5_min=" + leave5_min + "; ");
+			sb.Append("In1Mac=" + In1Mac + "; ");
+			sb.Append("Out1Mac=" + Out1Mac + "; ");
+			sb.Append("In2Mac=" + In2Mac + "; ");
+			sb.Append("Out2Mac=" + Out2Mac + "; ");
 			return sb.ToString();
         }
 

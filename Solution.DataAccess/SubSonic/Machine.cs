@@ -121,6 +121,8 @@ namespace Solution.DataAccess.DataModel
                
             name = readRecord.get_string("name",null);
                
+            content = readRecord.get_string("content",null);
+               
             spec = readRecord.get_string("spec",null);
                
             ip = readRecord.get_string("ip",null);
@@ -271,6 +273,7 @@ namespace Solution.DataAccess.DataModel
 			var sb = new StringBuilder();
 			sb.Append("Id=" + Id + "; ");
 			sb.Append("name=" + name + "; ");
+			sb.Append("content=" + content + "; ");
 			sb.Append("spec=" + spec + "; ");
 			sb.Append("ip=" + ip + "; ");
 			sb.Append("port=" + port + "; ");
@@ -343,6 +346,28 @@ namespace Solution.DataAccess.DataModel
                 if(_name!=value || _isLoaded){
                     _name=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _content;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string content
+        {
+            get { return _content; }
+            set
+            {
+                if(_content!=value || _isLoaded){
+                    _content=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="content");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

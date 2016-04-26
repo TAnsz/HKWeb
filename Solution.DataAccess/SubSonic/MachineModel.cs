@@ -31,6 +31,16 @@ namespace Solution.DataAccess.Model
 			set { _name = value; }
 		}
 
+		string _content = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string content
+		{
+			get { return _content; }
+			set { _content = value; }
+		}
+
 		string _spec = "";
 		/// <summary>
 		/// 
@@ -79,6 +89,7 @@ namespace Solution.DataAccess.Model
 			var sb = new StringBuilder();
 			sb.Append("Id=" + Id + "; ");
 			sb.Append("name=" + name + "; ");
+			sb.Append("content=" + content + "; ");
 			sb.Append("spec=" + spec + "; ");
 			sb.Append("ip=" + ip + "; ");
 			sb.Append("port=" + port + "; ");

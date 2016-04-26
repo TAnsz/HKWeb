@@ -79,6 +79,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 dpDate.SelectedDate = model.ApplyDate;
                 tbxEmp.Text = model.Employee_EmpId;
                 txtEmpName.Text = model.Employee_Name;
+                txtEmpEName.Text = model.Employee_EName;
                 txtDeptId.Text = model.DepartId;
                 txtDeptName.Text = model.DepartName;
 
@@ -102,6 +103,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 var name = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Manager_CName).ToString();
                 tbxEmp.Text = empid;
                 txtEmpName.Text = name;
+                txtEmpEName.Text = EmployeeBll.GetInstence().GetModelForCache(x => x.EMP_ID == empid).EN_NAME;
                 dpDate.SelectedDate = DateTime.Now.Date;
                 txtDeptId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Code).ToString();
                 txtDeptName.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo(key, OnlineUsersTable.Branch_Name).ToString();
@@ -199,6 +201,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                     ApplyDate = dpDate.SelectedDate,
                     Employee_EmpId = tbxEmp.Text,
                     Employee_Name = txtEmpName.Text,
+                    Employee_EName = txtEmpEName.Text,
                     DepartId = txtDeptId.Text,
                     DepartName = txtDeptName.Text,
                     FoodCode = rblFood.SelectedValue,
@@ -276,6 +279,7 @@ namespace Solution.Web.Managers.WebManage.Meals
                 var depid = model.DEPART_ID;
                 txtDeptId.Text = depid;
                 txtDeptName.Text = DepartsBll.GetInstence().GetDeptName(depid);
+                txtEmpEName.Text = model.EN_NAME;
             }
         }
         #endregion

@@ -1369,6 +1369,50 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "leave5_min"
                 });
+
+                Columns.Add(new DatabaseColumn("In1Mac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "In1Mac"
+                });
+
+                Columns.Add(new DatabaseColumn("Out1Mac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "Out1Mac"
+                });
+
+                Columns.Add(new DatabaseColumn("In2Mac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "In2Mac"
+                });
+
+                Columns.Add(new DatabaseColumn("Out2Mac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "Out2Mac"
+                });
                     
                 
                 
@@ -2231,6 +2275,34 @@ namespace Solution.DataAccess.DataModel {
             public IColumn leave5_min{
                 get{
                     return this.GetColumn("leave5_min");
+                }
+            }
+				
+            
+            public IColumn In1Mac{
+                get{
+                    return this.GetColumn("In1Mac");
+                }
+            }
+				
+            
+            public IColumn Out1Mac{
+                get{
+                    return this.GetColumn("Out1Mac");
+                }
+            }
+				
+            
+            public IColumn In2Mac{
+                get{
+                    return this.GetColumn("In2Mac");
+                }
+            }
+				
+            
+            public IColumn Out2Mac{
+                get{
+                    return this.GetColumn("Out2Mac");
                 }
             }
 				

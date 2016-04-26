@@ -35,6 +35,14 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string content{
+			      get{
+        			return "content";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string spec{
 			      get{
         			return "spec";

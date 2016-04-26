@@ -249,6 +249,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Employee_Name == (string)value);
                         expression = x => x.Employee_Name == (string)value;
                         break;
+					case "Employee_EName" :
+						model = list.SingleOrDefault(x => x.Employee_EName == (string)value);
+                        expression = x => x.Employee_EName == (string)value;
+                        break;
 					case "DepartId" :
 						model = list.SingleOrDefault(x => x.DepartId == (string)value);
                         expression = x => x.DepartId == (string)value;
@@ -497,6 +501,7 @@ namespace Solution.Logic.Managers {
                 Code = model.Code,
                 Employee_EmpId = model.Employee_EmpId,
                 Employee_Name = model.Employee_Name,
+                Employee_EName = model.Employee_EName,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
                 FoodCode = model.FoodCode,
@@ -542,6 +547,7 @@ namespace Solution.Logic.Managers {
                 Code = model.Code,
                 Employee_EmpId = model.Employee_EmpId,
                 Employee_Name = model.Employee_Name,
+                Employee_EName = model.Employee_EName,
                 DepartId = model.DepartId,
                 DepartName = model.DepartName,
                 FoodCode = model.FoodCode,
@@ -613,6 +619,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "Employee_Name" :
 					model.Employee_Name = (string)value;
+                    break;
+				case "Employee_EName" :
+					model.Employee_EName = (string)value;
                     break;
 				case "DepartId" :
 					model.DepartId = (string)value;
@@ -1259,6 +1268,8 @@ namespace Solution.Logic.Managers {
 					return model.Employee_EmpId;
 				case "Employee_Name" :
 					return model.Employee_Name;
+				case "Employee_EName" :
+					return model.Employee_EName;
 				case "DepartId" :
 					return model.DepartId;
 				case "DepartName" :
@@ -1431,6 +1442,32 @@ namespace Solution.Logic.Managers {
                 //從數據庫中查詢
                 var model = MealOrdering.SingleOrDefault(x => x.Id == pkValue);
                 return model == null ? "" : model.Employee_Name;
+            }
+        }
+        #endregion
+
+		#region 獲取Employee_EName字段值
+        /// <summary>
+        /// 獲?Employee_EName字段值
+        /// </summary>
+        /// <param name="page">當?頁面指針</param>
+        /// <param name="pkValue">主鍵Id</param>
+        /// <param name="isCache">是否從緩存中讀?</param>
+        /// <returns></returns>
+        public string GetEmployee_EName(Page page, int pkValue, bool isCache = true)
+        {
+            //判斷是否?有用緩存
+            if (isCache && CommonBll.IsUseCache())
+            {
+                //從緩存中獲取實伐
+                var model = GetModelForCache(pkValue);
+                return model == null ? "" : model.Employee_EName;
+            }
+            else
+            {
+                //從數據庫中查詢
+                var model = MealOrdering.SingleOrDefault(x => x.Id == pkValue);
+                return model == null ? "" : model.Employee_EName;
             }
         }
         #endregion

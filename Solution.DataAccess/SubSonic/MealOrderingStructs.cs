@@ -61,6 +61,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Employee_Name"
                 });
 
+                Columns.Add(new DatabaseColumn("Employee_EName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "Employee_EName"
+                });
+
                 Columns.Add(new DatabaseColumn("DepartId", this)
                 {
 	                IsPrimaryKey = false,
@@ -232,6 +243,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Employee_Name{
                 get{
                     return this.GetColumn("Employee_Name");
+                }
+            }
+				
+            
+            public IColumn Employee_EName{
+                get{
+                    return this.GetColumn("Employee_EName");
                 }
             }
 				

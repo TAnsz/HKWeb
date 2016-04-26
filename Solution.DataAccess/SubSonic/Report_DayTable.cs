@@ -1000,6 +1000,38 @@ namespace Solution.DataAccess.DataModel {
         			return "leave5_min";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string In1Mac{
+			      get{
+        			return "In1Mac";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Out1Mac{
+			      get{
+        			return "Out1Mac";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string In2Mac{
+			      get{
+        			return "In2Mac";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Out2Mac{
+			      get{
+        			return "Out2Mac";
+      			}
+		    }
                     
         }
 }

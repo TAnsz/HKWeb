@@ -39,6 +39,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "name"
                 });
 
+                Columns.Add(new DatabaseColumn("content", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 100,
+					PropertyName = "content"
+                });
+
                 Columns.Add(new DatabaseColumn("spec", this)
                 {
 	                IsPrimaryKey = false,
@@ -97,6 +108,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn name{
                 get{
                     return this.GetColumn("name");
+                }
+            }
+				
+            
+            public IColumn content{
+                get{
+                    return this.GetColumn("content");
                 }
             }
 				

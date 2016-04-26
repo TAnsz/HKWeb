@@ -362,6 +362,14 @@ namespace Solution.DataAccess.DataModel
             leave4_min = readRecord.get_decimal("leave4_min",null);
                
             leave5_min = readRecord.get_decimal("leave5_min",null);
+               
+            In1Mac = readRecord.get_string("In1Mac",null);
+               
+            Out1Mac = readRecord.get_string("Out1Mac",null);
+               
+            In2Mac = readRecord.get_string("In2Mac",null);
+               
+            Out2Mac = readRecord.get_string("Out2Mac",null);
                 }   
 
         partial void OnCreated();
@@ -626,6 +634,10 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("leave3_min=" + leave3_min + "; ");
 			sb.Append("leave4_min=" + leave4_min + "; ");
 			sb.Append("leave5_min=" + leave5_min + "; ");
+			sb.Append("In1Mac=" + In1Mac + "; ");
+			sb.Append("Out1Mac=" + Out1Mac + "; ");
+			sb.Append("In2Mac=" + In2Mac + "; ");
+			sb.Append("Out2Mac=" + Out2Mac + "; ");
 			return sb.ToString();
         }
 
@@ -3356,6 +3368,94 @@ namespace Solution.DataAccess.DataModel
                 if(_leave5_min!=value || _isLoaded){
                     _leave5_min=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="leave5_min");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _In1Mac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string In1Mac
+        {
+            get { return _In1Mac; }
+            set
+            {
+                if(_In1Mac!=value || _isLoaded){
+                    _In1Mac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="In1Mac");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Out1Mac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string Out1Mac
+        {
+            get { return _Out1Mac; }
+            set
+            {
+                if(_Out1Mac!=value || _isLoaded){
+                    _Out1Mac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Out1Mac");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _In2Mac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string In2Mac
+        {
+            get { return _In2Mac; }
+            set
+            {
+                if(_In2Mac!=value || _isLoaded){
+                    _In2Mac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="In2Mac");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Out2Mac;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string Out2Mac
+        {
+            get { return _Out2Mac; }
+            set
+            {
+                if(_Out2Mac!=value || _isLoaded){
+                    _Out2Mac=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Out2Mac");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

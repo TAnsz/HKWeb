@@ -183,6 +183,8 @@
     <Compile Include="Systems\OnlineUsersBll.cs" />
     <Compile Include="Systems\PagePowerSignPublicBll.cs" />
     <Compile Include="Systems\EmployeeBll.cs" />
+    <Compile Include="Systems\RulesBll.cs" />
+    <Compile Include="Systems\ShitsBll.cs" />
     <Compile Include="Systems\UseLogBll.cs" />
     <Compile Include="Systems\USERAUTHORITYBll.cs" />
     <Compile Include="Systems\ErrorLogBll.cs" />

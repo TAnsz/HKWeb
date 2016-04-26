@@ -725,6 +725,22 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.leave5_min == (decimal)value);
                         expression = x => x.leave5_min == (decimal)value;
                         break;
+					case "In1Mac" :
+						model = list.SingleOrDefault(x => x.In1Mac == (string)value);
+                        expression = x => x.In1Mac == (string)value;
+                        break;
+					case "Out1Mac" :
+						model = list.SingleOrDefault(x => x.Out1Mac == (string)value);
+                        expression = x => x.Out1Mac == (string)value;
+                        break;
+					case "In2Mac" :
+						model = list.SingleOrDefault(x => x.In2Mac == (string)value);
+                        expression = x => x.In2Mac == (string)value;
+                        break;
+					case "Out2Mac" :
+						model = list.SingleOrDefault(x => x.Out2Mac == (string)value);
+                        expression = x => x.Out2Mac == (string)value;
+                        break;
 
                     default :
                         return null;
@@ -1040,6 +1056,10 @@ namespace Solution.Logic.Managers {
                 leave3_min = model.leave3_min,
                 leave4_min = model.leave4_min,
                 leave5_min = model.leave5_min,
+                In1Mac = model.In1Mac,
+                Out1Mac = model.Out1Mac,
+                In2Mac = model.In2Mac,
+                Out2Mac = model.Out2Mac,
             };
         }
 
@@ -1191,6 +1211,10 @@ namespace Solution.Logic.Managers {
                 leave3_min = model.leave3_min,
                 leave4_min = model.leave4_min,
                 leave5_min = model.leave5_min,
+                In1Mac = model.In1Mac,
+                Out1Mac = model.Out1Mac,
+                In2Mac = model.In2Mac,
+                Out2Mac = model.Out2Mac,
             };
         }
 
@@ -1606,6 +1630,18 @@ namespace Solution.Logic.Managers {
                     break;
 				case "leave5_min" :
 					model.leave5_min = (decimal)value;
+                    break;
+				case "In1Mac" :
+					model.In1Mac = (string)value;
+                    break;
+				case "Out1Mac" :
+					model.Out1Mac = (string)value;
+                    break;
+				case "In2Mac" :
+					model.In2Mac = (string)value;
+                    break;
+				case "Out2Mac" :
+					model.Out2Mac = (string)value;
                     break;
             }
 		}
@@ -2451,6 +2487,14 @@ namespace Solution.Logic.Managers {
 					return model.leave4_min;
 				case "leave5_min" :
 					return model.leave5_min;
+				case "In1Mac" :
+					return model.In1Mac;
+				case "Out1Mac" :
+					return model.Out1Mac;
+				case "In2Mac" :
+					return model.In2Mac;
+				case "Out2Mac" :
+					return model.Out2Mac;
 			}
 
 			return null;

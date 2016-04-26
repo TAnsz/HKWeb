@@ -40,6 +40,8 @@
                                             MaxLength="50" TriggerIcon="Search" EnablePostBack="true" OnTriggerClick="tbxEmp_TriggerClick"/>
                                         <f:TextBox runat="server" ID="txtEmpName" Label="姓名" Width="300px" Text="" ShowRedStar="true" Readonly="True"
                                             MaxLength="100" />
+                                        <f:TextBox runat="server" ID="txtEmpEName" Label="英文名" Width="80px" Text="" ShowRedStar="true" Readonly="True"
+                                            MaxLength="100" />
                                     </Items>
                                 </f:FormRow>
                                 <f:FormRow ID="FormRow3" runat="server">

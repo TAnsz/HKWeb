@@ -112,6 +112,22 @@ namespace Solution.DataAccess.DataModel {
         			return "overtype";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string ComingMac{
+			      get{
+        			return "ComingMac";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string OverMac{
+			      get{
+        			return "OverMac";
+      			}
+		    }
                     
         }
 }

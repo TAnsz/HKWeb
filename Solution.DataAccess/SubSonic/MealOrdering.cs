@@ -125,6 +125,8 @@ namespace Solution.DataAccess.DataModel
                
             Employee_Name = readRecord.get_string("Employee_Name",null);
                
+            Employee_EName = readRecord.get_string("Employee_EName",null);
+               
             DepartId = readRecord.get_string("DepartId",null);
                
             DepartName = readRecord.get_string("DepartName",null);
@@ -295,6 +297,7 @@ namespace Solution.DataAccess.DataModel
 			sb.Append("Code=" + Code + "; ");
 			sb.Append("Employee_EmpId=" + Employee_EmpId + "; ");
 			sb.Append("Employee_Name=" + Employee_Name + "; ");
+			sb.Append("Employee_EName=" + Employee_EName + "; ");
 			sb.Append("DepartId=" + DepartId + "; ");
 			sb.Append("DepartName=" + DepartName + "; ");
 			sb.Append("FoodCode=" + FoodCode + "; ");
@@ -420,6 +423,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Employee_Name!=value || _isLoaded){
                     _Employee_Name=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Employee_Name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Employee_EName;
+		/// <summary>
+		/// 申請人英文名
+		/// </summary>
+        public string Employee_EName
+        {
+            get { return _Employee_EName; }
+            set
+            {
+                if(_Employee_EName!=value || _isLoaded){
+                    _Employee_EName=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Employee_EName");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

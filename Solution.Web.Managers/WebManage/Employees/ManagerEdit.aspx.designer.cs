@@ -166,24 +166,6 @@ namespace Solution.Web.Managers.WebManage.Employees {
         protected global::FineUI.SimpleForm SimpleForm1;
         
         /// <summary>
-        /// imgPhoto 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Image imgPhoto;
-        
-        /// <summary>
-        /// fuSinger_AvatarPath 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.FileUpload fuSinger_AvatarPath;
-        
-        /// <summary>
         /// txtCName 控件。
         /// </summary>
         /// <remarks>
@@ -238,13 +220,58 @@ namespace Solution.Web.Managers.WebManage.Employees {
         protected global::FineUI.DropDownList ddlPosition;
         
         /// <summary>
-        /// txtNationalName 控件。
+        /// ddlShift 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox txtNationalName;
+        protected global::FineUI.DropDownList ddlShift;
+        
+        /// <summary>
+        /// ddlRule 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlRule;
+        
+        /// <summary>
+        /// ddlGroup 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlGroup;
+        
+        /// <summary>
+        /// ddlShort 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlShort;
+        
+        /// <summary>
+        /// ddlChecker1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlChecker1;
+        
+        /// <summary>
+        /// ddlChecker2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlChecker2;
         
         /// <summary>
         /// dpBirthday 控件。
@@ -254,6 +281,33 @@ namespace Solution.Web.Managers.WebManage.Employees {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DatePicker dpBirthday;
+        
+        /// <summary>
+        /// GroupPanel2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.GroupPanel GroupPanel2;
+        
+        /// <summary>
+        /// SimpleForm3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.SimpleForm SimpleForm3;
+        
+        /// <summary>
+        /// txtNationalName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtNationalName;
         
         /// <summary>
         /// txtMobile 控件。
@@ -274,6 +328,15 @@ namespace Solution.Web.Managers.WebManage.Employees {
         protected global::FineUI.TextBox txtTel;
         
         /// <summary>
+        /// txtFax 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox txtFax;
+        
+        /// <summary>
         /// txtAddress 控件。
         /// </summary>
         /// <remarks>
@@ -281,24 +344,6 @@ namespace Solution.Web.Managers.WebManage.Employees {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox txtAddress;
-        
-        /// <summary>
-        /// GroupPanel2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.GroupPanel GroupPanel2;
-        
-        /// <summary>
-        /// SimpleForm3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.SimpleForm SimpleForm3;
         
         /// <summary>
         /// txtNativePlace 控件。

@@ -148,6 +148,28 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "overtype"
                 });
+
+                Columns.Add(new DatabaseColumn("ComingMac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30,
+					PropertyName = "ComingMac"
+                });
+
+                Columns.Add(new DatabaseColumn("OverMac", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30,
+					PropertyName = "OverMac"
+                });
                     
                 
                 
@@ -233,6 +255,20 @@ namespace Solution.DataAccess.DataModel {
             public IColumn overtype{
                 get{
                     return this.GetColumn("overtype");
+                }
+            }
+				
+            
+            public IColumn ComingMac{
+                get{
+                    return this.GetColumn("ComingMac");
+                }
+            }
+				
+            
+            public IColumn OverMac{
+                get{
+                    return this.GetColumn("OverMac");
                 }
             }
 				

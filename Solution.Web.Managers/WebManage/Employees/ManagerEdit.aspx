@@ -61,12 +61,12 @@
                             <f:SimpleForm ID="SimpleForm1" BodyPadding="5px" runat="server" ShowBorder="false"
                                 Title="表單" Width="450px" ShowHeader="false">
                                 <Items>
-                                    <f:Image ID="imgPhoto" CssClass="photo" ImageWidth="200px" ImageHeight="150px" ImageUrl="../images/blank.png"
+                                    <%--<f:Image ID="imgPhoto" CssClass="photo" ImageWidth="200px" ImageHeight="150px" ImageUrl="../images/blank.png"
                                         runat="server">
                                     </f:Image>
                                     <f:FileUpload ID="fuSinger_AvatarPath" runat="server" Width="430px" ShowLabel="true"
                                         Label="頭像上傳">
-                                    </f:FileUpload>
+                                    </f:FileUpload>--%>
                                     <f:TextBox ID="txtCName" Label="姓名(中)" EmptyText="中文名稱" runat="server" ShowRedStar="true"
                                         Required="true">
                                     </f:TextBox>
@@ -83,18 +83,22 @@
                                     </f:HiddenField>
                                     <f:DropDownList runat="server" Label="所屬職位" ID="ddlPosition" AutoSelectFirstItem="False">
                                     </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="考勤班次" ID="ddlShift" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="考勤規則" ID="ddlRule" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="權限組" ID="ddlGroup" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="長短周" ID="ddlShort" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="審核人" ID="ddlChecker1" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
+                                    <f:DropDownList runat="server" Label="二級審核人" ID="ddlChecker2" AutoSelectFirstItem="False">
+                                    </f:DropDownList>
                                     <%--<f:Button ID="ButtonSelectPosition" runat="server" Text="選擇職位" Icon="Magnifier" EnablePostBack="False">
                                     </f:Button>--%>
-                                    <f:TextBox runat="server" Label="民族" ID="txtNationalName">
-                                    </f:TextBox>
-                                    <f:DatePicker runat="server" Label="出生日期" ID="dpBirthday" DateFormatString="yyyy-M-d">
+                                    <f:DatePicker runat="server" Label="入職日期" ID="dpBirthday" DateFormatString="yyyy-M-d">
                                     </f:DatePicker>
-                                    <f:TextBox runat="server" Label="手提電話" ID="txtMobile">
-                                    </f:TextBox>
-                                    <f:TextBox runat="server" Label="公司直綫" ID="txtTel">
-                                    </f:TextBox>
-                                    <f:TextBox runat="server" Label="聯繫地址" ID="txtAddress">
-                                    </f:TextBox>
                                 </Items>
                             </f:SimpleForm>
                         </Items>
@@ -104,6 +108,15 @@
                             <f:SimpleForm ID="SimpleForm3" BodyPadding="5px" runat="server" ShowBorder="false"
                                 Width="450px" ShowHeader="false">
                                 <Items>
+                                    <f:TextBox runat="server" Label="民族" ID="txtNationalName">
+                                    </f:TextBox>
+                                    <f:TextBox runat="server" Label="手提電話" ID="txtMobile">
+                                    </f:TextBox>
+                                    <f:TextBox runat="server" Label="公司直綫" ID="txtTel">
+                                    </f:TextBox><f:TextBox runat="server" Label="Fax地址" ID="txtFax">
+                                    </f:TextBox>
+                                    <f:TextBox runat="server" Label="聯繫地址" ID="txtAddress">
+                                    </f:TextBox>
                                     <f:TextBox runat="server" Label="籍貫" ID="txtNativePlace">
                                     </f:TextBox>
                                     <f:TextBox runat="server" Label="學歷" ID="txtRecord">

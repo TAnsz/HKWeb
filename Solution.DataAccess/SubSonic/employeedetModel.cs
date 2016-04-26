@@ -131,6 +131,26 @@ namespace Solution.DataAccess.Model
 			set { _overtype = value; }
 		}
 
+		string _ComingMac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ComingMac
+		{
+			get { return _ComingMac; }
+			set { _ComingMac = value; }
+		}
+
+		string _OverMac = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string OverMac
+		{
+			get { return _OverMac; }
+			set { _OverMac = value; }
+		}
+
 		/// <summary>
         /// 導出實例所有值
         /// </summary>
@@ -149,6 +169,8 @@ namespace Solution.DataAccess.Model
 			sb.Append("empid=" + empid + "; ");
 			sb.Append("comingtype=" + comingtype + "; ");
 			sb.Append("overtype=" + overtype + "; ");
+			sb.Append("ComingMac=" + ComingMac + "; ");
+			sb.Append("OverMac=" + OverMac + "; ");
 			return sb.ToString();
         }
 
